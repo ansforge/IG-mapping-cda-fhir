@@ -1,0 +1,38 @@
+{
+  "resourceType": "Patient",
+  "id": "patient-example-1",
+  "meta": {
+    "profile": [
+      "https://interop.esante.gouv.fr/ig/fhir/eds/StructureDefinition/EDSPatient"
+    ]
+  },
+  "address": [
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/geolocation",
+          "extension": [
+            {
+              "url": "latitude",
+              "valueDecimal": 48.840031428873175
+            },
+            {
+              "url": "longitude",
+              "valueDecimal": 2.4008115174942795
+            }
+          ]
+        }
+      ],
+      "use": "home",
+      "text": "12 Bd Picpus, 75012 Paris",
+      "line": [
+        "12 Bd Picpus"
+      ],
+      "city": "Paris",
+      "postalCode": "75012"
+    }
+  ],
+  "gender": "female",
+  "birthDate": "1948-07-12",
+  "deceasedDateTime": "2024-07-12T12:00:00+01:00"
+}

@@ -1,0 +1,69 @@
+# Examples & data-tests from https://github.com/hl7ch/cda-fhir-maps/blob/master/cdatofhir_card.http
+
+### Create and Update CDA maps for converting to FHIR with RESTClient and running matchbox (locally)
+### Note: POST the maps in the following order, if you update one map you need to repost also the maps below
+
+# @host = https://test.ahdis.ch/matchbox/fhir
+@host = http://localhost:8080/matchbox/fhir
+
+### 1. POST CdaToFhirTypes.map
+POST {{host}}/StructureMap HTTP/1.1
+Accept: application/fhir+xml;fhirVersion=4.0
+Content-Type: text/fhir-mapping
+
+< ./data-test/CdaToFhirTypes.map
+
+
+### 2. POST CdaToBundle.map
+POST {{host}}/StructureMap HTTP/1.1
+Accept: application/fhir+xml;fhirVersion=4.0
+Content-Type: text/fhir-mapping
+
+< ./data-test/CdaToBundle.map
+
+
+### 3. POST CdaChToBundle.map
+POST {{host}}/StructureMap HTTP/1.1
+Accept: application/fhir+xml;fhirVersion=4.0
+Content-Type: text/fhir-mapping
+
+< ./data-test-ch/CdaChToBundle.map
+
+
+### 3b. POST CdaChEmedToBundle.map
+POST {{host}}/StructureMap HTTP/1.1
+Accept: application/fhir+xml;fhirVersion=4.0
+Content-Type: text/fhir-mapping
+
+< ./data-test-ch/CdaChEmedToBundle.map
+
+
+### 4. POST CdaChEmedMedicationCardDocumentToBundle.map 
+POST {{host}}/StructureMap HTTP/1.1
+Accept: application/fhir+xml;fhirVersion=4.0
+Content-Type: text/fhir-mapping
+
+< ./data-test-ch/CdaChEmedMedicationCardDocumentToBundle.map
+
+### 5. Transform Medication Card document (2-7-MedicationCard.xml) from CDA to FHIR
+POST {{host}}/StructureMap/$transform?source=http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaChEmedMedicationCardDocumentToBundle
+Accept: application/fhir+xml;fhirVersion=4.0
+Content-Type: application/fhir+xml;fhirVersion=4.0
+
+< ./data-test-ch/CSE-MDE_2023.01.xml
+
+### 5. Transform Medication Card document (2-7-MedicationCard.xml) from CDA to FHIR  --- NOT WORKING BC WRONG MAP ---
+POST {{host}}/StructureMap/$transform?source=http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaChEmedToBundle
+Accept: application/fhir+xml;fhirVersion=4.0
+Content-Type: application/fhir+xml;fhirVersion=4.0
+
+< ./data-test-ch/CSE-MDE_2023.01.xml
+
+
+
+###
+POST {{host}}/StructureMap/$transform?source=http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaChEmedMedicationCardDocumentToBundle
+Accept: application/fhir+xml;fhirVersion=4.0
+Content-Type: application/fhir+xml;fhirVersion=4.0
+
+< ./data-test-ch/2-7-MedicationCard.xml

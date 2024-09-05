@@ -1,0 +1,112 @@
+map "https://esante.gouv.fr/ig/fhir/cda-fhir-maps/StructureMap/CdaFrMDEToBundle" = "CdaFrMDEToBundle"
+
+//
+// Medication Entries
+// 2020-10-30 Oliver Egger, copyright ahdis ag, Apache License 
+// CDA-CH-EMED:  https://art-decor.org/art-decor/decor-project--cdachemed-
+// FHIR CH-EMED: http://fhir.ch/ig/ch-emed/index.html
+//
+
+uses "http://hl7.org/cda/stds/core/StructureDefinition/OrganizerComponent" alias OrganizerComponent as source
+
+uses "http://hl7.org/fhir/StructureDefinition/Bundle" alias Bundle as target
+uses "http://hl7.org/fhir/StructureDefinition/Composition" alias Composition as target
+uses "http://hl7.org/fhir/StructureDefinition/Patient" alias Patient as target
+uses "http://hl7.org/fhir/StructureDefinition/Practitioner" alias Practitioner as target
+uses "http://hl7.org/fhir/StructureDefinition/Organization" alias Organization as target
+uses "http://hl7.org/fhir/StructureDefinition/MedicationStatement" alias MedicationStatement as target
+uses "http://hl7.org/fhir/StructureDefinition/Dosage" alias Dosage as target
+uses "http://hl7.org/fhir/StructureDefinition/Observation" alias Observation as target
+
+imports "http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaToFhirTypes"
+imports "http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaToBundle"
+imports "https://esante.gouv.fr/ig/fhir/cda-fhir-maps/StructureMap/CdaFrToBundle"
+
+
+
+// _________________________ Document Level Template  _________________________ 
+
+// source: https://art-decor.org/art-decor/decor-templates--cdachemed-?section=templates&id=2.16.756.5.30.1.1.10.1.3
+// target: http://build.fhir.org/ig/hl7ch/ch-emed/StructureDefinition-ch-emed-composition-medicationcard.html
+group CdaChEmedMedicationCardDocumentToBundle(source cda : ClinicalDocument, target bundle : Bundle) {
+  cda ->  bundle.entry as e, 
+             e.resource = create('Composition') as composition, 
+             composition.id = uuid() as uuid,
+             e.fullUrl = append('urn:uuid:',uuid),
+             bundle.entry as e2, 
+             e2.resource = create('Patient') as patient,
+             patient.id = uuid() as uuid2,
+             e2.fullUrl = append('urn:uuid:',uuid2)
+             then ClinicalDocumentChEmedMedicationCardDocumentToBundle(cda, patient, composition, bundle) "ClinicalDocumentToBody";
+}
+
+// source: https://art-decor.org/art-decor/decor-templates--cdachemed-?section=templates&id=2.16.756.5.30.1.1.10.1.3
+// target: http://build.fhir.org/ig/hl7ch/ch-emed/StructureDefinition-ch-emed-composition-medicationcard.html
+group ClinicalDocumentChEmedMedicationCardDocumentToBundle(source cda : ClinicalDocument, target patient : Patient, target composition : Composition, target bundle : Bundle) extends ClinicalDocumentToBundle {
+  cda then ClinicalDocumentCompositionFr(cda, composition, patient, bundle) "composition";
+  cda.component as component then {
+    component.structuredBody as body then {
+      body.component as component2 then {
+        component2.section as section then {
+          section.entry as entry then {
+            entry.organizer as org then {
+              org.component as oc then {
+                oc.observation as ob  then {
+                  ob -> bundle.entry as e,
+                  e.resource = create('Observation') as obs,
+                  obs.id = uuid() as uuid,
+                  e.fullUrl = append('urn:uuid:',uuid)
+                  then OrganizerComponentToObservation(ob, obs, patient) "mapObservation";
+                } "mapObservation";
+              } "mapOrganizerComponent";
+            } "mapOrganizer";
+          } "mapEntryComponent";
+        } "mapSection";
+      } "mapComponent2";
+    } "mapBody";
+  } "mapComponent";
+}
+
+// _________________________ Section Level Templates _________________________ 
+
+// source: http://build.fhir.org/ig/hl7ch/ch-emed/StructureDefinition-ch-emed-composition-medicationcard.html
+// target: https://art-decor.org/art-decor/decor-templates--cdachemed-?section=templates&id=2.16.756.5.30.1.1.10.3.9
+group SectionMedicationCardSectionContentModule(source cda : ClinicalDocument, source src : Section, source patient : Patient, target tgt, target bundle: Bundle) extends ClinicalDocumentSection {
+  src.entry as cdaEntry where (substanceAdministration.templateId.where(root='2.16.756.5.30.1.1.10.4.34')) ->  bundle.entry as e,  e.resource = create('MedicationStatement') as medicationstatement,  
+    medicationstatement.id = uuid() as uuid,
+    e.fullUrl = append('urn:uuid:',uuid), 
+    tgt.entry = create('Reference') as reference, reference.reference = append('urn:uuid:',uuid) then {
+    cdaEntry.substanceAdministration as substanceAdministration then MedicationTreatmentPlanItemEntryContentModule(src, substanceAdministration, patient, medicationstatement);
+  } "cdaEntry";
+}
+
+
+// _________________________ Entry Level Templates   _________________________ 
+
+
+// source: https://art-decor.org/art-decor/decor-templates--cdachemed-?section=templates&id=2.16.756.5.30.1.1.10.4.2
+// target: Annotation note (e.g. http://build.fhir.org/ig/hl7ch/ch-emed/branches/master/StructureDefinition-ch-emed-medicationstatement.html)
+group OrganizerComponentToObservation(source ob : Observation, target obs : Observation, target patient : Patient) {
+  // Ajout du statusCode
+  // ob.statusCode as c then {
+  //   c.code as statCode -> obs.value = cast(statCode, 'string') "AjoutValueString";
+  // } "SetObsValue";
+
+  ob.statusCode as statCode -> obs.status = create('code') as statusCode then CSCode(statCode, statusCode) "AjoutStatus";
+  ob.code as loincCode -> obs.code = create('CodeableConcept') as ccCode then CDCodeableConcept(loincCode, ccCode) "AjoutCode";
+
+
+  // ob.value as v -> obs.value = cast(v, 'string');
+  ob.value as ObsValue -> obs.value = create("Quantity") as quant then PQQuantity(ObsValue, quant) "numerator";
+
+  // ob.value as obValue then {
+  //   obValue.value as numerator -> obs.value as targetNumerator then PQQuantity(numerator, targetNumerator) "numerator";
+  // } "SetObsValue";
+
+  // ob.statusCode as v -> obs.value = v;
+
+
+  ob -> obs.subject = create('Reference') as reference, reference.reference = ('urn:uuid:'+%patient.id) "setObsSubject";
+  
+
+} 
