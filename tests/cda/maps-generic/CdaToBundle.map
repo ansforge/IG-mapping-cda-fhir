@@ -184,8 +184,47 @@ group ClinicalDocumentPatientRole(source src : PatientRole, target tgt : Patient
   src.id as id -> tgt.identifier = create('Identifier') as identifier then setFrPatientIdentifier(id, identifier);
   src.addr -> tgt.address;
   src.telecom -> tgt.telecom;
+
   src.patient as patient then {
-    patient.name -> tgt.name; 
+    // PatientNameOfficial
+    patient.name as CDAName -> tgt.name = create('HumanName') as humanname then {
+      CDAName.item as item then {
+        item.family as birthFamily where(item.family.qualifier = 'BR') then {
+          item.given -> humanname.use = 'official' "use";
+          item.family as v -> humanname.family = (v.xmlText);
+        } "addOfficialFamilyName";
+        item.given where(item.given.qualifier = 'BR') then {
+          item.given -> humanname.use = 'official' "use";
+          item.given as v -> humanname.given = (v.xmlText);
+        } "addOfficialGivenName";
+        item.given where(item.given.qualifier.empty()) then {
+          item.given -> humanname.use = 'official' "use";
+          item.given -> humanname.extension as ext then {
+              item.given -> ext.url = 'https://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-patient-birth-list-given-name' "url";
+              item.given as v ->  ext.value = (v.xmlText) "value";
+          } "addbirthListGivenExtension";
+        } "addOfficialGivenListNames";
+      } "itemList";
+    } "patientNameOfficial";
+
+    // PatientNameUsual
+
+    patient.name as CDAName -> tgt.name = create('HumanName') as humanname then {
+      CDAName.item as item then {
+        item.family as birthFamily where(item.family.qualifier = 'CL') then {
+          item.given -> humanname.use = 'usual' "use";
+          item.family as v -> humanname.family = (v.xmlText);
+        } "addOfficialFamilyName";
+        item.given where(item.given.qualifier = 'CL') then {
+          item.given -> humanname.use = 'usual' "use";
+          item.given as v -> humanname.given = (v.xmlText);
+        } "addOfficialGivenName";
+      } "itemList";
+    } "patientNameUsual";
+
+
+    
+
     patient.administrativeGenderCode as gender then {
       gender.code as v -> tgt.gender = translate(v, '#cm-v3-administrative-gender', 'code') "gender";
     } "gender";
