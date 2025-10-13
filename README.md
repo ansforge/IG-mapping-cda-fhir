@@ -1,43 +1,33 @@
-[A MODIFIER : remplacer avec votre logo s'il ne s'agit pas d'un projet CI-SIS]
+# fhir-transformation
 
-![Logo_LEF_CI-SIS](https://user-images.githubusercontent.com/48218773/227532484-eff82649-4e42-49c6-966a-dc3ea78cf59c.png)
+This repository works like a proof of concept for transforming data from FHIR or to FHIR to another data format.
+The tools used are FHIR Mapping Language to describe the transformations and [matchbox (AHDIS)](https://github.com/ahdis/matchbox) as a tool to apply the transformations.
 
-[A MODIFIER : adapter au lien du projet]
+# Getting started
 
-[![Workflow Init](https://github.com/ansforge/IG-fhir-partage-de-documents-de-sante/actions/workflows/fhir-workflows.yml/badge.svg)](https://github.com/ansforge/IG-fhir-partage-de-documents-de-sante/actions/workflows/fhir-workflows.yml)
+1/ Charge matchbox image docker
 
-Cet exemple d'Implementation Guide (IG) très simplifié sert de base pour le développement de nouveaux guides d'implémentation. La démarche d'élaboration d'un nouvel IG est expliquée dans le [wiki de ce repo](https://github.com/ansforge/IG-modele/wiki).
-Le README ci-dessous constitue un template à adapter et compléter pour chaque projet.
+docker pull europe-west6-docker.pkg.dev/ahdis-ch/ahdis/matchbox:v3.8.9
 
-# Contexte
+2/ Create the container with the docker image
 
-## Contexte métier du projet
+docker run -d --name matchbox -p 8080:8080 -v /Users/nicolasriss/Desktop/cda-fhir-maps/fhir-transformation/with-cda:/config europe-west6-docker.pkg.dev/ahdis-ch/ahdis/matchbox:v3.8.9
 
-[A COMPLETER : doit contenir la description fonctionnelle du projet destinée à un profil non technique]
+The path should be adapted to your local folder containing the with-cda folder.
 
-## Contexte technique du projet
+To access the docker logs, launch this command:
 
-[A COMPLETER : doit expliquer brièvement quelles ressources / profils sont utilisés, exemple implémentation où IG est utilisé]
+docker logs --follow matchbox
 
-# CI/CD
+3/ Adapt application.yml
 
-Les workflows associés à ce repository (.github/workflows) permettent :
+To add some new packages to matchbox, you just have to create a new folder equivalent to "with-cda", and add the packages you want indicating the url.
 
-* D'executer Sushi pour vérifier la grammaire
-* De faire les tests avec le validator_cli
-* De publier les pages : https://ansforge.github.io/{nom du repo}/{nom de la branche}/ig
+To change the package, you have to delete your docker container (using docker desktop for instance) and then go to step 2/
 
-# Notes
+3/ Launch transformations
 
-Ce repo "IG-modele" a été créé à partir du repo [sample-ig](https://github.com/FHIR/sample-ig) de l'organisation GitHub FHIR.
+Then, you will have to launch the transformations in the tests folder :
 
-[A COMPLETER: notes supplémentaires pour le lecteur de la spec]
-Un commentaire ? Une remarque ? Utilisez les GitHub [issues](https://docs.github.com/fr/issues) pour indiquer vos propositions d'amélioration et de correction.
-
-## Acronymes
-
-* IG : Implementation Guide
-* FHIR : Fast Healthcare Interoperability Resources
-* HL7 : Health Level Seven
-
-[A COMPLETER : acronymes utilisés dans le cadre de ce projet]
+* The cda folder allows to test with the swiss maps and a first try with the french maps
+* the eds (entrepôt de données de santé) folder allows to test with https://github.com/ansforge/IG-FHIR-EDS-SOCLE-COMMUN
