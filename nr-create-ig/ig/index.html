@@ -218,6 +218,7 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
 <div class="markdown-toc">
 <ul id="markdown-toc">
   <li><a href="#introduction" id="markdown-toc-introduction">Introduction</a></li>
+  <li><a href="#lancer-une-transformation" id="markdown-toc-lancer-une-transformation">Lancer une transformation</a></li>
   <li><a href="#auteurs-et-contributeurs" id="markdown-toc-auteurs-et-contributeurs">Auteurs et contributeurs</a></li>
   <li><a href="#dépendances" id="markdown-toc-dépendances">Dépendances</a></li>
   <li><a href="#propriété-intellectuelle" id="markdown-toc-propriété-intellectuelle">Propriété intellectuelle</a></li>
@@ -251,6 +252,35 @@ Proof of concept for CDA to FHIR transformation
   <li>créer les spécifications françaises en FHIR qui reprend l'historique CDA tout en s'alignant avec les contraintes européennes (cf. https://github.com/ansforge/IG-document-core)</li>
   <li>tester le FHIR Mapping Language, outil permettant la transformation des documents CDA vers FHIR.</li>
 </ul>
+
+<h3 id="lancer-une-transformation">Lancer une transformation</h3>
+
+<p>1/ Charge matchbox image docker</p>
+
+<p>docker pull europe-west6-docker.pkg.dev/ahdis-ch/ahdis/matchbox:v3.8.9</p>
+
+<p>2/ Create the container with the docker image</p>
+
+<p>docker run -d –name matchbox -p 8080:8080 -v /Users/nicolasriss/Desktop/cda-fhir-maps/fhir-transformation/with-cda:/config europe-west6-docker.pkg.dev/ahdis-ch/ahdis/matchbox:v3.8.9</p>
+
+<p>The path should be adapted to your local folder containing the with-cda folder.</p>
+
+<p>To access the docker logs, launch this command:</p>
+
+<p>docker logs –follow matchbox</p>
+
+<p>3/ Adapt application.yml</p>
+
+<p>To add some new packages to matchbox, you just have to create a new folder equivalent to "with-cda", and add the packages you want indicating the url.</p>
+
+<p>To change the package, you have to delete your docker container (using docker desktop for instance) and then go to step 2/</p>
+
+<p>3/ Launch transformations</p>
+
+<p>Then, you will have to launch the transformations in the tests folder :</p>
+
+<p>The cda folder allows to test with the swiss maps and a first try with the french maps
+the eds (entrepôt de données de santé) folder allows to test with https://github.com/ansforge/IG-FHIR-EDS-SOCLE-COMMUN</p>
 
 <h3 id="auteurs-et-contributeurs">Auteurs et contributeurs</h3>
 
@@ -355,7 +385,7 @@ Proof of concept for CDA to FHIR transformation
 
       <div class="inner-wrapper">
         <p>
-          IG &#169; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d&#39;Oradour-sur-Glane, 75015 Paris</a>.  Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Mon, Oct 20, 2025 13:09+0000">2025-10-20</span>
+          IG &#169; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d&#39;Oradour-sur-Glane, 75015 Paris</a>.  Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Mon, Oct 20, 2025 13:26+0000">2025-10-20</span>
           <br/>
           <span style="color: var(--footer-highlight-text-color)"></span>
             Liens : <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table des matières</a> |
