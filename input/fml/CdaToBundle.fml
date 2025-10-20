@@ -50,7 +50,7 @@ group ClinicalDocumentToBundle(source cda : ClinicalDocument, target patient : P
   cda then ClinicalDocumentComposition(cda, composition, patient, bundle) "composition";
   cda.component as component then {
     component.structuredBody as body then {
-      body.component as component log 'component' then {
+      body.component as component then {
         component.section as srcSection where $this.code.empty() -> composition.section as tgtSection then ClinicalDocumentSection(cda, srcSection, patient, tgtSection, bundle);
       } "component";
     } "body";
