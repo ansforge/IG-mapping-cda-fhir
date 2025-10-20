@@ -49,7 +49,7 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
 
 * ISO maintains the copyright on the country codes, and controls its use carefully. For further details see the ISO 3166 web page: [https://www.iso.org/iso-3166-country-codes.html](https://www.iso.org/iso-3166-country-codes.html)
 
-* [ISO 3166-1 Codes for the representation of names of countries and their subdivisions — Part 1: Country code](http://terminology.hl7.org/6.5.0/CodeSystem-ISO3166Part1.html): [CDA2FHIRMAP](index.md), [CDAFrMDEToBundle](StructureMap-CDAFrMDEToBundle.md), [CdaFrToBundle](StructureMap-CdaFrToBundle.md) and [CdaToFHIRTypes](StructureMap-CdaToFHIRTypes.md)
+* [ISO 3166-1 Codes for the representation of names of countries and their subdivisions — Part 1: Country code](http://terminology.hl7.org/6.5.0/CodeSystem-ISO3166Part1.html): [CDA2FHIRMAP](index.md), [CDAFrMDEToBundle](StructureMap-CDAFrMDEToBundle.md), [CdaFrToBundle](StructureMap-CdaFrToBundle.md), [CdaToBundle](StructureMap-CdaToBundle.md) and [CdaToFHIRTypes](StructureMap-CdaToFHIRTypes.md)
 
 
 
@@ -65,7 +65,7 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2025-10-20T12:37:37+00:00",
+  "date" : "2025-10-20T12:54:41+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {
@@ -898,6 +898,19 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
         },
         "name" : "Mapping de CDA vers les FHIR Types (Source : Oliver Egger)",
         "description" : "Mapping de CDA vers les FHIR Types (Source : Oliver Egger)"
+      },
+      {
+        "extension" : [
+          {
+            "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString" : "StructureMap"
+          }
+        ],
+        "reference" : {
+          "reference" : "StructureMap/CdaToBundle"
+        },
+        "name" : "Mapping de CDA vers FHIR Bundle (Source : Oliver Egger)",
+        "description" : "Mapping de CDA vers FHIR Bundle (Source : Oliver Egger)"
       }
     ],
     "page" : {

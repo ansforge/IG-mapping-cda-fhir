@@ -18,7 +18,7 @@
   fhir:name [ fhir:v "CDA2FHIRMAP"] ; # 
   fhir:title [ fhir:v "POC - Mapping CDA to FHIR"] ; # 
   fhir:status [ fhir:v "draft"] ; # 
-  fhir:date [ fhir:v "2025-10-20T12:37:37+00:00"^^xsd:dateTime] ; # 
+  fhir:date [ fhir:v "2025-10-20T12:54:41+00:00"^^xsd:dateTime] ; # 
   fhir:publisher [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"] ; # 
   fhir:contact ( [
      fhir:name [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris" ] ;
@@ -966,6 +966,20 @@
        ] ;
        fhir:name [ fhir:v "Mapping de CDA vers les FHIR Types (Source : Oliver Egger)" ] ;
        fhir:description [ fhir:v "Mapping de CDA vers les FHIR Types (Source : Oliver Egger)" ]
+     ] [
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ] ;
+         fhir:value [
+           a fhir:string ;
+           fhir:v "StructureMap"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:link <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle> ;
+         fhir:reference [ fhir:v "StructureMap/CdaToBundle" ]
+       ] ;
+       fhir:name [ fhir:v "Mapping de CDA vers FHIR Bundle (Source : Oliver Egger)" ] ;
+       fhir:description [ fhir:v "Mapping de CDA vers FHIR Bundle (Source : Oliver Egger)" ]
      ] ) ;
      fhir:page [
        fhir:extension ( [
