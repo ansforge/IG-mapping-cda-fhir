@@ -1,190 +1,22 @@
 CDA2FHIRMAP : Validation Results
 =========================================
 
-err = 78, warn = 27, info = 60
+err = 2, warn = 3, info = 0
 $--
 Generated $--. FHIR version $-- for ans.fhir.fr.mappingcdafhir#$-- (canonical = https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir)
  Build Errors : 7 / 2 / 0
- /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ImplementationGuide-ans.fhir.fr.mappingcdafhir : 0 / 1 / 1
- /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/input/fml/CDAFrMDEToBundle : 12 / 3 / 6
- /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/input/fml/CDAFrToBundle : 12 / 4 / 17
- /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/input/fml/CDAtoFHIRTypes : 38 / 12 / 18
- /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/input/fml/CdaToBundle : 15 / 5 / 23
+ /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ImplementationGuide-ans.fhir.fr.mappingcdafhir : 1 / 1 / 1
 </table>
 == n/a ==
 ERROR: ImplementationGuide/ans.fhir.fr.mappingcdafhir: This IG is version 4.0.1, while the IG 'hl7.cda.uv.core' is from version 5.0.0
-ERROR: downloads.html#/html/body/div/div/div/div/div/ul/li/a at Line 224, column 8: The link 'definitions.json.zip' for "Définitions JSON (zip)" cannot be resolved
-ERROR: downloads.html#/html/body/div/div/div/div/div/ul/li/a at Line 225, column 8: The link 'definitions.xml.zip' for "Définitions XML (zip)" cannot be resolved
-ERROR: downloads.html#/html/body/div/div/div/div/div/ul/li/a at Line 226, column 8: The link 'definitions.ttl.zip' for "Définitions Turtle (zip)" cannot be resolved
-ERROR: downloads.html#/html/body/div/div/div/div/div/ul/li/a at Line 232, column 8: The link 'examples.xml.zip' for "Exemples XML (zip)" cannot be resolved
-ERROR: downloads.html#/html/body/div/div/div/div/div/ul/li/a at Line 233, column 8: The link 'examples.json.zip' for "Exemples JSON (zip)" cannot be resolved
-ERROR: downloads.html#/html/body/div/div/div/div/div/ul/li/a at Line 234, column 8: The link 'examples.ttl.zip' for "Exemples Turtle (zip)" cannot be resolved
+ERROR: downloads.html#/html/body/div/div/div/div/div/ul/li/a at Line 202, column 8: The link 'definitions.json.zip' for "Définitions JSON (zip)" cannot be resolved
+ERROR: downloads.html#/html/body/div/div/div/div/div/ul/li/a at Line 203, column 8: The link 'definitions.xml.zip' for "Définitions XML (zip)" cannot be resolved
+ERROR: downloads.html#/html/body/div/div/div/div/div/ul/li/a at Line 204, column 8: The link 'definitions.ttl.zip' for "Définitions Turtle (zip)" cannot be resolved
+ERROR: downloads.html#/html/body/div/div/div/div/div/ul/li/a at Line 210, column 8: The link 'examples.xml.zip' for "Exemples XML (zip)" cannot be resolved
+ERROR: downloads.html#/html/body/div/div/div/div/div/ul/li/a at Line 211, column 8: The link 'examples.json.zip' for "Exemples JSON (zip)" cannot be resolved
+ERROR: downloads.html#/html/body/div/div/div/div/div/ul/li/a at Line 212, column 8: The link 'examples.ttl.zip' for "Exemples Turtle (zip)" cannot be resolved
 WARNING: 2: An HTML fragment from the set [cross-version-analysis.xhtml, cross-version-analysis-inline.xhtml] is not included anywhere in the produced implementation guide
 WARNING: 4: The HTML fragment 'globals-table.xhtml' is not included anywhere in the produced implementation guide
 == fsh-generated/resources/ImplementationGuide-ans.fhir.fr.mappingcdafhir.json ==
+ERROR: ImplementationGuide/ans.fhir.fr.mappingcdafhir: ImplementationGuide.definition: ImplementationGuide.definition.resource: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/ImplementationGuide|4.0.1)
 WARNING: ImplementationGuide/ans.fhir.fr.mappingcdafhir: ImplementationGuide.dependsOn[2]: The ImplementationGuide is based on FHIR version 4.0.1 but package hl7.cda.uv.core#2.0.0-sd is based on FHIR version 5.0.0. In general, this version mismatch should be avoided - some tools will try to make this work with variable degrees of success, but others will not even try
-== input/fml/CDAFrMDEToBundle.fml ==
-ERROR: StructureMap.where(url = 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrMDEToBundle'): Conformance resource /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/input/fml/CDAFrMDEToBundle.fml - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CDAFrMDEToBundle) does not match the URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrMDEToBundle). Use the special-url parameter if you really mean for it not to match
-ERROR: StructureMap.url: Resource id/url mismatch: CDAFrMDEToBundle/https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrMDEToBundle
-WARNING: StructureMap/CDAFrMDEToBundle: StructureMap.import[0]: A definition could not be found for Canonical URL 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFhirTypes'
-WARNING: StructureMap/CDAFrMDEToBundle: StructureMap.import[0]: No maps were found to match https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFhirTypes - validation may be wrong
-INFORMATION: StructureMap/CDAFrMDEToBundle: StructureMap.group[0].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-ERROR: StructureMap/CDAFrMDEToBundle: StructureMap.group[0].rule[0].dependent[0].variable[0]: The parameter 'cda' refers to the variable 'cda : ClinicalDocument (source)' but its type is 'ClinicalDocument' which is not compatible with the type required for the group 'ClinicalDocumentChEmedMedicationCardDocumentToBundle', which is 'ClinicalDocument' (from map '$this')
-INFORMATION: StructureMap/CDAFrMDEToBundle: StructureMap.group[1].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-ERROR: StructureMap/CDAFrMDEToBundle: StructureMap.group[1].rule[0].dependent[0]: The group ClinicalDocumentCompositionFr could not be resolved
-INFORMATION: StructureMap/CDAFrMDEToBundle: StructureMap.group[1].rule[1].rule[0].rule[0].rule[0].rule[0].rule[0].rule[0].rule[0].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-ERROR: StructureMap/CDAFrMDEToBundle: StructureMap.group[1].rule[1].rule[0].rule[0].rule[0].rule[0].rule[0].rule[0].rule[0].rule[0].dependent[0].variable[0]: The parameter 'ob' refers to the variable 'ob : http://hl7.org/cda/stds/core/StructureDefinition/Observation (source)' but its type is 'Observation' which is not compatible with the type required for the group 'OrganizerComponentToObservation', which is 'Observation' (from map '$this')
-ERROR: StructureMap/CDAFrMDEToBundle: StructureMap.group[3].rule[0].source[0]: The source path ob.statusCode refers to the path Observation.statusCode which is unknown
-ERROR: StructureMap/CDAFrMDEToBundle: StructureMap.group[3].rule[0].dependent[0]: The group CSCode could not be resolved
-ERROR: StructureMap/CDAFrMDEToBundle: StructureMap.group[3].rule[1].dependent[0]: The group CDCodeableConcept could not be resolved
-ERROR: StructureMap/CDAFrMDEToBundle: StructureMap.group[3].rule[2].dependent[0]: The group PQQuantity could not be resolved
-INFORMATION: StructureMap/CDAFrMDEToBundle: StructureMap.group[3].rule[3].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-INFORMATION: StructureMap/CDAFrMDEToBundle: StructureMap.group[2]: The group SectionMedicationCardSectionContentModule is not called successfully from within this mapping script, and does not have types on its inputs, so type verification is not possible
-WARNING: StructureMap/CDAFrMDEToBundle: StructureMap.group[2].input[3]: Group SectionMedicationCardSectionContentModule parameter tgt has no type, so the paths cannot be validated
-ERROR: StructureMap/CDAFrMDEToBundle: StructureMap.group[2].rule[0].target[5]: The target context 'reference' is not known at this point
-ERROR: StructureMap/CDAFrMDEToBundle: StructureMap.group[2].rule[0].rule[0].dependent[0]: The group MedicationTreatmentPlanItemEntryContentModule could not be resolved
-ERROR: /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/input/fml/CDAFrMDEToBundle: URL Mismatch https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CDAFrMDEToBundle vs https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrMDEToBundle
-== input/fml/CDAFrToBundle.fml ==
-WARNING: StructureMap/CdaFrToBundle: StructureMap.import[0]: A definition could not be found for Canonical URL 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFhirTypes'
-WARNING: StructureMap/CdaFrToBundle: StructureMap.import[0]: No maps were found to match https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFhirTypes - validation may be wrong
-INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[0].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-ERROR: StructureMap/CdaFrToBundle: StructureMap.group[0].rule[0].dependent[0]: The group ClinicalDocumentFrToBundle could not be resolved
-INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[3].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[3].rule[1].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-ERROR: StructureMap/CdaFrToBundle: StructureMap.group[3].rule[1].dependent[0]: The group CECodeableConcept could not be resolved
-INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[4].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[4].rule[1].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-ERROR: StructureMap/CdaFrToBundle: StructureMap.group[4].rule[1].dependent[0]: The group INT could not be resolved
-INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[6].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[6].rule[1].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-ERROR: StructureMap/CdaFrToBundle: StructureMap.group[6].rule[2].dependent[0]: The group ADAddress could not be resolved
-ERROR: StructureMap/CdaFrToBundle: StructureMap.group[6].rule[3].rule[0].dependent[0]: The group ENHumanName could not be resolved
-INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[7].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[7].rule[1].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-ERROR: StructureMap/CdaFrToBundle: StructureMap.group[7].rule[2].dependent[0].variable[0]: The parameter 'src' refers to the variable 'receivedOrganization : http://hl7.org/cda/stds/core/StructureDefinition/Organization (source)' but its type is 'CustodianOrganization' which is not compatible with the type required for the group 'ClinicalDocumentOrganization', which is 'CustodianOrganization' (from map 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle|0.1.0')
-INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[8].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-ERROR: StructureMap/CdaFrToBundle: StructureMap.group[8].rule[2].dependent[0]: The group ChExtEprTime could not be resolved
-INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[8].rule[3].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-ERROR: StructureMap/CdaFrToBundle: StructureMap.group[8].rule[3].rule[1].dependent[0].variable[0]: The parameter 'src' refers to the variable 'representedOrganization : http://hl7.org/cda/stds/core/StructureDefinition/Organization (source)' but its type is 'CustodianOrganization' which is not compatible with the type required for the group 'ClinicalDocumentOrganization', which is 'CustodianOrganization' (from map 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle|0.1.0')
-INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[1]: The group SectionOriginalRepresentation is not called successfully from within this mapping script, and does not have types on its inputs, so type verification is not possible
-WARNING: StructureMap/CdaFrToBundle: StructureMap.group[1].input[3]: Group SectionOriginalRepresentation parameter tgt has no type, so the paths cannot be validated
-ERROR: StructureMap/CdaFrToBundle: StructureMap.group[1].rule[0].target[5]: The target context 'reference' is not known at this point
-INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[1].rule[0].rule[0].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-ERROR: StructureMap/CdaFrToBundle: StructureMap.group[1].rule[0].rule[0].rule[1].target[0]: The target context 'reference' is not known at this point
-ERROR: StructureMap/CdaFrToBundle: StructureMap.group[1].rule[0].rule[0].rule[1].dependent[0].variable[1]: The target parameter 'ext' was not found. Known variables: cda : ClinicalDocument (source), src : Section (source), patient : Patient (source), tgt : null (target), bundle : Bundle (target), cdaEntry : http://hl7.org/cda/stds/core/StructureDefinition/Entry (source), e : BackboneElement (target), binary : Binary (target), uuid : string (target), urnuuid : uri (target), observationMedia : http://hl7.org/cda/stds/core/StructureDefinition/ObservationMedia (source), value : id (source)
-INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[2]: The group ObservationMedia is not called successfully from within this mapping script, and does not have types on its inputs, so type verification is not possible
-INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[2].rule[0].rule[1].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-ERROR: StructureMap/CdaFrToBundle: StructureMap.group[2].rule[0].rule[1].target[0]: The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'value' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Binary] (@char 1)
-INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[5]: The group ChExtEprVersionNumber1 is not called successfully from within this mapping script, and does not have types on its inputs, so type verification is not possible
-WARNING: StructureMap/CdaFrToBundle: StructureMap.group[5].input[0]: Group ChExtEprVersionNumber1 parameter src has no type, so the paths cannot be validated
-== input/fml/CDAtoFHIRTypes.fml ==
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[0]: StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[6]: StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[7]: StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[11]: StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[12]: StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[14]: StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[15]: StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[17]: StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[18]: StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[20]: StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[1].rule[0].target[0]: The value 'uri' for the output parameter is incorrect
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[1].rule[1].target[1]: The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'r' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Identifier] (@char 15)
-INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[1].rule[5].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[1].rule[5].rule[1].target[0]: Transform cast not checked yet
-WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[5].rule[0].target[0]: Transform cast not checked yet
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[9].rule[0].dependent[0].variable[0]: The parameter 'src' refers to the variable 's : http://hl7.org/cda/stds/core/StructureDefinition/IVXB-TS (source)' but its type is 'TS' which is not compatible with the type required for the group 'TSDateTime', which is 'TS' (from map '$this')
-WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[10].rule[0].target[0]: Transform cast not checked yet
-WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[13].rule[0].target[0]: Transform cast not checked yet
-INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[16].rule[1].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[16].rule[1].rule[0].target[0]: Transform cast not checked yet
-WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[16].rule[1].rule[1].target[0]: Transform cast not checked yet
-WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[16].rule[2].rule[0].target[0]: Transform cast not checked yet
-WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[16].rule[2].rule[1].target[0]: Transform cast not checked yet
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[19].rule[0].rule[0].target[0]: The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/HumanName] (@char 1)
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[19].rule[0].rule[1].target[0]: The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/HumanName] (@char 1)
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[19].rule[0].rule[2].target[0]: The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/HumanName] (@char 1)
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[19].rule[0].rule[3].target[0]: The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/HumanName] (@char 1)
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[21].rule[0].rule[0].target[0]: The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Address] (@char 1)
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[21].rule[0].rule[1].target[0]: The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Address] (@char 1)
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[21].rule[0].rule[2].target[0]: The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Address] (@char 1)
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[21].rule[0].rule[3].target[0]: The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Address] (@char 1)
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[21].rule[0].rule[4].target[0]: The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Address] (@char 1)
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[21].rule[0].rule[5].target[0]: The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Address] (@char 1)
-INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[21].rule[0].rule[6].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[21].rule[0].rule[6].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[21].rule[0].rule[6].rule[0].rule[0].dependent[0]: The group CensusTract could not be resolved
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[21].rule[0].rule[7].target[0]: The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Address] (@char 1)
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[21].rule[0].rule[8].target[0]: The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Address] (@char 1)
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[22].rule[0].target[0]: The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/ContactPoint] (@char 1)
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[22].rule[1].target[0]: The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/ContactPoint] (@char 1)
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[22].rule[2].target[0]: The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/ContactPoint] (@char 1)
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[22].rule[3].target[0]: The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/ContactPoint] (@char 1)
-INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[22].rule[4].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[22].rule[5].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[22].rule[6].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[22].rule[7].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[22].rule[8].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[24].rule[0].dependent[0].variable[0]: The parameter 'src' refers to the variable 'numerator : http://hl7.org/cda/stds/core/StructureDefinition/PQ (source)' but its type is 'PQ' which is not compatible with the type required for the group 'PQQuantity', which is 'PQ' (from map '$this')
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[24].rule[1].dependent[0].variable[0]: The parameter 'src' refers to the variable 'denominator : http://hl7.org/cda/stds/core/StructureDefinition/PQ (source)' but its type is 'PQ' which is not compatible with the type required for the group 'PQQuantity', which is 'PQ' (from map '$this')
-INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[0]: The group Any is not called successfully from within this mapping script, and does not have types on its inputs, so type verification is not possible
-WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[0].input[0]: Group Any parameter src has no type, so the paths cannot be validated
-WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[0].input[1]: Group Any parameter tgt has no type, so the paths cannot be validated
-INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[3]: The group TemplateID is not called successfully from within this mapping script, and does not have types on its inputs, so type verification is not possible
-WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[3].input[1]: Group TemplateID parameter tgt has no type, so the paths cannot be validated
-INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[3].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[3].rule[0].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[3].rule[0].rule[0].target[0]: The target context 'ext' is not known at this point
-INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[3].rule[0].rule[1].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[3].rule[0].rule[1].target[0]: The target context 'ext' is not known at this point
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[3].rule[0].rule[1].dependent[0].variable[1]: The target parameter 'tgt' was not found. Known variables: template : II (source), tgt : null (target)
-INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[4]: The group Negation is not called successfully from within this mapping script, and does not have types on its inputs, so type verification is not possible
-WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[4].input[1]: Group Negation parameter tgt has no type, so the paths cannot be validated
-INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[4].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[4].rule[0].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[4].rule[0].rule[0].target[0]: The target context 'ext' is not known at this point
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[4].rule[0].rule[1].target[0]: The target context 'ext' is not known at this point
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[4].rule[0].rule[1].target[1]: The target context 'ext' is not known at this point
-== input/fml/CdaToBundle.fml ==
-INFORMATION: StructureMap/CdaToBundle: StructureMap.group[0].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-INFORMATION: StructureMap/CdaToBundle: StructureMap.group[0].rule[0].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-INFORMATION: StructureMap/CdaToBundle: StructureMap.group[1].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-INFORMATION: StructureMap/CdaToBundle: StructureMap.group[1].rule[2].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-INFORMATION: StructureMap/CdaToBundle: StructureMap.group[1].rule[4].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-ERROR: StructureMap/CdaToBundle: StructureMap.group[2].rule[0].target[0]: The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 't' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Composition#Composition.section] (@char 1)
-INFORMATION: StructureMap/CdaToBundle: StructureMap.group[2].rule[2].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-ERROR: StructureMap/CdaToBundle: StructureMap.group[2].rule[3].source[0]: The source path src.section refers to the path Section.section which is unknown
-WARNING: StructureMap/CdaToBundle: StructureMap.group[2].rule[3].dependent[0]: The group ClinicalDocumentSection has already been used with different parameters, so the type checking may be incorrect (other = [cda : ClinicalDocument (source), src : http://hl7.org/cda/stds/core/StructureDefinition/Section (source), patient : Patient (target), tgt : BackboneElement (target), bundle : Bundle (target)]; this = [cda : ClinicalDocument (source), src : null (source), patient : Patient (source), tgt : BackboneElement (target), bundle : Bundle (target)])
-INFORMATION: StructureMap/CdaToBundle: StructureMap.group[3].rule[1].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-INFORMATION: StructureMap/CdaToBundle: StructureMap.group[3].rule[3].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-ERROR: StructureMap/CdaToBundle: StructureMap.group[3].rule[5].target[0]: The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 't' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Composition] (@char 1)
-ERROR: StructureMap/CdaToBundle: StructureMap.group[3].rule[7].rule[0].dependent[0].variable[0]: The parameter 'src' refers to the variable 'srcEnc : http://hl7.org/cda/stds/core/StructureDefinition/EncompassingEncounter (source)' but its type is 'EncompassingEncounter' which is not compatible with the type required for the group 'ClinicalDocumentEncounter', which is 'EncompassingEncounter' (from map '$this')
-ERROR: StructureMap/CdaToBundle: StructureMap.group[3].rule[9].rule[0].rule[4].dependent[0].variable[0]: The parameter 'src' refers to the variable 'srcOrg : http://hl7.org/cda/stds/core/StructureDefinition/Organization (source)' but its type is 'CustodianOrganization' which is not compatible with the type required for the group 'ClinicalDocumentOrganization', which is 'CustodianOrganization' (from map '$this')
-INFORMATION: StructureMap/CdaToBundle: StructureMap.group[3].rule[11].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-INFORMATION: StructureMap/CdaToBundle: StructureMap.group[3].rule[11].rule[0].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-INFORMATION: StructureMap/CdaToBundle: StructureMap.group[3].rule[12].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-INFORMATION: StructureMap/CdaToBundle: StructureMap.group[3].rule[12].rule[0].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-WARNING: StructureMap/CdaToBundle: StructureMap.group[3].rule[12].rule[0].rule[2].dependent[0]: The group ClinicalDocumentEntityPractitioner has already been used with different parameters, so the type checking may be incorrect (other = [src : http://hl7.org/cda/stds/core/StructureDefinition/AssignedEntity (source), tgt : Practitioner (target)]; this = [src : http://hl7.org/cda/stds/core/StructureDefinition/AssignedEntity (source), tgt : Practitioner (target)])
-ERROR: StructureMap/CdaToBundle: StructureMap.group[3].rule[15].rule[1].rule[0].target[0]: The target path relates.targetIdentifier refers to the path Composition.relatesTo.targetIdentifier which is unknown
-ERROR: StructureMap/CdaToBundle: StructureMap.group[5].rule[1].target[0]: The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Organization] (@char 1)
-ERROR: StructureMap/CdaToBundle: StructureMap.group[6].rule[0].dependent[0].variable[0]: The parameter 'id' refers to the variable 'id : http://hl7.org/cda/stds/core/StructureDefinition/II (source)' but its type is 'II' which is not compatible with the type required for the group 'setFrPatientIdentifier', which is 'II' (from map '$this')
-ERROR: StructureMap/CdaToBundle: StructureMap.group[6].rule[3].rule[3].source[0]: The source path patient.deceasedInd refers to the path PatientRole.patient.deceasedInd which is unknown
-ERROR: StructureMap/CdaToBundle: StructureMap.group[6].rule[3].rule[3].dependent[0]: The group boolean could not be resolved
-ERROR: StructureMap/CdaToBundle: StructureMap.group[6].rule[3].rule[4].source[0]: The source path patient.deceasedTime refers to the path PatientRole.patient.deceasedTime which is unknown
-INFORMATION: StructureMap/CdaToBundle: StructureMap.group[6].rule[4].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-ERROR: StructureMap/CdaToBundle: StructureMap.group[6].rule[4].rule[2].target[0]: The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Organization] (@char 1)
-INFORMATION: StructureMap/CdaToBundle: StructureMap.group[7].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-INFORMATION: StructureMap/CdaToBundle: StructureMap.group[7].rule[0].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-INFORMATION: StructureMap/CdaToBundle: StructureMap.group[7].rule[0].rule[1].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-INFORMATION: StructureMap/CdaToBundle: StructureMap.group[7].rule[0].rule[2].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-INFORMATION: StructureMap/CdaToBundle: StructureMap.group[7].rule[0].rule[3].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-INFORMATION: StructureMap/CdaToBundle: StructureMap.group[8].rule[3].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-ERROR: StructureMap/CdaToBundle: StructureMap.group[8].rule[3].rule[0].source[0]: The source path src.admissionReferralSourceCode refers to the path EncompassingEncounter.admissionReferralSourceCode which is unknown
-INFORMATION: StructureMap/CdaToBundle: StructureMap.group[8].rule[4].rule[2].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-WARNING: StructureMap/CdaToBundle: StructureMap.group[8].rule[4].rule[2].rule[0].dependent[0]: The group ClinicalDocumentEntityPractitioner has already been used with different parameters, so the type checking may be incorrect (other = [src : http://hl7.org/cda/stds/core/StructureDefinition/AssignedEntity (source), tgt : Practitioner (target)]; this = [src : http://hl7.org/cda/stds/core/StructureDefinition/AssignedEntity (source), tgt : Practitioner (target)])
-INFORMATION: StructureMap/CdaToBundle: StructureMap.group[8].rule[5].rule[0].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-ERROR: StructureMap/CdaToBundle: StructureMap.group[8].rule[5].rule[0].rule[0].dependent[0].variable[0]: The parameter 'src' refers to the variable 'facility : http://hl7.org/cda/stds/core/StructureDefinition/HealthCareFacility (source)' but its type is 'HealthCareFacility' which is not compatible with the type required for the group 'ClinicalDocumentLocation', which is 'HealthCareFacility' (from map '$this')
-ERROR: StructureMap/CdaToBundle: StructureMap.group[9].rule[2].rule[1].source[0]: The source path location.serviceProviderOrganization refers to the path HealthCareFacility.location.serviceProviderOrganization which is unknown
-WARNING: StructureMap/CdaToBundle: StructureMap.group[9].rule[2].rule[1].rule[0].dependent[0]: The group ClinicalDocumentOrganization has already been used with different parameters, so the type checking may be incorrect (other = [src : http://hl7.org/cda/stds/core/StructureDefinition/CustodianOrganization (source), tgt : Organization (target)]; this = [src : null (source), tgt : Organization (target)])
-INFORMATION: StructureMap/CdaToBundle: StructureMap.group[10]: The group NarrativeLink is not called successfully from within this mapping script, and does not have types on its inputs, so type verification is not possible
-WARNING: StructureMap/CdaToBundle: StructureMap.group[10].input[0]: Group NarrativeLink parameter url has no type, so the paths cannot be validated

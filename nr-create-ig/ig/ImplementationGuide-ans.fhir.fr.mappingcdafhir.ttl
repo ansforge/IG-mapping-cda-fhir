@@ -18,7 +18,7 @@
   fhir:name [ fhir:v "CDA2FHIRMAP"] ; # 
   fhir:title [ fhir:v "POC - Mapping CDA to FHIR"] ; # 
   fhir:status [ fhir:v "draft"] ; # 
-  fhir:date [ fhir:v "2025-10-20T12:54:41+00:00"^^xsd:dateTime] ; # 
+  fhir:date [ fhir:v "2025-10-20T12:58:07+00:00"^^xsd:dateTime] ; # 
   fhir:publisher [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"] ; # 
   fhir:contact ( [
      fhir:name [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris" ] ;
@@ -924,63 +924,6 @@
        ] ) ;
        fhir:url [ fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ]
      ] ) ;
-     fhir:resource ( [
-       fhir:extension ( [
-         fhir:url [ fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ] ;
-         fhir:value [
-           a fhir:string ;
-           fhir:v "StructureMap"
-         ]
-       ] ) ;
-       fhir:reference [
-         fhir:link <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CDAFrMDEToBundle> ;
-         fhir:reference [ fhir:v "StructureMap/CDAFrMDEToBundle" ]
-       ] ;
-       fhir:name [ fhir:v "Mapping de CDA Mesure de lEnfant vers FHIR Bundle (Source : Oliver Egger)" ] ;
-       fhir:description [ fhir:v "Mapping de CDA Mesure de lEnfant vers FHIR Bundle (Source : Oliver Egger)" ]
-     ] [
-       fhir:extension ( [
-         fhir:url [ fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ] ;
-         fhir:value [
-           a fhir:string ;
-           fhir:v "StructureMap"
-         ]
-       ] ) ;
-       fhir:reference [
-         fhir:link <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrToBundle> ;
-         fhir:reference [ fhir:v "StructureMap/CdaFrToBundle" ]
-       ] ;
-       fhir:name [ fhir:v "Mapping de CDAFr vers FHIR Bundle (Source : Oliver Egger)" ] ;
-       fhir:description [ fhir:v "Mapping de CDAFr vers FHIR Bundle (Source : Oliver Egger)" ]
-     ] [
-       fhir:extension ( [
-         fhir:url [ fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ] ;
-         fhir:value [
-           a fhir:string ;
-           fhir:v "StructureMap"
-         ]
-       ] ) ;
-       fhir:reference [
-         fhir:link <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes> ;
-         fhir:reference [ fhir:v "StructureMap/CdaToFHIRTypes" ]
-       ] ;
-       fhir:name [ fhir:v "Mapping de CDA vers les FHIR Types (Source : Oliver Egger)" ] ;
-       fhir:description [ fhir:v "Mapping de CDA vers les FHIR Types (Source : Oliver Egger)" ]
-     ] [
-       fhir:extension ( [
-         fhir:url [ fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ] ;
-         fhir:value [
-           a fhir:string ;
-           fhir:v "StructureMap"
-         ]
-       ] ) ;
-       fhir:reference [
-         fhir:link <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle> ;
-         fhir:reference [ fhir:v "StructureMap/CdaToBundle" ]
-       ] ;
-       fhir:name [ fhir:v "Mapping de CDA vers FHIR Bundle (Source : Oliver Egger)" ] ;
-       fhir:description [ fhir:v "Mapping de CDA vers FHIR Bundle (Source : Oliver Egger)" ]
-     ] ) ;
      fhir:page [
        fhir:extension ( [
          fhir:url [ fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ] ;
@@ -1014,92 +957,6 @@
            fhir:url [ fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ] ;
            fhir:value [
              a fhir:url ;
-             fhir:v "specifications_fonctionnelles.html"^^xsd:anyURI
-           ]
-         ] ) ;
-         fhir:name [
-           a fhir:url ;
-           fhir:v "specifications_fonctionnelles.html"^^xsd:anyURI
-         ] ;
-         fhir:title [ fhir:v "Specifications Fonctionnelles" ] ;
-         fhir:generation [ fhir:v "markdown" ] ;
-         fhir:page ( [
-           fhir:extension ( [
-             fhir:url [ fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ] ;
-             fhir:value [
-               a fhir:url ;
-               fhir:v "sf1.html"^^xsd:anyURI
-             ]
-           ] ) ;
-           fhir:name [
-             a fhir:url ;
-             fhir:v "sf1.html"^^xsd:anyURI
-           ] ;
-           fhir:title [ fhir:v "Vue d'ensemble" ] ;
-           fhir:generation [ fhir:v "markdown" ]
-         ] )
-       ] [
-         fhir:extension ( [
-           fhir:url [ fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ] ;
-           fhir:value [
-             a fhir:url ;
-             fhir:v "specifications_techniques.html"^^xsd:anyURI
-           ]
-         ] ) ;
-         fhir:name [
-           a fhir:url ;
-           fhir:v "specifications_techniques.html"^^xsd:anyURI
-         ] ;
-         fhir:title [ fhir:v "Specifications Techniques" ] ;
-         fhir:generation [ fhir:v "markdown" ] ;
-         fhir:page ( [
-           fhir:extension ( [
-             fhir:url [ fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ] ;
-             fhir:value [
-               a fhir:url ;
-               fhir:v "construction_des_flux.html"^^xsd:anyURI
-             ]
-           ] ) ;
-           fhir:name [
-             a fhir:url ;
-             fhir:v "construction_des_flux.html"^^xsd:anyURI
-           ] ;
-           fhir:title [ fhir:v "Vue d'ensemble" ] ;
-           fhir:generation [ fhir:v "markdown" ]
-         ] [
-           fhir:extension ( [
-             fhir:url [ fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ] ;
-             fhir:value [
-               a fhir:url ;
-               fhir:v "st_flux1.html"^^xsd:anyURI
-             ]
-           ] ) ;
-           fhir:name [
-             a fhir:url ;
-             fhir:v "st_flux1.html"^^xsd:anyURI
-           ] ;
-           fhir:title [ fhir:v "Flux 01" ] ;
-           fhir:generation [ fhir:v "markdown" ]
-         ] [
-           fhir:extension ( [
-             fhir:url [ fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ] ;
-             fhir:value [
-               a fhir:url ;
-               fhir:v "st_flux2.html"^^xsd:anyURI
-             ]
-           ] ) ;
-           fhir:name [
-             a fhir:url ;
-             fhir:v "st_flux2.html"^^xsd:anyURI
-           ] ;
-           fhir:title [ fhir:v "Flux 02" ] ;
-           fhir:generation [ fhir:v "markdown" ]
-         ] )
-       ] [
-         fhir:extension ( [
-           fhir:url [ fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ] ;
-           fhir:value [
-             a fhir:url ;
              fhir:v "change-log.html"^^xsd:anyURI
            ]
          ] ) ;
@@ -1124,20 +981,6 @@
          fhir:title [ fhir:v "Autres Ressources" ] ;
          fhir:generation [ fhir:v "markdown" ] ;
          fhir:page ( [
-           fhir:extension ( [
-             fhir:url [ fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ] ;
-             fhir:value [
-               a fhir:url ;
-               fhir:v "securite.html"^^xsd:anyURI
-             ]
-           ] ) ;
-           fhir:name [
-             a fhir:url ;
-             fhir:v "securite.html"^^xsd:anyURI
-           ] ;
-           fhir:title [ fhir:v "Sécurité" ] ;
-           fhir:generation [ fhir:v "markdown" ]
-         ] [
            fhir:extension ( [
              fhir:url [ fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ] ;
              fhir:value [

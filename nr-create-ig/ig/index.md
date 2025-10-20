@@ -49,7 +49,7 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
 
 * ISO maintains the copyright on the country codes, and controls its use carefully. For further details see the ISO 3166 web page: [https://www.iso.org/iso-3166-country-codes.html](https://www.iso.org/iso-3166-country-codes.html)
 
-* [ISO 3166-1 Codes for the representation of names of countries and their subdivisions — Part 1: Country code](http://terminology.hl7.org/6.5.0/CodeSystem-ISO3166Part1.html): [CDA2FHIRMAP](index.md), [CDAFrMDEToBundle](StructureMap-CDAFrMDEToBundle.md), [CdaFrToBundle](StructureMap-CdaFrToBundle.md), [CdaToBundle](StructureMap-CdaToBundle.md) and [CdaToFHIRTypes](StructureMap-CdaToFHIRTypes.md)
+* [ISO 3166-1 Codes for the representation of names of countries and their subdivisions — Part 1: Country code](http://terminology.hl7.org/6.5.0/CodeSystem-ISO3166Part1.html): [CDA2FHIRMAP](index.md)
 
 
 
@@ -65,7 +65,7 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2025-10-20T12:54:41+00:00",
+  "date" : "2025-10-20T12:58:07+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {
@@ -859,60 +859,6 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
         "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
       }
     ],
-    "resource" : [
-      {
-        "extension" : [
-          {
-            "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-            "valueString" : "StructureMap"
-          }
-        ],
-        "reference" : {
-          "reference" : "StructureMap/CDAFrMDEToBundle"
-        },
-        "name" : "Mapping de CDA Mesure de lEnfant vers FHIR Bundle (Source : Oliver Egger)",
-        "description" : "Mapping de CDA Mesure de lEnfant vers FHIR Bundle (Source : Oliver Egger)"
-      },
-      {
-        "extension" : [
-          {
-            "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-            "valueString" : "StructureMap"
-          }
-        ],
-        "reference" : {
-          "reference" : "StructureMap/CdaFrToBundle"
-        },
-        "name" : "Mapping de CDAFr vers FHIR Bundle (Source : Oliver Egger)",
-        "description" : "Mapping de CDAFr vers FHIR Bundle (Source : Oliver Egger)"
-      },
-      {
-        "extension" : [
-          {
-            "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-            "valueString" : "StructureMap"
-          }
-        ],
-        "reference" : {
-          "reference" : "StructureMap/CdaToFHIRTypes"
-        },
-        "name" : "Mapping de CDA vers les FHIR Types (Source : Oliver Egger)",
-        "description" : "Mapping de CDA vers les FHIR Types (Source : Oliver Egger)"
-      },
-      {
-        "extension" : [
-          {
-            "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-            "valueString" : "StructureMap"
-          }
-        ],
-        "reference" : {
-          "reference" : "StructureMap/CdaToBundle"
-        },
-        "name" : "Mapping de CDA vers FHIR Bundle (Source : Oliver Egger)",
-        "description" : "Mapping de CDA vers FHIR Bundle (Source : Oliver Egger)"
-      }
-    ],
     "page" : {
       "extension" : [
         {
@@ -939,76 +885,6 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
           "extension" : [
             {
               "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
-              "valueUrl" : "specifications_fonctionnelles.html"
-            }
-          ],
-          "nameUrl" : "specifications_fonctionnelles.html",
-          "title" : "Specifications Fonctionnelles",
-          "generation" : "markdown",
-          "page" : [
-            {
-              "extension" : [
-                {
-                  "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
-                  "valueUrl" : "sf1.html"
-                }
-              ],
-              "nameUrl" : "sf1.html",
-              "title" : "Vue d'ensemble",
-              "generation" : "markdown"
-            }
-          ]
-        },
-        {
-          "extension" : [
-            {
-              "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
-              "valueUrl" : "specifications_techniques.html"
-            }
-          ],
-          "nameUrl" : "specifications_techniques.html",
-          "title" : "Specifications Techniques",
-          "generation" : "markdown",
-          "page" : [
-            {
-              "extension" : [
-                {
-                  "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
-                  "valueUrl" : "construction_des_flux.html"
-                }
-              ],
-              "nameUrl" : "construction_des_flux.html",
-              "title" : "Vue d'ensemble",
-              "generation" : "markdown"
-            },
-            {
-              "extension" : [
-                {
-                  "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
-                  "valueUrl" : "st_flux1.html"
-                }
-              ],
-              "nameUrl" : "st_flux1.html",
-              "title" : "Flux 01",
-              "generation" : "markdown"
-            },
-            {
-              "extension" : [
-                {
-                  "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
-                  "valueUrl" : "st_flux2.html"
-                }
-              ],
-              "nameUrl" : "st_flux2.html",
-              "title" : "Flux 02",
-              "generation" : "markdown"
-            }
-          ]
-        },
-        {
-          "extension" : [
-            {
-              "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
               "valueUrl" : "change-log.html"
             }
           ],
@@ -1027,17 +903,6 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
           "title" : "Autres Ressources",
           "generation" : "markdown",
           "page" : [
-            {
-              "extension" : [
-                {
-                  "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
-                  "valueUrl" : "securite.html"
-                }
-              ],
-              "nameUrl" : "securite.html",
-              "title" : "Sécurité",
-              "generation" : "markdown"
-            },
             {
               "extension" : [
                 {
