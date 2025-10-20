@@ -1,10 +1,10 @@
-# Mapping de CDA vers les FHIR Types (Oliver Egger) - POC - Mapping CDA to FHIR v0.1.0
+# Mapping de CDA vers les FHIR Types (Source : Oliver Egger) - POC - Mapping CDA to FHIR v0.1.0
 
 * [**Table of Contents**](toc.md)
 * [**Artifacts Summary**](artifacts.md)
-* **Mapping de CDA vers les FHIR Types (Oliver Egger)**
+* **Mapping de CDA vers les FHIR Types (Source : Oliver Egger)**
 
-## StructureMap: Mapping de CDA vers les FHIR Types (Oliver Egger) 
+## StructureMap: Mapping de CDA vers les FHIR Types (Source : Oliver Egger) 
 
 | | |
 | :--- | :--- |
@@ -12,13 +12,13 @@
 | Draft as of 2025-10-20 | *Computable Name*:CdaToFHIRTypes |
 
  
-Mapping de CDA vers les FHIR Types (Oliver Egger) 
+Mapping de CDA vers les FHIR Types (Source : Oliver Egger) 
 
 ```
 
 map "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes" = "CdaToFHIRTypes"
 
-// Mapping de CDA vers les FHIR Types (Oliver Egger)
+// Mapping de CDA vers les FHIR Types (Source : Oliver Egger)
 
 uses "http://hl7.org/cda/stds/core/StructureDefinition/ED" alias ED as source
 uses "http://hl7.org/cda/stds/core/StructureDefinition/PN" alias PN as source
@@ -208,9 +208,9 @@ group RTOPQPQRatio(source src : RTO_PQ_PQ, target tgt : Ratio) {
   "url" : "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes",
   "version" : "0.1.0",
   "name" : "CdaToFHIRTypes",
-  "title" : "Mapping de CDA vers les FHIR Types (Oliver Egger)",
+  "title" : "Mapping de CDA vers les FHIR Types (Source : Oliver Egger)",
   "status" : "draft",
-  "date" : "2025-10-20T11:56:07+00:00",
+  "date" : "2025-10-20T12:20:07+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {
@@ -223,7 +223,7 @@ group RTOPQPQRatio(source src : RTO_PQ_PQ, target tgt : Ratio) {
       ]
     }
   ],
-  "description" : "Mapping de CDA vers les FHIR Types (Oliver Egger)",
+  "description" : "Mapping de CDA vers les FHIR Types (Source : Oliver Egger)",
   "jurisdiction" : [
     {
       "coding" : [
