@@ -41,6 +41,7 @@ uses "http://hl7.org/fhir/StructureDefinition/ContactPoint" alias ContactPoint a
 uses "http://hl7.org/cda/stds/core/StructureDefinition/BL" alias BL as source
 uses "http://hl7.org/fhir/StructureDefinition/boolean" alias boolean as target
 uses "http://hl7.org/cda/stds/core/StructureDefinition/IVL-TS" alias IVL_TS as source
+uses "http://hl7.org/cda/stds/core/StructureDefinition/IVXB-TS" alias IVXB_TS as source
 uses "http://hl7.org/fhir/StructureDefinition/Period" alias Period as target
 
 group Any(source src, target tgt) {
@@ -112,7 +113,7 @@ group IVLTSDateTime(source src : IVL_TS, target tgt : dateTime) extends Any <<ty
   "name" : "CdaToFHIRTypes",
   "title" : "Mapping de CDA vers les FHIR Types (Oliver Egger)",
   "status" : "draft",
-  "date" : "2025-10-20T09:09:31+00:00",
+  "date" : "2025-10-20T09:12:00+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {
@@ -242,6 +243,11 @@ group IVLTSDateTime(source src : IVL_TS, target tgt : dateTime) extends Any <<ty
       "url" : "http://hl7.org/cda/stds/core/StructureDefinition/IVL-TS",
       "mode" : "source",
       "alias" : "IVL_TS"
+    },
+    {
+      "url" : "http://hl7.org/cda/stds/core/StructureDefinition/IVXB-TS",
+      "mode" : "source",
+      "alias" : "IVXB_TS"
     },
     {
       "url" : "http://hl7.org/fhir/StructureDefinition/Period",
