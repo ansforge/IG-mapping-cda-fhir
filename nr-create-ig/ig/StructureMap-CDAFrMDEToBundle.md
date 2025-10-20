@@ -108,7 +108,7 @@ group OrganizerComponentToObservation(source ob : Observation, target obs : Obse
   "name" : "CDAFrMDEToBundle",
   "title" : "Mapping de CDA Mesure de lEnfant vers FHIR Bundle (Source : Oliver Egger)",
   "status" : "draft",
-  "date" : "2025-10-20T12:20:07+00:00",
+  "date" : "2025-10-20T12:37:37+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {

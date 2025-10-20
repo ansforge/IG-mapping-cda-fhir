@@ -15,4 +15,5 @@ These define transformations to convert between data structures used by systems 
 | :--- | :--- |
 | [Mapping de CDA Mesure de lEnfant vers FHIR Bundle (Source : Oliver Egger)](StructureMap-CDAFrMDEToBundle.md) | Mapping de CDA Mesure de lEnfant vers FHIR Bundle (Source : Oliver Egger) |
 | [Mapping de CDA vers les FHIR Types (Source : Oliver Egger)](StructureMap-CdaToFHIRTypes.md) | Mapping de CDA vers les FHIR Types (Source : Oliver Egger) |
+| [Mapping de CDAFr vers FHIR Bundle (Source : Oliver Egger)](StructureMap-CdaFrToBundle.md) | Mapping de CDAFr vers FHIR Bundle (Source : Oliver Egger) |
 
