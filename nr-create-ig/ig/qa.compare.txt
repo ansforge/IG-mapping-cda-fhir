@@ -1,13 +1,15 @@
 CDA2FHIRMAP : Validation Results
 =========================================
 
-err = 1, warn = 2, info = 0
+err = 14, warn = 9, info = 9
 $--
 Generated $--. FHIR version $-- for ans.fhir.fr.mappingcdafhir#$-- (canonical = https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir)
- Build Errors : 6 / 2 / 0
- /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ImplementationGuide-ans.fhir.fr.mappingcdafhir : 1 / 0 / 1
+ Build Errors : 7 / 2 / 0
+ /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ImplementationGuide-ans.fhir.fr.mappingcdafhir : 0 / 1 / 1
+ /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/input/fml/gen-CDAtoFHIRTypes : 13 / 6 / 10
 </table>
 == n/a ==
+ERROR: ImplementationGuide/ans.fhir.fr.mappingcdafhir: This IG is version 4.0.1, while the IG 'hl7.cda.uv.core' is from version 5.0.0
 ERROR: downloads.html#/html/body/div/div/div/div/div/ul/li/a at Line 224, column 8: The link 'definitions.json.zip' for "Définitions JSON (zip)" cannot be resolved
 ERROR: downloads.html#/html/body/div/div/div/div/div/ul/li/a at Line 225, column 8: The link 'definitions.xml.zip' for "Définitions XML (zip)" cannot be resolved
 ERROR: downloads.html#/html/body/div/div/div/div/div/ul/li/a at Line 226, column 8: The link 'definitions.ttl.zip' for "Définitions Turtle (zip)" cannot be resolved
@@ -17,4 +19,33 @@ ERROR: downloads.html#/html/body/div/div/div/div/div/ul/li/a at Line 234, column
 WARNING: 2: An HTML fragment from the set [cross-version-analysis.xhtml, cross-version-analysis-inline.xhtml] is not included anywhere in the produced implementation guide
 WARNING: 4: The HTML fragment 'globals-table.xhtml' is not included anywhere in the produced implementation guide
 == fsh-generated/resources/ImplementationGuide-ans.fhir.fr.mappingcdafhir.json ==
-ERROR: ImplementationGuide/ans.fhir.fr.mappingcdafhir: ImplementationGuide.definition: ImplementationGuide.definition.resource: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/ImplementationGuide|4.0.1)
+WARNING: ImplementationGuide/ans.fhir.fr.mappingcdafhir: ImplementationGuide.dependsOn[2]: The ImplementationGuide is based on FHIR version 4.0.1 but package hl7.cda.uv.core#2.0.0-sd is based on FHIR version 5.0.0. In general, this version mismatch should be avoided - some tools will try to make this work with variable degrees of success, but others will not even try
+== input/fml/gen-CDAtoFHIRTypes.fml ==
+ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[0]: StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)
+ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[6]: StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)
+ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[7]: StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)
+ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[8]: StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)
+ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[1].rule[0].target[0]: The value 'uri' for the output parameter is incorrect
+ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[1].rule[1].target[1]: The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'r' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Identifier] (@char 15)
+INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[1].rule[5].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[1].rule[5].rule[1].target[0]: Transform cast not checked yet
+WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[5].rule[0].target[0]: Transform cast not checked yet
+ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[9].rule[0].dependent[0].variable[0]: The parameter 'src' refers to the variable 's : http://hl7.org/cda/stds/core/StructureDefinition/IVXB-TS (source)' but its type is 'TS' which is not compatible with the type required for the group 'TSDateTime', which is 'TS' (from map '$this')
+INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[0]: The group Any is not called successfully from within this mapping script, and does not have types on its inputs, so type verification is not possible
+WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[0].input[0]: Group Any parameter src has no type, so the paths cannot be validated
+WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[0].input[1]: Group Any parameter tgt has no type, so the paths cannot be validated
+INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[3]: The group TemplateID is not called successfully from within this mapping script, and does not have types on its inputs, so type verification is not possible
+WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[3].input[1]: Group TemplateID parameter tgt has no type, so the paths cannot be validated
+INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[3].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[3].rule[0].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[3].rule[0].rule[0].target[0]: The target context 'ext' is not known at this point
+INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[3].rule[0].rule[1].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[3].rule[0].rule[1].target[0]: The target context 'ext' is not known at this point
+ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[3].rule[0].rule[1].dependent[0].variable[1]: The target parameter 'tgt' was not found. Known variables: template : II (source), tgt : null (target)
+INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[4]: The group Negation is not called successfully from within this mapping script, and does not have types on its inputs, so type verification is not possible
+WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[4].input[1]: Group Negation parameter tgt has no type, so the paths cannot be validated
+INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[4].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[4].rule[0].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[4].rule[0].rule[0].target[0]: The target context 'ext' is not known at this point
+ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[4].rule[0].rule[1].target[0]: The target context 'ext' is not known at this point
+ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[4].rule[0].rule[1].target[1]: The target context 'ext' is not known at this point

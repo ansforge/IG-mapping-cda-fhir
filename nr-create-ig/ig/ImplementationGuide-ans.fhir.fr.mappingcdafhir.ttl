@@ -18,7 +18,7 @@
   fhir:name [ fhir:v "CDA2FHIRMAP"] ; # 
   fhir:title [ fhir:v "POC - Mapping CDA to FHIR"] ; # 
   fhir:status [ fhir:v "draft"] ; # 
-  fhir:date [ fhir:v "2025-10-13T11:42:42+00:00"^^xsd:dateTime] ; # 
+  fhir:date [ fhir:v "2025-10-20T09:09:31+00:00"^^xsd:dateTime] ; # 
   fhir:publisher [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"] ; # 
   fhir:contact ( [
      fhir:name [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris" ] ;
@@ -67,6 +67,14 @@
      ] ;
      fhir:packageId [ fhir:v "hl7.fhir.uv.extensions.r4" ] ;
      fhir:version [ fhir:v "5.2.0" ]
+  ] [
+     fhir:id [ fhir:v "hl7_cda_uv_core" ] ;
+     fhir:uri [
+       fhir:v "http://hl7.org/cda/stds/core/ImplementationGuide/hl7.cda.uv.core"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/cda/stds/core/ImplementationGuide/hl7.cda.uv.core>
+     ] ;
+     fhir:packageId [ fhir:v "hl7.cda.uv.core" ] ;
+     fhir:version [ fhir:v "2.0.0-sd" ]
   ] ) ; # 
   fhir:definition [
      fhir:extension ( [
@@ -111,6 +119,21 @@
          fhir:value [
            a fhir:string ;
            fhir:v "true"
+         ]
+       ] ) ;
+       fhir:url [ fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ]
+     ] [
+       fhir:extension ( [
+         fhir:url [ fhir:v "code"^^xsd:anyURI ] ;
+         fhir:value [
+           a fhir:string ;
+           fhir:v "path-binary"
+         ]
+       ] [
+         fhir:url [ fhir:v "value"^^xsd:anyURI ] ;
+         fhir:value [
+           a fhir:string ;
+           fhir:v "input/attachments"
          ]
        ] ) ;
        fhir:url [ fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ]
@@ -515,6 +538,21 @@
          fhir:url [ fhir:v "code"^^xsd:anyURI ] ;
          fhir:value [
            a fhir:code ;
+           fhir:v "path-binary"
+         ]
+       ] [
+         fhir:url [ fhir:v "value"^^xsd:anyURI ] ;
+         fhir:value [
+           a fhir:string ;
+           fhir:v "input/attachments"
+         ]
+       ] ) ;
+       fhir:url [ fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ]
+     ] [
+       fhir:extension ( [
+         fhir:url [ fhir:v "code"^^xsd:anyURI ] ;
+         fhir:value [
+           a fhir:code ;
            fhir:v "autoload-resources"
          ]
        ] [
@@ -856,6 +894,21 @@
        ] ) ;
        fhir:url [ fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ]
      ] ) ;
+     fhir:resource ( [
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ] ;
+         fhir:value [
+           a fhir:string ;
+           fhir:v "StructureMap"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:link <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes> ;
+         fhir:reference [ fhir:v "StructureMap/CdaToFHIRTypes" ]
+       ] ;
+       fhir:name [ fhir:v "Mapping de CDA vers les FHIR Types (Oliver Egger)" ] ;
+       fhir:description [ fhir:v "Mapping de CDA vers les FHIR Types (Oliver Egger)" ]
+     ] ) ;
      fhir:page [
        fhir:extension ( [
          fhir:url [ fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ] ;
@@ -1031,6 +1084,9 @@
      ] ;
      fhir:parameter ( [
        fhir:code [ fhir:v "path-resource" ] ;
+       fhir:value [ fhir:v "input/fml" ]
+     ] [
+       fhir:code [ fhir:v "path-resource" ] ;
        fhir:value [ fhir:v "input/capabilities" ]
      ] [
        fhir:code [ fhir:v "path-resource" ] ;
@@ -1053,9 +1109,6 @@
      ] [
        fhir:code [ fhir:v "path-resource" ] ;
        fhir:value [ fhir:v "input/vocabulary" ]
-     ] [
-       fhir:code [ fhir:v "path-resource" ] ;
-       fhir:value [ fhir:v "input/maps" ]
      ] [
        fhir:code [ fhir:v "path-resource" ] ;
        fhir:value [ fhir:v "input/testing" ]

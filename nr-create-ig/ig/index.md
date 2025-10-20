@@ -8,7 +8,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ImplementationGuide/ans.fhir.fr.mappingcdafhir | *Version*:0.1.0 |
-| Draft as of 2025-10-13 | *Computable Name*:CDA2FHIRMAP |
+| Draft as of 2025-10-20 | *Computable Name*:CDA2FHIRMAP |
 
  **Brief description of this Implementation Guide**
  [Add a brief description of this IG in English] 
@@ -41,13 +41,15 @@ Toujours laisser l'onglet "Ressources de conformité" pour s'assurer d'une cohé
 
 
 
+
+
 ### Propriété intellectuelle
 
 Certaines ressources sémantiques de ce guide sont protégées par des droits de propriété intellectuelle couverte par les déclarations ci-dessous. L’utilisation de ces ressources est soumise à l’acceptation et au respect des conditions précisées dans la licence d’utilisation de chacune d’entre elle.
 
 * ISO maintains the copyright on the country codes, and controls its use carefully. For further details see the ISO 3166 web page: [https://www.iso.org/iso-3166-country-codes.html](https://www.iso.org/iso-3166-country-codes.html)
 
-* [ISO 3166-1 Codes for the representation of names of countries and their subdivisions — Part 1: Country code](http://terminology.hl7.org/6.5.0/CodeSystem-ISO3166Part1.html): [CDA2FHIRMAP](index.md)
+* [ISO 3166-1 Codes for the representation of names of countries and their subdivisions — Part 1: Country code](http://terminology.hl7.org/6.5.0/CodeSystem-ISO3166Part1.html): [CDA2FHIRMAP](index.md) and [CdaToFHIRTypes](StructureMap-CdaToFHIRTypes.md)
 
 
 
@@ -63,7 +65,7 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2025-10-13T11:42:42+00:00",
+  "date" : "2025-10-20T09:09:31+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {
@@ -114,6 +116,12 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
       "uri" : "http://hl7.org/fhir/extensions/ImplementationGuide/hl7.fhir.uv.extensions",
       "packageId" : "hl7.fhir.uv.extensions.r4",
       "version" : "5.2.0"
+    },
+    {
+      "id" : "hl7_cda_uv_core",
+      "uri" : "http://hl7.org/cda/stds/core/ImplementationGuide/hl7.cda.uv.core",
+      "packageId" : "hl7.cda.uv.core",
+      "version" : "2.0.0-sd"
     }
   ],
   "definition" : {
@@ -153,6 +161,19 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
           {
             "url" : "value",
             "valueString" : "true"
+          }
+        ],
+        "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension" : [
+          {
+            "url" : "code",
+            "valueString" : "path-binary"
+          },
+          {
+            "url" : "value",
+            "valueString" : "input/attachments"
           }
         ],
         "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
@@ -503,6 +524,19 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
         "extension" : [
           {
             "url" : "code",
+            "valueCode" : "path-binary"
+          },
+          {
+            "url" : "value",
+            "valueString" : "input/attachments"
+          }
+        ],
+        "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension" : [
+          {
+            "url" : "code",
             "valueCode" : "autoload-resources"
           },
           {
@@ -799,6 +833,21 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
         "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
       }
     ],
+    "resource" : [
+      {
+        "extension" : [
+          {
+            "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString" : "StructureMap"
+          }
+        ],
+        "reference" : {
+          "reference" : "StructureMap/CdaToFHIRTypes"
+        },
+        "name" : "Mapping de CDA vers les FHIR Types (Oliver Egger)",
+        "description" : "Mapping de CDA vers les FHIR Types (Oliver Egger)"
+      }
+    ],
     "page" : {
       "extension" : [
         {
@@ -942,6 +991,10 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
     "parameter" : [
       {
         "code" : "path-resource",
+        "value" : "input/fml"
+      },
+      {
+        "code" : "path-resource",
         "value" : "input/capabilities"
       },
       {
@@ -971,10 +1024,6 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
       {
         "code" : "path-resource",
         "value" : "input/vocabulary"
-      },
-      {
-        "code" : "path-resource",
-        "value" : "input/maps"
       },
       {
         "code" : "path-resource",
