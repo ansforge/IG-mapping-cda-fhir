@@ -10,7 +10,7 @@
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2025-10-20T09:54:57+00:00",
+  "date" : "2025-10-20T11:56:07+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -97,6 +97,17 @@
       {
         "url" : "value",
         "valueString" : "input/attachments"
+      }],
+      "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+    },
+    {
+      "extension" : [{
+        "url" : "code",
+        "valueString" : "path-expansion-params"
+      },
+      {
+        "url" : "value",
+        "valueString" : "../../expansion-params.json"
       }],
       "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
     },
@@ -404,6 +415,17 @@
     {
       "extension" : [{
         "url" : "code",
+        "valueCode" : "path-expansion-params"
+      },
+      {
+        "url" : "value",
+        "valueString" : "../../expansion-params.json"
+      }],
+      "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+    },
+    {
+      "extension" : [{
+        "url" : "code",
         "valueCode" : "autoload-resources"
       },
       {
@@ -655,6 +677,17 @@
       "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
     }],
     "resource" : [{
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+        "valueString" : "StructureMap"
+      }],
+      "reference" : {
+        "reference" : "StructureMap/CdaFrToBundle"
+      },
+      "name" : "Mapping de CDAFr vers FHIR Bundle (Source : Oliver Egger)",
+      "description" : "Mapping de CDAFr vers FHIR Bundle (Source : Oliver Egger)"
+    },
+    {
       "extension" : [{
         "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
         "valueString" : "StructureMap"

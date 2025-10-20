@@ -1,12 +1,13 @@
 CDA2FHIRMAP : Validation Results
 =========================================
 
-err = 39, warn = 15, info = 17
+err = 56, warn = 20, info = 33
 IG Publisher Version: 2.0.21
-Generated Mon Oct 20 09:55:49 UTC 2025. FHIR version 4.0.1 for ans.fhir.fr.mappingcdafhir#0.1.0 (canonical = https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir)
+Generated Mon Oct 20 11:57:05 UTC 2025. FHIR version 4.0.1 for ans.fhir.fr.mappingcdafhir#0.1.0 (canonical = https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir)
  Build Errors : 7 / 2 / 0
  /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ImplementationGuide-ans.fhir.fr.mappingcdafhir : 0 / 1 / 1
- /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/input/fml/gen-CDAtoFHIRTypes : 38 / 12 / 18
+ /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/input/fml/CDAFrToBundle : 17 / 5 / 17
+ /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/input/fml/CDAtoFHIRTypes : 38 / 12 / 18
 </table>
 == n/a ==
 ERROR: ImplementationGuide/ans.fhir.fr.mappingcdafhir: This IG is version 4.0.1, while the IG 'hl7.cda.uv.core' is from version 5.0.0
@@ -20,7 +21,46 @@ WARNING: 2: An HTML fragment from the set [cross-version-analysis.xhtml, cross-v
 WARNING: 4: The HTML fragment 'globals-table.xhtml' is not included anywhere in the produced implementation guide
 == fsh-generated/resources/ImplementationGuide-ans.fhir.fr.mappingcdafhir.json ==
 WARNING: ImplementationGuide/ans.fhir.fr.mappingcdafhir: ImplementationGuide.dependsOn[2]: The ImplementationGuide is based on FHIR version 4.0.1 but package hl7.cda.uv.core#2.0.0-sd is based on FHIR version 5.0.0. In general, this version mismatch should be avoided - some tools will try to make this work with variable degrees of success, but others will not even try
-== input/fml/gen-CDAtoFHIRTypes.fml ==
+== input/fml/CDAFrToBundle.fml ==
+WARNING: StructureMap/CdaFrToBundle: StructureMap.import[0]: A definition could not be found for Canonical URL 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFhirTypes'
+WARNING: StructureMap/CdaFrToBundle: StructureMap.import[1]: A definition could not be found for Canonical URL 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle'
+WARNING: StructureMap/CdaFrToBundle: StructureMap.import[0]: No maps were found to match https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFhirTypes - validation may be wrong
+WARNING: StructureMap/CdaFrToBundle: StructureMap.import[1]: No maps were found to match https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle - validation may be wrong
+INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[0].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+ERROR: StructureMap/CdaFrToBundle: StructureMap.group[1].extends: The group ClinicalDocumentToBundle could not be resolved
+INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[1].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+ERROR: StructureMap/CdaFrToBundle: StructureMap.group[1].rule[1].rule[0].rule[0].rule[0].dependent[0]: The group ClinicalDocumentSection could not be resolved
+ERROR: StructureMap/CdaFrToBundle: StructureMap.group[2].extends: The group ClinicalDocumentSection could not be resolved
+INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[2].rule[0].rule[0].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+ERROR: StructureMap/CdaFrToBundle: StructureMap.group[2].rule[0].rule[0].rule[1].dependent[0]: The group NarrativeLink could not be resolved
+INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[3].rule[0].rule[1].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+ERROR: StructureMap/CdaFrToBundle: StructureMap.group[3].rule[0].rule[1].target[0]: The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'value' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Binary] (@char 1)
+INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[4].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[4].rule[1].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+ERROR: StructureMap/CdaFrToBundle: StructureMap.group[4].rule[1].dependent[0]: The group CECodeableConcept could not be resolved
+INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[5].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[5].rule[1].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+ERROR: StructureMap/CdaFrToBundle: StructureMap.group[5].rule[1].dependent[0]: The group INT could not be resolved
+INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[7].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[7].rule[1].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+ERROR: StructureMap/CdaFrToBundle: StructureMap.group[7].rule[2].dependent[0]: The group ADAddress could not be resolved
+ERROR: StructureMap/CdaFrToBundle: StructureMap.group[7].rule[3].rule[0].dependent[0]: The group ENHumanName could not be resolved
+INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[8].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[8].rule[1].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+ERROR: StructureMap/CdaFrToBundle: StructureMap.group[8].rule[2].dependent[0]: The group ClinicalDocumentOrganization could not be resolved
+INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[9].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+ERROR: StructureMap/CdaFrToBundle: StructureMap.group[9].rule[2].dependent[0]: The group ChExtEprTime could not be resolved
+INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[9].rule[3].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+ERROR: StructureMap/CdaFrToBundle: StructureMap.group[9].rule[3].rule[0].dependent[0]: The group ClinicalDocumentEntityPractitioner could not be resolved
+ERROR: StructureMap/CdaFrToBundle: StructureMap.group[9].rule[3].rule[1].dependent[0]: The group ClinicalDocumentOrganization could not be resolved
+ERROR: StructureMap/CdaFrToBundle: StructureMap.group[10].rule[0].rule[0].dependent[0].variable[0]: The parameter 'src' refers to the variable 'confidentialityCode : http://hl7.org/cda/stds/core/StructureDefinition/CE (source)' but its type is 'CE' which is not compatible with the type required for the group 'ChExtEprConfidentialityCode', which is 'CE' (from map '$this')
+ERROR: StructureMap/CdaFrToBundle: StructureMap.group[10].rule[1].dependent[0].variable[0]: The parameter 'src' refers to the variable 'versionNumber : http://hl7.org/cda/stds/core/StructureDefinition/INT (source)' but its type is 'INT' which is not compatible with the type required for the group 'ChExtEprVersionNumber', which is 'INT' (from map '$this')
+ERROR: StructureMap/CdaFrToBundle: StructureMap.group[10].rule[2].rule[0].dependent[0].variable[0]: The parameter 'src' refers to the variable 'intendedRecipient : http://hl7.org/cda/stds/core/StructureDefinition/IntendedRecipient (source)' but its type is 'IntendedRecipient' which is not compatible with the type required for the group 'ChExtEprInformationRecipient', which is 'IntendedRecipient' (from map '$this')
+INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[10].rule[2].rule[1].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+ERROR: StructureMap/CdaFrToBundle: StructureMap.group[10].rule[2].rule[1].rule[0].dependent[0].variable[0]: The parameter 'src' refers to the variable 'intendedRecipient : http://hl7.org/cda/stds/core/StructureDefinition/IntendedRecipient (source)' but its type is 'IntendedRecipient' which is not compatible with the type required for the group 'ChExtEprInformationRecipientOrganization', which is 'IntendedRecipient' (from map '$this')
+INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[6]: The group ChExtEprVersionNumber1 is not called successfully from within this mapping script, and does not have types on its inputs, so type verification is not possible
+WARNING: StructureMap/CdaFrToBundle: StructureMap.group[6].input[0]: Group ChExtEprVersionNumber1 parameter src has no type, so the paths cannot be validated
+== input/fml/CDAtoFHIRTypes.fml ==
 ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[0]: StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)
 ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[6]: StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)
 ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[7]: StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)

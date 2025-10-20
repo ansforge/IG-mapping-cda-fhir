@@ -49,7 +49,7 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
 
 * ISO maintains the copyright on the country codes, and controls its use carefully. For further details see the ISO 3166 web page: [https://www.iso.org/iso-3166-country-codes.html](https://www.iso.org/iso-3166-country-codes.html)
 
-* [ISO 3166-1 Codes for the representation of names of countries and their subdivisions — Part 1: Country code](http://terminology.hl7.org/6.5.0/CodeSystem-ISO3166Part1.html): [CDA2FHIRMAP](index.md) and [CdaToFHIRTypes](StructureMap-CdaToFHIRTypes.md)
+* [ISO 3166-1 Codes for the representation of names of countries and their subdivisions — Part 1: Country code](http://terminology.hl7.org/6.5.0/CodeSystem-ISO3166Part1.html): [CDA2FHIRMAP](index.md), [CdaFrToBundle](StructureMap-CdaFrToBundle.md) and [CdaToFHIRTypes](StructureMap-CdaToFHIRTypes.md)
 
 
 
@@ -65,7 +65,7 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2025-10-20T09:54:57+00:00",
+  "date" : "2025-10-20T11:56:07+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {
@@ -174,6 +174,19 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
           {
             "url" : "value",
             "valueString" : "input/attachments"
+          }
+        ],
+        "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension" : [
+          {
+            "url" : "code",
+            "valueString" : "path-expansion-params"
+          },
+          {
+            "url" : "value",
+            "valueString" : "../../expansion-params.json"
           }
         ],
         "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
@@ -537,6 +550,19 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
         "extension" : [
           {
             "url" : "code",
+            "valueCode" : "path-expansion-params"
+          },
+          {
+            "url" : "value",
+            "valueString" : "../../expansion-params.json"
+          }
+        ],
+        "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension" : [
+          {
+            "url" : "code",
             "valueCode" : "autoload-resources"
           },
           {
@@ -834,6 +860,19 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
       }
     ],
     "resource" : [
+      {
+        "extension" : [
+          {
+            "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString" : "StructureMap"
+          }
+        ],
+        "reference" : {
+          "reference" : "StructureMap/CdaFrToBundle"
+        },
+        "name" : "Mapping de CDAFr vers FHIR Bundle (Source : Oliver Egger)",
+        "description" : "Mapping de CDAFr vers FHIR Bundle (Source : Oliver Egger)"
+      },
       {
         "extension" : [
           {
