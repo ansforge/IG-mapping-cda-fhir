@@ -62,7 +62,7 @@ group ClinicalDocumentToBundle(source cda : ClinicalDocument, target patient : P
 group ClinicalDocumentSection(source cda : ClinicalDocument, source src : Section, source patient : Patient, target tgt, target bundle: Bundle) {
   src.id as id where ($this.root=%cda.id.root)=false -> tgt.extension as ext then ChExtEprSectionId(id, ext) "sectionId";
   src.title as t -> tgt.title = (t.xmlText);
-  src.code as srcCode -> tgt.code  srcCode;
+  src.code as srcCode -> tgt.code = srcCode;
   src.text as cdaText -> tgt.text as fhirText then {
     cdaText -> fhirText.status = 'generated' "narrativeStatus";
     cdaText as t -> fhirText.div = t "narrativeText";
@@ -267,11 +267,11 @@ group ClinicalDocumentEncounter(source src : EncompassingEncounter, target bundl
 }
 
 group ClinicalDocumentLocation(source src : HealthCareFacility, target bundle : Bundle, target tgt : Location) {
-  src.id -> tgt.identifier;
-  src.code -> tgt.type;
+  src.id as srcIdentifier -> tgt.identifier = srcIdentifier;
+  src.code as srcCode -> tgt.type = srcCode;
   src.location as location then {
  // place names are usually stored with no parts    location.name as srcName -> tgt.name = cast(srcName, 'string');
-    location.addr -> tgt.address;
+    location.addr as locAddr -> tgt.address = locAddr;
     location.serviceProviderOrganization as srcOrg ->  bundle.entry as e,  e.resource = create('Organization') as organization,
       organization.id = uuid() as uuid3,
       e.fullUrl = append('urn:uuid:',uuid3) then {
