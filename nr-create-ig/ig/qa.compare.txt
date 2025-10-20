@@ -1,12 +1,12 @@
 CDA2FHIRMAP : Validation Results
 =========================================
 
-err = 14, warn = 9, info = 9
+err = 39, warn = 15, info = 17
 $--
 Generated $--. FHIR version $-- for ans.fhir.fr.mappingcdafhir#$-- (canonical = https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir)
  Build Errors : 7 / 2 / 0
  /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ImplementationGuide-ans.fhir.fr.mappingcdafhir : 0 / 1 / 1
- /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/input/fml/gen-CDAtoFHIRTypes : 13 / 6 / 10
+ /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/input/fml/gen-CDAtoFHIRTypes : 38 / 12 / 18
 </table>
 == n/a ==
 ERROR: ImplementationGuide/ans.fhir.fr.mappingcdafhir: This IG is version 4.0.1, while the IG 'hl7.cda.uv.core' is from version 5.0.0
@@ -24,13 +24,52 @@ WARNING: ImplementationGuide/ans.fhir.fr.mappingcdafhir: ImplementationGuide.dep
 ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[0]: StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)
 ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[6]: StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)
 ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[7]: StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[8]: StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)
+ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[11]: StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)
+ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[12]: StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)
+ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[14]: StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)
+ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[15]: StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)
+ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[17]: StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)
+ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[18]: StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)
+ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[20]: StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)
 ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[1].rule[0].target[0]: The value 'uri' for the output parameter is incorrect
 ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[1].rule[1].target[1]: The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'r' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Identifier] (@char 15)
 INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[1].rule[5].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[1].rule[5].rule[1].target[0]: Transform cast not checked yet
 WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[5].rule[0].target[0]: Transform cast not checked yet
 ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[9].rule[0].dependent[0].variable[0]: The parameter 'src' refers to the variable 's : http://hl7.org/cda/stds/core/StructureDefinition/IVXB-TS (source)' but its type is 'TS' which is not compatible with the type required for the group 'TSDateTime', which is 'TS' (from map '$this')
+WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[10].rule[0].target[0]: Transform cast not checked yet
+WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[13].rule[0].target[0]: Transform cast not checked yet
+INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[16].rule[1].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[16].rule[1].rule[0].target[0]: Transform cast not checked yet
+WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[16].rule[1].rule[1].target[0]: Transform cast not checked yet
+WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[16].rule[2].rule[0].target[0]: Transform cast not checked yet
+WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[16].rule[2].rule[1].target[0]: Transform cast not checked yet
+ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[19].rule[0].rule[0].target[0]: The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/HumanName] (@char 1)
+ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[19].rule[0].rule[1].target[0]: The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/HumanName] (@char 1)
+ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[19].rule[0].rule[2].target[0]: The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/HumanName] (@char 1)
+ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[19].rule[0].rule[3].target[0]: The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/HumanName] (@char 1)
+ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[21].rule[0].rule[0].target[0]: The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Address] (@char 1)
+ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[21].rule[0].rule[1].target[0]: The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Address] (@char 1)
+ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[21].rule[0].rule[2].target[0]: The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Address] (@char 1)
+ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[21].rule[0].rule[3].target[0]: The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Address] (@char 1)
+ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[21].rule[0].rule[4].target[0]: The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Address] (@char 1)
+ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[21].rule[0].rule[5].target[0]: The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Address] (@char 1)
+INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[21].rule[0].rule[6].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[21].rule[0].rule[6].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[21].rule[0].rule[6].rule[0].rule[0].dependent[0]: The group CensusTract could not be resolved
+ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[21].rule[0].rule[7].target[0]: The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Address] (@char 1)
+ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[21].rule[0].rule[8].target[0]: The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Address] (@char 1)
+ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[22].rule[0].target[0]: The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/ContactPoint] (@char 1)
+ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[22].rule[1].target[0]: The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/ContactPoint] (@char 1)
+ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[22].rule[2].target[0]: The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/ContactPoint] (@char 1)
+ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[22].rule[3].target[0]: The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/ContactPoint] (@char 1)
+INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[22].rule[4].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[22].rule[5].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[22].rule[6].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[22].rule[7].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[22].rule[8].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[24].rule[0].dependent[0].variable[0]: The parameter 'src' refers to the variable 'numerator : http://hl7.org/cda/stds/core/StructureDefinition/PQ (source)' but its type is 'PQ' which is not compatible with the type required for the group 'PQQuantity', which is 'PQ' (from map '$this')
+ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[24].rule[1].dependent[0].variable[0]: The parameter 'src' refers to the variable 'denominator : http://hl7.org/cda/stds/core/StructureDefinition/PQ (source)' but its type is 'PQ' which is not compatible with the type required for the group 'PQQuantity', which is 'PQ' (from map '$this')
 INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[0]: The group Any is not called successfully from within this mapping script, and does not have types on its inputs, so type verification is not possible
 WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[0].input[0]: Group Any parameter src has no type, so the paths cannot be validated
 WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[0].input[1]: Group Any parameter tgt has no type, so the paths cannot be validated

@@ -41,7 +41,6 @@ uses "http://hl7.org/fhir/StructureDefinition/ContactPoint" alias ContactPoint a
 uses "http://hl7.org/cda/stds/core/StructureDefinition/BL" alias BL as source
 uses "http://hl7.org/fhir/StructureDefinition/boolean" alias boolean as target
 uses "http://hl7.org/cda/stds/core/StructureDefinition/IVL-TS" alias IVL_TS as source
-uses "http://hl7.org/cda/stds/core/StructureDefinition/IVXB-TS" alias IVXB_TS as source
 uses "http://hl7.org/fhir/StructureDefinition/Period" alias Period as target
 
 group Any(source src, target tgt) {
@@ -82,19 +81,117 @@ group TSInstant(source src : TS, target tgt : instant) extends Any <<types>> {
 }
 
 group TSDateTime(source src : TS, target tgt : dateTime) extends TSInstant <<types>> {
-// src.value as v -> tgt.value = cast(v, 'string');
 }
 
 group TSDate(source src : TS, target tgt : date) extends TSInstant <<types>> {
 }
 
-group IVLTSPeriod(source src : IVL_TS, target tgt : Period) {
-// src.low -> tgt.start;
-// src.high -> tgt.end;
+group IVLTSPeriod(source src : IVL_TS, target tgt : Period) extends Any <<types>> {
+  src.low as low -> tgt.start = low;
+  src.high as high -> tgt.end = high;
 }
 
 group IVLTSDateTime(source src : IVL_TS, target tgt : dateTime) extends Any <<types>> {
   src.low as s then TSDateTime(s, tgt);
+}
+
+group STstring(source src : ST, target tgt : string) {
+  src as v -> tgt.value = cast(v, 'string') "value";
+}
+
+group EDstring(source src : ED, target tgt : string) extends STstring <<types>> {
+}
+
+group ONstring(source src : ON, target tgt : string) extends STstring <<types>> {
+}
+
+group CSCode(source src : CS, target tgt : code) {
+  src.code as c -> tgt.value = cast(c, 'string');
+}
+
+group CECode(source src : CE, target tgt : code) extends CSCode <<types>> {
+}
+
+group CDCode(source src : CD, target tgt : code) extends CSCode <<types>> {
+}
+
+group CECodeableConcept(source src : CE, target tgt : CodeableConcept) {
+  src.originalText as originalText -> tgt.text = originalText "setOriginalText";
+  src -> tgt.coding as coding then {
+    src.code as code -> coding.code = cast(code, 'string');
+    // src.codeSystem as system -> coding.system = translate(system, 'http://hl7.org/fhir/ConceptMap/special-oid2uri', 'uri');
+    src.displayName as display -> coding.display = cast(display, 'string');
+  } "code";
+  src.translation as translation -> tgt.coding as coding then {
+    translation.code as code -> coding.code = cast(code, 'string');
+    // translation.codeSystem as system -> coding.system = translate(system, 'http://hl7.org/fhir/ConceptMap/special-oid2uri', 'uri');
+    translation.displayName as display -> coding.display = cast(display, 'string');
+  };
+}
+
+group CSCodeableConcept(source src : CS, target tgt : CodeableConcept) extends CECodeableConcept <<types>> {
+}
+
+group CDCodeableConcept(source src : CD, target tgt : CodeableConcept) extends CECodeableConcept <<types>> {
+}
+
+group ENHumanName(source src : EN, target tgt : HumanName) {
+  src.item as item then {
+    item.family as v -> tgt.family = (v.xmlText);
+    item.given as v -> tgt.given = (v.xmlText);
+    item.prefix as v -> tgt.prefix = (v.xmlText);
+    item.suffix as v -> tgt.suffix = (v.xmlText);
+  };
+  src.validTime as validTime -> tgt.period = validTime;
+}
+
+group PNHumanName(source src : PN, target tgt : HumanName) extends ENHumanName <<types>> {
+}
+
+group ADAddress(source src : AD, target tgt : Address) {
+  src.item as item then {
+    item.country as v -> tgt.country = (v.xmlText);
+    item.state as v -> tgt.state = (v.xmlText);
+    item.county as v -> tgt.district = (v.xmlText);
+    item.city as v -> tgt.city = (v.xmlText);
+    item.postalCode as v -> tgt.postalCode = (v.xmlText);
+    item.streetAddressLine as v -> tgt.line = (v.xmlText);
+    item -> tgt.line as line then {
+      item where src.censusTract.exists() then {
+        item.censusTract as v -> line.extension as ext1 then CensusTract(v, ext1) "line";
+      } "sfgfdsg";
+    } "CensusTract";
+    // as streetAddress then{
+    // src.censusTract as v->tgt.line as line, line.extension as ext1 then CensusTract(v, ext1) "line";
+    // src.censusTract as v ->tgt.line as line, line.extension as ext1 then CensusTract(v, ext1) "line";
+    item.streetName as v -> tgt.line = (v.xmlText);
+    item.houseNumber as v -> tgt.line = (v.xmlText);
+  };
+  src.useablePeriod as useablePeriod -> tgt.period = useablePeriod;
+}
+
+group TELContactPoint(source src : TEL, target tgt : ContactPoint) {
+  src.value as v where (src.value.startsWith('tel:')) ->  tgt.value = (v.substring(4)),  tgt.system = 'phone' "valuetel";
+  src.value as v where (src.value.startsWith('fax:')) ->  tgt.value = (v.substring(4)),  tgt.system = 'fax' "valuefax";
+  src.value as v where (src.value.startsWith('mailto:')) ->  tgt.value = (v.substring(7)),  tgt.system = 'email' "valuemail";
+  src.value as v where (src.value.startsWith('http:')) ->  tgt.value = (v.substring(5)),  tgt.system = 'url' "valuehttp";
+  src.use where (src.use.startsWith('H')) -> tgt.use = 'home' "usehome";
+  src.use where ((src.use = 'WP') or (src.use = 'DIR') or (src.use = 'PUB')) -> tgt.use = 'work' "usework";
+  src.use where (src.use = 'BAD') -> tgt.use = 'old' "usebad";
+  src.use where (src.use = 'TMP') -> tgt.use = 'temp' "usetmp";
+  src.use where (src.use = 'MC') -> tgt.use = 'mobile' "usemobile";
+  src.useablePeriod as useablePeriod -> tgt.period = useablePeriod; // use: for src.use as c make tgt.use = translate(c, 'http://hl7.org/fhir/ConceptMap/cm-telecom-use-v3', 'code')
+}
+
+group PQQuantity(source src : PQ, target tgt : Quantity) {
+  // src.unit as unit -> tgt.code = unit;
+  src.unit as unit -> tgt.unit = unit;
+  src.value as value -> tgt.value = value;
+}
+
+group RTOPQPQRatio(source src : RTO_PQ_PQ, target tgt : Ratio) {
+  src.numerator as numerator -> tgt.numerator as targetNumerator then PQQuantity(numerator, targetNumerator);
+  src.denominator as denominator -> tgt.denominator as targetDenominator then PQQuantity(denominator, targetDenominator);
 }
 
 
@@ -113,7 +210,7 @@ group IVLTSDateTime(source src : IVL_TS, target tgt : dateTime) extends Any <<ty
   "name" : "CdaToFHIRTypes",
   "title" : "Mapping de CDA vers les FHIR Types (Oliver Egger)",
   "status" : "draft",
-  "date" : "2025-10-20T09:12:00+00:00",
+  "date" : "2025-10-20T09:54:57+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {
@@ -243,11 +340,6 @@ group IVLTSDateTime(source src : IVL_TS, target tgt : dateTime) extends Any <<ty
       "url" : "http://hl7.org/cda/stds/core/StructureDefinition/IVL-TS",
       "mode" : "source",
       "alias" : "IVL_TS"
-    },
-    {
-      "url" : "http://hl7.org/cda/stds/core/StructureDefinition/IVXB-TS",
-      "mode" : "source",
-      "alias" : "IVXB_TS"
     },
     {
       "url" : "http://hl7.org/fhir/StructureDefinition/Period",
@@ -808,7 +900,8 @@ group IVLTSDateTime(source src : IVL_TS, target tgt : dateTime) extends Any <<ty
     },
     {
       "name" : "IVLTSPeriod",
-      "typeMode" : "none",
+      "extends" : "Any",
+      "typeMode" : "types",
       "input" : [
         {
           "name" : "src",
@@ -819,6 +912,54 @@ group IVLTSDateTime(source src : IVL_TS, target tgt : dateTime) extends Any <<ty
           "name" : "tgt",
           "type" : "Period",
           "mode" : "target"
+        }
+      ],
+      "rule" : [
+        {
+          "name" : "low",
+          "source" : [
+            {
+              "context" : "src",
+              "element" : "low",
+              "variable" : "low"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "tgt",
+              "contextType" : "variable",
+              "element" : "start",
+              "transform" : "copy",
+              "parameter" : [
+                {
+                  "valueId" : "low"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name" : "high",
+          "source" : [
+            {
+              "context" : "src",
+              "element" : "high",
+              "variable" : "high"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "tgt",
+              "contextType" : "variable",
+              "element" : "end",
+              "transform" : "copy",
+              "parameter" : [
+                {
+                  "valueId" : "high"
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -852,6 +993,1257 @@ group IVLTSDateTime(source src : IVL_TS, target tgt : dateTime) extends Any <<ty
             {
               "name" : "TSDateTime",
               "variable" : ["s", "tgt"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "STstring",
+      "typeMode" : "none",
+      "input" : [
+        {
+          "name" : "src",
+          "type" : "ST",
+          "mode" : "source"
+        },
+        {
+          "name" : "tgt",
+          "type" : "string",
+          "mode" : "target"
+        }
+      ],
+      "rule" : [
+        {
+          "name" : "value",
+          "source" : [
+            {
+              "context" : "src",
+              "variable" : "v"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "tgt",
+              "contextType" : "variable",
+              "element" : "value",
+              "transform" : "cast",
+              "parameter" : [
+                {
+                  "valueId" : "v"
+                },
+                {
+                  "valueString" : "string"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "EDstring",
+      "extends" : "STstring",
+      "typeMode" : "types",
+      "input" : [
+        {
+          "name" : "src",
+          "type" : "ED",
+          "mode" : "source"
+        },
+        {
+          "name" : "tgt",
+          "type" : "string",
+          "mode" : "target"
+        }
+      ]
+    },
+    {
+      "name" : "ONstring",
+      "extends" : "STstring",
+      "typeMode" : "types",
+      "input" : [
+        {
+          "name" : "src",
+          "type" : "ON",
+          "mode" : "source"
+        },
+        {
+          "name" : "tgt",
+          "type" : "string",
+          "mode" : "target"
+        }
+      ]
+    },
+    {
+      "name" : "CSCode",
+      "typeMode" : "none",
+      "input" : [
+        {
+          "name" : "src",
+          "type" : "CS",
+          "mode" : "source"
+        },
+        {
+          "name" : "tgt",
+          "type" : "code",
+          "mode" : "target"
+        }
+      ],
+      "rule" : [
+        {
+          "name" : "code",
+          "source" : [
+            {
+              "context" : "src",
+              "element" : "code",
+              "variable" : "c"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "tgt",
+              "contextType" : "variable",
+              "element" : "value",
+              "transform" : "cast",
+              "parameter" : [
+                {
+                  "valueId" : "c"
+                },
+                {
+                  "valueString" : "string"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "CECode",
+      "extends" : "CSCode",
+      "typeMode" : "types",
+      "input" : [
+        {
+          "name" : "src",
+          "type" : "CE",
+          "mode" : "source"
+        },
+        {
+          "name" : "tgt",
+          "type" : "code",
+          "mode" : "target"
+        }
+      ]
+    },
+    {
+      "name" : "CDCode",
+      "extends" : "CSCode",
+      "typeMode" : "types",
+      "input" : [
+        {
+          "name" : "src",
+          "type" : "CD",
+          "mode" : "source"
+        },
+        {
+          "name" : "tgt",
+          "type" : "code",
+          "mode" : "target"
+        }
+      ]
+    },
+    {
+      "name" : "CECodeableConcept",
+      "typeMode" : "none",
+      "input" : [
+        {
+          "name" : "src",
+          "type" : "CE",
+          "mode" : "source"
+        },
+        {
+          "name" : "tgt",
+          "type" : "CodeableConcept",
+          "mode" : "target"
+        }
+      ],
+      "rule" : [
+        {
+          "name" : "setOriginalText",
+          "source" : [
+            {
+              "context" : "src",
+              "element" : "originalText",
+              "variable" : "originalText"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "tgt",
+              "contextType" : "variable",
+              "element" : "text",
+              "transform" : "copy",
+              "parameter" : [
+                {
+                  "valueId" : "originalText"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name" : "code",
+          "source" : [
+            {
+              "context" : "src"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "tgt",
+              "contextType" : "variable",
+              "element" : "coding",
+              "variable" : "coding"
+            }
+          ],
+          "rule" : [
+            {
+              "name" : "code",
+              "source" : [
+                {
+                  "context" : "src",
+                  "element" : "code",
+                  "variable" : "code"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "coding",
+                  "contextType" : "variable",
+                  "element" : "code",
+                  "transform" : "cast",
+                  "parameter" : [
+                    {
+                      "valueId" : "code"
+                    },
+                    {
+                      "valueString" : "string"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name" : "displayName",
+              "source" : [
+                {
+                  "context" : "src",
+                  "element" : "displayName",
+                  "variable" : "display"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "coding",
+                  "contextType" : "variable",
+                  "element" : "display",
+                  "transform" : "cast",
+                  "parameter" : [
+                    {
+                      "valueId" : "display"
+                    },
+                    {
+                      "valueString" : "string"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name" : "translation",
+          "source" : [
+            {
+              "context" : "src",
+              "element" : "translation",
+              "variable" : "translation"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "tgt",
+              "contextType" : "variable",
+              "element" : "coding",
+              "variable" : "coding"
+            }
+          ],
+          "rule" : [
+            {
+              "name" : "code",
+              "source" : [
+                {
+                  "context" : "translation",
+                  "element" : "code",
+                  "variable" : "code"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "coding",
+                  "contextType" : "variable",
+                  "element" : "code",
+                  "transform" : "cast",
+                  "parameter" : [
+                    {
+                      "valueId" : "code"
+                    },
+                    {
+                      "valueString" : "string"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name" : "displayName",
+              "source" : [
+                {
+                  "context" : "translation",
+                  "element" : "displayName",
+                  "variable" : "display"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "coding",
+                  "contextType" : "variable",
+                  "element" : "display",
+                  "transform" : "cast",
+                  "parameter" : [
+                    {
+                      "valueId" : "display"
+                    },
+                    {
+                      "valueString" : "string"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "CSCodeableConcept",
+      "extends" : "CECodeableConcept",
+      "typeMode" : "types",
+      "input" : [
+        {
+          "name" : "src",
+          "type" : "CS",
+          "mode" : "source"
+        },
+        {
+          "name" : "tgt",
+          "type" : "CodeableConcept",
+          "mode" : "target"
+        }
+      ]
+    },
+    {
+      "name" : "CDCodeableConcept",
+      "extends" : "CECodeableConcept",
+      "typeMode" : "types",
+      "input" : [
+        {
+          "name" : "src",
+          "type" : "CD",
+          "mode" : "source"
+        },
+        {
+          "name" : "tgt",
+          "type" : "CodeableConcept",
+          "mode" : "target"
+        }
+      ]
+    },
+    {
+      "name" : "ENHumanName",
+      "typeMode" : "none",
+      "input" : [
+        {
+          "name" : "src",
+          "type" : "EN",
+          "mode" : "source"
+        },
+        {
+          "name" : "tgt",
+          "type" : "HumanName",
+          "mode" : "target"
+        }
+      ],
+      "rule" : [
+        {
+          "name" : "item",
+          "source" : [
+            {
+              "context" : "src",
+              "element" : "item",
+              "variable" : "item"
+            }
+          ],
+          "rule" : [
+            {
+              "name" : "family",
+              "source" : [
+                {
+                  "context" : "item",
+                  "element" : "family",
+                  "variable" : "v"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "tgt",
+                  "contextType" : "variable",
+                  "element" : "family",
+                  "transform" : "evaluate",
+                  "parameter" : [
+                    {
+                      "valueString" : "v.xmlText"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name" : "given",
+              "source" : [
+                {
+                  "context" : "item",
+                  "element" : "given",
+                  "variable" : "v"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "tgt",
+                  "contextType" : "variable",
+                  "element" : "given",
+                  "transform" : "evaluate",
+                  "parameter" : [
+                    {
+                      "valueString" : "v.xmlText"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name" : "prefix",
+              "source" : [
+                {
+                  "context" : "item",
+                  "element" : "prefix",
+                  "variable" : "v"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "tgt",
+                  "contextType" : "variable",
+                  "element" : "prefix",
+                  "transform" : "evaluate",
+                  "parameter" : [
+                    {
+                      "valueString" : "v.xmlText"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name" : "suffix",
+              "source" : [
+                {
+                  "context" : "item",
+                  "element" : "suffix",
+                  "variable" : "v"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "tgt",
+                  "contextType" : "variable",
+                  "element" : "suffix",
+                  "transform" : "evaluate",
+                  "parameter" : [
+                    {
+                      "valueString" : "v.xmlText"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name" : "validTime",
+          "source" : [
+            {
+              "context" : "src",
+              "element" : "validTime",
+              "variable" : "validTime"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "tgt",
+              "contextType" : "variable",
+              "element" : "period",
+              "transform" : "copy",
+              "parameter" : [
+                {
+                  "valueId" : "validTime"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "PNHumanName",
+      "extends" : "ENHumanName",
+      "typeMode" : "types",
+      "input" : [
+        {
+          "name" : "src",
+          "type" : "PN",
+          "mode" : "source"
+        },
+        {
+          "name" : "tgt",
+          "type" : "HumanName",
+          "mode" : "target"
+        }
+      ]
+    },
+    {
+      "name" : "ADAddress",
+      "typeMode" : "none",
+      "input" : [
+        {
+          "name" : "src",
+          "type" : "AD",
+          "mode" : "source"
+        },
+        {
+          "name" : "tgt",
+          "type" : "Address",
+          "mode" : "target"
+        }
+      ],
+      "rule" : [
+        {
+          "name" : "item",
+          "source" : [
+            {
+              "context" : "src",
+              "element" : "item",
+              "variable" : "item"
+            }
+          ],
+          "rule" : [
+            {
+              "name" : "country",
+              "source" : [
+                {
+                  "context" : "item",
+                  "element" : "country",
+                  "variable" : "v"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "tgt",
+                  "contextType" : "variable",
+                  "element" : "country",
+                  "transform" : "evaluate",
+                  "parameter" : [
+                    {
+                      "valueString" : "v.xmlText"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name" : "state",
+              "source" : [
+                {
+                  "context" : "item",
+                  "element" : "state",
+                  "variable" : "v"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "tgt",
+                  "contextType" : "variable",
+                  "element" : "state",
+                  "transform" : "evaluate",
+                  "parameter" : [
+                    {
+                      "valueString" : "v.xmlText"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name" : "county",
+              "source" : [
+                {
+                  "context" : "item",
+                  "element" : "county",
+                  "variable" : "v"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "tgt",
+                  "contextType" : "variable",
+                  "element" : "district",
+                  "transform" : "evaluate",
+                  "parameter" : [
+                    {
+                      "valueString" : "v.xmlText"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name" : "city",
+              "source" : [
+                {
+                  "context" : "item",
+                  "element" : "city",
+                  "variable" : "v"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "tgt",
+                  "contextType" : "variable",
+                  "element" : "city",
+                  "transform" : "evaluate",
+                  "parameter" : [
+                    {
+                      "valueString" : "v.xmlText"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name" : "postalCode",
+              "source" : [
+                {
+                  "context" : "item",
+                  "element" : "postalCode",
+                  "variable" : "v"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "tgt",
+                  "contextType" : "variable",
+                  "element" : "postalCode",
+                  "transform" : "evaluate",
+                  "parameter" : [
+                    {
+                      "valueString" : "v.xmlText"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name" : "streetAddressLine",
+              "source" : [
+                {
+                  "context" : "item",
+                  "element" : "streetAddressLine",
+                  "variable" : "v"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "tgt",
+                  "contextType" : "variable",
+                  "element" : "line",
+                  "transform" : "evaluate",
+                  "parameter" : [
+                    {
+                      "valueString" : "v.xmlText"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name" : "CensusTract",
+              "source" : [
+                {
+                  "context" : "item"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "tgt",
+                  "contextType" : "variable",
+                  "element" : "line",
+                  "variable" : "line"
+                }
+              ],
+              "rule" : [
+                {
+                  "name" : "sfgfdsg",
+                  "source" : [
+                    {
+                      "context" : "item",
+                      "condition" : "src.censusTract.exists()"
+                    }
+                  ],
+                  "rule" : [
+                    {
+                      "name" : "line",
+                      "source" : [
+                        {
+                          "context" : "item",
+                          "element" : "censusTract",
+                          "variable" : "v"
+                        }
+                      ],
+                      "target" : [
+                        {
+                          "context" : "line",
+                          "contextType" : "variable",
+                          "element" : "extension",
+                          "variable" : "ext1"
+                        }
+                      ],
+                      "dependent" : [
+                        {
+                          "name" : "CensusTract",
+                          "variable" : ["v", "ext1"]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name" : "streetName",
+              "source" : [
+                {
+                  "context" : "item",
+                  "element" : "streetName",
+                  "variable" : "v"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "tgt",
+                  "contextType" : "variable",
+                  "element" : "line",
+                  "transform" : "evaluate",
+                  "parameter" : [
+                    {
+                      "valueString" : "v.xmlText"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name" : "houseNumber",
+              "source" : [
+                {
+                  "context" : "item",
+                  "element" : "houseNumber",
+                  "variable" : "v"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "tgt",
+                  "contextType" : "variable",
+                  "element" : "line",
+                  "transform" : "evaluate",
+                  "parameter" : [
+                    {
+                      "valueString" : "v.xmlText"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name" : "useablePeriod",
+          "source" : [
+            {
+              "context" : "src",
+              "element" : "useablePeriod",
+              "variable" : "useablePeriod"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "tgt",
+              "contextType" : "variable",
+              "element" : "period",
+              "transform" : "copy",
+              "parameter" : [
+                {
+                  "valueId" : "useablePeriod"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "TELContactPoint",
+      "typeMode" : "none",
+      "input" : [
+        {
+          "name" : "src",
+          "type" : "TEL",
+          "mode" : "source"
+        },
+        {
+          "name" : "tgt",
+          "type" : "ContactPoint",
+          "mode" : "target"
+        }
+      ],
+      "rule" : [
+        {
+          "name" : "valuetel",
+          "source" : [
+            {
+              "context" : "src",
+              "element" : "value",
+              "variable" : "v",
+              "condition" : "(src.value.startsWith('tel:'))"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "tgt",
+              "contextType" : "variable",
+              "element" : "value",
+              "transform" : "evaluate",
+              "parameter" : [
+                {
+                  "valueString" : "v.substring(4)"
+                }
+              ]
+            },
+            {
+              "context" : "tgt",
+              "contextType" : "variable",
+              "element" : "system",
+              "transform" : "copy",
+              "parameter" : [
+                {
+                  "valueString" : "phone"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name" : "valuefax",
+          "source" : [
+            {
+              "context" : "src",
+              "element" : "value",
+              "variable" : "v",
+              "condition" : "(src.value.startsWith('fax:'))"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "tgt",
+              "contextType" : "variable",
+              "element" : "value",
+              "transform" : "evaluate",
+              "parameter" : [
+                {
+                  "valueString" : "v.substring(4)"
+                }
+              ]
+            },
+            {
+              "context" : "tgt",
+              "contextType" : "variable",
+              "element" : "system",
+              "transform" : "copy",
+              "parameter" : [
+                {
+                  "valueString" : "fax"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name" : "valuemail",
+          "source" : [
+            {
+              "context" : "src",
+              "element" : "value",
+              "variable" : "v",
+              "condition" : "(src.value.startsWith('mailto:'))"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "tgt",
+              "contextType" : "variable",
+              "element" : "value",
+              "transform" : "evaluate",
+              "parameter" : [
+                {
+                  "valueString" : "v.substring(7)"
+                }
+              ]
+            },
+            {
+              "context" : "tgt",
+              "contextType" : "variable",
+              "element" : "system",
+              "transform" : "copy",
+              "parameter" : [
+                {
+                  "valueString" : "email"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name" : "valuehttp",
+          "source" : [
+            {
+              "context" : "src",
+              "element" : "value",
+              "variable" : "v",
+              "condition" : "(src.value.startsWith('http:'))"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "tgt",
+              "contextType" : "variable",
+              "element" : "value",
+              "transform" : "evaluate",
+              "parameter" : [
+                {
+                  "valueString" : "v.substring(5)"
+                }
+              ]
+            },
+            {
+              "context" : "tgt",
+              "contextType" : "variable",
+              "element" : "system",
+              "transform" : "copy",
+              "parameter" : [
+                {
+                  "valueString" : "url"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name" : "usehome",
+          "source" : [
+            {
+              "context" : "src",
+              "element" : "use",
+              "condition" : "(src.use.startsWith('H'))"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "tgt",
+              "contextType" : "variable",
+              "element" : "use",
+              "transform" : "copy",
+              "parameter" : [
+                {
+                  "valueString" : "home"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name" : "usework",
+          "source" : [
+            {
+              "context" : "src",
+              "element" : "use",
+              "condition" : "((src.use = 'WP') or (src.use = 'DIR') or (src.use = 'PUB'))"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "tgt",
+              "contextType" : "variable",
+              "element" : "use",
+              "transform" : "copy",
+              "parameter" : [
+                {
+                  "valueString" : "work"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name" : "usebad",
+          "source" : [
+            {
+              "context" : "src",
+              "element" : "use",
+              "condition" : "(src.use = 'BAD')"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "tgt",
+              "contextType" : "variable",
+              "element" : "use",
+              "transform" : "copy",
+              "parameter" : [
+                {
+                  "valueString" : "old"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name" : "usetmp",
+          "source" : [
+            {
+              "context" : "src",
+              "element" : "use",
+              "condition" : "(src.use = 'TMP')"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "tgt",
+              "contextType" : "variable",
+              "element" : "use",
+              "transform" : "copy",
+              "parameter" : [
+                {
+                  "valueString" : "temp"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name" : "usemobile",
+          "source" : [
+            {
+              "context" : "src",
+              "element" : "use",
+              "condition" : "(src.use = 'MC')"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "tgt",
+              "contextType" : "variable",
+              "element" : "use",
+              "transform" : "copy",
+              "parameter" : [
+                {
+                  "valueString" : "mobile"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name" : "useablePeriod",
+          "source" : [
+            {
+              "context" : "src",
+              "element" : "useablePeriod",
+              "variable" : "useablePeriod"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "tgt",
+              "contextType" : "variable",
+              "element" : "period",
+              "transform" : "copy",
+              "parameter" : [
+                {
+                  "valueId" : "useablePeriod"
+                }
+              ]
+            }
+          ],
+          "documentation" : "use: for src.use as c make tgt.use = translate(c, 'http://hl7.org/fhir/ConceptMap/cm-telecom-use-v3', 'code')"
+        }
+      ]
+    },
+    {
+      "name" : "PQQuantity",
+      "typeMode" : "none",
+      "input" : [
+        {
+          "name" : "src",
+          "type" : "PQ",
+          "mode" : "source"
+        },
+        {
+          "name" : "tgt",
+          "type" : "Quantity",
+          "mode" : "target"
+        }
+      ],
+      "rule" : [
+        {
+          "name" : "unit",
+          "source" : [
+            {
+              "context" : "src",
+              "element" : "unit",
+              "variable" : "unit"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "tgt",
+              "contextType" : "variable",
+              "element" : "unit",
+              "transform" : "copy",
+              "parameter" : [
+                {
+                  "valueId" : "unit"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name" : "value",
+          "source" : [
+            {
+              "context" : "src",
+              "element" : "value",
+              "variable" : "value"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "tgt",
+              "contextType" : "variable",
+              "element" : "value",
+              "transform" : "copy",
+              "parameter" : [
+                {
+                  "valueId" : "value"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "RTOPQPQRatio",
+      "typeMode" : "none",
+      "input" : [
+        {
+          "name" : "src",
+          "type" : "RTO_PQ_PQ",
+          "mode" : "source"
+        },
+        {
+          "name" : "tgt",
+          "type" : "Ratio",
+          "mode" : "target"
+        }
+      ],
+      "rule" : [
+        {
+          "name" : "numerator",
+          "source" : [
+            {
+              "context" : "src",
+              "element" : "numerator",
+              "variable" : "numerator"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "tgt",
+              "contextType" : "variable",
+              "element" : "numerator",
+              "variable" : "targetNumerator"
+            }
+          ],
+          "dependent" : [
+            {
+              "name" : "PQQuantity",
+              "variable" : ["numerator", "targetNumerator"]
+            }
+          ]
+        },
+        {
+          "name" : "denominator",
+          "source" : [
+            {
+              "context" : "src",
+              "element" : "denominator",
+              "variable" : "denominator"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "tgt",
+              "contextType" : "variable",
+              "element" : "denominator",
+              "variable" : "targetDenominator"
+            }
+          ],
+          "dependent" : [
+            {
+              "name" : "PQQuantity",
+              "variable" : ["denominator", "targetDenominator"]
             }
           ]
         }

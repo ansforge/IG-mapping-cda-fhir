@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<!-- broken links = 6, errors = 14, warn = 9, info = 9-->
+<!-- broken links = 6, errors = 39, warn = 15, info = 17-->
 <head>
   <title>CDA2FHIRMAP : Validation Results</title>
   <link href="fhir.css" rel="stylesheet"/>
@@ -47,7 +47,7 @@
 </head>
 <body style="margin: 20px; background-color: #ffffff">
  <h1>Validation Results for CDA2FHIRMAP</h1>
- <p>Generated Mon Oct 20 09:12:52 UTC 2025, FHIR version 4.0.1 for ans.fhir.fr.mappingcdafhir#0.1.0 (canonical = <a href="https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir">https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir</a> (<a href="https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/history.html">history</a>)). See <a href="qa.html">Full QA Report</a> &amp; <a href="qa-ipreview.html">IP</a></p>
+ <p>Generated Mon Oct 20 09:55:49 UTC 2025, FHIR version 4.0.1 for ans.fhir.fr.mappingcdafhir#0.1.0 (canonical = <a href="https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir">https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir</a> (<a href="https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/history.html">history</a>)). See <a href="qa.html">Full QA Report</a> &amp; <a href="qa-ipreview.html">IP</a></p>
 <table class="grid"> <tr><td colspan=2><b>Quality Checks</b></td></tr>
  <tr><td>Publisher Version:</td><td><span>IG Publisher Version: v2.0.21</span></td></tr>
  <tr><td>Publication Code:</td><td>n/a<span style="color: maroon; font-weight: bold"> </span>. PackageId = ans.fhir.fr.mappingcdafhir, Canonical = https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir</td></tr>
@@ -87,7 +87,7 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
  <tr><td>IPA Comparison:</td><td> n/a</td></tr>
  <tr><td>IPS Comparison:</td><td> n/a</td></tr>
  <tr><td>Validation Flags:</td><td> On: autoLoad; Off: hintAboutNonMustSupport, anyExtensionsAllowed, checkAggregation, showReferenceMessages, noExperimentalContent, displayWarnings</td></tr>
- <tr><td>Summary:</td><td> errors = 14, warn = 9, info = 9, broken links = 6, pinned = n/a.  <button onclick="toggleCodes()">Show Message Ids</button></td></tr>
+ <tr><td>Summary:</td><td> errors = 39, warn = 15, info = 17, broken links = 6, pinned = n/a.  <button onclick="toggleCodes()">Show Message Ids</button></td></tr>
 </table>
  <table class="grid">
    <tr>
@@ -100,7 +100,7 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
      <td><a href="#_home_runner_work_IG-mapping-cda-fhir_IG-mapping-cda-fhir_igSource_fsh-generated_resources_ImplementationGuide-ans.fhir.fr.mappingcdafhir"><b>/home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ImplementationGuide-ans.fhir.fr.mappingcdafhir</b></a></td><td><b>0</b></td><td><b>1</b></td><td><b>0</b></td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><a href="#_home_runner_work_IG-mapping-cda-fhir_IG-mapping-cda-fhir_igSource_input_fml_gen-CDAtoFHIRTypes"><b>/home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/input/fml/gen-CDAtoFHIRTypes</b></a></td><td><b>13</b></td><td><b>6</b></td><td><b>9</b></td>
+     <td><a href="#_home_runner_work_IG-mapping-cda-fhir_IG-mapping-cda-fhir_igSource_input_fml_gen-CDAtoFHIRTypes"><b>/home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/input/fml/gen-CDAtoFHIRTypes</b></a></td><td><b>38</b></td><td><b>12</b></td><td><b>17</b></td>
    </tr>
 </table>
 <hr/>
@@ -159,88 +159,205 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
      <td><b>Path</b></td><td><b>Severity</b></td><td><b>Message</b></td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>StructureMap.group[0] (l1/c20984)</b></td><td><b>error</b></td><td><b>StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Validation_VAL_Profile_Minimum</span></td>
+     <td><b>StructureMap.group[0] (l1/c40158)</b></td><td><b>error</b></td><td><b>StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Validation_VAL_Profile_Minimum</span></td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>StructureMap.group[6] (l1/c26301)</b></td><td><b>error</b></td><td><b>StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Validation_VAL_Profile_Minimum</span></td>
+     <td><b>StructureMap.group[6] (l1/c45475)</b></td><td><b>error</b></td><td><b>StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Validation_VAL_Profile_Minimum</span></td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>StructureMap.group[7] (l1/c26458)</b></td><td><b>error</b></td><td><b>StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Validation_VAL_Profile_Minimum</span></td>
+     <td><b>StructureMap.group[7] (l1/c45632)</b></td><td><b>error</b></td><td><b>StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Validation_VAL_Profile_Minimum</span></td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>StructureMap.group[8] (l1/c26603)</b></td><td><b>error</b></td><td><b>StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Validation_VAL_Profile_Minimum</span></td>
+     <td><b>StructureMap.group[11] (l1/c47028)</b></td><td><b>error</b></td><td><b>StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Validation_VAL_Profile_Minimum</span></td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>StructureMap&#8203;.group[1]&#8203;.rule[0]&#8203;.target[0] (l1&#8203;/c21471)</b></td><td><b>error</b></td><td><b>The value 'uri' for the output parameter is incorrect</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_TRANSFORM_TRANSLATE_CM_BAD_MODE</span></td>
+     <td><b>StructureMap.group[12] (l1/c47188)</b></td><td><b>error</b></td><td><b>StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Validation_VAL_Profile_Minimum</span></td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>StructureMap&#8203;.group[1]&#8203;.rule[1]&#8203;.target[1] (l1&#8203;/c21968)</b></td><td><b>error</b></td><td><b>The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'r' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Identifier] (@char 15)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_TRANSFORM_EXPRESSION_ERROR</span></td>
+     <td><b>StructureMap.group[14] (l1/c47708)</b></td><td><b>error</b></td><td><b>StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Validation_VAL_Profile_Minimum</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>StructureMap.group[15] (l1/c47862)</b></td><td><b>error</b></td><td><b>StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Validation_VAL_Profile_Minimum</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>StructureMap.group[17] (l1/c49788)</b></td><td><b>error</b></td><td><b>StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Validation_VAL_Profile_Minimum</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>StructureMap.group[18] (l1/c49975)</b></td><td><b>error</b></td><td><b>StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Validation_VAL_Profile_Minimum</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>StructureMap.group[20] (l1/c51488)</b></td><td><b>error</b></td><td><b>StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Validation_VAL_Profile_Minimum</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>StructureMap&#8203;.group[1]&#8203;.rule[0]&#8203;.target[0] (l1&#8203;/c40645)</b></td><td><b>error</b></td><td><b>The value 'uri' for the output parameter is incorrect</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_TRANSFORM_TRANSLATE_CM_BAD_MODE</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>StructureMap&#8203;.group[1]&#8203;.rule[1]&#8203;.target[1] (l1&#8203;/c41142)</b></td><td><b>error</b></td><td><b>The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'r' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Identifier] (@char 15)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_TRANSFORM_EXPRESSION_ERROR</span></td>
    </tr>
    <tr style="background-color: #ffffe6">
-     <td><b>StructureMap&#8203;.group[1]&#8203;.rule[5]&#8203;.rule[0]&#8203;.source[0] (l1&#8203;/c23315)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
+     <td><b>StructureMap&#8203;.group[1]&#8203;.rule[5]&#8203;.rule[0]&#8203;.source[0] (l1&#8203;/c42489)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
    </tr>
    <tr style="background-color: #ffebcc">
-     <td><b>StructureMap&#8203;.group[1]&#8203;.rule[5]&#8203;.rule[1]&#8203;.target[0] (l1&#8203;/c23734)</b></td><td><b>warning</b></td><td><b>Transform cast not checked yet</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_TRANSFORM_NOT_CHECKED</span></td>
+     <td><b>StructureMap&#8203;.group[1]&#8203;.rule[5]&#8203;.rule[1]&#8203;.target[0] (l1&#8203;/c42908)</b></td><td><b>warning</b></td><td><b>Transform cast not checked yet</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_TRANSFORM_NOT_CHECKED</span></td>
    </tr>
    <tr style="background-color: #ffebcc">
-     <td><b>StructureMap&#8203;.group[5]&#8203;.rule[0]&#8203;.target[0] (l1&#8203;/c26132)</b></td><td><b>warning</b></td><td><b>Transform cast not checked yet</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_TRANSFORM_NOT_CHECKED</span></td>
+     <td><b>StructureMap&#8203;.group[5]&#8203;.rule[0]&#8203;.target[0] (l1&#8203;/c45306)</b></td><td><b>warning</b></td><td><b>Transform cast not checked yet</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_TRANSFORM_NOT_CHECKED</span></td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>StructureMap&#8203;.group[9]&#8203;.rule[0]&#8203;.dependent[0]&#8203;.variable[0] (l1&#8203;/c26900)</b></td><td><b>error</b></td><td><b>The parameter 'src' refers to the variable 's : http://hl7.org/cda/stds/core/StructureDefinition/IVXB-TS (source)' but its type is 'TS' which is not compatible with the type required for the group 'TSDateTime', which is 'TS' (from map '$this')</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_DEPENDENT_PARAM_TYPE_MISMATCH</span></td>
-   </tr>
-   <tr style="background-color: #ffffe6">
-     <td><b>StructureMap.group[0] (l1/c20984)</b></td><td><b>information</b></td><td><b>The group Any is not called successfully from within this mapping script, and does not have types on its inputs, so type verification is not possible</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_ORPHAN_GROUP</span></td>
+     <td><b>StructureMap&#8203;.group[9]&#8203;.rule[0]&#8203;.dependent[0]&#8203;.variable[0] (l1&#8203;/c46502)</b></td><td><b>error</b></td><td><b>The parameter 'src' refers to the variable 's : http://hl7.org/cda/stds/core/StructureDefinition/IVXB-TS (source)' but its type is 'TS' which is not compatible with the type required for the group 'TSDateTime', which is 'TS' (from map '$this')</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_DEPENDENT_PARAM_TYPE_MISMATCH</span></td>
    </tr>
    <tr style="background-color: #ffebcc">
-     <td><b>StructureMap&#8203;.group[0]&#8203;.input[0] (l1&#8203;/c20951)</b></td><td><b>warning</b></td><td><b>Group Any parameter src has no type, so the paths cannot be validated</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_GROUP_INPUT_NO_TYPE</span></td>
+     <td><b>StructureMap&#8203;.group[10]&#8203;.rule[0]&#8203;.target[0] (l1&#8203;/c46864)</b></td><td><b>warning</b></td><td><b>Transform cast not checked yet</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_TRANSFORM_NOT_CHECKED</span></td>
    </tr>
    <tr style="background-color: #ffebcc">
-     <td><b>StructureMap&#8203;.group[0]&#8203;.input[1] (l1&#8203;/c20982)</b></td><td><b>warning</b></td><td><b>Group Any parameter tgt has no type, so the paths cannot be validated</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_GROUP_INPUT_NO_TYPE</span></td>
+     <td><b>StructureMap&#8203;.group[13]&#8203;.rule[0]&#8203;.target[0] (l1&#8203;/c47550)</b></td><td><b>warning</b></td><td><b>Transform cast not checked yet</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_TRANSFORM_NOT_CHECKED</span></td>
    </tr>
    <tr style="background-color: #ffffe6">
-     <td><b>StructureMap.group[3] (l1/c24895)</b></td><td><b>information</b></td><td><b>The group TemplateID is not called successfully from within this mapping script, and does not have types on its inputs, so type verification is not possible</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_ORPHAN_GROUP</span></td>
+     <td><b>StructureMap&#8203;.group[16]&#8203;.rule[1]&#8203;.source[0] (l1&#8203;/c48306)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
    </tr>
    <tr style="background-color: #ffebcc">
-     <td><b>StructureMap&#8203;.group[3]&#8203;.input[1] (l1&#8203;/c24230)</b></td><td><b>warning</b></td><td><b>Group TemplateID parameter tgt has no type, so the paths cannot be validated</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_GROUP_INPUT_NO_TYPE</span></td>
-   </tr>
-   <tr style="background-color: #ffffe6">
-     <td><b>StructureMap&#8203;.group[3]&#8203;.rule[0]&#8203;.source[0] (l1&#8203;/c24293)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
-   </tr>
-   <tr style="background-color: #ffffe6">
-     <td><b>StructureMap&#8203;.group[3]&#8203;.rule[0]&#8203;.rule[0]&#8203;.source[0] (l1&#8203;/c24442)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
-   </tr>
-   <tr style="background-color: #ffcccc">
-     <td><b>StructureMap&#8203;.group[3]&#8203;.rule[0]&#8203;.rule[0]&#8203;.target[0] (l1&#8203;/c24623)</b></td><td><b>error</b></td><td><b>The target context 'ext' is not known at this point</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_CONTEXT_UNKNOWN</span></td>
-   </tr>
-   <tr style="background-color: #ffffe6">
-     <td><b>StructureMap&#8203;.group[3]&#8203;.rule[0]&#8203;.rule[1]&#8203;.source[0] (l1&#8203;/c24674)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
-   </tr>
-   <tr style="background-color: #ffcccc">
-     <td><b>StructureMap&#8203;.group[3]&#8203;.rule[0]&#8203;.rule[1]&#8203;.target[0] (l1&#8203;/c24829)</b></td><td><b>error</b></td><td><b>The target context 'ext' is not known at this point</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_CONTEXT_UNKNOWN</span></td>
-   </tr>
-   <tr style="background-color: #ffcccc">
-     <td><b>StructureMap&#8203;.group[3]&#8203;.rule[0]&#8203;.rule[1]&#8203;.dependent[0]&#8203;.variable[1] (l1&#8203;/c24887)</b></td><td><b>error</b></td><td><b>The target parameter 'tgt' was not found. Known variables: template : II (source), tgt : null (target)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_DEPENDENT_PARAM_NOT_FOUND</span></td>
-   </tr>
-   <tr style="background-color: #ffffe6">
-     <td><b>StructureMap.group[4] (l1/c25745)</b></td><td><b>information</b></td><td><b>The group Negation is not called successfully from within this mapping script, and does not have types on its inputs, so type verification is not possible</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_ORPHAN_GROUP</span></td>
+     <td><b>StructureMap&#8203;.group[16]&#8203;.rule[1]&#8203;.rule[0]&#8203;.target[0] (l1&#8203;/c48637)</b></td><td><b>warning</b></td><td><b>Transform cast not checked yet</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_TRANSFORM_NOT_CHECKED</span></td>
    </tr>
    <tr style="background-color: #ffebcc">
-     <td><b>StructureMap&#8203;.group[4]&#8203;.input[1] (l1&#8203;/c25020)</b></td><td><b>warning</b></td><td><b>Group Negation parameter tgt has no type, so the paths cannot be validated</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_GROUP_INPUT_NO_TYPE</span></td>
+     <td><b>StructureMap&#8203;.group[16]&#8203;.rule[1]&#8203;.rule[1]&#8203;.target[0] (l1&#8203;/c48891)</b></td><td><b>warning</b></td><td><b>Transform cast not checked yet</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_TRANSFORM_NOT_CHECKED</span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>StructureMap&#8203;.group[16]&#8203;.rule[2]&#8203;.rule[0]&#8203;.target[0] (l1&#8203;/c49333)</b></td><td><b>warning</b></td><td><b>Transform cast not checked yet</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_TRANSFORM_NOT_CHECKED</span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>StructureMap&#8203;.group[16]&#8203;.rule[2]&#8203;.rule[1]&#8203;.target[0] (l1&#8203;/c49595)</b></td><td><b>warning</b></td><td><b>Transform cast not checked yet</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_TRANSFORM_NOT_CHECKED</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>StructureMap&#8203;.group[19]&#8203;.rule[0]&#8203;.rule[0]&#8203;.target[0] (l1&#8203;/c50429)</b></td><td><b>error</b></td><td><b>The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/HumanName] (@char 1)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_TRANSFORM_EXPRESSION_ERROR</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>StructureMap&#8203;.group[19]&#8203;.rule[0]&#8203;.rule[1]&#8203;.target[0] (l1&#8203;/c50646)</b></td><td><b>error</b></td><td><b>The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/HumanName] (@char 1)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_TRANSFORM_EXPRESSION_ERROR</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>StructureMap&#8203;.group[19]&#8203;.rule[0]&#8203;.rule[2]&#8203;.target[0] (l1&#8203;/c50866)</b></td><td><b>error</b></td><td><b>The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/HumanName] (@char 1)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_TRANSFORM_EXPRESSION_ERROR</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>StructureMap&#8203;.group[19]&#8203;.rule[0]&#8203;.rule[3]&#8203;.target[0] (l1&#8203;/c51086)</b></td><td><b>error</b></td><td><b>The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/HumanName] (@char 1)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_TRANSFORM_EXPRESSION_ERROR</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>StructureMap&#8203;.group[21]&#8203;.rule[0]&#8203;.rule[0]&#8203;.target[0] (l1&#8203;/c51941)</b></td><td><b>error</b></td><td><b>The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Address] (@char 1)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_TRANSFORM_EXPRESSION_ERROR</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>StructureMap&#8203;.group[21]&#8203;.rule[0]&#8203;.rule[1]&#8203;.target[0] (l1&#8203;/c52158)</b></td><td><b>error</b></td><td><b>The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Address] (@char 1)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_TRANSFORM_EXPRESSION_ERROR</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>StructureMap&#8203;.group[21]&#8203;.rule[0]&#8203;.rule[2]&#8203;.target[0] (l1&#8203;/c52380)</b></td><td><b>error</b></td><td><b>The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Address] (@char 1)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_TRANSFORM_EXPRESSION_ERROR</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>StructureMap&#8203;.group[21]&#8203;.rule[0]&#8203;.rule[3]&#8203;.target[0] (l1&#8203;/c52594)</b></td><td><b>error</b></td><td><b>The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Address] (@char 1)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_TRANSFORM_EXPRESSION_ERROR</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>StructureMap&#8203;.group[21]&#8203;.rule[0]&#8203;.rule[4]&#8203;.target[0] (l1&#8203;/c52826)</b></td><td><b>error</b></td><td><b>The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Address] (@char 1)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_TRANSFORM_EXPRESSION_ERROR</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>StructureMap&#8203;.group[21]&#8203;.rule[0]&#8203;.rule[5]&#8203;.target[0] (l1&#8203;/c53066)</b></td><td><b>error</b></td><td><b>The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Address] (@char 1)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_TRANSFORM_EXPRESSION_ERROR</span></td>
    </tr>
    <tr style="background-color: #ffffe6">
-     <td><b>StructureMap&#8203;.group[4]&#8203;.rule[0]&#8203;.source[0] (l1&#8203;/c25081)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
+     <td><b>StructureMap&#8203;.group[21]&#8203;.rule[0]&#8203;.rule[6]&#8203;.source[0] (l1&#8203;/c53121)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
    </tr>
    <tr style="background-color: #ffffe6">
-     <td><b>StructureMap&#8203;.group[4]&#8203;.rule[0]&#8203;.rule[0]&#8203;.source[0] (l1&#8203;/c25238)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
+     <td><b>StructureMap&#8203;.group[21]&#8203;.rule[0]&#8203;.rule[6]&#8203;.rule[0]&#8203;.source[0] (l1&#8203;/c53305)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>StructureMap&#8203;.group[4]&#8203;.rule[0]&#8203;.rule[0]&#8203;.target[0] (l1&#8203;/c25426)</b></td><td><b>error</b></td><td><b>The target context 'ext' is not known at this point</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_CONTEXT_UNKNOWN</span></td>
+     <td><b>StructureMap&#8203;.group[21]&#8203;.rule[0]&#8203;.rule[6]&#8203;.rule[0]&#8203;.rule[0]&#8203;.dependent[0] (l1&#8203;/c53553)</b></td><td><b>error</b></td><td><b>The group CensusTract could not be resolved</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULEGROUP_NOT_FOUND</span></td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>StructureMap&#8203;.group[4]&#8203;.rule[0]&#8203;.rule[1]&#8203;.target[0] (l1&#8203;/c25627)</b></td><td><b>error</b></td><td><b>The target context 'ext' is not known at this point</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_CONTEXT_UNKNOWN</span></td>
+     <td><b>StructureMap&#8203;.group[21]&#8203;.rule[0]&#8203;.rule[7]&#8203;.target[0] (l1&#8203;/c53781)</b></td><td><b>error</b></td><td><b>The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Address] (@char 1)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_TRANSFORM_EXPRESSION_ERROR</span></td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>StructureMap&#8203;.group[4]&#8203;.rule[0]&#8203;.rule[1]&#8203;.target[1] (l1&#8203;/c25739)</b></td><td><b>error</b></td><td><b>The target context 'ext' is not known at this point</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_CONTEXT_UNKNOWN</span></td>
+     <td><b>StructureMap&#8203;.group[21]&#8203;.rule[0]&#8203;.rule[8]&#8203;.target[0] (l1&#8203;/c54009)</b></td><td><b>error</b></td><td><b>The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Address] (@char 1)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_TRANSFORM_EXPRESSION_ERROR</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>StructureMap&#8203;.group[22]&#8203;.rule[0]&#8203;.target[0] (l1&#8203;/c54682)</b></td><td><b>error</b></td><td><b>The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/ContactPoint] (@char 1)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_TRANSFORM_EXPRESSION_ERROR</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>StructureMap&#8203;.group[22]&#8203;.rule[1]&#8203;.target[0] (l1&#8203;/c55070)</b></td><td><b>error</b></td><td><b>The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/ContactPoint] (@char 1)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_TRANSFORM_EXPRESSION_ERROR</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>StructureMap&#8203;.group[22]&#8203;.rule[2]&#8203;.target[0] (l1&#8203;/c55460)</b></td><td><b>error</b></td><td><b>The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/ContactPoint] (@char 1)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_TRANSFORM_EXPRESSION_ERROR</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>StructureMap&#8203;.group[22]&#8203;.rule[3]&#8203;.target[0] (l1&#8203;/c55850)</b></td><td><b>error</b></td><td><b>The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/ContactPoint] (@char 1)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_TRANSFORM_EXPRESSION_ERROR</span></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b>StructureMap&#8203;.group[22]&#8203;.rule[4]&#8203;.source[0] (l1&#8203;/c56073)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b>StructureMap&#8203;.group[22]&#8203;.rule[5]&#8203;.source[0] (l1&#8203;/c56338)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b>StructureMap&#8203;.group[22]&#8203;.rule[6]&#8203;.source[0] (l1&#8203;/c56559)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b>StructureMap&#8203;.group[22]&#8203;.rule[7]&#8203;.source[0] (l1&#8203;/c56779)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b>StructureMap&#8203;.group[22]&#8203;.rule[8]&#8203;.source[0] (l1&#8203;/c57002)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>StructureMap&#8203;.group[24]&#8203;.rule[0]&#8203;.dependent[0]&#8203;.variable[0] (l1&#8203;/c58477)</b></td><td><b>error</b></td><td><b>The parameter 'src' refers to the variable 'numerator : http://hl7.org/cda/stds/core/StructureDefinition/PQ (source)' but its type is 'PQ' which is not compatible with the type required for the group 'PQQuantity', which is 'PQ' (from map '$this')</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_DEPENDENT_PARAM_TYPE_MISMATCH</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>StructureMap&#8203;.group[24]&#8203;.rule[1]&#8203;.dependent[0]&#8203;.variable[0] (l1&#8203;/c58768)</b></td><td><b>error</b></td><td><b>The parameter 'src' refers to the variable 'denominator : http://hl7.org/cda/stds/core/StructureDefinition/PQ (source)' but its type is 'PQ' which is not compatible with the type required for the group 'PQQuantity', which is 'PQ' (from map '$this')</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_DEPENDENT_PARAM_TYPE_MISMATCH</span></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b>StructureMap.group[0] (l1/c40158)</b></td><td><b>information</b></td><td><b>The group Any is not called successfully from within this mapping script, and does not have types on its inputs, so type verification is not possible</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_ORPHAN_GROUP</span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>StructureMap&#8203;.group[0]&#8203;.input[0] (l1&#8203;/c40125)</b></td><td><b>warning</b></td><td><b>Group Any parameter src has no type, so the paths cannot be validated</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_GROUP_INPUT_NO_TYPE</span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>StructureMap&#8203;.group[0]&#8203;.input[1] (l1&#8203;/c40156)</b></td><td><b>warning</b></td><td><b>Group Any parameter tgt has no type, so the paths cannot be validated</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_GROUP_INPUT_NO_TYPE</span></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b>StructureMap.group[3] (l1/c44069)</b></td><td><b>information</b></td><td><b>The group TemplateID is not called successfully from within this mapping script, and does not have types on its inputs, so type verification is not possible</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_ORPHAN_GROUP</span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>StructureMap&#8203;.group[3]&#8203;.input[1] (l1&#8203;/c43404)</b></td><td><b>warning</b></td><td><b>Group TemplateID parameter tgt has no type, so the paths cannot be validated</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_GROUP_INPUT_NO_TYPE</span></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b>StructureMap&#8203;.group[3]&#8203;.rule[0]&#8203;.source[0] (l1&#8203;/c43467)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b>StructureMap&#8203;.group[3]&#8203;.rule[0]&#8203;.rule[0]&#8203;.source[0] (l1&#8203;/c43616)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>StructureMap&#8203;.group[3]&#8203;.rule[0]&#8203;.rule[0]&#8203;.target[0] (l1&#8203;/c43797)</b></td><td><b>error</b></td><td><b>The target context 'ext' is not known at this point</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_CONTEXT_UNKNOWN</span></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b>StructureMap&#8203;.group[3]&#8203;.rule[0]&#8203;.rule[1]&#8203;.source[0] (l1&#8203;/c43848)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>StructureMap&#8203;.group[3]&#8203;.rule[0]&#8203;.rule[1]&#8203;.target[0] (l1&#8203;/c44003)</b></td><td><b>error</b></td><td><b>The target context 'ext' is not known at this point</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_CONTEXT_UNKNOWN</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>StructureMap&#8203;.group[3]&#8203;.rule[0]&#8203;.rule[1]&#8203;.dependent[0]&#8203;.variable[1] (l1&#8203;/c44061)</b></td><td><b>error</b></td><td><b>The target parameter 'tgt' was not found. Known variables: template : II (source), tgt : null (target)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_DEPENDENT_PARAM_NOT_FOUND</span></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b>StructureMap.group[4] (l1/c44919)</b></td><td><b>information</b></td><td><b>The group Negation is not called successfully from within this mapping script, and does not have types on its inputs, so type verification is not possible</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_ORPHAN_GROUP</span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>StructureMap&#8203;.group[4]&#8203;.input[1] (l1&#8203;/c44194)</b></td><td><b>warning</b></td><td><b>Group Negation parameter tgt has no type, so the paths cannot be validated</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_GROUP_INPUT_NO_TYPE</span></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b>StructureMap&#8203;.group[4]&#8203;.rule[0]&#8203;.source[0] (l1&#8203;/c44255)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b>StructureMap&#8203;.group[4]&#8203;.rule[0]&#8203;.rule[0]&#8203;.source[0] (l1&#8203;/c44412)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>StructureMap&#8203;.group[4]&#8203;.rule[0]&#8203;.rule[0]&#8203;.target[0] (l1&#8203;/c44600)</b></td><td><b>error</b></td><td><b>The target context 'ext' is not known at this point</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_CONTEXT_UNKNOWN</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>StructureMap&#8203;.group[4]&#8203;.rule[0]&#8203;.rule[1]&#8203;.target[0] (l1&#8203;/c44801)</b></td><td><b>error</b></td><td><b>The target context 'ext' is not known at this point</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_CONTEXT_UNKNOWN</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>StructureMap&#8203;.group[4]&#8203;.rule[0]&#8203;.rule[1]&#8203;.target[1] (l1&#8203;/c44913)</b></td><td><b>error</b></td><td><b>The target context 'ext' is not known at this point</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_CONTEXT_UNKNOWN</span></td>
    </tr>
 </table>
 <a name="suppressed"> </a>
@@ -305,6 +422,12 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
    <tr style="background-color: #ffeeee">
      <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>The parameter 'src' refers to the variable 's : http://hl7.org/cda/stds/core/StructureDefinition/IVXB-TS (source)' but its type is 'TS' which is not compatible with the type required for the group 'TSDateTime', which is 'TS' (from map '$this')</b></td>
    </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>The parameter 'src' refers to the variable 'numerator : http://hl7.org/cda/stds/core/StructureDefinition/PQ (source)' but its type is 'PQ' which is not compatible with the type required for the group 'PQQuantity', which is 'PQ' (from map '$this')</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>The parameter 'src' refers to the variable 'denominator : http://hl7.org/cda/stds/core/StructureDefinition/PQ (source)' but its type is 'PQ' which is not compatible with the type required for the group 'PQQuantity', which is 'PQ' (from map '$this')</b></td>
+   </tr>
 </table>
 <hr/>
 <a name="SM_GROUP_INPUT_NO_TYPE"> </a>
@@ -338,9 +461,41 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
    </tr>
 </table>
 <hr/>
+<a name="SM_RULEGROUP_NOT_FOUND"> </a>
+<h2>SM_RULEGROUP_NOT_FOUND</h2>
+ <table class="grid">
+   <tr style="background-color: #ffeeee">
+     <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>The group CensusTract could not be resolved</b></td>
+   </tr>
+</table>
+<hr/>
 <a name="SM_RULE_SOURCE_UNASSIGNED"> </a>
 <h2>SM_RULE_SOURCE_UNASSIGNED</h2>
  <table class="grid">
+   <tr style="background-color: #fffff2">
+     <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b></td>
+   </tr>
    <tr style="background-color: #fffff2">
      <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b></td>
    </tr>
@@ -387,11 +542,77 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
    <tr style="background-color: #ffeeee">
      <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'r' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Identifier] (@char 15)</b></td>
    </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/HumanName] (@char 1)</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/HumanName] (@char 1)</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/HumanName] (@char 1)</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/HumanName] (@char 1)</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Address] (@char 1)</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Address] (@char 1)</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Address] (@char 1)</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Address] (@char 1)</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Address] (@char 1)</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Address] (@char 1)</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Address] (@char 1)</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Address] (@char 1)</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/ContactPoint] (@char 1)</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/ContactPoint] (@char 1)</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/ContactPoint] (@char 1)</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'v' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/ContactPoint] (@char 1)</b></td>
+   </tr>
 </table>
 <hr/>
 <a name="SM_TARGET_TRANSFORM_NOT_CHECKED"> </a>
 <h2>SM_TARGET_TRANSFORM_NOT_CHECKED</h2>
  <table class="grid">
+   <tr style="background-color: #fff4ee">
+     <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>Transform cast not checked yet</b></td>
+   </tr>
+   <tr style="background-color: #fff4ee">
+     <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>Transform cast not checked yet</b></td>
+   </tr>
+   <tr style="background-color: #fff4ee">
+     <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>Transform cast not checked yet</b></td>
+   </tr>
+   <tr style="background-color: #fff4ee">
+     <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>Transform cast not checked yet</b></td>
+   </tr>
+   <tr style="background-color: #fff4ee">
+     <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>Transform cast not checked yet</b></td>
+   </tr>
+   <tr style="background-color: #fff4ee">
+     <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>Transform cast not checked yet</b></td>
+   </tr>
    <tr style="background-color: #fff4ee">
      <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>Transform cast not checked yet</b></td>
    </tr>
@@ -411,6 +632,24 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
 <a name="Validation_VAL_Profile_Minimum"> </a>
 <h2>Validation_VAL_Profile_Minimum</h2>
  <table class="grid">
+   <tr style="background-color: #ffeeee">
+     <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)</b></td>
+   </tr>
    <tr style="background-color: #ffeeee">
      <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/gen-CDAtoFHIRTypes.fml</a></td><td><b>StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)</b></td>
    </tr>
