@@ -19,6 +19,8 @@ parameters: #Parameters list - https://build.fhir.org/ig/FHIR/fhir-tools-ig/Code
   path-binary: input/attachments
   path-resource:
   - input/fml
+  path-expansion-params: '../../expansion-params.json' # for using French SNOMED CT Extension
+
 
 dependencies:
   hl7.cda.uv.core: 2.0.0-sd
