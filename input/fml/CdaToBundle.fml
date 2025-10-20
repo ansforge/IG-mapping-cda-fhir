@@ -48,13 +48,13 @@ group ClinicalDocumentToBundle(source cda : ClinicalDocument, target patient : P
   cda -> bundle.type = 'document' "type";
   cda.effectiveTime as timestamp -> bundle.timestamp = timestamp;
   cda then ClinicalDocumentComposition(cda, composition, patient, bundle) "composition";
-  cda.component as component then {
-    component.structuredBody as body then {
-      body.component as component then {
-        component.section as srcSection where $this.code.empty() -> composition.section as tgtSection then ClinicalDocumentSection(cda, srcSection, patient, tgtSection, bundle);
-      } "component";
+  cda.component as cdaComponent then {
+    cdaComponent.structuredBody as body then {
+      body.component as bodyComponent then {
+        bodyComponent.section as srcSection where $this.code.empty() -> composition.section as tgtSection then ClinicalDocumentSection(cda, srcSection, patient, tgtSection, bundle);
+      } "bodyComponent";
     } "body";
-  } "component";
+  } "cdaComponent";
 }
 
 // _________________________ Section Level Templates _________________________ 
@@ -62,7 +62,7 @@ group ClinicalDocumentToBundle(source cda : ClinicalDocument, target patient : P
 group ClinicalDocumentSection(source cda : ClinicalDocument, source src : Section, source patient : Patient, target tgt, target bundle: Bundle) {
   src.id as id where ($this.root=%cda.id.root)=false -> tgt.extension as ext then ChExtEprSectionId(id, ext) "sectionId";
   src.title as t -> tgt.title = (t.xmlText);
-  src.code -> tgt.code;
+  src.code as srcCode -> tgt.code  srcCode;
   src.text as cdaText -> tgt.text as fhirText then {
     cdaText -> fhirText.status = 'generated' "narrativeStatus";
     cdaText as t -> fhirText.div = t "narrativeText";
