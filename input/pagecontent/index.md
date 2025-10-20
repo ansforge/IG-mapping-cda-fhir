@@ -1,6 +1,6 @@
 <p style="padding: 5px; border-radius: 5px; border: 2px solid maroon; background: #ffffe6; width: 65%">
-<b>Brief description of this Implementation Guide</b><br>
-[Add a brief description of this IG in English]
+<b>FHIR Mapping Language for CDA to FHIR transformation</b><br>
+Proof of concept for CDA to FHIR transformation
 </p>
 
 {% if site.data.info.releaselabel == 'ci-build' %}
@@ -33,25 +33,22 @@
 
 ### Introduction
 
-Définir ici de quoi parle l'IG (En termes non expert, compréhensible par un patient). Rajouter également les détails techniques sur le contexte et le besoin de cet IG
+Dans le cadre de l'Espace Européen des Données de Santé, l'ANS a entrepris des travaux pour anticiper la transition CDA vers FHIR dans le cadre des 5 cas d'usages priorisés par l'Europe : le compte rendu de biologie, la ePrescription et eDispensiation, le compte rendu d'hospitalisation, le résumé patient et le compte rendu d'imagerie.
 
-Les principales sections de l'IG  sont :
+Les travaux de l'ANS se distinguent en deux parties :
 
-* Le contexte de l'IG, quelle problématique il résout
-* Ce que les Implémenteurs doivent mettre en place
-* Un onglet "Ressources de conformité" pour s'assurer d'un schéma global entre tous les IGs
-
-### Périmètre du projet
-
-Définir en quelques lignes en anglais quel est le périmètre du projet
-
-Toujours laisser l'onglet "Ressources de conformité" pour s'assurer d'une cohérence globales entre tous les IGs
+* créer les spécifications françaises en FHIR qui reprend l'historique CDA tout en s'alignant avec les contraintes européennes (cf. https://github.com/ansforge/IG-document-core)
+* tester le FHIR Mapping Language, outil permettant la transformation des documents CDA vers FHIR.
 
 ### Auteurs et contributeurs
 
 | Role  | Nom | Organisation | Contact |
 | --- | --- | --- | --- |
 | **Primary Editor** | Prenom Nom | Agence du Numérique en Santé | prenom.nom@address.email |
+
+Merci à Oliver Egger (Ahdis, HL7 Suisse) qui a travaillé sur la première brique sur laquelle repose ces travaux et sur l'outil matchbox permettant d'effectuer la transformation.
+
+https://github.com/hl7ch/cda-fhir-maps
 
 ### Dépendances
 
