@@ -75,131 +75,119 @@ group TSInstant(source src : TS, target tgt : instant) extends Any <<types>> {
   src.value as v -> tgt.value = cast(v, 'string');
 }
 
-group TSDateTime(source src : TS, target tgt : dateTime)  extends TSInstant <<types>> {
-  // src.value as v -> tgt.value = cast(v, 'string');
+group TSDateTime(source src : TS, target tgt : dateTime) extends TSInstant <<types>> {
 }
 
 group TSDate(source src : TS, target tgt : date) extends TSInstant <<types>> {
 }
 
-
-group IVLTSPeriod(source src : IVL_TS, target tgt : Period) {
-  // src.low -> tgt.start;
-  // src.high -> tgt.end;
+group IVLTSPeriod(source src : IVL_TS, target tgt : Period) extends Any <<types>> {
+  src.low as low -> tgt.start = low;
+  src.high as high -> tgt.end = high;
 }
 
 group IVLTSDateTime(source src : IVL_TS, target tgt : dateTime) extends Any <<types>> {
   src.low as s then TSDateTime(s, tgt);
 }
 
-// group IVLTSPeriod(source src : IVL_TS, target tgt : Period) {
-//   src.low as l then {
-//     l.value -> tgt.start "ajoutStartPeriod";
-//   } "lowToStart";
-//   // src.high -> tgt.end "high to end";
-// }
+group STstring(source src : ST, target tgt : string) {
+  src as v -> tgt.value = cast(v, 'string') "value";
+}
 
+group EDstring(source src : ED, target tgt : string) extends STstring <<types>> {
+}
 
+group ONstring(source src : ON, target tgt : string) extends STstring <<types>> {
+}
 
-// group STstring(source src : ST, target tgt : string) {
-//   src as v -> tgt.value = cast(v, 'string') "value";
-// }
+group CSCode(source src : CS, target tgt : code) {
+  src.code as c -> tgt.value = cast(c, 'string');
+}
 
-// group EDstring(source src : ED, target tgt : string) extends STstring <<types>> {
-// }
+group CECode(source src : CE, target tgt : code) extends CSCode <<types>> {
+}
 
-// group ONstring(source src : ON, target tgt : string) extends STstring <<types>> {
-// }
+group CDCode(source src : CD, target tgt : code) extends CSCode <<types>> {
+}
 
-// group CSCode(source src : CS, target tgt : code) {
-//   src.code as c -> tgt.value = cast(c, 'string');
-// }
+group CECodeableConcept(source src : CE, target tgt : CodeableConcept) {
+  src.originalText as originalText -> tgt.text = originalText "setOriginalText";
+  src -> tgt.coding as coding then {
+    src.code as code -> coding.code = cast(code, 'string');
+    // src.codeSystem as system -> coding.system = translate(system, 'http://hl7.org/fhir/ConceptMap/special-oid2uri', 'uri');
+    src.displayName as display -> coding.display = cast(display, 'string');
+  } "code";
+  src.translation as translation -> tgt.coding as coding then {
+    translation.code as code -> coding.code = cast(code, 'string');
+    // translation.codeSystem as system -> coding.system = translate(system, 'http://hl7.org/fhir/ConceptMap/special-oid2uri', 'uri');
+    translation.displayName as display -> coding.display = cast(display, 'string');
+  } "translation";
+}
 
-// group CECode(source src : CE, target tgt : code) extends CSCode <<types>> {
-// }
+group CSCodeableConcept(source src : CS, target tgt : CodeableConcept) extends CECodeableConcept <<types>> {
+}
 
-// group CDCode(source src : CD, target tgt : code) extends CSCode <<types>> {
-// }
+group CDCodeableConcept(source src : CD, target tgt : CodeableConcept) extends CECodeableConcept <<types>> {
+}
 
-// group CECodeableConcept(source src : CE, target tgt : CodeableConcept) {
-//   src.originalText -> tgt.text;
-//   src -> tgt.coding as coding then {
-//     src.code as code -> coding.code = cast(code, 'string');
-//     src.codeSystem as system -> coding.system = translate(system, 'http://hl7.org/fhir/ConceptMap/special-oid2uri', 'uri');
-//     src.displayName as display -> coding.display = cast(display, 'string');
-//   } "code";
-//   src.translation as translation -> tgt.coding as coding then {
-//     translation.code as code -> coding.code = cast(code, 'string');
-//     translation.codeSystem as system -> coding.system = translate(system, 'http://hl7.org/fhir/ConceptMap/special-oid2uri', 'uri');
-//     translation.displayName as display -> coding.display = cast(display, 'string');
-//   } "translation";
-// }
+group ENHumanName(source src : EN, target tgt : HumanName) {
+  src.item as item then {
+    item.family as v -> tgt.family = (v.xmlText);
+    item.given as v -> tgt.given = (v.xmlText);
+    item.prefix as v -> tgt.prefix = (v.xmlText);
+    item.suffix as v -> tgt.suffix = (v.xmlText);
+    // src.use as c -> tgt.use = translate(c, 'http://hl7.org/fhir/ConceptMap/cm-name-use-v3', 'code');
+  } "item";
+  src.validTime as validTime -> tgt.period = validTime;
+}
 
-// group CSCodeableConcept(source src : CS, target tgt : CodeableConcept) extends CECodeableConcept <<types>> {
-// }
+group PNHumanName(source src : PN, target tgt : HumanName) extends ENHumanName <<types>> {
+}
 
-// group CDCodeableConcept(source src : CD, target tgt : CodeableConcept) extends CECodeableConcept <<types>> {
-// }
-
-// group ENHumanName(source src : EN, target tgt : HumanName) {
-//   src.item as item then {
-//     item.family as v -> tgt.family = (v.xmlText);
-//     item.given as v -> tgt.given = (v.xmlText);
-//     item.prefix as v -> tgt.prefix = (v.xmlText);
-//     item.suffix as v -> tgt.suffix = (v.xmlText);
-//     // src.use as c -> tgt.use = translate(c, 'http://hl7.org/fhir/ConceptMap/cm-name-use-v3', 'code');
-//   } "item";
-//   src.validTime -> tgt.period;
-// }
-
-// group PNHumanName(source src : PN, target tgt : HumanName) extends ENHumanName <<types>> {
-// }
-
-
-// group ADAddress(source src : AD, target tgt : Address) {
-//   src.item as item then {
-//     item.country as v -> tgt.country = (v.xmlText);
-//     item.state as v -> tgt.state = (v.xmlText);
-//     item.county as v -> tgt.district = (v.xmlText);
-//     item.city as v -> tgt.city = (v.xmlText);
-//     item.postalCode as v -> tgt.postalCode = (v.xmlText);
-//     item.streetAddressLine as v -> tgt.line=(v.xmlText);
+group ADAddress(source src : AD, target tgt : Address) {
+  src.item as item then {
+    item.country as v -> tgt.country = (v.xmlText);
+    item.state as v -> tgt.state = (v.xmlText);
+    item.county as v -> tgt.district = (v.xmlText);
+    item.city as v -> tgt.city = (v.xmlText);
+    item.postalCode as v -> tgt.postalCode = (v.xmlText);
+    item.streetAddressLine as v -> tgt.line=(v.xmlText);
     
-//     item   -> tgt.line  as line then { 
-//     item where src.censusTract.exists() then {
-//       item.censusTract as v -> line.extension as ext1 then CensusTract(v, ext1) "line";
-//     }"sfgfdsg";
-//     } "CensusTract";
+    item   -> tgt.line  as line then { 
+    item where src.censusTract.exists() then {
+      item.censusTract as v -> line.extension as ext1 then CensusTract(v, ext1) "line";
+    }"sfgfdsg";
+    } "CensusTract";
 
-//     //as streetAddress then{
-//       //src.censusTract as v->tgt.line as line, line.extension as ext1 then CensusTract(v, ext1) "line";
-//     //src.censusTract as v ->tgt.line as line, line.extension as ext1 then CensusTract(v, ext1) "line";
-//     item.streetName as v -> tgt.line = (v.xmlText);
-//     item.houseNumber as v -> tgt.line = (v.xmlText);
-//   } "item";
-//   src.useablePeriod -> tgt.period;
-// }
+    //as streetAddress then{
+      //src.censusTract as v->tgt.line as line, line.extension as ext1 then CensusTract(v, ext1) "line";
+    //src.censusTract as v ->tgt.line as line, line.extension as ext1 then CensusTract(v, ext1) "line";
+    item.streetName as v -> tgt.line = (v.xmlText);
+    item.houseNumber as v -> tgt.line = (v.xmlText);
+  } "item";
+  src.useablePeriod as useablePeriod -> tgt.period = useablePeriod;
+}
 
-// group TELContactPoint(source src : TEL, target tgt : ContactPoint) {
-//   src.value as v where (src.value.startsWith('tel:')) ->  tgt.value = (v.substring(4)),  tgt.system = 'phone' "valuetel";
-//   src.value as v where (src.value.startsWith('fax:')) ->  tgt.value = (v.substring(4)),  tgt.system = 'fax' "valuefax";
-//   src.value as v where (src.value.startsWith('mailto:')) ->  tgt.value = (v.substring(7)),  tgt.system = 'email' "valuemail";
-//   src.value as v where (src.value.startsWith('http:')) ->  tgt.value = (v.substring(5)),  tgt.system = 'url' "valuehttp";
-//   src.use where (src.use.startsWith('H')) -> tgt.use = 'home' "usehome";
-//   src.use where ((src.use = 'WP') or (src.use = 'DIR') or (src.use = 'PUB')) -> tgt.use = 'work' "usework";
-//   src.use where (src.use = 'BAD') -> tgt.use = 'old' "usebad";
-//   src.use where (src.use = 'TMP') -> tgt.use = 'temp' "usetmp";
-//   src.use where (src.use = 'MC') -> tgt.use = 'mobile' "usemobile";
-//   src.useablePeriod -> tgt.period; // use: for src.use as c make tgt.use = translate(c, 'http://hl7.org/fhir/ConceptMap/cm-telecom-use-v3', 'code')
-// }
+group TELContactPoint(source src : TEL, target tgt : ContactPoint) {
+  src.value as v where (src.value.startsWith('tel:')) ->  tgt.value = (v.substring(4)),  tgt.system = 'phone' "valuetel";
+  src.value as v where (src.value.startsWith('fax:')) ->  tgt.value = (v.substring(4)),  tgt.system = 'fax' "valuefax";
+  src.value as v where (src.value.startsWith('mailto:')) ->  tgt.value = (v.substring(7)),  tgt.system = 'email' "valuemail";
+  src.value as v where (src.value.startsWith('http:')) ->  tgt.value = (v.substring(5)),  tgt.system = 'url' "valuehttp";
+  src.use where (src.use.startsWith('H')) -> tgt.use = 'home' "usehome";
+  src.use where ((src.use = 'WP') or (src.use = 'DIR') or (src.use = 'PUB')) -> tgt.use = 'work' "usework";
+  src.use where (src.use = 'BAD') -> tgt.use = 'old' "usebad";
+  src.use where (src.use = 'TMP') -> tgt.use = 'temp' "usetmp";
+  src.use where (src.use = 'MC') -> tgt.use = 'mobile' "usemobile";
+  src.useablePeriod as useablePeriod -> tgt.period = useablePeriod; // use: for src.use as c make tgt.use = translate(c, 'http://hl7.org/fhir/ConceptMap/cm-telecom-use-v3', 'code')
+}
 
-// group PQQuantity(source src : PQ, target tgt : Quantity) {
-//   //src.unit as unit -> tgt.code = unit;
-//   src.unit as unit -> tgt.unit = unit;
-//   src.value as value -> tgt.value = value;
-// }
+group PQQuantity(source src : PQ, target tgt : Quantity) {
+  //src.unit as unit -> tgt.code = unit;
+  src.unit as unit -> tgt.unit = unit;
+  src.value as value -> tgt.value = value;
+}
 
-// group RTOPQPQRatio(source src : RTO_PQ_PQ, target tgt : Ratio) {
-//   src.numerator as numerator -> tgt.numerator as targetNumerator then PQQuantity(numerator, targetNumerator) "numerator";
-//   src.denominator as denominator -> tgt.denominator as targetDenominator then PQQuantity(denominator, targetDenominator) "denominator"; 
-// }
+group RTOPQPQRatio(source src : RTO_PQ_PQ, target tgt : Ratio) {
+  src.numerator as numerator -> tgt.numerator as targetNumerator then PQQuantity(numerator, targetNumerator) "numerator";
+  src.denominator as denominator -> tgt.denominator as targetDenominator then PQQuantity(denominator, targetDenominator) "denominator"; 
+}
