@@ -7,3 +7,14 @@
 
 This page provides a list of the FHIR artifacts defined as part of this implementation guide.
 
+### Terminology: Structure Maps 
+
+These define transformations to convert between data structures used by systems conforming to this implementation guide.
+
+| | |
+| :--- | :--- |
+| [Mapping de CDA Mesure de lEnfant vers FHIR Bundle (A partir des sources de Oliver Egger)](StructureMap-CDAFrMDEToBundle.md) | Mapping de CDA Mesure de lEnfant vers FHIR Bundle (A partir des sources de Oliver Egger) |
+| [Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)](StructureMap-CdaToBundle.md) | Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger) |
+| [Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)](StructureMap-CdaToFHIRTypes.md) | Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger) |
+| [Mapping de CDAFr vers FHIR Bundle (A partir des sources de Oliver Egger)](StructureMap-CdaFrToBundle.md) | Mapping de CDAFr vers FHIR Bundle (A partir des sources de Oliver Egger) |
+

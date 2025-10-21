@@ -1,5 +1,5 @@
 {
-  "date" : "Mon, 20 Oct, 2025 13:26:07 +0000",
+  "date" : "Tue, 21 Oct, 2025 09:03:17 +0000",
   "doco" : "For each file: start is seconds after start activity occurred. Length = milliseconds activity took",
   "files" : [
     {
@@ -8,48 +8,277 @@
       "processes" : [
         {
           "activity" : "load",
-          "start" : 25,
-          "length" : 42
+          "start" : 30,
+          "length" : 47
         },
         {
           "activity" : "checkR4R4B",
-          "start" : 26,
-          "length" : 14
+          "start" : 31,
+          "length" : 16
         },
         {
           "activity" : "generateNarratives",
-          "start" : 26,
-          "length" : 94
+          "start" : 31,
+          "length" : 96
         },
         {
           "activity" : "validate",
-          "start" : 26,
-          "length" : 3862
+          "start" : 34,
+          "length" : 2920
         },
         {
           "activity" : "scanForUsageStats",
-          "start" : 30,
+          "start" : 37,
           "length" : 1
         },
         {
           "activity" : "generate1",
-          "start" : 30,
-          "length" : 82
+          "start" : 37,
+          "length" : 104
         },
         {
           "activity" : "generate2",
-          "start" : 32,
-          "length" : 95
+          "start" : 40,
+          "length" : 105
         },
         {
           "activity" : "generateValidationPack",
-          "start" : 43,
+          "start" : 52,
           "length" : 3
         },
         {
           "activity" : "scanExamplesForR5",
-          "start" : 46,
+          "start" : 57,
           "length" : 2
+        }
+      ]
+    },
+    {
+      "name" : "input/fml/CDAFrMDEToBundle.fml",
+      "size" : 6331,
+      "processes" : [
+        {
+          "activity" : "loadResources",
+          "start" : 29,
+          "length" : 61
+        },
+        {
+          "activity" : "load",
+          "start" : 30,
+          "length" : 97
+        },
+        {
+          "activity" : "load-configure",
+          "start" : 31,
+          "length" : 1
+        },
+        {
+          "activity" : "checkR4R4B",
+          "start" : 31,
+          "length" : 6
+        },
+        {
+          "activity" : "generateNarratives",
+          "start" : 31,
+          "length" : 46
+        },
+        {
+          "activity" : "validate",
+          "start" : 31,
+          "length" : 1710
+        },
+        {
+          "activity" : "generate1",
+          "start" : 37,
+          "length" : 109
+        },
+        {
+          "activity" : "generate2",
+          "start" : 40,
+          "length" : 86
+        },
+        {
+          "activity" : "generateValidationPack",
+          "start" : 52,
+          "length" : 3
+        },
+        {
+          "activity" : "scanExamplesForR5",
+          "start" : 57,
+          "length" : 1
+        }
+      ]
+    },
+    {
+      "name" : "input/fml/CDAFrToBundle.fml",
+      "size" : 12427,
+      "processes" : [
+        {
+          "activity" : "loadResources",
+          "start" : 29,
+          "length" : 50
+        },
+        {
+          "activity" : "load",
+          "start" : 30,
+          "length" : 1
+        },
+        {
+          "activity" : "load",
+          "start" : 30,
+          "length" : 85
+        },
+        {
+          "activity" : "checkR4R4B",
+          "start" : 31,
+          "length" : 6
+        },
+        {
+          "activity" : "generateNarratives",
+          "start" : 31,
+          "length" : 37
+        },
+        {
+          "activity" : "validate",
+          "start" : 33,
+          "length" : 189
+        },
+        {
+          "activity" : "scanForUsageStats",
+          "start" : 37,
+          "length" : 1
+        },
+        {
+          "activity" : "generate1",
+          "start" : 37,
+          "length" : 144
+        },
+        {
+          "activity" : "generate2",
+          "start" : 40,
+          "length" : 111
+        },
+        {
+          "activity" : "generateValidationPack",
+          "start" : 52,
+          "length" : 4
+        },
+        {
+          "activity" : "scanExamplesForR5",
+          "start" : 57,
+          "length" : 1
+        }
+      ]
+    },
+    {
+      "name" : "input/fml/CDAtoFHIRTypes.fml",
+      "size" : 9514,
+      "processes" : [
+        {
+          "activity" : "loadResources",
+          "start" : 29,
+          "length" : 54
+        },
+        {
+          "activity" : "load",
+          "start" : 30,
+          "length" : 97
+        },
+        {
+          "activity" : "checkR4R4B",
+          "start" : 31,
+          "length" : 6
+        },
+        {
+          "activity" : "generateNarratives",
+          "start" : 31,
+          "length" : 40
+        },
+        {
+          "activity" : "validate",
+          "start" : 33,
+          "length" : 289
+        },
+        {
+          "activity" : "scanForUsageStats",
+          "start" : 37,
+          "length" : 1
+        },
+        {
+          "activity" : "generate1",
+          "start" : 37,
+          "length" : 163
+        },
+        {
+          "activity" : "generate2",
+          "start" : 40,
+          "length" : 98
+        },
+        {
+          "activity" : "generateValidationPack",
+          "start" : 52,
+          "length" : 6
+        },
+        {
+          "activity" : "scanExamplesForR5",
+          "start" : 57,
+          "length" : 1
+        }
+      ]
+    },
+    {
+      "name" : "input/fml/CdaToBundle.fml",
+      "size" : 16296,
+      "processes" : [
+        {
+          "activity" : "loadResources",
+          "start" : 29,
+          "length" : 56
+        },
+        {
+          "activity" : "load",
+          "start" : 30,
+          "length" : 122
+        },
+        {
+          "activity" : "checkR4R4B",
+          "start" : 31,
+          "length" : 8
+        },
+        {
+          "activity" : "generateNarratives",
+          "start" : 31,
+          "length" : 68
+        },
+        {
+          "activity" : "validate",
+          "start" : 33,
+          "length" : 302
+        },
+        {
+          "activity" : "scanForUsageStats",
+          "start" : 37,
+          "length" : 2
+        },
+        {
+          "activity" : "generate1",
+          "start" : 37,
+          "length" : 219
+        },
+        {
+          "activity" : "generate2",
+          "start" : 41,
+          "length" : 139
+        },
+        {
+          "activity" : "generateValidationPack",
+          "start" : 52,
+          "length" : 11
+        },
+        {
+          "activity" : "scanExamplesForR5",
+          "start" : 57,
+          "length" : 3
         }
       ]
     }

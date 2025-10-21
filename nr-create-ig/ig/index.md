@@ -8,7 +8,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ImplementationGuide/ans.fhir.fr.mappingcdafhir | *Version*:0.1.0 |
-| Draft as of 2025-10-20 | *Computable Name*:CDA2FHIRMAP |
+| Draft as of 2025-10-21 | *Computable Name*:CDA2FHIRMAP |
 
  **FHIR Mapping Language for CDA to FHIR transformation**
  Proof of concept for CDA to FHIR transformation 
@@ -74,7 +74,7 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
 
 * ISO maintains the copyright on the country codes, and controls its use carefully. For further details see the ISO 3166 web page: [https://www.iso.org/iso-3166-country-codes.html](https://www.iso.org/iso-3166-country-codes.html)
 
-* [ISO 3166-1 Codes for the representation of names of countries and their subdivisions — Part 1: Country code](http://terminology.hl7.org/6.5.0/CodeSystem-ISO3166Part1.html): [CDA2FHIRMAP](index.md)
+* [ISO 3166-1 Codes for the representation of names of countries and their subdivisions — Part 1: Country code](http://terminology.hl7.org/6.5.0/CodeSystem-ISO3166Part1.html): [CDA2FHIRMAP](index.md), [CDAFrMDEToBundle](StructureMap-CDAFrMDEToBundle.md), [CdaFrToBundle](StructureMap-CdaFrToBundle.md), [CdaToBundle](StructureMap-CdaToBundle.md) and [CdaToFHIRTypes](StructureMap-CdaToFHIRTypes.md)
 
 
 
@@ -90,7 +90,7 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2025-10-20T13:25:41+00:00",
+  "date" : "2025-10-21T09:02:47+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {
@@ -882,6 +882,60 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
           }
         ],
         "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      }
+    ],
+    "resource" : [
+      {
+        "extension" : [
+          {
+            "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString" : "StructureMap"
+          }
+        ],
+        "reference" : {
+          "reference" : "StructureMap/CDAFrMDEToBundle"
+        },
+        "name" : "Mapping de CDA Mesure de lEnfant vers FHIR Bundle (A partir des sources de Oliver Egger)",
+        "description" : "Mapping de CDA Mesure de lEnfant vers FHIR Bundle (A partir des sources de Oliver Egger)"
+      },
+      {
+        "extension" : [
+          {
+            "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString" : "StructureMap"
+          }
+        ],
+        "reference" : {
+          "reference" : "StructureMap/CdaFrToBundle"
+        },
+        "name" : "Mapping de CDAFr vers FHIR Bundle (A partir des sources de Oliver Egger)",
+        "description" : "Mapping de CDAFr vers FHIR Bundle (A partir des sources de Oliver Egger)"
+      },
+      {
+        "extension" : [
+          {
+            "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString" : "StructureMap"
+          }
+        ],
+        "reference" : {
+          "reference" : "StructureMap/CdaToFHIRTypes"
+        },
+        "name" : "Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)",
+        "description" : "Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)"
+      },
+      {
+        "extension" : [
+          {
+            "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString" : "StructureMap"
+          }
+        ],
+        "reference" : {
+          "reference" : "StructureMap/CdaToBundle"
+        },
+        "name" : "Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)",
+        "description" : "Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)"
       }
     ],
     "page" : {
