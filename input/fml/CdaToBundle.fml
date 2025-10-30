@@ -25,7 +25,6 @@ uses "http://hl7.org/fhir/StructureDefinition/Organization" alias Organization a
 
 imports "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes"
 
-
 // _________________________ Document Level Template  _________________________ 
 
 group CdaToBundle(source cda : ClinicalDocument, target bundle : Bundle) {
@@ -76,7 +75,7 @@ group ClinicalDocumentSection(source cda : ClinicalDocument, source src : Sectio
 
 group ClinicalDocumentComposition(source src : ClinicalDocument, target tgt : Composition, target patientResource: Patient, target bundle : Bundle) {
   src.languageCode as languageCode -> tgt.language = languageCode;
-  src.id where src.setId.exists().not() as setId -> tgt.identifier = setId "identifier";
+  src.id as id where src.setId.exists().not() -> tgt.identifier = id "identifier";
   src.setId as setIdentifier -> tgt.identifier = setIdentifier "identifier";
   src -> tgt.status = 'final' "status";
   src.code as srcCode -> tgt.type = srcCode;
@@ -148,7 +147,7 @@ group ClinicalDocumentComposition(source src : ClinicalDocument, target tgt : Co
   src.relatedDocument as relatedDoc -> tgt.relatesTo as relates then {
     relatedDoc.typeCode as typeCode -> relates.code = typeCode;
     relatedDoc.parentDocument as parentDoc then {
-      parentDoc.setId as setId -> relates.targetIdentifier = setId;
+      parentDoc.setId as sid -> relates.targetIdentifier = sid;
     } "parentDoc";
   } "relatedDoc";
 }
@@ -180,7 +179,7 @@ group ClinicalDocumentPatientRole(source src : PatientRole, target tgt : Patient
   src.patient as patient then {
     patient.name as patientName -> tgt.name = patientName; 
     patient.administrativeGenderCode as gender then {
-      gender.code as v -> tgt.gender = translate(v, '#cm-v3-administrative-gender', 'code') "gender";
+      gender.code as v -> tgt.gender = translate(v, 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/cm-v3-administrative-gender', 'code') "gender";
     } "gender";
     patient.birthTime as birthTime -> tgt.birthDate = birthTime "birthDate";
     patient.deceasedInd as indicator where patient.deceasedTime.empty() -> tgt.deceased = create('boolean') as bool then boolean(indicator, bool) "deceasedBL";

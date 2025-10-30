@@ -40,35 +40,166 @@ Les travaux de l'ANS se distinguent en deux parties :
 * créer les spécifications françaises en FHIR qui reprend l'historique CDA tout en s'alignant avec les contraintes européennes (cf. https://github.com/ansforge/IG-document-core)
 * tester le FHIR Mapping Language, outil permettant la transformation des documents CDA vers FHIR.
 
-### Lancer une transformation
+### Guide de démarrage rapide (Quick Start)
 
-1/ Charge matchbox image docker
+Ce guide vous permet de tester rapidement la transformation de documents CDA vers FHIR en utilisant matchbox et les exemples fournis.
 
-docker pull europe-west6-docker.pkg.dev/ahdis-ch/ahdis/matchbox:v3.8.9
+#### Prérequis
 
-2/ Create the container with the docker image
+* Docker installé sur votre machine
+* Un client REST (ex: VS Code avec l'extension REST Client, IntelliJ IDEA, ou curl)
+* Accès au repository IG-mapping-cda-fhir
 
-docker run -d --name matchbox -p 8080:8080 -v /Users/nicolasriss/Desktop/cda-fhir-maps/fhir-transformation/with-cda:/config europe-west6-docker.pkg.dev/ahdis-ch/ahdis/matchbox:v3.8.9
+#### Étape 1 : Télécharger l'image Docker matchbox
 
-The path should be adapted to your local folder containing the with-cda folder.
+```bash
+docker pull europe-west6-docker.pkg.dev/ahdis-ch/ahdis/matchbox:v4.0.12
+```
 
-To access the docker logs, launch this command:
+#### Étape 2 : Lancer le conteneur Docker
 
+**Important** : Adaptez le chemin selon votre installation locale. Le chemin doit pointer vers le dossier `input/with-all` de votre projet.
+
+```bash
+docker run -d --name matchbox -p 8080:8080 \
+  -v /chemin/absolu/vers/IG-mapping-cda-fhir/input/with-all:/config \
+  europe-west6-docker.pkg.dev/ahdis-ch/ahdis/matchbox:v4.0.12
+```
+
+Exemple concret :
+
+```bash
+docker run -d --name matchbox -p 8080:8080 \
+  -v /Users/nicolasriss/Desktop/ANSFORGE_ans-ig/1-Mapping-CDA-to-FHIR/IG-mapping-cda-fhir/input/with-all:/config \
+  europe-west6-docker.pkg.dev/ahdis-ch/ahdis/matchbox:v4.0.12
+```
+
+**Ou utilisez le script de démarrage automatique** :
+
+```bash
+./start-matchbox.sh
+```
+
+
+#### Étape 3 : Vérifier le démarrage
+
+Pour suivre les logs de matchbox :
+
+```bash
 docker logs --follow matchbox
+```
 
-3/ Adapt application.yml
+Attendez que matchbox ait terminé son démarrage. L'interface sera accessible sur : `http://localhost:8080/matchbox`
 
-To add some new packages to matchbox, you just have to create a new folder equivalent to "with-cda", and add the packages you want indicating the url.
+#### Étape 4 : Charger les ConceptMaps
 
-To change the package, you have to delete your docker container (using docker desktop for instance) and then go to step 2/
+Certains StructureMaps utilisent des ConceptMaps externes pour la traduction de codes terminologiques. Il faut les charger **avant** les StructureMaps.
 
-3/ Launch transformations
+```bash
+# Charger le ConceptMap pour le genre (administrative-gender)
+curl -X POST http://localhost:8080/matchbox/fhir/ConceptMap \
+  -H "Content-Type: application/fhir+json" \
+  --data-binary @input/resources/ConceptMap-cm-v3-administrative-gender.json
+```
 
-Then, you will have to launch the transformations in the tests folder :
+#### Étape 5 : Charger les StructureMaps et lancer les transformations
 
-The cda folder allows to test with the swiss maps and a first try with the french maps
-the eds (entrepôt de données de santé) folder allows to test with https://github.com/ansforge/IG-FHIR-EDS-SOCLE-COMMUN
+Les fichiers HTTP de test se trouvent dans le dossier `http-test/`. Utilisez le fichier `fr_cdatofhir_mde.http` avec votre client REST.
 
+**Avec VS Code et l'extension REST Client** :
+
+1. Ouvrez le fichier `http-test/fr_cdatofhir_mde.http`
+2. Exécutez séquentiellement les requêtes HTTP dans l'ordre suivant :
+   * **Requête 0** : Charger ConceptMap-cm-v3-administrative-gender.json
+   * **Requête 1** : Charger CDAtoFHIRTypes.fml
+   * **Requête 2** : Charger CdaToBundle.fml
+   * **Requête 3** : Charger CDAFrToBundle.fml
+   * **Requête 4** : Charger CDAFrMDEToBundle.fml
+   * **Requête 5** : Transformer fr-CSE-MDE_1obs.xml (sortie JSON)
+   * **Requête 6** : Transformer fr-CSE-MDE_2023.01.xml (sortie XML)
+   * **Requête 7** : Transformer ch-2-7-MedicationCard.xml
+3. Cliquez sur "Send Request" au-dessus de chaque requête
+
+**Avec curl** (exemple complet) :
+
+```bash
+# 1. Charger les ConceptMaps nécessaires
+curl -X POST http://localhost:8080/matchbox/fhir/ConceptMap \
+  -H "Content-Type: application/fhir+json" \
+  --data-binary @input/resources/ConceptMap-cm-v3-administrative-gender.json
+
+# 2. Charger les StructureMaps dans l'ordre
+curl -X POST http://localhost:8080/matchbox/fhir/StructureMap \
+  -H "Accept: application/fhir+xml;fhirVersion=4.0" \
+  -H "Content-Type: text/fhir-mapping" \
+  --data-binary @input/fml/CDAtoFHIRTypes.fml
+
+curl -X POST http://localhost:8080/matchbox/fhir/StructureMap \
+  -H "Accept: application/fhir+xml;fhirVersion=4.0" \
+  -H "Content-Type: text/fhir-mapping" \
+  --data-binary @input/fml/CdaToBundle.fml
+
+curl -X POST http://localhost:8080/matchbox/fhir/StructureMap \
+  -H "Accept: application/fhir+xml;fhirVersion=4.0" \
+  -H "Content-Type: text/fhir-mapping" \
+  --data-binary @input/fml/CDAFrToBundle.fml
+
+curl -X POST http://localhost:8080/matchbox/fhir/StructureMap \
+  -H "Accept: application/fhir+xml;fhirVersion=4.0" \
+  -H "Content-Type: text/fhir-mapping" \
+  --data-binary @input/fml/CDAFrMDEToBundle.fml
+
+# 3. Transformer un document CDA
+curl -X POST "http://localhost:8080/matchbox/fhir/StructureMap/\$transform?source=https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle" \
+  -H "Accept: application/fhir+json;fhirVersion=4.0" \
+  -H "Content-Type: application/fhir+xml;fhirVersion=4.0" \
+  --data-binary @input/attachments/fr-CSE-MDE_1obs.xml
+```
+
+#### Exemples CDA disponibles
+
+Le dossier `input/attachments/` contient trois exemples de documents CDA :
+
+* **fr-CSE-MDE_1obs.xml** : Carnet de santé de l'enfant - Mesures (1 observation)
+* **fr-CSE-MDE_2023.01.xml** : Carnet de santé de l'enfant - Mesures (version 2023.01)
+* **ch-2-7-MedicationCard.xml** : Carte de médication suisse
+
+#### Résultat attendu
+
+Si la transformation réussit, vous obtiendrez un Bundle FHIR contenant les ressources converties depuis le document CDA.
+
+**Note importante** : Il peut y avoir des erreurs dans les fichiers FML lors de la transformation. L'objectif de ce POC est de valider le processus de transformation. Les erreurs dans les mappings seront traitées ultérieurement.
+
+#### Arrêter et redémarrer
+
+Pour arrêter le conteneur :
+
+```bash
+docker stop matchbox
+```
+
+Pour redémarrer :
+
+```bash
+docker start matchbox
+```
+
+Pour supprimer le conteneur (et repartir de zéro) :
+
+```bash
+docker rm -f matchbox
+```
+
+
+#### Configuration avancée
+
+Le fichier `input/with-all/application.yaml` configure matchbox avec :
+
+* Les packages FHIR de base (R4 core, terminologies, extensions)
+* Le package CDA (hl7.cda.uv.core)
+* Le package ANS FHIR EDS
+
+Pour modifier la configuration, éditez `application.yaml` puis supprimez et recréez le conteneur Docker.
 
 ### Auteurs et contributeurs
 
