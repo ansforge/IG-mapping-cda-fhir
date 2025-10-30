@@ -39,16 +39,17 @@ group CdaFrMDEToBundle(source cda : ClinicalDocument, target bundle : Bundle) {
 group CdaFrMDEMapping(source cda : ClinicalDocument, target patient : Patient, target composition : Composition, target bundle : Bundle) {
   // Bundle metadata
   cda -> bundle.id = uuid() "bundleId";
-  cda.id as id -> bundle.identifier = id "bundleIdentifier";
+  cda.id as cdaId -> bundle.identifier as identifier then {
+    cdaId.root as root where cdaId.extension.exists() -> identifier.system = translate(root, '#oid2uri', 'uri') "system";
+    cdaId.extension as extension -> identifier.value = extension "value";
+    cdaId.root as root where cdaId.extension.empty() -> identifier.system = 'urn:ietf:rfc:3986' "systemOid";
+    cdaId.root as root where cdaId.extension.empty() -> identifier.value = append('urn:oid:', root) "valueOid";
+  } "bundleIdentifier";
   cda -> bundle.type = 'document' "bundleType";
-  cda.effectiveTime as timestamp -> bundle.timestamp = timestamp "bundleTimestamp";
-  // Composition using CdaToBundle function
+  cda.effectiveTime as effectiveTime -> bundle.timestamp = create('instant') as timestamp then TSInstant(effectiveTime, timestamp) "bundleTimestamp";
+  // Composition using CdaToBundle function (includes patient mapping)
   cda -> composition then ClinicalDocumentComposition(cda, composition, patient, bundle) "composition";
-  // Patient data using CdaToBundle function
-  cda.recordTarget as recordTarget then {
-    recordTarget.patientRole as patientRole then ClinicalDocumentPatientRole(patientRole, patient, bundle);
-  };
-  // Add gender mapping after ClinicalDocumentPatientRole
+  // Add gender mapping after ClinicalDocumentComposition (which calls ClinicalDocumentPatientRole)
   cda.recordTarget as recordTarget then {
     recordTarget.patientRole as patientRole then {
       patientRole.patient as cdaPatient then {
@@ -64,14 +65,14 @@ group CdaFrMDEMapping(source cda : ClinicalDocument, target patient : Patient, t
           // Create composition section
           section -> composition.section as compSection then {
             section.title as sectionTitle -> compSection.title = (sectionTitle.xmlText) "sectionTitle";
-            section.code as sectionCode -> compSection.code = sectionCode "sectionCode";
+            section.code as sectionCode -> compSection.code = create('CodeableConcept') as cc then CDCodeableConcept(sectionCode, cc) "sectionCode";
             section.text as sectionText -> compSection.text = sectionText "sectionText";
             // Process observations in organizers
             section.entry as entry then {
               entry.organizer as organizer then {
                 organizer.component as orgComp then {
                   orgComp.observation as obs then {
-                    obs ->  bundle.entry as obsEntry,  obsEntry.resource = create('Observation') as observation,  observation.id = uuid() as obsUuid,  obsEntry.fullUrl = append('urn:uuid:', obsUuid),  compSection.entry = create('Reference') as obsRef,  obsRef.reference = append('urn:uuid:', obsUuid) then ProcessObservation(obs, observation, patient) "processObs";
+                    obs ->  bundle.entry as obsEntry,  obsEntry.resource = create('Observation') as observation,  observation.id = uuid() as obsUuid,  obsEntry.fullUrl = append('urn:uuid:', obsUuid),  compSection.entry = create('Reference') as obsRef,  obsRef.reference = append('urn:uuid:', obsUuid) then ProcessObservation(cda, obs, observation, patient, composition) "processObs";
                   };
                 } "orgComponent";
               };
@@ -84,11 +85,31 @@ group CdaFrMDEMapping(source cda : ClinicalDocument, target patient : Patient, t
 }
 
 // Process individual observation using CdaToFHIRTypes functions
-group ProcessObservation(source obs, target observation : Observation, target patient : Patient) {
-  // Status using CSCode from CdaToFHIRTypes
-  obs.statusCode as statusCode -> observation.status = create('code') as status then CSCode(statusCode, status) "obsStatus";
+group ProcessObservation(source cda : ClinicalDocument, source obs, target observation : Observation, target patient : Patient, target composition : Composition) {
+  // Meta profile - ANS profiles based on LOINC code
+  obs.code as obsCode where code = '29463-7' -> observation.meta = create('Meta') as meta then {
+    obsCode -> meta.profile = 'https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-fr-observation-body-weight' "profileWeight";
+  } "metaWeight";
+  obs.code as obsCode where code = '8302-2' -> observation.meta = create('Meta') as meta then {
+    obsCode -> meta.profile = 'https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-fr-observation-bodyheight' "profileHeight";
+  } "metaHeight";
+  obs.code as obsCode where code = '8287-5' -> observation.meta = create('Meta') as meta then {
+    obsCode -> meta.profile = 'https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-observation-head-circumference' "profileHeadCirc";
+  } "metaHeadCirc";
+  // Status - map CDA "completed" to FHIR "final"
+  obs.statusCode as statusCode where code = 'completed' -> observation.status = 'final' "statusCompleted";
+  obs.statusCode as statusCode where code != 'completed' -> observation.status = create('code') as status then CSCode(statusCode, status) "statusOther";
+  // Category - vital-signs for all observations in CSE-MDE
+  obs -> observation.category = create('CodeableConcept') as category then {
+    obs -> category.coding = create('Coding') as coding then {
+      obs -> coding.system = 'http://terminology.hl7.org/CodeSystem/observation-category' "system";
+      obs -> coding.code = 'vital-signs' "code";
+    } "coding";
+  } "category";
   // Code using CDCodeableConcept from CdaToFHIRTypes
   obs.code as code -> observation.code = create('CodeableConcept') as cc then CDCodeableConcept(code, cc) "obsCode";
+  // EffectiveDateTime - use effectiveTime from observation
+  obs.effectiveTime as effectiveTime -> observation.effective = create('dateTime') as dt then TSDateTime(effectiveTime, dt) "effectiveDateTime";
   // Value as Quantity using PQQuantity from CdaToFHIRTypes
   obs.value as value -> observation.value = create('Quantity') as qty then PQQuantity(value, qty) "obsValue";
   // Subject reference
@@ -119,7 +140,7 @@ group MapGender(source src, target patient : Patient) {
   "name" : "CdaFrMDEToBundle",
   "title" : "Mapping CSE-MDE vers FHIR Bundle - Contexte Français",
   "status" : "draft",
-  "date" : "2025-10-30T17:21:27+00:00",
+  "date" : "2025-10-30T20:58:23+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {
@@ -339,7 +360,7 @@ group MapGender(source src, target patient : Patient) {
             {
               "context" : "cda",
               "element" : "id",
-              "variable" : "id"
+              "variable" : "cdaId"
             }
           ],
           "target" : [
@@ -347,10 +368,111 @@ group MapGender(source src, target patient : Patient) {
               "context" : "bundle",
               "contextType" : "variable",
               "element" : "identifier",
-              "transform" : "copy",
-              "parameter" : [
+              "variable" : "identifier"
+            }
+          ],
+          "rule" : [
+            {
+              "name" : "system",
+              "source" : [
                 {
-                  "valueId" : "id"
+                  "context" : "cdaId",
+                  "element" : "root",
+                  "variable" : "root",
+                  "condition" : "cdaId.extension.exists()"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "identifier",
+                  "contextType" : "variable",
+                  "element" : "system",
+                  "transform" : "translate",
+                  "parameter" : [
+                    {
+                      "valueId" : "root"
+                    },
+                    {
+                      "valueString" : "#oid2uri"
+                    },
+                    {
+                      "valueString" : "uri"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name" : "value",
+              "source" : [
+                {
+                  "context" : "cdaId",
+                  "element" : "extension",
+                  "variable" : "extension"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "identifier",
+                  "contextType" : "variable",
+                  "element" : "value",
+                  "transform" : "copy",
+                  "parameter" : [
+                    {
+                      "valueId" : "extension"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name" : "systemOid",
+              "source" : [
+                {
+                  "context" : "cdaId",
+                  "element" : "root",
+                  "variable" : "root",
+                  "condition" : "cdaId.extension.empty()"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "identifier",
+                  "contextType" : "variable",
+                  "element" : "system",
+                  "transform" : "copy",
+                  "parameter" : [
+                    {
+                      "valueString" : "urn:ietf:rfc:3986"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name" : "valueOid",
+              "source" : [
+                {
+                  "context" : "cdaId",
+                  "element" : "root",
+                  "variable" : "root",
+                  "condition" : "cdaId.extension.empty()"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "identifier",
+                  "contextType" : "variable",
+                  "element" : "value",
+                  "transform" : "append",
+                  "parameter" : [
+                    {
+                      "valueString" : "urn:oid:"
+                    },
+                    {
+                      "valueId" : "root"
+                    }
+                  ]
                 }
               ]
             }
@@ -383,7 +505,7 @@ group MapGender(source src, target patient : Patient) {
             {
               "context" : "cda",
               "element" : "effectiveTime",
-              "variable" : "timestamp"
+              "variable" : "effectiveTime"
             }
           ],
           "target" : [
@@ -391,12 +513,19 @@ group MapGender(source src, target patient : Patient) {
               "context" : "bundle",
               "contextType" : "variable",
               "element" : "timestamp",
-              "transform" : "copy",
+              "variable" : "timestamp",
+              "transform" : "create",
               "parameter" : [
                 {
-                  "valueId" : "timestamp"
+                  "valueString" : "instant"
                 }
               ]
+            }
+          ],
+          "dependent" : [
+            {
+              "name" : "TSInstant",
+              "variable" : ["effectiveTime", "timestamp"]
             }
           ]
         },
@@ -417,34 +546,6 @@ group MapGender(source src, target patient : Patient) {
             {
               "name" : "ClinicalDocumentComposition",
               "variable" : ["cda", "composition", "patient", "bundle"]
-            }
-          ]
-        },
-        {
-          "name" : "recordTarget",
-          "source" : [
-            {
-              "context" : "cda",
-              "element" : "recordTarget",
-              "variable" : "recordTarget"
-            }
-          ],
-          "rule" : [
-            {
-              "name" : "patientRole",
-              "source" : [
-                {
-                  "context" : "recordTarget",
-                  "element" : "patientRole",
-                  "variable" : "patientRole"
-                }
-              ],
-              "dependent" : [
-                {
-                  "name" : "ClinicalDocumentPatientRole",
-                  "variable" : ["patientRole", "patient", "bundle"]
-                }
-              ]
             }
           ]
         },
@@ -593,12 +694,19 @@ group MapGender(source src, target patient : Patient) {
                                   "context" : "compSection",
                                   "contextType" : "variable",
                                   "element" : "code",
-                                  "transform" : "copy",
+                                  "variable" : "cc",
+                                  "transform" : "create",
                                   "parameter" : [
                                     {
-                                      "valueId" : "sectionCode"
+                                      "valueString" : "CodeableConcept"
                                     }
                                   ]
+                                }
+                              ],
+                              "dependent" : [
+                                {
+                                  "name" : "CDCodeableConcept",
+                                  "variable" : ["sectionCode", "cc"]
                                 }
                               ]
                             },
@@ -742,7 +850,7 @@ group MapGender(source src, target patient : Patient) {
                                               "dependent" : [
                                                 {
                                                   "name" : "ProcessObservation",
-                                                  "variable" : ["obs", "observation", "patient"]
+                                                  "variable" : ["cda", "obs", "observation", "patient", "composition"]
                                                 }
                                               ]
                                             }
@@ -772,6 +880,11 @@ group MapGender(source src, target patient : Patient) {
       "documentation" : "Process individual observation using CdaToFHIRTypes functions",
       "input" : [
         {
+          "name" : "cda",
+          "type" : "ClinicalDocument",
+          "mode" : "source"
+        },
+        {
           "name" : "obs",
           "mode" : "source"
         },
@@ -784,16 +897,190 @@ group MapGender(source src, target patient : Patient) {
           "name" : "patient",
           "type" : "Patient",
           "mode" : "target"
+        },
+        {
+          "name" : "composition",
+          "type" : "Composition",
+          "mode" : "target"
         }
       ],
       "rule" : [
         {
-          "name" : "obsStatus",
+          "name" : "metaWeight",
+          "source" : [
+            {
+              "context" : "obs",
+              "element" : "code",
+              "variable" : "obsCode",
+              "condition" : "code = '29463-7'"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "observation",
+              "contextType" : "variable",
+              "element" : "meta",
+              "variable" : "meta",
+              "transform" : "create",
+              "parameter" : [
+                {
+                  "valueString" : "Meta"
+                }
+              ]
+            }
+          ],
+          "rule" : [
+            {
+              "name" : "profileWeight",
+              "source" : [
+                {
+                  "context" : "obsCode"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "meta",
+                  "contextType" : "variable",
+                  "element" : "profile",
+                  "transform" : "copy",
+                  "parameter" : [
+                    {
+                      "valueString" : "https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-fr-observation-body-weight"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name" : "metaHeight",
+          "source" : [
+            {
+              "context" : "obs",
+              "element" : "code",
+              "variable" : "obsCode",
+              "condition" : "code = '8302-2'"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "observation",
+              "contextType" : "variable",
+              "element" : "meta",
+              "variable" : "meta",
+              "transform" : "create",
+              "parameter" : [
+                {
+                  "valueString" : "Meta"
+                }
+              ]
+            }
+          ],
+          "rule" : [
+            {
+              "name" : "profileHeight",
+              "source" : [
+                {
+                  "context" : "obsCode"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "meta",
+                  "contextType" : "variable",
+                  "element" : "profile",
+                  "transform" : "copy",
+                  "parameter" : [
+                    {
+                      "valueString" : "https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-fr-observation-bodyheight"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name" : "metaHeadCirc",
+          "source" : [
+            {
+              "context" : "obs",
+              "element" : "code",
+              "variable" : "obsCode",
+              "condition" : "code = '8287-5'"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "observation",
+              "contextType" : "variable",
+              "element" : "meta",
+              "variable" : "meta",
+              "transform" : "create",
+              "parameter" : [
+                {
+                  "valueString" : "Meta"
+                }
+              ]
+            }
+          ],
+          "rule" : [
+            {
+              "name" : "profileHeadCirc",
+              "source" : [
+                {
+                  "context" : "obsCode"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "meta",
+                  "contextType" : "variable",
+                  "element" : "profile",
+                  "transform" : "copy",
+                  "parameter" : [
+                    {
+                      "valueString" : "https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-observation-head-circumference"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name" : "statusCompleted",
           "source" : [
             {
               "context" : "obs",
               "element" : "statusCode",
-              "variable" : "statusCode"
+              "variable" : "statusCode",
+              "condition" : "code = 'completed'"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "observation",
+              "contextType" : "variable",
+              "element" : "status",
+              "transform" : "copy",
+              "parameter" : [
+                {
+                  "valueString" : "final"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name" : "statusOther",
+          "source" : [
+            {
+              "context" : "obs",
+              "element" : "statusCode",
+              "variable" : "statusCode",
+              "condition" : "code != 'completed'"
             }
           ],
           "target" : [
@@ -814,6 +1101,96 @@ group MapGender(source src, target patient : Patient) {
             {
               "name" : "CSCode",
               "variable" : ["statusCode", "status"]
+            }
+          ]
+        },
+        {
+          "name" : "category",
+          "source" : [
+            {
+              "context" : "obs"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "observation",
+              "contextType" : "variable",
+              "element" : "category",
+              "variable" : "category",
+              "transform" : "create",
+              "parameter" : [
+                {
+                  "valueString" : "CodeableConcept"
+                }
+              ]
+            }
+          ],
+          "rule" : [
+            {
+              "name" : "coding",
+              "source" : [
+                {
+                  "context" : "obs"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "category",
+                  "contextType" : "variable",
+                  "element" : "coding",
+                  "variable" : "coding",
+                  "transform" : "create",
+                  "parameter" : [
+                    {
+                      "valueString" : "Coding"
+                    }
+                  ]
+                }
+              ],
+              "rule" : [
+                {
+                  "name" : "system",
+                  "source" : [
+                    {
+                      "context" : "obs"
+                    }
+                  ],
+                  "target" : [
+                    {
+                      "context" : "coding",
+                      "contextType" : "variable",
+                      "element" : "system",
+                      "transform" : "copy",
+                      "parameter" : [
+                        {
+                          "valueString" : "http://terminology.hl7.org/CodeSystem/observation-category"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name" : "code",
+                  "source" : [
+                    {
+                      "context" : "obs"
+                    }
+                  ],
+                  "target" : [
+                    {
+                      "context" : "coding",
+                      "contextType" : "variable",
+                      "element" : "code",
+                      "transform" : "copy",
+                      "parameter" : [
+                        {
+                          "valueString" : "vital-signs"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -844,6 +1221,36 @@ group MapGender(source src, target patient : Patient) {
             {
               "name" : "CDCodeableConcept",
               "variable" : ["code", "cc"]
+            }
+          ]
+        },
+        {
+          "name" : "effectiveDateTime",
+          "source" : [
+            {
+              "context" : "obs",
+              "element" : "effectiveTime",
+              "variable" : "effectiveTime"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "observation",
+              "contextType" : "variable",
+              "element" : "effective",
+              "variable" : "dt",
+              "transform" : "create",
+              "parameter" : [
+                {
+                  "valueString" : "dateTime"
+                }
+              ]
+            }
+          ],
+          "dependent" : [
+            {
+              "name" : "TSDateTime",
+              "variable" : ["effectiveTime", "dt"]
             }
           ]
         },

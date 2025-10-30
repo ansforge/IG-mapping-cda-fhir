@@ -75,8 +75,8 @@
 </span><span style="color: navy">}
 
 </span><b>group </b>IVLTSPeriod<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>IVL_TS, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Period<span style="color: navy">)</span><b> extends </b>Any<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
-</span>  src.low<b> as </b><span style="color: maroon">low</span><span style="color: navy"><b> -&gt; </b></span>tgt.start = <span style="color: maroon">low</span><span style="color: navy">;</span>
-  src.high<b> as </b><span style="color: maroon">high</span><span style="color: navy"><b> -&gt; </b></span>tgt.end = <span style="color: maroon">high</span><span style="color: navy">;</span>
+</span>  src.low<b> as </b><span style="color: maroon">low</span><span style="color: navy"><b> -&gt; </b></span>tgt.start = <b>create</b><span style="color: navy">(</span><span style="color: blue">'dateTime'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">start</span><b> then </b>TSDateTime<span style="color: navy">(</span><span style="color: maroon">low</span><span style="color: navy">, </span><span style="color: maroon">start</span><span style="color: navy">)</span><span style="color: navy">;</span>
+  src.high<b> as </b><span style="color: maroon">high</span><span style="color: navy"><b> -&gt; </b></span>tgt.end = <b>create</b><span style="color: navy">(</span><span style="color: blue">'dateTime'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">end</span><b> then </b>TSDateTime<span style="color: navy">(</span><span style="color: maroon">high</span><span style="color: navy">, </span><span style="color: maroon">end</span><span style="color: navy">)</span><span style="color: navy">;</span>
 <span style="color: navy">}
 
 </span><b>group </b>IVLTSDateTime<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>IVL_TS, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>dateTime<span style="color: navy">)</span><b> extends </b>Any<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
@@ -107,12 +107,12 @@
 </span>  src.originalText<b> as </b><span style="color: maroon">originalText</span><span style="color: navy"><b> -&gt; </b></span>tgt.text = <span style="color: maroon">originalText</span> <i>&quot;setOriginalText&quot;</i><span style="color: navy">;</span>
   src<span style="color: navy"><b> -&gt; </b></span>tgt.coding<b> as </b><span style="color: maroon">coding</span><b> then</b><span style="color: navy"> {
 </span>    src.code<b> as </b><span style="color: maroon">code</span><span style="color: navy"><b> -&gt; </b></span>coding.code = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">code</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span><span style="color: navy">;</span>
-    <span style="color: #b36b00" title="Cet élément nétait pas défini avant R5">// src.codeSystem as system -&gt; coding.system = translate(system, 'http://hl7.org/fhir/ConceptMap/special-oid2uri', 'uri');</span>
+    src.codeSystem<b> as </b><span style="color: maroon">system</span><span style="color: navy"><b> -&gt; </b></span>coding.system = <b>translate</b><span style="color: navy">(</span><span style="color: maroon">system</span><span style="color: navy">, </span><span style="color: blue">'http://hl7.org/fhir/ConceptMap/special-oid2uri'</span><span style="color: navy">, </span><span style="color: blue">'uri'</span><span style="color: navy">)</span><span style="color: navy">;</span>
     src.displayName<b> as </b><span style="color: maroon">display</span><span style="color: navy"><b> -&gt; </b></span>coding.display = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">display</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span><span style="color: navy">;</span>
   <span style="color: navy">}</span> <i>&quot;code&quot;</i><span style="color: navy">;</span>
   src.translation<b> as </b><span style="color: maroon">translation</span><span style="color: navy"><b> -&gt; </b></span>tgt.coding<b> as </b><span style="color: maroon">coding</span><b> then</b><span style="color: navy"> {
 </span>    translation.code<b> as </b><span style="color: maroon">code</span><span style="color: navy"><b> -&gt; </b></span>coding.code = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">code</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span><span style="color: navy">;</span>
-    <span style="color: navy">// </span><span style="color: green">translation.codeSystem as system -&gt; coding.system = translate(system, 'http://hl7.org/fhir/ConceptMap/special-oid2uri', 'uri');</span>
+    translation.codeSystem<b> as </b><span style="color: maroon">system</span><span style="color: navy"><b> -&gt; </b></span>coding.system = <b>translate</b><span style="color: navy">(</span><span style="color: maroon">system</span><span style="color: navy">, </span><span style="color: blue">'http://hl7.org/fhir/ConceptMap/special-oid2uri'</span><span style="color: navy">, </span><span style="color: blue">'uri'</span><span style="color: navy">)</span><span style="color: navy">;</span>
     translation.displayName<b> as </b><span style="color: maroon">display</span><span style="color: navy"><b> -&gt; </b></span>coding.display = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">display</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span><span style="color: navy">;</span>
   <span style="color: navy">}</span><span style="color: navy">;</span>
 <span style="color: navy">}
@@ -172,8 +172,9 @@
 <span style="color: navy">}
 
 </span><b>group </b>PQQuantity<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>PQ, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Quantity<span style="color: navy">)</span><span style="color: navy"> {
-</span>  <span style="color: #b36b00" title="Cet élément nétait pas défini avant R5">// src.unit as unit -&gt; tgt.code = unit;</span>
-  src.unit<b> as </b><span style="color: maroon">unit</span><span style="color: navy"><b> -&gt; </b></span>tgt.unit = <span style="color: maroon">unit</span><span style="color: navy">;</span>
+</span>  src.unit<b> as </b><span style="color: maroon">unit</span><span style="color: navy"><b> -&gt; </b></span>tgt.unit = <span style="color: maroon">unit</span><span style="color: navy">;</span>
+  src.unit<b> as </b><span style="color: maroon">unit</span><span style="color: navy"><b> -&gt; </b></span>tgt.code = <span style="color: maroon">unit</span><span style="color: navy">;</span>
+  src.unit<b> as </b><span style="color: maroon">unit</span><span style="color: navy"><b> -&gt; </b></span>tgt.system = <span style="color: blue">'http://unitsofmeasure.org'</span><span style="color: navy">;</span>
   src.value<b> as </b><span style="color: maroon">value</span><span style="color: navy"><b> -&gt; </b></span>tgt.value = <span style="color: maroon">value</span><span style="color: navy">;</span>
 <span style="color: navy">}
 
@@ -189,7 +190,7 @@
   <name value="CdaToFHIRTypes"/>
   <title value="Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)"/>
   <status value="draft"/>
-  <date value="2025-10-30T17:21:27+00:00"/>
+  <date value="2025-10-30T20:58:23+00:00"/>
   <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
   <contact>
     <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
@@ -762,11 +763,17 @@
         <context value="tgt"/>
         <contextType value="variable"/>
         <element value="start"/>
-        <transform value="copy"/>
+        <variable value="start"/>
+        <transform value="create"/>
         <parameter>
-          <valueId value="low"/>
+          <valueString value="dateTime"/>
         </parameter>
       </target>
+      <dependent>
+        <name value="TSDateTime"/>
+        <variable value="low"/>
+        <variable value="start"/>
+      </dependent>
     </rule>
     <rule>
       <name value="high"/>
@@ -779,11 +786,17 @@
         <context value="tgt"/>
         <contextType value="variable"/>
         <element value="end"/>
-        <transform value="copy"/>
+        <variable value="end"/>
+        <transform value="create"/>
         <parameter>
-          <valueId value="high"/>
+          <valueString value="dateTime"/>
         </parameter>
       </target>
+      <dependent>
+        <name value="TSDateTime"/>
+        <variable value="high"/>
+        <variable value="end"/>
+      </dependent>
     </rule>
   </group>
   <group>
@@ -1003,6 +1016,29 @@
         </target>
       </rule>
       <rule>
+        <name value="codeSystem"/>
+        <source>
+          <context value="src"/>
+          <element value="codeSystem"/>
+          <variable value="system"/>
+        </source>
+        <target>
+          <context value="coding"/>
+          <contextType value="variable"/>
+          <element value="system"/>
+          <transform value="translate"/>
+          <parameter>
+            <valueId value="system"/>
+          </parameter>
+          <parameter>
+            <valueString value="http://hl7.org/fhir/ConceptMap/special-oid2uri"/>
+          </parameter>
+          <parameter>
+            <valueString value="uri"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
         <name value="displayName"/>
         <source>
           <context value="src"/>
@@ -1053,6 +1089,29 @@
           </parameter>
           <parameter>
             <valueString value="string"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="codeSystem"/>
+        <source>
+          <context value="translation"/>
+          <element value="codeSystem"/>
+          <variable value="system"/>
+        </source>
+        <target>
+          <context value="coding"/>
+          <contextType value="variable"/>
+          <element value="system"/>
+          <transform value="translate"/>
+          <parameter>
+            <valueId value="system"/>
+          </parameter>
+          <parameter>
+            <valueString value="http://hl7.org/fhir/ConceptMap/special-oid2uri"/>
+          </parameter>
+          <parameter>
+            <valueString value="uri"/>
           </parameter>
         </target>
       </rule>
@@ -1695,6 +1754,40 @@
         <transform value="copy"/>
         <parameter>
           <valueId value="unit"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
+      <name value="unit"/>
+      <source>
+        <context value="src"/>
+        <element value="unit"/>
+        <variable value="unit"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="code"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueId value="unit"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
+      <name value="unit"/>
+      <source>
+        <context value="src"/>
+        <element value="unit"/>
+        <variable value="unit"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="system"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueString value="http://unitsofmeasure.org"/>
         </parameter>
       </target>
     </rule>

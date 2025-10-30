@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Bundle xmlns="http://hl7.org/fhir">
+  <id value="86be429f-d9df-4810-a817-0e098b4483fd"/>
+  <identifier>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:1.2.250.1.213.1.1.1.5.12345.4"/>
+  </identifier>
+  <type value="document"/>
+  <timestamp value="2023-01-06T11:36:23+01:00"/>
+  <entry>
+    <fullUrl value="urn:uuid:af3b2fec-f0db-49cf-b0af-b9f3b348c253"/>
+    <resource>
+      <Composition>
+        <id value="af3b2fec-f0db-49cf-b0af-b9f3b348c253"/>
+        <language value="fr-FR"/>
+        <text>
+          <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr-FR" lang="fr-FR"><a name="Composition_af3b2fec-f0db-49cf-b0af-b9f3b348c253"> </a><p class="res-header-id"><b>Narratif généré : Composition af3b2fec-f0db-49cf-b0af-b9f3b348c253</b></p><a name="af3b2fec-f0db-49cf-b0af-b9f3b348c253"> </a><a name="hcaf3b2fec-f0db-49cf-b0af-b9f3b348c253"> </a><div style="display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%"><p style="margin-bottom: 0px">Langue : fr-FR</p></div><p><b>identifier</b>: <a href="http://terminology.hl7.org/5.2.0/NamingSystem-uri.html" title="As defined by RFC 3986 (http://www.ietf.org/rfc/rfc3986.txt)(with many schemes defined in many RFCs). For OIDs and UUIDs, use the URN form (urn:oid:(note: lowercase) and urn:uuid:). See http://www.ietf.org/rfc/rfc3001.txt and http://www.ietf.org/rfc/rfc4122.txt 
+
+This oid is used as an identifier II.root to indicate the the extension is an absolute URI (technically, an IRI). Typically, this is used for OIDs and GUIDs. Note that when this OID is used with OIDs and GUIDs, the II.extension should start with urn:oid or urn:uuid: 
+
+Note that this OID is created to aid with interconversion between CDA and FHIR - FHIR uses urn:ietf:rfc:3986 as equivalent to this OID. URIs as identifiers appear more commonly in FHIR.
+
+This OID may also be used in CD.codeSystem.">Uniform Resource Identifier (URI)</a>/urn:oid:1.2.250.1.213.1.1.1.5.12345</p><p><b>status</b>: Final</p><p><b>type</b>: <span title="Codes :{http://loinc.org 29274-8}">Mesures de signes vitaux</span></p><p><b>encounter</b>: </p><p><b style="color: maroon">Exception lors de la génération du narratif : Text '2025-01-06T11:15:10' could not be parsed at index 19 </b></p></div>
+        </text>
+        <identifier>
+          <system value="urn:ietf:rfc:3986"/>
+          <value value="urn:oid:1.2.250.1.213.1.1.1.5.12345"/>
+        </identifier>
+        <status value="final"/>
+        <type>
+          <coding>
+            <system value="http://loinc.org"/>
+            <code value="29274-8"/>
+            <display value="Mesures de signes vitaux"/>
+          </coding>
+        </type>
+        <subject>
+          <reference value="urn:uuid:935be7f6-9e96-400c-bfd0-a2a4a105fca8"/>
+        </subject>
+        <encounter>
+          <reference value="urn:uuid:6d7d720b-be36-4cc5-9038-ec1469d532e6"/>
+        </encounter>
+        <date value="2023-01-06T11:36:23+01:00"/>
+        <author>
+          <reference value="urn:uuid:aa0886ef-7000-4c11-b681-5581171e3ed0"/>
+        </author>
+        <author>
+          <reference value="urn:uuid:5bf44b55-05c2-4160-9908-8d4f7f5115ea"/>
+        </author>
+        <title value="Carnet de santé de l'enfant - Mesures de l'enfant"/>
+        <confidentiality value="N"/>
+        <attester>
+          <mode value="legal"/>
+          <time value="20230106113623+100"/>
+          <party>
+            <reference value="urn:uuid:cf9b8856-97eb-4e6a-831b-c8f41bebea16"/>
+          </party>
+        </attester>
+        <custodian>
+          <reference value="urn:uuid:ad230a71-8138-4c1d-872e-ed9ab2e5c878"/>
+        </custodian>
+        <event>
+          <code>
+            <coding>
+              <system value="http://snomed.info/sct"/>
+              <code value="11429006"/>
+              <display value="consultation"/>
+            </coding>
+          </code>
+          <period>
+            <start value="2024-01-06T11:36:23+01:00"/>
+          </period>
+        </event>
+        <section>
+          <title value="Signes vitaux"/>
+          <code>
+            <coding>
+              <system value="http://loinc.org"/>
+              <code value="8716-3"/>
+              <display value="Signes vitaux"/>
+            </coding>
+          </code>
+          <entry>
+            <reference value="urn:uuid:9f84ddca-3783-4bb7-aab0-631f4f226dbf"/>
+          </entry>
+          <entry>
+            <reference value="urn:uuid:fed4d77a-bb71-476d-9b71-54cabb40daf1"/>
+          </entry>
+          <entry>
+            <reference value="urn:uuid:d2066bdf-4158-4fa0-a9a7-69794c8c12e6"/>
+          </entry>
+        </section>
+      </Composition>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:935be7f6-9e96-400c-bfd0-a2a4a105fca8"/>
+    <resource>
+      <Patient>
+        <id value="935be7f6-9e96-400c-bfd0-a2a4a105fca8"/>
+        <text>
+          <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><a name="Patient_935be7f6-9e96-400c-bfd0-a2a4a105fca8"> </a><p class="res-header-id"><b>Narratif généré : Patient 935be7f6-9e96-400c-bfd0-a2a4a105fca8</b></p><a name="935be7f6-9e96-400c-bfd0-a2a4a105fca8"> </a><a name="hc935be7f6-9e96-400c-bfd0-a2a4a105fca8"> </a><p style="border: 1px #661aff solid; background-color: #e6e6ff; padding: 10px;">Ruth Isabelle Ruth Ruth DECOURCY  Female, Date de Naissance :2022-12-25 ( INS-NIR)</p><hr/><table class="grid"><tr><td style="background-color: #f3f5da" title="Autre identifiant (voir ci-dessus)">Autre identifiant :</td><td colspan="3">Patient internal identifier/1234567890121</td></tr><tr><td style="background-color: #f3f5da" title="Moyens de contacter le Patient">Coordonnées</td><td colspan="3"><ul><li>ph: 0147150000(Home)</li><li>24 Avenue de Breteuil PARIS 75007 FRANCE </li></ul></td></tr></table></div>
+        </text>
+        <identifier>
+          <type>
+            <coding>
+              <system value="https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203"/>
+              <code value="INS-NIR"/>
+            </coding>
+          </type>
+          <system value="urn:oid:1.2.250.1.213.1.4.8"/>
+          <value value="222127505611201"/>
+        </identifier>
+        <identifier>
+          <type>
+            <coding>
+              <system value="http://terminology.hl7.org/CodeSystem/v2-0203"/>
+              <code value="PI"/>
+            </coding>
+          </type>
+          <system value="urn:oid:1.2.3.4.5.6.7.8.9.10"/>
+          <value value="1234567890121"/>
+        </identifier>
+        <name>
+          <family value="DECOURCY"/>
+          <given value="Ruth Isabelle"/>
+          <given value="Ruth"/>
+          <given value="Ruth"/>
+        </name>
+        <telecom>
+          <system value="phone"/>
+          <value value="0147150000"/>
+          <use value="home"/>
+        </telecom>
+        <gender value="female"/>
+        <birthDate value="2022-12-25"/>
+        <address>
+          <line value="24"/>
+          <line value="Avenue de Breteuil"/>
+          <city value="PARIS"/>
+          <postalCode value="75007"/>
+          <country value="FRANCE"/>
+        </address>
+      </Patient>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:6d7d720b-be36-4cc5-9038-ec1469d532e6"/>
+    <resource>
+      <Encounter>
+        <id value="6d7d720b-be36-4cc5-9038-ec1469d532e6"/>
+        <text>
+          <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><a name="Encounter_6d7d720b-be36-4cc5-9038-ec1469d532e6"> </a><p class="res-header-id"><b>Narratif généré : Venue 6d7d720b-be36-4cc5-9038-ec1469d532e6</b></p><a name="6d7d720b-be36-4cc5-9038-ec1469d532e6"> </a><a name="hc6d7d720b-be36-4cc5-9038-ec1469d532e6"> </a><p><b>status</b>: Finished</p><p><b>class</b>: <a href="http://terminology.hl7.org/6.5.0/CodeSystem-v3-ActCode.html#v3-ActCode-AMB">ActCode: AMB</a> (Ambulatoire (hors établissement))</p><p><b>type</b>: <span title="Codes :{http://terminology.hl7.org/CodeSystem/v3-ActCode AMB}">Ambulatoire (hors établissement)</span></p><p><b>period</b>: </p><p><b style="color: maroon">Exception lors de la génération du narratif : Text '2025-01-06T11:15:10' could not be parsed at index 19 </b></p></div>
+        </text>
+        <status value="finished"/>
+        <class>
+          <system value="http://terminology.hl7.org/CodeSystem/v3-ActCode"/>
+          <code value="AMB"/>
+          <display value="Ambulatoire (hors établissement)"/>
+        </class>
+        <type>
+          <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/v3-ActCode"/>
+            <code value="AMB"/>
+            <display value="Ambulatoire (hors établissement)"/>
+          </coding>
+        </type>
+        <period>
+          <start value="2025-01-06T11:15:10"/>
+          <end value="2025-01-06T11:36:23"/>
+        </period>
+        <location>
+          <location>
+            <reference value="urn:uuid:596779a9-717f-45c3-ad47-61329bce28dd"/>
+          </location>
+        </location>
+      </Encounter>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:596779a9-717f-45c3-ad47-61329bce28dd"/>
+    <resource>
+      <Location>
+        <id value="596779a9-717f-45c3-ad47-61329bce28dd"/>
+        <text>
+          <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><a name="Location_596779a9-717f-45c3-ad47-61329bce28dd"> </a><p class="res-header-id"><b>Narratif généré : Localisation 596779a9-717f-45c3-ad47-61329bce28dd</b></p><a name="596779a9-717f-45c3-ad47-61329bce28dd"> </a><a name="hc596779a9-717f-45c3-ad47-61329bce28dd"> </a><p><b>type</b>: <span title="Codes :{urn:oid:1.2.250.1.71.4.2.4 SA05}">Centre de santé</span></p><p><b>address</b>: 3 Rue Petit Pont PARIS 75005 </p></div>
+        </text>
+        <type>
+          <coding>
+            <system value="urn:oid:1.2.250.1.71.4.2.4"/>
+            <code value="SA05"/>
+            <display value="Centre de santé"/>
+          </coding>
+        </type>
+        <address>
+          <line value="3"/>
+          <line value="Rue Petit Pont"/>
+          <city value="PARIS"/>
+          <postalCode value="75005"/>
+        </address>
+      </Location>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:aa0886ef-7000-4c11-b681-5581171e3ed0"/>
+    <resource>
+      <Practitioner>
+        <id value="aa0886ef-7000-4c11-b681-5581171e3ed0"/>
+        <text>
+          <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><a name="Practitioner_aa0886ef-7000-4c11-b681-5581171e3ed0"> </a><p class="res-header-id"><b>Narratif généré : Praticien aa0886ef-7000-4c11-b681-5581171e3ed0</b></p><a name="aa0886ef-7000-4c11-b681-5581171e3ed0"> </a><a name="hcaa0886ef-7000-4c11-b681-5581171e3ed0"> </a><p><b>identifier</b>: <code>urn:oid:1.2.250.1.71.4.2.1</code>/801234567897</p><p><b>name</b>: Charles MULLER </p><p><b>telecom</b>: ph: 0140404022(Work)</p><p><b>address</b>: 3 Rue Petit Pont PARIS 75005 </p></div>
+        </text>
+        <identifier>
+          <system value="urn:oid:1.2.250.1.71.4.2.1"/>
+          <value value="801234567897"/>
+        </identifier>
+        <name>
+          <family value="MULLER"/>
+          <given value="Charles"/>
+          <prefix value="M"/>
+          <suffix value="DR"/>
+        </name>
+        <telecom>
+          <system value="phone"/>
+          <value value="0140404022"/>
+          <use value="work"/>
+        </telecom>
+        <address>
+          <line value="3"/>
+          <line value="Rue Petit Pont"/>
+          <city value="PARIS"/>
+          <postalCode value="75005"/>
+        </address>
+      </Practitioner>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:5bf44b55-05c2-4160-9908-8d4f7f5115ea"/>
+    <resource>
+      <Organization>
+        <id value="5bf44b55-05c2-4160-9908-8d4f7f5115ea"/>
+        <text>
+          <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><a name="Organization_5bf44b55-05c2-4160-9908-8d4f7f5115ea"> </a><p class="res-header-id"><b>Narratif généré : Organisation 5bf44b55-05c2-4160-9908-8d4f7f5115ea</b></p><a name="5bf44b55-05c2-4160-9908-8d4f7f5115ea"> </a><a name="hc5bf44b55-05c2-4160-9908-8d4f7f5115ea"> </a><p><b>identifier</b>: <code>urn:oid:1.2.250.1.71.4.2.2</code>/2801234567897</p><p><b>telecom</b>: ph: 0140404022(Work)</p><p><b>address</b>: 3 Rue Petit Pont PARIS 75005 </p></div>
+        </text>
+        <identifier>
+          <system value="urn:oid:1.2.250.1.71.4.2.2"/>
+          <value value="2801234567897"/>
+        </identifier>
+        <telecom>
+          <system value="phone"/>
+          <value value="0140404022"/>
+          <use value="work"/>
+        </telecom>
+        <address>
+          <line value="3"/>
+          <line value="Rue Petit Pont"/>
+          <city value="PARIS"/>
+          <postalCode value="75005"/>
+        </address>
+      </Organization>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:cf9b8856-97eb-4e6a-831b-c8f41bebea16"/>
+    <resource>
+      <Practitioner>
+        <id value="cf9b8856-97eb-4e6a-831b-c8f41bebea16"/>
+        <text>
+          <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><a name="Practitioner_cf9b8856-97eb-4e6a-831b-c8f41bebea16"> </a><p class="res-header-id"><b>Narratif généré : Praticien cf9b8856-97eb-4e6a-831b-c8f41bebea16</b></p><a name="cf9b8856-97eb-4e6a-831b-c8f41bebea16"> </a><a name="hccf9b8856-97eb-4e6a-831b-c8f41bebea16"> </a><p><b>identifier</b>: <code>urn:oid:1.2.250.1.71.4.2.1</code>/801234567897</p><p><b>name</b>: Charles MULLER </p><p><b>telecom</b>: ph: 0140404022(Work)</p><p><b>address</b>: 3 Rue Petit Pont PARIS 75005 </p></div>
+        </text>
+        <identifier>
+          <system value="urn:oid:1.2.250.1.71.4.2.1"/>
+          <value value="801234567897"/>
+        </identifier>
+        <name>
+          <family value="MULLER"/>
+          <given value="Charles"/>
+          <prefix value="M"/>
+          <suffix value="DR"/>
+        </name>
+        <telecom>
+          <system value="phone"/>
+          <value value="0140404022"/>
+          <use value="work"/>
+        </telecom>
+        <address>
+          <line value="3"/>
+          <line value="Rue Petit Pont"/>
+          <city value="PARIS"/>
+          <postalCode value="75005"/>
+        </address>
+      </Practitioner>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:ad230a71-8138-4c1d-872e-ed9ab2e5c878"/>
+    <resource>
+      <Organization>
+        <id value="ad230a71-8138-4c1d-872e-ed9ab2e5c878"/>
+        <text>
+          <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><a name="Organization_ad230a71-8138-4c1d-872e-ed9ab2e5c878"> </a><p class="res-header-id"><b>Narratif généré : Organisation ad230a71-8138-4c1d-872e-ed9ab2e5c878</b></p><a name="ad230a71-8138-4c1d-872e-ed9ab2e5c878"> </a><a name="hcad230a71-8138-4c1d-872e-ed9ab2e5c878"> </a><p><b>identifier</b>: <code>urn:oid:1.2.250.1.71.4.2.2</code>/2801234567897</p><p><b>telecom</b>: ph: 0140404022(Work)</p><p><b>address</b>: 3 Rue Petit Pont PARIS 75005 </p></div>
+        </text>
+        <identifier>
+          <system value="urn:oid:1.2.250.1.71.4.2.2"/>
+          <value value="2801234567897"/>
+        </identifier>
+        <telecom>
+          <system value="phone"/>
+          <value value="0140404022"/>
+          <use value="work"/>
+        </telecom>
+        <address>
+          <line value="3"/>
+          <line value="Rue Petit Pont"/>
+          <city value="PARIS"/>
+          <postalCode value="75005"/>
+        </address>
+      </Organization>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:9f84ddca-3783-4bb7-aab0-631f4f226dbf"/>
+    <resource>
+      <Observation>
+        <id value="9f84ddca-3783-4bb7-aab0-631f4f226dbf"/>
+        <meta>
+          <profile value="https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-fr-observation-body-weight"/>
+        </meta>
+        <text>
+          <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><a name="Observation_9f84ddca-3783-4bb7-aab0-631f4f226dbf"> </a><p class="res-header-id"><b>Narratif généré : Observation 9f84ddca-3783-4bb7-aab0-631f4f226dbf</b></p><a name="9f84ddca-3783-4bb7-aab0-631f4f226dbf"> </a><a name="hc9f84ddca-3783-4bb7-aab0-631f4f226dbf"> </a><div style="display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%"><p style="margin-bottom: 0px"/><p style="margin-bottom: 0px">Profil: <code>https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-fr-observation-body-weight</code></p></div><p><b>status</b>: Final</p><p><b>category</b>: <span title="Codes :{http://terminology.hl7.org/CodeSystem/observation-category vital-signs}">Vital Signs</span></p><p><b>code</b>: <span title="Codes :{http://loinc.org 29463-7}">Poids</span></p><p><b>subject</b>: <a href="Bundle-86be429f-d9df-4810-a817-0e098b4483fd.html#urn-uuid-935be7f6-9e96-400c-bfd0-a2a4a105fca8">Ruth Isabelle Ruth Ruth DECOURCY  Female, Date de Naissance :2022-12-25 ( INS-NIR)</a></p><p><b>value</b>: 3900 g<span style="background: LightGoldenRodYellow"> (Détails : code UCUMg = 'g')</span></p></div>
+        </text>
+        <status value="final"/>
+        <category>
+          <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+            <code value="vital-signs"/>
+          </coding>
+        </category>
+        <code>
+          <coding>
+            <system value="http://loinc.org"/>
+            <code value="29463-7"/>
+            <display value="Poids"/>
+          </coding>
+        </code>
+        <subject>
+          <reference value="urn:uuid:935be7f6-9e96-400c-bfd0-a2a4a105fca8"/>
+        </subject>
+        <valueQuantity>
+          <value value="3900"/>
+          <unit value="g"/>
+          <system value="http://unitsofmeasure.org"/>
+          <code value="g"/>
+        </valueQuantity>
+      </Observation>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:fed4d77a-bb71-476d-9b71-54cabb40daf1"/>
+    <resource>
+      <Observation>
+        <id value="fed4d77a-bb71-476d-9b71-54cabb40daf1"/>
+        <meta>
+          <profile value="https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-fr-observation-bodyheight"/>
+        </meta>
+        <text>
+          <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><a name="Observation_fed4d77a-bb71-476d-9b71-54cabb40daf1"> </a><p class="res-header-id"><b>Narratif généré : Observation fed4d77a-bb71-476d-9b71-54cabb40daf1</b></p><a name="fed4d77a-bb71-476d-9b71-54cabb40daf1"> </a><a name="hcfed4d77a-bb71-476d-9b71-54cabb40daf1"> </a><div style="display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%"><p style="margin-bottom: 0px"/><p style="margin-bottom: 0px">Profil: <code>https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-fr-observation-bodyheight</code></p></div><p><b>status</b>: Final</p><p><b>category</b>: <span title="Codes :{http://terminology.hl7.org/CodeSystem/observation-category vital-signs}">Vital Signs</span></p><p><b>code</b>: <span title="Codes :{http://loinc.org 8302-2}">Taille</span></p><p><b>subject</b>: <a href="Bundle-86be429f-d9df-4810-a817-0e098b4483fd.html#urn-uuid-935be7f6-9e96-400c-bfd0-a2a4a105fca8">Ruth Isabelle Ruth Ruth DECOURCY  Female, Date de Naissance :2022-12-25 ( INS-NIR)</a></p><p><b>value</b>: 52 cm<span style="background: LightGoldenRodYellow"> (Détails : code UCUMcm = 'cm')</span></p></div>
+        </text>
+        <status value="final"/>
+        <category>
+          <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+            <code value="vital-signs"/>
+          </coding>
+        </category>
+        <code>
+          <coding>
+            <system value="http://loinc.org"/>
+            <code value="8302-2"/>
+            <display value="Taille"/>
+          </coding>
+        </code>
+        <subject>
+          <reference value="urn:uuid:935be7f6-9e96-400c-bfd0-a2a4a105fca8"/>
+        </subject>
+        <valueQuantity>
+          <value value="52"/>
+          <unit value="cm"/>
+          <system value="http://unitsofmeasure.org"/>
+          <code value="cm"/>
+        </valueQuantity>
+      </Observation>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:d2066bdf-4158-4fa0-a9a7-69794c8c12e6"/>
+    <resource>
+      <Observation>
+        <id value="d2066bdf-4158-4fa0-a9a7-69794c8c12e6"/>
+        <meta>
+          <profile value="https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-observation-head-circumference"/>
+        </meta>
+        <text>
+          <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><a name="Observation_d2066bdf-4158-4fa0-a9a7-69794c8c12e6"> </a><p class="res-header-id"><b>Narratif généré : Observation d2066bdf-4158-4fa0-a9a7-69794c8c12e6</b></p><a name="d2066bdf-4158-4fa0-a9a7-69794c8c12e6"> </a><a name="hcd2066bdf-4158-4fa0-a9a7-69794c8c12e6"> </a><div style="display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%"><p style="margin-bottom: 0px"/><p style="margin-bottom: 0px">Profil: <code>https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-observation-head-circumference</code></p></div><p><b>status</b>: Final</p><p><b>category</b>: <span title="Codes :{http://terminology.hl7.org/CodeSystem/observation-category vital-signs}">Vital Signs</span></p><p><b>code</b>: <span title="Codes :{http://loinc.org 8287-5}">Périmètre crânien</span></p><p><b>subject</b>: <a href="Bundle-86be429f-d9df-4810-a817-0e098b4483fd.html#urn-uuid-935be7f6-9e96-400c-bfd0-a2a4a105fca8">Ruth Isabelle Ruth Ruth DECOURCY  Female, Date de Naissance :2022-12-25 ( INS-NIR)</a></p><p><b>value</b>: 35 cm<span style="background: LightGoldenRodYellow"> (Détails : code UCUMcm = 'cm')</span></p></div>
+        </text>
+        <status value="final"/>
+        <category>
+          <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+            <code value="vital-signs"/>
+          </coding>
+        </category>
+        <code>
+          <coding>
+            <system value="http://loinc.org"/>
+            <code value="8287-5"/>
+            <display value="Périmètre crânien"/>
+          </coding>
+        </code>
+        <subject>
+          <reference value="urn:uuid:935be7f6-9e96-400c-bfd0-a2a4a105fca8"/>
+        </subject>
+        <valueQuantity>
+          <value value="35"/>
+          <unit value="cm"/>
+          <system value="http://unitsofmeasure.org"/>
+          <code value="cm"/>
+        </valueQuantity>
+      </Observation>
+    </resource>
+  </entry>
+</Bundle>

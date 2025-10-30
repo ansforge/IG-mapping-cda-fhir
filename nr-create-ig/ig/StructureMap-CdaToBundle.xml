@@ -32,9 +32,14 @@
 
 </span><b>group </b>ClinicalDocumentToBundle<span style="color: navy">(</span><b>source</b> <span style="color: maroon">cda</span><span style="color: navy"> : </span>ClinicalDocument, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy"> : </span>Patient, <b>target</b> <span style="color: maroon">composition</span><span style="color: navy"> : </span>Composition, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle<span style="color: navy">)</span><span style="color: navy"> {
 </span>  cda<span style="color: navy"><b> -&gt; </b></span>bundle.id = <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span> <i>&quot;id&quot;</i><span style="color: navy">;</span>
-  cda.id<b> as </b><span style="color: maroon">addIdentifier</span><span style="color: navy"><b> -&gt; </b></span>bundle.identifier = <span style="color: maroon">addIdentifier</span> <i>&quot;identifier&quot;</i><span style="color: navy">;</span>
+  cda.id<b> as </b><span style="color: maroon">cdaId</span><span style="color: navy"><b> -&gt; </b></span>bundle.identifier<b> as </b><span style="color: maroon">identifier</span><b> then</b><span style="color: navy"> {
+</span>    cdaId.root<b> as </b><span style="color: maroon">root</span><b> where </b>cdaId.extension.exists()<span style="color: navy"><b> -&gt; </b></span>identifier.system = <b>translate</b><span style="color: navy">(</span><span style="color: maroon">root</span><span style="color: navy">, </span><span style="color: blue">'#oid2uri'</span><span style="color: navy">, </span><span style="color: blue">'uri'</span><span style="color: navy">)</span> <i>&quot;system&quot;</i><span style="color: navy">;</span>
+    cdaId.extension<b> as </b><span style="color: maroon">extension</span><span style="color: navy"><b> -&gt; </b></span>identifier.value = <span style="color: maroon">extension</span> <i>&quot;value&quot;</i><span style="color: navy">;</span>
+    cdaId.root<b> as </b><span style="color: maroon">root</span><b> where </b>cdaId.extension.empty()<span style="color: navy"><b> -&gt; </b></span>identifier.system = <span style="color: blue">'urn:ietf:rfc:3986'</span> <i>&quot;systemOid&quot;</i><span style="color: navy">;</span>
+    cdaId.root<b> as </b><span style="color: maroon">root</span><b> where </b>cdaId.extension.empty()<span style="color: navy"><b> -&gt; </b></span>identifier.value = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:oid:'</span><span style="color: navy">, </span><span style="color: maroon">root</span><span style="color: navy">)</span> <i>&quot;valueOid&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;identifier&quot;</i><span style="color: navy">;</span>
   cda<span style="color: navy"><b> -&gt; </b></span>bundle.type = <span style="color: blue">'document'</span> <i>&quot;type&quot;</i><span style="color: navy">;</span>
-  cda.effectiveTime<b> as </b><span style="color: maroon">timestamp</span><span style="color: navy"><b> -&gt; </b></span>bundle.timestamp = <span style="color: maroon">timestamp</span><span style="color: navy">;</span>
+  cda.effectiveTime<b> as </b><span style="color: maroon">effectiveTime</span><span style="color: navy"><b> -&gt; </b></span>bundle.timestamp = <b>create</b><span style="color: navy">(</span><span style="color: blue">'instant'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">timestamp</span><b> then </b>TSInstant<span style="color: navy">(</span><span style="color: maroon">effectiveTime</span><span style="color: navy">, </span><span style="color: maroon">timestamp</span><span style="color: navy">)</span> <i>&quot;timestamp&quot;</i><span style="color: navy">;</span>
   cda<b> then </b>ClinicalDocumentComposition<span style="color: navy">(</span><span style="color: maroon">cda</span><span style="color: navy">, </span><span style="color: maroon">composition</span><span style="color: navy">, </span><span style="color: maroon">patient</span><span style="color: navy">, </span><span style="color: maroon">bundle</span><span style="color: navy">)</span> <i>&quot;composition&quot;</i><span style="color: navy">;</span>
   cda.component<b> as </b><span style="color: maroon">cdaComponent</span><b> then</b><span style="color: navy"> {
 </span>    cdaComponent.structuredBody<b> as </b><span style="color: maroon">body</span><b> then</b><span style="color: navy"> {
@@ -59,11 +64,11 @@
 </span><span style="color: navy">// </span><span style="color: green">_________________________ Entry Level Templates   ________________________</span>
 <span style="color: navy">// </span><span style="color: green">_________________________ Header Level Templates _________________________</span>
 <b>group </b>ClinicalDocumentComposition<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>ClinicalDocument, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Composition, <b>target</b> <span style="color: maroon">patientResource</span><span style="color: navy"> : </span>Patient, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle<span style="color: navy">)</span><span style="color: navy"> {
-</span>  src.languageCode<b> as </b><span style="color: maroon">languageCode</span><span style="color: navy"><b> -&gt; </b></span>tgt.language = <span style="color: maroon">languageCode</span><span style="color: navy">;</span>
-  src.id<b> as </b><span style="color: maroon">id</span><b> where </b>src.setId.exists().not()<span style="color: navy"><b> -&gt; </b></span>tgt.identifier = <span style="color: maroon">id</span> <i>&quot;identifier&quot;</i><span style="color: navy">;</span>
-  src.setId<b> as </b><span style="color: maroon">setIdentifier</span><span style="color: navy"><b> -&gt; </b></span>tgt.identifier = <span style="color: maroon">setIdentifier</span> <i>&quot;identifier&quot;</i><span style="color: navy">;</span>
+</span>  src.languageCode<b> as </b><span style="color: maroon">languageCode</span><span style="color: navy"><b> -&gt; </b></span>tgt.language = <b>create</b><span style="color: navy">(</span><span style="color: blue">'code'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">code</span><b> then </b>CSCode<span style="color: navy">(</span><span style="color: maroon">languageCode</span><span style="color: navy">, </span><span style="color: maroon">code</span><span style="color: navy">)</span><span style="color: navy">;</span>
+  src.id<b> as </b><span style="color: maroon">id</span><b> where </b>src.setId.exists().not()<span style="color: navy"><b> -&gt; </b></span>tgt.identifier = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Identifier'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">identifier</span><b> then </b>II<span style="color: navy">(</span><span style="color: maroon">id</span><span style="color: navy">, </span><span style="color: maroon">identifier</span><span style="color: navy">)</span> <i>&quot;identifier&quot;</i><span style="color: navy">;</span>
+  src.setId<b> as </b><span style="color: maroon">setId</span><span style="color: navy"><b> -&gt; </b></span>tgt.identifier = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Identifier'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">identifier</span><b> then </b>II<span style="color: navy">(</span><span style="color: maroon">setId</span><span style="color: navy">, </span><span style="color: maroon">identifier</span><span style="color: navy">)</span> <i>&quot;setIdentifier&quot;</i><span style="color: navy">;</span>
   src<span style="color: navy"><b> -&gt; </b></span>tgt.status = <span style="color: blue">'final'</span> <i>&quot;status&quot;</i><span style="color: navy">;</span>
-  src.code<b> as </b><span style="color: maroon">srcCode</span><span style="color: navy"><b> -&gt; </b></span>tgt.type = <span style="color: maroon">srcCode</span><span style="color: navy">;</span>
+  src.code<b> as </b><span style="color: maroon">srcCode</span><span style="color: navy"><b> -&gt; </b></span>tgt.type = <b>create</b><span style="color: navy">(</span><span style="color: blue">'CodeableConcept'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">cc</span><b> then </b>CDCodeableConcept<span style="color: navy">(</span><span style="color: maroon">srcCode</span><span style="color: navy">, </span><span style="color: maroon">cc</span><span style="color: navy">)</span><span style="color: navy">;</span>
   src.title<b> as </b><span style="color: maroon">t</span><span style="color: navy"><b> -&gt; </b></span>tgt.title = <span style="color: navy">(</span>t.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
   src.recordTarget<b> as </b><span style="color: maroon">recordTarget</span><b> then</b><span style="color: navy"> {
 </span>    recordTarget.patientRole<b> as </b><span style="color: maroon">patient</span><span style="color: navy"><b> -&gt; </b></span> tgt.subject = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Reference'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">reference</span><span style="color: navy">, </span> reference.reference = <span style="color: navy">(</span>'urn:uuid:' + %patientResource.id<span style="color: navy">)</span><b> then </b>ClinicalDocumentPatientRole<span style="color: navy">(</span><span style="color: maroon">patient</span><span style="color: navy">, </span><span style="color: maroon">patientResource</span><span style="color: navy">, </span><span style="color: maroon">bundle</span><span style="color: navy">)</span> <i>&quot;subject&quot;</i><span style="color: navy">;</span>
@@ -71,30 +76,30 @@
   src.componentOf<b> as </b><span style="color: maroon">comp</span><span style="color: navy"><b> -&gt; </b></span> bundle.entry<b> as </b><span style="color: maroon">e</span><span style="color: navy">, </span> e.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Encounter'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">encounter</span><span style="color: navy">, </span> encounter.id = <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">uuid</span><span style="color: navy">, </span> e.fullUrl = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:uuid:'</span><span style="color: navy">, </span><span style="color: maroon">uuid</span><span style="color: navy">)</span><b> then</b><span style="color: navy"> {
 </span>    comp.encompassingEncounter<b> as </b><span style="color: maroon">srcEnc</span><span style="color: navy"><b> -&gt; </b></span> tgt.encounter = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Reference'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">reference</span><span style="color: navy">, </span> reference.reference = <span style="color: navy">(</span>'urn:uuid:' + %encounter.id<span style="color: navy">)</span><b> then </b>ClinicalDocumentEncounter<span style="color: navy">(</span><span style="color: maroon">srcEnc</span><span style="color: navy">, </span><span style="color: maroon">bundle</span><span style="color: navy">, </span><span style="color: maroon">encounter</span><span style="color: navy">)</span> <i>&quot;srcEncounter&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">}</span> <i>&quot;encompassingEncounter&quot;</i><span style="color: navy">;</span>
-  src.effectiveTime<b> as </b><span style="color: maroon">effectiveTime</span><span style="color: navy"><b> -&gt; </b></span>tgt.date = <span style="color: maroon">effectiveTime</span><span style="color: navy">;</span>
+  src.effectiveTime<b> as </b><span style="color: maroon">effectiveTime</span><span style="color: navy"><b> -&gt; </b></span>tgt.date = <b>create</b><span style="color: navy">(</span><span style="color: blue">'dateTime'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">date</span><b> then </b>TSDateTime<span style="color: navy">(</span><span style="color: maroon">effectiveTime</span><span style="color: navy">, </span><span style="color: maroon">date</span><span style="color: navy">)</span> <i>&quot;compositionDate&quot;</i><span style="color: navy">;</span>
   src.author<b> as </b><span style="color: maroon">srcAuthor</span><span style="color: navy"><b> -&gt; </b></span> bundle.entry<b> as </b><span style="color: maroon">e</span><span style="color: navy">, </span> e.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Practitioner'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">practitioner</span><span style="color: navy">, </span> practitioner.id = <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">uuid2</span><span style="color: navy">, </span> e.fullUrl = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:uuid:'</span><span style="color: navy">, </span><span style="color: maroon">uuid2</span><span style="color: navy">)</span><span style="color: navy">, </span> tgt.author = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Reference'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">reference</span><span style="color: navy">, </span> reference.reference = <span style="color: navy">(</span>'urn:uuid:' + %practitioner.id<span style="color: navy">)</span><b> then</b><span style="color: navy"> {
 </span>    srcAuthor.assignedAuthor<b> as </b><span style="color: maroon">assignedAuthor</span><b> then</b><span style="color: navy"> {
-</span>      assignedAuthor.id<b> as </b><span style="color: maroon">id</span><span style="color: navy"><b> -&gt; </b></span>practitioner.identifier = <span style="color: maroon">id</span><span style="color: navy">;</span>
-      assignedAuthor.addr<b> as </b><span style="color: maroon">addr</span><span style="color: navy"><b> -&gt; </b></span>practitioner.address = <span style="color: maroon">addr</span><span style="color: navy">;</span>
-      assignedAuthor.telecom<b> as </b><span style="color: maroon">tlc</span><span style="color: navy"><b> -&gt; </b></span>practitioner.telecom = <span style="color: maroon">tlc</span><span style="color: navy">;</span>
+</span>      assignedAuthor.id<b> as </b><span style="color: maroon">id</span><span style="color: navy"><b> -&gt; </b></span>practitioner.identifier = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Identifier'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">identifier</span><b> then </b>II<span style="color: navy">(</span><span style="color: maroon">id</span><span style="color: navy">, </span><span style="color: maroon">identifier</span><span style="color: navy">)</span><span style="color: navy">;</span>
+      assignedAuthor.addr<b> as </b><span style="color: maroon">addr</span><span style="color: navy"><b> -&gt; </b></span>practitioner.address = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Address'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">address</span><b> then </b>ADAddress<span style="color: navy">(</span><span style="color: maroon">addr</span><span style="color: navy">, </span><span style="color: maroon">address</span><span style="color: navy">)</span><span style="color: navy">;</span>
+      assignedAuthor.telecom<b> as </b><span style="color: maroon">tlc</span><span style="color: navy"><b> -&gt; </b></span>practitioner.telecom = <b>create</b><span style="color: navy">(</span><span style="color: blue">'ContactPoint'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">contactPoint</span><b> then </b>TELContactPoint<span style="color: navy">(</span><span style="color: maroon">tlc</span><span style="color: navy">, </span><span style="color: maroon">contactPoint</span><span style="color: navy">)</span><span style="color: navy">;</span>
       assignedAuthor.assignedPerson<b> as </b><span style="color: maroon">assPerson</span><b> then</b><span style="color: navy"> {
-</span>        assPerson.name<b> as </b><span style="color: maroon">pName</span><span style="color: navy"><b> -&gt; </b></span>practitioner.name = <span style="color: maroon">pName</span><span style="color: navy">;</span>
+</span>        assPerson.name<b> as </b><span style="color: maroon">pName</span><span style="color: navy"><b> -&gt; </b></span>practitioner.name = <b>create</b><span style="color: navy">(</span><span style="color: blue">'HumanName'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">humanName</span><b> then </b>ENHumanName<span style="color: navy">(</span><span style="color: maroon">pName</span><span style="color: navy">, </span><span style="color: maroon">humanName</span><span style="color: navy">)</span><span style="color: navy">;</span>
       <span style="color: navy">}</span> <i>&quot;name&quot;</i><span style="color: navy">;</span>
       assignedAuthor.representedOrganization<b> as </b><span style="color: maroon">srcOrg</span><span style="color: navy"><b> -&gt; </b></span> bundle.entry<b> as </b><span style="color: maroon">e2</span><span style="color: navy">, </span> e2.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Organization'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">organization</span><span style="color: navy">, </span> organization.id = <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">uuid3</span><span style="color: navy">, </span> e2.fullUrl = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:uuid:'</span><span style="color: navy">, </span><span style="color: maroon">uuid3</span><span style="color: navy">)</span><span style="color: navy">, </span> tgt.author = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Reference'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">reference2</span><span style="color: navy">, </span> reference2.reference = <span style="color: navy">(</span>'urn:uuid:' + %organization.id<span style="color: navy">)</span><b> then </b>ClinicalDocumentOrganization<span style="color: navy">(</span><span style="color: maroon">srcOrg</span><span style="color: navy">, </span><span style="color: maroon">organization</span><span style="color: navy">)</span><span style="color: navy">;</span>
     <span style="color: navy">}</span> <i>&quot;author&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">}</span> <i>&quot;srcAuthor&quot;</i><span style="color: navy">;</span>
-  src.confidentialityCode<b> as </b><span style="color: maroon">confCode</span><span style="color: navy"><b> -&gt; </b></span>tgt.confidentiality = <span style="color: maroon">confCode</span><span style="color: navy">;</span>
+  src.confidentialityCode<b> as </b><span style="color: maroon">confCode</span><span style="color: navy"><b> -&gt; </b></span>tgt.confidentiality = <b>create</b><span style="color: navy">(</span><span style="color: blue">'code'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">code</span><b> then </b>CSCode<span style="color: navy">(</span><span style="color: maroon">confCode</span><span style="color: navy">, </span><span style="color: maroon">code</span><span style="color: navy">)</span><span style="color: navy">;</span>
   src.legalAuthenticator<b> as </b><span style="color: maroon">legalAuth</span><span style="color: navy"><b> -&gt; </b></span> bundle.entry<b> as </b><span style="color: maroon">e</span><span style="color: navy">, </span> e.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Practitioner'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">practitioner</span><span style="color: navy">, </span> practitioner.id = <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">uuid2</span><span style="color: navy">, </span> e.fullUrl = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:uuid:'</span><span style="color: navy">, </span><span style="color: maroon">uuid2</span><span style="color: navy">)</span><b> then</b><span style="color: navy"> {
 </span>    legalAuth<span style="color: navy"><b> -&gt; </b></span>tgt.attester<b> as </b><span style="color: maroon">attester</span><b> then</b><span style="color: navy"> {
 </span>      legalAuth<span style="color: navy"><b> -&gt; </b></span>attester.mode = <span style="color: blue">'legal'</span> <i>&quot;mode&quot;</i><span style="color: navy">;</span>
-      legalAuth.time<b> as </b><span style="color: maroon">time</span><span style="color: navy"><b> -&gt; </b></span>attester.time = <span style="color: maroon">time</span><span style="color: navy">;</span>
+      legalAuth.time<b> as </b><span style="color: maroon">time</span><span style="color: navy"><b> -&gt; </b></span>attester.time = <b>create</b><span style="color: navy">(</span><span style="color: blue">'dateTime'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">dt</span><b> then </b>TSDateTime<span style="color: navy">(</span><span style="color: maroon">time</span><span style="color: navy">, </span><span style="color: maroon">dt</span><span style="color: navy">)</span><span style="color: navy">;</span>
       legalAuth.assignedEntity<b> as </b><span style="color: maroon">entity</span><span style="color: navy"><b> -&gt; </b></span> attester.party = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Reference'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">reference</span><span style="color: navy">, </span> reference.reference = <span style="color: navy">(</span>'urn:uuid:' + %practitioner.id<span style="color: navy">)</span><b> then </b>ClinicalDocumentEntityPractitioner<span style="color: navy">(</span><span style="color: maroon">entity</span><span style="color: navy">, </span><span style="color: maroon">practitioner</span><span style="color: navy">)</span> <i>&quot;entity&quot;</i><span style="color: navy">;</span>
     <span style="color: navy">}</span> <i>&quot;attester&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">}</span> <i>&quot;legalAuth&quot;</i><span style="color: navy">;</span>
   src.authenticator<b> as </b><span style="color: maroon">auth</span><span style="color: navy"><b> -&gt; </b></span> bundle.entry<b> as </b><span style="color: maroon">e</span><span style="color: navy">, </span> e.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Practitioner'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">practitioner</span><span style="color: navy">, </span> practitioner.id = <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">uuid2</span><span style="color: navy">, </span> e.fullUrl = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:uuid:'</span><span style="color: navy">, </span><span style="color: maroon">uuid2</span><span style="color: navy">)</span><b> then</b><span style="color: navy"> {
 </span>    auth<span style="color: navy"><b> -&gt; </b></span>tgt.attester<b> as </b><span style="color: maroon">attester</span><b> then</b><span style="color: navy"> {
 </span>      auth<span style="color: navy"><b> -&gt; </b></span>attester.mode = <span style="color: blue">'official'</span> <i>&quot;mode&quot;</i><span style="color: navy">;</span>
-      auth.time<b> as </b><span style="color: maroon">time</span><span style="color: navy"><b> -&gt; </b></span>attester.time = <span style="color: maroon">time</span><span style="color: navy">;</span>
+      auth.time<b> as </b><span style="color: maroon">time</span><span style="color: navy"><b> -&gt; </b></span>attester.time = <b>create</b><span style="color: navy">(</span><span style="color: blue">'dateTime'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">dt</span><b> then </b>TSDateTime<span style="color: navy">(</span><span style="color: maroon">time</span><span style="color: navy">, </span><span style="color: maroon">dt</span><span style="color: navy">)</span><span style="color: navy">;</span>
       auth.assignedEntity<b> as </b><span style="color: maroon">entity</span><span style="color: navy"><b> -&gt; </b></span> attester.party = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Reference'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">reference</span><span style="color: navy">, </span> reference.reference = <span style="color: navy">(</span>'urn:uuid:' + %practitioner.id<span style="color: navy">)</span><b> then </b>ClinicalDocumentEntityPractitioner<span style="color: navy">(</span><span style="color: maroon">entity</span><span style="color: navy">, </span><span style="color: maroon">practitioner</span><span style="color: navy">)</span> <i>&quot;entity&quot;</i><span style="color: navy">;</span>
     <span style="color: navy">}</span> <i>&quot;attester&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">}</span> <i>&quot;auth&quot;</i><span style="color: navy">;</span>
@@ -105,8 +110,8 @@
   <span style="color: navy">}</span> <i>&quot;cust&quot;</i><span style="color: navy">;</span>
   src.documentationOf<b> as </b><span style="color: maroon">docOf</span><b> then</b><span style="color: navy"> {
 </span>    docOf.serviceEvent<b> as </b><span style="color: maroon">serviceEvent</span><span style="color: navy"><b> -&gt; </b></span>tgt.event<b> as </b><span style="color: maroon">event</span><b> then</b><span style="color: navy"> {
-</span>      serviceEvent.code<b> as </b><span style="color: maroon">eventCode</span><span style="color: navy"><b> -&gt; </b></span>event.code = <span style="color: maroon">eventCode</span> <i>&quot;eventCode&quot;</i><span style="color: navy">;</span>
-      serviceEvent.effectiveTime<b> as </b><span style="color: maroon">effectivetime</span><span style="color: navy"><b> -&gt; </b></span>event.period = <span style="color: maroon">effectivetime</span> <i>&quot;eventTime&quot;</i><span style="color: navy">;</span> <span style="color: navy">// </span><span style="color: green">performerType: for src.performer.typeCode ...</span>
+</span>      serviceEvent.code<b> as </b><span style="color: maroon">eventCode</span><span style="color: navy"><b> -&gt; </b></span>event.code = <b>create</b><span style="color: navy">(</span><span style="color: blue">'CodeableConcept'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">cc</span><b> then </b>CDCodeableConcept<span style="color: navy">(</span><span style="color: maroon">eventCode</span><span style="color: navy">, </span><span style="color: maroon">cc</span><span style="color: navy">)</span> <i>&quot;eventCode&quot;</i><span style="color: navy">;</span>
+      serviceEvent.effectiveTime<b> as </b><span style="color: maroon">effectivetime</span><span style="color: navy"><b> -&gt; </b></span>event.period = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Period'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">period</span><b> then </b>IVLTSPeriod<span style="color: navy">(</span><span style="color: maroon">effectivetime</span><span style="color: navy">, </span><span style="color: maroon">period</span><span style="color: navy">)</span> <i>&quot;eventTime&quot;</i><span style="color: navy">;</span> <span style="color: navy">// </span><span style="color: green">performerType: for src.performer.typeCode ...</span>
     <span style="color: navy">}</span> <i>&quot;docOf&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">}</span><span style="color: navy">;</span>
   src.relatedDocument<b> as </b><span style="color: maroon">relatedDoc</span><span style="color: navy"><b> -&gt; </b></span>tgt.relatesTo<b> as </b><span style="color: maroon">relates</span><b> then</b><span style="color: navy"> {
@@ -118,19 +123,19 @@
 <span style="color: navy">}
 
 </span><b>group </b>ClinicalDocumentEntityPractitioner<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>AssignedEntity, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Practitioner<span style="color: navy">)</span><span style="color: navy"> {
-</span>  src.id<b> as </b><span style="color: maroon">srcId</span><span style="color: navy"><b> -&gt; </b></span>tgt.identifier = <span style="color: maroon">srcId</span><span style="color: navy">;</span>
-  src.addr<b> as </b><span style="color: maroon">srcAddr</span><span style="color: navy"><b> -&gt; </b></span>tgt.address = <span style="color: maroon">srcAddr</span><span style="color: navy">;</span>
-  src.telecom<b> as </b><span style="color: maroon">srcTelecom</span><span style="color: navy"><b> -&gt; </b></span>tgt.telecom = <span style="color: maroon">srcTelecom</span><span style="color: navy">;</span>
+</span>  src.id<b> as </b><span style="color: maroon">srcId</span><span style="color: navy"><b> -&gt; </b></span>tgt.identifier = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Identifier'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">identifier</span><b> then </b>II<span style="color: navy">(</span><span style="color: maroon">srcId</span><span style="color: navy">, </span><span style="color: maroon">identifier</span><span style="color: navy">)</span><span style="color: navy">;</span>
+  src.addr<b> as </b><span style="color: maroon">srcAddr</span><span style="color: navy"><b> -&gt; </b></span>tgt.address = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Address'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">address</span><b> then </b>ADAddress<span style="color: navy">(</span><span style="color: maroon">srcAddr</span><span style="color: navy">, </span><span style="color: maroon">address</span><span style="color: navy">)</span><span style="color: navy">;</span>
+  src.telecom<b> as </b><span style="color: maroon">srcTelecom</span><span style="color: navy"><b> -&gt; </b></span>tgt.telecom = <b>create</b><span style="color: navy">(</span><span style="color: blue">'ContactPoint'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">contactPoint</span><b> then </b>TELContactPoint<span style="color: navy">(</span><span style="color: maroon">srcTelecom</span><span style="color: navy">, </span><span style="color: maroon">contactPoint</span><span style="color: navy">)</span><span style="color: navy">;</span>
   src.assignedPerson<b> as </b><span style="color: maroon">person</span><b> then</b><span style="color: navy"> {
-</span>    person.name<b> as </b><span style="color: maroon">pName</span><span style="color: navy"><b> -&gt; </b></span>tgt.name = <span style="color: maroon">pName</span><span style="color: navy">;</span>
+</span>    person.name<b> as </b><span style="color: maroon">pName</span><span style="color: navy"><b> -&gt; </b></span>tgt.name = <b>create</b><span style="color: navy">(</span><span style="color: blue">'HumanName'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">humanName</span><b> then </b>ENHumanName<span style="color: navy">(</span><span style="color: maroon">pName</span><span style="color: navy">, </span><span style="color: maroon">humanName</span><span style="color: navy">)</span><span style="color: navy">;</span>
   <span style="color: navy">}</span> <i>&quot;name&quot;</i><span style="color: navy">;</span>
 <span style="color: navy">}
 
 </span><b>group </b>ClinicalDocumentOrganization<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>CustodianOrganization, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Organization<span style="color: navy">)</span><span style="color: navy"> {
-</span>  src.id<b> as </b><span style="color: maroon">srcId</span><span style="color: navy"><b> -&gt; </b></span>tgt.identifier = <span style="color: maroon">srcId</span><span style="color: navy">;</span>
+</span>  src.id<b> as </b><span style="color: maroon">srcId</span><span style="color: navy"><b> -&gt; </b></span>tgt.identifier = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Identifier'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">identifier</span><b> then </b>II<span style="color: navy">(</span><span style="color: maroon">srcId</span><span style="color: navy">, </span><span style="color: maroon">identifier</span><span style="color: navy">)</span><span style="color: navy">;</span>
   src.name<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.name = <span style="color: navy">(</span>v.other<span style="color: navy">)</span><span style="color: navy">;</span>
-  src.telecom<b> as </b><span style="color: maroon">srcTelecom</span><span style="color: navy"><b> -&gt; </b></span>tgt.telecom = <span style="color: maroon">srcTelecom</span><span style="color: navy">;</span>
-  src.addr<b> as </b><span style="color: maroon">srcAddr</span><span style="color: navy"><b> -&gt; </b></span>tgt.address = <span style="color: maroon">srcAddr</span><span style="color: navy">;</span>
+  src.telecom<b> as </b><span style="color: maroon">srcTelecom</span><span style="color: navy"><b> -&gt; </b></span>tgt.telecom = <b>create</b><span style="color: navy">(</span><span style="color: blue">'ContactPoint'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">contactPoint</span><b> then </b>TELContactPoint<span style="color: navy">(</span><span style="color: maroon">srcTelecom</span><span style="color: navy">, </span><span style="color: maroon">contactPoint</span><span style="color: navy">)</span><span style="color: navy">;</span>
+  src.addr<b> as </b><span style="color: maroon">srcAddr</span><span style="color: navy"><b> -&gt; </b></span>tgt.address = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Address'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">address</span><b> then </b>ADAddress<span style="color: navy">(</span><span style="color: maroon">srcAddr</span><span style="color: navy">, </span><span style="color: maroon">address</span><span style="color: navy">)</span><span style="color: navy">;</span>
 <span style="color: navy">}
 
 </span><b>group </b>ClinicalDocumentPatientRole<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>PatientRole, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Patient, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle<span style="color: navy">)</span><span style="color: navy"> {
@@ -138,14 +143,14 @@
   <span style="color: navy">// </span><span style="color: green">Patient.identifier.type for EPR context, because there is only the identifier &quot;LocalPid&quot; allowed, LocalPid requires an type -&gt; http://build.fhir.org/ig/hl7ch/ch-core/branches/master/StructureDefinition-ch-core-composition-patient-epr.html</span>
   <span style="color: navy">// </span><span style="color: green">Modification NR</span>
   src.id<b> as </b><span style="color: maroon">id</span><span style="color: navy"><b> -&gt; </b></span>tgt.identifier = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Identifier'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">identifier</span><b> then </b>setFrPatientIdentifier<span style="color: navy">(</span><span style="color: maroon">id</span><span style="color: navy">, </span><span style="color: maroon">identifier</span><span style="color: navy">)</span><span style="color: navy">;</span>
-  src.addr<b> as </b><span style="color: maroon">srcAddr</span><span style="color: navy"><b> -&gt; </b></span>tgt.address = <span style="color: maroon">srcAddr</span><span style="color: navy">;</span>
-  src.telecom<b> as </b><span style="color: maroon">srcTelecom</span><span style="color: navy"><b> -&gt; </b></span>tgt.telecom = <span style="color: maroon">srcTelecom</span><span style="color: navy">;</span>
+  src.addr<b> as </b><span style="color: maroon">srcAddr</span><span style="color: navy"><b> -&gt; </b></span>tgt.address = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Address'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">address</span><b> then </b>ADAddress<span style="color: navy">(</span><span style="color: maroon">srcAddr</span><span style="color: navy">, </span><span style="color: maroon">address</span><span style="color: navy">)</span><span style="color: navy">;</span>
+  src.telecom<b> as </b><span style="color: maroon">srcTelecom</span><span style="color: navy"><b> -&gt; </b></span>tgt.telecom = <b>create</b><span style="color: navy">(</span><span style="color: blue">'ContactPoint'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">contactPoint</span><b> then </b>TELContactPoint<span style="color: navy">(</span><span style="color: maroon">srcTelecom</span><span style="color: navy">, </span><span style="color: maroon">contactPoint</span><span style="color: navy">)</span><span style="color: navy">;</span>
   src.patient<b> as </b><span style="color: maroon">patient</span><b> then</b><span style="color: navy"> {
-</span>    patient.name<b> as </b><span style="color: maroon">patientName</span><span style="color: navy"><b> -&gt; </b></span>tgt.name = <span style="color: maroon">patientName</span><span style="color: navy">;</span>
+</span>    patient.name<b> as </b><span style="color: maroon">patientName</span><span style="color: navy"><b> -&gt; </b></span>tgt.name = <b>create</b><span style="color: navy">(</span><span style="color: blue">'HumanName'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">humanName</span><b> then </b>ENHumanName<span style="color: navy">(</span><span style="color: maroon">patientName</span><span style="color: navy">, </span><span style="color: maroon">humanName</span><span style="color: navy">)</span><span style="color: navy">;</span>
     patient.administrativeGenderCode<b> as </b><span style="color: maroon">gender</span><b> then</b><span style="color: navy"> {
 </span>      gender.code<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.gender = <b>translate</b><span style="color: navy">(</span><span style="color: maroon">v</span><span style="color: navy">, </span><span style="color: blue">'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/cm-v3-administrative-gender'</span><span style="color: navy">, </span><span style="color: blue">'code'</span><span style="color: navy">)</span> <i>&quot;gender&quot;</i><span style="color: navy">;</span>
     <span style="color: navy">}</span> <i>&quot;gender&quot;</i><span style="color: navy">;</span>
-    patient.birthTime<b> as </b><span style="color: maroon">birthTime</span><span style="color: navy"><b> -&gt; </b></span>tgt.birthDate = <span style="color: maroon">birthTime</span> <i>&quot;birthDate&quot;</i><span style="color: navy">;</span>
+    patient.birthTime<b> as </b><span style="color: maroon">birthTime</span><span style="color: navy"><b> -&gt; </b></span>tgt.birthDate = <b>create</b><span style="color: navy">(</span><span style="color: blue">'date'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">date</span><b> then </b>TSDate<span style="color: navy">(</span><span style="color: maroon">birthTime</span><span style="color: navy">, </span><span style="color: maroon">date</span><span style="color: navy">)</span> <i>&quot;birthDate&quot;</i><span style="color: navy">;</span>
     patient.deceasedInd<b> as </b><span style="color: maroon">indicator</span><b> where </b>patient.deceasedTime.empty()<span style="color: navy"><b> -&gt; </b></span>tgt.deceased = <b>create</b><span style="color: navy">(</span><span style="color: blue">'boolean'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">bool</span><b> then </b>boolean<span style="color: navy">(</span><span style="color: maroon">indicator</span><span style="color: navy">, </span><span style="color: maroon">bool</span><span style="color: navy">)</span> <i>&quot;deceasedBL&quot;</i><span style="color: navy">;</span>
     patient.deceasedTime<b> as </b><span style="color: maroon">dTime</span><span style="color: navy"><b> -&gt; </b></span>tgt.deceased = <span style="color: maroon">dTime</span><span style="color: navy">;</span>
     patient.maritalStatusCode<b> as </b><span style="color: maroon">mStatus</span><span style="color: navy"><b> -&gt; </b></span>tgt.maritalStatus = <span style="color: maroon">mStatus</span> <i>&quot;maritalStatus&quot;</i><span style="color: navy">;</span>
@@ -155,10 +160,10 @@
   <span style="color: navy">}</span> <i>&quot;patientrole&quot;</i><span style="color: navy">;</span>
   src.providerOrganization<b> as </b><span style="color: maroon">org</span><span style="color: navy"><b> -&gt; </b></span> bundle.entry<b> as </b><span style="color: maroon">e</span><span style="color: navy">, </span> e.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Organization'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">organization</span><span style="color: navy">, </span> organization.id = <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">uuid3</span><span style="color: navy">, </span> e.fullUrl = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:uuid:'</span><span style="color: navy">, </span><span style="color: maroon">uuid3</span><span style="color: navy">)</span><b> then</b><span style="color: navy"> {
 </span>    org<span style="color: navy"><b> -&gt; </b></span> tgt.managingOrganization = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Reference'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">reference</span><span style="color: navy">, </span> reference.reference = <span style="color: navy">(</span>'urn:uuid:' + %organization.id<span style="color: navy">)</span> <i>&quot;reference&quot;</i><span style="color: navy">;</span>
-    org.id<b> as </b><span style="color: maroon">orgId</span><span style="color: navy"><b> -&gt; </b></span>organization.identifier = <span style="color: maroon">orgId</span><span style="color: navy">;</span>
+    org.id<b> as </b><span style="color: maroon">orgId</span><span style="color: navy"><b> -&gt; </b></span>organization.identifier = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Identifier'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">identifier</span><b> then </b>II<span style="color: navy">(</span><span style="color: maroon">orgId</span><span style="color: navy">, </span><span style="color: maroon">identifier</span><span style="color: navy">)</span><span style="color: navy">;</span>
     org.name<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>organization.name = <span style="color: navy">(</span>v.other<span style="color: navy">)</span><span style="color: navy">;</span>
-    org.telecom<b> as </b><span style="color: maroon">orgTel</span><span style="color: navy"><b> -&gt; </b></span>organization.telecom = <span style="color: maroon">orgTel</span><span style="color: navy">;</span>
-    org.addr<b> as </b><span style="color: maroon">orgAddr</span><span style="color: navy"><b> -&gt; </b></span>organization.address = <span style="color: maroon">orgAddr</span><span style="color: navy">;</span>
+    org.telecom<b> as </b><span style="color: maroon">orgTel</span><span style="color: navy"><b> -&gt; </b></span>organization.telecom = <b>create</b><span style="color: navy">(</span><span style="color: blue">'ContactPoint'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">contactPoint</span><b> then </b>TELContactPoint<span style="color: navy">(</span><span style="color: maroon">orgTel</span><span style="color: navy">, </span><span style="color: maroon">contactPoint</span><span style="color: navy">)</span><span style="color: navy">;</span>
+    org.addr<b> as </b><span style="color: maroon">orgAddr</span><span style="color: navy"><b> -&gt; </b></span>organization.address = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Address'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">address</span><b> then </b>ADAddress<span style="color: navy">(</span><span style="color: maroon">orgAddr</span><span style="color: navy">, </span><span style="color: maroon">address</span><span style="color: navy">)</span><span style="color: navy">;</span>
   <span style="color: navy">}</span> <i>&quot;organization&quot;</i><span style="color: navy">;</span>
 <span style="color: navy">}
 
@@ -188,16 +193,22 @@
 <span style="color: navy">// </span><span style="color: green">} &quot;identifier&quot;;</span>
 <span style="color: navy">// </span><span style="color: green">Fin état initial</span>
 <b>group </b>ClinicalDocumentEncounter<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>EncompassingEncounter, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Encounter<span style="color: navy">)</span><span style="color: navy"> {
-</span>  src.id<b> as </b><span style="color: maroon">Id</span><span style="color: navy"><b> -&gt; </b></span>tgt.identifier = <span style="color: maroon">Id</span><span style="color: navy">;</span>
-  src.code<b> as </b><span style="color: maroon">srcCode</span><span style="color: navy"><b> -&gt; </b></span>tgt.type = <span style="color: maroon">srcCode</span><span style="color: navy">;</span>
-  src.effectiveTime<b> as </b><span style="color: maroon">effTime</span><span style="color: navy"><b> -&gt; </b></span>tgt.period = <span style="color: maroon">effTime</span><span style="color: navy">;</span>
+</span>  src.id<b> as </b><span style="color: maroon">Id</span><span style="color: navy"><b> -&gt; </b></span>tgt.identifier = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Identifier'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">identifier</span><b> then </b>II<span style="color: navy">(</span><span style="color: maroon">Id</span><span style="color: navy">, </span><span style="color: maroon">identifier</span><span style="color: navy">)</span><span style="color: navy">;</span>
+  src<span style="color: navy"><b> -&gt; </b></span>tgt.status = <span style="color: blue">'finished'</span> <i>&quot;status&quot;</i><span style="color: navy">;</span>
+  src.code<b> as </b><span style="color: maroon">srcCode</span><span style="color: navy"><b> -&gt; </b></span>tgt.class = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Coding'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">coding</span><b> then</b><span style="color: navy"> {
+</span>    srcCode.code<b> as </b><span style="color: maroon">code</span><span style="color: navy"><b> -&gt; </b></span>coding.code = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">code</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span><span style="color: navy">;</span>
+    srcCode.codeSystem<b> as </b><span style="color: maroon">system</span><span style="color: navy"><b> -&gt; </b></span>coding.system = <b>translate</b><span style="color: navy">(</span><span style="color: maroon">system</span><span style="color: navy">, </span><span style="color: blue">'http://hl7.org/fhir/ConceptMap/special-oid2uri'</span><span style="color: navy">, </span><span style="color: blue">'uri'</span><span style="color: navy">)</span><span style="color: navy">;</span>
+    srcCode.displayName<b> as </b><span style="color: maroon">display</span><span style="color: navy"><b> -&gt; </b></span>coding.display = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">display</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;class&quot;</i><span style="color: navy">;</span>
+  src.code<b> as </b><span style="color: maroon">srcCode</span><span style="color: navy"><b> -&gt; </b></span>tgt.type = <b>create</b><span style="color: navy">(</span><span style="color: blue">'CodeableConcept'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">cc</span><b> then </b>CDCodeableConcept<span style="color: navy">(</span><span style="color: maroon">srcCode</span><span style="color: navy">, </span><span style="color: maroon">cc</span><span style="color: navy">)</span><span style="color: navy">;</span>
+  src.effectiveTime<b> as </b><span style="color: maroon">effTime</span><span style="color: navy"><b> -&gt; </b></span>tgt.period = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Period'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">period</span><b> then </b>IVLTSPeriod<span style="color: navy">(</span><span style="color: maroon">effTime</span><span style="color: navy">, </span><span style="color: maroon">period</span><span style="color: navy">)</span><span style="color: navy">;</span>
   src<b> where </b>admissionReferralSourceCode.exists() or dischargeDispositionCode.exists()<span style="color: navy"><b> -&gt; </b></span>tgt.hospitalization<b> as </b><span style="color: maroon">hosp</span><b> then</b><span style="color: navy"> {
-</span>    src.admissionReferralSourceCode<b> as </b><span style="color: maroon">admRef</span><span style="color: navy"><b> -&gt; </b></span>hosp.admitSource = <span style="color: maroon">admRef</span> <i>&quot;adminReferral&quot;</i><span style="color: navy">;</span>
-    src.dischargeDispositionCode<b> as </b><span style="color: maroon">discDispo</span><span style="color: navy"><b> -&gt; </b></span>hosp.dischargeDisposition = <span style="color: maroon">discDispo</span> <i>&quot;discDisposition&quot;</i><span style="color: navy">;</span>
+</span>    src.admissionReferralSourceCode<b> as </b><span style="color: maroon">admRef</span><span style="color: navy"><b> -&gt; </b></span>hosp.admitSource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'CodeableConcept'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">cc</span><b> then </b>CDCodeableConcept<span style="color: navy">(</span><span style="color: maroon">admRef</span><span style="color: navy">, </span><span style="color: maroon">cc</span><span style="color: navy">)</span> <i>&quot;adminReferral&quot;</i><span style="color: navy">;</span>
+    src.dischargeDispositionCode<b> as </b><span style="color: maroon">discDispo</span><span style="color: navy"><b> -&gt; </b></span>hosp.dischargeDisposition = <b>create</b><span style="color: navy">(</span><span style="color: blue">'CodeableConcept'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">cc</span><b> then </b>CDCodeableConcept<span style="color: navy">(</span><span style="color: maroon">discDispo</span><span style="color: navy">, </span><span style="color: maroon">cc</span><span style="color: navy">)</span> <i>&quot;discDisposition&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">}</span> <i>&quot;hospitalization&quot;</i><span style="color: navy">;</span>
   src.encounterParticipant<b> as </b><span style="color: maroon">srcPart</span><span style="color: navy"><b> -&gt; </b></span>tgt.participant<b> as </b><span style="color: maroon">tgtPart</span><b> then</b><span style="color: navy"> {
 </span>    srcPart.typeCode<b> as </b><span style="color: maroon">code</span><span style="color: navy"><b> -&gt; </b></span>tgtPart.type = <b>cc</b><span style="color: navy">(</span><span style="color: blue">'http://terminology.hl7.org/CodeSystem/v3-ParticipationType'</span><span style="color: navy">, </span><span style="color: maroon">code</span><span style="color: navy">)</span><span style="color: navy">;</span>
-    srcPart.time<b> as </b><span style="color: maroon">srcTime</span><span style="color: navy"><b> -&gt; </b></span>tgtPart.period = <span style="color: maroon">srcTime</span><span style="color: navy">;</span>
+    srcPart.time<b> as </b><span style="color: maroon">srcTime</span><span style="color: navy"><b> -&gt; </b></span>tgtPart.period = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Period'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">period</span><b> then </b>IVLTSPeriod<span style="color: navy">(</span><span style="color: maroon">srcTime</span><span style="color: navy">, </span><span style="color: maroon">period</span><span style="color: navy">)</span><span style="color: navy">;</span>
     srcPart.assignedEntity<b> as </b><span style="color: maroon">entity</span><span style="color: navy"><b> -&gt; </b></span> bundle.entry<b> as </b><span style="color: maroon">e</span><span style="color: navy">, </span> e.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Practitioner'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">practitioner</span><span style="color: navy">, </span> practitioner.id = <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">uuid2</span><span style="color: navy">, </span> e.fullUrl = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:uuid:'</span><span style="color: navy">, </span><span style="color: maroon">uuid2</span><span style="color: navy">)</span><b> then</b><span style="color: navy"> {
 </span>      entity<span style="color: navy"><b> -&gt; </b></span> tgtPart.individual = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Reference'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">reference</span><span style="color: navy">, </span> reference.reference = <span style="color: navy">(</span>'urn:uuid:' + %practitioner.id<span style="color: navy">)</span><b> then </b>ClinicalDocumentEntityPractitioner<span style="color: navy">(</span><span style="color: maroon">entity</span><span style="color: navy">, </span><span style="color: maroon">practitioner</span><span style="color: navy">)</span> <i>&quot;entry&quot;</i><span style="color: navy">;</span>
     <span style="color: navy">}</span> <i>&quot;entity&quot;</i><span style="color: navy">;</span>
@@ -210,11 +221,11 @@
 <span style="color: navy">}
 
 </span><b>group </b>ClinicalDocumentLocation<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>HealthCareFacility, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Location<span style="color: navy">)</span><span style="color: navy"> {
-</span>  src.id<b> as </b><span style="color: maroon">srcIdentifier</span><span style="color: navy"><b> -&gt; </b></span>tgt.identifier = <span style="color: maroon">srcIdentifier</span><span style="color: navy">;</span>
-  src.code<b> as </b><span style="color: maroon">srcCode</span><span style="color: navy"><b> -&gt; </b></span>tgt.type = <span style="color: maroon">srcCode</span><span style="color: navy">;</span>
+</span>  src.id<b> as </b><span style="color: maroon">srcIdentifier</span><span style="color: navy"><b> -&gt; </b></span>tgt.identifier = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Identifier'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">identifier</span><b> then </b>II<span style="color: navy">(</span><span style="color: maroon">srcIdentifier</span><span style="color: navy">, </span><span style="color: maroon">identifier</span><span style="color: navy">)</span><span style="color: navy">;</span>
+  src.code<b> as </b><span style="color: maroon">srcCode</span><span style="color: navy"><b> -&gt; </b></span>tgt.type = <b>create</b><span style="color: navy">(</span><span style="color: blue">'CodeableConcept'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">cc</span><b> then </b>CDCodeableConcept<span style="color: navy">(</span><span style="color: maroon">srcCode</span><span style="color: navy">, </span><span style="color: maroon">cc</span><span style="color: navy">)</span><span style="color: navy">;</span>
   src.location<b> as </b><span style="color: maroon">location</span><b> then</b><span style="color: navy"> {
 </span>    <span style="color: navy">// </span><span style="color: green">place names are usually stored with no parts    location.name as srcName -&gt; tgt.name = cast(srcName, 'string');</span>
-    location.addr<b> as </b><span style="color: maroon">locAddr</span><span style="color: navy"><b> -&gt; </b></span>tgt.address = <span style="color: maroon">locAddr</span><span style="color: navy">;</span>
+    location.addr<b> as </b><span style="color: maroon">locAddr</span><span style="color: navy"><b> -&gt; </b></span>tgt.address = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Address'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">address</span><b> then </b>ADAddress<span style="color: navy">(</span><span style="color: maroon">locAddr</span><span style="color: navy">, </span><span style="color: maroon">address</span><span style="color: navy">)</span><span style="color: navy">;</span>
     location.serviceProviderOrganization<b> as </b><span style="color: maroon">srcOrg</span><span style="color: navy"><b> -&gt; </b></span> bundle.entry<b> as </b><span style="color: maroon">e</span><span style="color: navy">, </span> e.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Organization'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">organization</span><span style="color: navy">, </span> organization.id = <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">uuid3</span><span style="color: navy">, </span> e.fullUrl = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:uuid:'</span><span style="color: navy">, </span><span style="color: maroon">uuid3</span><span style="color: navy">)</span><b> then</b><span style="color: navy"> {
 </span>      srcOrg<span style="color: navy"><b> -&gt; </b></span> tgt.managingOrganization = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Reference'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">reference</span><span style="color: navy">, </span> reference.reference = <span style="color: navy">(</span>'urn:uuid:' + %organization.id<span style="color: navy">)</span><b> then </b>ClinicalDocumentOrganization<span style="color: navy">(</span><span style="color: maroon">srcOrg</span><span style="color: navy">, </span><span style="color: maroon">organization</span><span style="color: navy">)</span> <i>&quot;organization&quot;</i><span style="color: navy">;</span>
     <span style="color: navy">}</span> <i>&quot;org&quot;</i><span style="color: navy">;</span>
@@ -234,7 +245,7 @@
   <name value="CdaToBundle"/>
   <title value="Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)"/>
   <status value="draft"/>
-  <date value="2025-10-30T17:21:27+00:00"/>
+  <date value="2025-10-30T20:58:23+00:00"/>
   <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
   <contact>
     <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
@@ -456,17 +467,94 @@
       <source>
         <context value="cda"/>
         <element value="id"/>
-        <variable value="addIdentifier"/>
+        <variable value="cdaId"/>
       </source>
       <target>
         <context value="bundle"/>
         <contextType value="variable"/>
         <element value="identifier"/>
-        <transform value="copy"/>
-        <parameter>
-          <valueId value="addIdentifier"/>
-        </parameter>
+        <variable value="identifier"/>
       </target>
+      <rule>
+        <name value="system"/>
+        <source>
+          <context value="cdaId"/>
+          <element value="root"/>
+          <variable value="root"/>
+          <condition value="cdaId.extension.exists()"/>
+        </source>
+        <target>
+          <context value="identifier"/>
+          <contextType value="variable"/>
+          <element value="system"/>
+          <transform value="translate"/>
+          <parameter>
+            <valueId value="root"/>
+          </parameter>
+          <parameter>
+            <valueString value="#oid2uri"/>
+          </parameter>
+          <parameter>
+            <valueString value="uri"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="value"/>
+        <source>
+          <context value="cdaId"/>
+          <element value="extension"/>
+          <variable value="extension"/>
+        </source>
+        <target>
+          <context value="identifier"/>
+          <contextType value="variable"/>
+          <element value="value"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueId value="extension"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="systemOid"/>
+        <source>
+          <context value="cdaId"/>
+          <element value="root"/>
+          <variable value="root"/>
+          <condition value="cdaId.extension.empty()"/>
+        </source>
+        <target>
+          <context value="identifier"/>
+          <contextType value="variable"/>
+          <element value="system"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueString value="urn:ietf:rfc:3986"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="valueOid"/>
+        <source>
+          <context value="cdaId"/>
+          <element value="root"/>
+          <variable value="root"/>
+          <condition value="cdaId.extension.empty()"/>
+        </source>
+        <target>
+          <context value="identifier"/>
+          <contextType value="variable"/>
+          <element value="value"/>
+          <transform value="append"/>
+          <parameter>
+            <valueString value="urn:oid:"/>
+          </parameter>
+          <parameter>
+            <valueId value="root"/>
+          </parameter>
+        </target>
+      </rule>
     </rule>
     <rule>
       <name value="type"/>
@@ -484,21 +572,27 @@
       </target>
     </rule>
     <rule>
-      <name value="effectiveTime"/>
+      <name value="timestamp"/>
       <source>
         <context value="cda"/>
         <element value="effectiveTime"/>
-        <variable value="timestamp"/>
+        <variable value="effectiveTime"/>
       </source>
       <target>
         <context value="bundle"/>
         <contextType value="variable"/>
         <element value="timestamp"/>
-        <transform value="copy"/>
+        <variable value="timestamp"/>
+        <transform value="create"/>
         <parameter>
-          <valueId value="timestamp"/>
+          <valueString value="instant"/>
         </parameter>
       </target>
+      <dependent>
+        <name value="TSInstant"/>
+        <variable value="effectiveTime"/>
+        <variable value="timestamp"/>
+      </dependent>
     </rule>
     <rule>
       <name value="composition"/>
@@ -726,11 +820,17 @@
         <context value="tgt"/>
         <contextType value="variable"/>
         <element value="language"/>
-        <transform value="copy"/>
+        <variable value="code"/>
+        <transform value="create"/>
         <parameter>
-          <valueId value="languageCode"/>
+          <valueString value="code"/>
         </parameter>
       </target>
+      <dependent>
+        <name value="CSCode"/>
+        <variable value="languageCode"/>
+        <variable value="code"/>
+      </dependent>
     </rule>
     <rule>
       <name value="identifier"/>
@@ -744,28 +844,40 @@
         <context value="tgt"/>
         <contextType value="variable"/>
         <element value="identifier"/>
-        <transform value="copy"/>
+        <variable value="identifier"/>
+        <transform value="create"/>
         <parameter>
-          <valueId value="id"/>
+          <valueString value="Identifier"/>
         </parameter>
       </target>
+      <dependent>
+        <name value="II"/>
+        <variable value="id"/>
+        <variable value="identifier"/>
+      </dependent>
     </rule>
     <rule>
-      <name value="identifier"/>
+      <name value="setIdentifier"/>
       <source>
         <context value="src"/>
         <element value="setId"/>
-        <variable value="setIdentifier"/>
+        <variable value="setId"/>
       </source>
       <target>
         <context value="tgt"/>
         <contextType value="variable"/>
         <element value="identifier"/>
-        <transform value="copy"/>
+        <variable value="identifier"/>
+        <transform value="create"/>
         <parameter>
-          <valueId value="setIdentifier"/>
+          <valueString value="Identifier"/>
         </parameter>
       </target>
+      <dependent>
+        <name value="II"/>
+        <variable value="setId"/>
+        <variable value="identifier"/>
+      </dependent>
     </rule>
     <rule>
       <name value="status"/>
@@ -793,11 +905,17 @@
         <context value="tgt"/>
         <contextType value="variable"/>
         <element value="type"/>
-        <transform value="copy"/>
+        <variable value="cc"/>
+        <transform value="create"/>
         <parameter>
-          <valueId value="srcCode"/>
+          <valueString value="CodeableConcept"/>
         </parameter>
       </target>
+      <dependent>
+        <name value="CDCodeableConcept"/>
+        <variable value="srcCode"/>
+        <variable value="cc"/>
+      </dependent>
     </rule>
     <rule>
       <name value="title"/>
@@ -934,7 +1052,7 @@
       </rule>
     </rule>
     <rule>
-      <name value="effectiveTime"/>
+      <name value="compositionDate"/>
       <source>
         <context value="src"/>
         <element value="effectiveTime"/>
@@ -944,11 +1062,17 @@
         <context value="tgt"/>
         <contextType value="variable"/>
         <element value="date"/>
-        <transform value="copy"/>
+        <variable value="date"/>
+        <transform value="create"/>
         <parameter>
-          <valueId value="effectiveTime"/>
+          <valueString value="dateTime"/>
         </parameter>
       </target>
+      <dependent>
+        <name value="TSDateTime"/>
+        <variable value="effectiveTime"/>
+        <variable value="date"/>
+      </dependent>
     </rule>
     <rule>
       <name value="srcAuthor"/>
@@ -1029,11 +1153,17 @@
             <context value="practitioner"/>
             <contextType value="variable"/>
             <element value="identifier"/>
-            <transform value="copy"/>
+            <variable value="identifier"/>
+            <transform value="create"/>
             <parameter>
-              <valueId value="id"/>
+              <valueString value="Identifier"/>
             </parameter>
           </target>
+          <dependent>
+            <name value="II"/>
+            <variable value="id"/>
+            <variable value="identifier"/>
+          </dependent>
         </rule>
         <rule>
           <name value="addr"/>
@@ -1046,11 +1176,17 @@
             <context value="practitioner"/>
             <contextType value="variable"/>
             <element value="address"/>
-            <transform value="copy"/>
+            <variable value="address"/>
+            <transform value="create"/>
             <parameter>
-              <valueId value="addr"/>
+              <valueString value="Address"/>
             </parameter>
           </target>
+          <dependent>
+            <name value="ADAddress"/>
+            <variable value="addr"/>
+            <variable value="address"/>
+          </dependent>
         </rule>
         <rule>
           <name value="telecom"/>
@@ -1063,11 +1199,17 @@
             <context value="practitioner"/>
             <contextType value="variable"/>
             <element value="telecom"/>
-            <transform value="copy"/>
+            <variable value="contactPoint"/>
+            <transform value="create"/>
             <parameter>
-              <valueId value="tlc"/>
+              <valueString value="ContactPoint"/>
             </parameter>
           </target>
+          <dependent>
+            <name value="TELContactPoint"/>
+            <variable value="tlc"/>
+            <variable value="contactPoint"/>
+          </dependent>
         </rule>
         <rule>
           <name value="name"/>
@@ -1087,11 +1229,17 @@
               <context value="practitioner"/>
               <contextType value="variable"/>
               <element value="name"/>
-              <transform value="copy"/>
+              <variable value="humanName"/>
+              <transform value="create"/>
               <parameter>
-                <valueId value="pName"/>
+                <valueString value="HumanName"/>
               </parameter>
             </target>
+            <dependent>
+              <name value="ENHumanName"/>
+              <variable value="pName"/>
+              <variable value="humanName"/>
+            </dependent>
           </rule>
         </rule>
         <rule>
@@ -1174,11 +1322,17 @@
         <context value="tgt"/>
         <contextType value="variable"/>
         <element value="confidentiality"/>
-        <transform value="copy"/>
+        <variable value="code"/>
+        <transform value="create"/>
         <parameter>
-          <valueId value="confCode"/>
+          <valueString value="code"/>
         </parameter>
       </target>
+      <dependent>
+        <name value="CSCode"/>
+        <variable value="confCode"/>
+        <variable value="code"/>
+      </dependent>
     </rule>
     <rule>
       <name value="legalAuth"/>
@@ -1259,11 +1413,17 @@
             <context value="attester"/>
             <contextType value="variable"/>
             <element value="time"/>
-            <transform value="copy"/>
+            <variable value="dt"/>
+            <transform value="create"/>
             <parameter>
-              <valueId value="time"/>
+              <valueString value="dateTime"/>
             </parameter>
           </target>
+          <dependent>
+            <name value="TSDateTime"/>
+            <variable value="time"/>
+            <variable value="dt"/>
+          </dependent>
         </rule>
         <rule>
           <name value="entity"/>
@@ -1378,11 +1538,17 @@
             <context value="attester"/>
             <contextType value="variable"/>
             <element value="time"/>
-            <transform value="copy"/>
+            <variable value="dt"/>
+            <transform value="create"/>
             <parameter>
-              <valueId value="time"/>
+              <valueString value="dateTime"/>
             </parameter>
           </target>
+          <dependent>
+            <name value="TSDateTime"/>
+            <variable value="time"/>
+            <variable value="dt"/>
+          </dependent>
         </rule>
         <rule>
           <name value="entity"/>
@@ -1532,11 +1698,17 @@
             <context value="event"/>
             <contextType value="variable"/>
             <element value="code"/>
-            <transform value="copy"/>
+            <variable value="cc"/>
+            <transform value="create"/>
             <parameter>
-              <valueId value="eventCode"/>
+              <valueString value="CodeableConcept"/>
             </parameter>
           </target>
+          <dependent>
+            <name value="CDCodeableConcept"/>
+            <variable value="eventCode"/>
+            <variable value="cc"/>
+          </dependent>
         </rule>
         <rule>
           <name value="eventTime"/>
@@ -1549,11 +1721,17 @@
             <context value="event"/>
             <contextType value="variable"/>
             <element value="period"/>
-            <transform value="copy"/>
+            <variable value="period"/>
+            <transform value="create"/>
             <parameter>
-              <valueId value="effectivetime"/>
+              <valueString value="Period"/>
             </parameter>
           </target>
+          <dependent>
+            <name value="IVLTSPeriod"/>
+            <variable value="effectivetime"/>
+            <variable value="period"/>
+          </dependent>
           <documentation value="performerType: for src.performer.typeCode ..."/>
         </rule>
       </rule>
@@ -1639,11 +1817,17 @@
         <context value="tgt"/>
         <contextType value="variable"/>
         <element value="identifier"/>
-        <transform value="copy"/>
+        <variable value="identifier"/>
+        <transform value="create"/>
         <parameter>
-          <valueId value="srcId"/>
+          <valueString value="Identifier"/>
         </parameter>
       </target>
+      <dependent>
+        <name value="II"/>
+        <variable value="srcId"/>
+        <variable value="identifier"/>
+      </dependent>
     </rule>
     <rule>
       <name value="addr"/>
@@ -1656,11 +1840,17 @@
         <context value="tgt"/>
         <contextType value="variable"/>
         <element value="address"/>
-        <transform value="copy"/>
+        <variable value="address"/>
+        <transform value="create"/>
         <parameter>
-          <valueId value="srcAddr"/>
+          <valueString value="Address"/>
         </parameter>
       </target>
+      <dependent>
+        <name value="ADAddress"/>
+        <variable value="srcAddr"/>
+        <variable value="address"/>
+      </dependent>
     </rule>
     <rule>
       <name value="telecom"/>
@@ -1673,11 +1863,17 @@
         <context value="tgt"/>
         <contextType value="variable"/>
         <element value="telecom"/>
-        <transform value="copy"/>
+        <variable value="contactPoint"/>
+        <transform value="create"/>
         <parameter>
-          <valueId value="srcTelecom"/>
+          <valueString value="ContactPoint"/>
         </parameter>
       </target>
+      <dependent>
+        <name value="TELContactPoint"/>
+        <variable value="srcTelecom"/>
+        <variable value="contactPoint"/>
+      </dependent>
     </rule>
     <rule>
       <name value="name"/>
@@ -1697,11 +1893,17 @@
           <context value="tgt"/>
           <contextType value="variable"/>
           <element value="name"/>
-          <transform value="copy"/>
+          <variable value="humanName"/>
+          <transform value="create"/>
           <parameter>
-            <valueId value="pName"/>
+            <valueString value="HumanName"/>
           </parameter>
         </target>
+        <dependent>
+          <name value="ENHumanName"/>
+          <variable value="pName"/>
+          <variable value="humanName"/>
+        </dependent>
       </rule>
     </rule>
   </group>
@@ -1729,11 +1931,17 @@
         <context value="tgt"/>
         <contextType value="variable"/>
         <element value="identifier"/>
-        <transform value="copy"/>
+        <variable value="identifier"/>
+        <transform value="create"/>
         <parameter>
-          <valueId value="srcId"/>
+          <valueString value="Identifier"/>
         </parameter>
       </target>
+      <dependent>
+        <name value="II"/>
+        <variable value="srcId"/>
+        <variable value="identifier"/>
+      </dependent>
     </rule>
     <rule>
       <name value="name"/>
@@ -1763,11 +1971,17 @@
         <context value="tgt"/>
         <contextType value="variable"/>
         <element value="telecom"/>
-        <transform value="copy"/>
+        <variable value="contactPoint"/>
+        <transform value="create"/>
         <parameter>
-          <valueId value="srcTelecom"/>
+          <valueString value="ContactPoint"/>
         </parameter>
       </target>
+      <dependent>
+        <name value="TELContactPoint"/>
+        <variable value="srcTelecom"/>
+        <variable value="contactPoint"/>
+      </dependent>
     </rule>
     <rule>
       <name value="addr"/>
@@ -1780,11 +1994,17 @@
         <context value="tgt"/>
         <contextType value="variable"/>
         <element value="address"/>
-        <transform value="copy"/>
+        <variable value="address"/>
+        <transform value="create"/>
         <parameter>
-          <valueId value="srcAddr"/>
+          <valueString value="Address"/>
         </parameter>
       </target>
+      <dependent>
+        <name value="ADAddress"/>
+        <variable value="srcAddr"/>
+        <variable value="address"/>
+      </dependent>
     </rule>
   </group>
   <group>
@@ -1839,11 +2059,17 @@
         <context value="tgt"/>
         <contextType value="variable"/>
         <element value="address"/>
-        <transform value="copy"/>
+        <variable value="address"/>
+        <transform value="create"/>
         <parameter>
-          <valueId value="srcAddr"/>
+          <valueString value="Address"/>
         </parameter>
       </target>
+      <dependent>
+        <name value="ADAddress"/>
+        <variable value="srcAddr"/>
+        <variable value="address"/>
+      </dependent>
     </rule>
     <rule>
       <name value="telecom"/>
@@ -1856,11 +2082,17 @@
         <context value="tgt"/>
         <contextType value="variable"/>
         <element value="telecom"/>
-        <transform value="copy"/>
+        <variable value="contactPoint"/>
+        <transform value="create"/>
         <parameter>
-          <valueId value="srcTelecom"/>
+          <valueString value="ContactPoint"/>
         </parameter>
       </target>
+      <dependent>
+        <name value="TELContactPoint"/>
+        <variable value="srcTelecom"/>
+        <variable value="contactPoint"/>
+      </dependent>
     </rule>
     <rule>
       <name value="patientrole"/>
@@ -1880,11 +2112,17 @@
           <context value="tgt"/>
           <contextType value="variable"/>
           <element value="name"/>
-          <transform value="copy"/>
+          <variable value="humanName"/>
+          <transform value="create"/>
           <parameter>
-            <valueId value="patientName"/>
+            <valueString value="HumanName"/>
           </parameter>
         </target>
+        <dependent>
+          <name value="ENHumanName"/>
+          <variable value="patientName"/>
+          <variable value="humanName"/>
+        </dependent>
       </rule>
       <rule>
         <name value="gender"/>
@@ -1928,11 +2166,17 @@
           <context value="tgt"/>
           <contextType value="variable"/>
           <element value="birthDate"/>
-          <transform value="copy"/>
+          <variable value="date"/>
+          <transform value="create"/>
           <parameter>
-            <valueId value="birthTime"/>
+            <valueString value="date"/>
           </parameter>
         </target>
+        <dependent>
+          <name value="TSDate"/>
+          <variable value="birthTime"/>
+          <variable value="date"/>
+        </dependent>
       </rule>
       <rule>
         <name value="deceasedBL"/>
@@ -2103,11 +2347,17 @@
           <context value="organization"/>
           <contextType value="variable"/>
           <element value="identifier"/>
-          <transform value="copy"/>
+          <variable value="identifier"/>
+          <transform value="create"/>
           <parameter>
-            <valueId value="orgId"/>
+            <valueString value="Identifier"/>
           </parameter>
         </target>
+        <dependent>
+          <name value="II"/>
+          <variable value="orgId"/>
+          <variable value="identifier"/>
+        </dependent>
       </rule>
       <rule>
         <name value="name"/>
@@ -2137,11 +2387,17 @@
           <context value="organization"/>
           <contextType value="variable"/>
           <element value="telecom"/>
-          <transform value="copy"/>
+          <variable value="contactPoint"/>
+          <transform value="create"/>
           <parameter>
-            <valueId value="orgTel"/>
+            <valueString value="ContactPoint"/>
           </parameter>
         </target>
+        <dependent>
+          <name value="TELContactPoint"/>
+          <variable value="orgTel"/>
+          <variable value="contactPoint"/>
+        </dependent>
       </rule>
       <rule>
         <name value="addr"/>
@@ -2154,11 +2410,17 @@
           <context value="organization"/>
           <contextType value="variable"/>
           <element value="address"/>
-          <transform value="copy"/>
+          <variable value="address"/>
+          <transform value="create"/>
           <parameter>
-            <valueId value="orgAddr"/>
+            <valueString value="Address"/>
           </parameter>
         </target>
+        <dependent>
+          <name value="ADAddress"/>
+          <variable value="orgAddr"/>
+          <variable value="address"/>
+        </dependent>
       </rule>
     </rule>
   </group>
@@ -2353,11 +2615,113 @@
         <context value="tgt"/>
         <contextType value="variable"/>
         <element value="identifier"/>
-        <transform value="copy"/>
+        <variable value="identifier"/>
+        <transform value="create"/>
         <parameter>
-          <valueId value="Id"/>
+          <valueString value="Identifier"/>
         </parameter>
       </target>
+      <dependent>
+        <name value="II"/>
+        <variable value="Id"/>
+        <variable value="identifier"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="status"/>
+      <source>
+        <context value="src"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="status"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueString value="finished"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
+      <name value="class"/>
+      <source>
+        <context value="src"/>
+        <element value="code"/>
+        <variable value="srcCode"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="class"/>
+        <variable value="coding"/>
+        <transform value="create"/>
+        <parameter>
+          <valueString value="Coding"/>
+        </parameter>
+      </target>
+      <rule>
+        <name value="code"/>
+        <source>
+          <context value="srcCode"/>
+          <element value="code"/>
+          <variable value="code"/>
+        </source>
+        <target>
+          <context value="coding"/>
+          <contextType value="variable"/>
+          <element value="code"/>
+          <transform value="cast"/>
+          <parameter>
+            <valueId value="code"/>
+          </parameter>
+          <parameter>
+            <valueString value="string"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="codeSystem"/>
+        <source>
+          <context value="srcCode"/>
+          <element value="codeSystem"/>
+          <variable value="system"/>
+        </source>
+        <target>
+          <context value="coding"/>
+          <contextType value="variable"/>
+          <element value="system"/>
+          <transform value="translate"/>
+          <parameter>
+            <valueId value="system"/>
+          </parameter>
+          <parameter>
+            <valueString value="http://hl7.org/fhir/ConceptMap/special-oid2uri"/>
+          </parameter>
+          <parameter>
+            <valueString value="uri"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="displayName"/>
+        <source>
+          <context value="srcCode"/>
+          <element value="displayName"/>
+          <variable value="display"/>
+        </source>
+        <target>
+          <context value="coding"/>
+          <contextType value="variable"/>
+          <element value="display"/>
+          <transform value="cast"/>
+          <parameter>
+            <valueId value="display"/>
+          </parameter>
+          <parameter>
+            <valueString value="string"/>
+          </parameter>
+        </target>
+      </rule>
     </rule>
     <rule>
       <name value="code"/>
@@ -2370,11 +2734,17 @@
         <context value="tgt"/>
         <contextType value="variable"/>
         <element value="type"/>
-        <transform value="copy"/>
+        <variable value="cc"/>
+        <transform value="create"/>
         <parameter>
-          <valueId value="srcCode"/>
+          <valueString value="CodeableConcept"/>
         </parameter>
       </target>
+      <dependent>
+        <name value="CDCodeableConcept"/>
+        <variable value="srcCode"/>
+        <variable value="cc"/>
+      </dependent>
     </rule>
     <rule>
       <name value="effectiveTime"/>
@@ -2387,11 +2757,17 @@
         <context value="tgt"/>
         <contextType value="variable"/>
         <element value="period"/>
-        <transform value="copy"/>
+        <variable value="period"/>
+        <transform value="create"/>
         <parameter>
-          <valueId value="effTime"/>
+          <valueString value="Period"/>
         </parameter>
       </target>
+      <dependent>
+        <name value="IVLTSPeriod"/>
+        <variable value="effTime"/>
+        <variable value="period"/>
+      </dependent>
     </rule>
     <rule>
       <name value="hospitalization"/>
@@ -2416,11 +2792,17 @@
           <context value="hosp"/>
           <contextType value="variable"/>
           <element value="admitSource"/>
-          <transform value="copy"/>
+          <variable value="cc"/>
+          <transform value="create"/>
           <parameter>
-            <valueId value="admRef"/>
+            <valueString value="CodeableConcept"/>
           </parameter>
         </target>
+        <dependent>
+          <name value="CDCodeableConcept"/>
+          <variable value="admRef"/>
+          <variable value="cc"/>
+        </dependent>
       </rule>
       <rule>
         <name value="discDisposition"/>
@@ -2433,11 +2815,17 @@
           <context value="hosp"/>
           <contextType value="variable"/>
           <element value="dischargeDisposition"/>
-          <transform value="copy"/>
+          <variable value="cc"/>
+          <transform value="create"/>
           <parameter>
-            <valueId value="discDispo"/>
+            <valueString value="CodeableConcept"/>
           </parameter>
         </target>
+        <dependent>
+          <name value="CDCodeableConcept"/>
+          <variable value="discDispo"/>
+          <variable value="cc"/>
+        </dependent>
       </rule>
     </rule>
     <rule>
@@ -2484,11 +2872,17 @@
           <context value="tgtPart"/>
           <contextType value="variable"/>
           <element value="period"/>
-          <transform value="copy"/>
+          <variable value="period"/>
+          <transform value="create"/>
           <parameter>
-            <valueId value="srcTime"/>
+            <valueString value="Period"/>
           </parameter>
         </target>
+        <dependent>
+          <name value="IVLTSPeriod"/>
+          <variable value="srcTime"/>
+          <variable value="period"/>
+        </dependent>
       </rule>
       <rule>
         <name value="entity"/>
@@ -2682,11 +3076,17 @@
         <context value="tgt"/>
         <contextType value="variable"/>
         <element value="identifier"/>
-        <transform value="copy"/>
+        <variable value="identifier"/>
+        <transform value="create"/>
         <parameter>
-          <valueId value="srcIdentifier"/>
+          <valueString value="Identifier"/>
         </parameter>
       </target>
+      <dependent>
+        <name value="II"/>
+        <variable value="srcIdentifier"/>
+        <variable value="identifier"/>
+      </dependent>
     </rule>
     <rule>
       <name value="code"/>
@@ -2699,11 +3099,17 @@
         <context value="tgt"/>
         <contextType value="variable"/>
         <element value="type"/>
-        <transform value="copy"/>
+        <variable value="cc"/>
+        <transform value="create"/>
         <parameter>
-          <valueId value="srcCode"/>
+          <valueString value="CodeableConcept"/>
         </parameter>
       </target>
+      <dependent>
+        <name value="CDCodeableConcept"/>
+        <variable value="srcCode"/>
+        <variable value="cc"/>
+      </dependent>
     </rule>
     <rule>
       <name value="location"/>
@@ -2723,11 +3129,17 @@
           <context value="tgt"/>
           <contextType value="variable"/>
           <element value="address"/>
-          <transform value="copy"/>
+          <variable value="address"/>
+          <transform value="create"/>
           <parameter>
-            <valueId value="locAddr"/>
+            <valueString value="Address"/>
           </parameter>
         </target>
+        <dependent>
+          <name value="ADAddress"/>
+          <variable value="locAddr"/>
+          <variable value="address"/>
+        </dependent>
       </rule>
       <rule>
         <name value="org"/>

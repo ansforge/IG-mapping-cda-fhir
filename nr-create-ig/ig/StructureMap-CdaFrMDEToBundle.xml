@@ -27,16 +27,17 @@
 <b>group </b>CdaFrMDEMapping<span style="color: navy">(</span><b>source</b> <span style="color: maroon">cda</span><span style="color: navy"> : </span>ClinicalDocument, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy"> : </span>Patient, <b>target</b> <span style="color: maroon">composition</span><span style="color: navy"> : </span>Composition, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle<span style="color: navy">)</span><span style="color: navy"> {
 </span>  <span style="color: navy">// </span><span style="color: green">Bundle metadata</span>
   cda<span style="color: navy"><b> -&gt; </b></span>bundle.id = <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span> <i>&quot;bundleId&quot;</i><span style="color: navy">;</span>
-  cda.id<b> as </b><span style="color: maroon">id</span><span style="color: navy"><b> -&gt; </b></span>bundle.identifier = <span style="color: maroon">id</span> <i>&quot;bundleIdentifier&quot;</i><span style="color: navy">;</span>
+  cda.id<b> as </b><span style="color: maroon">cdaId</span><span style="color: navy"><b> -&gt; </b></span>bundle.identifier<b> as </b><span style="color: maroon">identifier</span><b> then</b><span style="color: navy"> {
+</span>    cdaId.root<b> as </b><span style="color: maroon">root</span><b> where </b>cdaId.extension.exists()<span style="color: navy"><b> -&gt; </b></span>identifier.system = <b>translate</b><span style="color: navy">(</span><span style="color: maroon">root</span><span style="color: navy">, </span><span style="color: blue">'#oid2uri'</span><span style="color: navy">, </span><span style="color: blue">'uri'</span><span style="color: navy">)</span> <i>&quot;system&quot;</i><span style="color: navy">;</span>
+    cdaId.extension<b> as </b><span style="color: maroon">extension</span><span style="color: navy"><b> -&gt; </b></span>identifier.value = <span style="color: maroon">extension</span> <i>&quot;value&quot;</i><span style="color: navy">;</span>
+    cdaId.root<b> as </b><span style="color: maroon">root</span><b> where </b>cdaId.extension.empty()<span style="color: navy"><b> -&gt; </b></span>identifier.system = <span style="color: blue">'urn:ietf:rfc:3986'</span> <i>&quot;systemOid&quot;</i><span style="color: navy">;</span>
+    cdaId.root<b> as </b><span style="color: maroon">root</span><b> where </b>cdaId.extension.empty()<span style="color: navy"><b> -&gt; </b></span>identifier.value = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:oid:'</span><span style="color: navy">, </span><span style="color: maroon">root</span><span style="color: navy">)</span> <i>&quot;valueOid&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;bundleIdentifier&quot;</i><span style="color: navy">;</span>
   cda<span style="color: navy"><b> -&gt; </b></span>bundle.type = <span style="color: blue">'document'</span> <i>&quot;bundleType&quot;</i><span style="color: navy">;</span>
-  cda.effectiveTime<b> as </b><span style="color: maroon">timestamp</span><span style="color: navy"><b> -&gt; </b></span>bundle.timestamp = <span style="color: maroon">timestamp</span> <i>&quot;bundleTimestamp&quot;</i><span style="color: navy">;</span>
-  <span style="color: navy">// </span><span style="color: green">Composition using CdaToBundle function</span>
+  cda.effectiveTime<b> as </b><span style="color: maroon">effectiveTime</span><span style="color: navy"><b> -&gt; </b></span>bundle.timestamp = <b>create</b><span style="color: navy">(</span><span style="color: blue">'instant'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">timestamp</span><b> then </b>TSInstant<span style="color: navy">(</span><span style="color: maroon">effectiveTime</span><span style="color: navy">, </span><span style="color: maroon">timestamp</span><span style="color: navy">)</span> <i>&quot;bundleTimestamp&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Composition using CdaToBundle function (includes patient mapping)</span>
   cda<span style="color: navy"><b> -&gt; </b></span>composition<b> then </b>ClinicalDocumentComposition<span style="color: navy">(</span><span style="color: maroon">cda</span><span style="color: navy">, </span><span style="color: maroon">composition</span><span style="color: navy">, </span><span style="color: maroon">patient</span><span style="color: navy">, </span><span style="color: maroon">bundle</span><span style="color: navy">)</span> <i>&quot;composition&quot;</i><span style="color: navy">;</span>
-  <span style="color: navy">// </span><span style="color: green">Patient data using CdaToBundle function</span>
-  cda.recordTarget<b> as </b><span style="color: maroon">recordTarget</span><b> then</b><span style="color: navy"> {
-</span>    recordTarget.patientRole<b> as </b><span style="color: maroon">patientRole</span><b> then </b>ClinicalDocumentPatientRole<span style="color: navy">(</span><span style="color: maroon">patientRole</span><span style="color: navy">, </span><span style="color: maroon">patient</span><span style="color: navy">, </span><span style="color: maroon">bundle</span><span style="color: navy">)</span><span style="color: navy">;</span>
-  <span style="color: navy">}</span><span style="color: navy">;</span>
-  <span style="color: navy">// </span><span style="color: green">Add gender mapping after ClinicalDocumentPatientRole</span>
+  <span style="color: navy">// </span><span style="color: green">Add gender mapping after ClinicalDocumentComposition (which calls ClinicalDocumentPatientRole)</span>
   cda.recordTarget<b> as </b><span style="color: maroon">recordTarget</span><b> then</b><span style="color: navy"> {
 </span>    recordTarget.patientRole<b> as </b><span style="color: maroon">patientRole</span><b> then</b><span style="color: navy"> {
 </span>      patientRole.patient<b> as </b><span style="color: maroon">cdaPatient</span><b> then</b><span style="color: navy"> {
@@ -52,14 +53,14 @@
 </span>          <span style="color: navy">// </span><span style="color: green">Create composition section</span>
           section<span style="color: navy"><b> -&gt; </b></span>composition.section<b> as </b><span style="color: maroon">compSection</span><b> then</b><span style="color: navy"> {
 </span>            section.title<b> as </b><span style="color: maroon">sectionTitle</span><span style="color: navy"><b> -&gt; </b></span>compSection.title = <span style="color: navy">(</span>sectionTitle.xmlText<span style="color: navy">)</span> <i>&quot;sectionTitle&quot;</i><span style="color: navy">;</span>
-            section.code<b> as </b><span style="color: maroon">sectionCode</span><span style="color: navy"><b> -&gt; </b></span>compSection.code = <span style="color: maroon">sectionCode</span> <i>&quot;sectionCode&quot;</i><span style="color: navy">;</span>
+            section.code<b> as </b><span style="color: maroon">sectionCode</span><span style="color: navy"><b> -&gt; </b></span>compSection.code = <b>create</b><span style="color: navy">(</span><span style="color: blue">'CodeableConcept'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">cc</span><b> then </b>CDCodeableConcept<span style="color: navy">(</span><span style="color: maroon">sectionCode</span><span style="color: navy">, </span><span style="color: maroon">cc</span><span style="color: navy">)</span> <i>&quot;sectionCode&quot;</i><span style="color: navy">;</span>
             section.text<b> as </b><span style="color: maroon">sectionText</span><span style="color: navy"><b> -&gt; </b></span>compSection.text = <span style="color: maroon">sectionText</span> <i>&quot;sectionText&quot;</i><span style="color: navy">;</span>
             <span style="color: navy">// </span><span style="color: green">Process observations in organizers</span>
             section.entry<b> as </b><span style="color: maroon">entry</span><b> then</b><span style="color: navy"> {
 </span>              entry.organizer<b> as </b><span style="color: maroon">organizer</span><b> then</b><span style="color: navy"> {
 </span>                organizer.component<b> as </b><span style="color: maroon">orgComp</span><b> then</b><span style="color: navy"> {
 </span>                  orgComp.observation<b> as </b><span style="color: maroon">obs</span><b> then</b><span style="color: navy"> {
-</span>                    obs<span style="color: navy"><b> -&gt; </b></span> bundle.entry<b> as </b><span style="color: maroon">obsEntry</span><span style="color: navy">, </span> obsEntry.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Observation'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">observation</span><span style="color: navy">, </span> observation.id = <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">obsUuid</span><span style="color: navy">, </span> obsEntry.fullUrl = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:uuid:'</span><span style="color: navy">, </span><span style="color: maroon">obsUuid</span><span style="color: navy">)</span><span style="color: navy">, </span> compSection.entry = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Reference'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">obsRef</span><span style="color: navy">, </span> obsRef.reference = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:uuid:'</span><span style="color: navy">, </span><span style="color: maroon">obsUuid</span><span style="color: navy">)</span><b> then </b>ProcessObservation<span style="color: navy">(</span><span style="color: maroon">obs</span><span style="color: navy">, </span><span style="color: maroon">observation</span><span style="color: navy">, </span><span style="color: maroon">patient</span><span style="color: navy">)</span> <i>&quot;processObs&quot;</i><span style="color: navy">;</span>
+</span>                    obs<span style="color: navy"><b> -&gt; </b></span> bundle.entry<b> as </b><span style="color: maroon">obsEntry</span><span style="color: navy">, </span> obsEntry.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Observation'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">observation</span><span style="color: navy">, </span> observation.id = <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">obsUuid</span><span style="color: navy">, </span> obsEntry.fullUrl = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:uuid:'</span><span style="color: navy">, </span><span style="color: maroon">obsUuid</span><span style="color: navy">)</span><span style="color: navy">, </span> compSection.entry = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Reference'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">obsRef</span><span style="color: navy">, </span> obsRef.reference = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:uuid:'</span><span style="color: navy">, </span><span style="color: maroon">obsUuid</span><span style="color: navy">)</span><b> then </b>ProcessObservation<span style="color: navy">(</span><span style="color: maroon">cda</span><span style="color: navy">, </span><span style="color: maroon">obs</span><span style="color: navy">, </span><span style="color: maroon">observation</span><span style="color: navy">, </span><span style="color: maroon">patient</span><span style="color: navy">, </span><span style="color: maroon">composition</span><span style="color: navy">)</span> <i>&quot;processObs&quot;</i><span style="color: navy">;</span>
                   <span style="color: navy">}</span><span style="color: navy">;</span>
                 <span style="color: navy">}</span> <i>&quot;orgComponent&quot;</i><span style="color: navy">;</span>
               <span style="color: navy">}</span><span style="color: navy">;</span>
@@ -72,11 +73,31 @@
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">Process individual observation using CdaToFHIRTypes functions</span>
-<b>group </b>ProcessObservation<span style="color: navy">(</span><b>source</b> <span style="color: maroon">obs</span>, <b>target</b> <span style="color: maroon">observation</span><span style="color: navy"> : </span>Observation, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy"> : </span>Patient<span style="color: navy">)</span><span style="color: navy"> {
-</span>  <span style="color: navy">// </span><span style="color: green">Status using CSCode from CdaToFHIRTypes</span>
-  obs.statusCode<b> as </b><span style="color: maroon">statusCode</span><span style="color: navy"><b> -&gt; </b></span>observation.status = <b>create</b><span style="color: navy">(</span><span style="color: blue">'code'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">status</span><b> then </b>CSCode<span style="color: navy">(</span><span style="color: maroon">statusCode</span><span style="color: navy">, </span><span style="color: maroon">status</span><span style="color: navy">)</span> <i>&quot;obsStatus&quot;</i><span style="color: navy">;</span>
+<b>group </b>ProcessObservation<span style="color: navy">(</span><b>source</b> <span style="color: maroon">cda</span><span style="color: navy"> : </span>ClinicalDocument, <b>source</b> <span style="color: maroon">obs</span>, <b>target</b> <span style="color: maroon">observation</span><span style="color: navy"> : </span>Observation, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy"> : </span>Patient, <b>target</b> <span style="color: maroon">composition</span><span style="color: navy"> : </span>Composition<span style="color: navy">)</span><span style="color: navy"> {
+</span>  <span style="color: navy">// </span><span style="color: green">Meta profile - ANS profiles based on LOINC code</span>
+  obs.code<b> as </b><span style="color: maroon">obsCode</span><b> where </b>code = '29463-7'<span style="color: navy"><b> -&gt; </b></span>observation.meta = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Meta'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">meta</span><b> then</b><span style="color: navy"> {
+</span>    obsCode<span style="color: navy"><b> -&gt; </b></span>meta.profile = <span style="color: blue">'https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-fr-observation-body-weight'</span> <i>&quot;profileWeight&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;metaWeight&quot;</i><span style="color: navy">;</span>
+  obs.code<b> as </b><span style="color: maroon">obsCode</span><b> where </b>code = '8302-2'<span style="color: navy"><b> -&gt; </b></span>observation.meta = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Meta'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">meta</span><b> then</b><span style="color: navy"> {
+</span>    obsCode<span style="color: navy"><b> -&gt; </b></span>meta.profile = <span style="color: blue">'https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-fr-observation-bodyheight'</span> <i>&quot;profileHeight&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;metaHeight&quot;</i><span style="color: navy">;</span>
+  obs.code<b> as </b><span style="color: maroon">obsCode</span><b> where </b>code = '8287-5'<span style="color: navy"><b> -&gt; </b></span>observation.meta = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Meta'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">meta</span><b> then</b><span style="color: navy"> {
+</span>    obsCode<span style="color: navy"><b> -&gt; </b></span>meta.profile = <span style="color: blue">'https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-observation-head-circumference'</span> <i>&quot;profileHeadCirc&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;metaHeadCirc&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Status - map CDA &quot;completed&quot; to FHIR &quot;final&quot;</span>
+  obs.statusCode<b> as </b><span style="color: maroon">statusCode</span><b> where </b>code = 'completed'<span style="color: navy"><b> -&gt; </b></span>observation.status = <span style="color: blue">'final'</span> <i>&quot;statusCompleted&quot;</i><span style="color: navy">;</span>
+  obs.statusCode<b> as </b><span style="color: maroon">statusCode</span><b> where </b>code != 'completed'<span style="color: navy"><b> -&gt; </b></span>observation.status = <b>create</b><span style="color: navy">(</span><span style="color: blue">'code'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">status</span><b> then </b>CSCode<span style="color: navy">(</span><span style="color: maroon">statusCode</span><span style="color: navy">, </span><span style="color: maroon">status</span><span style="color: navy">)</span> <i>&quot;statusOther&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Category - vital-signs for all observations in CSE-MDE</span>
+  obs<span style="color: navy"><b> -&gt; </b></span>observation.category = <b>create</b><span style="color: navy">(</span><span style="color: blue">'CodeableConcept'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">category</span><b> then</b><span style="color: navy"> {
+</span>    obs<span style="color: navy"><b> -&gt; </b></span>category.coding = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Coding'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">coding</span><b> then</b><span style="color: navy"> {
+</span>      obs<span style="color: navy"><b> -&gt; </b></span>coding.system = <span style="color: blue">'http://terminology.hl7.org/CodeSystem/observation-category'</span> <i>&quot;system&quot;</i><span style="color: navy">;</span>
+      obs<span style="color: navy"><b> -&gt; </b></span>coding.code = <span style="color: blue">'vital-signs'</span> <i>&quot;code&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;coding&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;category&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">Code using CDCodeableConcept from CdaToFHIRTypes</span>
   obs.code<b> as </b><span style="color: maroon">code</span><span style="color: navy"><b> -&gt; </b></span>observation.code = <b>create</b><span style="color: navy">(</span><span style="color: blue">'CodeableConcept'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">cc</span><b> then </b>CDCodeableConcept<span style="color: navy">(</span><span style="color: maroon">code</span><span style="color: navy">, </span><span style="color: maroon">cc</span><span style="color: navy">)</span> <i>&quot;obsCode&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">EffectiveDateTime - use effectiveTime from observation</span>
+  obs.effectiveTime<b> as </b><span style="color: maroon">effectiveTime</span><span style="color: navy"><b> -&gt; </b></span>observation.effective = <b>create</b><span style="color: navy">(</span><span style="color: blue">'dateTime'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">dt</span><b> then </b>TSDateTime<span style="color: navy">(</span><span style="color: maroon">effectiveTime</span><span style="color: navy">, </span><span style="color: maroon">dt</span><span style="color: navy">)</span> <i>&quot;effectiveDateTime&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">Value as Quantity using PQQuantity from CdaToFHIRTypes</span>
   obs.value<b> as </b><span style="color: maroon">value</span><span style="color: navy"><b> -&gt; </b></span>observation.value = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Quantity'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">qty</span><b> then </b>PQQuantity<span style="color: navy">(</span><span style="color: maroon">value</span><span style="color: navy">, </span><span style="color: maroon">qty</span><span style="color: navy">)</span> <i>&quot;obsValue&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">Subject reference</span>
@@ -98,7 +119,7 @@
   <name value="CdaFrMDEToBundle"/>
   <title value="Mapping CSE-MDE vers FHIR Bundle - Contexte Français"/>
   <status value="draft"/>
-  <date value="2025-10-30T17:21:27+00:00"/>
+  <date value="2025-10-30T20:58:23+00:00"/>
   <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
   <contact>
     <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
@@ -282,17 +303,94 @@
       <source>
         <context value="cda"/>
         <element value="id"/>
-        <variable value="id"/>
+        <variable value="cdaId"/>
       </source>
       <target>
         <context value="bundle"/>
         <contextType value="variable"/>
         <element value="identifier"/>
-        <transform value="copy"/>
-        <parameter>
-          <valueId value="id"/>
-        </parameter>
+        <variable value="identifier"/>
       </target>
+      <rule>
+        <name value="system"/>
+        <source>
+          <context value="cdaId"/>
+          <element value="root"/>
+          <variable value="root"/>
+          <condition value="cdaId.extension.exists()"/>
+        </source>
+        <target>
+          <context value="identifier"/>
+          <contextType value="variable"/>
+          <element value="system"/>
+          <transform value="translate"/>
+          <parameter>
+            <valueId value="root"/>
+          </parameter>
+          <parameter>
+            <valueString value="#oid2uri"/>
+          </parameter>
+          <parameter>
+            <valueString value="uri"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="value"/>
+        <source>
+          <context value="cdaId"/>
+          <element value="extension"/>
+          <variable value="extension"/>
+        </source>
+        <target>
+          <context value="identifier"/>
+          <contextType value="variable"/>
+          <element value="value"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueId value="extension"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="systemOid"/>
+        <source>
+          <context value="cdaId"/>
+          <element value="root"/>
+          <variable value="root"/>
+          <condition value="cdaId.extension.empty()"/>
+        </source>
+        <target>
+          <context value="identifier"/>
+          <contextType value="variable"/>
+          <element value="system"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueString value="urn:ietf:rfc:3986"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="valueOid"/>
+        <source>
+          <context value="cdaId"/>
+          <element value="root"/>
+          <variable value="root"/>
+          <condition value="cdaId.extension.empty()"/>
+        </source>
+        <target>
+          <context value="identifier"/>
+          <contextType value="variable"/>
+          <element value="value"/>
+          <transform value="append"/>
+          <parameter>
+            <valueString value="urn:oid:"/>
+          </parameter>
+          <parameter>
+            <valueId value="root"/>
+          </parameter>
+        </target>
+      </rule>
     </rule>
     <rule>
       <name value="bundleType"/>
@@ -314,17 +412,23 @@
       <source>
         <context value="cda"/>
         <element value="effectiveTime"/>
-        <variable value="timestamp"/>
+        <variable value="effectiveTime"/>
       </source>
       <target>
         <context value="bundle"/>
         <contextType value="variable"/>
         <element value="timestamp"/>
-        <transform value="copy"/>
+        <variable value="timestamp"/>
+        <transform value="create"/>
         <parameter>
-          <valueId value="timestamp"/>
+          <valueString value="instant"/>
         </parameter>
       </target>
+      <dependent>
+        <name value="TSInstant"/>
+        <variable value="effectiveTime"/>
+        <variable value="timestamp"/>
+      </dependent>
     </rule>
     <rule>
       <name value="composition"/>
@@ -342,28 +446,6 @@
         <variable value="patient"/>
         <variable value="bundle"/>
       </dependent>
-    </rule>
-    <rule>
-      <name value="recordTarget"/>
-      <source>
-        <context value="cda"/>
-        <element value="recordTarget"/>
-        <variable value="recordTarget"/>
-      </source>
-      <rule>
-        <name value="patientRole"/>
-        <source>
-          <context value="recordTarget"/>
-          <element value="patientRole"/>
-          <variable value="patientRole"/>
-        </source>
-        <dependent>
-          <name value="ClinicalDocumentPatientRole"/>
-          <variable value="patientRole"/>
-          <variable value="patient"/>
-          <variable value="bundle"/>
-        </dependent>
-      </rule>
     </rule>
     <rule>
       <name value="recordTargetGender"/>
@@ -469,11 +551,17 @@
                   <context value="compSection"/>
                   <contextType value="variable"/>
                   <element value="code"/>
-                  <transform value="copy"/>
+                  <variable value="cc"/>
+                  <transform value="create"/>
                   <parameter>
-                    <valueId value="sectionCode"/>
+                    <valueString value="CodeableConcept"/>
                   </parameter>
                 </target>
+                <dependent>
+                  <name value="CDCodeableConcept"/>
+                  <variable value="sectionCode"/>
+                  <variable value="cc"/>
+                </dependent>
               </rule>
               <rule>
                 <name value="sectionText"/>
@@ -584,9 +672,11 @@
                         </target>
                         <dependent>
                           <name value="ProcessObservation"/>
+                          <variable value="cda"/>
                           <variable value="obs"/>
                           <variable value="observation"/>
                           <variable value="patient"/>
+                          <variable value="composition"/>
                         </dependent>
                       </rule>
                     </rule>
@@ -604,6 +694,11 @@
     <typeMode value="none"/>
     <documentation value="Process individual observation using CdaToFHIRTypes functions"/>
     <input>
+      <name value="cda"/>
+      <type value="ClinicalDocument"/>
+      <mode value="source"/>
+    </input>
+    <input>
       <name value="obs"/>
       <mode value="source"/>
     </input>
@@ -617,12 +712,138 @@
       <type value="Patient"/>
       <mode value="target"/>
     </input>
+    <input>
+      <name value="composition"/>
+      <type value="Composition"/>
+      <mode value="target"/>
+    </input>
     <rule>
-      <name value="obsStatus"/>
+      <name value="metaWeight"/>
+      <source>
+        <context value="obs"/>
+        <element value="code"/>
+        <variable value="obsCode"/>
+        <condition value="code = '29463-7'"/>
+      </source>
+      <target>
+        <context value="observation"/>
+        <contextType value="variable"/>
+        <element value="meta"/>
+        <variable value="meta"/>
+        <transform value="create"/>
+        <parameter>
+          <valueString value="Meta"/>
+        </parameter>
+      </target>
+      <rule>
+        <name value="profileWeight"/>
+        <source>
+          <context value="obsCode"/>
+        </source>
+        <target>
+          <context value="meta"/>
+          <contextType value="variable"/>
+          <element value="profile"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueString value="https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-fr-observation-body-weight"/>
+          </parameter>
+        </target>
+      </rule>
+    </rule>
+    <rule>
+      <name value="metaHeight"/>
+      <source>
+        <context value="obs"/>
+        <element value="code"/>
+        <variable value="obsCode"/>
+        <condition value="code = '8302-2'"/>
+      </source>
+      <target>
+        <context value="observation"/>
+        <contextType value="variable"/>
+        <element value="meta"/>
+        <variable value="meta"/>
+        <transform value="create"/>
+        <parameter>
+          <valueString value="Meta"/>
+        </parameter>
+      </target>
+      <rule>
+        <name value="profileHeight"/>
+        <source>
+          <context value="obsCode"/>
+        </source>
+        <target>
+          <context value="meta"/>
+          <contextType value="variable"/>
+          <element value="profile"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueString value="https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-fr-observation-bodyheight"/>
+          </parameter>
+        </target>
+      </rule>
+    </rule>
+    <rule>
+      <name value="metaHeadCirc"/>
+      <source>
+        <context value="obs"/>
+        <element value="code"/>
+        <variable value="obsCode"/>
+        <condition value="code = '8287-5'"/>
+      </source>
+      <target>
+        <context value="observation"/>
+        <contextType value="variable"/>
+        <element value="meta"/>
+        <variable value="meta"/>
+        <transform value="create"/>
+        <parameter>
+          <valueString value="Meta"/>
+        </parameter>
+      </target>
+      <rule>
+        <name value="profileHeadCirc"/>
+        <source>
+          <context value="obsCode"/>
+        </source>
+        <target>
+          <context value="meta"/>
+          <contextType value="variable"/>
+          <element value="profile"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueString value="https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-observation-head-circumference"/>
+          </parameter>
+        </target>
+      </rule>
+    </rule>
+    <rule>
+      <name value="statusCompleted"/>
       <source>
         <context value="obs"/>
         <element value="statusCode"/>
         <variable value="statusCode"/>
+        <condition value="code = 'completed'"/>
+      </source>
+      <target>
+        <context value="observation"/>
+        <contextType value="variable"/>
+        <element value="status"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueString value="final"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
+      <name value="statusOther"/>
+      <source>
+        <context value="obs"/>
+        <element value="statusCode"/>
+        <variable value="statusCode"/>
+        <condition value="code != 'completed'"/>
       </source>
       <target>
         <context value="observation"/>
@@ -639,6 +860,68 @@
         <variable value="statusCode"/>
         <variable value="status"/>
       </dependent>
+    </rule>
+    <rule>
+      <name value="category"/>
+      <source>
+        <context value="obs"/>
+      </source>
+      <target>
+        <context value="observation"/>
+        <contextType value="variable"/>
+        <element value="category"/>
+        <variable value="category"/>
+        <transform value="create"/>
+        <parameter>
+          <valueString value="CodeableConcept"/>
+        </parameter>
+      </target>
+      <rule>
+        <name value="coding"/>
+        <source>
+          <context value="obs"/>
+        </source>
+        <target>
+          <context value="category"/>
+          <contextType value="variable"/>
+          <element value="coding"/>
+          <variable value="coding"/>
+          <transform value="create"/>
+          <parameter>
+            <valueString value="Coding"/>
+          </parameter>
+        </target>
+        <rule>
+          <name value="system"/>
+          <source>
+            <context value="obs"/>
+          </source>
+          <target>
+            <context value="coding"/>
+            <contextType value="variable"/>
+            <element value="system"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueString value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+            </parameter>
+          </target>
+        </rule>
+        <rule>
+          <name value="code"/>
+          <source>
+            <context value="obs"/>
+          </source>
+          <target>
+            <context value="coding"/>
+            <contextType value="variable"/>
+            <element value="code"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueString value="vital-signs"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
     </rule>
     <rule>
       <name value="obsCode"/>
@@ -661,6 +944,29 @@
         <name value="CDCodeableConcept"/>
         <variable value="code"/>
         <variable value="cc"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="effectiveDateTime"/>
+      <source>
+        <context value="obs"/>
+        <element value="effectiveTime"/>
+        <variable value="effectiveTime"/>
+      </source>
+      <target>
+        <context value="observation"/>
+        <contextType value="variable"/>
+        <element value="effective"/>
+        <variable value="dt"/>
+        <transform value="create"/>
+        <parameter>
+          <valueString value="dateTime"/>
+        </parameter>
+      </target>
+      <dependent>
+        <name value="TSDateTime"/>
+        <variable value="effectiveTime"/>
+        <variable value="dt"/>
       </dependent>
     </rule>
     <rule>

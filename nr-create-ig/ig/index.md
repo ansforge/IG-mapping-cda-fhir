@@ -222,9 +222,15 @@ Le mapping `CdaFrMDEToBundle.fml` est un mapping spécialisé pour les documents
 {
   "resourceType": "Observation",
   "status": "final",
+  "category": [{
+    "coding": [{
+      "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+      "code": "vital-signs"
+    }]
+  }],
   "code": {
     "coding": [{
-      "system": "urn:oid:2.16.840.1.113883.6.1",
+      "system": "http://loinc.org",
       "code": "29463-7",
       "display": "Poids"
     }]
@@ -232,16 +238,62 @@ Le mapping `CdaFrMDEToBundle.fml` est un mapping spécialisé pour les documents
   "subject": {
     "reference": "urn:uuid:..."
   },
+  "effectiveDateTime": "2023-01-06",
   "valueQuantity": {
     "value": 3900,
     "unit": "g",
+    "system": "http://unitsofmeasure.org",
     "code": "g"
   }
 }
 
 ```
 
-**Note** : Pour plus de détails sur l'historique technique du développement, les problèmes rencontrés et les leçons apprises, consultez le fichier [Notes techniques (claude.md)](claude.md).
+**Améliorations récentes apportées au mapping :**
+
+* ✅ **Ajout de`Observation.category`** : Toutes les observations sont catégorisées comme `vital-signs` conformément au package ANS [ans.fhir.fr.mesures#3.1.0](https://interop.esante.gouv.fr/ig/fhir/mesures/3.1.0/)
+* ✅ **Ajout de`Observation.effectiveDateTime`** : Extrait depuis `effectiveTime` de l'observation CDA (si présent et non `nullFlavor`)
+* ✅ **Correction de`Observation.status`** : Mapping de CDA "completed" vers FHIR "final"
+* ✅ **Ajout du système UCUM aux quantités** : Toutes les `valueQuantity` incluent `system: "http://unitsofmeasure.org"` et `code` en plus de `unit`
+* ✅ **Conversion des codes LOINC** : Système correctement mappé vers `http://loinc.org`
+* ✅ **Ajout de`Encounter.status`** : Défini à `finished` pour les rencontres terminées
+* ✅ **Ajout de`Encounter.class`** : Extrait du code CDA de la rencontre
+* ✅ **Correction de`Patient.birthDate`** : Format date simple conforme FHIR
+* ✅ **Correction de`Composition.confidentiality`** : Code simple au lieu d'objet complexe
+* ✅ **Correction de`attester.time`** : Format dateTime conforme FHIR
+* ✅ **Ajout de`meta.profile`** : Profils ANS ajoutés selon le code LOINC (mesures-fr-observation-body-weight, mesures-fr-observation-bodyheight, mesures-observation-head-circumference)
+
+**Limitations identifiées dans les données CDA source :**
+
+Les exemples CDA fournis présentent certaines limitations qui génèrent des warnings FHIR (non bloquants) :
+
+1. ⚠️**Absence de timezone sur`Encounter.period`**: Les dates/heures de la rencontre dans le CDA n'incluent pas de timezone
+
+```
+<!-- CDA source -->
+<effectiveTime>
+  <low value="20250106111510"/>  <!-- Pas de timezone +0100 -->
+  <high value="20250106113623"/> <!-- Pas de timezone +0100 -->
+</effectiveTime>
+
+```
+
+**Impact**: Warning FHIR "If a date has a time, it must have a timezone"**Solution**: Ajouter le timezone dans le CDA source (ex:`20250106111510+0100`)
+1. ⚠️**Absence de`Observation.effectiveDateTime`**: Les observations CDA utilisent`nullFlavor="NASK"`(Not Asked)
+
+```
+<!-- CDA source -->
+<observation>
+  <code code="29463-7" displayName="Poids" codeSystem="2.16.840.1.113883.6.1"/>
+  <effectiveTime nullFlavor="NASK"/>  <!-- Pas de date effective -->
+  <value xsi:type="PQ" value="3900" unit="g"/>
+</observation>
+
+```
+
+**Impact**: Warning FHIR "Best Practice Recommendation: In general, all observations should have an effective[x]"**Solution**: Fournir une date/heure effective dans le CDA source (ex:`<effectiveTime value="20230106"/>`)
+
+**Note** : Ces limitations proviennent des données CDA d'exemple et non du mapping FML. Le mapping transforme fidèlement les données CDA disponibles. Pour plus de détails sur l'historique technique du développement, les problèmes rencontrés et les leçons apprises, consultez le fichier [Notes techniques (claude.md)](claude.md).
 
 ### Arrêter et redémarrer
 
@@ -301,9 +353,26 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
 * [ISO 3166-1 Codes for the representation of names of countries and their subdivisions — Part 1: Country code](http://terminology.hl7.org/6.5.0/CodeSystem-ISO3166Part1.html): [CDA2FHIRMAP](index.md), [CdaFrMDEToBundle](StructureMap-CdaFrMDEToBundle.md)...Show 4 more,[CdaFrToBundle](StructureMap-CdaFrToBundle.md),[CdaToBundle](StructureMap-CdaToBundle.md),[CdaToFHIRTypes](StructureMap-CdaToFHIRTypes.md)and[CdaToFhirAdministrativeGender](ConceptMap-cm-v3-administrative-gender.md)
 
 
+* The UCUM codes, UCUM table (regardless of format), and UCUM Specification are copyright 1999-2009, Regenstrief Institute, Inc. and the Unified Codes for Units of Measures (UCUM) Organization. All rights reserved. [https://ucum.org/trac/wiki/TermsOfUse](https://ucum.org/trac/wiki/TermsOfUse)
+
+* [Unified Code for Units of Measure (UCUM)](http://terminology.hl7.org/6.5.0/CodeSystem-v3-ucum.html): [Bundle/86be429f-d9df-4810-a817-0e098b4483fd](Bundle-86be429f-d9df-4810-a817-0e098b4483fd.md) and [Bundle/edef0890-a41a-46f3-a5b6-ea5758f820e5](Bundle-edef0890-a41a-46f3-a5b6-ea5758f820e5.md)
+
+
+* This material contains content from [LOINC](http://loinc.org). LOINC is copyright © 1995-2020, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the [license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc.
+
+* [LOINC](http://terminology.hl7.org/6.5.0/CodeSystem-v3-loinc.html): [Bundle/86be429f-d9df-4810-a817-0e098b4483fd](Bundle-86be429f-d9df-4810-a817-0e098b4483fd.md) and [Bundle/edef0890-a41a-46f3-a5b6-ea5758f820e5](Bundle-edef0890-a41a-46f3-a5b6-ea5758f820e5.md)
+
+
+* This material contains content that is copyright of SNOMED International. Implementers of these specifications must have the appropriate SNOMED CT Affiliate license - for more information contact [https://www.snomed.org/get-snomed](https://www.snomed.org/get-snomed) or [info@snomed.org](mailto:info@snomed.org).
+
+* [SNOMED Clinical Terms&reg; (SNOMED CT&reg;)](http://hl7.org/fhir/R4/codesystem-snomedct.html): [Bundle/86be429f-d9df-4810-a817-0e098b4483fd](Bundle-86be429f-d9df-4810-a817-0e098b4483fd.md) and [Bundle/edef0890-a41a-46f3-a5b6-ea5758f820e5](Bundle-edef0890-a41a-46f3-a5b6-ea5758f820e5.md)
+
+
 * This material derives from the HL7 Terminology (THO). THO is copyright ©1989+ Health Level Seven International and is made available under the CC0 designation. For more licensing information see: [https://terminology.hl7.org/license.html](https://terminology.hl7.org/license.html)
 
-* [identifierType](http://terminology.hl7.org/6.5.0/CodeSystem-v2-0203.html): [Bundle/1812b285-b1e2-40a6-a4cf-0463aff4c82d](Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.md) and [Bundle/aad5cc88-a2b2-4688-9906-195073d66064](Bundle-aad5cc88-a2b2-4688-9906-195073d66064.md)
+* [Observation Category Codes](http://terminology.hl7.org/6.5.0/CodeSystem-observation-category.html): [Bundle/86be429f-d9df-4810-a817-0e098b4483fd](Bundle-86be429f-d9df-4810-a817-0e098b4483fd.md) and [Bundle/edef0890-a41a-46f3-a5b6-ea5758f820e5](Bundle-edef0890-a41a-46f3-a5b6-ea5758f820e5.md)
+* [identifierType](http://terminology.hl7.org/6.5.0/CodeSystem-v2-0203.html): [Bundle/86be429f-d9df-4810-a817-0e098b4483fd](Bundle-86be429f-d9df-4810-a817-0e098b4483fd.md) and [Bundle/edef0890-a41a-46f3-a5b6-ea5758f820e5](Bundle-edef0890-a41a-46f3-a5b6-ea5758f820e5.md)
+* [ActCode](http://terminology.hl7.org/6.5.0/CodeSystem-v3-ActCode.html): [Bundle/86be429f-d9df-4810-a817-0e098b4483fd](Bundle-86be429f-d9df-4810-a817-0e098b4483fd.md) and [Bundle/edef0890-a41a-46f3-a5b6-ea5758f820e5](Bundle-edef0890-a41a-46f3-a5b6-ea5758f820e5.md)
 
 
 
@@ -319,7 +388,7 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2025-10-30T17:21:27+00:00",
+  "date" : "2025-10-30T20:58:23+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {
@@ -1128,22 +1197,9 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
           }
         ],
         "reference" : {
-          "reference" : "Bundle/1812b285-b1e2-40a6-a4cf-0463aff4c82d"
+          "reference" : "Bundle/86be429f-d9df-4810-a817-0e098b4483fd"
         },
-        "name" : "1812b285-b1e2-40a6-a4cf-0463aff4c82d",
-        "exampleBoolean" : false
-      },
-      {
-        "extension" : [
-          {
-            "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-            "valueString" : "Bundle"
-          }
-        ],
-        "reference" : {
-          "reference" : "Bundle/aad5cc88-a2b2-4688-9906-195073d66064"
-        },
-        "name" : "aad5cc88-a2b2-4688-9906-195073d66064",
+        "name" : "86be429f-d9df-4810-a817-0e098b4483fd",
         "exampleBoolean" : false
       },
       {
@@ -1158,6 +1214,19 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
         },
         "name" : "CDA to FHIR Administrative Gender Mapping",
         "description" : "Mapping between CDA v3 Administrative Gender codes and FHIR Administrative Gender codes",
+        "exampleBoolean" : false
+      },
+      {
+        "extension" : [
+          {
+            "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString" : "Bundle"
+          }
+        ],
+        "reference" : {
+          "reference" : "Bundle/edef0890-a41a-46f3-a5b6-ea5758f820e5"
+        },
+        "name" : "edef0890-a41a-46f3-a5b6-ea5758f820e5",
         "exampleBoolean" : false
       },
       {

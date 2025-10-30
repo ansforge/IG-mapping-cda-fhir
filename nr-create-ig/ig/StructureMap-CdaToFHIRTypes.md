@@ -87,8 +87,8 @@ group TSDate(source src : TS, target tgt : date) extends TSInstant <<types>> {
 }
 
 group IVLTSPeriod(source src : IVL_TS, target tgt : Period) extends Any <<types>> {
-  src.low as low -> tgt.start = low;
-  src.high as high -> tgt.end = high;
+  src.low as low -> tgt.start = create('dateTime') as start then TSDateTime(low, start);
+  src.high as high -> tgt.end = create('dateTime') as end then TSDateTime(high, end);
 }
 
 group IVLTSDateTime(source src : IVL_TS, target tgt : dateTime) extends Any <<types>> {
@@ -119,12 +119,12 @@ group CECodeableConcept(source src : CE, target tgt : CodeableConcept) {
   src.originalText as originalText -> tgt.text = originalText "setOriginalText";
   src -> tgt.coding as coding then {
     src.code as code -> coding.code = cast(code, 'string');
-    // src.codeSystem as system -> coding.system = translate(system, 'http://hl7.org/fhir/ConceptMap/special-oid2uri', 'uri');
+    src.codeSystem as system -> coding.system = translate(system, 'http://hl7.org/fhir/ConceptMap/special-oid2uri', 'uri');
     src.displayName as display -> coding.display = cast(display, 'string');
   } "code";
   src.translation as translation -> tgt.coding as coding then {
     translation.code as code -> coding.code = cast(code, 'string');
-    // translation.codeSystem as system -> coding.system = translate(system, 'http://hl7.org/fhir/ConceptMap/special-oid2uri', 'uri');
+    translation.codeSystem as system -> coding.system = translate(system, 'http://hl7.org/fhir/ConceptMap/special-oid2uri', 'uri');
     translation.displayName as display -> coding.display = cast(display, 'string');
   };
 }
@@ -184,8 +184,9 @@ group TELContactPoint(source src : TEL, target tgt : ContactPoint) {
 }
 
 group PQQuantity(source src : PQ, target tgt : Quantity) {
-  // src.unit as unit -> tgt.code = unit;
   src.unit as unit -> tgt.unit = unit;
+  src.unit as unit -> tgt.code = unit;
+  src.unit as unit -> tgt.system = 'http://unitsofmeasure.org';
   src.value as value -> tgt.value = value;
 }
 
@@ -210,7 +211,7 @@ group RTOPQPQRatio(source src : RTO_PQ_PQ, target tgt : Ratio) {
   "name" : "CdaToFHIRTypes",
   "title" : "Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)",
   "status" : "draft",
-  "date" : "2025-10-30T17:21:27+00:00",
+  "date" : "2025-10-30T20:58:23+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {
@@ -929,12 +930,19 @@ group RTOPQPQRatio(source src : RTO_PQ_PQ, target tgt : Ratio) {
               "context" : "tgt",
               "contextType" : "variable",
               "element" : "start",
-              "transform" : "copy",
+              "variable" : "start",
+              "transform" : "create",
               "parameter" : [
                 {
-                  "valueId" : "low"
+                  "valueString" : "dateTime"
                 }
               ]
+            }
+          ],
+          "dependent" : [
+            {
+              "name" : "TSDateTime",
+              "variable" : ["low", "start"]
             }
           ]
         },
@@ -952,12 +960,19 @@ group RTOPQPQRatio(source src : RTO_PQ_PQ, target tgt : Ratio) {
               "context" : "tgt",
               "contextType" : "variable",
               "element" : "end",
-              "transform" : "copy",
+              "variable" : "end",
+              "transform" : "create",
               "parameter" : [
                 {
-                  "valueId" : "high"
+                  "valueString" : "dateTime"
                 }
               ]
+            }
+          ],
+          "dependent" : [
+            {
+              "name" : "TSDateTime",
+              "variable" : ["high", "end"]
             }
           ]
         }
@@ -1235,6 +1250,35 @@ group RTOPQPQRatio(source src : RTO_PQ_PQ, target tgt : Ratio) {
               ]
             },
             {
+              "name" : "codeSystem",
+              "source" : [
+                {
+                  "context" : "src",
+                  "element" : "codeSystem",
+                  "variable" : "system"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "coding",
+                  "contextType" : "variable",
+                  "element" : "system",
+                  "transform" : "translate",
+                  "parameter" : [
+                    {
+                      "valueId" : "system"
+                    },
+                    {
+                      "valueString" : "http://hl7.org/fhir/ConceptMap/special-oid2uri"
+                    },
+                    {
+                      "valueString" : "uri"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
               "name" : "displayName",
               "source" : [
                 {
@@ -1301,6 +1345,35 @@ group RTOPQPQRatio(source src : RTO_PQ_PQ, target tgt : Ratio) {
                     },
                     {
                       "valueString" : "string"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name" : "codeSystem",
+              "source" : [
+                {
+                  "context" : "translation",
+                  "element" : "codeSystem",
+                  "variable" : "system"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "coding",
+                  "contextType" : "variable",
+                  "element" : "system",
+                  "transform" : "translate",
+                  "parameter" : [
+                    {
+                      "valueId" : "system"
+                    },
+                    {
+                      "valueString" : "http://hl7.org/fhir/ConceptMap/special-oid2uri"
+                    },
+                    {
+                      "valueString" : "uri"
                     }
                   ]
                 }
@@ -2153,6 +2226,52 @@ group RTOPQPQRatio(source src : RTO_PQ_PQ, target tgt : Ratio) {
               "parameter" : [
                 {
                   "valueId" : "unit"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name" : "unit",
+          "source" : [
+            {
+              "context" : "src",
+              "element" : "unit",
+              "variable" : "unit"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "tgt",
+              "contextType" : "variable",
+              "element" : "code",
+              "transform" : "copy",
+              "parameter" : [
+                {
+                  "valueId" : "unit"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name" : "unit",
+          "source" : [
+            {
+              "context" : "src",
+              "element" : "unit",
+              "variable" : "unit"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "tgt",
+              "contextType" : "variable",
+              "element" : "system",
+              "transform" : "copy",
+              "parameter" : [
+                {
+                  "valueString" : "http://unitsofmeasure.org"
                 }
               ]
             }

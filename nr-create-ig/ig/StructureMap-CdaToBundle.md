@@ -44,9 +44,14 @@ group CdaToBundle(source cda : ClinicalDocument, target bundle : Bundle) {
 
 group ClinicalDocumentToBundle(source cda : ClinicalDocument, target patient : Patient, target composition : Composition, target bundle : Bundle) {
   cda -> bundle.id = uuid() "id";
-  cda.id as addIdentifier -> bundle.identifier = addIdentifier "identifier";
+  cda.id as cdaId -> bundle.identifier as identifier then {
+    cdaId.root as root where cdaId.extension.exists() -> identifier.system = translate(root, '#oid2uri', 'uri') "system";
+    cdaId.extension as extension -> identifier.value = extension "value";
+    cdaId.root as root where cdaId.extension.empty() -> identifier.system = 'urn:ietf:rfc:3986' "systemOid";
+    cdaId.root as root where cdaId.extension.empty() -> identifier.value = append('urn:oid:', root) "valueOid";
+  } "identifier";
   cda -> bundle.type = 'document' "type";
-  cda.effectiveTime as timestamp -> bundle.timestamp = timestamp;
+  cda.effectiveTime as effectiveTime -> bundle.timestamp = create('instant') as timestamp then TSInstant(effectiveTime, timestamp) "timestamp";
   cda then ClinicalDocumentComposition(cda, composition, patient, bundle) "composition";
   cda.component as cdaComponent then {
     cdaComponent.structuredBody as body then {
@@ -71,11 +76,11 @@ group ClinicalDocumentSection(source cda : ClinicalDocument, source src : Sectio
 // _________________________ Entry Level Templates   ________________________
 // _________________________ Header Level Templates _________________________
 group ClinicalDocumentComposition(source src : ClinicalDocument, target tgt : Composition, target patientResource : Patient, target bundle : Bundle) {
-  src.languageCode as languageCode -> tgt.language = languageCode;
-  src.id as id where src.setId.exists().not() -> tgt.identifier = id "identifier";
-  src.setId as setIdentifier -> tgt.identifier = setIdentifier "identifier";
+  src.languageCode as languageCode -> tgt.language = create('code') as code then CSCode(languageCode, code);
+  src.id as id where src.setId.exists().not() -> tgt.identifier = create('Identifier') as identifier then II(id, identifier) "identifier";
+  src.setId as setId -> tgt.identifier = create('Identifier') as identifier then II(setId, identifier) "setIdentifier";
   src -> tgt.status = 'final' "status";
-  src.code as srcCode -> tgt.type = srcCode;
+  src.code as srcCode -> tgt.type = create('CodeableConcept') as cc then CDCodeableConcept(srcCode, cc);
   src.title as t -> tgt.title = (t.xmlText);
   src.recordTarget as recordTarget then {
     recordTarget.patientRole as patient ->  tgt.subject = create('Reference') as reference,  reference.reference = ('urn:uuid:' + %patientResource.id) then ClinicalDocumentPatientRole(patient, patientResource, bundle) "subject";
@@ -83,30 +88,30 @@ group ClinicalDocumentComposition(source src : ClinicalDocument, target tgt : Co
   src.componentOf as comp ->  bundle.entry as e,  e.resource = create('Encounter') as encounter,  encounter.id = uuid() as uuid,  e.fullUrl = append('urn:uuid:', uuid) then {
     comp.encompassingEncounter as srcEnc ->  tgt.encounter = create('Reference') as reference,  reference.reference = ('urn:uuid:' + %encounter.id) then ClinicalDocumentEncounter(srcEnc, bundle, encounter) "srcEncounter";
   } "encompassingEncounter";
-  src.effectiveTime as effectiveTime -> tgt.date = effectiveTime;
+  src.effectiveTime as effectiveTime -> tgt.date = create('dateTime') as date then TSDateTime(effectiveTime, date) "compositionDate";
   src.author as srcAuthor ->  bundle.entry as e,  e.resource = create('Practitioner') as practitioner,  practitioner.id = uuid() as uuid2,  e.fullUrl = append('urn:uuid:', uuid2),  tgt.author = create('Reference') as reference,  reference.reference = ('urn:uuid:' + %practitioner.id) then {
     srcAuthor.assignedAuthor as assignedAuthor then {
-      assignedAuthor.id as id -> practitioner.identifier = id;
-      assignedAuthor.addr as addr -> practitioner.address = addr;
-      assignedAuthor.telecom as tlc -> practitioner.telecom = tlc;
+      assignedAuthor.id as id -> practitioner.identifier = create('Identifier') as identifier then II(id, identifier);
+      assignedAuthor.addr as addr -> practitioner.address = create('Address') as address then ADAddress(addr, address);
+      assignedAuthor.telecom as tlc -> practitioner.telecom = create('ContactPoint') as contactPoint then TELContactPoint(tlc, contactPoint);
       assignedAuthor.assignedPerson as assPerson then {
-        assPerson.name as pName -> practitioner.name = pName;
+        assPerson.name as pName -> practitioner.name = create('HumanName') as humanName then ENHumanName(pName, humanName);
       } "name";
       assignedAuthor.representedOrganization as srcOrg ->  bundle.entry as e2,  e2.resource = create('Organization') as organization,  organization.id = uuid() as uuid3,  e2.fullUrl = append('urn:uuid:', uuid3),  tgt.author = create('Reference') as reference2,  reference2.reference = ('urn:uuid:' + %organization.id) then ClinicalDocumentOrganization(srcOrg, organization);
     } "author";
   } "srcAuthor";
-  src.confidentialityCode as confCode -> tgt.confidentiality = confCode;
+  src.confidentialityCode as confCode -> tgt.confidentiality = create('code') as code then CSCode(confCode, code);
   src.legalAuthenticator as legalAuth ->  bundle.entry as e,  e.resource = create('Practitioner') as practitioner,  practitioner.id = uuid() as uuid2,  e.fullUrl = append('urn:uuid:', uuid2) then {
     legalAuth -> tgt.attester as attester then {
       legalAuth -> attester.mode = 'legal' "mode";
-      legalAuth.time as time -> attester.time = time;
+      legalAuth.time as time -> attester.time = create('dateTime') as dt then TSDateTime(time, dt);
       legalAuth.assignedEntity as entity ->  attester.party = create('Reference') as reference,  reference.reference = ('urn:uuid:' + %practitioner.id) then ClinicalDocumentEntityPractitioner(entity, practitioner) "entity";
     } "attester";
   } "legalAuth";
   src.authenticator as auth ->  bundle.entry as e,  e.resource = create('Practitioner') as practitioner,  practitioner.id = uuid() as uuid2,  e.fullUrl = append('urn:uuid:', uuid2) then {
     auth -> tgt.attester as attester then {
       auth -> attester.mode = 'official' "mode";
-      auth.time as time -> attester.time = time;
+      auth.time as time -> attester.time = create('dateTime') as dt then TSDateTime(time, dt);
       auth.assignedEntity as entity ->  attester.party = create('Reference') as reference,  reference.reference = ('urn:uuid:' + %practitioner.id) then ClinicalDocumentEntityPractitioner(entity, practitioner) "entity";
     } "attester";
   } "auth";
@@ -117,8 +122,8 @@ group ClinicalDocumentComposition(source src : ClinicalDocument, target tgt : Co
   } "cust";
   src.documentationOf as docOf then {
     docOf.serviceEvent as serviceEvent -> tgt.event as event then {
-      serviceEvent.code as eventCode -> event.code = eventCode "eventCode";
-      serviceEvent.effectiveTime as effectivetime -> event.period = effectivetime "eventTime"; // performerType: for src.performer.typeCode ...
+      serviceEvent.code as eventCode -> event.code = create('CodeableConcept') as cc then CDCodeableConcept(eventCode, cc) "eventCode";
+      serviceEvent.effectiveTime as effectivetime -> event.period = create('Period') as period then IVLTSPeriod(effectivetime, period) "eventTime"; // performerType: for src.performer.typeCode ...
     } "docOf";
   };
   src.relatedDocument as relatedDoc -> tgt.relatesTo as relates then {
@@ -130,19 +135,19 @@ group ClinicalDocumentComposition(source src : ClinicalDocument, target tgt : Co
 }
 
 group ClinicalDocumentEntityPractitioner(source src : AssignedEntity, target tgt : Practitioner) {
-  src.id as srcId -> tgt.identifier = srcId;
-  src.addr as srcAddr -> tgt.address = srcAddr;
-  src.telecom as srcTelecom -> tgt.telecom = srcTelecom;
+  src.id as srcId -> tgt.identifier = create('Identifier') as identifier then II(srcId, identifier);
+  src.addr as srcAddr -> tgt.address = create('Address') as address then ADAddress(srcAddr, address);
+  src.telecom as srcTelecom -> tgt.telecom = create('ContactPoint') as contactPoint then TELContactPoint(srcTelecom, contactPoint);
   src.assignedPerson as person then {
-    person.name as pName -> tgt.name = pName;
+    person.name as pName -> tgt.name = create('HumanName') as humanName then ENHumanName(pName, humanName);
   } "name";
 }
 
 group ClinicalDocumentOrganization(source src : CustodianOrganization, target tgt : Organization) {
-  src.id as srcId -> tgt.identifier = srcId;
+  src.id as srcId -> tgt.identifier = create('Identifier') as identifier then II(srcId, identifier);
   src.name as v -> tgt.name = (v.other);
-  src.telecom as srcTelecom -> tgt.telecom = srcTelecom;
-  src.addr as srcAddr -> tgt.address = srcAddr;
+  src.telecom as srcTelecom -> tgt.telecom = create('ContactPoint') as contactPoint then TELContactPoint(srcTelecom, contactPoint);
+  src.addr as srcAddr -> tgt.address = create('Address') as address then ADAddress(srcAddr, address);
 }
 
 group ClinicalDocumentPatientRole(source src : PatientRole, target tgt : Patient, target bundle : Bundle) {
@@ -150,14 +155,14 @@ group ClinicalDocumentPatientRole(source src : PatientRole, target tgt : Patient
   // Patient.identifier.type for EPR context, because there is only the identifier "LocalPid" allowed, LocalPid requires an type -> http://build.fhir.org/ig/hl7ch/ch-core/branches/master/StructureDefinition-ch-core-composition-patient-epr.html
   // Modification NR
   src.id as id -> tgt.identifier = create('Identifier') as identifier then setFrPatientIdentifier(id, identifier);
-  src.addr as srcAddr -> tgt.address = srcAddr;
-  src.telecom as srcTelecom -> tgt.telecom = srcTelecom;
+  src.addr as srcAddr -> tgt.address = create('Address') as address then ADAddress(srcAddr, address);
+  src.telecom as srcTelecom -> tgt.telecom = create('ContactPoint') as contactPoint then TELContactPoint(srcTelecom, contactPoint);
   src.patient as patient then {
-    patient.name as patientName -> tgt.name = patientName;
+    patient.name as patientName -> tgt.name = create('HumanName') as humanName then ENHumanName(patientName, humanName);
     patient.administrativeGenderCode as gender then {
       gender.code as v -> tgt.gender = translate(v, 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/cm-v3-administrative-gender', 'code') "gender";
     } "gender";
-    patient.birthTime as birthTime -> tgt.birthDate = birthTime "birthDate";
+    patient.birthTime as birthTime -> tgt.birthDate = create('date') as date then TSDate(birthTime, date) "birthDate";
     patient.deceasedInd as indicator where patient.deceasedTime.empty() -> tgt.deceased = create('boolean') as bool then boolean(indicator, bool) "deceasedBL";
     patient.deceasedTime as dTime -> tgt.deceased = dTime;
     patient.maritalStatusCode as mStatus -> tgt.maritalStatus = mStatus "maritalStatus";
@@ -167,10 +172,10 @@ group ClinicalDocumentPatientRole(source src : PatientRole, target tgt : Patient
   } "patientrole";
   src.providerOrganization as org ->  bundle.entry as e,  e.resource = create('Organization') as organization,  organization.id = uuid() as uuid3,  e.fullUrl = append('urn:uuid:', uuid3) then {
     org ->  tgt.managingOrganization = create('Reference') as reference,  reference.reference = ('urn:uuid:' + %organization.id) "reference";
-    org.id as orgId -> organization.identifier = orgId;
+    org.id as orgId -> organization.identifier = create('Identifier') as identifier then II(orgId, identifier);
     org.name as v -> organization.name = (v.other);
-    org.telecom as orgTel -> organization.telecom = orgTel;
-    org.addr as orgAddr -> organization.address = orgAddr;
+    org.telecom as orgTel -> organization.telecom = create('ContactPoint') as contactPoint then TELContactPoint(orgTel, contactPoint);
+    org.addr as orgAddr -> organization.address = create('Address') as address then ADAddress(orgAddr, address);
   } "organization";
 }
 
@@ -200,16 +205,22 @@ group setFrPatientIdentifier(source id : II, target identifier : Identifier) {
 // } "identifier";
 // Fin état initial
 group ClinicalDocumentEncounter(source src : EncompassingEncounter, target bundle : Bundle, target tgt : Encounter) {
-  src.id as Id -> tgt.identifier = Id;
-  src.code as srcCode -> tgt.type = srcCode;
-  src.effectiveTime as effTime -> tgt.period = effTime;
+  src.id as Id -> tgt.identifier = create('Identifier') as identifier then II(Id, identifier);
+  src -> tgt.status = 'finished' "status";
+  src.code as srcCode -> tgt.class = create('Coding') as coding then {
+    srcCode.code as code -> coding.code = cast(code, 'string');
+    srcCode.codeSystem as system -> coding.system = translate(system, 'http://hl7.org/fhir/ConceptMap/special-oid2uri', 'uri');
+    srcCode.displayName as display -> coding.display = cast(display, 'string');
+  } "class";
+  src.code as srcCode -> tgt.type = create('CodeableConcept') as cc then CDCodeableConcept(srcCode, cc);
+  src.effectiveTime as effTime -> tgt.period = create('Period') as period then IVLTSPeriod(effTime, period);
   src where admissionReferralSourceCode.exists() or dischargeDispositionCode.exists() -> tgt.hospitalization as hosp then {
-    src.admissionReferralSourceCode as admRef -> hosp.admitSource = admRef "adminReferral";
-    src.dischargeDispositionCode as discDispo -> hosp.dischargeDisposition = discDispo "discDisposition";
+    src.admissionReferralSourceCode as admRef -> hosp.admitSource = create('CodeableConcept') as cc then CDCodeableConcept(admRef, cc) "adminReferral";
+    src.dischargeDispositionCode as discDispo -> hosp.dischargeDisposition = create('CodeableConcept') as cc then CDCodeableConcept(discDispo, cc) "discDisposition";
   } "hospitalization";
   src.encounterParticipant as srcPart -> tgt.participant as tgtPart then {
     srcPart.typeCode as code -> tgtPart.type = cc('http://terminology.hl7.org/CodeSystem/v3-ParticipationType', code);
-    srcPart.time as srcTime -> tgtPart.period = srcTime;
+    srcPart.time as srcTime -> tgtPart.period = create('Period') as period then IVLTSPeriod(srcTime, period);
     srcPart.assignedEntity as entity ->  bundle.entry as e,  e.resource = create('Practitioner') as practitioner,  practitioner.id = uuid() as uuid2,  e.fullUrl = append('urn:uuid:', uuid2) then {
       entity ->  tgtPart.individual = create('Reference') as reference,  reference.reference = ('urn:uuid:' + %practitioner.id) then ClinicalDocumentEntityPractitioner(entity, practitioner) "entry";
     } "entity";
@@ -222,11 +233,11 @@ group ClinicalDocumentEncounter(source src : EncompassingEncounter, target bundl
 }
 
 group ClinicalDocumentLocation(source src : HealthCareFacility, target bundle : Bundle, target tgt : Location) {
-  src.id as srcIdentifier -> tgt.identifier = srcIdentifier;
-  src.code as srcCode -> tgt.type = srcCode;
+  src.id as srcIdentifier -> tgt.identifier = create('Identifier') as identifier then II(srcIdentifier, identifier);
+  src.code as srcCode -> tgt.type = create('CodeableConcept') as cc then CDCodeableConcept(srcCode, cc);
   src.location as location then {
     // place names are usually stored with no parts    location.name as srcName -> tgt.name = cast(srcName, 'string');
-    location.addr as locAddr -> tgt.address = locAddr;
+    location.addr as locAddr -> tgt.address = create('Address') as address then ADAddress(locAddr, address);
     location.serviceProviderOrganization as srcOrg ->  bundle.entry as e,  e.resource = create('Organization') as organization,  organization.id = uuid() as uuid3,  e.fullUrl = append('urn:uuid:', uuid3) then {
       srcOrg ->  tgt.managingOrganization = create('Reference') as reference,  reference.reference = ('urn:uuid:' + %organization.id) then ClinicalDocumentOrganization(srcOrg, organization) "organization";
     } "org";
@@ -255,7 +266,7 @@ group NarrativeLink(source url, target ext : Extension) {
   "name" : "CdaToBundle",
   "title" : "Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)",
   "status" : "draft",
-  "date" : "2025-10-30T17:21:27+00:00",
+  "date" : "2025-10-30T20:58:23+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {
@@ -517,7 +528,7 @@ group NarrativeLink(source url, target ext : Extension) {
             {
               "context" : "cda",
               "element" : "id",
-              "variable" : "addIdentifier"
+              "variable" : "cdaId"
             }
           ],
           "target" : [
@@ -525,10 +536,111 @@ group NarrativeLink(source url, target ext : Extension) {
               "context" : "bundle",
               "contextType" : "variable",
               "element" : "identifier",
-              "transform" : "copy",
-              "parameter" : [
+              "variable" : "identifier"
+            }
+          ],
+          "rule" : [
+            {
+              "name" : "system",
+              "source" : [
                 {
-                  "valueId" : "addIdentifier"
+                  "context" : "cdaId",
+                  "element" : "root",
+                  "variable" : "root",
+                  "condition" : "cdaId.extension.exists()"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "identifier",
+                  "contextType" : "variable",
+                  "element" : "system",
+                  "transform" : "translate",
+                  "parameter" : [
+                    {
+                      "valueId" : "root"
+                    },
+                    {
+                      "valueString" : "#oid2uri"
+                    },
+                    {
+                      "valueString" : "uri"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name" : "value",
+              "source" : [
+                {
+                  "context" : "cdaId",
+                  "element" : "extension",
+                  "variable" : "extension"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "identifier",
+                  "contextType" : "variable",
+                  "element" : "value",
+                  "transform" : "copy",
+                  "parameter" : [
+                    {
+                      "valueId" : "extension"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name" : "systemOid",
+              "source" : [
+                {
+                  "context" : "cdaId",
+                  "element" : "root",
+                  "variable" : "root",
+                  "condition" : "cdaId.extension.empty()"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "identifier",
+                  "contextType" : "variable",
+                  "element" : "system",
+                  "transform" : "copy",
+                  "parameter" : [
+                    {
+                      "valueString" : "urn:ietf:rfc:3986"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name" : "valueOid",
+              "source" : [
+                {
+                  "context" : "cdaId",
+                  "element" : "root",
+                  "variable" : "root",
+                  "condition" : "cdaId.extension.empty()"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "identifier",
+                  "contextType" : "variable",
+                  "element" : "value",
+                  "transform" : "append",
+                  "parameter" : [
+                    {
+                      "valueString" : "urn:oid:"
+                    },
+                    {
+                      "valueId" : "root"
+                    }
+                  ]
                 }
               ]
             }
@@ -556,12 +668,12 @@ group NarrativeLink(source url, target ext : Extension) {
           ]
         },
         {
-          "name" : "effectiveTime",
+          "name" : "timestamp",
           "source" : [
             {
               "context" : "cda",
               "element" : "effectiveTime",
-              "variable" : "timestamp"
+              "variable" : "effectiveTime"
             }
           ],
           "target" : [
@@ -569,12 +681,19 @@ group NarrativeLink(source url, target ext : Extension) {
               "context" : "bundle",
               "contextType" : "variable",
               "element" : "timestamp",
-              "transform" : "copy",
+              "variable" : "timestamp",
+              "transform" : "create",
               "parameter" : [
                 {
-                  "valueId" : "timestamp"
+                  "valueString" : "instant"
                 }
               ]
+            }
+          ],
+          "dependent" : [
+            {
+              "name" : "TSInstant",
+              "variable" : ["effectiveTime", "timestamp"]
             }
           ]
         },
@@ -862,12 +981,19 @@ group NarrativeLink(source url, target ext : Extension) {
               "context" : "tgt",
               "contextType" : "variable",
               "element" : "language",
-              "transform" : "copy",
+              "variable" : "code",
+              "transform" : "create",
               "parameter" : [
                 {
-                  "valueId" : "languageCode"
+                  "valueString" : "code"
                 }
               ]
+            }
+          ],
+          "dependent" : [
+            {
+              "name" : "CSCode",
+              "variable" : ["languageCode", "code"]
             }
           ]
         },
@@ -886,22 +1012,29 @@ group NarrativeLink(source url, target ext : Extension) {
               "context" : "tgt",
               "contextType" : "variable",
               "element" : "identifier",
-              "transform" : "copy",
+              "variable" : "identifier",
+              "transform" : "create",
               "parameter" : [
                 {
-                  "valueId" : "id"
+                  "valueString" : "Identifier"
                 }
               ]
+            }
+          ],
+          "dependent" : [
+            {
+              "name" : "II",
+              "variable" : ["id", "identifier"]
             }
           ]
         },
         {
-          "name" : "identifier",
+          "name" : "setIdentifier",
           "source" : [
             {
               "context" : "src",
               "element" : "setId",
-              "variable" : "setIdentifier"
+              "variable" : "setId"
             }
           ],
           "target" : [
@@ -909,12 +1042,19 @@ group NarrativeLink(source url, target ext : Extension) {
               "context" : "tgt",
               "contextType" : "variable",
               "element" : "identifier",
-              "transform" : "copy",
+              "variable" : "identifier",
+              "transform" : "create",
               "parameter" : [
                 {
-                  "valueId" : "setIdentifier"
+                  "valueString" : "Identifier"
                 }
               ]
+            }
+          ],
+          "dependent" : [
+            {
+              "name" : "II",
+              "variable" : ["setId", "identifier"]
             }
           ]
         },
@@ -953,12 +1093,19 @@ group NarrativeLink(source url, target ext : Extension) {
               "context" : "tgt",
               "contextType" : "variable",
               "element" : "type",
-              "transform" : "copy",
+              "variable" : "cc",
+              "transform" : "create",
               "parameter" : [
                 {
-                  "valueId" : "srcCode"
+                  "valueString" : "CodeableConcept"
                 }
               ]
+            }
+          ],
+          "dependent" : [
+            {
+              "name" : "CDCodeableConcept",
+              "variable" : ["srcCode", "cc"]
             }
           ]
         },
@@ -1133,7 +1280,7 @@ group NarrativeLink(source url, target ext : Extension) {
           ]
         },
         {
-          "name" : "effectiveTime",
+          "name" : "compositionDate",
           "source" : [
             {
               "context" : "src",
@@ -1146,12 +1293,19 @@ group NarrativeLink(source url, target ext : Extension) {
               "context" : "tgt",
               "contextType" : "variable",
               "element" : "date",
-              "transform" : "copy",
+              "variable" : "date",
+              "transform" : "create",
               "parameter" : [
                 {
-                  "valueId" : "effectiveTime"
+                  "valueString" : "dateTime"
                 }
               ]
+            }
+          ],
+          "dependent" : [
+            {
+              "name" : "TSDateTime",
+              "variable" : ["effectiveTime", "date"]
             }
           ]
         },
@@ -1253,12 +1407,19 @@ group NarrativeLink(source url, target ext : Extension) {
                       "context" : "practitioner",
                       "contextType" : "variable",
                       "element" : "identifier",
-                      "transform" : "copy",
+                      "variable" : "identifier",
+                      "transform" : "create",
                       "parameter" : [
                         {
-                          "valueId" : "id"
+                          "valueString" : "Identifier"
                         }
                       ]
+                    }
+                  ],
+                  "dependent" : [
+                    {
+                      "name" : "II",
+                      "variable" : ["id", "identifier"]
                     }
                   ]
                 },
@@ -1276,12 +1437,19 @@ group NarrativeLink(source url, target ext : Extension) {
                       "context" : "practitioner",
                       "contextType" : "variable",
                       "element" : "address",
-                      "transform" : "copy",
+                      "variable" : "address",
+                      "transform" : "create",
                       "parameter" : [
                         {
-                          "valueId" : "addr"
+                          "valueString" : "Address"
                         }
                       ]
+                    }
+                  ],
+                  "dependent" : [
+                    {
+                      "name" : "ADAddress",
+                      "variable" : ["addr", "address"]
                     }
                   ]
                 },
@@ -1299,12 +1467,19 @@ group NarrativeLink(source url, target ext : Extension) {
                       "context" : "practitioner",
                       "contextType" : "variable",
                       "element" : "telecom",
-                      "transform" : "copy",
+                      "variable" : "contactPoint",
+                      "transform" : "create",
                       "parameter" : [
                         {
-                          "valueId" : "tlc"
+                          "valueString" : "ContactPoint"
                         }
                       ]
+                    }
+                  ],
+                  "dependent" : [
+                    {
+                      "name" : "TELContactPoint",
+                      "variable" : ["tlc", "contactPoint"]
                     }
                   ]
                 },
@@ -1332,12 +1507,19 @@ group NarrativeLink(source url, target ext : Extension) {
                           "context" : "practitioner",
                           "contextType" : "variable",
                           "element" : "name",
-                          "transform" : "copy",
+                          "variable" : "humanName",
+                          "transform" : "create",
                           "parameter" : [
                             {
-                              "valueId" : "pName"
+                              "valueString" : "HumanName"
                             }
                           ]
+                        }
+                      ],
+                      "dependent" : [
+                        {
+                          "name" : "ENHumanName",
+                          "variable" : ["pName", "humanName"]
                         }
                       ]
                     }
@@ -1441,12 +1623,19 @@ group NarrativeLink(source url, target ext : Extension) {
               "context" : "tgt",
               "contextType" : "variable",
               "element" : "confidentiality",
-              "transform" : "copy",
+              "variable" : "code",
+              "transform" : "create",
               "parameter" : [
                 {
-                  "valueId" : "confCode"
+                  "valueString" : "code"
                 }
               ]
+            }
+          ],
+          "dependent" : [
+            {
+              "name" : "CSCode",
+              "variable" : ["confCode", "code"]
             }
           ]
         },
@@ -1552,12 +1741,19 @@ group NarrativeLink(source url, target ext : Extension) {
                       "context" : "attester",
                       "contextType" : "variable",
                       "element" : "time",
-                      "transform" : "copy",
+                      "variable" : "dt",
+                      "transform" : "create",
                       "parameter" : [
                         {
-                          "valueId" : "time"
+                          "valueString" : "dateTime"
                         }
                       ]
+                    }
+                  ],
+                  "dependent" : [
+                    {
+                      "name" : "TSDateTime",
+                      "variable" : ["time", "dt"]
                     }
                   ]
                 },
@@ -1708,12 +1904,19 @@ group NarrativeLink(source url, target ext : Extension) {
                       "context" : "attester",
                       "contextType" : "variable",
                       "element" : "time",
-                      "transform" : "copy",
+                      "variable" : "dt",
+                      "transform" : "create",
                       "parameter" : [
                         {
-                          "valueId" : "time"
+                          "valueString" : "dateTime"
                         }
                       ]
+                    }
+                  ],
+                  "dependent" : [
+                    {
+                      "name" : "TSDateTime",
+                      "variable" : ["time", "dt"]
                     }
                   ]
                 },
@@ -1912,12 +2115,19 @@ group NarrativeLink(source url, target ext : Extension) {
                       "context" : "event",
                       "contextType" : "variable",
                       "element" : "code",
-                      "transform" : "copy",
+                      "variable" : "cc",
+                      "transform" : "create",
                       "parameter" : [
                         {
-                          "valueId" : "eventCode"
+                          "valueString" : "CodeableConcept"
                         }
                       ]
+                    }
+                  ],
+                  "dependent" : [
+                    {
+                      "name" : "CDCodeableConcept",
+                      "variable" : ["eventCode", "cc"]
                     }
                   ]
                 },
@@ -1935,12 +2145,19 @@ group NarrativeLink(source url, target ext : Extension) {
                       "context" : "event",
                       "contextType" : "variable",
                       "element" : "period",
-                      "transform" : "copy",
+                      "variable" : "period",
+                      "transform" : "create",
                       "parameter" : [
                         {
-                          "valueId" : "effectivetime"
+                          "valueString" : "Period"
                         }
                       ]
+                    }
+                  ],
+                  "dependent" : [
+                    {
+                      "name" : "IVLTSPeriod",
+                      "variable" : ["effectivetime", "period"]
                     }
                   ],
                   "documentation" : "performerType: for src.performer.typeCode ..."
@@ -2059,12 +2276,19 @@ group NarrativeLink(source url, target ext : Extension) {
               "context" : "tgt",
               "contextType" : "variable",
               "element" : "identifier",
-              "transform" : "copy",
+              "variable" : "identifier",
+              "transform" : "create",
               "parameter" : [
                 {
-                  "valueId" : "srcId"
+                  "valueString" : "Identifier"
                 }
               ]
+            }
+          ],
+          "dependent" : [
+            {
+              "name" : "II",
+              "variable" : ["srcId", "identifier"]
             }
           ]
         },
@@ -2082,12 +2306,19 @@ group NarrativeLink(source url, target ext : Extension) {
               "context" : "tgt",
               "contextType" : "variable",
               "element" : "address",
-              "transform" : "copy",
+              "variable" : "address",
+              "transform" : "create",
               "parameter" : [
                 {
-                  "valueId" : "srcAddr"
+                  "valueString" : "Address"
                 }
               ]
+            }
+          ],
+          "dependent" : [
+            {
+              "name" : "ADAddress",
+              "variable" : ["srcAddr", "address"]
             }
           ]
         },
@@ -2105,12 +2336,19 @@ group NarrativeLink(source url, target ext : Extension) {
               "context" : "tgt",
               "contextType" : "variable",
               "element" : "telecom",
-              "transform" : "copy",
+              "variable" : "contactPoint",
+              "transform" : "create",
               "parameter" : [
                 {
-                  "valueId" : "srcTelecom"
+                  "valueString" : "ContactPoint"
                 }
               ]
+            }
+          ],
+          "dependent" : [
+            {
+              "name" : "TELContactPoint",
+              "variable" : ["srcTelecom", "contactPoint"]
             }
           ]
         },
@@ -2138,12 +2376,19 @@ group NarrativeLink(source url, target ext : Extension) {
                   "context" : "tgt",
                   "contextType" : "variable",
                   "element" : "name",
-                  "transform" : "copy",
+                  "variable" : "humanName",
+                  "transform" : "create",
                   "parameter" : [
                     {
-                      "valueId" : "pName"
+                      "valueString" : "HumanName"
                     }
                   ]
+                }
+              ],
+              "dependent" : [
+                {
+                  "name" : "ENHumanName",
+                  "variable" : ["pName", "humanName"]
                 }
               ]
             }
@@ -2181,12 +2426,19 @@ group NarrativeLink(source url, target ext : Extension) {
               "context" : "tgt",
               "contextType" : "variable",
               "element" : "identifier",
-              "transform" : "copy",
+              "variable" : "identifier",
+              "transform" : "create",
               "parameter" : [
                 {
-                  "valueId" : "srcId"
+                  "valueString" : "Identifier"
                 }
               ]
+            }
+          ],
+          "dependent" : [
+            {
+              "name" : "II",
+              "variable" : ["srcId", "identifier"]
             }
           ]
         },
@@ -2227,12 +2479,19 @@ group NarrativeLink(source url, target ext : Extension) {
               "context" : "tgt",
               "contextType" : "variable",
               "element" : "telecom",
-              "transform" : "copy",
+              "variable" : "contactPoint",
+              "transform" : "create",
               "parameter" : [
                 {
-                  "valueId" : "srcTelecom"
+                  "valueString" : "ContactPoint"
                 }
               ]
+            }
+          ],
+          "dependent" : [
+            {
+              "name" : "TELContactPoint",
+              "variable" : ["srcTelecom", "contactPoint"]
             }
           ]
         },
@@ -2250,12 +2509,19 @@ group NarrativeLink(source url, target ext : Extension) {
               "context" : "tgt",
               "contextType" : "variable",
               "element" : "address",
-              "transform" : "copy",
+              "variable" : "address",
+              "transform" : "create",
               "parameter" : [
                 {
-                  "valueId" : "srcAddr"
+                  "valueString" : "Address"
                 }
               ]
+            }
+          ],
+          "dependent" : [
+            {
+              "name" : "ADAddress",
+              "variable" : ["srcAddr", "address"]
             }
           ]
         }
@@ -2326,12 +2592,19 @@ group NarrativeLink(source url, target ext : Extension) {
               "context" : "tgt",
               "contextType" : "variable",
               "element" : "address",
-              "transform" : "copy",
+              "variable" : "address",
+              "transform" : "create",
               "parameter" : [
                 {
-                  "valueId" : "srcAddr"
+                  "valueString" : "Address"
                 }
               ]
+            }
+          ],
+          "dependent" : [
+            {
+              "name" : "ADAddress",
+              "variable" : ["srcAddr", "address"]
             }
           ]
         },
@@ -2349,12 +2622,19 @@ group NarrativeLink(source url, target ext : Extension) {
               "context" : "tgt",
               "contextType" : "variable",
               "element" : "telecom",
-              "transform" : "copy",
+              "variable" : "contactPoint",
+              "transform" : "create",
               "parameter" : [
                 {
-                  "valueId" : "srcTelecom"
+                  "valueString" : "ContactPoint"
                 }
               ]
+            }
+          ],
+          "dependent" : [
+            {
+              "name" : "TELContactPoint",
+              "variable" : ["srcTelecom", "contactPoint"]
             }
           ]
         },
@@ -2382,12 +2662,19 @@ group NarrativeLink(source url, target ext : Extension) {
                   "context" : "tgt",
                   "contextType" : "variable",
                   "element" : "name",
-                  "transform" : "copy",
+                  "variable" : "humanName",
+                  "transform" : "create",
                   "parameter" : [
                     {
-                      "valueId" : "patientName"
+                      "valueString" : "HumanName"
                     }
                   ]
+                }
+              ],
+              "dependent" : [
+                {
+                  "name" : "ENHumanName",
+                  "variable" : ["patientName", "humanName"]
                 }
               ]
             },
@@ -2446,12 +2733,19 @@ group NarrativeLink(source url, target ext : Extension) {
                   "context" : "tgt",
                   "contextType" : "variable",
                   "element" : "birthDate",
-                  "transform" : "copy",
+                  "variable" : "date",
+                  "transform" : "create",
                   "parameter" : [
                     {
-                      "valueId" : "birthTime"
+                      "valueString" : "date"
                     }
                   ]
+                }
+              ],
+              "dependent" : [
+                {
+                  "name" : "TSDate",
+                  "variable" : ["birthTime", "date"]
                 }
               ]
             },
@@ -2676,12 +2970,19 @@ group NarrativeLink(source url, target ext : Extension) {
                   "context" : "organization",
                   "contextType" : "variable",
                   "element" : "identifier",
-                  "transform" : "copy",
+                  "variable" : "identifier",
+                  "transform" : "create",
                   "parameter" : [
                     {
-                      "valueId" : "orgId"
+                      "valueString" : "Identifier"
                     }
                   ]
+                }
+              ],
+              "dependent" : [
+                {
+                  "name" : "II",
+                  "variable" : ["orgId", "identifier"]
                 }
               ]
             },
@@ -2722,12 +3023,19 @@ group NarrativeLink(source url, target ext : Extension) {
                   "context" : "organization",
                   "contextType" : "variable",
                   "element" : "telecom",
-                  "transform" : "copy",
+                  "variable" : "contactPoint",
+                  "transform" : "create",
                   "parameter" : [
                     {
-                      "valueId" : "orgTel"
+                      "valueString" : "ContactPoint"
                     }
                   ]
+                }
+              ],
+              "dependent" : [
+                {
+                  "name" : "TELContactPoint",
+                  "variable" : ["orgTel", "contactPoint"]
                 }
               ]
             },
@@ -2745,12 +3053,19 @@ group NarrativeLink(source url, target ext : Extension) {
                   "context" : "organization",
                   "contextType" : "variable",
                   "element" : "address",
-                  "transform" : "copy",
+                  "variable" : "address",
+                  "transform" : "create",
                   "parameter" : [
                     {
-                      "valueId" : "orgAddr"
+                      "valueString" : "Address"
                     }
                   ]
+                }
+              ],
+              "dependent" : [
+                {
+                  "name" : "ADAddress",
+                  "variable" : ["orgAddr", "address"]
                 }
               ]
             }
@@ -3001,10 +3316,145 @@ group NarrativeLink(source url, target ext : Extension) {
               "context" : "tgt",
               "contextType" : "variable",
               "element" : "identifier",
+              "variable" : "identifier",
+              "transform" : "create",
+              "parameter" : [
+                {
+                  "valueString" : "Identifier"
+                }
+              ]
+            }
+          ],
+          "dependent" : [
+            {
+              "name" : "II",
+              "variable" : ["Id", "identifier"]
+            }
+          ]
+        },
+        {
+          "name" : "status",
+          "source" : [
+            {
+              "context" : "src"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "tgt",
+              "contextType" : "variable",
+              "element" : "status",
               "transform" : "copy",
               "parameter" : [
                 {
-                  "valueId" : "Id"
+                  "valueString" : "finished"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name" : "class",
+          "source" : [
+            {
+              "context" : "src",
+              "element" : "code",
+              "variable" : "srcCode"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "tgt",
+              "contextType" : "variable",
+              "element" : "class",
+              "variable" : "coding",
+              "transform" : "create",
+              "parameter" : [
+                {
+                  "valueString" : "Coding"
+                }
+              ]
+            }
+          ],
+          "rule" : [
+            {
+              "name" : "code",
+              "source" : [
+                {
+                  "context" : "srcCode",
+                  "element" : "code",
+                  "variable" : "code"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "coding",
+                  "contextType" : "variable",
+                  "element" : "code",
+                  "transform" : "cast",
+                  "parameter" : [
+                    {
+                      "valueId" : "code"
+                    },
+                    {
+                      "valueString" : "string"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name" : "codeSystem",
+              "source" : [
+                {
+                  "context" : "srcCode",
+                  "element" : "codeSystem",
+                  "variable" : "system"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "coding",
+                  "contextType" : "variable",
+                  "element" : "system",
+                  "transform" : "translate",
+                  "parameter" : [
+                    {
+                      "valueId" : "system"
+                    },
+                    {
+                      "valueString" : "http://hl7.org/fhir/ConceptMap/special-oid2uri"
+                    },
+                    {
+                      "valueString" : "uri"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name" : "displayName",
+              "source" : [
+                {
+                  "context" : "srcCode",
+                  "element" : "displayName",
+                  "variable" : "display"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "coding",
+                  "contextType" : "variable",
+                  "element" : "display",
+                  "transform" : "cast",
+                  "parameter" : [
+                    {
+                      "valueId" : "display"
+                    },
+                    {
+                      "valueString" : "string"
+                    }
+                  ]
                 }
               ]
             }
@@ -3024,12 +3474,19 @@ group NarrativeLink(source url, target ext : Extension) {
               "context" : "tgt",
               "contextType" : "variable",
               "element" : "type",
-              "transform" : "copy",
+              "variable" : "cc",
+              "transform" : "create",
               "parameter" : [
                 {
-                  "valueId" : "srcCode"
+                  "valueString" : "CodeableConcept"
                 }
               ]
+            }
+          ],
+          "dependent" : [
+            {
+              "name" : "CDCodeableConcept",
+              "variable" : ["srcCode", "cc"]
             }
           ]
         },
@@ -3047,12 +3504,19 @@ group NarrativeLink(source url, target ext : Extension) {
               "context" : "tgt",
               "contextType" : "variable",
               "element" : "period",
-              "transform" : "copy",
+              "variable" : "period",
+              "transform" : "create",
               "parameter" : [
                 {
-                  "valueId" : "effTime"
+                  "valueString" : "Period"
                 }
               ]
+            }
+          ],
+          "dependent" : [
+            {
+              "name" : "IVLTSPeriod",
+              "variable" : ["effTime", "period"]
             }
           ]
         },
@@ -3087,12 +3551,19 @@ group NarrativeLink(source url, target ext : Extension) {
                   "context" : "hosp",
                   "contextType" : "variable",
                   "element" : "admitSource",
-                  "transform" : "copy",
+                  "variable" : "cc",
+                  "transform" : "create",
                   "parameter" : [
                     {
-                      "valueId" : "admRef"
+                      "valueString" : "CodeableConcept"
                     }
                   ]
+                }
+              ],
+              "dependent" : [
+                {
+                  "name" : "CDCodeableConcept",
+                  "variable" : ["admRef", "cc"]
                 }
               ]
             },
@@ -3110,12 +3581,19 @@ group NarrativeLink(source url, target ext : Extension) {
                   "context" : "hosp",
                   "contextType" : "variable",
                   "element" : "dischargeDisposition",
-                  "transform" : "copy",
+                  "variable" : "cc",
+                  "transform" : "create",
                   "parameter" : [
                     {
-                      "valueId" : "discDispo"
+                      "valueString" : "CodeableConcept"
                     }
                   ]
+                }
+              ],
+              "dependent" : [
+                {
+                  "name" : "CDCodeableConcept",
+                  "variable" : ["discDispo", "cc"]
                 }
               ]
             }
@@ -3179,12 +3657,19 @@ group NarrativeLink(source url, target ext : Extension) {
                   "context" : "tgtPart",
                   "contextType" : "variable",
                   "element" : "period",
-                  "transform" : "copy",
+                  "variable" : "period",
+                  "transform" : "create",
                   "parameter" : [
                     {
-                      "valueId" : "srcTime"
+                      "valueString" : "Period"
                     }
                   ]
+                }
+              ],
+              "dependent" : [
+                {
+                  "name" : "IVLTSPeriod",
+                  "variable" : ["srcTime", "period"]
                 }
               ]
             },
@@ -3429,12 +3914,19 @@ group NarrativeLink(source url, target ext : Extension) {
               "context" : "tgt",
               "contextType" : "variable",
               "element" : "identifier",
-              "transform" : "copy",
+              "variable" : "identifier",
+              "transform" : "create",
               "parameter" : [
                 {
-                  "valueId" : "srcIdentifier"
+                  "valueString" : "Identifier"
                 }
               ]
+            }
+          ],
+          "dependent" : [
+            {
+              "name" : "II",
+              "variable" : ["srcIdentifier", "identifier"]
             }
           ]
         },
@@ -3452,12 +3944,19 @@ group NarrativeLink(source url, target ext : Extension) {
               "context" : "tgt",
               "contextType" : "variable",
               "element" : "type",
-              "transform" : "copy",
+              "variable" : "cc",
+              "transform" : "create",
               "parameter" : [
                 {
-                  "valueId" : "srcCode"
+                  "valueString" : "CodeableConcept"
                 }
               ]
+            }
+          ],
+          "dependent" : [
+            {
+              "name" : "CDCodeableConcept",
+              "variable" : ["srcCode", "cc"]
             }
           ]
         },
@@ -3485,12 +3984,19 @@ group NarrativeLink(source url, target ext : Extension) {
                   "context" : "tgt",
                   "contextType" : "variable",
                   "element" : "address",
-                  "transform" : "copy",
+                  "variable" : "address",
+                  "transform" : "create",
                   "parameter" : [
                     {
-                      "valueId" : "locAddr"
+                      "valueString" : "Address"
                     }
                   ]
+                }
+              ],
+              "dependent" : [
+                {
+                  "name" : "ADAddress",
+                  "variable" : ["locAddr", "address"]
                 }
               ]
             },
