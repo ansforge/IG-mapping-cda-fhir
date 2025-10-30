@@ -1,115 +1,114 @@
 map "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrMDEToBundle" = "CdaFrMDEToBundle"
 
-/// name = 'CDAFrMDEToBundle'
-/// title = 'Mapping de CDA Mesure de lEnfant vers FHIR Bundle (A partir des sources de Oliver Egger)'
+/// name = 'CdaFrMDEToBundle'
+/// title = 'Mapping CSE-MDE vers FHIR Bundle - Contexte Français'
 /// status = 'draft'
 
+// Mapping pour CSE-MDE (Carnet de Santé de l'Enfant - Mesures de l'Enfant) contexte français
+// Utilise les fonctions de CdaToBundle, CdaFrToBundle et CdaToFHIRTypes
+// Navigation du document personnalisée pour gérer les observations dans les organizers
 
-// 2020-10-30 Oliver Egger, copyright ahdis ag, Apache License 
-// CDA-CH-EMED:  https://art-decor.org/art-decor/decor-project--cdachemed-
-// FHIR CH-EMED: http://fhir.ch/ig/ch-emed/index.html
-//
-
-uses "http://hl7.org/cda/stds/core/StructureDefinition/OrganizerComponent" alias OrganizerComponent as source
-
+uses "http://hl7.org/cda/stds/core/StructureDefinition/ClinicalDocument" alias ClinicalDocument as source
 uses "http://hl7.org/fhir/StructureDefinition/Bundle" alias Bundle as target
 uses "http://hl7.org/fhir/StructureDefinition/Composition" alias Composition as target
 uses "http://hl7.org/fhir/StructureDefinition/Patient" alias Patient as target
-uses "http://hl7.org/fhir/StructureDefinition/Practitioner" alias Practitioner as target
-uses "http://hl7.org/fhir/StructureDefinition/Organization" alias Organization as target
-uses "http://hl7.org/fhir/StructureDefinition/MedicationStatement" alias MedicationStatement as target
-uses "http://hl7.org/fhir/StructureDefinition/Dosage" alias Dosage as target
 uses "http://hl7.org/fhir/StructureDefinition/Observation" alias Observation as target
 
 imports "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes"
 imports "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle"
 imports "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrToBundle"
 
-
-
-// _________________________ Document Level Template  _________________________ 
-
-// source: https://art-decor.org/art-decor/decor-templates--cdachemed-?section=templates&id=2.16.756.5.30.1.1.10.1.3
-// target: http://build.fhir.org/ig/hl7ch/ch-emed/StructureDefinition-ch-emed-composition-medicationcard.html
-group CdaChEmedMedicationCardDocumentToBundle(source cda : ClinicalDocument, target bundle : Bundle) {
-  cda ->  bundle.entry as e, 
-             e.resource = create('Composition') as composition, 
+// Entry point
+group CdaFrMDEToBundle(source cda : ClinicalDocument, target bundle : Bundle) {
+  cda ->  bundle.entry as e,
+             e.resource = create('Composition') as composition,
              composition.id = uuid() as uuid,
              e.fullUrl = append('urn:uuid:',uuid),
-             bundle.entry as e2, 
+             bundle.entry as e2,
              e2.resource = create('Patient') as patient,
              patient.id = uuid() as uuid2,
              e2.fullUrl = append('urn:uuid:',uuid2)
-             then ClinicalDocumentChEmedMedicationCardDocumentToBundle(cda, patient, composition, bundle) "ClinicalDocumentToBody";
+             then CdaFrMDEMapping(cda, patient, composition, bundle) "main";
 }
 
-// source: https://art-decor.org/art-decor/decor-templates--cdachemed-?section=templates&id=2.16.756.5.30.1.1.10.1.3
-// target: http://build.fhir.org/ig/hl7ch/ch-emed/StructureDefinition-ch-emed-composition-medicationcard.html
-group ClinicalDocumentChEmedMedicationCardDocumentToBundle(source cda : ClinicalDocument, target patient : Patient, target composition : Composition, target bundle : Bundle) extends ClinicalDocumentToBundle {
-  cda then ClinicalDocumentCompositionFr(cda, composition, patient, bundle) "composition";
-  cda.component as component then {
-    component.structuredBody as body then {
-      body.component as component2 then {
-        component2.section as section then {
-          section.entry as entry then {
-            entry.organizer as org then {
-              org.component as oc then {
-                oc.observation as ob  then {
-                  ob -> bundle.entry as e,
-                  e.resource = create('Observation') as obs,
-                  obs.id = uuid() as uuid,
-                  e.fullUrl = append('urn:uuid:',uuid)
-                  then OrganizerComponentToObservation(ob, obs, patient) "mapObservation";
-                } "mapObservation";
-              } "mapOrganizerComponent";
-            } "mapOrganizer";
-          } "mapEntryComponent";
-        } "mapSection";
-      } "mapComponent2";
-    } "mapBody";
-  } "mapComponent";
+// Main mapping group
+group CdaFrMDEMapping(source cda : ClinicalDocument, target patient : Patient, target composition : Composition, target bundle : Bundle) {
+  // Bundle metadata
+  cda -> bundle.id = uuid() "bundleId";
+  cda.id as id -> bundle.identifier = id "bundleIdentifier";
+  cda -> bundle.type = 'document' "bundleType";
+  cda.effectiveTime as timestamp -> bundle.timestamp = timestamp "bundleTimestamp";
+
+  // Composition using CdaToBundle function
+  cda -> composition then ClinicalDocumentComposition(cda, composition, patient, bundle) "composition";
+
+  // Patient data using CdaToBundle function
+  cda.recordTarget as recordTarget then {
+    recordTarget.patientRole as patientRole then ClinicalDocumentPatientRole(patientRole, patient, bundle) "patientRole";
+  } "recordTarget";
+
+  // Add gender mapping after ClinicalDocumentPatientRole
+  cda.recordTarget as recordTarget then {
+    recordTarget.patientRole as patientRole then {
+      patientRole.patient as cdaPatient then {
+        cdaPatient.administrativeGenderCode as gender then MapGender(gender, patient) "patientGender";
+      } "cdaPatient";
+    } "patientRole";
+  } "recordTargetGender";
+
+  // Process sections with observations
+  cda.component as cdaComp then {
+    cdaComp.structuredBody as body then {
+      body.component as bodyComp then {
+        bodyComp.section as section then {
+          // Create composition section
+          section -> composition.section as compSection then {
+            section.title as sectionTitle -> compSection.title = (sectionTitle.xmlText) "sectionTitle";
+            section.code as sectionCode -> compSection.code = sectionCode "sectionCode";
+            section.text as sectionText -> compSection.text = sectionText "sectionText";
+
+            // Process observations in organizers
+            section.entry as entry then {
+              entry.organizer as organizer then {
+                organizer.component as orgComp then {
+                  orgComp.observation as obs then {
+                    obs -> bundle.entry as obsEntry,
+                    obsEntry.resource = create('Observation') as observation,
+                    observation.id = uuid() as obsUuid,
+                    obsEntry.fullUrl = append('urn:uuid:', obsUuid),
+                    compSection.entry = create('Reference') as obsRef,
+                    obsRef.reference = append('urn:uuid:', obsUuid)
+                    then ProcessObservation(obs, observation, patient) "processObs";
+                  } "observation";
+                } "orgComponent";
+              } "organizer";
+            } "entry";
+          } "compSection";
+        } "section";
+      } "bodyComponent";
+    } "structuredBody";
+  } "cdaComponent";
 }
 
-// _________________________ Section Level Templates _________________________ 
+// Process individual observation using CdaToFHIRTypes functions
+group ProcessObservation(source obs, target observation : Observation, target patient : Patient) {
+  // Status using CSCode from CdaToFHIRTypes
+  obs.statusCode as statusCode -> observation.status = create('code') as status then CSCode(statusCode, status) "obsStatus";
 
-// source: http://build.fhir.org/ig/hl7ch/ch-emed/StructureDefinition-ch-emed-composition-medicationcard.html
-// target: https://art-decor.org/art-decor/decor-templates--cdachemed-?section=templates&id=2.16.756.5.30.1.1.10.3.9
-group SectionMedicationCardSectionContentModule(source cda : ClinicalDocument, source src : Section, source patient : Patient, target tgt, target bundle: Bundle) extends ClinicalDocumentSection {
-  src.entry as cdaEntry where (substanceAdministration.templateId.where(root='2.16.756.5.30.1.1.10.4.34')) ->  bundle.entry as e,  e.resource = create('MedicationStatement') as medicationstatement,  
-    medicationstatement.id = uuid() as uuid,
-    e.fullUrl = append('urn:uuid:',uuid), 
-    tgt.entry = create('Reference') as reference, reference.reference = append('urn:uuid:',uuid) then {
-    cdaEntry.substanceAdministration as substanceAdministration then MedicationTreatmentPlanItemEntryContentModule(src, substanceAdministration, patient, medicationstatement);
-  } "cdaEntry";
+  // Code using CDCodeableConcept from CdaToFHIRTypes
+  obs.code as code -> observation.code = create('CodeableConcept') as cc then CDCodeableConcept(code, cc) "obsCode";
+
+  // Value as Quantity using PQQuantity from CdaToFHIRTypes
+  obs.value as value -> observation.value = create('Quantity') as qty then PQQuantity(value, qty) "obsValue";
+
+  // Subject reference
+  obs -> observation.subject = create('Reference') as ref, ref.reference = ('urn:uuid:' + %patient.id) "obsSubject";
 }
 
-
-// _________________________ Entry Level Templates   _________________________ 
-
-
-// source: https://art-decor.org/art-decor/decor-templates--cdachemed-?section=templates&id=2.16.756.5.30.1.1.10.4.2
-// target: Annotation note (e.g. http://build.fhir.org/ig/hl7ch/ch-emed/branches/master/StructureDefinition-ch-emed-medicationstatement.html)
-group OrganizerComponentToObservation(source ob : Observation, target obs : Observation, target patient : Patient) {
-  // Ajout du statusCode
-  // ob.statusCode as c then {
-  //   c.code as statCode -> obs.value = cast(statCode, 'string') "AjoutValueString";
-  // } "SetObsValue";
-
-  ob.statusCode as statCode -> obs.status = create('code') as statusCode then CSCode(statCode, statusCode) "AjoutStatus";
-  ob.code as loincCode -> obs.code = create('CodeableConcept') as ccCode then CDCodeableConcept(loincCode, ccCode) "AjoutCode";
-
-
-  // ob.value as v -> obs.value = cast(v, 'string');
-  ob.value as ObsValue -> obs.value = create("Quantity") as quant then PQQuantity(ObsValue, quant) "numerator";
-
-  // ob.value as obValue then {
-  //   obValue.value as numerator -> obs.value as targetNumerator then PQQuantity(numerator, targetNumerator) "numerator";
-  // } "SetObsValue";
-
-  // ob.statusCode as v -> obs.value = v;
-
-
-  ob -> obs.subject = create('Reference') as reference, reference.reference = ('urn:uuid:'+%patient.id) "setObsSubject";
-  
-
-} 
+// Map CDA v3 administrative gender to FHIR gender
+group MapGender(source src, target patient : Patient) {
+  src where code = 'M' -> patient.gender = 'male' "genderMale";
+  src where code = 'F' -> patient.gender = 'female' "genderFemale";
+  src where code = 'UN' -> patient.gender = 'other' "genderOther";
+  src where code = 'UNK' -> patient.gender = 'unknown' "genderUnknown";
+}

@@ -1,0 +1,535 @@
+{
+  "resourceType" : "Bundle",
+  "id" : "aad5cc88-a2b2-4688-9906-195073d66064",
+  "identifier" : {
+    "root" : "1.2.250.1.213.1.1.1.5.12345.4"
+  },
+  "type" : "document",
+  "timestamp" : {
+    "value" : "2023-01-06T11:36:23+01:00"
+  },
+  "entry" : [{
+    "fullUrl" : "urn:uuid:2d9a6a14-7a3f-4426-9019-895e2070d3f1",
+    "resource" : {
+      "resourceType" : "Composition",
+      "id" : "2d9a6a14-7a3f-4426-9019-895e2070d3f1",
+      "language" : {
+        "code" : "fr-FR"
+      },
+      "identifier" : {
+        "root" : "1.2.250.1.213.1.1.1.5.12345"
+      },
+      "status" : "final",
+      "type" : {
+        "code" : "29274-8",
+        "codeSystem" : "2.16.840.1.113883.6.1",
+        "displayName" : "Mesures de signes vitaux"
+      },
+      "subject" : {
+        "reference" : "urn:uuid:7de38de8-0328-4319-8e60-ff50ba856531"
+      },
+      "encounter" : {
+        "reference" : "urn:uuid:714c41f2-70ef-409a-a32d-fbf1fb7b0ad3"
+      },
+      "date" : {
+        "value" : "2023-01-06T11:36:23+01:00"
+      },
+      "author" : [{
+        "reference" : "urn:uuid:9b9a5570-c929-4baf-ad7f-fbcb2a66d4be"
+      },
+      {
+        "reference" : "urn:uuid:2e465c62-9be5-4103-b1f5-6466e85c21fc"
+      }],
+      "title" : "Carnet de santé de l'enfant - Mesures de l'enfant",
+      "confidentiality" : {
+        "code" : "N",
+        "codeSystem" : "2.16.840.1.113883.5.25",
+        "displayName" : "Normal"
+      },
+      "attester" : [{
+        "mode" : "legal",
+        "time" : {
+          "value" : "20230106113623+100"
+        },
+        "party" : {
+          "reference" : "urn:uuid:dca867ed-76b8-452a-8cde-2b73ff887ee7"
+        }
+      }],
+      "custodian" : {
+        "reference" : "urn:uuid:46ac5fcf-86eb-4a19-ad98-730ef62431b7"
+      },
+      "event" : [{
+        "code" : [{
+          "code" : "11429006",
+          "codeSystem" : "2.16.840.1.113883.6.96",
+          "codeSystemName" : "SNOMED CT",
+          "displayName" : "consultation"
+        }],
+        "period" : {
+          "low" : {
+            "value" : "2024-01-06T11:36:23+01:00"
+          }
+        }
+      }],
+      "section" : [{
+        "title" : "Signes vitaux",
+        "code" : {
+          "code" : "8716-3",
+          "codeSystem" : "2.16.840.1.113883.6.1",
+          "codeSystemName" : "LOINC",
+          "displayName" : "Signes vitaux"
+        },
+        "entry" : [{
+          "reference" : "urn:uuid:0ff6d14a-82bb-4b78-a978-ae1a3a50e23c"
+        }]
+      }]
+    }
+  },
+  {
+    "fullUrl" : "urn:uuid:7de38de8-0328-4319-8e60-ff50ba856531",
+    "resource" : {
+      "resourceType" : "Patient",
+      "id" : "7de38de8-0328-4319-8e60-ff50ba856531",
+      "identifier" : [{
+        "type" : {
+          "coding" : [{
+            "system" : "https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203",
+            "code" : "INS-NIR"
+          }]
+        },
+        "system" : "urn:oid:1.2.250.1.213.1.4.8",
+        "value" : "222127505611201"
+      },
+      {
+        "type" : {
+          "coding" : [{
+            "system" : "http://terminology.hl7.org/CodeSystem/v2-0203",
+            "code" : "PI"
+          }]
+        },
+        "system" : "urn:oid:1.2.3.4.5.6.7.8.9.10",
+        "value" : "1234567890121"
+      },
+      {
+        "type" : {
+          "coding" : [{
+            "system" : "https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203",
+            "code" : "INS-NIR"
+          }]
+        },
+        "system" : "urn:oid:1.2.250.1.213.1.4.8",
+        "value" : "222127505611201"
+      },
+      {
+        "type" : {
+          "coding" : [{
+            "system" : "http://terminology.hl7.org/CodeSystem/v2-0203",
+            "code" : "PI"
+          }]
+        },
+        "system" : "urn:oid:1.2.3.4.5.6.7.8.9.10",
+        "value" : "1234567890121"
+      }],
+      "name" : [{
+        "item" : [{
+          "family" : [{
+            "xmlText" : "DECOURCY",
+            "qualifier" : ["BR"]
+          }]
+        },
+        {
+          "given" : [{
+            "xmlText" : "Ruth Isabelle"
+          }]
+        },
+        {
+          "given" : [{
+            "xmlText" : "Ruth",
+            "qualifier" : ["BR"]
+          }]
+        },
+        {
+          "family" : [{
+            "xmlText" : "DECOURCY",
+            "qualifier" : ["CL"]
+          }]
+        },
+        {
+          "given" : [{
+            "xmlText" : "Ruth",
+            "qualifier" : ["CL"]
+          }]
+        }]
+      },
+      {
+        "item" : [{
+          "family" : [{
+            "xmlText" : "DECOURCY",
+            "qualifier" : ["BR"]
+          }]
+        },
+        {
+          "given" : [{
+            "xmlText" : "Ruth Isabelle"
+          }]
+        },
+        {
+          "given" : [{
+            "xmlText" : "Ruth",
+            "qualifier" : ["BR"]
+          }]
+        },
+        {
+          "family" : [{
+            "xmlText" : "DECOURCY",
+            "qualifier" : ["CL"]
+          }]
+        },
+        {
+          "given" : [{
+            "xmlText" : "Ruth",
+            "qualifier" : ["CL"]
+          }]
+        }]
+      }],
+      "telecom" : [{
+        "value" : "tel:0147150000",
+        "use" : ["H"]
+      },
+      {
+        "value" : "tel:0147150000",
+        "use" : ["H"]
+      }],
+      "gender" : "female",
+      "birthDate" : {
+        "value" : "2022-12-25"
+      },
+      "address" : [{
+        "item" : [{
+          "houseNumber" : {
+            "xmlText" : "24"
+          }
+        },
+        {
+          "streetName" : {
+            "xmlText" : "Avenue de Breteuil"
+          }
+        },
+        {
+          "postalCode" : {
+            "xmlText" : "75007"
+          }
+        },
+        {
+          "city" : {
+            "xmlText" : "PARIS"
+          }
+        },
+        {
+          "country" : {
+            "xmlText" : "FRANCE"
+          }
+        }]
+      },
+      {
+        "item" : [{
+          "houseNumber" : {
+            "xmlText" : "24"
+          }
+        },
+        {
+          "streetName" : {
+            "xmlText" : "Avenue de Breteuil"
+          }
+        },
+        {
+          "postalCode" : {
+            "xmlText" : "75007"
+          }
+        },
+        {
+          "city" : {
+            "xmlText" : "PARIS"
+          }
+        },
+        {
+          "country" : {
+            "xmlText" : "FRANCE"
+          }
+        }]
+      }]
+    }
+  },
+  {
+    "fullUrl" : "urn:uuid:714c41f2-70ef-409a-a32d-fbf1fb7b0ad3",
+    "resource" : {
+      "resourceType" : "Encounter",
+      "id" : "714c41f2-70ef-409a-a32d-fbf1fb7b0ad3",
+      "type" : [{
+        "code" : "AMB",
+        "codeSystem" : "2.16.840.1.113883.5.4",
+        "displayName" : "Ambulatoire (hors établissement)"
+      }],
+      "period" : {
+        "low" : {
+          "value" : "2025-01-06T11:15:10"
+        },
+        "high" : {
+          "value" : "2025-01-06T11:36:23"
+        }
+      },
+      "location" : [{
+        "location" : {
+          "reference" : "urn:uuid:c626efb4-e59f-4fed-a6b0-68010802d0aa"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "urn:uuid:c626efb4-e59f-4fed-a6b0-68010802d0aa",
+    "resource" : {
+      "resourceType" : "Location",
+      "id" : "c626efb4-e59f-4fed-a6b0-68010802d0aa",
+      "type" : [{
+        "code" : "SA05",
+        "codeSystem" : "1.2.250.1.71.4.2.4",
+        "displayName" : "Centre de santé"
+      }],
+      "address" : {
+        "item" : [{
+          "houseNumber" : {
+            "xmlText" : "3"
+          }
+        },
+        {
+          "streetName" : {
+            "xmlText" : "Rue Petit Pont"
+          }
+        },
+        {
+          "postalCode" : {
+            "xmlText" : "75005"
+          }
+        },
+        {
+          "city" : {
+            "xmlText" : "PARIS"
+          }
+        }]
+      }
+    }
+  },
+  {
+    "fullUrl" : "urn:uuid:9b9a5570-c929-4baf-ad7f-fbcb2a66d4be",
+    "resource" : {
+      "resourceType" : "Practitioner",
+      "id" : "9b9a5570-c929-4baf-ad7f-fbcb2a66d4be",
+      "identifier" : [{
+        "root" : "1.2.250.1.71.4.2.1",
+        "extension" : "801234567897"
+      }],
+      "name" : [{
+        "item" : [{
+          "given" : [{
+            "xmlText" : "Charles"
+          }]
+        },
+        {
+          "family" : [{
+            "xmlText" : "MULLER"
+          }]
+        },
+        {
+          "prefix" : [{
+            "xmlText" : "M"
+          }]
+        },
+        {
+          "suffix" : [{
+            "xmlText" : "DR"
+          }]
+        }]
+      }],
+      "telecom" : [{
+        "value" : "tel:0140404022",
+        "use" : ["WP"]
+      }],
+      "address" : [{
+        "item" : [{
+          "houseNumber" : {
+            "xmlText" : "3"
+          }
+        },
+        {
+          "streetName" : {
+            "xmlText" : "Rue Petit Pont"
+          }
+        },
+        {
+          "postalCode" : {
+            "xmlText" : "75005"
+          }
+        },
+        {
+          "city" : {
+            "xmlText" : "PARIS"
+          }
+        }]
+      }]
+    }
+  },
+  {
+    "fullUrl" : "urn:uuid:2e465c62-9be5-4103-b1f5-6466e85c21fc",
+    "resource" : {
+      "resourceType" : "Organization",
+      "id" : "2e465c62-9be5-4103-b1f5-6466e85c21fc",
+      "identifier" : [{
+        "root" : "1.2.250.1.71.4.2.2",
+        "extension" : "2801234567897"
+      }],
+      "telecom" : [{
+        "value" : "tel:0140404022",
+        "use" : ["WP"]
+      }],
+      "address" : [{
+        "item" : [{
+          "houseNumber" : {
+            "xmlText" : "3"
+          }
+        },
+        {
+          "streetName" : {
+            "xmlText" : "Rue Petit Pont"
+          }
+        },
+        {
+          "postalCode" : {
+            "xmlText" : "75005"
+          }
+        },
+        {
+          "city" : {
+            "xmlText" : "PARIS"
+          }
+        }]
+      }]
+    }
+  },
+  {
+    "fullUrl" : "urn:uuid:dca867ed-76b8-452a-8cde-2b73ff887ee7",
+    "resource" : {
+      "resourceType" : "Practitioner",
+      "id" : "dca867ed-76b8-452a-8cde-2b73ff887ee7",
+      "identifier" : [{
+        "root" : "1.2.250.1.71.4.2.1",
+        "extension" : "801234567897"
+      }],
+      "name" : [{
+        "item" : [{
+          "given" : [{
+            "xmlText" : "Charles"
+          }]
+        },
+        {
+          "family" : [{
+            "xmlText" : "MULLER"
+          }]
+        },
+        {
+          "prefix" : [{
+            "xmlText" : "M"
+          }]
+        },
+        {
+          "suffix" : [{
+            "xmlText" : "DR"
+          }]
+        }]
+      }],
+      "telecom" : [{
+        "value" : "tel:0140404022",
+        "use" : ["WP"]
+      }],
+      "address" : [{
+        "item" : [{
+          "houseNumber" : {
+            "xmlText" : "3"
+          }
+        },
+        {
+          "streetName" : {
+            "xmlText" : "Rue Petit Pont"
+          }
+        },
+        {
+          "postalCode" : {
+            "xmlText" : "75005"
+          }
+        },
+        {
+          "city" : {
+            "xmlText" : "PARIS"
+          }
+        }]
+      }]
+    }
+  },
+  {
+    "fullUrl" : "urn:uuid:46ac5fcf-86eb-4a19-ad98-730ef62431b7",
+    "resource" : {
+      "resourceType" : "Organization",
+      "id" : "46ac5fcf-86eb-4a19-ad98-730ef62431b7",
+      "identifier" : [{
+        "root" : "1.2.250.1.71.4.2.2",
+        "extension" : "2801234567897"
+      }],
+      "telecom" : [{
+        "value" : "tel:0140404022",
+        "use" : ["WP"]
+      }],
+      "address" : [{
+        "item" : [{
+          "houseNumber" : {
+            "xmlText" : "3"
+          }
+        },
+        {
+          "streetName" : {
+            "xmlText" : "Rue Petit Pont"
+          }
+        },
+        {
+          "postalCode" : {
+            "xmlText" : "75005"
+          }
+        },
+        {
+          "city" : {
+            "xmlText" : "PARIS"
+          }
+        }]
+      }]
+    }
+  },
+  {
+    "fullUrl" : "urn:uuid:0ff6d14a-82bb-4b78-a978-ae1a3a50e23c",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "0ff6d14a-82bb-4b78-a978-ae1a3a50e23c",
+      "status" : "completed",
+      "code" : {
+        "coding" : [{
+          "code" : "29463-7",
+          "display" : "Poids"
+        }]
+      },
+      "subject" : {
+        "reference" : "urn:uuid:7de38de8-0328-4319-8e60-ff50ba856531"
+      },
+      "valueQuantity" : {
+        "value" : 3900,
+        "unit" : "g"
+      }
+    }
+  }]
+}
