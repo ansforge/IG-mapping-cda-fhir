@@ -119,7 +119,7 @@ group MapGender(source src, target patient : Patient) {
   "name" : "CdaFrMDEToBundle",
   "title" : "Mapping CSE-MDE vers FHIR Bundle - Contexte Français",
   "status" : "draft",
-  "date" : "2025-10-30T16:35:25+00:00",
+  "date" : "2025-10-30T16:59:01+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {
