@@ -8,7 +8,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ImplementationGuide/ans.fhir.fr.mappingcdafhir | *Version*:0.1.0 |
-| Draft as of 2025-10-21 | *Computable Name*:CDA2FHIRMAP |
+| Draft as of 2025-10-30 | *Computable Name*:CDA2FHIRMAP |
 
  **FHIR Mapping Language for CDA to FHIR transformation**
  Proof of concept for CDA to FHIR transformation 
@@ -24,33 +24,175 @@ Les travaux de l'ANS se distinguent en deux parties :
 * créer les spécifications françaises en FHIR qui reprend l'historique CDA tout en s'alignant avec les contraintes européennes (cf. https://github.com/ansforge/IG-document-core)
 * tester le FHIR Mapping Language, outil permettant la transformation des documents CDA vers FHIR.
 
-### Lancer une transformation
+### Guide de démarrage rapide (Quick Start)
 
-1/ Charge matchbox image docker
+Ce guide vous permet de tester rapidement la transformation de documents CDA vers FHIR en utilisant matchbox et les exemples fournis.
 
-docker pull europe-west6-docker.pkg.dev/ahdis-ch/ahdis/matchbox:v3.8.9
+#### Prérequis
 
-2/ Create the container with the docker image
+* Docker installé sur votre machine
+* Un client REST (ex: VS Code avec l'extension REST Client, IntelliJ IDEA, ou curl)
+* Accès au repository IG-mapping-cda-fhir
 
-docker run -d –name matchbox -p 8080:8080 -v /Users/nicolasriss/Desktop/cda-fhir-maps/fhir-transformation/with-cda:/config europe-west6-docker.pkg.dev/ahdis-ch/ahdis/matchbox:v3.8.9
+#### Étape 1 : Télécharger l'image Docker matchbox
 
-The path should be adapted to your local folder containing the with-cda folder.
+```
+docker pull europe-west6-docker.pkg.dev/ahdis-ch/ahdis/matchbox:v4.0.12
 
-To access the docker logs, launch this command:
+```
 
-docker logs –follow matchbox
+#### Étape 2 : Lancer le conteneur Docker
 
-3/ Adapt application.yml
+**Important** : Adaptez le chemin selon votre installation locale. Le chemin doit pointer vers le dossier `input/with-all` de votre projet.
 
-To add some new packages to matchbox, you just have to create a new folder equivalent to "with-cda", and add the packages you want indicating the url.
+```
+docker run -d --name matchbox -p 8080:8080 \
+  -v /chemin/absolu/vers/IG-mapping-cda-fhir/input/with-all:/config \
+  europe-west6-docker.pkg.dev/ahdis-ch/ahdis/matchbox:v4.0.12
 
-To change the package, you have to delete your docker container (using docker desktop for instance) and then go to step 2/
+```
 
-3/ Launch transformations
+Exemple concret :
 
-Then, you will have to launch the transformations in the tests folder :
+```
+docker run -d --name matchbox -p 8080:8080 \
+  -v /Users/nicolasriss/Desktop/ANSFORGE_ans-ig/1-Mapping-CDA-to-FHIR/IG-mapping-cda-fhir/input/with-all:/config \
+  europe-west6-docker.pkg.dev/ahdis-ch/ahdis/matchbox:v4.0.12
 
-The cda folder allows to test with the swiss maps and a first try with the french maps the eds (entrepôt de données de santé) folder allows to test with https://github.com/ansforge/IG-FHIR-EDS-SOCLE-COMMUN
+```
+
+**Ou utilisez le script de démarrage automatique** :
+
+```
+./start-matchbox.sh
+
+```
+
+#### Étape 3 : Vérifier le démarrage
+
+Pour suivre les logs de matchbox :
+
+```
+docker logs --follow matchbox
+
+```
+
+Attendez que matchbox ait terminé son démarrage. L'interface sera accessible sur : `http://localhost:8080/matchbox`
+
+#### Étape 4 : Charger les ConceptMaps
+
+Certains StructureMaps utilisent des ConceptMaps externes pour la traduction de codes terminologiques. Il faut les charger **avant** les StructureMaps.
+
+```
+# Charger le ConceptMap pour le genre (administrative-gender)
+curl -X POST http://localhost:8080/matchbox/fhir/ConceptMap \
+  -H "Content-Type: application/fhir+json" \
+  --data-binary @input/resources/ConceptMap-cm-v3-administrative-gender.json
+
+```
+
+#### Étape 5 : Charger les StructureMaps et lancer les transformations
+
+Les fichiers HTTP de test se trouvent dans le dossier `http-test/`. Utilisez le fichier `fr_cdatofhir_mde.http` avec votre client REST.
+
+**Avec VS Code et l'extension REST Client** :
+
+1. Ouvrez le fichier`http-test/fr_cdatofhir_mde.http`
+1. Exécutez séquentiellement les requêtes HTTP dans l'ordre suivant :
+* **Requête 0** : Charger ConceptMap-cm-v3-administrative-gender.json
+* **Requête 1** : Charger CDAtoFHIRTypes.fml
+* **Requête 2** : Charger CdaToBundle.fml
+* **Requête 3** : Charger CDAFrToBundle.fml
+* **Requête 4** : Charger CDAFrMDEToBundle.fml
+* **Requête 5** : Transformer fr-CSE-MDE_1obs.xml (sortie JSON)
+* **Requête 6** : Transformer fr-CSE-MDE_2023.01.xml (sortie XML)
+* **Requête 7** : Transformer ch-2-7-MedicationCard.xml
+
+1. Cliquez sur "Send Request" au-dessus de chaque requête
+
+**Avec curl** (exemple complet) :
+
+```
+# 1. Charger les ConceptMaps nécessaires
+curl -X POST http://localhost:8080/matchbox/fhir/ConceptMap \
+  -H "Content-Type: application/fhir+json" \
+  --data-binary @input/resources/ConceptMap-cm-v3-administrative-gender.json
+
+# 2. Charger les StructureMaps dans l'ordre
+curl -X POST http://localhost:8080/matchbox/fhir/StructureMap \
+  -H "Accept: application/fhir+xml;fhirVersion=4.0" \
+  -H "Content-Type: text/fhir-mapping" \
+  --data-binary @input/fml/CDAtoFHIRTypes.fml
+
+curl -X POST http://localhost:8080/matchbox/fhir/StructureMap \
+  -H "Accept: application/fhir+xml;fhirVersion=4.0" \
+  -H "Content-Type: text/fhir-mapping" \
+  --data-binary @input/fml/CdaToBundle.fml
+
+curl -X POST http://localhost:8080/matchbox/fhir/StructureMap \
+  -H "Accept: application/fhir+xml;fhirVersion=4.0" \
+  -H "Content-Type: text/fhir-mapping" \
+  --data-binary @input/fml/CDAFrToBundle.fml
+
+curl -X POST http://localhost:8080/matchbox/fhir/StructureMap \
+  -H "Accept: application/fhir+xml;fhirVersion=4.0" \
+  -H "Content-Type: text/fhir-mapping" \
+  --data-binary @input/fml/CDAFrMDEToBundle.fml
+
+# 3. Transformer un document CDA
+curl -X POST "http://localhost:8080/matchbox/fhir/StructureMap/\$transform?source=https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle" \
+  -H "Accept: application/fhir+json;fhirVersion=4.0" \
+  -H "Content-Type: application/fhir+xml;fhirVersion=4.0" \
+  --data-binary @input/attachments/fr-CSE-MDE_1obs.xml
+
+```
+
+#### Exemples CDA disponibles
+
+Le dossier `input/attachments/` contient trois exemples de documents CDA :
+
+* **fr-CSE-MDE_1obs.xml** : Carnet de santé de l'enfant - Mesures (1 observation)
+* **fr-CSE-MDE_2023.01.xml** : Carnet de santé de l'enfant - Mesures (version 2023.01)
+* **ch-2-7-MedicationCard.xml** : Carte de médication suisse
+
+#### Résultat attendu
+
+Si la transformation réussit, vous obtiendrez un Bundle FHIR contenant les ressources converties depuis le document CDA.
+
+**Note importante** : Il peut y avoir des erreurs dans les fichiers FML lors de la transformation. L'objectif de ce POC est de valider le processus de transformation. Les erreurs dans les mappings seront traitées ultérieurement.
+
+#### Arrêter et redémarrer
+
+Pour arrêter le conteneur :
+
+```
+docker stop matchbox
+
+```
+
+Pour redémarrer :
+
+```
+docker start matchbox
+
+```
+
+Pour supprimer le conteneur (et repartir de zéro) :
+
+```
+docker rm -f matchbox
+
+```
+
+#### Configuration avancée
+
+Le fichier `input/with-all/application.yaml` configure matchbox avec :
+
+* Les packages FHIR de base (R4 core, terminologies, extensions)
+* Le package CDA (hl7.cda.uv.core)
+* Le package ANS FHIR EDS
+
+Pour modifier la configuration, éditez `application.yaml` puis supprimez et recréez le conteneur Docker.
 
 ### Auteurs et contributeurs
 
@@ -74,7 +216,7 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
 
 * ISO maintains the copyright on the country codes, and controls its use carefully. For further details see the ISO 3166 web page: [https://www.iso.org/iso-3166-country-codes.html](https://www.iso.org/iso-3166-country-codes.html)
 
-* [ISO 3166-1 Codes for the representation of names of countries and their subdivisions — Part 1: Country code](http://terminology.hl7.org/6.5.0/CodeSystem-ISO3166Part1.html): [CDA2FHIRMAP](index.md), [CDAFrMDEToBundle](StructureMap-CDAFrMDEToBundle.md), [CdaFrToBundle](StructureMap-CdaFrToBundle.md), [CdaToBundle](StructureMap-CdaToBundle.md) and [CdaToFHIRTypes](StructureMap-CdaToFHIRTypes.md)
+* [ISO 3166-1 Codes for the representation of names of countries and their subdivisions — Part 1: Country code](http://terminology.hl7.org/6.5.0/CodeSystem-ISO3166Part1.html): [CDA2FHIRMAP](index.md), [CDAFrMDEToBundle](StructureMap-CDAFrMDEToBundle.md)...Show 4 more,[CdaFrToBundle](StructureMap-CdaFrToBundle.md),[CdaToBundle](StructureMap-CdaToBundle.md),[CdaToFHIRTypes](StructureMap-CdaToFHIRTypes.md)and[CdaToFhirAdministrativeGender](ConceptMap-cm-v3-administrative-gender.md)
 
 
 
@@ -90,7 +232,7 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2025-10-21T09:02:47+00:00",
+  "date" : "2025-10-30T13:05:17+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {
@@ -516,6 +658,12 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
         "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
       },
       {
+        "url" : "http://hl7.org/fhir/tools/StructureDefinition/expansion-parameters",
+        "valueReference" : {
+          "reference" : "Parameters/expansion-parameters"
+        }
+      },
+      {
         "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-internal-dependency",
         "valueCode" : "hl7.fhir.uv.tools.r4#0.8.0"
       },
@@ -885,6 +1033,20 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
       }
     ],
     "resource" : [
+      {
+        "extension" : [
+          {
+            "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString" : "ConceptMap"
+          }
+        ],
+        "reference" : {
+          "reference" : "ConceptMap/cm-v3-administrative-gender"
+        },
+        "name" : "CDA to FHIR Administrative Gender Mapping",
+        "description" : "Mapping between CDA v3 Administrative Gender codes and FHIR Administrative Gender codes",
+        "exampleBoolean" : false
+      },
       {
         "extension" : [
           {

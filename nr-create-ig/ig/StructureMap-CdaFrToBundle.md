@@ -9,7 +9,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrToBundle | *Version*:0.1.0 |
-| Draft as of 2025-10-21 | *Computable Name*:CdaFrToBundle |
+| Draft as of 2025-10-30 | *Computable Name*:CdaFrToBundle |
 
  
 Mapping de CDAFr vers FHIR Bundle (A partir des sources de Oliver Egger) 
@@ -32,7 +32,7 @@ uses "http://hl7.org/fhir/StructureDefinition/Practitioner" alias Practitioner a
 uses "http://hl7.org/fhir/StructureDefinition/PractitionerRole" alias PractitionerRole as target
 uses "http://hl7.org/fhir/StructureDefinition/Organization" alias Organization as target
 
-imports "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFhirTypes"
+imports "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes"
 imports "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle"
 
 // _________________________ Document Level Template  _________________________
@@ -151,7 +151,7 @@ group ChExtEprDataEnterer(source src : DataEnterer, target bundle : Bundle, targ
   "name" : "CdaFrToBundle",
   "title" : "Mapping de CDAFr vers FHIR Bundle (A partir des sources de Oliver Egger)",
   "status" : "draft",
-  "date" : "2025-10-21T09:02:47+00:00",
+  "date" : "2025-10-30T13:05:17+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {
@@ -234,7 +234,7 @@ group ChExtEprDataEnterer(source src : DataEnterer, target bundle : Bundle, targ
     }
   ],
   "import" : [
-    "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFhirTypes",
+    "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes",
     "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle"
   ],
   "group" : [

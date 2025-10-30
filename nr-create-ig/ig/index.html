@@ -191,7 +191,7 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
         
           Draft
           
-            as of 2025-10-21
+            as of 2025-10-30
           
         
       </td>
@@ -218,7 +218,7 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
 <div class="markdown-toc">
 <ul id="markdown-toc">
   <li><a href="#introduction" id="markdown-toc-introduction">Introduction</a></li>
-  <li><a href="#lancer-une-transformation" id="markdown-toc-lancer-une-transformation">Lancer une transformation</a></li>
+  <li><a href="#guide-de-démarrage-rapide-quick-start" id="markdown-toc-guide-de-démarrage-rapide-quick-start">Guide de démarrage rapide (Quick Start)</a></li>
   <li><a href="#auteurs-et-contributeurs" id="markdown-toc-auteurs-et-contributeurs">Auteurs et contributeurs</a></li>
   <li><a href="#dépendances" id="markdown-toc-dépendances">Dépendances</a></li>
   <li><a href="#propriété-intellectuelle" id="markdown-toc-propriété-intellectuelle">Propriété intellectuelle</a></li>
@@ -253,34 +253,165 @@ Proof of concept for CDA to FHIR transformation
   <li>tester le FHIR Mapping Language, outil permettant la transformation des documents CDA vers FHIR.</li>
 </ul>
 
-<h3 id="lancer-une-transformation">Lancer une transformation</h3>
+<h3 id="guide-de-démarrage-rapide-quick-start">Guide de démarrage rapide (Quick Start)</h3>
 
-<p>1/ Charge matchbox image docker</p>
+<p>Ce guide vous permet de tester rapidement la transformation de documents CDA vers FHIR en utilisant matchbox et les exemples fournis.</p>
 
-<p>docker pull europe-west6-docker.pkg.dev/ahdis-ch/ahdis/matchbox:v3.8.9</p>
+<h4 id="prérequis">Prérequis</h4>
 
-<p>2/ Create the container with the docker image</p>
+<ul>
+  <li>Docker installé sur votre machine</li>
+  <li>Un client REST (ex: VS Code avec l'extension REST Client, IntelliJ IDEA, ou curl)</li>
+  <li>Accès au repository IG-mapping-cda-fhir</li>
+</ul>
 
-<p>docker run -d –name matchbox -p 8080:8080 -v /Users/nicolasriss/Desktop/cda-fhir-maps/fhir-transformation/with-cda:/config europe-west6-docker.pkg.dev/ahdis-ch/ahdis/matchbox:v3.8.9</p>
+<h4 id="étape-1--télécharger-limage-docker-matchbox">Étape 1 : Télécharger l'image Docker matchbox</h4>
 
-<p>The path should be adapted to your local folder containing the with-cda folder.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker pull europe-west6-docker.pkg.dev/ahdis-ch/ahdis/matchbox:v4.0.12
+</code></pre></div></div>
 
-<p>To access the docker logs, launch this command:</p>
+<h4 id="étape-2--lancer-le-conteneur-docker">Étape 2 : Lancer le conteneur Docker</h4>
 
-<p>docker logs –follow matchbox</p>
+<p><strong>Important</strong> : Adaptez le chemin selon votre installation locale. Le chemin doit pointer vers le dossier <code class="language-plaintext highlighter-rouge">input/with-all</code> de votre projet.</p>
 
-<p>3/ Adapt application.yml</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">-d</span> <span class="nt">--name</span> matchbox <span class="nt">-p</span> 8080:8080 <span class="se">\</span>
+  <span class="nt">-v</span> /chemin/absolu/vers/IG-mapping-cda-fhir/input/with-all:/config <span class="se">\</span>
+  europe-west6-docker.pkg.dev/ahdis-ch/ahdis/matchbox:v4.0.12
+</code></pre></div></div>
 
-<p>To add some new packages to matchbox, you just have to create a new folder equivalent to "with-cda", and add the packages you want indicating the url.</p>
+<p>Exemple concret :</p>
 
-<p>To change the package, you have to delete your docker container (using docker desktop for instance) and then go to step 2/</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">-d</span> <span class="nt">--name</span> matchbox <span class="nt">-p</span> 8080:8080 <span class="se">\</span>
+  <span class="nt">-v</span> /Users/nicolasriss/Desktop/ANSFORGE_ans-ig/1-Mapping-CDA-to-FHIR/IG-mapping-cda-fhir/input/with-all:/config <span class="se">\</span>
+  europe-west6-docker.pkg.dev/ahdis-ch/ahdis/matchbox:v4.0.12
+</code></pre></div></div>
 
-<p>3/ Launch transformations</p>
+<p><strong>Ou utilisez le script de démarrage automatique</strong> :</p>
 
-<p>Then, you will have to launch the transformations in the tests folder :</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./start-matchbox.sh
+</code></pre></div></div>
 
-<p>The cda folder allows to test with the swiss maps and a first try with the french maps
-the eds (entrepôt de données de santé) folder allows to test with https://github.com/ansforge/IG-FHIR-EDS-SOCLE-COMMUN</p>
+<h4 id="étape-3--vérifier-le-démarrage">Étape 3 : Vérifier le démarrage</h4>
+
+<p>Pour suivre les logs de matchbox :</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker logs <span class="nt">--follow</span> matchbox
+</code></pre></div></div>
+
+<p>Attendez que matchbox ait terminé son démarrage. L'interface sera accessible sur : <code class="language-plaintext highlighter-rouge">http://localhost:8080/matchbox</code></p>
+
+<h4 id="étape-4--charger-les-conceptmaps">Étape 4 : Charger les ConceptMaps</h4>
+
+<p>Certains StructureMaps utilisent des ConceptMaps externes pour la traduction de codes terminologiques. Il faut les charger <strong>avant</strong> les StructureMaps.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Charger le ConceptMap pour le genre (administrative-gender)</span>
+curl <span class="nt">-X</span> POST http://localhost:8080/matchbox/fhir/ConceptMap <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: application/fhir+json"</span> <span class="se">\</span>
+  <span class="nt">--data-binary</span> @input/resources/ConceptMap-cm-v3-administrative-gender.json
+</code></pre></div></div>
+
+<h4 id="étape-5--charger-les-structuremaps-et-lancer-les-transformations">Étape 5 : Charger les StructureMaps et lancer les transformations</h4>
+
+<p>Les fichiers HTTP de test se trouvent dans le dossier <code class="language-plaintext highlighter-rouge">http-test/</code>. Utilisez le fichier <code class="language-plaintext highlighter-rouge">fr_cdatofhir_mde.http</code> avec votre client REST.</p>
+
+<p><strong>Avec VS Code et l'extension REST Client</strong> :</p>
+
+<ol>
+  <li>Ouvrez le fichier <code class="language-plaintext highlighter-rouge">http-test/fr_cdatofhir_mde.http</code></li>
+  <li>Exécutez séquentiellement les requêtes HTTP dans l'ordre suivant :
+    <ul>
+      <li><strong>Requête 0</strong> : Charger ConceptMap-cm-v3-administrative-gender.json</li>
+      <li><strong>Requête 1</strong> : Charger CDAtoFHIRTypes.fml</li>
+      <li><strong>Requête 2</strong> : Charger CdaToBundle.fml</li>
+      <li><strong>Requête 3</strong> : Charger CDAFrToBundle.fml</li>
+      <li><strong>Requête 4</strong> : Charger CDAFrMDEToBundle.fml</li>
+      <li><strong>Requête 5</strong> : Transformer fr-CSE-MDE_1obs.xml (sortie JSON)</li>
+      <li><strong>Requête 6</strong> : Transformer fr-CSE-MDE_2023.01.xml (sortie XML)</li>
+      <li><strong>Requête 7</strong> : Transformer ch-2-7-MedicationCard.xml</li>
+    </ul>
+  </li>
+  <li>Cliquez sur "Send Request" au-dessus de chaque requête</li>
+</ol>
+
+<p><strong>Avec curl</strong> (exemple complet) :</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 1. Charger les ConceptMaps nécessaires</span>
+curl <span class="nt">-X</span> POST http://localhost:8080/matchbox/fhir/ConceptMap <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: application/fhir+json"</span> <span class="se">\</span>
+  <span class="nt">--data-binary</span> @input/resources/ConceptMap-cm-v3-administrative-gender.json
+
+<span class="c"># 2. Charger les StructureMaps dans l'ordre</span>
+curl <span class="nt">-X</span> POST http://localhost:8080/matchbox/fhir/StructureMap <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Accept: application/fhir+xml;fhirVersion=4.0"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: text/fhir-mapping"</span> <span class="se">\</span>
+  <span class="nt">--data-binary</span> @input/fml/CDAtoFHIRTypes.fml
+
+curl <span class="nt">-X</span> POST http://localhost:8080/matchbox/fhir/StructureMap <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Accept: application/fhir+xml;fhirVersion=4.0"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: text/fhir-mapping"</span> <span class="se">\</span>
+  <span class="nt">--data-binary</span> @input/fml/CdaToBundle.fml
+
+curl <span class="nt">-X</span> POST http://localhost:8080/matchbox/fhir/StructureMap <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Accept: application/fhir+xml;fhirVersion=4.0"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: text/fhir-mapping"</span> <span class="se">\</span>
+  <span class="nt">--data-binary</span> @input/fml/CDAFrToBundle.fml
+
+curl <span class="nt">-X</span> POST http://localhost:8080/matchbox/fhir/StructureMap <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Accept: application/fhir+xml;fhirVersion=4.0"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: text/fhir-mapping"</span> <span class="se">\</span>
+  <span class="nt">--data-binary</span> @input/fml/CDAFrMDEToBundle.fml
+
+<span class="c"># 3. Transformer un document CDA</span>
+curl <span class="nt">-X</span> POST <span class="s2">"http://localhost:8080/matchbox/fhir/StructureMap/</span><span class="se">\$</span><span class="s2">transform?source=https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Accept: application/fhir+json;fhirVersion=4.0"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: application/fhir+xml;fhirVersion=4.0"</span> <span class="se">\</span>
+  <span class="nt">--data-binary</span> @input/attachments/fr-CSE-MDE_1obs.xml
+</code></pre></div></div>
+
+<h4 id="exemples-cda-disponibles">Exemples CDA disponibles</h4>
+
+<p>Le dossier <code class="language-plaintext highlighter-rouge">input/attachments/</code> contient trois exemples de documents CDA :</p>
+
+<ul>
+  <li><strong>fr-CSE-MDE_1obs.xml</strong> : Carnet de santé de l'enfant - Mesures (1 observation)</li>
+  <li><strong>fr-CSE-MDE_2023.01.xml</strong> : Carnet de santé de l'enfant - Mesures (version 2023.01)</li>
+  <li><strong>ch-2-7-MedicationCard.xml</strong> : Carte de médication suisse</li>
+</ul>
+
+<h4 id="résultat-attendu">Résultat attendu</h4>
+
+<p>Si la transformation réussit, vous obtiendrez un Bundle FHIR contenant les ressources converties depuis le document CDA.</p>
+
+<p><strong>Note importante</strong> : Il peut y avoir des erreurs dans les fichiers FML lors de la transformation. L'objectif de ce POC est de valider le processus de transformation. Les erreurs dans les mappings seront traitées ultérieurement.</p>
+
+<h4 id="arrêter-et-redémarrer">Arrêter et redémarrer</h4>
+
+<p>Pour arrêter le conteneur :</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker stop matchbox
+</code></pre></div></div>
+
+<p>Pour redémarrer :</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker start matchbox
+</code></pre></div></div>
+
+<p>Pour supprimer le conteneur (et repartir de zéro) :</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker <span class="nb">rm</span> <span class="nt">-f</span> matchbox
+</code></pre></div></div>
+
+<h4 id="configuration-avancée">Configuration avancée</h4>
+
+<p>Le fichier <code class="language-plaintext highlighter-rouge">input/with-all/application.yaml</code> configure matchbox avec :</p>
+
+<ul>
+  <li>Les packages FHIR de base (R4 core, terminologies, extensions)</li>
+  <li>Le package CDA (hl7.cda.uv.core)</li>
+  <li>Le package ANS FHIR EDS</li>
+</ul>
+
+<p>Pour modifier la configuration, éditez <code class="language-plaintext highlighter-rouge">application.yaml</code> puis supprimez et recréez le conteneur Docker.</p>
 
 <h3 id="auteurs-et-contributeurs">Auteurs et contributeurs</h3>
 
@@ -338,7 +469,7 @@ the eds (entrepôt de données de santé) folder allows to test with https://git
 <ul>
 <li>ISO maintains the copyright on the country codes, and controls its use carefully. For further details see the ISO 3166 web page: <a href="https://www.iso.org/iso-3166-country-codes.html">https://www.iso.org/iso-3166-country-codes.html</a><div data-fhir="generated" id="ipp_1" onclick="if (document.getElementById('ipp2_1').innerHTML != '') {document.getElementById('ipp_1').innerHTML = document.getElementById('ipp2_1').innerHTML; document.getElementById('ipp2_1').innerHTML = ''}"> <span style="cursor: pointer; border: 1px grey solid; background-color: #fcdcb3; padding-left: 3px; padding-right: 3px; color: black">Show Usage</span></div><div id="ipp2_1" style="display: none">
 <ul>
-<li><a href="http://terminology.hl7.org/6.5.0/CodeSystem-ISO3166Part1.html">ISO 3166-1 Codes for the representation of names of countries and their subdivisions — Part 1: Country code</a>: <a href="index.html">CDA2FHIRMAP</a>, <a href="StructureMap-CDAFrMDEToBundle.html">CDAFrMDEToBundle</a>, <a href="StructureMap-CdaFrToBundle.html">CdaFrToBundle</a>, <a href="StructureMap-CdaToBundle.html">CdaToBundle</a> and <a href="StructureMap-CdaToFHIRTypes.html">CdaToFHIRTypes</a></li>
+<li><a href="http://terminology.hl7.org/6.5.0/CodeSystem-ISO3166Part1.html">ISO 3166-1 Codes for the representation of names of countries and their subdivisions — Part 1: Country code</a>: <a href="index.html">CDA2FHIRMAP</a>, <a href="StructureMap-CDAFrMDEToBundle.html">CDAFrMDEToBundle</a><span id="ips_1" onclick="document.getElementById('ips_1').innerHTML = document.getElementById('ips2_1').innerHTML">... <span style="cursor: pointer; border: 1px grey solid; background-color: #fcdcb3; padding-left: 3px; padding-right: 3px; color: black">Show 4 more</span></span><span id="ips2_1" style="display: none">, <a href="StructureMap-CdaFrToBundle.html">CdaFrToBundle</a>, <a href="StructureMap-CdaToBundle.html">CdaToBundle</a>, <a href="StructureMap-CdaToFHIRTypes.html">CdaToFHIRTypes</a> and <a href="ConceptMap-cm-v3-administrative-gender.html">CdaToFhirAdministrativeGender</a></span></li>
 </ul>
 </div></li>
 </ul>
@@ -385,7 +516,7 @@ the eds (entrepôt de données de santé) folder allows to test with https://git
 
       <div class="inner-wrapper">
         <p>
-          IG &#169; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d&#39;Oradour-sur-Glane, 75015 Paris</a>.  Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Tue, Oct 21, 2025 09:03+0000">2025-10-21</span>
+          IG &#169; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d&#39;Oradour-sur-Glane, 75015 Paris</a>.  Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Thu, Oct 30, 2025 13:05+0000">2025-10-30</span>
           <br/>
           <span style="color: var(--footer-highlight-text-color)"></span>
             Liens : <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table des matières</a> |

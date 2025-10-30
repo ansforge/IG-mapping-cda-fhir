@@ -18,3 +18,11 @@ These define transformations to convert between data structures used by systems 
 | [Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)](StructureMap-CdaToFHIRTypes.md) | Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger) |
 | [Mapping de CDAFr vers FHIR Bundle (A partir des sources de Oliver Egger)](StructureMap-CdaFrToBundle.md) | Mapping de CDAFr vers FHIR Bundle (A partir des sources de Oliver Egger) |
 
+### Terminology: Concept Maps 
+
+These define transformations to convert between codes by systems conforming with this implementation guide.
+
+| | |
+| :--- | :--- |
+| [CDA to FHIR Administrative Gender Mapping](ConceptMap-cm-v3-administrative-gender.md) | Mapping between CDA v3 Administrative Gender codes and FHIR Administrative Gender codes |
+

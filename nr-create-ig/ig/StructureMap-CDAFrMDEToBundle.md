@@ -9,7 +9,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrMDEToBundle | *Version*:0.1.0 |
-| Draft as of 2025-10-21 | *Computable Name*:CDAFrMDEToBundle |
+| Draft as of 2025-10-30 | *Computable Name*:CDAFrMDEToBundle |
 
  
 Mapping de CDA Mesure de lEnfant vers FHIR Bundle (A partir des sources de Oliver Egger) 
@@ -30,7 +30,7 @@ uses "http://hl7.org/fhir/StructureDefinition/MedicationStatement" alias Medicat
 uses "http://hl7.org/fhir/StructureDefinition/Dosage" alias Dosage as target
 uses "http://hl7.org/fhir/StructureDefinition/Observation" alias Observation as target
 
-imports "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFhirTypes"
+imports "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes"
 imports "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle"
 imports "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrToBundle"
 
@@ -108,7 +108,7 @@ group OrganizerComponentToObservation(source ob : Observation, target obs : Obse
   "name" : "CDAFrMDEToBundle",
   "title" : "Mapping de CDA Mesure de lEnfant vers FHIR Bundle (A partir des sources de Oliver Egger)",
   "status" : "draft",
-  "date" : "2025-10-21T09:02:47+00:00",
+  "date" : "2025-10-30T13:05:17+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {
@@ -181,7 +181,7 @@ group OrganizerComponentToObservation(source ob : Observation, target obs : Obse
     }
   ],
   "import" : [
-    "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFhirTypes",
+    "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes",
     "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle",
     "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrToBundle"
   ],

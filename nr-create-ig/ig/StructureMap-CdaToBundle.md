@@ -9,7 +9,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle | *Version*:0.1.0 |
-| Draft as of 2025-10-21 | *Computable Name*:CdaToBundle |
+| Draft as of 2025-10-30 | *Computable Name*:CdaToBundle |
 
  
 Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger) 
@@ -72,7 +72,7 @@ group ClinicalDocumentSection(source cda : ClinicalDocument, source src : Sectio
 // _________________________ Header Level Templates _________________________
 group ClinicalDocumentComposition(source src : ClinicalDocument, target tgt : Composition, target patientResource : Patient, target bundle : Bundle) {
   src.languageCode as languageCode -> tgt.language = languageCode;
-  src.id where src.setId.exists().not() as setId -> tgt.identifier = setId "identifier";
+  src.id as id where src.setId.exists().not() -> tgt.identifier = id "identifier";
   src.setId as setIdentifier -> tgt.identifier = setIdentifier "identifier";
   src -> tgt.status = 'final' "status";
   src.code as srcCode -> tgt.type = srcCode;
@@ -124,7 +124,7 @@ group ClinicalDocumentComposition(source src : ClinicalDocument, target tgt : Co
   src.relatedDocument as relatedDoc -> tgt.relatesTo as relates then {
     relatedDoc.typeCode as typeCode -> relates.code = typeCode;
     relatedDoc.parentDocument as parentDoc then {
-      parentDoc.setId as setId -> relates.targetIdentifier = setId;
+      parentDoc.setId as sid -> relates.targetIdentifier = sid;
     } "parentDoc";
   } "relatedDoc";
 }
@@ -155,7 +155,7 @@ group ClinicalDocumentPatientRole(source src : PatientRole, target tgt : Patient
   src.patient as patient then {
     patient.name as patientName -> tgt.name = patientName;
     patient.administrativeGenderCode as gender then {
-      gender.code as v -> tgt.gender = translate(v, '#cm-v3-administrative-gender', 'code') "gender";
+      gender.code as v -> tgt.gender = translate(v, 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/cm-v3-administrative-gender', 'code') "gender";
     } "gender";
     patient.birthTime as birthTime -> tgt.birthDate = birthTime "birthDate";
     patient.deceasedInd as indicator where patient.deceasedTime.empty() -> tgt.deceased = create('boolean') as bool then boolean(indicator, bool) "deceasedBL";
@@ -255,7 +255,7 @@ group NarrativeLink(source url, target ext : Extension) {
   "name" : "CdaToBundle",
   "title" : "Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)",
   "status" : "draft",
-  "date" : "2025-10-21T09:02:47+00:00",
+  "date" : "2025-10-30T13:05:17+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {
@@ -877,7 +877,8 @@ group NarrativeLink(source url, target ext : Extension) {
             {
               "context" : "src",
               "element" : "id",
-              "condition" : "src.setId.exists().not() as setId"
+              "variable" : "id",
+              "condition" : "src.setId.exists().not()"
             }
           ],
           "target" : [
@@ -888,7 +889,7 @@ group NarrativeLink(source url, target ext : Extension) {
               "transform" : "copy",
               "parameter" : [
                 {
-                  "valueId" : "setId"
+                  "valueId" : "id"
                 }
               ]
             }
@@ -2005,7 +2006,7 @@ group NarrativeLink(source url, target ext : Extension) {
                     {
                       "context" : "parentDoc",
                       "element" : "setId",
-                      "variable" : "setId"
+                      "variable" : "sid"
                     }
                   ],
                   "target" : [
@@ -2016,7 +2017,7 @@ group NarrativeLink(source url, target ext : Extension) {
                       "transform" : "copy",
                       "parameter" : [
                         {
-                          "valueId" : "setId"
+                          "valueId" : "sid"
                         }
                       ]
                     }
@@ -2420,7 +2421,7 @@ group NarrativeLink(source url, target ext : Extension) {
                           "valueId" : "v"
                         },
                         {
-                          "valueString" : "#cm-v3-administrative-gender"
+                          "valueString" : "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/cm-v3-administrative-gender"
                         },
                         {
                           "valueString" : "code"

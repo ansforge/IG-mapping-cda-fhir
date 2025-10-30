@@ -11,14 +11,17 @@
   fhir:id [ fhir:v "CdaToBundle"] ; # 
   fhir:text [
      fhir:status [ fhir:v "generated" ] ;
-     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Narratif généré : StructureMap CdaToBundle</b></p><a name=\"CdaToBundle\"> </a><a name=\"hcCdaToBundle\"> </a><pre class=\"fml\">#xD;\n<b>map</b><span style=\"color: navy\"> \"</span>https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle<span style=\"color: navy\">\" = \"</span>CdaToBundle<span style=\"color: navy\">\"#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)</span>#xD;\n#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ClinicalDocument.html\" title=\"ClinicalDocument (CDA Class)\">http://hl7.org/cda/stds/core/StructureDefinition/ClinicalDocument</a><span style=\"color: navy\">\" </span><b>alias </b>ClinicalDocument <b>as </b><b>source</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AssignedAuthor.html\" title=\"AssignedAuthor (CDA Class)\">http://hl7.org/cda/stds/core/StructureDefinition/AssignedAuthor</a><span style=\"color: navy\">\" </span><b>alias </b>AssignedAuthor <b>as </b><b>source</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AssignedEntity.html\" title=\"AssignedEntity (CDA Class)\">http://hl7.org/cda/stds/core/StructureDefinition/AssignedEntity</a><span style=\"color: navy\">\" </span><b>alias </b>AssignedEntity <b>as </b><b>source</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CustodianOrganization.html\" title=\"CustodianOrganization (CDA Class)\">http://hl7.org/cda/stds/core/StructureDefinition/CustodianOrganization</a><span style=\"color: navy\">\" </span><b>alias </b>CustodianOrganization <b>as </b><b>source</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Section.html\" title=\"Section (CDA Class)\">http://hl7.org/cda/stds/core/StructureDefinition/Section</a><span style=\"color: navy\">\" </span><b>alias </b>Section <b>as </b><b>source</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-PatientRole.html\" title=\"PatientRole (CDA Class)\">http://hl7.org/cda/stds/core/StructureDefinition/PatientRole</a><span style=\"color: navy\">\" </span><b>alias </b>PatientRole <b>as </b><b>source</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/fhir/R4/bundle.html\" title=\"Bundle\">http://hl7.org/fhir/StructureDefinition/Bundle</a><span style=\"color: navy\">\" </span><b>alias </b>Bundle <b>as </b><b>target</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/fhir/R4/composition.html\" title=\"Composition\">http://hl7.org/fhir/StructureDefinition/Composition</a><span style=\"color: navy\">\" </span><b>alias </b>Composition <b>as </b><b>target</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/fhir/R4/patient.html\" title=\"Patient\">http://hl7.org/fhir/StructureDefinition/Patient</a><span style=\"color: navy\">\" </span><b>alias </b>Patient <b>as </b><b>target</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/fhir/R4/person.html\" title=\"Person\">http://hl7.org/fhir/StructureDefinition/Person</a><span style=\"color: navy\">\" </span><b>alias </b>Person <b>as </b><b>target</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/fhir/R4/practitioner.html\" title=\"Practitioner\">http://hl7.org/fhir/StructureDefinition/Practitioner</a><span style=\"color: navy\">\" </span><b>alias </b>Practitioner <b>as </b><b>target</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/fhir/R4/organization.html\" title=\"Organization\">http://hl7.org/fhir/StructureDefinition/Organization</a><span style=\"color: navy\">\" </span><b>alias </b>Organization <b>as </b><b>target</b>#xD;\n#xD;\n<b>imports</b><span style=\"color: navy\"> \"</span><a href=\"StructureMap-CdaToFHIRTypes.html\" title=\"Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)\">https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes</a><span style=\"color: navy\">\"#xD;\n</span>#xD;\n<span style=\"color: navy\">// </span><span style=\"color: green\">_________________________ Document Level Template  _________________________</span>#xD;\n<b>group </b>CdaToBundle<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">cda</span><span style=\"color: navy\"> : </span>ClinicalDocument, <b>target</b> <span style=\"color: maroon\">bundle</span><span style=\"color: navy\"> : </span>Bundle<span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  cda<span style=\"color: navy\"><b> -&gt; </b></span> bundle.entry<b> as </b><span style=\"color: maroon\">e</span><span style=\"color: navy\">, </span> e.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Composition'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">composition</span><span style=\"color: navy\">, </span> composition.id = <b>uuid</b><span style=\"color: navy\">(</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">uuid</span><span style=\"color: navy\">, </span> e.fullUrl = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:uuid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">uuid</span><span style=\"color: navy\">)</span><span style=\"color: navy\">, </span> bundle.entry<b> as </b><span style=\"color: maroon\">e2</span><span style=\"color: navy\">, </span> e2.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Patient'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">patient</span><span style=\"color: navy\">, </span> patient.id = <b>uuid</b><span style=\"color: navy\">(</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">uuid2</span><span style=\"color: navy\">, </span> e2.fullUrl = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:uuid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">uuid2</span><span style=\"color: navy\">)</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    cda<b> then </b>ClinicalDocumentToBundle<span style=\"color: navy\">(</span><span style=\"color: maroon\">cda</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">patient</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">composition</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">bundle</span><span style=\"color: navy\">)</span> <i>\"cdatobundle\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"ClinicalDocumentToBody\"</i><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><b>group </b>ClinicalDocumentToBundle<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">cda</span><span style=\"color: navy\"> : </span>ClinicalDocument, <b>target</b> <span style=\"color: maroon\">patient</span><span style=\"color: navy\"> : </span>Patient, <b>target</b> <span style=\"color: maroon\">composition</span><span style=\"color: navy\"> : </span>Composition, <b>target</b> <span style=\"color: maroon\">bundle</span><span style=\"color: navy\"> : </span>Bundle<span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  cda<span style=\"color: navy\"><b> -&gt; </b></span>bundle.id = <b>uuid</b><span style=\"color: navy\">(</span><span style=\"color: navy\">)</span> <i>\"id\"</i><span style=\"color: navy\">;</span>#xD;\n  cda.id<b> as </b><span style=\"color: maroon\">addIdentifier</span><span style=\"color: navy\"><b> -&gt; </b></span>bundle.identifier = <span style=\"color: maroon\">addIdentifier</span> <i>\"identifier\"</i><span style=\"color: navy\">;</span>#xD;\n  cda<span style=\"color: navy\"><b> -&gt; </b></span>bundle.type = <span style=\"color: blue\">'document'</span> <i>\"type\"</i><span style=\"color: navy\">;</span>#xD;\n  cda.effectiveTime<b> as </b><span style=\"color: maroon\">timestamp</span><span style=\"color: navy\"><b> -&gt; </b></span>bundle.timestamp = <span style=\"color: maroon\">timestamp</span><span style=\"color: navy\">;</span>#xD;\n  cda<b> then </b>ClinicalDocumentComposition<span style=\"color: navy\">(</span><span style=\"color: maroon\">cda</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">composition</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">patient</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">bundle</span><span style=\"color: navy\">)</span> <i>\"composition\"</i><span style=\"color: navy\">;</span>#xD;\n  cda.component<b> as </b><span style=\"color: maroon\">cdaComponent</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    cdaComponent.structuredBody<b> as </b><span style=\"color: maroon\">body</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>      body.component<b> as </b><span style=\"color: maroon\">bodyComponent</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>        bodyComponent.section<b> as </b><span style=\"color: maroon\">srcSection</span><b> where </b>$this.code.empty()<span style=\"color: navy\"><b> -&gt; </b></span>composition.section<b> as </b><span style=\"color: maroon\">tgtSection</span><b> then </b>ClinicalDocumentSection<span style=\"color: navy\">(</span><span style=\"color: maroon\">cda</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">srcSection</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">patient</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">tgtSection</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">bundle</span><span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n      <span style=\"color: navy\">}</span> <i>\"bodyComponent\"</i><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">}</span> <i>\"body\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"cdaComponent\"</i><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">// _________________________ Section Level Templates _________________________</span>#xD;\n<b>group </b>ClinicalDocumentSection<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">cda</span><span style=\"color: navy\"> : </span>ClinicalDocument, <b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>Section, <b>source</b> <span style=\"color: maroon\">patient</span><span style=\"color: navy\"> : </span>Patient, <b>target</b> <span style=\"color: maroon\">tgt</span>, <b>target</b> <span style=\"color: maroon\">bundle</span><span style=\"color: navy\"> : </span>Bundle<span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  src.title<b> as </b><span style=\"color: maroon\">t</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.title = <span style=\"color: navy\">(</span>t.xmlText<span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n  src.code<b> as </b><span style=\"color: maroon\">srcCode</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.code = <span style=\"color: maroon\">srcCode</span><span style=\"color: navy\">;</span>#xD;\n  src.text<b> as </b><span style=\"color: maroon\">cdaText</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.text<b> as </b><span style=\"color: maroon\">fhirText</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    cdaText<span style=\"color: navy\"><b> -&gt; </b></span>fhirText.status = <span style=\"color: blue\">'generated'</span> <i>\"narrativeStatus\"</i><span style=\"color: navy\">;</span>#xD;\n    cdaText<b> as </b><span style=\"color: maroon\">t</span><span style=\"color: navy\"><b> -&gt; </b></span>fhirText.div = <span style=\"color: maroon\">t</span> <i>\"narrativeText\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"cdaText\"</i><span style=\"color: navy\">;</span>#xD;\n  src.section<b> as </b><span style=\"color: maroon\">srcSection</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.section<b> as </b><span style=\"color: maroon\">tgtSection</span><b> then </b>ClinicalDocumentSection<span style=\"color: navy\">(</span><span style=\"color: maroon\">cda</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">srcSection</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">patient</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">tgtSection</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">bundle</span><span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">_________________________ Entry Level Templates   ________________________</span>#xD;\n<span style=\"color: navy\">// </span><span style=\"color: green\">_________________________ Header Level Templates _________________________</span>#xD;\n<b>group </b>ClinicalDocumentComposition<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>ClinicalDocument, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>Composition, <b>target</b> <span style=\"color: maroon\">patientResource</span><span style=\"color: navy\"> : </span>Patient, <b>target</b> <span style=\"color: maroon\">bundle</span><span style=\"color: navy\"> : </span>Bundle<span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  src.languageCode<b> as </b><span style=\"color: maroon\">languageCode</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.language = <span style=\"color: maroon\">languageCode</span><span style=\"color: navy\">;</span>#xD;\n  src.id<b> where </b>src.setId.exists().not() as setId<span style=\"color: navy\"><b> -&gt; </b></span>tgt.identifier = <span style=\"color: maroon\">setId</span> <i>\"identifier\"</i><span style=\"color: navy\">;</span>#xD;\n  src.setId<b> as </b><span style=\"color: maroon\">setIdentifier</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.identifier = <span style=\"color: maroon\">setIdentifier</span> <i>\"identifier\"</i><span style=\"color: navy\">;</span>#xD;\n  src<span style=\"color: navy\"><b> -&gt; </b></span>tgt.status = <span style=\"color: blue\">'final'</span> <i>\"status\"</i><span style=\"color: navy\">;</span>#xD;\n  src.code<b> as </b><span style=\"color: maroon\">srcCode</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.type = <span style=\"color: maroon\">srcCode</span><span style=\"color: navy\">;</span>#xD;\n  src.title<b> as </b><span style=\"color: maroon\">t</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.title = <span style=\"color: navy\">(</span>t.xmlText<span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n  src.recordTarget<b> as </b><span style=\"color: maroon\">recordTarget</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    recordTarget.patientRole<b> as </b><span style=\"color: maroon\">patient</span><span style=\"color: navy\"><b> -&gt; </b></span> tgt.subject = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Reference'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">reference</span><span style=\"color: navy\">, </span> reference.reference = <span style=\"color: navy\">(</span>'urn:uuid:' + %patientResource.id<span style=\"color: navy\">)</span><b> then </b>ClinicalDocumentPatientRole<span style=\"color: navy\">(</span><span style=\"color: maroon\">patient</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">patientResource</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">bundle</span><span style=\"color: navy\">)</span> <i>\"subject\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"patientRole\"</i><span style=\"color: navy\">;</span>#xD;\n  src.componentOf<b> as </b><span style=\"color: maroon\">comp</span><span style=\"color: navy\"><b> -&gt; </b></span> bundle.entry<b> as </b><span style=\"color: maroon\">e</span><span style=\"color: navy\">, </span> e.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Encounter'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">encounter</span><span style=\"color: navy\">, </span> encounter.id = <b>uuid</b><span style=\"color: navy\">(</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">uuid</span><span style=\"color: navy\">, </span> e.fullUrl = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:uuid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">uuid</span><span style=\"color: navy\">)</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    comp.encompassingEncounter<b> as </b><span style=\"color: maroon\">srcEnc</span><span style=\"color: navy\"><b> -&gt; </b></span> tgt.encounter = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Reference'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">reference</span><span style=\"color: navy\">, </span> reference.reference = <span style=\"color: navy\">(</span>'urn:uuid:' + %encounter.id<span style=\"color: navy\">)</span><b> then </b>ClinicalDocumentEncounter<span style=\"color: navy\">(</span><span style=\"color: maroon\">srcEnc</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">bundle</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">encounter</span><span style=\"color: navy\">)</span> <i>\"srcEncounter\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"encompassingEncounter\"</i><span style=\"color: navy\">;</span>#xD;\n  src.effectiveTime<b> as </b><span style=\"color: maroon\">effectiveTime</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.date = <span style=\"color: maroon\">effectiveTime</span><span style=\"color: navy\">;</span>#xD;\n  src.author<b> as </b><span style=\"color: maroon\">srcAuthor</span><span style=\"color: navy\"><b> -&gt; </b></span> bundle.entry<b> as </b><span style=\"color: maroon\">e</span><span style=\"color: navy\">, </span> e.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Practitioner'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">practitioner</span><span style=\"color: navy\">, </span> practitioner.id = <b>uuid</b><span style=\"color: navy\">(</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">uuid2</span><span style=\"color: navy\">, </span> e.fullUrl = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:uuid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">uuid2</span><span style=\"color: navy\">)</span><span style=\"color: navy\">, </span> tgt.author = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Reference'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">reference</span><span style=\"color: navy\">, </span> reference.reference = <span style=\"color: navy\">(</span>'urn:uuid:' + %practitioner.id<span style=\"color: navy\">)</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    srcAuthor.assignedAuthor<b> as </b><span style=\"color: maroon\">assignedAuthor</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>      assignedAuthor.id<b> as </b><span style=\"color: maroon\">id</span><span style=\"color: navy\"><b> -&gt; </b></span>practitioner.identifier = <span style=\"color: maroon\">id</span><span style=\"color: navy\">;</span>#xD;\n      assignedAuthor.addr<b> as </b><span style=\"color: maroon\">addr</span><span style=\"color: navy\"><b> -&gt; </b></span>practitioner.address = <span style=\"color: maroon\">addr</span><span style=\"color: navy\">;</span>#xD;\n      assignedAuthor.telecom<b> as </b><span style=\"color: maroon\">tlc</span><span style=\"color: navy\"><b> -&gt; </b></span>practitioner.telecom = <span style=\"color: maroon\">tlc</span><span style=\"color: navy\">;</span>#xD;\n      assignedAuthor.assignedPerson<b> as </b><span style=\"color: maroon\">assPerson</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>        assPerson.name<b> as </b><span style=\"color: maroon\">pName</span><span style=\"color: navy\"><b> -&gt; </b></span>practitioner.name = <span style=\"color: maroon\">pName</span><span style=\"color: navy\">;</span>#xD;\n      <span style=\"color: navy\">}</span> <i>\"name\"</i><span style=\"color: navy\">;</span>#xD;\n      assignedAuthor.representedOrganization<b> as </b><span style=\"color: maroon\">srcOrg</span><span style=\"color: navy\"><b> -&gt; </b></span> bundle.entry<b> as </b><span style=\"color: maroon\">e2</span><span style=\"color: navy\">, </span> e2.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Organization'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">organization</span><span style=\"color: navy\">, </span> organization.id = <b>uuid</b><span style=\"color: navy\">(</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">uuid3</span><span style=\"color: navy\">, </span> e2.fullUrl = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:uuid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">uuid3</span><span style=\"color: navy\">)</span><span style=\"color: navy\">, </span> tgt.author = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Reference'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">reference2</span><span style=\"color: navy\">, </span> reference2.reference = <span style=\"color: navy\">(</span>'urn:uuid:' + %organization.id<span style=\"color: navy\">)</span><b> then </b>ClinicalDocumentOrganization<span style=\"color: navy\">(</span><span style=\"color: maroon\">srcOrg</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">organization</span><span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">}</span> <i>\"author\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"srcAuthor\"</i><span style=\"color: navy\">;</span>#xD;\n  src.confidentialityCode<b> as </b><span style=\"color: maroon\">confCode</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.confidentiality = <span style=\"color: maroon\">confCode</span><span style=\"color: navy\">;</span>#xD;\n  src.legalAuthenticator<b> as </b><span style=\"color: maroon\">legalAuth</span><span style=\"color: navy\"><b> -&gt; </b></span> bundle.entry<b> as </b><span style=\"color: maroon\">e</span><span style=\"color: navy\">, </span> e.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Practitioner'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">practitioner</span><span style=\"color: navy\">, </span> practitioner.id = <b>uuid</b><span style=\"color: navy\">(</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">uuid2</span><span style=\"color: navy\">, </span> e.fullUrl = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:uuid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">uuid2</span><span style=\"color: navy\">)</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    legalAuth<span style=\"color: navy\"><b> -&gt; </b></span>tgt.attester<b> as </b><span style=\"color: maroon\">attester</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>      legalAuth<span style=\"color: navy\"><b> -&gt; </b></span>attester.mode = <span style=\"color: blue\">'legal'</span> <i>\"mode\"</i><span style=\"color: navy\">;</span>#xD;\n      legalAuth.time<b> as </b><span style=\"color: maroon\">time</span><span style=\"color: navy\"><b> -&gt; </b></span>attester.time = <span style=\"color: maroon\">time</span><span style=\"color: navy\">;</span>#xD;\n      legalAuth.assignedEntity<b> as </b><span style=\"color: maroon\">entity</span><span style=\"color: navy\"><b> -&gt; </b></span> attester.party = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Reference'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">reference</span><span style=\"color: navy\">, </span> reference.reference = <span style=\"color: navy\">(</span>'urn:uuid:' + %practitioner.id<span style=\"color: navy\">)</span><b> then </b>ClinicalDocumentEntityPractitioner<span style=\"color: navy\">(</span><span style=\"color: maroon\">entity</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">practitioner</span><span style=\"color: navy\">)</span> <i>\"entity\"</i><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">}</span> <i>\"attester\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"legalAuth\"</i><span style=\"color: navy\">;</span>#xD;\n  src.authenticator<b> as </b><span style=\"color: maroon\">auth</span><span style=\"color: navy\"><b> -&gt; </b></span> bundle.entry<b> as </b><span style=\"color: maroon\">e</span><span style=\"color: navy\">, </span> e.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Practitioner'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">practitioner</span><span style=\"color: navy\">, </span> practitioner.id = <b>uuid</b><span style=\"color: navy\">(</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">uuid2</span><span style=\"color: navy\">, </span> e.fullUrl = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:uuid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">uuid2</span><span style=\"color: navy\">)</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    auth<span style=\"color: navy\"><b> -&gt; </b></span>tgt.attester<b> as </b><span style=\"color: maroon\">attester</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>      auth<span style=\"color: navy\"><b> -&gt; </b></span>attester.mode = <span style=\"color: blue\">'official'</span> <i>\"mode\"</i><span style=\"color: navy\">;</span>#xD;\n      auth.time<b> as </b><span style=\"color: maroon\">time</span><span style=\"color: navy\"><b> -&gt; </b></span>attester.time = <span style=\"color: maroon\">time</span><span style=\"color: navy\">;</span>#xD;\n      auth.assignedEntity<b> as </b><span style=\"color: maroon\">entity</span><span style=\"color: navy\"><b> -&gt; </b></span> attester.party = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Reference'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">reference</span><span style=\"color: navy\">, </span> reference.reference = <span style=\"color: navy\">(</span>'urn:uuid:' + %practitioner.id<span style=\"color: navy\">)</span><b> then </b>ClinicalDocumentEntityPractitioner<span style=\"color: navy\">(</span><span style=\"color: maroon\">entity</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">practitioner</span><span style=\"color: navy\">)</span> <i>\"entity\"</i><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">}</span> <i>\"attester\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"auth\"</i><span style=\"color: navy\">;</span>#xD;\n  src.custodian<b> as </b><span style=\"color: maroon\">custodian</span><span style=\"color: navy\"><b> -&gt; </b></span>bundle.entry<b> as </b><span style=\"color: maroon\">e</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    custodian.assignedCustodian<b> as </b><span style=\"color: maroon\">assignedCustodian</span><span style=\"color: navy\"><b> -&gt; </b></span> e.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Organization'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">organization</span><span style=\"color: navy\">, </span> organization.id = <b>uuid</b><span style=\"color: navy\">(</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">uuid3</span><span style=\"color: navy\">, </span> e.fullUrl = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:uuid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">uuid3</span><span style=\"color: navy\">)</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>      assignedCustodian.representedCustodianOrganization<b> as </b><span style=\"color: maroon\">srcOrg</span><span style=\"color: navy\"><b> -&gt; </b></span> tgt.custodian = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Reference'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">reference</span><span style=\"color: navy\">, </span> reference.reference = <span style=\"color: navy\">(</span>'urn:uuid:' + %organization.id<span style=\"color: navy\">)</span><b> then </b>ClinicalDocumentOrganization<span style=\"color: navy\">(</span><span style=\"color: maroon\">srcOrg</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">organization</span><span style=\"color: navy\">)</span> <i>\"assignedCustodian\"</i><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">}</span> <i>\"custodian\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"cust\"</i><span style=\"color: navy\">;</span>#xD;\n  src.documentationOf<b> as </b><span style=\"color: maroon\">docOf</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    docOf.serviceEvent<b> as </b><span style=\"color: maroon\">serviceEvent</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.event<b> as </b><span style=\"color: maroon\">event</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>      serviceEvent.code<b> as </b><span style=\"color: maroon\">eventCode</span><span style=\"color: navy\"><b> -&gt; </b></span>event.code = <span style=\"color: maroon\">eventCode</span> <i>\"eventCode\"</i><span style=\"color: navy\">;</span>#xD;\n      serviceEvent.effectiveTime<b> as </b><span style=\"color: maroon\">effectivetime</span><span style=\"color: navy\"><b> -&gt; </b></span>event.period = <span style=\"color: maroon\">effectivetime</span> <i>\"eventTime\"</i><span style=\"color: navy\">;</span> <span style=\"color: navy\">// </span><span style=\"color: green\">performerType: for src.performer.typeCode ...</span>#xD;\n    <span style=\"color: navy\">}</span> <i>\"docOf\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span><span style=\"color: navy\">;</span>#xD;\n  src.relatedDocument<b> as </b><span style=\"color: maroon\">relatedDoc</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.relatesTo<b> as </b><span style=\"color: maroon\">relates</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    relatedDoc.typeCode<b> as </b><span style=\"color: maroon\">typeCode</span><span style=\"color: navy\"><b> -&gt; </b></span>relates.code = <span style=\"color: maroon\">typeCode</span><span style=\"color: navy\">;</span>#xD;\n    relatedDoc.parentDocument<b> as </b><span style=\"color: maroon\">parentDoc</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>      parentDoc.setId<b> as </b><span style=\"color: maroon\">setId</span><span style=\"color: navy\"><b> -&gt; </b></span>relates.targetIdentifier = <span style=\"color: maroon\">setId</span><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">}</span> <i>\"parentDoc\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"relatedDoc\"</i><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><b>group </b>ClinicalDocumentEntityPractitioner<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>AssignedEntity, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>Practitioner<span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  src.id<b> as </b><span style=\"color: maroon\">srcId</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.identifier = <span style=\"color: maroon\">srcId</span><span style=\"color: navy\">;</span>#xD;\n  src.addr<b> as </b><span style=\"color: maroon\">srcAddr</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.address = <span style=\"color: maroon\">srcAddr</span><span style=\"color: navy\">;</span>#xD;\n  src.telecom<b> as </b><span style=\"color: maroon\">srcTelecom</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.telecom = <span style=\"color: maroon\">srcTelecom</span><span style=\"color: navy\">;</span>#xD;\n  src.assignedPerson<b> as </b><span style=\"color: maroon\">person</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    person.name<b> as </b><span style=\"color: maroon\">pName</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.name = <span style=\"color: maroon\">pName</span><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"name\"</i><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><b>group </b>ClinicalDocumentOrganization<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>CustodianOrganization, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>Organization<span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  src.id<b> as </b><span style=\"color: maroon\">srcId</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.identifier = <span style=\"color: maroon\">srcId</span><span style=\"color: navy\">;</span>#xD;\n  src.name<b> as </b><span style=\"color: maroon\">v</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.name = <span style=\"color: navy\">(</span>v.other<span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n  src.telecom<b> as </b><span style=\"color: maroon\">srcTelecom</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.telecom = <span style=\"color: maroon\">srcTelecom</span><span style=\"color: navy\">;</span>#xD;\n  src.addr<b> as </b><span style=\"color: maroon\">srcAddr</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.address = <span style=\"color: maroon\">srcAddr</span><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><b>group </b>ClinicalDocumentPatientRole<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>PatientRole, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>Patient, <b>target</b> <span style=\"color: maroon\">bundle</span><span style=\"color: navy\"> : </span>Bundle<span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  <span style=\"color: #b36b00\" title=\"Cet élément nétait pas défini avant R5\">// src.id -&gt; tgt.identifier;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">Patient.identifier.type for EPR context, because there is only the identifier \"LocalPid\" allowed, LocalPid requires an type -&gt; http://build.fhir.org/ig/hl7ch/ch-core/branches/master/StructureDefinition-ch-core-composition-patient-epr.html</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">Modification NR</span>#xD;\n  src.id<b> as </b><span style=\"color: maroon\">id</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.identifier = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Identifier'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">identifier</span><b> then </b>setFrPatientIdentifier<span style=\"color: navy\">(</span><span style=\"color: maroon\">id</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">identifier</span><span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n  src.addr<b> as </b><span style=\"color: maroon\">srcAddr</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.address = <span style=\"color: maroon\">srcAddr</span><span style=\"color: navy\">;</span>#xD;\n  src.telecom<b> as </b><span style=\"color: maroon\">srcTelecom</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.telecom = <span style=\"color: maroon\">srcTelecom</span><span style=\"color: navy\">;</span>#xD;\n  src.patient<b> as </b><span style=\"color: maroon\">patient</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    patient.name<b> as </b><span style=\"color: maroon\">patientName</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.name = <span style=\"color: maroon\">patientName</span><span style=\"color: navy\">;</span>#xD;\n    patient.administrativeGenderCode<b> as </b><span style=\"color: maroon\">gender</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>      gender.code<b> as </b><span style=\"color: maroon\">v</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.gender = <b>translate</b><span style=\"color: navy\">(</span><span style=\"color: maroon\">v</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'#cm-v3-administrative-gender'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'code'</span><span style=\"color: navy\">)</span> <i>\"gender\"</i><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">}</span> <i>\"gender\"</i><span style=\"color: navy\">;</span>#xD;\n    patient.birthTime<b> as </b><span style=\"color: maroon\">birthTime</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.birthDate = <span style=\"color: maroon\">birthTime</span> <i>\"birthDate\"</i><span style=\"color: navy\">;</span>#xD;\n    patient.deceasedInd<b> as </b><span style=\"color: maroon\">indicator</span><b> where </b>patient.deceasedTime.empty()<span style=\"color: navy\"><b> -&gt; </b></span>tgt.deceased = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'boolean'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">bool</span><b> then </b>boolean<span style=\"color: navy\">(</span><span style=\"color: maroon\">indicator</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">bool</span><span style=\"color: navy\">)</span> <i>\"deceasedBL\"</i><span style=\"color: navy\">;</span>#xD;\n    patient.deceasedTime<b> as </b><span style=\"color: maroon\">dTime</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.deceased = <span style=\"color: maroon\">dTime</span><span style=\"color: navy\">;</span>#xD;\n    patient.maritalStatusCode<b> as </b><span style=\"color: maroon\">mStatus</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.maritalStatus = <span style=\"color: maroon\">mStatus</span> <i>\"maritalStatus\"</i><span style=\"color: navy\">;</span>#xD;\n    patient.languageCommunication<b> as </b><span style=\"color: maroon\">language</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.communication<b> as </b><span style=\"color: maroon\">communication</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>      language.languageCode<b> as </b><span style=\"color: maroon\">lCode</span><span style=\"color: navy\"><b> -&gt; </b></span>communication.language = <span style=\"color: maroon\">lCode</span> <i>\"communication\"</i><span style=\"color: navy\">;</span> <span style=\"color: navy\">// </span><span style=\"color: green\">preference: for language.preferenceInd make communication.preferred</span>#xD;\n    <span style=\"color: navy\">}</span> <i>\"language\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"patientrole\"</i><span style=\"color: navy\">;</span>#xD;\n  src.providerOrganization<b> as </b><span style=\"color: maroon\">org</span><span style=\"color: navy\"><b> -&gt; </b></span> bundle.entry<b> as </b><span style=\"color: maroon\">e</span><span style=\"color: navy\">, </span> e.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Organization'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">organization</span><span style=\"color: navy\">, </span> organization.id = <b>uuid</b><span style=\"color: navy\">(</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">uuid3</span><span style=\"color: navy\">, </span> e.fullUrl = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:uuid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">uuid3</span><span style=\"color: navy\">)</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    org<span style=\"color: navy\"><b> -&gt; </b></span> tgt.managingOrganization = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Reference'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">reference</span><span style=\"color: navy\">, </span> reference.reference = <span style=\"color: navy\">(</span>'urn:uuid:' + %organization.id<span style=\"color: navy\">)</span> <i>\"reference\"</i><span style=\"color: navy\">;</span>#xD;\n    org.id<b> as </b><span style=\"color: maroon\">orgId</span><span style=\"color: navy\"><b> -&gt; </b></span>organization.identifier = <span style=\"color: maroon\">orgId</span><span style=\"color: navy\">;</span>#xD;\n    org.name<b> as </b><span style=\"color: maroon\">v</span><span style=\"color: navy\"><b> -&gt; </b></span>organization.name = <span style=\"color: navy\">(</span>v.other<span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n    org.telecom<b> as </b><span style=\"color: maroon\">orgTel</span><span style=\"color: navy\"><b> -&gt; </b></span>organization.telecom = <span style=\"color: maroon\">orgTel</span><span style=\"color: navy\">;</span>#xD;\n    org.addr<b> as </b><span style=\"color: maroon\">orgAddr</span><span style=\"color: navy\"><b> -&gt; </b></span>organization.address = <span style=\"color: maroon\">orgAddr</span><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"organization\"</i><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><b>group </b>setFrPatientIdentifier<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">id</span><span style=\"color: navy\"> : </span>II, <b>target</b> <span style=\"color: maroon\">identifier</span><span style=\"color: navy\"> : </span>Identifier<span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  id<span style=\"color: navy\"><b> -&gt; </b></span> identifier<span style=\"color: navy\">, </span> identifier.type<b> as </b><span style=\"color: maroon\">type</span><span style=\"color: navy\">, </span> type.coding<b> as </b><span style=\"color: maroon\">coding</span><span style=\"color: navy\">, </span> coding.system<b> as </b><span style=\"color: maroon\">system</span><span style=\"color: navy\">, </span> coding.code<b> as </b><span style=\"color: maroon\">code</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    <span style=\"color: navy\">// </span><span style=\"color: green\">src -&gt; system.value = 'http://terminology.hl7.org/CodeSystem/v2-0203' \"system\";</span>#xD;\n    <span style=\"color: navy\">// </span><span style=\"color: green\">INS-NIR - 1.2.250.1.213.1.4.8</span>#xD;\n    id<b> where </b>(id.root = '1.2.250.1.213.1.4.8')<span style=\"color: navy\"><b> -&gt; </b></span>system.value = <span style=\"color: blue\">'https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203'</span> <i>\"system\"</i><span style=\"color: navy\">;</span>#xD;\n    id<b> where </b>(id.root = '1.2.250.1.213.1.4.8')<span style=\"color: navy\"><b> -&gt; </b></span>code.value = <span style=\"color: blue\">'INS-NIR'</span> <i>\"code\"</i><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">// </span><span style=\"color: green\">IPP - 1.2.3.4.5.6.7.8.9.10</span>#xD;\n    id<b> where </b>(id.root = '1.2.3.4.5.6.7.8.9.10')<span style=\"color: navy\"><b> -&gt; </b></span>system.value = <span style=\"color: blue\">'http://terminology.hl7.org/CodeSystem/v2-0203'</span> <i>\"system\"</i><span style=\"color: navy\">;</span>#xD;\n    id<b> where </b>(id.root = '1.2.3.4.5.6.7.8.9.10')<span style=\"color: navy\"><b> -&gt; </b></span>code.value = <span style=\"color: blue\">'PI'</span> <i>\"code\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"identifierType\"</i><span style=\"color: navy\">;</span>#xD;\n  id.extension<b> as </b><span style=\"color: maroon\">extension</span><span style=\"color: navy\"><b> -&gt; </b></span> identifier.value<b> as </b><span style=\"color: maroon\">value</span><span style=\"color: navy\">, </span> value.value = <span style=\"color: maroon\">extension</span><span style=\"color: navy\">;</span>#xD;\n  id.root<b> as </b><span style=\"color: maroon\">root</span><span style=\"color: navy\"><b> -&gt; </b></span> identifier.system<b> as </b><span style=\"color: maroon\">system</span><span style=\"color: navy\">, </span> system.value = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:oid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">root</span><span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">Fin modification NR</span>#xD;\n<span style=\"color: navy\">// </span><span style=\"color: green\">Etat initial</span>#xD;\n<span style=\"color: #b36b00\" title=\"Cet élément nétait pas défini avant R5\">// src -&gt; tgt.identifier as identifier then {</span>#xD;\n<span style=\"color: #b36b00\" title=\"Cet élément nétait pas défini avant R5\">// src.id as id -&gt; identifier.type as type, type.coding as coding, coding.system as system, coding.code as code then {</span>#xD;\n<span style=\"color: #b36b00\" title=\"Cet élément nétait pas défini avant R5\">// src -&gt; system.value = 'http://terminology.hl7.org/CodeSystem/v2-0203' \"system\";</span>#xD;\n<span style=\"color: #b36b00\" title=\"Cet élément nétait pas défini avant R5\">// src -&gt; code.value = 'MR' \"code\";</span>#xD;\n<span style=\"color: navy\">// </span><span style=\"color: green\">id.extension as extension -&gt; identifier.value as value, value.value = extension \"extension\";</span>#xD;\n<span style=\"color: navy\">// </span><span style=\"color: green\">id.root as root -&gt; identifier.system as system, system.value = append('urn:oid:', root) \"root\";</span>#xD;\n<span style=\"color: navy\">// </span><span style=\"color: green\">} \"id\";</span>#xD;\n<span style=\"color: navy\">// </span><span style=\"color: green\">} \"identifier\";</span>#xD;\n<span style=\"color: navy\">// </span><span style=\"color: green\">Fin état initial</span>#xD;\n<b>group </b>ClinicalDocumentEncounter<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>EncompassingEncounter, <b>target</b> <span style=\"color: maroon\">bundle</span><span style=\"color: navy\"> : </span>Bundle, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>Encounter<span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  src.id<b> as </b><span style=\"color: maroon\">Id</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.identifier = <span style=\"color: maroon\">Id</span><span style=\"color: navy\">;</span>#xD;\n  src.code<b> as </b><span style=\"color: maroon\">srcCode</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.type = <span style=\"color: maroon\">srcCode</span><span style=\"color: navy\">;</span>#xD;\n  src.effectiveTime<b> as </b><span style=\"color: maroon\">effTime</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.period = <span style=\"color: maroon\">effTime</span><span style=\"color: navy\">;</span>#xD;\n  src<b> where </b>admissionReferralSourceCode.exists() or dischargeDispositionCode.exists()<span style=\"color: navy\"><b> -&gt; </b></span>tgt.hospitalization<b> as </b><span style=\"color: maroon\">hosp</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    src.admissionReferralSourceCode<b> as </b><span style=\"color: maroon\">admRef</span><span style=\"color: navy\"><b> -&gt; </b></span>hosp.admitSource = <span style=\"color: maroon\">admRef</span> <i>\"adminReferral\"</i><span style=\"color: navy\">;</span>#xD;\n    src.dischargeDispositionCode<b> as </b><span style=\"color: maroon\">discDispo</span><span style=\"color: navy\"><b> -&gt; </b></span>hosp.dischargeDisposition = <span style=\"color: maroon\">discDispo</span> <i>\"discDisposition\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"hospitalization\"</i><span style=\"color: navy\">;</span>#xD;\n  src.encounterParticipant<b> as </b><span style=\"color: maroon\">srcPart</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.participant<b> as </b><span style=\"color: maroon\">tgtPart</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    srcPart.typeCode<b> as </b><span style=\"color: maroon\">code</span><span style=\"color: navy\"><b> -&gt; </b></span>tgtPart.type = <b>cc</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'http://terminology.hl7.org/CodeSystem/v3-ParticipationType'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">code</span><span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n    srcPart.time<b> as </b><span style=\"color: maroon\">srcTime</span><span style=\"color: navy\"><b> -&gt; </b></span>tgtPart.period = <span style=\"color: maroon\">srcTime</span><span style=\"color: navy\">;</span>#xD;\n    srcPart.assignedEntity<b> as </b><span style=\"color: maroon\">entity</span><span style=\"color: navy\"><b> -&gt; </b></span> bundle.entry<b> as </b><span style=\"color: maroon\">e</span><span style=\"color: navy\">, </span> e.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Practitioner'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">practitioner</span><span style=\"color: navy\">, </span> practitioner.id = <b>uuid</b><span style=\"color: navy\">(</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">uuid2</span><span style=\"color: navy\">, </span> e.fullUrl = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:uuid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">uuid2</span><span style=\"color: navy\">)</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>      entity<span style=\"color: navy\"><b> -&gt; </b></span> tgtPart.individual = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Reference'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">reference</span><span style=\"color: navy\">, </span> reference.reference = <span style=\"color: navy\">(</span>'urn:uuid:' + %practitioner.id<span style=\"color: navy\">)</span><b> then </b>ClinicalDocumentEntityPractitioner<span style=\"color: navy\">(</span><span style=\"color: maroon\">entity</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">practitioner</span><span style=\"color: navy\">)</span> <i>\"entry\"</i><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">}</span> <i>\"entity\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"participant\"</i><span style=\"color: navy\">;</span>#xD;\n  src.location<b> as </b><span style=\"color: maroon\">srcLocation</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    srcLocation.healthCareFacility<b> as </b><span style=\"color: maroon\">facility</span><span style=\"color: navy\"><b> -&gt; </b></span> bundle.entry<b> as </b><span style=\"color: maroon\">e</span><span style=\"color: navy\">, </span> e.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Location'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">location</span><span style=\"color: navy\">, </span> location.id = <b>uuid</b><span style=\"color: navy\">(</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">uuid2</span><span style=\"color: navy\">, </span> e.fullUrl = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:uuid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">uuid2</span><span style=\"color: navy\">)</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>      facility<span style=\"color: navy\"><b> -&gt; </b></span> tgt.location<b> as </b><span style=\"color: maroon\">tgtLocation</span><span style=\"color: navy\">, </span> tgtLocation.location = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Reference'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">reference</span><span style=\"color: navy\">, </span> reference.reference = <span style=\"color: navy\">(</span>'urn:uuid:' + %location.id<span style=\"color: navy\">)</span><b> then </b>ClinicalDocumentLocation<span style=\"color: navy\">(</span><span style=\"color: maroon\">facility</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">bundle</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">location</span><span style=\"color: navy\">)</span> <i>\"facLocation\"</i><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">}</span> <i>\"facility\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><b>group </b>ClinicalDocumentLocation<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>HealthCareFacility, <b>target</b> <span style=\"color: maroon\">bundle</span><span style=\"color: navy\"> : </span>Bundle, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>Location<span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  src.id<b> as </b><span style=\"color: maroon\">srcIdentifier</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.identifier = <span style=\"color: maroon\">srcIdentifier</span><span style=\"color: navy\">;</span>#xD;\n  src.code<b> as </b><span style=\"color: maroon\">srcCode</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.type = <span style=\"color: maroon\">srcCode</span><span style=\"color: navy\">;</span>#xD;\n  src.location<b> as </b><span style=\"color: maroon\">location</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    <span style=\"color: navy\">// </span><span style=\"color: green\">place names are usually stored with no parts    location.name as srcName -&gt; tgt.name = cast(srcName, 'string');</span>#xD;\n    location.addr<b> as </b><span style=\"color: maroon\">locAddr</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.address = <span style=\"color: maroon\">locAddr</span><span style=\"color: navy\">;</span>#xD;\n    location.serviceProviderOrganization<b> as </b><span style=\"color: maroon\">srcOrg</span><span style=\"color: navy\"><b> -&gt; </b></span> bundle.entry<b> as </b><span style=\"color: maroon\">e</span><span style=\"color: navy\">, </span> e.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Organization'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">organization</span><span style=\"color: navy\">, </span> organization.id = <b>uuid</b><span style=\"color: navy\">(</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">uuid3</span><span style=\"color: navy\">, </span> e.fullUrl = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:uuid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">uuid3</span><span style=\"color: navy\">)</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>      srcOrg<span style=\"color: navy\"><b> -&gt; </b></span> tgt.managingOrganization = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Reference'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">reference</span><span style=\"color: navy\">, </span> reference.reference = <span style=\"color: navy\">(</span>'urn:uuid:' + %organization.id<span style=\"color: navy\">)</span><b> then </b>ClinicalDocumentOrganization<span style=\"color: navy\">(</span><span style=\"color: maroon\">srcOrg</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">organization</span><span style=\"color: navy\">)</span> <i>\"organization\"</i><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">}</span> <i>\"org\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span><span style=\"color: navy\">;</span> <span style=\"color: navy\">// </span><span style=\"color: green\">place names are usually stored with no parts</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">_________________________ Template Type not specified  ___________________</span>#xD;\n<b>group </b>NarrativeLink<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">url</span>, <b>target</b> <span style=\"color: maroon\">ext</span><span style=\"color: navy\"> : </span>Extension<span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  url<span style=\"color: navy\"><b> -&gt; </b></span>ext.url = <span style=\"color: blue\">'http://hl7.org/fhir/StructureDefinition/narrativeLink'</span> <i>\"url\"</i><span style=\"color: navy\">;</span>#xD;\n  url<span style=\"color: navy\"><b> -&gt; </b></span> ext.value = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'url'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">value</span><span style=\"color: navy\">, </span> value.value = <span style=\"color: maroon\">url</span> <i>\"value\"</i><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span></pre></div>"^^rdf:XMLLiteral
+     fhir:div [ fhir:v "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Narratif généré : StructureMap CdaToBundle</b></p><a name=\"CdaToBundle\"> </a><a name=\"hcCdaToBundle\"> </a><pre class=\"fml\">#xD;\n<b>map</b><span style=\"color: navy\"> \"</span>https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle<span style=\"color: navy\">\" = \"</span>CdaToBundle<span style=\"color: navy\">\"#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)</span>#xD;\n#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ClinicalDocument.html\" title=\"ClinicalDocument (CDA Class)\">http://hl7.org/cda/stds/core/StructureDefinition/ClinicalDocument</a><span style=\"color: navy\">\" </span><b>alias </b>ClinicalDocument <b>as </b><b>source</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AssignedAuthor.html\" title=\"AssignedAuthor (CDA Class)\">http://hl7.org/cda/stds/core/StructureDefinition/AssignedAuthor</a><span style=\"color: navy\">\" </span><b>alias </b>AssignedAuthor <b>as </b><b>source</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AssignedEntity.html\" title=\"AssignedEntity (CDA Class)\">http://hl7.org/cda/stds/core/StructureDefinition/AssignedEntity</a><span style=\"color: navy\">\" </span><b>alias </b>AssignedEntity <b>as </b><b>source</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CustodianOrganization.html\" title=\"CustodianOrganization (CDA Class)\">http://hl7.org/cda/stds/core/StructureDefinition/CustodianOrganization</a><span style=\"color: navy\">\" </span><b>alias </b>CustodianOrganization <b>as </b><b>source</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Section.html\" title=\"Section (CDA Class)\">http://hl7.org/cda/stds/core/StructureDefinition/Section</a><span style=\"color: navy\">\" </span><b>alias </b>Section <b>as </b><b>source</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-PatientRole.html\" title=\"PatientRole (CDA Class)\">http://hl7.org/cda/stds/core/StructureDefinition/PatientRole</a><span style=\"color: navy\">\" </span><b>alias </b>PatientRole <b>as </b><b>source</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/fhir/R4/bundle.html\" title=\"Bundle\">http://hl7.org/fhir/StructureDefinition/Bundle</a><span style=\"color: navy\">\" </span><b>alias </b>Bundle <b>as </b><b>target</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/fhir/R4/composition.html\" title=\"Composition\">http://hl7.org/fhir/StructureDefinition/Composition</a><span style=\"color: navy\">\" </span><b>alias </b>Composition <b>as </b><b>target</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/fhir/R4/patient.html\" title=\"Patient\">http://hl7.org/fhir/StructureDefinition/Patient</a><span style=\"color: navy\">\" </span><b>alias </b>Patient <b>as </b><b>target</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/fhir/R4/person.html\" title=\"Person\">http://hl7.org/fhir/StructureDefinition/Person</a><span style=\"color: navy\">\" </span><b>alias </b>Person <b>as </b><b>target</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/fhir/R4/practitioner.html\" title=\"Practitioner\">http://hl7.org/fhir/StructureDefinition/Practitioner</a><span style=\"color: navy\">\" </span><b>alias </b>Practitioner <b>as </b><b>target</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/fhir/R4/organization.html\" title=\"Organization\">http://hl7.org/fhir/StructureDefinition/Organization</a><span style=\"color: navy\">\" </span><b>alias </b>Organization <b>as </b><b>target</b>#xD;\n#xD;\n<b>imports</b><span style=\"color: navy\"> \"</span><a href=\"StructureMap-CdaToFHIRTypes.html\" title=\"Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)\">https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes</a><span style=\"color: navy\">\"#xD;\n</span>#xD;\n<span style=\"color: navy\">// </span><span style=\"color: green\">_________________________ Document Level Template  _________________________</span>#xD;\n<b>group </b>CdaToBundle<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">cda</span><span style=\"color: navy\"> : </span>ClinicalDocument, <b>target</b> <span style=\"color: maroon\">bundle</span><span style=\"color: navy\"> : </span>Bundle<span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  cda<span style=\"color: navy\"><b> -&gt; </b></span> bundle.entry<b> as </b><span style=\"color: maroon\">e</span><span style=\"color: navy\">, </span> e.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Composition'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">composition</span><span style=\"color: navy\">, </span> composition.id = <b>uuid</b><span style=\"color: navy\">(</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">uuid</span><span style=\"color: navy\">, </span> e.fullUrl = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:uuid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">uuid</span><span style=\"color: navy\">)</span><span style=\"color: navy\">, </span> bundle.entry<b> as </b><span style=\"color: maroon\">e2</span><span style=\"color: navy\">, </span> e2.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Patient'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">patient</span><span style=\"color: navy\">, </span> patient.id = <b>uuid</b><span style=\"color: navy\">(</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">uuid2</span><span style=\"color: navy\">, </span> e2.fullUrl = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:uuid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">uuid2</span><span style=\"color: navy\">)</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    cda<b> then </b>ClinicalDocumentToBundle<span style=\"color: navy\">(</span><span style=\"color: maroon\">cda</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">patient</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">composition</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">bundle</span><span style=\"color: navy\">)</span> <i>\"cdatobundle\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"ClinicalDocumentToBody\"</i><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><b>group </b>ClinicalDocumentToBundle<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">cda</span><span style=\"color: navy\"> : </span>ClinicalDocument, <b>target</b> <span style=\"color: maroon\">patient</span><span style=\"color: navy\"> : </span>Patient, <b>target</b> <span style=\"color: maroon\">composition</span><span style=\"color: navy\"> : </span>Composition, <b>target</b> <span style=\"color: maroon\">bundle</span><span style=\"color: navy\"> : </span>Bundle<span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  cda<span style=\"color: navy\"><b> -&gt; </b></span>bundle.id = <b>uuid</b><span style=\"color: navy\">(</span><span style=\"color: navy\">)</span> <i>\"id\"</i><span style=\"color: navy\">;</span>#xD;\n  cda.id<b> as </b><span style=\"color: maroon\">addIdentifier</span><span style=\"color: navy\"><b> -&gt; </b></span>bundle.identifier = <span style=\"color: maroon\">addIdentifier</span> <i>\"identifier\"</i><span style=\"color: navy\">;</span>#xD;\n  cda<span style=\"color: navy\"><b> -&gt; </b></span>bundle.type = <span style=\"color: blue\">'document'</span> <i>\"type\"</i><span style=\"color: navy\">;</span>#xD;\n  cda.effectiveTime<b> as </b><span style=\"color: maroon\">timestamp</span><span style=\"color: navy\"><b> -&gt; </b></span>bundle.timestamp = <span style=\"color: maroon\">timestamp</span><span style=\"color: navy\">;</span>#xD;\n  cda<b> then </b>ClinicalDocumentComposition<span style=\"color: navy\">(</span><span style=\"color: maroon\">cda</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">composition</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">patient</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">bundle</span><span style=\"color: navy\">)</span> <i>\"composition\"</i><span style=\"color: navy\">;</span>#xD;\n  cda.component<b> as </b><span style=\"color: maroon\">cdaComponent</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    cdaComponent.structuredBody<b> as </b><span style=\"color: maroon\">body</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>      body.component<b> as </b><span style=\"color: maroon\">bodyComponent</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>        bodyComponent.section<b> as </b><span style=\"color: maroon\">srcSection</span><b> where </b>$this.code.empty()<span style=\"color: navy\"><b> -&gt; </b></span>composition.section<b> as </b><span style=\"color: maroon\">tgtSection</span><b> then </b>ClinicalDocumentSection<span style=\"color: navy\">(</span><span style=\"color: maroon\">cda</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">srcSection</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">patient</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">tgtSection</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">bundle</span><span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n      <span style=\"color: navy\">}</span> <i>\"bodyComponent\"</i><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">}</span> <i>\"body\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"cdaComponent\"</i><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">// _________________________ Section Level Templates _________________________</span>#xD;\n<b>group </b>ClinicalDocumentSection<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">cda</span><span style=\"color: navy\"> : </span>ClinicalDocument, <b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>Section, <b>source</b> <span style=\"color: maroon\">patient</span><span style=\"color: navy\"> : </span>Patient, <b>target</b> <span style=\"color: maroon\">tgt</span>, <b>target</b> <span style=\"color: maroon\">bundle</span><span style=\"color: navy\"> : </span>Bundle<span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  src.title<b> as </b><span style=\"color: maroon\">t</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.title = <span style=\"color: navy\">(</span>t.xmlText<span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n  src.code<b> as </b><span style=\"color: maroon\">srcCode</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.code = <span style=\"color: maroon\">srcCode</span><span style=\"color: navy\">;</span>#xD;\n  src.text<b> as </b><span style=\"color: maroon\">cdaText</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.text<b> as </b><span style=\"color: maroon\">fhirText</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    cdaText<span style=\"color: navy\"><b> -&gt; </b></span>fhirText.status = <span style=\"color: blue\">'generated'</span> <i>\"narrativeStatus\"</i><span style=\"color: navy\">;</span>#xD;\n    cdaText<b> as </b><span style=\"color: maroon\">t</span><span style=\"color: navy\"><b> -&gt; </b></span>fhirText.div = <span style=\"color: maroon\">t</span> <i>\"narrativeText\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"cdaText\"</i><span style=\"color: navy\">;</span>#xD;\n  src.section<b> as </b><span style=\"color: maroon\">srcSection</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.section<b> as </b><span style=\"color: maroon\">tgtSection</span><b> then </b>ClinicalDocumentSection<span style=\"color: navy\">(</span><span style=\"color: maroon\">cda</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">srcSection</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">patient</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">tgtSection</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">bundle</span><span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">_________________________ Entry Level Templates   ________________________</span>#xD;\n<span style=\"color: navy\">// </span><span style=\"color: green\">_________________________ Header Level Templates _________________________</span>#xD;\n<b>group </b>ClinicalDocumentComposition<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>ClinicalDocument, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>Composition, <b>target</b> <span style=\"color: maroon\">patientResource</span><span style=\"color: navy\"> : </span>Patient, <b>target</b> <span style=\"color: maroon\">bundle</span><span style=\"color: navy\"> : </span>Bundle<span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  src.languageCode<b> as </b><span style=\"color: maroon\">languageCode</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.language = <span style=\"color: maroon\">languageCode</span><span style=\"color: navy\">;</span>#xD;\n  src.id<b> as </b><span style=\"color: maroon\">id</span><b> where </b>src.setId.exists().not()<span style=\"color: navy\"><b> -&gt; </b></span>tgt.identifier = <span style=\"color: maroon\">id</span> <i>\"identifier\"</i><span style=\"color: navy\">;</span>#xD;\n  src.setId<b> as </b><span style=\"color: maroon\">setIdentifier</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.identifier = <span style=\"color: maroon\">setIdentifier</span> <i>\"identifier\"</i><span style=\"color: navy\">;</span>#xD;\n  src<span style=\"color: navy\"><b> -&gt; </b></span>tgt.status = <span style=\"color: blue\">'final'</span> <i>\"status\"</i><span style=\"color: navy\">;</span>#xD;\n  src.code<b> as </b><span style=\"color: maroon\">srcCode</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.type = <span style=\"color: maroon\">srcCode</span><span style=\"color: navy\">;</span>#xD;\n  src.title<b> as </b><span style=\"color: maroon\">t</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.title = <span style=\"color: navy\">(</span>t.xmlText<span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n  src.recordTarget<b> as </b><span style=\"color: maroon\">recordTarget</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    recordTarget.patientRole<b> as </b><span style=\"color: maroon\">patient</span><span style=\"color: navy\"><b> -&gt; </b></span> tgt.subject = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Reference'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">reference</span><span style=\"color: navy\">, </span> reference.reference = <span style=\"color: navy\">(</span>'urn:uuid:' + %patientResource.id<span style=\"color: navy\">)</span><b> then </b>ClinicalDocumentPatientRole<span style=\"color: navy\">(</span><span style=\"color: maroon\">patient</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">patientResource</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">bundle</span><span style=\"color: navy\">)</span> <i>\"subject\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"patientRole\"</i><span style=\"color: navy\">;</span>#xD;\n  src.componentOf<b> as </b><span style=\"color: maroon\">comp</span><span style=\"color: navy\"><b> -&gt; </b></span> bundle.entry<b> as </b><span style=\"color: maroon\">e</span><span style=\"color: navy\">, </span> e.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Encounter'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">encounter</span><span style=\"color: navy\">, </span> encounter.id = <b>uuid</b><span style=\"color: navy\">(</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">uuid</span><span style=\"color: navy\">, </span> e.fullUrl = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:uuid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">uuid</span><span style=\"color: navy\">)</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    comp.encompassingEncounter<b> as </b><span style=\"color: maroon\">srcEnc</span><span style=\"color: navy\"><b> -&gt; </b></span> tgt.encounter = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Reference'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">reference</span><span style=\"color: navy\">, </span> reference.reference = <span style=\"color: navy\">(</span>'urn:uuid:' + %encounter.id<span style=\"color: navy\">)</span><b> then </b>ClinicalDocumentEncounter<span style=\"color: navy\">(</span><span style=\"color: maroon\">srcEnc</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">bundle</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">encounter</span><span style=\"color: navy\">)</span> <i>\"srcEncounter\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"encompassingEncounter\"</i><span style=\"color: navy\">;</span>#xD;\n  src.effectiveTime<b> as </b><span style=\"color: maroon\">effectiveTime</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.date = <span style=\"color: maroon\">effectiveTime</span><span style=\"color: navy\">;</span>#xD;\n  src.author<b> as </b><span style=\"color: maroon\">srcAuthor</span><span style=\"color: navy\"><b> -&gt; </b></span> bundle.entry<b> as </b><span style=\"color: maroon\">e</span><span style=\"color: navy\">, </span> e.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Practitioner'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">practitioner</span><span style=\"color: navy\">, </span> practitioner.id = <b>uuid</b><span style=\"color: navy\">(</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">uuid2</span><span style=\"color: navy\">, </span> e.fullUrl = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:uuid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">uuid2</span><span style=\"color: navy\">)</span><span style=\"color: navy\">, </span> tgt.author = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Reference'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">reference</span><span style=\"color: navy\">, </span> reference.reference = <span style=\"color: navy\">(</span>'urn:uuid:' + %practitioner.id<span style=\"color: navy\">)</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    srcAuthor.assignedAuthor<b> as </b><span style=\"color: maroon\">assignedAuthor</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>      assignedAuthor.id<b> as </b><span style=\"color: maroon\">id</span><span style=\"color: navy\"><b> -&gt; </b></span>practitioner.identifier = <span style=\"color: maroon\">id</span><span style=\"color: navy\">;</span>#xD;\n      assignedAuthor.addr<b> as </b><span style=\"color: maroon\">addr</span><span style=\"color: navy\"><b> -&gt; </b></span>practitioner.address = <span style=\"color: maroon\">addr</span><span style=\"color: navy\">;</span>#xD;\n      assignedAuthor.telecom<b> as </b><span style=\"color: maroon\">tlc</span><span style=\"color: navy\"><b> -&gt; </b></span>practitioner.telecom = <span style=\"color: maroon\">tlc</span><span style=\"color: navy\">;</span>#xD;\n      assignedAuthor.assignedPerson<b> as </b><span style=\"color: maroon\">assPerson</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>        assPerson.name<b> as </b><span style=\"color: maroon\">pName</span><span style=\"color: navy\"><b> -&gt; </b></span>practitioner.name = <span style=\"color: maroon\">pName</span><span style=\"color: navy\">;</span>#xD;\n      <span style=\"color: navy\">}</span> <i>\"name\"</i><span style=\"color: navy\">;</span>#xD;\n      assignedAuthor.representedOrganization<b> as </b><span style=\"color: maroon\">srcOrg</span><span style=\"color: navy\"><b> -&gt; </b></span> bundle.entry<b> as </b><span style=\"color: maroon\">e2</span><span style=\"color: navy\">, </span> e2.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Organization'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">organization</span><span style=\"color: navy\">, </span> organization.id = <b>uuid</b><span style=\"color: navy\">(</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">uuid3</span><span style=\"color: navy\">, </span> e2.fullUrl = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:uuid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">uuid3</span><span style=\"color: navy\">)</span><span style=\"color: navy\">, </span> tgt.author = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Reference'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">reference2</span><span style=\"color: navy\">, </span> reference2.reference = <span style=\"color: navy\">(</span>'urn:uuid:' + %organization.id<span style=\"color: navy\">)</span><b> then </b>ClinicalDocumentOrganization<span style=\"color: navy\">(</span><span style=\"color: maroon\">srcOrg</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">organization</span><span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">}</span> <i>\"author\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"srcAuthor\"</i><span style=\"color: navy\">;</span>#xD;\n  src.confidentialityCode<b> as </b><span style=\"color: maroon\">confCode</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.confidentiality = <span style=\"color: maroon\">confCode</span><span style=\"color: navy\">;</span>#xD;\n  src.legalAuthenticator<b> as </b><span style=\"color: maroon\">legalAuth</span><span style=\"color: navy\"><b> -&gt; </b></span> bundle.entry<b> as </b><span style=\"color: maroon\">e</span><span style=\"color: navy\">, </span> e.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Practitioner'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">practitioner</span><span style=\"color: navy\">, </span> practitioner.id = <b>uuid</b><span style=\"color: navy\">(</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">uuid2</span><span style=\"color: navy\">, </span> e.fullUrl = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:uuid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">uuid2</span><span style=\"color: navy\">)</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    legalAuth<span style=\"color: navy\"><b> -&gt; </b></span>tgt.attester<b> as </b><span style=\"color: maroon\">attester</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>      legalAuth<span style=\"color: navy\"><b> -&gt; </b></span>attester.mode = <span style=\"color: blue\">'legal'</span> <i>\"mode\"</i><span style=\"color: navy\">;</span>#xD;\n      legalAuth.time<b> as </b><span style=\"color: maroon\">time</span><span style=\"color: navy\"><b> -&gt; </b></span>attester.time = <span style=\"color: maroon\">time</span><span style=\"color: navy\">;</span>#xD;\n      legalAuth.assignedEntity<b> as </b><span style=\"color: maroon\">entity</span><span style=\"color: navy\"><b> -&gt; </b></span> attester.party = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Reference'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">reference</span><span style=\"color: navy\">, </span> reference.reference = <span style=\"color: navy\">(</span>'urn:uuid:' + %practitioner.id<span style=\"color: navy\">)</span><b> then </b>ClinicalDocumentEntityPractitioner<span style=\"color: navy\">(</span><span style=\"color: maroon\">entity</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">practitioner</span><span style=\"color: navy\">)</span> <i>\"entity\"</i><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">}</span> <i>\"attester\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"legalAuth\"</i><span style=\"color: navy\">;</span>#xD;\n  src.authenticator<b> as </b><span style=\"color: maroon\">auth</span><span style=\"color: navy\"><b> -&gt; </b></span> bundle.entry<b> as </b><span style=\"color: maroon\">e</span><span style=\"color: navy\">, </span> e.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Practitioner'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">practitioner</span><span style=\"color: navy\">, </span> practitioner.id = <b>uuid</b><span style=\"color: navy\">(</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">uuid2</span><span style=\"color: navy\">, </span> e.fullUrl = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:uuid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">uuid2</span><span style=\"color: navy\">)</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    auth<span style=\"color: navy\"><b> -&gt; </b></span>tgt.attester<b> as </b><span style=\"color: maroon\">attester</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>      auth<span style=\"color: navy\"><b> -&gt; </b></span>attester.mode = <span style=\"color: blue\">'official'</span> <i>\"mode\"</i><span style=\"color: navy\">;</span>#xD;\n      auth.time<b> as </b><span style=\"color: maroon\">time</span><span style=\"color: navy\"><b> -&gt; </b></span>attester.time = <span style=\"color: maroon\">time</span><span style=\"color: navy\">;</span>#xD;\n      auth.assignedEntity<b> as </b><span style=\"color: maroon\">entity</span><span style=\"color: navy\"><b> -&gt; </b></span> attester.party = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Reference'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">reference</span><span style=\"color: navy\">, </span> reference.reference = <span style=\"color: navy\">(</span>'urn:uuid:' + %practitioner.id<span style=\"color: navy\">)</span><b> then </b>ClinicalDocumentEntityPractitioner<span style=\"color: navy\">(</span><span style=\"color: maroon\">entity</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">practitioner</span><span style=\"color: navy\">)</span> <i>\"entity\"</i><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">}</span> <i>\"attester\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"auth\"</i><span style=\"color: navy\">;</span>#xD;\n  src.custodian<b> as </b><span style=\"color: maroon\">custodian</span><span style=\"color: navy\"><b> -&gt; </b></span>bundle.entry<b> as </b><span style=\"color: maroon\">e</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    custodian.assignedCustodian<b> as </b><span style=\"color: maroon\">assignedCustodian</span><span style=\"color: navy\"><b> -&gt; </b></span> e.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Organization'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">organization</span><span style=\"color: navy\">, </span> organization.id = <b>uuid</b><span style=\"color: navy\">(</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">uuid3</span><span style=\"color: navy\">, </span> e.fullUrl = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:uuid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">uuid3</span><span style=\"color: navy\">)</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>      assignedCustodian.representedCustodianOrganization<b> as </b><span style=\"color: maroon\">srcOrg</span><span style=\"color: navy\"><b> -&gt; </b></span> tgt.custodian = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Reference'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">reference</span><span style=\"color: navy\">, </span> reference.reference = <span style=\"color: navy\">(</span>'urn:uuid:' + %organization.id<span style=\"color: navy\">)</span><b> then </b>ClinicalDocumentOrganization<span style=\"color: navy\">(</span><span style=\"color: maroon\">srcOrg</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">organization</span><span style=\"color: navy\">)</span> <i>\"assignedCustodian\"</i><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">}</span> <i>\"custodian\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"cust\"</i><span style=\"color: navy\">;</span>#xD;\n  src.documentationOf<b> as </b><span style=\"color: maroon\">docOf</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    docOf.serviceEvent<b> as </b><span style=\"color: maroon\">serviceEvent</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.event<b> as </b><span style=\"color: maroon\">event</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>      serviceEvent.code<b> as </b><span style=\"color: maroon\">eventCode</span><span style=\"color: navy\"><b> -&gt; </b></span>event.code = <span style=\"color: maroon\">eventCode</span> <i>\"eventCode\"</i><span style=\"color: navy\">;</span>#xD;\n      serviceEvent.effectiveTime<b> as </b><span style=\"color: maroon\">effectivetime</span><span style=\"color: navy\"><b> -&gt; </b></span>event.period = <span style=\"color: maroon\">effectivetime</span> <i>\"eventTime\"</i><span style=\"color: navy\">;</span> <span style=\"color: navy\">// </span><span style=\"color: green\">performerType: for src.performer.typeCode ...</span>#xD;\n    <span style=\"color: navy\">}</span> <i>\"docOf\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span><span style=\"color: navy\">;</span>#xD;\n  src.relatedDocument<b> as </b><span style=\"color: maroon\">relatedDoc</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.relatesTo<b> as </b><span style=\"color: maroon\">relates</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    relatedDoc.typeCode<b> as </b><span style=\"color: maroon\">typeCode</span><span style=\"color: navy\"><b> -&gt; </b></span>relates.code = <span style=\"color: maroon\">typeCode</span><span style=\"color: navy\">;</span>#xD;\n    relatedDoc.parentDocument<b> as </b><span style=\"color: maroon\">parentDoc</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>      parentDoc.setId<b> as </b><span style=\"color: maroon\">sid</span><span style=\"color: navy\"><b> -&gt; </b></span>relates.targetIdentifier = <span style=\"color: maroon\">sid</span><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">}</span> <i>\"parentDoc\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"relatedDoc\"</i><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><b>group </b>ClinicalDocumentEntityPractitioner<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>AssignedEntity, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>Practitioner<span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  src.id<b> as </b><span style=\"color: maroon\">srcId</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.identifier = <span style=\"color: maroon\">srcId</span><span style=\"color: navy\">;</span>#xD;\n  src.addr<b> as </b><span style=\"color: maroon\">srcAddr</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.address = <span style=\"color: maroon\">srcAddr</span><span style=\"color: navy\">;</span>#xD;\n  src.telecom<b> as </b><span style=\"color: maroon\">srcTelecom</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.telecom = <span style=\"color: maroon\">srcTelecom</span><span style=\"color: navy\">;</span>#xD;\n  src.assignedPerson<b> as </b><span style=\"color: maroon\">person</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    person.name<b> as </b><span style=\"color: maroon\">pName</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.name = <span style=\"color: maroon\">pName</span><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"name\"</i><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><b>group </b>ClinicalDocumentOrganization<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>CustodianOrganization, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>Organization<span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  src.id<b> as </b><span style=\"color: maroon\">srcId</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.identifier = <span style=\"color: maroon\">srcId</span><span style=\"color: navy\">;</span>#xD;\n  src.name<b> as </b><span style=\"color: maroon\">v</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.name = <span style=\"color: navy\">(</span>v.other<span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n  src.telecom<b> as </b><span style=\"color: maroon\">srcTelecom</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.telecom = <span style=\"color: maroon\">srcTelecom</span><span style=\"color: navy\">;</span>#xD;\n  src.addr<b> as </b><span style=\"color: maroon\">srcAddr</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.address = <span style=\"color: maroon\">srcAddr</span><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><b>group </b>ClinicalDocumentPatientRole<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>PatientRole, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>Patient, <b>target</b> <span style=\"color: maroon\">bundle</span><span style=\"color: navy\"> : </span>Bundle<span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  <span style=\"color: #b36b00\" title=\"Cet élément nétait pas défini avant R5\">// src.id -&gt; tgt.identifier;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">Patient.identifier.type for EPR context, because there is only the identifier \"LocalPid\" allowed, LocalPid requires an type -&gt; http://build.fhir.org/ig/hl7ch/ch-core/branches/master/StructureDefinition-ch-core-composition-patient-epr.html</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">Modification NR</span>#xD;\n  src.id<b> as </b><span style=\"color: maroon\">id</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.identifier = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Identifier'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">identifier</span><b> then </b>setFrPatientIdentifier<span style=\"color: navy\">(</span><span style=\"color: maroon\">id</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">identifier</span><span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n  src.addr<b> as </b><span style=\"color: maroon\">srcAddr</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.address = <span style=\"color: maroon\">srcAddr</span><span style=\"color: navy\">;</span>#xD;\n  src.telecom<b> as </b><span style=\"color: maroon\">srcTelecom</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.telecom = <span style=\"color: maroon\">srcTelecom</span><span style=\"color: navy\">;</span>#xD;\n  src.patient<b> as </b><span style=\"color: maroon\">patient</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    patient.name<b> as </b><span style=\"color: maroon\">patientName</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.name = <span style=\"color: maroon\">patientName</span><span style=\"color: navy\">;</span>#xD;\n    patient.administrativeGenderCode<b> as </b><span style=\"color: maroon\">gender</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>      gender.code<b> as </b><span style=\"color: maroon\">v</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.gender = <b>translate</b><span style=\"color: navy\">(</span><span style=\"color: maroon\">v</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/cm-v3-administrative-gender'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'code'</span><span style=\"color: navy\">)</span> <i>\"gender\"</i><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">}</span> <i>\"gender\"</i><span style=\"color: navy\">;</span>#xD;\n    patient.birthTime<b> as </b><span style=\"color: maroon\">birthTime</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.birthDate = <span style=\"color: maroon\">birthTime</span> <i>\"birthDate\"</i><span style=\"color: navy\">;</span>#xD;\n    patient.deceasedInd<b> as </b><span style=\"color: maroon\">indicator</span><b> where </b>patient.deceasedTime.empty()<span style=\"color: navy\"><b> -&gt; </b></span>tgt.deceased = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'boolean'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">bool</span><b> then </b>boolean<span style=\"color: navy\">(</span><span style=\"color: maroon\">indicator</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">bool</span><span style=\"color: navy\">)</span> <i>\"deceasedBL\"</i><span style=\"color: navy\">;</span>#xD;\n    patient.deceasedTime<b> as </b><span style=\"color: maroon\">dTime</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.deceased = <span style=\"color: maroon\">dTime</span><span style=\"color: navy\">;</span>#xD;\n    patient.maritalStatusCode<b> as </b><span style=\"color: maroon\">mStatus</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.maritalStatus = <span style=\"color: maroon\">mStatus</span> <i>\"maritalStatus\"</i><span style=\"color: navy\">;</span>#xD;\n    patient.languageCommunication<b> as </b><span style=\"color: maroon\">language</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.communication<b> as </b><span style=\"color: maroon\">communication</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>      language.languageCode<b> as </b><span style=\"color: maroon\">lCode</span><span style=\"color: navy\"><b> -&gt; </b></span>communication.language = <span style=\"color: maroon\">lCode</span> <i>\"communication\"</i><span style=\"color: navy\">;</span> <span style=\"color: navy\">// </span><span style=\"color: green\">preference: for language.preferenceInd make communication.preferred</span>#xD;\n    <span style=\"color: navy\">}</span> <i>\"language\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"patientrole\"</i><span style=\"color: navy\">;</span>#xD;\n  src.providerOrganization<b> as </b><span style=\"color: maroon\">org</span><span style=\"color: navy\"><b> -&gt; </b></span> bundle.entry<b> as </b><span style=\"color: maroon\">e</span><span style=\"color: navy\">, </span> e.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Organization'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">organization</span><span style=\"color: navy\">, </span> organization.id = <b>uuid</b><span style=\"color: navy\">(</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">uuid3</span><span style=\"color: navy\">, </span> e.fullUrl = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:uuid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">uuid3</span><span style=\"color: navy\">)</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    org<span style=\"color: navy\"><b> -&gt; </b></span> tgt.managingOrganization = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Reference'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">reference</span><span style=\"color: navy\">, </span> reference.reference = <span style=\"color: navy\">(</span>'urn:uuid:' + %organization.id<span style=\"color: navy\">)</span> <i>\"reference\"</i><span style=\"color: navy\">;</span>#xD;\n    org.id<b> as </b><span style=\"color: maroon\">orgId</span><span style=\"color: navy\"><b> -&gt; </b></span>organization.identifier = <span style=\"color: maroon\">orgId</span><span style=\"color: navy\">;</span>#xD;\n    org.name<b> as </b><span style=\"color: maroon\">v</span><span style=\"color: navy\"><b> -&gt; </b></span>organization.name = <span style=\"color: navy\">(</span>v.other<span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n    org.telecom<b> as </b><span style=\"color: maroon\">orgTel</span><span style=\"color: navy\"><b> -&gt; </b></span>organization.telecom = <span style=\"color: maroon\">orgTel</span><span style=\"color: navy\">;</span>#xD;\n    org.addr<b> as </b><span style=\"color: maroon\">orgAddr</span><span style=\"color: navy\"><b> -&gt; </b></span>organization.address = <span style=\"color: maroon\">orgAddr</span><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"organization\"</i><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><b>group </b>setFrPatientIdentifier<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">id</span><span style=\"color: navy\"> : </span>II, <b>target</b> <span style=\"color: maroon\">identifier</span><span style=\"color: navy\"> : </span>Identifier<span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  id<span style=\"color: navy\"><b> -&gt; </b></span> identifier<span style=\"color: navy\">, </span> identifier.type<b> as </b><span style=\"color: maroon\">type</span><span style=\"color: navy\">, </span> type.coding<b> as </b><span style=\"color: maroon\">coding</span><span style=\"color: navy\">, </span> coding.system<b> as </b><span style=\"color: maroon\">system</span><span style=\"color: navy\">, </span> coding.code<b> as </b><span style=\"color: maroon\">code</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    <span style=\"color: navy\">// </span><span style=\"color: green\">src -&gt; system.value = 'http://terminology.hl7.org/CodeSystem/v2-0203' \"system\";</span>#xD;\n    <span style=\"color: navy\">// </span><span style=\"color: green\">INS-NIR - 1.2.250.1.213.1.4.8</span>#xD;\n    id<b> where </b>(id.root = '1.2.250.1.213.1.4.8')<span style=\"color: navy\"><b> -&gt; </b></span>system.value = <span style=\"color: blue\">'https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203'</span> <i>\"system\"</i><span style=\"color: navy\">;</span>#xD;\n    id<b> where </b>(id.root = '1.2.250.1.213.1.4.8')<span style=\"color: navy\"><b> -&gt; </b></span>code.value = <span style=\"color: blue\">'INS-NIR'</span> <i>\"code\"</i><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">// </span><span style=\"color: green\">IPP - 1.2.3.4.5.6.7.8.9.10</span>#xD;\n    id<b> where </b>(id.root = '1.2.3.4.5.6.7.8.9.10')<span style=\"color: navy\"><b> -&gt; </b></span>system.value = <span style=\"color: blue\">'http://terminology.hl7.org/CodeSystem/v2-0203'</span> <i>\"system\"</i><span style=\"color: navy\">;</span>#xD;\n    id<b> where </b>(id.root = '1.2.3.4.5.6.7.8.9.10')<span style=\"color: navy\"><b> -&gt; </b></span>code.value = <span style=\"color: blue\">'PI'</span> <i>\"code\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"identifierType\"</i><span style=\"color: navy\">;</span>#xD;\n  id.extension<b> as </b><span style=\"color: maroon\">extension</span><span style=\"color: navy\"><b> -&gt; </b></span> identifier.value<b> as </b><span style=\"color: maroon\">value</span><span style=\"color: navy\">, </span> value.value = <span style=\"color: maroon\">extension</span><span style=\"color: navy\">;</span>#xD;\n  id.root<b> as </b><span style=\"color: maroon\">root</span><span style=\"color: navy\"><b> -&gt; </b></span> identifier.system<b> as </b><span style=\"color: maroon\">system</span><span style=\"color: navy\">, </span> system.value = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:oid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">root</span><span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">Fin modification NR</span>#xD;\n<span style=\"color: navy\">// </span><span style=\"color: green\">Etat initial</span>#xD;\n<span style=\"color: #b36b00\" title=\"Cet élément nétait pas défini avant R5\">// src -&gt; tgt.identifier as identifier then {</span>#xD;\n<span style=\"color: #b36b00\" title=\"Cet élément nétait pas défini avant R5\">// src.id as id -&gt; identifier.type as type, type.coding as coding, coding.system as system, coding.code as code then {</span>#xD;\n<span style=\"color: #b36b00\" title=\"Cet élément nétait pas défini avant R5\">// src -&gt; system.value = 'http://terminology.hl7.org/CodeSystem/v2-0203' \"system\";</span>#xD;\n<span style=\"color: #b36b00\" title=\"Cet élément nétait pas défini avant R5\">// src -&gt; code.value = 'MR' \"code\";</span>#xD;\n<span style=\"color: navy\">// </span><span style=\"color: green\">id.extension as extension -&gt; identifier.value as value, value.value = extension \"extension\";</span>#xD;\n<span style=\"color: navy\">// </span><span style=\"color: green\">id.root as root -&gt; identifier.system as system, system.value = append('urn:oid:', root) \"root\";</span>#xD;\n<span style=\"color: navy\">// </span><span style=\"color: green\">} \"id\";</span>#xD;\n<span style=\"color: navy\">// </span><span style=\"color: green\">} \"identifier\";</span>#xD;\n<span style=\"color: navy\">// </span><span style=\"color: green\">Fin état initial</span>#xD;\n<b>group </b>ClinicalDocumentEncounter<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>EncompassingEncounter, <b>target</b> <span style=\"color: maroon\">bundle</span><span style=\"color: navy\"> : </span>Bundle, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>Encounter<span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  src.id<b> as </b><span style=\"color: maroon\">Id</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.identifier = <span style=\"color: maroon\">Id</span><span style=\"color: navy\">;</span>#xD;\n  src.code<b> as </b><span style=\"color: maroon\">srcCode</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.type = <span style=\"color: maroon\">srcCode</span><span style=\"color: navy\">;</span>#xD;\n  src.effectiveTime<b> as </b><span style=\"color: maroon\">effTime</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.period = <span style=\"color: maroon\">effTime</span><span style=\"color: navy\">;</span>#xD;\n  src<b> where </b>admissionReferralSourceCode.exists() or dischargeDispositionCode.exists()<span style=\"color: navy\"><b> -&gt; </b></span>tgt.hospitalization<b> as </b><span style=\"color: maroon\">hosp</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    src.admissionReferralSourceCode<b> as </b><span style=\"color: maroon\">admRef</span><span style=\"color: navy\"><b> -&gt; </b></span>hosp.admitSource = <span style=\"color: maroon\">admRef</span> <i>\"adminReferral\"</i><span style=\"color: navy\">;</span>#xD;\n    src.dischargeDispositionCode<b> as </b><span style=\"color: maroon\">discDispo</span><span style=\"color: navy\"><b> -&gt; </b></span>hosp.dischargeDisposition = <span style=\"color: maroon\">discDispo</span> <i>\"discDisposition\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"hospitalization\"</i><span style=\"color: navy\">;</span>#xD;\n  src.encounterParticipant<b> as </b><span style=\"color: maroon\">srcPart</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.participant<b> as </b><span style=\"color: maroon\">tgtPart</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    srcPart.typeCode<b> as </b><span style=\"color: maroon\">code</span><span style=\"color: navy\"><b> -&gt; </b></span>tgtPart.type = <b>cc</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'http://terminology.hl7.org/CodeSystem/v3-ParticipationType'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">code</span><span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n    srcPart.time<b> as </b><span style=\"color: maroon\">srcTime</span><span style=\"color: navy\"><b> -&gt; </b></span>tgtPart.period = <span style=\"color: maroon\">srcTime</span><span style=\"color: navy\">;</span>#xD;\n    srcPart.assignedEntity<b> as </b><span style=\"color: maroon\">entity</span><span style=\"color: navy\"><b> -&gt; </b></span> bundle.entry<b> as </b><span style=\"color: maroon\">e</span><span style=\"color: navy\">, </span> e.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Practitioner'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">practitioner</span><span style=\"color: navy\">, </span> practitioner.id = <b>uuid</b><span style=\"color: navy\">(</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">uuid2</span><span style=\"color: navy\">, </span> e.fullUrl = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:uuid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">uuid2</span><span style=\"color: navy\">)</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>      entity<span style=\"color: navy\"><b> -&gt; </b></span> tgtPart.individual = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Reference'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">reference</span><span style=\"color: navy\">, </span> reference.reference = <span style=\"color: navy\">(</span>'urn:uuid:' + %practitioner.id<span style=\"color: navy\">)</span><b> then </b>ClinicalDocumentEntityPractitioner<span style=\"color: navy\">(</span><span style=\"color: maroon\">entity</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">practitioner</span><span style=\"color: navy\">)</span> <i>\"entry\"</i><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">}</span> <i>\"entity\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"participant\"</i><span style=\"color: navy\">;</span>#xD;\n  src.location<b> as </b><span style=\"color: maroon\">srcLocation</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    srcLocation.healthCareFacility<b> as </b><span style=\"color: maroon\">facility</span><span style=\"color: navy\"><b> -&gt; </b></span> bundle.entry<b> as </b><span style=\"color: maroon\">e</span><span style=\"color: navy\">, </span> e.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Location'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">location</span><span style=\"color: navy\">, </span> location.id = <b>uuid</b><span style=\"color: navy\">(</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">uuid2</span><span style=\"color: navy\">, </span> e.fullUrl = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:uuid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">uuid2</span><span style=\"color: navy\">)</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>      facility<span style=\"color: navy\"><b> -&gt; </b></span> tgt.location<b> as </b><span style=\"color: maroon\">tgtLocation</span><span style=\"color: navy\">, </span> tgtLocation.location = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Reference'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">reference</span><span style=\"color: navy\">, </span> reference.reference = <span style=\"color: navy\">(</span>'urn:uuid:' + %location.id<span style=\"color: navy\">)</span><b> then </b>ClinicalDocumentLocation<span style=\"color: navy\">(</span><span style=\"color: maroon\">facility</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">bundle</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">location</span><span style=\"color: navy\">)</span> <i>\"facLocation\"</i><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">}</span> <i>\"facility\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><b>group </b>ClinicalDocumentLocation<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>HealthCareFacility, <b>target</b> <span style=\"color: maroon\">bundle</span><span style=\"color: navy\"> : </span>Bundle, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>Location<span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  src.id<b> as </b><span style=\"color: maroon\">srcIdentifier</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.identifier = <span style=\"color: maroon\">srcIdentifier</span><span style=\"color: navy\">;</span>#xD;\n  src.code<b> as </b><span style=\"color: maroon\">srcCode</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.type = <span style=\"color: maroon\">srcCode</span><span style=\"color: navy\">;</span>#xD;\n  src.location<b> as </b><span style=\"color: maroon\">location</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    <span style=\"color: navy\">// </span><span style=\"color: green\">place names are usually stored with no parts    location.name as srcName -&gt; tgt.name = cast(srcName, 'string');</span>#xD;\n    location.addr<b> as </b><span style=\"color: maroon\">locAddr</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.address = <span style=\"color: maroon\">locAddr</span><span style=\"color: navy\">;</span>#xD;\n    location.serviceProviderOrganization<b> as </b><span style=\"color: maroon\">srcOrg</span><span style=\"color: navy\"><b> -&gt; </b></span> bundle.entry<b> as </b><span style=\"color: maroon\">e</span><span style=\"color: navy\">, </span> e.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Organization'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">organization</span><span style=\"color: navy\">, </span> organization.id = <b>uuid</b><span style=\"color: navy\">(</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">uuid3</span><span style=\"color: navy\">, </span> e.fullUrl = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:uuid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">uuid3</span><span style=\"color: navy\">)</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>      srcOrg<span style=\"color: navy\"><b> -&gt; </b></span> tgt.managingOrganization = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Reference'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">reference</span><span style=\"color: navy\">, </span> reference.reference = <span style=\"color: navy\">(</span>'urn:uuid:' + %organization.id<span style=\"color: navy\">)</span><b> then </b>ClinicalDocumentOrganization<span style=\"color: navy\">(</span><span style=\"color: maroon\">srcOrg</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">organization</span><span style=\"color: navy\">)</span> <i>\"organization\"</i><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">}</span> <i>\"org\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span><span style=\"color: navy\">;</span> <span style=\"color: navy\">// </span><span style=\"color: green\">place names are usually stored with no parts</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">_________________________ Template Type not specified  ___________________</span>#xD;\n<b>group </b>NarrativeLink<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">url</span>, <b>target</b> <span style=\"color: maroon\">ext</span><span style=\"color: navy\"> : </span>Extension<span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  url<span style=\"color: navy\"><b> -&gt; </b></span>ext.url = <span style=\"color: blue\">'http://hl7.org/fhir/StructureDefinition/narrativeLink'</span> <i>\"url\"</i><span style=\"color: navy\">;</span>#xD;\n  url<span style=\"color: navy\"><b> -&gt; </b></span> ext.value = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'url'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">value</span><span style=\"color: navy\">, </span> value.value = <span style=\"color: maroon\">url</span> <i>\"value\"</i><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span></pre></div>"^^rdf:XMLLiteral ]
   ] ; # 
-  fhir:url [ fhir:v "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle"^^xsd:anyURI] ; # 
+  fhir:url [
+     fhir:v "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle"^^xsd:anyURI ;
+     fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle>
+  ] ; # 
   fhir:version [ fhir:v "0.1.0"] ; # 
   fhir:name [ fhir:v "CdaToBundle"] ; # 
   fhir:title [ fhir:v "Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)"] ; # 
   fhir:status [ fhir:v "draft"] ; # 
-  fhir:date [ fhir:v "2025-10-21T09:02:47+00:00"^^xsd:dateTime] ; # 
+  fhir:date [ fhir:v "2025-10-30T13:05:17+00:00"^^xsd:dateTime] ; # 
   fhir:publisher [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"] ; # 
   fhir:contact ( [
      fhir:name [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris" ] ;
@@ -30,7 +33,10 @@
   fhir:description [ fhir:v "Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)"] ; # 
   fhir:jurisdiction ( [
      fhir:coding ( [
-       fhir:system [ fhir:v "urn:iso:std:iso:3166"^^xsd:anyURI ] ;
+       fhir:system [
+         fhir:v "urn:iso:std:iso:3166"^^xsd:anyURI ;
+         fhir:l <urn:iso:std:iso:3166>
+       ] ;
        fhir:code [ fhir:v "FR" ] ;
        fhir:display [ fhir:v "FRANCE" ]
      ] )
@@ -38,91 +44,91 @@
   fhir:structure ( [
      fhir:url [
        fhir:v "http://hl7.org/cda/stds/core/StructureDefinition/ClinicalDocument"^^xsd:anyURI ;
-       fhir:link <http://hl7.org/cda/stds/core/StructureDefinition/ClinicalDocument>
+       fhir:l <http://hl7.org/cda/stds/core/StructureDefinition/ClinicalDocument>
      ] ;
      fhir:mode [ fhir:v "source" ] ;
      fhir:alias [ fhir:v "ClinicalDocument" ]
   ] [
      fhir:url [
        fhir:v "http://hl7.org/cda/stds/core/StructureDefinition/AssignedAuthor"^^xsd:anyURI ;
-       fhir:link <http://hl7.org/cda/stds/core/StructureDefinition/AssignedAuthor>
+       fhir:l <http://hl7.org/cda/stds/core/StructureDefinition/AssignedAuthor>
      ] ;
      fhir:mode [ fhir:v "source" ] ;
      fhir:alias [ fhir:v "AssignedAuthor" ]
   ] [
      fhir:url [
        fhir:v "http://hl7.org/cda/stds/core/StructureDefinition/AssignedEntity"^^xsd:anyURI ;
-       fhir:link <http://hl7.org/cda/stds/core/StructureDefinition/AssignedEntity>
+       fhir:l <http://hl7.org/cda/stds/core/StructureDefinition/AssignedEntity>
      ] ;
      fhir:mode [ fhir:v "source" ] ;
      fhir:alias [ fhir:v "AssignedEntity" ]
   ] [
      fhir:url [
        fhir:v "http://hl7.org/cda/stds/core/StructureDefinition/CustodianOrganization"^^xsd:anyURI ;
-       fhir:link <http://hl7.org/cda/stds/core/StructureDefinition/CustodianOrganization>
+       fhir:l <http://hl7.org/cda/stds/core/StructureDefinition/CustodianOrganization>
      ] ;
      fhir:mode [ fhir:v "source" ] ;
      fhir:alias [ fhir:v "CustodianOrganization" ]
   ] [
      fhir:url [
        fhir:v "http://hl7.org/cda/stds/core/StructureDefinition/Section"^^xsd:anyURI ;
-       fhir:link <http://hl7.org/cda/stds/core/StructureDefinition/Section>
+       fhir:l <http://hl7.org/cda/stds/core/StructureDefinition/Section>
      ] ;
      fhir:mode [ fhir:v "source" ] ;
      fhir:alias [ fhir:v "Section" ]
   ] [
      fhir:url [
        fhir:v "http://hl7.org/cda/stds/core/StructureDefinition/PatientRole"^^xsd:anyURI ;
-       fhir:link <http://hl7.org/cda/stds/core/StructureDefinition/PatientRole>
+       fhir:l <http://hl7.org/cda/stds/core/StructureDefinition/PatientRole>
      ] ;
      fhir:mode [ fhir:v "source" ] ;
      fhir:alias [ fhir:v "PatientRole" ]
   ] [
      fhir:url [
        fhir:v "http://hl7.org/fhir/StructureDefinition/Bundle"^^xsd:anyURI ;
-       fhir:link <http://hl7.org/fhir/StructureDefinition/Bundle>
+       fhir:l <http://hl7.org/fhir/StructureDefinition/Bundle>
      ] ;
      fhir:mode [ fhir:v "target" ] ;
      fhir:alias [ fhir:v "Bundle" ]
   ] [
      fhir:url [
        fhir:v "http://hl7.org/fhir/StructureDefinition/Composition"^^xsd:anyURI ;
-       fhir:link <http://hl7.org/fhir/StructureDefinition/Composition>
+       fhir:l <http://hl7.org/fhir/StructureDefinition/Composition>
      ] ;
      fhir:mode [ fhir:v "target" ] ;
      fhir:alias [ fhir:v "Composition" ]
   ] [
      fhir:url [
        fhir:v "http://hl7.org/fhir/StructureDefinition/Patient"^^xsd:anyURI ;
-       fhir:link <http://hl7.org/fhir/StructureDefinition/Patient>
+       fhir:l <http://hl7.org/fhir/StructureDefinition/Patient>
      ] ;
      fhir:mode [ fhir:v "target" ] ;
      fhir:alias [ fhir:v "Patient" ]
   ] [
      fhir:url [
        fhir:v "http://hl7.org/fhir/StructureDefinition/Person"^^xsd:anyURI ;
-       fhir:link <http://hl7.org/fhir/StructureDefinition/Person>
+       fhir:l <http://hl7.org/fhir/StructureDefinition/Person>
      ] ;
      fhir:mode [ fhir:v "target" ] ;
      fhir:alias [ fhir:v "Person" ]
   ] [
      fhir:url [
        fhir:v "http://hl7.org/fhir/StructureDefinition/Practitioner"^^xsd:anyURI ;
-       fhir:link <http://hl7.org/fhir/StructureDefinition/Practitioner>
+       fhir:l <http://hl7.org/fhir/StructureDefinition/Practitioner>
      ] ;
      fhir:mode [ fhir:v "target" ] ;
      fhir:alias [ fhir:v "Practitioner" ]
   ] [
      fhir:url [
        fhir:v "http://hl7.org/fhir/StructureDefinition/Organization"^^xsd:anyURI ;
-       fhir:link <http://hl7.org/fhir/StructureDefinition/Organization>
+       fhir:l <http://hl7.org/fhir/StructureDefinition/Organization>
      ] ;
      fhir:mode [ fhir:v "target" ] ;
      fhir:alias [ fhir:v "Organization" ]
   ] ) ; # 
   fhir:import ( [
      fhir:v "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes"^^xsd:anyURI ;
-     fhir:link <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes>
+     fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes>
   ] ) ; # 
   fhir:group ( [
      fhir:name [ fhir:v "CdaToBundle" ] ;
@@ -155,7 +161,7 @@
          fhir:transform [ fhir:v "create" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:string ;
+             a fhir:String ;
              fhir:v "Composition"
            ]
          ] )
@@ -172,12 +178,12 @@
          fhir:transform [ fhir:v "append" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:string ;
+             a fhir:String ;
              fhir:v "urn:uuid:"
            ]
          ] [
            fhir:value [
-             a fhir:id ;
+             a fhir:Id ;
              fhir:v "uuid"
            ]
          ] )
@@ -194,7 +200,7 @@
          fhir:transform [ fhir:v "create" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:string ;
+             a fhir:String ;
              fhir:v "Patient"
            ]
          ] )
@@ -211,12 +217,12 @@
          fhir:transform [ fhir:v "append" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:string ;
+             a fhir:String ;
              fhir:v "urn:uuid:"
            ]
          ] [
            fhir:value [
-             a fhir:id ;
+             a fhir:Id ;
              fhir:v "uuid2"
            ]
          ] )
@@ -277,7 +283,7 @@
          fhir:transform [ fhir:v "copy" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:id ;
+             a fhir:Id ;
              fhir:v "addIdentifier"
            ]
          ] )
@@ -294,7 +300,7 @@
          fhir:transform [ fhir:v "copy" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:string ;
+             a fhir:String ;
              fhir:v "document"
            ]
          ] )
@@ -313,7 +319,7 @@
          fhir:transform [ fhir:v "copy" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:id ;
+             a fhir:Id ;
              fhir:v "timestamp"
            ]
          ] )
@@ -408,7 +414,7 @@
          fhir:transform [ fhir:v "evaluate" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:string ;
+             a fhir:String ;
              fhir:v "t.xmlText"
            ]
          ] )
@@ -427,7 +433,7 @@
          fhir:transform [ fhir:v "copy" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:id ;
+             a fhir:Id ;
              fhir:v "srcCode"
            ]
          ] )
@@ -457,7 +463,7 @@
            fhir:transform [ fhir:v "copy" ] ;
            fhir:parameter ( [
              fhir:value [
-               a fhir:string ;
+               a fhir:String ;
                fhir:v "generated"
              ]
            ] )
@@ -475,7 +481,7 @@
            fhir:transform [ fhir:v "copy" ] ;
            fhir:parameter ( [
              fhir:value [
-               a fhir:id ;
+               a fhir:Id ;
                fhir:v "t"
              ]
            ] )
@@ -534,7 +540,7 @@
          fhir:transform [ fhir:v "copy" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:id ;
+             a fhir:Id ;
              fhir:v "languageCode"
            ]
          ] )
@@ -544,7 +550,8 @@
        fhir:source ( [
          fhir:context [ fhir:v "src" ] ;
          fhir:element [ fhir:v "id" ] ;
-         fhir:condition [ fhir:v "src.setId.exists().not() as setId" ]
+         fhir:variable [ fhir:v "id" ] ;
+         fhir:condition [ fhir:v "src.setId.exists().not()" ]
        ] ) ;
        fhir:target ( [
          fhir:context [ fhir:v "tgt" ] ;
@@ -553,8 +560,8 @@
          fhir:transform [ fhir:v "copy" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:id ;
-             fhir:v "setId"
+             a fhir:Id ;
+             fhir:v "id"
            ]
          ] )
        ] )
@@ -572,7 +579,7 @@
          fhir:transform [ fhir:v "copy" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:id ;
+             a fhir:Id ;
              fhir:v "setIdentifier"
            ]
          ] )
@@ -589,7 +596,7 @@
          fhir:transform [ fhir:v "copy" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:string ;
+             a fhir:String ;
              fhir:v "final"
            ]
          ] )
@@ -608,7 +615,7 @@
          fhir:transform [ fhir:v "copy" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:id ;
+             a fhir:Id ;
              fhir:v "srcCode"
            ]
          ] )
@@ -627,7 +634,7 @@
          fhir:transform [ fhir:v "evaluate" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:string ;
+             a fhir:String ;
              fhir:v "t.xmlText"
            ]
          ] )
@@ -654,7 +661,7 @@
            fhir:transform [ fhir:v "create" ] ;
            fhir:parameter ( [
              fhir:value [
-               a fhir:string ;
+               a fhir:String ;
                fhir:v "Reference"
              ]
            ] )
@@ -665,7 +672,7 @@
            fhir:transform [ fhir:v "evaluate" ] ;
            fhir:parameter ( [
              fhir:value [
-               a fhir:string ;
+               a fhir:String ;
                fhir:v "'urn:uuid:' + %patientResource.id"
              ]
            ] )
@@ -695,7 +702,7 @@
          fhir:transform [ fhir:v "create" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:string ;
+             a fhir:String ;
              fhir:v "Encounter"
            ]
          ] )
@@ -712,12 +719,12 @@
          fhir:transform [ fhir:v "append" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:string ;
+             a fhir:String ;
              fhir:v "urn:uuid:"
            ]
          ] [
            fhir:value [
-             a fhir:id ;
+             a fhir:Id ;
              fhir:v "uuid"
            ]
          ] )
@@ -737,7 +744,7 @@
            fhir:transform [ fhir:v "create" ] ;
            fhir:parameter ( [
              fhir:value [
-               a fhir:string ;
+               a fhir:String ;
                fhir:v "Reference"
              ]
            ] )
@@ -748,7 +755,7 @@
            fhir:transform [ fhir:v "evaluate" ] ;
            fhir:parameter ( [
              fhir:value [
-               a fhir:string ;
+               a fhir:String ;
                fhir:v "'urn:uuid:' + %encounter.id"
              ]
            ] )
@@ -772,7 +779,7 @@
          fhir:transform [ fhir:v "copy" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:id ;
+             a fhir:Id ;
              fhir:v "effectiveTime"
            ]
          ] )
@@ -797,7 +804,7 @@
          fhir:transform [ fhir:v "create" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:string ;
+             a fhir:String ;
              fhir:v "Practitioner"
            ]
          ] )
@@ -814,12 +821,12 @@
          fhir:transform [ fhir:v "append" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:string ;
+             a fhir:String ;
              fhir:v "urn:uuid:"
            ]
          ] [
            fhir:value [
-             a fhir:id ;
+             a fhir:Id ;
              fhir:v "uuid2"
            ]
          ] )
@@ -831,7 +838,7 @@
          fhir:transform [ fhir:v "create" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:string ;
+             a fhir:String ;
              fhir:v "Reference"
            ]
          ] )
@@ -842,7 +849,7 @@
          fhir:transform [ fhir:v "evaluate" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:string ;
+             a fhir:String ;
              fhir:v "'urn:uuid:' + %practitioner.id"
            ]
          ] )
@@ -868,7 +875,7 @@
              fhir:transform [ fhir:v "copy" ] ;
              fhir:parameter ( [
                fhir:value [
-                 a fhir:id ;
+                 a fhir:Id ;
                  fhir:v "id"
                ]
              ] )
@@ -887,7 +894,7 @@
              fhir:transform [ fhir:v "copy" ] ;
              fhir:parameter ( [
                fhir:value [
-                 a fhir:id ;
+                 a fhir:Id ;
                  fhir:v "addr"
                ]
              ] )
@@ -906,7 +913,7 @@
              fhir:transform [ fhir:v "copy" ] ;
              fhir:parameter ( [
                fhir:value [
-                 a fhir:id ;
+                 a fhir:Id ;
                  fhir:v "tlc"
                ]
              ] )
@@ -932,7 +939,7 @@
                fhir:transform [ fhir:v "copy" ] ;
                fhir:parameter ( [
                  fhir:value [
-                   a fhir:id ;
+                   a fhir:Id ;
                    fhir:v "pName"
                  ]
                ] )
@@ -958,7 +965,7 @@
              fhir:transform [ fhir:v "create" ] ;
              fhir:parameter ( [
                fhir:value [
-                 a fhir:string ;
+                 a fhir:String ;
                  fhir:v "Organization"
                ]
              ] )
@@ -975,12 +982,12 @@
              fhir:transform [ fhir:v "append" ] ;
              fhir:parameter ( [
                fhir:value [
-                 a fhir:string ;
+                 a fhir:String ;
                  fhir:v "urn:uuid:"
                ]
              ] [
                fhir:value [
-                 a fhir:id ;
+                 a fhir:Id ;
                  fhir:v "uuid3"
                ]
              ] )
@@ -992,7 +999,7 @@
              fhir:transform [ fhir:v "create" ] ;
              fhir:parameter ( [
                fhir:value [
-                 a fhir:string ;
+                 a fhir:String ;
                  fhir:v "Reference"
                ]
              ] )
@@ -1003,7 +1010,7 @@
              fhir:transform [ fhir:v "evaluate" ] ;
              fhir:parameter ( [
                fhir:value [
-                 a fhir:string ;
+                 a fhir:String ;
                  fhir:v "'urn:uuid:' + %organization.id"
                ]
              ] )
@@ -1028,7 +1035,7 @@
          fhir:transform [ fhir:v "copy" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:id ;
+             a fhir:Id ;
              fhir:v "confCode"
            ]
          ] )
@@ -1053,7 +1060,7 @@
          fhir:transform [ fhir:v "create" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:string ;
+             a fhir:String ;
              fhir:v "Practitioner"
            ]
          ] )
@@ -1070,12 +1077,12 @@
          fhir:transform [ fhir:v "append" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:string ;
+             a fhir:String ;
              fhir:v "urn:uuid:"
            ]
          ] [
            fhir:value [
-             a fhir:id ;
+             a fhir:Id ;
              fhir:v "uuid2"
            ]
          ] )
@@ -1103,7 +1110,7 @@
              fhir:transform [ fhir:v "copy" ] ;
              fhir:parameter ( [
                fhir:value [
-                 a fhir:string ;
+                 a fhir:String ;
                  fhir:v "legal"
                ]
              ] )
@@ -1122,7 +1129,7 @@
              fhir:transform [ fhir:v "copy" ] ;
              fhir:parameter ( [
                fhir:value [
-                 a fhir:id ;
+                 a fhir:Id ;
                  fhir:v "time"
                ]
              ] )
@@ -1142,7 +1149,7 @@
              fhir:transform [ fhir:v "create" ] ;
              fhir:parameter ( [
                fhir:value [
-                 a fhir:string ;
+                 a fhir:String ;
                  fhir:v "Reference"
                ]
              ] )
@@ -1153,7 +1160,7 @@
              fhir:transform [ fhir:v "evaluate" ] ;
              fhir:parameter ( [
                fhir:value [
-                 a fhir:string ;
+                 a fhir:String ;
                  fhir:v "'urn:uuid:' + %practitioner.id"
                ]
              ] )
@@ -1184,7 +1191,7 @@
          fhir:transform [ fhir:v "create" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:string ;
+             a fhir:String ;
              fhir:v "Practitioner"
            ]
          ] )
@@ -1201,12 +1208,12 @@
          fhir:transform [ fhir:v "append" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:string ;
+             a fhir:String ;
              fhir:v "urn:uuid:"
            ]
          ] [
            fhir:value [
-             a fhir:id ;
+             a fhir:Id ;
              fhir:v "uuid2"
            ]
          ] )
@@ -1234,7 +1241,7 @@
              fhir:transform [ fhir:v "copy" ] ;
              fhir:parameter ( [
                fhir:value [
-                 a fhir:string ;
+                 a fhir:String ;
                  fhir:v "official"
                ]
              ] )
@@ -1253,7 +1260,7 @@
              fhir:transform [ fhir:v "copy" ] ;
              fhir:parameter ( [
                fhir:value [
-                 a fhir:id ;
+                 a fhir:Id ;
                  fhir:v "time"
                ]
              ] )
@@ -1273,7 +1280,7 @@
              fhir:transform [ fhir:v "create" ] ;
              fhir:parameter ( [
                fhir:value [
-                 a fhir:string ;
+                 a fhir:String ;
                  fhir:v "Reference"
                ]
              ] )
@@ -1284,7 +1291,7 @@
              fhir:transform [ fhir:v "evaluate" ] ;
              fhir:parameter ( [
                fhir:value [
-                 a fhir:string ;
+                 a fhir:String ;
                  fhir:v "'urn:uuid:' + %practitioner.id"
                ]
              ] )
@@ -1323,7 +1330,7 @@
            fhir:transform [ fhir:v "create" ] ;
            fhir:parameter ( [
              fhir:value [
-               a fhir:string ;
+               a fhir:String ;
                fhir:v "Organization"
              ]
            ] )
@@ -1340,12 +1347,12 @@
            fhir:transform [ fhir:v "append" ] ;
            fhir:parameter ( [
              fhir:value [
-               a fhir:string ;
+               a fhir:String ;
                fhir:v "urn:uuid:"
              ]
            ] [
              fhir:value [
-               a fhir:id ;
+               a fhir:Id ;
                fhir:v "uuid3"
              ]
            ] )
@@ -1365,7 +1372,7 @@
              fhir:transform [ fhir:v "create" ] ;
              fhir:parameter ( [
                fhir:value [
-                 a fhir:string ;
+                 a fhir:String ;
                  fhir:v "Reference"
                ]
              ] )
@@ -1376,7 +1383,7 @@
              fhir:transform [ fhir:v "evaluate" ] ;
              fhir:parameter ( [
                fhir:value [
-                 a fhir:string ;
+                 a fhir:String ;
                  fhir:v "'urn:uuid:' + %organization.id"
                ]
              ] )
@@ -1421,7 +1428,7 @@
              fhir:transform [ fhir:v "copy" ] ;
              fhir:parameter ( [
                fhir:value [
-                 a fhir:id ;
+                 a fhir:Id ;
                  fhir:v "eventCode"
                ]
              ] )
@@ -1440,7 +1447,7 @@
              fhir:transform [ fhir:v "copy" ] ;
              fhir:parameter ( [
                fhir:value [
-                 a fhir:id ;
+                 a fhir:Id ;
                  fhir:v "effectivetime"
                ]
              ] )
@@ -1475,7 +1482,7 @@
            fhir:transform [ fhir:v "copy" ] ;
            fhir:parameter ( [
              fhir:value [
-               a fhir:id ;
+               a fhir:Id ;
                fhir:v "typeCode"
              ]
            ] )
@@ -1492,7 +1499,7 @@
            fhir:source ( [
              fhir:context [ fhir:v "parentDoc" ] ;
              fhir:element [ fhir:v "setId" ] ;
-             fhir:variable [ fhir:v "setId" ]
+             fhir:variable [ fhir:v "sid" ]
            ] ) ;
            fhir:target ( [
              fhir:context [ fhir:v "relates" ] ;
@@ -1501,8 +1508,8 @@
              fhir:transform [ fhir:v "copy" ] ;
              fhir:parameter ( [
                fhir:value [
-                 a fhir:id ;
-                 fhir:v "setId"
+                 a fhir:Id ;
+                 fhir:v "sid"
                ]
              ] )
            ] )
@@ -1535,7 +1542,7 @@
          fhir:transform [ fhir:v "copy" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:id ;
+             a fhir:Id ;
              fhir:v "srcId"
            ]
          ] )
@@ -1554,7 +1561,7 @@
          fhir:transform [ fhir:v "copy" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:id ;
+             a fhir:Id ;
              fhir:v "srcAddr"
            ]
          ] )
@@ -1573,7 +1580,7 @@
          fhir:transform [ fhir:v "copy" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:id ;
+             a fhir:Id ;
              fhir:v "srcTelecom"
            ]
          ] )
@@ -1599,7 +1606,7 @@
            fhir:transform [ fhir:v "copy" ] ;
            fhir:parameter ( [
              fhir:value [
-               a fhir:id ;
+               a fhir:Id ;
                fhir:v "pName"
              ]
            ] )
@@ -1632,7 +1639,7 @@
          fhir:transform [ fhir:v "copy" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:id ;
+             a fhir:Id ;
              fhir:v "srcId"
            ]
          ] )
@@ -1651,7 +1658,7 @@
          fhir:transform [ fhir:v "evaluate" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:string ;
+             a fhir:String ;
              fhir:v "v.other"
            ]
          ] )
@@ -1670,7 +1677,7 @@
          fhir:transform [ fhir:v "copy" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:id ;
+             a fhir:Id ;
              fhir:v "srcTelecom"
            ]
          ] )
@@ -1689,7 +1696,7 @@
          fhir:transform [ fhir:v "copy" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:id ;
+             a fhir:Id ;
              fhir:v "srcAddr"
            ]
          ] )
@@ -1726,7 +1733,7 @@
          fhir:transform [ fhir:v "create" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:string ;
+             a fhir:String ;
              fhir:v "Identifier"
            ]
          ] )
@@ -1749,7 +1756,7 @@
          fhir:transform [ fhir:v "copy" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:id ;
+             a fhir:Id ;
              fhir:v "srcAddr"
            ]
          ] )
@@ -1768,7 +1775,7 @@
          fhir:transform [ fhir:v "copy" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:id ;
+             a fhir:Id ;
              fhir:v "srcTelecom"
            ]
          ] )
@@ -1794,7 +1801,7 @@
            fhir:transform [ fhir:v "copy" ] ;
            fhir:parameter ( [
              fhir:value [
-               a fhir:id ;
+               a fhir:Id ;
                fhir:v "patientName"
              ]
            ] )
@@ -1820,17 +1827,17 @@
              fhir:transform [ fhir:v "translate" ] ;
              fhir:parameter ( [
                fhir:value [
-                 a fhir:id ;
+                 a fhir:Id ;
                  fhir:v "v"
                ]
              ] [
                fhir:value [
-                 a fhir:string ;
-                 fhir:v "#cm-v3-administrative-gender"
+                 a fhir:String ;
+                 fhir:v "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/cm-v3-administrative-gender"
                ]
              ] [
                fhir:value [
-                 a fhir:string ;
+                 a fhir:String ;
                  fhir:v "code"
                ]
              ] )
@@ -1850,7 +1857,7 @@
            fhir:transform [ fhir:v "copy" ] ;
            fhir:parameter ( [
              fhir:value [
-               a fhir:id ;
+               a fhir:Id ;
                fhir:v "birthTime"
              ]
            ] )
@@ -1871,7 +1878,7 @@
            fhir:transform [ fhir:v "create" ] ;
            fhir:parameter ( [
              fhir:value [
-               a fhir:string ;
+               a fhir:String ;
                fhir:v "boolean"
              ]
            ] )
@@ -1894,7 +1901,7 @@
            fhir:transform [ fhir:v "copy" ] ;
            fhir:parameter ( [
              fhir:value [
-               a fhir:id ;
+               a fhir:Id ;
                fhir:v "dTime"
              ]
            ] )
@@ -1913,7 +1920,7 @@
            fhir:transform [ fhir:v "copy" ] ;
            fhir:parameter ( [
              fhir:value [
-               a fhir:id ;
+               a fhir:Id ;
                fhir:v "mStatus"
              ]
            ] )
@@ -1945,7 +1952,7 @@
              fhir:transform [ fhir:v "copy" ] ;
              fhir:parameter ( [
                fhir:value [
-                 a fhir:id ;
+                 a fhir:Id ;
                  fhir:v "lCode"
                ]
              ] )
@@ -1973,7 +1980,7 @@
          fhir:transform [ fhir:v "create" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:string ;
+             a fhir:String ;
              fhir:v "Organization"
            ]
          ] )
@@ -1990,12 +1997,12 @@
          fhir:transform [ fhir:v "append" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:string ;
+             a fhir:String ;
              fhir:v "urn:uuid:"
            ]
          ] [
            fhir:value [
-             a fhir:id ;
+             a fhir:Id ;
              fhir:v "uuid3"
            ]
          ] )
@@ -2013,7 +2020,7 @@
            fhir:transform [ fhir:v "create" ] ;
            fhir:parameter ( [
              fhir:value [
-               a fhir:string ;
+               a fhir:String ;
                fhir:v "Reference"
              ]
            ] )
@@ -2024,7 +2031,7 @@
            fhir:transform [ fhir:v "evaluate" ] ;
            fhir:parameter ( [
              fhir:value [
-               a fhir:string ;
+               a fhir:String ;
                fhir:v "'urn:uuid:' + %organization.id"
              ]
            ] )
@@ -2043,7 +2050,7 @@
            fhir:transform [ fhir:v "copy" ] ;
            fhir:parameter ( [
              fhir:value [
-               a fhir:id ;
+               a fhir:Id ;
                fhir:v "orgId"
              ]
            ] )
@@ -2062,7 +2069,7 @@
            fhir:transform [ fhir:v "evaluate" ] ;
            fhir:parameter ( [
              fhir:value [
-               a fhir:string ;
+               a fhir:String ;
                fhir:v "v.other"
              ]
            ] )
@@ -2081,7 +2088,7 @@
            fhir:transform [ fhir:v "copy" ] ;
            fhir:parameter ( [
              fhir:value [
-               a fhir:id ;
+               a fhir:Id ;
                fhir:v "orgTel"
              ]
            ] )
@@ -2100,7 +2107,7 @@
            fhir:transform [ fhir:v "copy" ] ;
            fhir:parameter ( [
              fhir:value [
-               a fhir:id ;
+               a fhir:Id ;
                fhir:v "orgAddr"
              ]
            ] )
@@ -2161,7 +2168,7 @@
            fhir:transform [ fhir:v "copy" ] ;
            fhir:parameter ( [
              fhir:value [
-               a fhir:string ;
+               a fhir:String ;
                fhir:v "https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203"
              ]
            ] )
@@ -2179,7 +2186,7 @@
            fhir:transform [ fhir:v "copy" ] ;
            fhir:parameter ( [
              fhir:value [
-               a fhir:string ;
+               a fhir:String ;
                fhir:v "INS-NIR"
              ]
            ] )
@@ -2197,7 +2204,7 @@
            fhir:transform [ fhir:v "copy" ] ;
            fhir:parameter ( [
              fhir:value [
-               a fhir:string ;
+               a fhir:String ;
                fhir:v "http://terminology.hl7.org/CodeSystem/v2-0203"
              ]
            ] )
@@ -2215,7 +2222,7 @@
            fhir:transform [ fhir:v "copy" ] ;
            fhir:parameter ( [
              fhir:value [
-               a fhir:string ;
+               a fhir:String ;
                fhir:v "PI"
              ]
            ] )
@@ -2240,7 +2247,7 @@
          fhir:transform [ fhir:v "copy" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:id ;
+             a fhir:Id ;
              fhir:v "extension"
            ]
          ] )
@@ -2264,12 +2271,12 @@
          fhir:transform [ fhir:v "append" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:string ;
+             a fhir:String ;
              fhir:v "urn:oid:"
            ]
          ] [
            fhir:value [
-             a fhir:id ;
+             a fhir:Id ;
              fhir:v "root"
            ]
          ] )
@@ -2306,7 +2313,7 @@
          fhir:transform [ fhir:v "copy" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:id ;
+             a fhir:Id ;
              fhir:v "Id"
            ]
          ] )
@@ -2325,7 +2332,7 @@
          fhir:transform [ fhir:v "copy" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:id ;
+             a fhir:Id ;
              fhir:v "srcCode"
            ]
          ] )
@@ -2344,7 +2351,7 @@
          fhir:transform [ fhir:v "copy" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:id ;
+             a fhir:Id ;
              fhir:v "effTime"
            ]
          ] )
@@ -2375,7 +2382,7 @@
            fhir:transform [ fhir:v "copy" ] ;
            fhir:parameter ( [
              fhir:value [
-               a fhir:id ;
+               a fhir:Id ;
                fhir:v "admRef"
              ]
            ] )
@@ -2394,7 +2401,7 @@
            fhir:transform [ fhir:v "copy" ] ;
            fhir:parameter ( [
              fhir:value [
-               a fhir:id ;
+               a fhir:Id ;
                fhir:v "discDispo"
              ]
            ] )
@@ -2427,12 +2434,12 @@
            fhir:transform [ fhir:v "cc" ] ;
            fhir:parameter ( [
              fhir:value [
-               a fhir:string ;
+               a fhir:String ;
                fhir:v "http://terminology.hl7.org/CodeSystem/v3-ParticipationType"
              ]
            ] [
              fhir:value [
-               a fhir:id ;
+               a fhir:Id ;
                fhir:v "code"
              ]
            ] )
@@ -2451,7 +2458,7 @@
            fhir:transform [ fhir:v "copy" ] ;
            fhir:parameter ( [
              fhir:value [
-               a fhir:id ;
+               a fhir:Id ;
                fhir:v "srcTime"
              ]
            ] )
@@ -2476,7 +2483,7 @@
            fhir:transform [ fhir:v "create" ] ;
            fhir:parameter ( [
              fhir:value [
-               a fhir:string ;
+               a fhir:String ;
                fhir:v "Practitioner"
              ]
            ] )
@@ -2493,12 +2500,12 @@
            fhir:transform [ fhir:v "append" ] ;
            fhir:parameter ( [
              fhir:value [
-               a fhir:string ;
+               a fhir:String ;
                fhir:v "urn:uuid:"
              ]
            ] [
              fhir:value [
-               a fhir:id ;
+               a fhir:Id ;
                fhir:v "uuid2"
              ]
            ] )
@@ -2516,7 +2523,7 @@
              fhir:transform [ fhir:v "create" ] ;
              fhir:parameter ( [
                fhir:value [
-                 a fhir:string ;
+                 a fhir:String ;
                  fhir:v "Reference"
                ]
              ] )
@@ -2527,7 +2534,7 @@
              fhir:transform [ fhir:v "evaluate" ] ;
              fhir:parameter ( [
                fhir:value [
-                 a fhir:string ;
+                 a fhir:String ;
                  fhir:v "'urn:uuid:' + %practitioner.id"
                ]
              ] )
@@ -2565,7 +2572,7 @@
            fhir:transform [ fhir:v "create" ] ;
            fhir:parameter ( [
              fhir:value [
-               a fhir:string ;
+               a fhir:String ;
                fhir:v "Location"
              ]
            ] )
@@ -2582,12 +2589,12 @@
            fhir:transform [ fhir:v "append" ] ;
            fhir:parameter ( [
              fhir:value [
-               a fhir:string ;
+               a fhir:String ;
                fhir:v "urn:uuid:"
              ]
            ] [
              fhir:value [
-               a fhir:id ;
+               a fhir:Id ;
                fhir:v "uuid2"
              ]
            ] )
@@ -2610,7 +2617,7 @@
              fhir:transform [ fhir:v "create" ] ;
              fhir:parameter ( [
                fhir:value [
-                 a fhir:string ;
+                 a fhir:String ;
                  fhir:v "Reference"
                ]
              ] )
@@ -2621,7 +2628,7 @@
              fhir:transform [ fhir:v "evaluate" ] ;
              fhir:parameter ( [
                fhir:value [
-                 a fhir:string ;
+                 a fhir:String ;
                  fhir:v "'urn:uuid:' + %location.id"
                ]
              ] )
@@ -2663,7 +2670,7 @@
          fhir:transform [ fhir:v "copy" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:id ;
+             a fhir:Id ;
              fhir:v "srcIdentifier"
            ]
          ] )
@@ -2682,7 +2689,7 @@
          fhir:transform [ fhir:v "copy" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:id ;
+             a fhir:Id ;
              fhir:v "srcCode"
            ]
          ] )
@@ -2708,7 +2715,7 @@
            fhir:transform [ fhir:v "copy" ] ;
            fhir:parameter ( [
              fhir:value [
-               a fhir:id ;
+               a fhir:Id ;
                fhir:v "locAddr"
              ]
            ] )
@@ -2733,7 +2740,7 @@
            fhir:transform [ fhir:v "create" ] ;
            fhir:parameter ( [
              fhir:value [
-               a fhir:string ;
+               a fhir:String ;
                fhir:v "Organization"
              ]
            ] )
@@ -2750,12 +2757,12 @@
            fhir:transform [ fhir:v "append" ] ;
            fhir:parameter ( [
              fhir:value [
-               a fhir:string ;
+               a fhir:String ;
                fhir:v "urn:uuid:"
              ]
            ] [
              fhir:value [
-               a fhir:id ;
+               a fhir:Id ;
                fhir:v "uuid3"
              ]
            ] )
@@ -2773,7 +2780,7 @@
              fhir:transform [ fhir:v "create" ] ;
              fhir:parameter ( [
                fhir:value [
-                 a fhir:string ;
+                 a fhir:String ;
                  fhir:v "Reference"
                ]
              ] )
@@ -2784,7 +2791,7 @@
              fhir:transform [ fhir:v "evaluate" ] ;
              fhir:parameter ( [
                fhir:value [
-                 a fhir:string ;
+                 a fhir:String ;
                  fhir:v "'urn:uuid:' + %organization.id"
                ]
              ] )
@@ -2821,7 +2828,7 @@
          fhir:transform [ fhir:v "copy" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:string ;
+             a fhir:String ;
              fhir:v "http://hl7.org/fhir/StructureDefinition/narrativeLink"
            ]
          ] )
@@ -2839,7 +2846,7 @@
          fhir:transform [ fhir:v "create" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:string ;
+             a fhir:String ;
              fhir:v "url"
            ]
          ] )
@@ -2850,7 +2857,7 @@
          fhir:transform [ fhir:v "copy" ] ;
          fhir:parameter ( [
            fhir:value [
-             a fhir:id ;
+             a fhir:Id ;
              fhir:v "url"
            ]
          ] )
