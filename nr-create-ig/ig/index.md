@@ -185,10 +185,10 @@ Les transformations CDA-FHIR ont été exécutées avec les résultats suivants 
 * 2 Organization (organisations de santé)
 * 1 à 3 Observation(s) selon le document
  
-* **[fr-CSE-MDE_1obs.xml](Bundle-fr-CSE-MDE-1obs-result.md)** : 9 ressources 
+* **[fr-CSE-MDE_1obs.xml](Bundle-aad5cc88-a2b2-4688-9906-195073d66064)** : 9 ressources 
 * 1 Observation : Poids (code LOINC 29463-7) = 3900 g
  
-* **[fr-CSE-MDE_2023.01.xml](Bundle-fr-CSE-MDE-2023-01-result.md)** : 11 ressources 
+* **[fr-CSE-MDE_2023.01.xml](Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d)** : 11 ressources 
 * 3 Observations : 
 * Poids (29463-7) = 3900 g
 * Taille (8302-2) = 52 cm
@@ -319,7 +319,7 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2025-10-30T16:59:01+00:00",
+  "date" : "2025-10-30T17:21:27+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {

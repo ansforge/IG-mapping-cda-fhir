@@ -52,7 +52,7 @@ Mapping de [AdministrativeGender](http://terminology.hl7.org/6.5.0/ValueSet-v3-A
   "title" : "CDA to FHIR Administrative Gender Mapping",
   "status" : "active",
   "experimental" : false,
-  "date" : "2025-10-30T16:59:01+00:00",
+  "date" : "2025-10-30T17:21:27+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {
