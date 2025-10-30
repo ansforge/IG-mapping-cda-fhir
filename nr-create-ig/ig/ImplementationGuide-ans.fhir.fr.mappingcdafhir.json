@@ -10,7 +10,7 @@
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2025-10-30T13:05:17+00:00",
+  "date" : "2025-10-30T16:35:25+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -685,6 +685,28 @@
     "resource" : [{
       "extension" : [{
         "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+        "valueString" : "Bundle"
+      }],
+      "reference" : {
+        "reference" : "Bundle/1812b285-b1e2-40a6-a4cf-0463aff4c82d"
+      },
+      "name" : "1812b285-b1e2-40a6-a4cf-0463aff4c82d",
+      "exampleBoolean" : false
+    },
+    {
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+        "valueString" : "Bundle"
+      }],
+      "reference" : {
+        "reference" : "Bundle/aad5cc88-a2b2-4688-9906-195073d66064"
+      },
+      "name" : "aad5cc88-a2b2-4688-9906-195073d66064",
+      "exampleBoolean" : false
+    },
+    {
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
         "valueString" : "ConceptMap"
       }],
       "reference" : {
@@ -700,10 +722,10 @@
         "valueString" : "StructureMap"
       }],
       "reference" : {
-        "reference" : "StructureMap/CDAFrMDEToBundle"
+        "reference" : "StructureMap/CdaFrMDEToBundle"
       },
-      "name" : "Mapping de CDA Mesure de lEnfant vers FHIR Bundle (A partir des sources de Oliver Egger)",
-      "description" : "Mapping de CDA Mesure de lEnfant vers FHIR Bundle (A partir des sources de Oliver Egger)"
+      "name" : "Mapping CSE-MDE vers FHIR Bundle - Contexte Français",
+      "description" : "Mapping CSE-MDE vers FHIR Bundle - Contexte Français"
     },
     {
       "extension" : [{

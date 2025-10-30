@@ -13,7 +13,7 @@ These define transformations to convert between data structures used by systems 
 
 | | |
 | :--- | :--- |
-| [Mapping de CDA Mesure de lEnfant vers FHIR Bundle (A partir des sources de Oliver Egger)](StructureMap-CDAFrMDEToBundle.md) | Mapping de CDA Mesure de lEnfant vers FHIR Bundle (A partir des sources de Oliver Egger) |
+| [Mapping CSE-MDE vers FHIR Bundle - Contexte Français](StructureMap-CdaFrMDEToBundle.md) | Mapping CSE-MDE vers FHIR Bundle - Contexte Français |
 | [Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)](StructureMap-CdaToBundle.md) | Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger) |
 | [Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)](StructureMap-CdaToFHIRTypes.md) | Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger) |
 | [Mapping de CDAFr vers FHIR Bundle (A partir des sources de Oliver Egger)](StructureMap-CdaFrToBundle.md) | Mapping de CDAFr vers FHIR Bundle (A partir des sources de Oliver Egger) |
@@ -25,4 +25,13 @@ These define transformations to convert between codes by systems conforming with
 | | |
 | :--- | :--- |
 | [CDA to FHIR Administrative Gender Mapping](ConceptMap-cm-v3-administrative-gender.md) | Mapping between CDA v3 Administrative Gender codes and FHIR Administrative Gender codes |
+
+### Other 
+
+These are resources that are used within this implementation guide that do not fit into one of the other categories.
+
+| |
+| :--- |
+| [1812b285-b1e2-40a6-a4cf-0463aff4c82d](Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.md) |
+| [aad5cc88-a2b2-4688-9906-195073d66064](Bundle-aad5cc88-a2b2-4688-9906-195073d66064.md) |
 

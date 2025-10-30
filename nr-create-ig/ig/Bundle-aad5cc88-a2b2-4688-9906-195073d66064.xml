@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Bundle xmlns="http://hl7.org/fhir">
+  <id value="aad5cc88-a2b2-4688-9906-195073d66064"/>
+  <identifier/>
+  <type value="document"/>
+  <entry>
+    <fullUrl value="urn:uuid:2d9a6a14-7a3f-4426-9019-895e2070d3f1"/>
+    <resource>
+      <Composition>
+        <id value="2d9a6a14-7a3f-4426-9019-895e2070d3f1"/>
+        <text>
+          <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><a name="Composition_2d9a6a14-7a3f-4426-9019-895e2070d3f1"> </a><p class="res-header-id"><b>Narratif généré : Composition 2d9a6a14-7a3f-4426-9019-895e2070d3f1</b></p><a name="2d9a6a14-7a3f-4426-9019-895e2070d3f1"> </a><a name="hc2d9a6a14-7a3f-4426-9019-895e2070d3f1"> </a><p><b>identifier</b>: ?ngen-9?</p><p><b>status</b>: Final</p><p><b>type</b>: </p><p><b>encounter</b>: <a href="Bundle-aad5cc88-a2b2-4688-9906-195073d66064.html#urn-uuid-714c41f2-70ef-409a-a32d-fbf1fb7b0ad3">Encounter : type = ; period = </a></p><p><b>author</b>: </p><ul><li><a href="Bundle-aad5cc88-a2b2-4688-9906-195073d66064.html#urn-uuid-9b9a5570-c929-4baf-ad7f-fbcb2a66d4be">Practitioner : identifier = ; name = ; telecom = tel:0140404022</a></li><li><a href="Bundle-aad5cc88-a2b2-4688-9906-195073d66064.html#urn-uuid-2e465c62-9be5-4103-b1f5-6466e85c21fc">Organization : identifier = ; telecom = tel:0140404022</a></li></ul><p><b>title</b>: Carnet de santé de l'enfant - Mesures de l'enfant</p><h3>Attesters</h3><table class="grid"><tr><td style="display: none">-</td><td><b>Mode</b></td><td><b>Party</b></td></tr><tr><td style="display: none">*</td><td>Legal</td><td><a href="Bundle-aad5cc88-a2b2-4688-9906-195073d66064.html#urn-uuid-dca867ed-76b8-452a-8cde-2b73ff887ee7">Practitioner : identifier = ; name = ; telecom = tel:0140404022</a></td></tr></table><p><b>custodian</b>: <a href="Bundle-aad5cc88-a2b2-4688-9906-195073d66064.html#urn-uuid-46ac5fcf-86eb-4a19-ad98-730ef62431b7">Organization : identifier = ; telecom = tel:0140404022</a></p><h3>Events</h3><table class="grid"><tr><td style="display: none">-</td><td><b>Code</b></td><td><b>Period</b></td></tr><tr><td style="display: none">*</td><td/><td>?? --&gt; (en cours)</td></tr></table></div>
+        </text>
+        <identifier/>
+        <status value="final"/>
+        <type/>
+        <subject>
+          <reference value="urn:uuid:7de38de8-0328-4319-8e60-ff50ba856531"/>
+        </subject>
+        <encounter>
+          <reference value="urn:uuid:714c41f2-70ef-409a-a32d-fbf1fb7b0ad3"/>
+        </encounter>
+        <author>
+          <reference value="urn:uuid:9b9a5570-c929-4baf-ad7f-fbcb2a66d4be"/>
+        </author>
+        <author>
+          <reference value="urn:uuid:2e465c62-9be5-4103-b1f5-6466e85c21fc"/>
+        </author>
+        <title value="Carnet de santé de l'enfant - Mesures de l'enfant"/>
+        <attester>
+          <mode value="legal"/>
+          <party>
+            <reference value="urn:uuid:dca867ed-76b8-452a-8cde-2b73ff887ee7"/>
+          </party>
+        </attester>
+        <custodian>
+          <reference value="urn:uuid:46ac5fcf-86eb-4a19-ad98-730ef62431b7"/>
+        </custodian>
+        <event>
+          <code/>
+          <period/>
+        </event>
+        <section>
+          <title value="Signes vitaux"/>
+          <code/>
+          <entry>
+            <reference value="urn:uuid:0ff6d14a-82bb-4b78-a978-ae1a3a50e23c"/>
+          </entry>
+        </section>
+      </Composition>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:7de38de8-0328-4319-8e60-ff50ba856531"/>
+    <resource>
+      <Patient>
+        <id value="7de38de8-0328-4319-8e60-ff50ba856531"/>
+        <text>
+          <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><a name="Patient_7de38de8-0328-4319-8e60-ff50ba856531"> </a><p class="res-header-id"><b>Narratif généré : Patient 7de38de8-0328-4319-8e60-ff50ba856531</b></p><a name="7de38de8-0328-4319-8e60-ff50ba856531"> </a><a name="hc7de38de8-0328-4319-8e60-ff50ba856531"> </a><p style="border: 1px #661aff solid; background-color: #e6e6ff; padding: 10px;"> Female, Date de Naissance inconnue ( INS-NIR)</p><hr/><table class="grid"><tr><td style="background-color: #f3f5da" title="Autres identifiants (voir ci-dessus)">Autres identifiants :</td><td colspan="3"><ul><li>Patient internal identifier/1234567890121</li><li>INS-NIR/222127505611201</li><li>Patient internal identifier/1234567890121</li></ul></td></tr><tr><td style="background-color: #f3f5da" title="Noms alternatifs (voir plus bas)">Nom alternatif :</td><td colspan="3"></td></tr><tr><td style="background-color: #f3f5da" title="Moyens de contacter le Patient">Coordonnées</td><td colspan="3"><ul><li>tel:0147150000</li><li>tel:0147150000</li><li></li><li></li></ul></td></tr></table></div>
+        </text>
+        <identifier>
+          <type>
+            <coding>
+              <system value="https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203"/>
+              <code value="INS-NIR"/>
+            </coding>
+          </type>
+          <system value="urn:oid:1.2.250.1.213.1.4.8"/>
+          <value value="222127505611201"/>
+        </identifier>
+        <identifier>
+          <type>
+            <coding>
+              <system value="http://terminology.hl7.org/CodeSystem/v2-0203"/>
+              <code value="PI"/>
+            </coding>
+          </type>
+          <system value="urn:oid:1.2.3.4.5.6.7.8.9.10"/>
+          <value value="1234567890121"/>
+        </identifier>
+        <identifier>
+          <type>
+            <coding>
+              <system value="https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203"/>
+              <code value="INS-NIR"/>
+            </coding>
+          </type>
+          <system value="urn:oid:1.2.250.1.213.1.4.8"/>
+          <value value="222127505611201"/>
+        </identifier>
+        <identifier>
+          <type>
+            <coding>
+              <system value="http://terminology.hl7.org/CodeSystem/v2-0203"/>
+              <code value="PI"/>
+            </coding>
+          </type>
+          <system value="urn:oid:1.2.3.4.5.6.7.8.9.10"/>
+          <value value="1234567890121"/>
+        </identifier>
+        <name/>
+        <name/>
+        <telecom>
+          <value value="tel:0147150000"/>
+        </telecom>
+        <telecom>
+          <value value="tel:0147150000"/>
+        </telecom>
+        <gender value="female"/>
+        <address/>
+        <address/>
+      </Patient>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:714c41f2-70ef-409a-a32d-fbf1fb7b0ad3"/>
+    <resource>
+      <Encounter>
+        <id value="714c41f2-70ef-409a-a32d-fbf1fb7b0ad3"/>
+        <text>
+          <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><a name="Encounter_714c41f2-70ef-409a-a32d-fbf1fb7b0ad3"> </a><p class="res-header-id"><b>Narratif généré : Venue 714c41f2-70ef-409a-a32d-fbf1fb7b0ad3</b></p><a name="714c41f2-70ef-409a-a32d-fbf1fb7b0ad3"> </a><a name="hc714c41f2-70ef-409a-a32d-fbf1fb7b0ad3"> </a><p><b>type</b>: </p><p><b>period</b>: ?? --&gt; (en cours)</p><h3>Locations</h3><table class="grid"><tr><td style="display: none">-</td><td><b>Location</b></td></tr><tr><td style="display: none">*</td><td><a href="Bundle-aad5cc88-a2b2-4688-9906-195073d66064.html#urn-uuid-c626efb4-e59f-4fed-a6b0-68010802d0aa">Location : type = </a></td></tr></table></div>
+        </text>
+        <type/>
+        <period/>
+        <location>
+          <location>
+            <reference value="urn:uuid:c626efb4-e59f-4fed-a6b0-68010802d0aa"/>
+          </location>
+        </location>
+      </Encounter>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:c626efb4-e59f-4fed-a6b0-68010802d0aa"/>
+    <resource>
+      <Location>
+        <id value="c626efb4-e59f-4fed-a6b0-68010802d0aa"/>
+        <text>
+          <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><a name="Location_c626efb4-e59f-4fed-a6b0-68010802d0aa"> </a><p class="res-header-id"><b>Narratif généré : Localisation c626efb4-e59f-4fed-a6b0-68010802d0aa</b></p><a name="c626efb4-e59f-4fed-a6b0-68010802d0aa"> </a><a name="hcc626efb4-e59f-4fed-a6b0-68010802d0aa"> </a><p><b>type</b>: </p><p><b>address</b>: </p></div>
+        </text>
+        <type/>
+        <address/>
+      </Location>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:9b9a5570-c929-4baf-ad7f-fbcb2a66d4be"/>
+    <resource>
+      <Practitioner>
+        <id value="9b9a5570-c929-4baf-ad7f-fbcb2a66d4be"/>
+        <text>
+          <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><a name="Practitioner_9b9a5570-c929-4baf-ad7f-fbcb2a66d4be"> </a><p class="res-header-id"><b>Narratif généré : Praticien 9b9a5570-c929-4baf-ad7f-fbcb2a66d4be</b></p><a name="9b9a5570-c929-4baf-ad7f-fbcb2a66d4be"> </a><a name="hc9b9a5570-c929-4baf-ad7f-fbcb2a66d4be"> </a><p><b>identifier</b>: ?ngen-9?</p><p><b>name</b>: </p><p><b>telecom</b>: tel:0140404022</p><p><b>address</b>: </p></div>
+        </text>
+        <identifier/>
+        <name/>
+        <telecom>
+          <value value="tel:0140404022"/>
+        </telecom>
+        <address/>
+      </Practitioner>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:2e465c62-9be5-4103-b1f5-6466e85c21fc"/>
+    <resource>
+      <Organization>
+        <id value="2e465c62-9be5-4103-b1f5-6466e85c21fc"/>
+        <text>
+          <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><a name="Organization_2e465c62-9be5-4103-b1f5-6466e85c21fc"> </a><p class="res-header-id"><b>Narratif généré : Organisation 2e465c62-9be5-4103-b1f5-6466e85c21fc</b></p><a name="2e465c62-9be5-4103-b1f5-6466e85c21fc"> </a><a name="hc2e465c62-9be5-4103-b1f5-6466e85c21fc"> </a><p><b>identifier</b>: ?ngen-9?</p><p><b>telecom</b>: tel:0140404022</p><p><b>address</b>: </p></div>
+        </text>
+        <identifier/>
+        <telecom>
+          <value value="tel:0140404022"/>
+        </telecom>
+        <address/>
+      </Organization>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:dca867ed-76b8-452a-8cde-2b73ff887ee7"/>
+    <resource>
+      <Practitioner>
+        <id value="dca867ed-76b8-452a-8cde-2b73ff887ee7"/>
+        <text>
+          <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><a name="Practitioner_dca867ed-76b8-452a-8cde-2b73ff887ee7"> </a><p class="res-header-id"><b>Narratif généré : Praticien dca867ed-76b8-452a-8cde-2b73ff887ee7</b></p><a name="dca867ed-76b8-452a-8cde-2b73ff887ee7"> </a><a name="hcdca867ed-76b8-452a-8cde-2b73ff887ee7"> </a><p><b>identifier</b>: ?ngen-9?</p><p><b>name</b>: </p><p><b>telecom</b>: tel:0140404022</p><p><b>address</b>: </p></div>
+        </text>
+        <identifier/>
+        <name/>
+        <telecom>
+          <value value="tel:0140404022"/>
+        </telecom>
+        <address/>
+      </Practitioner>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:46ac5fcf-86eb-4a19-ad98-730ef62431b7"/>
+    <resource>
+      <Organization>
+        <id value="46ac5fcf-86eb-4a19-ad98-730ef62431b7"/>
+        <text>
+          <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><a name="Organization_46ac5fcf-86eb-4a19-ad98-730ef62431b7"> </a><p class="res-header-id"><b>Narratif généré : Organisation 46ac5fcf-86eb-4a19-ad98-730ef62431b7</b></p><a name="46ac5fcf-86eb-4a19-ad98-730ef62431b7"> </a><a name="hc46ac5fcf-86eb-4a19-ad98-730ef62431b7"> </a><p><b>identifier</b>: ?ngen-9?</p><p><b>telecom</b>: tel:0140404022</p><p><b>address</b>: </p></div>
+        </text>
+        <identifier/>
+        <telecom>
+          <value value="tel:0140404022"/>
+        </telecom>
+        <address/>
+      </Organization>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:0ff6d14a-82bb-4b78-a978-ae1a3a50e23c"/>
+    <resource>
+      <Observation>
+        <id value="0ff6d14a-82bb-4b78-a978-ae1a3a50e23c"/>
+        <text>
+          <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><a name="Observation_0ff6d14a-82bb-4b78-a978-ae1a3a50e23c"> </a><p class="res-header-id"><b>Narratif généré : Observation 0ff6d14a-82bb-4b78-a978-ae1a3a50e23c</b></p><a name="0ff6d14a-82bb-4b78-a978-ae1a3a50e23c"> </a><a name="hc0ff6d14a-82bb-4b78-a978-ae1a3a50e23c"> </a><p><b>status</b>: completed</p><p><b>code</b>: <span title="Codes :">Poids</span></p><p><b>subject</b>: <a href="Bundle-aad5cc88-a2b2-4688-9906-195073d66064.html#urn-uuid-7de38de8-0328-4319-8e60-ff50ba856531"> Female, Date de Naissance inconnue ( INS-NIR)</a></p><p><b>value</b>: 3900 g</p></div>
+        </text>
+        <status value="completed"/>
+        <code>
+          <coding>
+            <code value="29463-7"/>
+            <display value="Poids"/>
+          </coding>
+        </code>
+        <subject>
+          <reference value="urn:uuid:7de38de8-0328-4319-8e60-ff50ba856531"/>
+        </subject>
+        <valueQuantity>
+          <value value="3900"/>
+          <unit value="g"/>
+        </valueQuantity>
+      </Observation>
+    </resource>
+  </entry>
+</Bundle>

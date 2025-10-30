@@ -10,7 +10,7 @@
   <name value="CDA2FHIRMAP"/>
   <title value="POC - Mapping CDA to FHIR"/>
   <status value="draft"/>
-  <date value="2025-10-30T13:05:17+00:00"/>
+  <date value="2025-10-30T16:35:25+00:00"/>
   <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
   <contact>
     <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
@@ -509,6 +509,26 @@
     </extension>
     <resource>
       <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="Bundle"/>
+      </extension>
+      <reference>
+        <reference value="Bundle/1812b285-b1e2-40a6-a4cf-0463aff4c82d"/>
+      </reference>
+      <name value="1812b285-b1e2-40a6-a4cf-0463aff4c82d"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="Bundle"/>
+      </extension>
+      <reference>
+        <reference value="Bundle/aad5cc88-a2b2-4688-9906-195073d66064"/>
+      </reference>
+      <name value="aad5cc88-a2b2-4688-9906-195073d66064"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
         <valueString value="ConceptMap"/>
       </extension>
       <reference>
@@ -523,10 +543,10 @@
         <valueString value="StructureMap"/>
       </extension>
       <reference>
-        <reference value="StructureMap/CDAFrMDEToBundle"/>
+        <reference value="StructureMap/CdaFrMDEToBundle"/>
       </reference>
-      <name value="Mapping de CDA Mesure de lEnfant vers FHIR Bundle (A partir des sources de Oliver Egger)"/>
-      <description value="Mapping de CDA Mesure de lEnfant vers FHIR Bundle (A partir des sources de Oliver Egger)"/>
+      <name value="Mapping CSE-MDE vers FHIR Bundle - Contexte Français"/>
+      <description value="Mapping CSE-MDE vers FHIR Bundle - Contexte Français"/>
     </resource>
     <resource>
       <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">

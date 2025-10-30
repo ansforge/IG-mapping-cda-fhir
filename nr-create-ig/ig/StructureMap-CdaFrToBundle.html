@@ -134,7 +134,7 @@
 
           <span style="float:right;">
 
-            <a href="StructureMap-CDAFrMDEToBundle.ttl.html">&lt;prev</a> | 
+            <a href="StructureMap-CdaFrMDEToBundle.ttl.html">&lt;prev</a> | 
 
             <a href="#bottom">bottom</a>
 
@@ -377,6 +377,23 @@
   <span style="color: navy">}</span><span style="color: navy">;</span>
 <span style="color: navy">}
 
+</span><span style="color: navy">// </span><span style="color: green">// _________________________ Template Type not specified  ___________________</span>
+<span style="color: navy">// </span><span style="color: green">// source: https://art-decor.org/art-decor/decor-templates--hl7chcda-?id=2.16.756.5.30.1.1.10.9.36</span>
+<span style="color: navy">// </span><span style="color: green">// target: http://build.fhir.org/ig/hl7ch/ch-core/branches/master/StructureDefinition-ch-core-composition-epr.html</span>
+<b>group </b>ClinicalDocumentCompositionFr<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>ClinicalDocument, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Composition, <b>target</b> <span style="color: maroon">patientResource</span><span style="color: navy"> : </span>Patient, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle<span style="color: navy">)</span><span style="color: navy"> {
+</span>  src.confidentialityCode<b> as </b><span style="color: maroon">confidentialityCode</span><b> then</b><span style="color: navy"> {
+</span>    confidentialityCode.code<b> as </b><span style="color: maroon">v</span><b> where </b>('http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.confidentialityCode'.resolve().compose.include.concept.where($this.code = src.confidentialityCode.code).exists())<span style="color: navy"><b> -&gt; </b></span> tgt.confidentiality = <b>translate</b><span style="color: navy">(</span><span style="color: maroon">v</span><span style="color: navy">, </span><span style="color: blue">'http://fhir.ch/ig/ch-core/ConceptMap/documententry-confidentialitycode-to-fhir'</span><span style="color: navy">, </span><span style="color: blue">'code'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">fhirconf</span><span style="color: navy">, </span> fhirconf.extension<b> as </b><span style="color: maroon">ext</span><b> then </b>ChExtEprConfidentialityCode<span style="color: navy">(</span><span style="color: maroon">confidentialityCode</span><span style="color: navy">, </span><span style="color: maroon">ext</span><span style="color: navy">)</span> <i>&quot;confCode&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span><span style="color: navy">;</span>
+  src.versionNumber<b> as </b><span style="color: maroon">versionNumber</span><b> where </b>(versionNumber &gt; 1)<span style="color: navy"><b> -&gt; </b></span>tgt.extension<b> as </b><span style="color: maroon">ext2</span><b> then </b>ChExtEprVersionNumber<span style="color: navy">(</span><span style="color: maroon">versionNumber</span><span style="color: navy">, </span><span style="color: maroon">ext2</span><span style="color: navy">)</span><span style="color: navy">;</span>
+  src.informationRecipient<b> as </b><span style="color: maroon">informationRecipient</span><span style="color: navy"><b> -&gt; </b></span>bundle.entry<b> as </b><span style="color: maroon">e</span><b> then</b><span style="color: navy"> {
+</span>    informationRecipient.intendedRecipient<b> as </b><span style="color: maroon">intendedRecipient</span><b> where </b>$this.receivedOrganization.exists() = false<span style="color: navy"><b> -&gt; </b></span> e.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Patient'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">recipient</span><span style="color: navy">, </span> recipient.id = <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">uuid</span><span style="color: navy">, </span> e.fullUrl = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:uuid:'</span><span style="color: navy">, </span><span style="color: maroon">uuid</span><span style="color: navy">)</span><span style="color: navy">, </span> tgt.extension<b> as </b><span style="color: maroon">ext</span><b> then </b>ChExtEprInformationRecipient<span style="color: navy">(</span><span style="color: maroon">intendedRecipient</span><span style="color: navy">, </span><span style="color: maroon">recipient</span><span style="color: navy">, </span><span style="color: maroon">ext</span><span style="color: navy">)</span> <i>&quot;informationRecipient&quot;</i><span style="color: navy">;</span>
+    informationRecipient.intendedRecipient<b> as </b><span style="color: maroon">intendedRecipient</span><b> then</b><span style="color: navy"> {
+</span>      intendedRecipient.receivedOrganization<span style="color: navy"><b> -&gt; </b></span> e.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Organization'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">recipient</span><span style="color: navy">, </span> recipient.id = <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">uuid2</span><span style="color: navy">, </span> e.fullUrl = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:uuid:'</span><span style="color: navy">, </span><span style="color: maroon">uuid2</span><span style="color: navy">)</span><span style="color: navy">, </span> tgt.extension<b> as </b><span style="color: maroon">ext</span><b> then </b>ChExtEprInformationRecipientOrganization<span style="color: navy">(</span><span style="color: maroon">intendedRecipient</span><span style="color: navy">, </span><span style="color: maroon">recipient</span><span style="color: navy">, </span><span style="color: maroon">ext</span><span style="color: navy">)</span> <i>&quot;informationRecipientOrganization&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;intendedRecipientAsOrganization&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;entry&quot;</i><span style="color: navy">;</span>
+  src.dataEnterer<b> as </b><span style="color: maroon">dataEnterer</span><span style="color: navy"><b> -&gt; </b></span> bundle.entry<b> as </b><span style="color: maroon">e</span><span style="color: navy">, </span> e.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'PractitionerRole'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">practitionerRole</span><span style="color: navy">, </span> practitionerRole.id = <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">uuid</span><span style="color: navy">, </span> e.fullUrl = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:uuid:'</span><span style="color: navy">, </span><span style="color: maroon">uuid</span><span style="color: navy">)</span><span style="color: navy">, </span> tgt.extension<b> as </b><span style="color: maroon">ext</span><b> then </b>ChExtEprDataEnterer<span style="color: navy">(</span><span style="color: maroon">dataEnterer</span><span style="color: navy">, </span><span style="color: maroon">bundle</span><span style="color: navy">, </span><span style="color: maroon">practitionerRole</span><span style="color: navy">, </span><span style="color: maroon">ext</span><span style="color: navy">)</span><span style="color: navy">;</span>
+<span style="color: navy">}
+
 </span></pre></div>
 
   <!-- insert notes if present -->
@@ -406,7 +423,7 @@
             <tr>
               <td style="text-align:left">&#xA0;
 
-                <a href="StructureMap-CDAFrMDEToBundle.ttl.html">&lt;prev</a>
+                <a href="StructureMap-CdaFrMDEToBundle.ttl.html">&lt;prev</a>
 
               </td>
               <td style="text-align:center">
@@ -424,7 +441,7 @@
 
       <div class="inner-wrapper">
         <p>
-          IG &#169; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d&#39;Oradour-sur-Glane, 75015 Paris</a>.  Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Thu, Oct 30, 2025 13:05+0000">2025-10-30</span>
+          IG &#169; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d&#39;Oradour-sur-Glane, 75015 Paris</a>.  Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Thu, Oct 30, 2025 16:35+0000">2025-10-30</span>
           <br/>
           <span style="color: var(--footer-highlight-text-color)"></span>
             Liens : <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table des matières</a> |

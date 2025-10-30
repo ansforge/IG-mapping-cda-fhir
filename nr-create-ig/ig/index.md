@@ -106,7 +106,6 @@ Les fichiers HTTP de test se trouvent dans le dossier `http-test/`. Utilisez le 
 * **Requête 4** : Charger CDAFrMDEToBundle.fml
 * **Requête 5** : Transformer fr-CSE-MDE_1obs.xml (sortie JSON)
 * **Requête 6** : Transformer fr-CSE-MDE_2023.01.xml (sortie XML)
-* **Requête 7** : Transformer ch-2-7-MedicationCard.xml
 
 1. Cliquez sur "Send Request" au-dessus de chaque requête
 
@@ -149,11 +148,10 @@ curl -X POST "http://localhost:8080/matchbox/fhir/StructureMap/\$transform?sourc
 
 #### Exemples CDA disponibles
 
-Le dossier `input/attachments/` contient trois exemples de documents CDA :
+Le dossier `input/attachments/` contient deux exemples de documents CDA français :
 
-* **fr-CSE-MDE_1obs.xml** : Carnet de santé de l'enfant - Mesures (1 observation)
-* **fr-CSE-MDE_2023.01.xml** : Carnet de santé de l'enfant - Mesures (version 2023.01)
-* **ch-2-7-MedicationCard.xml** : Carte de médication suisse
+* **[fr-CSE-MDE_1obs.xml](Bundle-fr-CSE-MDE-1obs-result.md)** : Carnet de santé de l'enfant - Mesures (1 observation : Poids)
+* **[fr-CSE-MDE_2023.01.xml](Bundle-fr-CSE-MDE-2023-01-result.md)** : Carnet de santé de l'enfant - Mesures (3 observations : Poids, Taille, Périmètre crânien)
 
 #### Résultat attendu
 
@@ -161,7 +159,91 @@ Si la transformation réussit, vous obtiendrez un Bundle FHIR contenant les ress
 
 **Note importante** : Il peut y avoir des erreurs dans les fichiers FML lors de la transformation. L'objectif de ce POC est de valider le processus de transformation. Les erreurs dans les mappings seront traitées ultérieurement.
 
-#### Arrêter et redémarrer
+### Résultats des transformations
+
+Les transformations CDA-FHIR ont été exécutées avec les résultats suivants :
+
+#### Transformations réussies
+
+| | | | | | |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| [fr-CSE-MDE_1obs.xml](Bundle-fr-CSE-MDE-1obs-result.md) | CdaFrMDEToBundle | [fr-CSE-MDE_1obs-result.json](Bundle-fr-CSE-MDE-1obs-result.json.md) | 9 | 1 | ✅ Succès complet |
+| [fr-CSE-MDE_2023.01.xml](Bundle-fr-CSE-MDE-2023-01-result.md) | CdaFrMDEToBundle | [fr-CSE-MDE_2023.01-result.json](Bundle-fr-CSE-MDE-2023-01-result.json.md) | 11 | 3 | ✅ Succès complet |
+
+**Détails des transformations :**
+
+**Documents français CSE-MDE (Carnet de Santé de l'Enfant - Mesures)** :
+
+* **StructureMap utilisé** : `CdaFrMDEToBundle` - Mapping spécifique pour le contexte français
+* **Imports** : Utilise `CdaToFHIRTypes`, `CdaToBundle` et `CdaFrToBundle`
+* **Ressources générées** : 
+* 1 Composition (métadonnées du document)
+* 1 Patient (avec identifiant INS-NIR, nom, genre, date de naissance)
+* 1 Encounter (contexte de la rencontre)
+* 1 Location (lieu de la consultation)
+* 2 Practitioner (praticiens impliqués)
+* 2 Organization (organisations de santé)
+* 1 à 3 Observation(s) selon le document
+ 
+* **[fr-CSE-MDE_1obs.xml](Bundle-fr-CSE-MDE-1obs-result.md)** : 9 ressources 
+* 1 Observation : Poids (code LOINC 29463-7) = 3900 g
+ 
+* **[fr-CSE-MDE_2023.01.xml](Bundle-fr-CSE-MDE-2023-01-result.md)** : 11 ressources 
+* 3 Observations : 
+* Poids (29463-7) = 3900 g
+* Taille (8302-2) = 52 cm
+* Périmètre crânien (8287-5) = 35 cm
+ 
+ 
+
+### Architecture du mapping CdaFrMDEToBundle
+
+Le mapping `CdaFrMDEToBundle.fml` est un mapping spécialisé pour les documents CSE-MDE français qui combine :
+
+**Architecture du mapping :**
+
+* **Imports** : Utilise les mappings de base (`CdaToFHIRTypes`, `CdaToBundle`, `CdaFrToBundle`)
+* **Réutilisation** : Exploite les fonctions existantes pour Patient, Composition, Encounter, Location, etc.
+* **Navigation personnalisée** : Implémente une navigation spécifique pour extraire les observations imbriquées dans les organizers
+* **Traitement complet** : Gère toutes les ressources nécessaires pour un document CSE-MDE
+
+**Résultats obtenus :**
+
+* ✅ Génération du Bundle FHIR avec structure document complète
+* ✅ Transformation du Patient avec identifiant INS-NIR, nom, genre, date de naissance
+* ✅ Création de la Composition avec métadonnées et sections
+* ✅ Génération automatique des ressources contextuelles (Encounter, Location, Practitioner, Organization)
+* ✅ **Extraction des Observations** depuis `organizer > component > observation`
+* ✅ Transformation des codes LOINC et valeurs quantitatives avec unités
+
+**Exemple d'Observation générée :**
+
+```
+{
+  "resourceType": "Observation",
+  "status": "final",
+  "code": {
+    "coding": [{
+      "system": "urn:oid:2.16.840.1.113883.6.1",
+      "code": "29463-7",
+      "display": "Poids"
+    }]
+  },
+  "subject": {
+    "reference": "urn:uuid:..."
+  },
+  "valueQuantity": {
+    "value": 3900,
+    "unit": "g",
+    "code": "g"
+  }
+}
+
+```
+
+**Note** : Pour plus de détails sur l'historique technique du développement, les problèmes rencontrés et les leçons apprises, consultez le fichier [Notes techniques (claude.md)](claude.md).
+
+### Arrêter et redémarrer
 
 Pour arrêter le conteneur :
 
@@ -184,7 +266,7 @@ docker rm -f matchbox
 
 ```
 
-#### Configuration avancée
+### Configuration avancée
 
 Le fichier `input/with-all/application.yaml` configure matchbox avec :
 
@@ -216,7 +298,12 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
 
 * ISO maintains the copyright on the country codes, and controls its use carefully. For further details see the ISO 3166 web page: [https://www.iso.org/iso-3166-country-codes.html](https://www.iso.org/iso-3166-country-codes.html)
 
-* [ISO 3166-1 Codes for the representation of names of countries and their subdivisions — Part 1: Country code](http://terminology.hl7.org/6.5.0/CodeSystem-ISO3166Part1.html): [CDA2FHIRMAP](index.md), [CDAFrMDEToBundle](StructureMap-CDAFrMDEToBundle.md)...Show 4 more,[CdaFrToBundle](StructureMap-CdaFrToBundle.md),[CdaToBundle](StructureMap-CdaToBundle.md),[CdaToFHIRTypes](StructureMap-CdaToFHIRTypes.md)and[CdaToFhirAdministrativeGender](ConceptMap-cm-v3-administrative-gender.md)
+* [ISO 3166-1 Codes for the representation of names of countries and their subdivisions — Part 1: Country code](http://terminology.hl7.org/6.5.0/CodeSystem-ISO3166Part1.html): [CDA2FHIRMAP](index.md), [CdaFrMDEToBundle](StructureMap-CdaFrMDEToBundle.md)...Show 4 more,[CdaFrToBundle](StructureMap-CdaFrToBundle.md),[CdaToBundle](StructureMap-CdaToBundle.md),[CdaToFHIRTypes](StructureMap-CdaToFHIRTypes.md)and[CdaToFhirAdministrativeGender](ConceptMap-cm-v3-administrative-gender.md)
+
+
+* This material derives from the HL7 Terminology (THO). THO is copyright ©1989+ Health Level Seven International and is made available under the CC0 designation. For more licensing information see: [https://terminology.hl7.org/license.html](https://terminology.hl7.org/license.html)
+
+* [identifierType](http://terminology.hl7.org/6.5.0/CodeSystem-v2-0203.html): [Bundle/1812b285-b1e2-40a6-a4cf-0463aff4c82d](Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.md) and [Bundle/aad5cc88-a2b2-4688-9906-195073d66064](Bundle-aad5cc88-a2b2-4688-9906-195073d66064.md)
 
 
 
@@ -232,7 +319,7 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2025-10-30T13:05:17+00:00",
+  "date" : "2025-10-30T16:35:25+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {
@@ -1037,6 +1124,32 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
         "extension" : [
           {
             "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString" : "Bundle"
+          }
+        ],
+        "reference" : {
+          "reference" : "Bundle/1812b285-b1e2-40a6-a4cf-0463aff4c82d"
+        },
+        "name" : "1812b285-b1e2-40a6-a4cf-0463aff4c82d",
+        "exampleBoolean" : false
+      },
+      {
+        "extension" : [
+          {
+            "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString" : "Bundle"
+          }
+        ],
+        "reference" : {
+          "reference" : "Bundle/aad5cc88-a2b2-4688-9906-195073d66064"
+        },
+        "name" : "aad5cc88-a2b2-4688-9906-195073d66064",
+        "exampleBoolean" : false
+      },
+      {
+        "extension" : [
+          {
+            "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
             "valueString" : "ConceptMap"
           }
         ],
@@ -1055,10 +1168,10 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
           }
         ],
         "reference" : {
-          "reference" : "StructureMap/CDAFrMDEToBundle"
+          "reference" : "StructureMap/CdaFrMDEToBundle"
         },
-        "name" : "Mapping de CDA Mesure de lEnfant vers FHIR Bundle (A partir des sources de Oliver Egger)",
-        "description" : "Mapping de CDA Mesure de lEnfant vers FHIR Bundle (A partir des sources de Oliver Egger)"
+        "name" : "Mapping CSE-MDE vers FHIR Bundle - Contexte Français",
+        "description" : "Mapping CSE-MDE vers FHIR Bundle - Contexte Français"
       },
       {
         "extension" : [

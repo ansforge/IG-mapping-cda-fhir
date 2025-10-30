@@ -135,6 +135,23 @@ group ChExtEprDataEnterer(source src : DataEnterer, target bundle : Bundle, targ
   };
 }
 
+// // _________________________ Template Type not specified  ___________________
+// // source: https://art-decor.org/art-decor/decor-templates--hl7chcda-?id=2.16.756.5.30.1.1.10.9.36
+// // target: http://build.fhir.org/ig/hl7ch/ch-core/branches/master/StructureDefinition-ch-core-composition-epr.html
+group ClinicalDocumentCompositionFr(source src : ClinicalDocument, target tgt : Composition, target patientResource : Patient, target bundle : Bundle) {
+  src.confidentialityCode as confidentialityCode then {
+    confidentialityCode.code as v where ('http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.confidentialityCode'.resolve().compose.include.concept.where($this.code = src.confidentialityCode.code).exists()) ->  tgt.confidentiality = translate(v, 'http://fhir.ch/ig/ch-core/ConceptMap/documententry-confidentialitycode-to-fhir', 'code') as fhirconf,  fhirconf.extension as ext then ChExtEprConfidentialityCode(confidentialityCode, ext) "confCode";
+  };
+  src.versionNumber as versionNumber where (versionNumber > 1) -> tgt.extension as ext2 then ChExtEprVersionNumber(versionNumber, ext2);
+  src.informationRecipient as informationRecipient -> bundle.entry as e then {
+    informationRecipient.intendedRecipient as intendedRecipient where $this.receivedOrganization.exists() = false ->  e.resource = create('Patient') as recipient,  recipient.id = uuid() as uuid,  e.fullUrl = append('urn:uuid:', uuid),  tgt.extension as ext then ChExtEprInformationRecipient(intendedRecipient, recipient, ext) "informationRecipient";
+    informationRecipient.intendedRecipient as intendedRecipient then {
+      intendedRecipient.receivedOrganization ->  e.resource = create('Organization') as recipient,  recipient.id = uuid() as uuid2,  e.fullUrl = append('urn:uuid:', uuid2),  tgt.extension as ext then ChExtEprInformationRecipientOrganization(intendedRecipient, recipient, ext) "informationRecipientOrganization";
+    } "intendedRecipientAsOrganization";
+  } "entry";
+  src.dataEnterer as dataEnterer ->  bundle.entry as e,  e.resource = create('PractitionerRole') as practitionerRole,  practitionerRole.id = uuid() as uuid,  e.fullUrl = append('urn:uuid:', uuid),  tgt.extension as ext then ChExtEprDataEnterer(dataEnterer, bundle, practitionerRole, ext);
+}
+
 
 ```
 
@@ -151,7 +168,7 @@ group ChExtEprDataEnterer(source src : DataEnterer, target bundle : Bundle, targ
   "name" : "CdaFrToBundle",
   "title" : "Mapping de CDAFr vers FHIR Bundle (A partir des sources de Oliver Egger)",
   "status" : "draft",
-  "date" : "2025-10-30T13:05:17+00:00",
+  "date" : "2025-10-30T16:35:25+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {
@@ -1357,6 +1374,324 @@ group ChExtEprDataEnterer(source src : DataEnterer, target bundle : Bundle, targ
                   "variable" : ["representedOrganization", "organization"]
                 }
               ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "ClinicalDocumentCompositionFr",
+      "typeMode" : "none",
+      "documentation" : "// _________________________ Template Type not specified  ___________________\r\n// source: https://art-decor.org/art-decor/decor-templates--hl7chcda-?id=2.16.756.5.30.1.1.10.9.36\r\n// target: http://build.fhir.org/ig/hl7ch/ch-core/branches/master/StructureDefinition-ch-core-composition-epr.html",
+      "input" : [
+        {
+          "name" : "src",
+          "type" : "ClinicalDocument",
+          "mode" : "source"
+        },
+        {
+          "name" : "tgt",
+          "type" : "Composition",
+          "mode" : "target"
+        },
+        {
+          "name" : "patientResource",
+          "type" : "Patient",
+          "mode" : "target"
+        },
+        {
+          "name" : "bundle",
+          "type" : "Bundle",
+          "mode" : "target"
+        }
+      ],
+      "rule" : [
+        {
+          "name" : "confidentialityCode",
+          "source" : [
+            {
+              "context" : "src",
+              "element" : "confidentialityCode",
+              "variable" : "confidentialityCode"
+            }
+          ],
+          "rule" : [
+            {
+              "name" : "confCode",
+              "source" : [
+                {
+                  "context" : "confidentialityCode",
+                  "element" : "code",
+                  "variable" : "v",
+                  "condition" : "('http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.confidentialityCode'.resolve().compose.include.concept.where($this.code = src.confidentialityCode.code).exists())"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "tgt",
+                  "contextType" : "variable",
+                  "element" : "confidentiality",
+                  "variable" : "fhirconf",
+                  "transform" : "translate",
+                  "parameter" : [
+                    {
+                      "valueId" : "v"
+                    },
+                    {
+                      "valueString" : "http://fhir.ch/ig/ch-core/ConceptMap/documententry-confidentialitycode-to-fhir"
+                    },
+                    {
+                      "valueString" : "code"
+                    }
+                  ]
+                },
+                {
+                  "context" : "fhirconf",
+                  "contextType" : "variable",
+                  "element" : "extension",
+                  "variable" : "ext"
+                }
+              ],
+              "dependent" : [
+                {
+                  "name" : "ChExtEprConfidentialityCode",
+                  "variable" : ["confidentialityCode", "ext"]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name" : "versionNumber",
+          "source" : [
+            {
+              "context" : "src",
+              "element" : "versionNumber",
+              "variable" : "versionNumber",
+              "condition" : "(versionNumber > 1)"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "tgt",
+              "contextType" : "variable",
+              "element" : "extension",
+              "variable" : "ext2"
+            }
+          ],
+          "dependent" : [
+            {
+              "name" : "ChExtEprVersionNumber",
+              "variable" : ["versionNumber", "ext2"]
+            }
+          ]
+        },
+        {
+          "name" : "entry",
+          "source" : [
+            {
+              "context" : "src",
+              "element" : "informationRecipient",
+              "variable" : "informationRecipient"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "bundle",
+              "contextType" : "variable",
+              "element" : "entry",
+              "variable" : "e"
+            }
+          ],
+          "rule" : [
+            {
+              "name" : "informationRecipient",
+              "source" : [
+                {
+                  "context" : "informationRecipient",
+                  "element" : "intendedRecipient",
+                  "variable" : "intendedRecipient",
+                  "condition" : "$this.receivedOrganization.exists() = false"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "e",
+                  "contextType" : "variable",
+                  "element" : "resource",
+                  "variable" : "recipient",
+                  "transform" : "create",
+                  "parameter" : [
+                    {
+                      "valueString" : "Patient"
+                    }
+                  ]
+                },
+                {
+                  "context" : "recipient",
+                  "contextType" : "variable",
+                  "element" : "id",
+                  "variable" : "uuid",
+                  "transform" : "uuid"
+                },
+                {
+                  "context" : "e",
+                  "contextType" : "variable",
+                  "element" : "fullUrl",
+                  "transform" : "append",
+                  "parameter" : [
+                    {
+                      "valueString" : "urn:uuid:"
+                    },
+                    {
+                      "valueId" : "uuid"
+                    }
+                  ]
+                },
+                {
+                  "context" : "tgt",
+                  "contextType" : "variable",
+                  "element" : "extension",
+                  "variable" : "ext"
+                }
+              ],
+              "dependent" : [
+                {
+                  "name" : "ChExtEprInformationRecipient",
+                  "variable" : ["intendedRecipient", "recipient", "ext"]
+                }
+              ]
+            },
+            {
+              "name" : "intendedRecipientAsOrganization",
+              "source" : [
+                {
+                  "context" : "informationRecipient",
+                  "element" : "intendedRecipient",
+                  "variable" : "intendedRecipient"
+                }
+              ],
+              "rule" : [
+                {
+                  "name" : "informationRecipientOrganization",
+                  "source" : [
+                    {
+                      "context" : "intendedRecipient",
+                      "element" : "receivedOrganization"
+                    }
+                  ],
+                  "target" : [
+                    {
+                      "context" : "e",
+                      "contextType" : "variable",
+                      "element" : "resource",
+                      "variable" : "recipient",
+                      "transform" : "create",
+                      "parameter" : [
+                        {
+                          "valueString" : "Organization"
+                        }
+                      ]
+                    },
+                    {
+                      "context" : "recipient",
+                      "contextType" : "variable",
+                      "element" : "id",
+                      "variable" : "uuid2",
+                      "transform" : "uuid"
+                    },
+                    {
+                      "context" : "e",
+                      "contextType" : "variable",
+                      "element" : "fullUrl",
+                      "transform" : "append",
+                      "parameter" : [
+                        {
+                          "valueString" : "urn:uuid:"
+                        },
+                        {
+                          "valueId" : "uuid2"
+                        }
+                      ]
+                    },
+                    {
+                      "context" : "tgt",
+                      "contextType" : "variable",
+                      "element" : "extension",
+                      "variable" : "ext"
+                    }
+                  ],
+                  "dependent" : [
+                    {
+                      "name" : "ChExtEprInformationRecipientOrganization",
+                      "variable" : ["intendedRecipient", "recipient", "ext"]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name" : "dataEnterer",
+          "source" : [
+            {
+              "context" : "src",
+              "element" : "dataEnterer",
+              "variable" : "dataEnterer"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "bundle",
+              "contextType" : "variable",
+              "element" : "entry",
+              "variable" : "e"
+            },
+            {
+              "context" : "e",
+              "contextType" : "variable",
+              "element" : "resource",
+              "variable" : "practitionerRole",
+              "transform" : "create",
+              "parameter" : [
+                {
+                  "valueString" : "PractitionerRole"
+                }
+              ]
+            },
+            {
+              "context" : "practitionerRole",
+              "contextType" : "variable",
+              "element" : "id",
+              "variable" : "uuid",
+              "transform" : "uuid"
+            },
+            {
+              "context" : "e",
+              "contextType" : "variable",
+              "element" : "fullUrl",
+              "transform" : "append",
+              "parameter" : [
+                {
+                  "valueString" : "urn:uuid:"
+                },
+                {
+                  "valueId" : "uuid"
+                }
+              ]
+            },
+            {
+              "context" : "tgt",
+              "contextType" : "variable",
+              "element" : "extension",
+              "variable" : "ext"
+            }
+          ],
+          "dependent" : [
+            {
+              "name" : "ChExtEprDataEnterer",
+              "variable" : ["dataEnterer", "bundle", "practitionerRole", "ext"]
             }
           ]
         }

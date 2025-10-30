@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<!-- broken links = 6, errors = 77, warn = 30, info = 59-->
+<!-- broken links = 15, errors = 218, warn = 65, info = 80-->
 <head>
   <title>CDA2FHIRMAP : Validation Results</title>
   <link href="fhir.css" rel="stylesheet"/>
@@ -47,7 +47,7 @@
 </head>
 <body style="margin: 20px; background-color: #ffffff">
  <h1>Validation Results for CDA2FHIRMAP</h1>
- <p>Generated Thu Oct 30 13:06:12 UTC 2025, FHIR version 4.0.1 for ans.fhir.fr.mappingcdafhir#0.1.0 (canonical = <a href="https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir">https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir</a> (<a href="https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/history.html">history</a>)). See <a href="qa.html">Full QA Report</a> &amp; <a href="qa-ipreview.html">IP</a></p>
+ <p>Generated Thu Oct 30 16:36:36 UTC 2025, FHIR version 4.0.1 for ans.fhir.fr.mappingcdafhir#0.1.0 (canonical = <a href="https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir">https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir</a> (<a href="https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/history.html">history</a>)). See <a href="qa.html">Full QA Report</a> &amp; <a href="qa-ipreview.html">IP</a></p>
 <table class="grid"> <tr><td colspan=2><b>Quality Checks</b></td></tr>
  <tr><td>Publisher Version:</td><td><span>IG Publisher Version: v2.0.25</span></td></tr>
  <tr><td>Publication Code:</td><td>n/a<span style="color: maroon; font-weight: bold"> </span>. PackageId = ans.fhir.fr.mappingcdafhir, Canonical = https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir</td></tr>
@@ -79,13 +79,11 @@
   <li>
 hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-parameter-code.html">GuideParameterCode</a>
  (15 uses),     <a href="http://hl7.org/fhir/R4/composition.html">Composition</a>
- (3 uses),     <a href="http://hl7.org/fhir/R4/practitioner.html">Practitioner</a>
- (3 uses),     <a href="http://hl7.org/fhir/R4/organization.html">Organization</a>
- (3 uses),     <a href="http://hl7.org/fhir/R4/medicationstatement.html">MedicationStatement</a>
- (1 uses),     <a href="http://hl7.org/fhir/R4/datatypes.html#Dosage">Dosage</a>
- (1 uses),     <a href="http://hl7.org/fhir/R4/person.html">Person</a>
+ (3 uses),     <a href="http://hl7.org/fhir/R4/person.html">Person</a>
+ (2 uses),     <a href="http://hl7.org/fhir/R4/practitioner.html">Practitioner</a>
  (2 uses),     <a href="http://hl7.org/fhir/R4/practitionerrole.html">PractitionerRole</a>
- (1 uses)
+ (1 uses),     <a href="http://hl7.org/fhir/R4/organization.html">Organization</a>
+ (2 uses)
   </li>
 </ul>
 </td></tr>
@@ -94,23 +92,23 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
  <tr><td>IPA Comparison:</td><td> n/a</td></tr>
  <tr><td>IPS Comparison:</td><td> n/a</td></tr>
  <tr><td>Validation Flags:</td><td> On: autoLoad; Off: hintAboutNonMustSupport, anyExtensionsAllowed, checkAggregation, showReferenceMessages, noExperimentalContent, displayWarnings</td></tr>
- <tr><td>Summary:</td><td> errors = 77, warn = 30, info = 59, broken links = 6, pinned = n/a.  <button onclick="toggleCodes()">Show Message Ids</button></td></tr>
+ <tr><td>Summary:</td><td> errors = 218, warn = 65, info = 80, broken links = 15, pinned = n/a.  <button onclick="toggleCodes()">Show Message Ids</button></td></tr>
 </table>
  <table class="grid">
    <tr>
      <td><b>Filename</b></td><td><b>Errors</b></td><td><b>Warnings</b></td><td><b>Hints</b></td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><a href="#internal"><b>Build Errors</b></a></td><td><b>7</b></td><td><b>3</b></td><td><b>0</b></td>
+     <td><a href="#internal"><b>Build Errors</b></a></td><td><b>17</b></td><td><b>7</b></td><td><b>0</b></td>
    </tr>
    <tr style="background-color: #ffcccc">
      <td><a href="#_home_runner_work_IG-mapping-cda-fhir_IG-mapping-cda-fhir_igSource_fsh-generated_resources_ImplementationGuide-ans.fhir.fr.mappingcdafhir"><b>/home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ImplementationGuide-ans.fhir.fr.mappingcdafhir</b></a></td><td><b>1</b></td><td><b>1</b></td><td><b>0</b></td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><a href="#_home_runner_work_IG-mapping-cda-fhir_IG-mapping-cda-fhir_igSource_input_fml_CDAFrMDEToBundle"><b>/home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/input/fml/CDAFrMDEToBundle</b></a></td><td><b>11</b></td><td><b>1</b></td><td><b>5</b></td>
+     <td><a href="#_home_runner_work_IG-mapping-cda-fhir_IG-mapping-cda-fhir_igSource_input_fml_CDAFrMDEToBundle"><b>/home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/input/fml/CDAFrMDEToBundle</b></a></td><td><b>3</b></td><td><b>0</b></td><td><b>11</b></td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><a href="#_home_runner_work_IG-mapping-cda-fhir_IG-mapping-cda-fhir_igSource_input_fml_CDAFrToBundle"><b>/home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/input/fml/CDAFrToBundle</b></a></td><td><b>10</b></td><td><b>3</b></td><td><b>16</b></td>
+     <td><a href="#_home_runner_work_IG-mapping-cda-fhir_IG-mapping-cda-fhir_igSource_input_fml_CDAFrToBundle"><b>/home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/input/fml/CDAFrToBundle</b></a></td><td><b>14</b></td><td><b>3</b></td><td><b>17</b></td>
    </tr>
    <tr style="background-color: #ffcccc">
      <td><a href="#_home_runner_work_IG-mapping-cda-fhir_IG-mapping-cda-fhir_igSource_input_fml_CDAtoFHIRTypes"><b>/home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/input/fml/CDAtoFHIRTypes</b></a></td><td><b>38</b></td><td><b>12</b></td><td><b>17</b></td>
@@ -121,6 +119,12 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
    <tr style="background-color: #ffcccc">
      <td><a href="#_home_runner_work_IG-mapping-cda-fhir_IG-mapping-cda-fhir_igSource_input_resources_ConceptMap-cm-v3-administrative-gender"><b>/home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/input/resources/ConceptMap-cm-v3-administrative-gender</b></a></td><td><b>1</b></td><td><b>2</b></td><td><b>0</b></td>
    </tr>
+   <tr style="background-color: #ffcccc">
+     <td><a href="#_home_runner_work_IG-mapping-cda-fhir_IG-mapping-cda-fhir_igSource_input_resources_fr-CSE-MDE_1obs-result"><b>/home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/input/resources/fr-CSE-MDE_1obs-result</b></a></td><td><b>70</b></td><td><b>11</b></td><td><b>6</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><a href="#_home_runner_work_IG-mapping-cda-fhir_IG-mapping-cda-fhir_igSource_input_resources_fr-CSE-MDE_2023.01-result"><b>/home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/input/resources/fr-CSE-MDE_2023.01-result</b></a></td><td><b>74</b></td><td><b>21</b></td><td><b>8</b></td>
+   </tr>
 </table>
 <hr/>
 <a name="internal"> </a>
@@ -129,6 +133,21 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
  <table class="grid">
    <tr style="background-color: #ffcccc">
      <td><b>ImplementationGuide&#8203;/ans&#8203;.fhir&#8203;.fr&#8203;.mappingcdafhir</b></td><td><b>error</b></td><td><b>This IG is version 4.0.1, while the IG 'hl7.cda.uv.core' is from version 5.0.0</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b></b></td><td><b>warning</b></td><td><b>Unable to find ImplementationGuide.definition.resource.description for the resource Bundle/1812b285-b1e2-40a6-a4cf-0463aff4c82d.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b></b></td><td><b>warning</b></td><td><b>Unable to find ImplementationGuide.definition.resource.description for the resource Bundle/aad5cc88-a2b2-4688-9906-195073d66064.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>package.tgz</b></td><td><b>error</b></td><td><b>Error converting pacakge to R4B: Error processing package/Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.json: Not a JSON Object: null</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>output&#8203;/Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d&#8203;.html</b></td><td><b>warning</b></td><td><b>The html source has duplicate anchor Ids: 35f40549-4a0a-4eeb-a70d-9b2db3e93e3a,Patient_35f40549-4a0a-4eeb-a70d-9b2db3e93e3a,hc35f40549-4a0a-4eeb-a70d-9b2db3e93e3a</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>output&#8203;/Bundle-aad5cc88-a2b2-4688-9906-195073d66064&#8203;.html</b></td><td><b>warning</b></td><td><b>The html source has duplicate anchor Ids: 7de38de8-0328-4319-8e60-ff50ba856531,Patient_7de38de8-0328-4319-8e60-ff50ba856531,hc7de38de8-0328-4319-8e60-ff50ba856531</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
    </tr>
    <tr style="background-color: #ffcccc">
      <td><b><a href="downloads.html#l352">downloads&#8203;.html&#8203;#&#8203;/html&#8203;/body&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/ul&#8203;/li&#8203;/a at Line 202, column 8</a></b></td><td><b>error</b></td><td><b>The link 'definitions.json.zip' for &quot;Définitions JSON (zip)&quot; cannot be resolved</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">HTML_LINK_CHECK_FAILED</span></td>
@@ -147,6 +166,33 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
    </tr>
    <tr style="background-color: #ffcccc">
      <td><b><a href="downloads.html#l378">downloads&#8203;.html&#8203;#&#8203;/html&#8203;/body&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/ul&#8203;/li&#8203;/a at Line 212, column 8</a></b></td><td><b>error</b></td><td><b>The link 'examples.ttl.zip' for &quot;Exemples Turtle (zip)&quot; cannot be resolved</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">HTML_LINK_CHECK_FAILED</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="index.html#l830">index&#8203;.html&#8203;#&#8203;/html&#8203;/body&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/ul&#8203;/li&#8203;/strong&#8203;/a at Line 379, column 16</a></b></td><td><b>error</b></td><td><b>The link 'Bundle-fr-CSE-MDE-1obs-result.html' for &quot;fr-CSE-MDE_1obs.xml&quot; cannot be resolved</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">HTML_LINK_CHECK_FAILED</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="index.html#l836">index&#8203;.html&#8203;#&#8203;/html&#8203;/body&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/ul&#8203;/li&#8203;/strong&#8203;/a at Line 380, column 16</a></b></td><td><b>error</b></td><td><b>The link 'Bundle-fr-CSE-MDE-2023-01-result.html' for &quot;fr-CSE-MDE_2023.01.xml&quot; cannot be resolved</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">HTML_LINK_CHECK_FAILED</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="index.html#l892">index&#8203;.html&#8203;#&#8203;/html&#8203;/body&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/table&#8203;/tbody&#8203;/tr&#8203;/td&#8203;/a at Line 408, column 12</a></b></td><td><b>error</b></td><td><b>The link 'Bundle-fr-CSE-MDE-1obs-result.html' for &quot;fr-CSE-MDE_1obs.xml&quot; cannot be resolved</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">HTML_LINK_CHECK_FAILED</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="index.html#l899">index&#8203;.html&#8203;#&#8203;/html&#8203;/body&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/table&#8203;/tbody&#8203;/tr&#8203;/td&#8203;/a at Line 410, column 12</a></b></td><td><b>error</b></td><td><b>The link 'Bundle-fr-CSE-MDE-1obs-result.json.html' for &quot;fr-CSE-MDE_1obs-result.json&quot; cannot be resolved</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">HTML_LINK_CHECK_FAILED</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="index.html#l915">index&#8203;.html&#8203;#&#8203;/html&#8203;/body&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/table&#8203;/tbody&#8203;/tr&#8203;/td&#8203;/a at Line 416, column 12</a></b></td><td><b>error</b></td><td><b>The link 'Bundle-fr-CSE-MDE-2023-01-result.html' for &quot;fr-CSE-MDE_2023.01.xml&quot; cannot be resolved</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">HTML_LINK_CHECK_FAILED</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="index.html#l922">index&#8203;.html&#8203;#&#8203;/html&#8203;/body&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/table&#8203;/tbody&#8203;/tr&#8203;/td&#8203;/a at Line 418, column 12</a></b></td><td><b>error</b></td><td><b>The link 'Bundle-fr-CSE-MDE-2023-01-result.json.html' for &quot;fr-CSE-MDE_2023.01-result.json&quot; cannot be resolved</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">HTML_LINK_CHECK_FAILED</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="index.html#l1000">index&#8203;.html&#8203;#&#8203;/html&#8203;/body&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/ul&#8203;/li&#8203;/strong&#8203;/a at Line 444, column 16</a></b></td><td><b>error</b></td><td><b>The link 'Bundle-fr-CSE-MDE-1obs-result.html' for &quot;fr-CSE-MDE_1obs.xml&quot; cannot be resolved</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">HTML_LINK_CHECK_FAILED</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="index.html#l1012">index&#8203;.html&#8203;#&#8203;/html&#8203;/body&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/ul&#8203;/li&#8203;/strong&#8203;/a at Line 449, column 16</a></b></td><td><b>error</b></td><td><b>The link 'Bundle-fr-CSE-MDE-2023-01-result.html' for &quot;fr-CSE-MDE_2023.01.xml&quot; cannot be resolved</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">HTML_LINK_CHECK_FAILED</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="index.html#l1286">index&#8203;.html&#8203;#&#8203;/html&#8203;/body&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/p&#8203;/a at Line 507, column 165</a></b></td><td><b>error</b></td><td><b>The link 'claude.html' for &quot;Notes techniques (claude.md)&quot; cannot be resolved</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">HTML_LINK_CHECK_FAILED</span></td>
    </tr>
    <tr style="background-color: #ffebcc">
      <td><b>2</b></td><td><b>warning</b></td><td><b>An HTML fragment from the set [cross-version-analysis.xhtml, cross-version-analysis-inline.xhtml] is not included anywhere in the produced implementation guide</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
@@ -176,63 +222,54 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
 </table>
 <hr/>
 <a name="_home_runner_work_IG-mapping-cda-fhir_IG-mapping-cda-fhir_igSource_input_fml_CDAFrMDEToBundle"> </a>
-<h2><a href="StructureMap-CDAFrMDEToBundle.html">input/fml/CDAFrMDEToBundle.fml</a> <span id="svi2" class="toggle" onclick="toggle('vi2')">Show Validation Information</span> <span class="vcount" onclick="toggle('vi2')">(1)</span></h2>
+<h2><a href="StructureMap-CdaFrMDEToBundle.html">input/fml/CDAFrMDEToBundle.fml</a> <span id="svi2" class="toggle" onclick="toggle('vi2')">Show Validation Information</span> <span class="vcount" onclick="toggle('vi2')">(1)</span></h2>
  <div style="border: 1px grey solid; display: none" id="vi2"><ul style="font-size: 7px"><li>StructureMap: Validated against <a href="http://hl7.org/fhir">fhir</a>.<a href="http://hl7.org/fhir/R4/structuremap.html">StructureMap</a></li></ul>
 </div>
  <table class="grid">
    <tr>
      <td><b>Path</b></td><td><b>Severity</b></td><td><b>Message</b></td>
    </tr>
-   <tr style="background-color: #ffcccc">
-     <td><b>StructureMap&#8203;.where(url = 'https:&#8203;/&#8203;/interop&#8203;.esante&#8203;.gouv&#8203;.fr&#8203;/ig&#8203;/fhir&#8203;/mappingcdafhir&#8203;/StructureMap&#8203;/CdaFrMDEToBundle')</b></td><td><b>error</b></td><td><b>Conformance resource /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/input/fml/CDAFrMDEToBundle.fml - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CDAFrMDEToBundle) does not match the URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrMDEToBundle). Use the special-url parameter if you really mean for it not to match</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">RESOURCE_CANONICAL_MISMATCH</span></td>
-   </tr>
-   <tr style="background-color: #ffcccc">
-     <td><b>StructureMap.url</b></td><td><b>error</b></td><td><b>Resource id/url mismatch: CDAFrMDEToBundle/https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrMDEToBundle</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">RESOURCE_ID_MISMATCH</span></td>
+   <tr style="background-color: #ffffe6">
+     <td><b>StructureMap&#8203;.group[0]&#8203;.rule[0]&#8203;.source[0] (l1&#8203;/c21465)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
    </tr>
    <tr style="background-color: #ffffe6">
-     <td><b>StructureMap&#8203;.group[0]&#8203;.rule[0]&#8203;.source[0] (l1&#8203;/c22642)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
-   </tr>
-   <tr style="background-color: #ffcccc">
-     <td><b>StructureMap&#8203;.group[0]&#8203;.rule[0]&#8203;.dependent[0]&#8203;.variable[0] (l1&#8203;/c23695)</b></td><td><b>error</b></td><td><b>The parameter 'cda' refers to the variable 'cda : ClinicalDocument (source)' but its type is 'ClinicalDocument' which is not compatible with the type required for the group 'ClinicalDocumentChEmedMedicationCardDocumentToBundle', which is 'ClinicalDocument' (from map '$this')</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_DEPENDENT_PARAM_TYPE_MISMATCH</span></td>
+     <td><b>StructureMap&#8203;.group[1]&#8203;.rule[0]&#8203;.source[0] (l1&#8203;/c22885)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
    </tr>
    <tr style="background-color: #ffffe6">
-     <td><b>StructureMap&#8203;.group[1]&#8203;.rule[0]&#8203;.source[0] (l1&#8203;/c24381)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
-   </tr>
-   <tr style="background-color: #ffcccc">
-     <td><b>StructureMap&#8203;.group[1]&#8203;.rule[0]&#8203;.dependent[0] (l1&#8203;/c24488)</b></td><td><b>error</b></td><td><b>The group ClinicalDocumentCompositionFr could not be resolved</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULEGROUP_NOT_FOUND</span></td>
+     <td><b>StructureMap&#8203;.group[1]&#8203;.rule[2]&#8203;.source[0] (l1&#8203;/c23245)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
    </tr>
    <tr style="background-color: #ffffe6">
-     <td><b>StructureMap&#8203;.group[1]&#8203;.rule[1]&#8203;.rule[0]&#8203;.rule[0]&#8203;.rule[0]&#8203;.rule[0]&#8203;.rule[0]&#8203;.rule[0]&#8203;.rule[0]&#8203;.rule[0]&#8203;.source[0] (l1&#8203;/c25382)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
-   </tr>
-   <tr style="background-color: #ffcccc">
-     <td><b>StructureMap&#8203;.group[1]&#8203;.rule[1]&#8203;.rule[0]&#8203;.rule[0]&#8203;.rule[0]&#8203;.rule[0]&#8203;.rule[0]&#8203;.rule[0]&#8203;.rule[0]&#8203;.rule[0]&#8203;.dependent[0]&#8203;.variable[0] (l1&#8203;/c25927)</b></td><td><b>error</b></td><td><b>The parameter 'ob' refers to the variable 'ob : http://hl7.org/cda/stds/core/StructureDefinition/Observation (source)' but its type is 'Observation' which is not compatible with the type required for the group 'OrganizerComponentToObservation', which is 'Observation' (from map '$this')</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_DEPENDENT_PARAM_TYPE_MISMATCH</span></td>
-   </tr>
-   <tr style="background-color: #ffcccc">
-     <td><b>StructureMap&#8203;.group[3]&#8203;.rule[0]&#8203;.source[0] (l1&#8203;/c28623)</b></td><td><b>error</b></td><td><b>The source path ob.statusCode refers to the path Observation.statusCode which is unknown</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_SOURCE_PATH_INVALID</span></td>
-   </tr>
-   <tr style="background-color: #ffcccc">
-     <td><b>StructureMap&#8203;.group[3]&#8203;.rule[1]&#8203;.dependent[0]&#8203;.variable[0] (l1&#8203;/c29162)</b></td><td><b>error</b></td><td><b>The parameter 'src' refers to the variable 'loincCode : CodeableConcept (source)' but its type is 'CD' which is not compatible with the type required for the group 'CDCodeableConcept', which is 'CD' (from map 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes|0.1.0')</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_DEPENDENT_PARAM_TYPE_MISMATCH</span></td>
-   </tr>
-   <tr style="background-color: #ffcccc">
-     <td><b>StructureMap&#8203;.group[3]&#8203;.rule[2]&#8203;.dependent[0]&#8203;.variable[0] (l1&#8203;/c29473)</b></td><td><b>error</b></td><td><b>The parameter 'src' refers to the variable 'ObsValue : null (source)' but its type is 'PQ' which is not compatible with the type required for the group 'PQQuantity', which is 'PQ' (from map 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes|0.1.0')</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_DEPENDENT_PARAM_TYPE_MISMATCH</span></td>
+     <td><b>StructureMap&#8203;.group[1]&#8203;.rule[4]&#8203;.source[0] (l1&#8203;/c23672)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
    </tr>
    <tr style="background-color: #ffffe6">
-     <td><b>StructureMap&#8203;.group[3]&#8203;.rule[3]&#8203;.source[0] (l1&#8203;/c29536)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
+     <td><b>StructureMap&#8203;.group[1]&#8203;.rule[7]&#8203;.rule[0]&#8203;.rule[0]&#8203;.rule[0]&#8203;.rule[0]&#8203;.source[0] (l1&#8203;/c25173)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>StructureMap&#8203;.group[1]&#8203;.rule[7]&#8203;.rule[0]&#8203;.rule[0]&#8203;.rule[0]&#8203;.rule[0]&#8203;.rule[0]&#8203;.target[0] (l1&#8203;/c25542)</b></td><td><b>error</b></td><td><b>The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'sectionTitle' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Composition#Composition.section] (@char 1)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_TRANSFORM_EXPRESSION_ERROR</span></td>
    </tr>
    <tr style="background-color: #ffffe6">
-     <td><b>StructureMap.group[2] (l1/c27943)</b></td><td><b>information</b></td><td><b>The group SectionMedicationCardSectionContentModule is not called successfully from within this mapping script, and does not have types on its inputs, so type verification is not possible</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_ORPHAN_GROUP</span></td>
-   </tr>
-   <tr style="background-color: #ffebcc">
-     <td><b>StructureMap&#8203;.group[2]&#8203;.input[3] (l1&#8203;/c26589)</b></td><td><b>warning</b></td><td><b>Group SectionMedicationCardSectionContentModule parameter tgt has no type, so the paths cannot be validated</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_GROUP_INPUT_NO_TYPE</span></td>
+     <td><b>StructureMap&#8203;.group[1]&#8203;.rule[7]&#8203;.rule[0]&#8203;.rule[0]&#8203;.rule[0]&#8203;.rule[0]&#8203;.rule[3]&#8203;.rule[0]&#8203;.rule[0]&#8203;.rule[0]&#8203;.rule[0]&#8203;.source[0] (l1&#8203;/c26478)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>StructureMap&#8203;.group[2]&#8203;.rule[0]&#8203;.target[5] (l1&#8203;/c27640)</b></td><td><b>error</b></td><td><b>The target context 'reference' is not known at this point</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_CONTEXT_UNKNOWN</span></td>
+     <td><b>StructureMap&#8203;.group[2]&#8203;.rule[1]&#8203;.dependent[0]&#8203;.variable[0] (l1&#8203;/c28324)</b></td><td><b>error</b></td><td><b>The parameter 'src' refers to the variable 'code : http://hl7.org/cda/stds/core/StructureDefinition/CD (source)' but its type is 'CD' which is not compatible with the type required for the group 'CDCodeableConcept', which is 'CD' (from map 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes|0.1.0')</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_DEPENDENT_PARAM_TYPE_MISMATCH</span></td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>StructureMap&#8203;.group[2]&#8203;.rule[0]&#8203;.rule[0]&#8203;.dependent[0] (l1&#8203;/c27937)</b></td><td><b>error</b></td><td><b>The group MedicationTreatmentPlanItemEntryContentModule could not be resolved</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULEGROUP_NOT_FOUND</span></td>
+     <td><b>StructureMap&#8203;.group[2]&#8203;.rule[2]&#8203;.dependent[0]&#8203;.variable[0] (l1&#8203;/c28631)</b></td><td><b>error</b></td><td><b>The parameter 'src' refers to the variable 'value : null (source)' but its type is 'PQ' which is not compatible with the type required for the group 'PQQuantity', which is 'PQ' (from map 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes|0.1.0')</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_DEPENDENT_PARAM_TYPE_MISMATCH</span></td>
    </tr>
-   <tr style="background-color: #ffcccc">
-     <td><b>input/fml/CDAFrMDEToBundle</b></td><td><b>error</b></td><td><b>URL Mismatch https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CDAFrMDEToBundle vs https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrMDEToBundle</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   <tr style="background-color: #ffffe6">
+     <td><b>StructureMap&#8203;.group[2]&#8203;.rule[3]&#8203;.source[0] (l1&#8203;/c28690)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b>StructureMap&#8203;.group[3]&#8203;.rule[0]&#8203;.source[0] (l1&#8203;/c29281)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b>StructureMap&#8203;.group[3]&#8203;.rule[1]&#8203;.source[0] (l1&#8203;/c29492)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b>StructureMap&#8203;.group[3]&#8203;.rule[2]&#8203;.source[0] (l1&#8203;/c29705)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b>StructureMap&#8203;.group[3]&#8203;.rule[3]&#8203;.source[0] (l1&#8203;/c29920)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
    </tr>
 </table>
 <hr/>
@@ -245,91 +282,106 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
      <td><b>Path</b></td><td><b>Severity</b></td><td><b>Message</b></td>
    </tr>
    <tr style="background-color: #ffffe6">
-     <td><b>StructureMap&#8203;.group[0]&#8203;.rule[0]&#8203;.source[0] (l1&#8203;/c33351)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
+     <td><b>StructureMap&#8203;.group[0]&#8203;.rule[0]&#8203;.source[0] (l1&#8203;/c41127)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>StructureMap&#8203;.group[0]&#8203;.rule[0]&#8203;.dependent[0] (l1&#8203;/c34413)</b></td><td><b>error</b></td><td><b>The group ClinicalDocumentFrToBundle could not be resolved</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULEGROUP_NOT_FOUND</span></td>
+     <td><b>StructureMap&#8203;.group[0]&#8203;.rule[0]&#8203;.dependent[0] (l1&#8203;/c42189)</b></td><td><b>error</b></td><td><b>The group ClinicalDocumentFrToBundle could not be resolved</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULEGROUP_NOT_FOUND</span></td>
    </tr>
    <tr style="background-color: #ffffe6">
-     <td><b>StructureMap&#8203;.group[3]&#8203;.rule[0]&#8203;.source[0] (l1&#8203;/c39466)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
+     <td><b>StructureMap&#8203;.group[3]&#8203;.rule[0]&#8203;.source[0] (l1&#8203;/c47242)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
    </tr>
    <tr style="background-color: #ffffe6">
-     <td><b>StructureMap&#8203;.group[3]&#8203;.rule[1]&#8203;.source[0] (l1&#8203;/c39709)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
+     <td><b>StructureMap&#8203;.group[3]&#8203;.rule[1]&#8203;.source[0] (l1&#8203;/c47485)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
    </tr>
    <tr style="background-color: #ffffe6">
-     <td><b>StructureMap&#8203;.group[4]&#8203;.rule[0]&#8203;.source[0] (l1&#8203;/c40377)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
+     <td><b>StructureMap&#8203;.group[4]&#8203;.rule[0]&#8203;.source[0] (l1&#8203;/c48153)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
    </tr>
    <tr style="background-color: #ffffe6">
-     <td><b>StructureMap&#8203;.group[4]&#8203;.rule[1]&#8203;.source[0] (l1&#8203;/c40615)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
+     <td><b>StructureMap&#8203;.group[4]&#8203;.rule[1]&#8203;.source[0] (l1&#8203;/c48391)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>StructureMap&#8203;.group[4]&#8203;.rule[1]&#8203;.dependent[0]&#8203;.variable[0] (l1&#8203;/c40817)</b></td><td><b>error</b></td><td><b>The parameter 'src' refers to the variable 'src : INT (source)' but its type is 'INT' which is not compatible with the type required for the group 'INT', which is 'INT' (from map 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes|0.1.0')</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_DEPENDENT_PARAM_TYPE_MISMATCH</span></td>
+     <td><b>StructureMap&#8203;.group[4]&#8203;.rule[1]&#8203;.dependent[0]&#8203;.variable[0] (l1&#8203;/c48593)</b></td><td><b>error</b></td><td><b>The parameter 'src' refers to the variable 'src : INT (source)' but its type is 'INT' which is not compatible with the type required for the group 'INT', which is 'INT' (from map 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes|0.1.0')</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_DEPENDENT_PARAM_TYPE_MISMATCH</span></td>
    </tr>
    <tr style="background-color: #ffffe6">
-     <td><b>StructureMap&#8203;.group[6]&#8203;.rule[0]&#8203;.source[0] (l1&#8203;/c42051)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
+     <td><b>StructureMap&#8203;.group[6]&#8203;.rule[0]&#8203;.source[0] (l1&#8203;/c49827)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
    </tr>
    <tr style="background-color: #ffffe6">
-     <td><b>StructureMap&#8203;.group[6]&#8203;.rule[1]&#8203;.source[0] (l1&#8203;/c42296)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
+     <td><b>StructureMap&#8203;.group[6]&#8203;.rule[1]&#8203;.source[0] (l1&#8203;/c50072)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>StructureMap&#8203;.group[6]&#8203;.rule[3]&#8203;.rule[0]&#8203;.dependent[0]&#8203;.variable[0] (l1&#8203;/c43243)</b></td><td><b>error</b></td><td><b>The parameter 'src' refers to the variable 'cdaname : http://hl7.org/cda/stds/core/StructureDefinition/PN (source)' but its type is 'EN' which is not compatible with the type required for the group 'ENHumanName', which is 'EN' (from map 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes|0.1.0')</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_DEPENDENT_PARAM_TYPE_MISMATCH</span></td>
+     <td><b>StructureMap&#8203;.group[6]&#8203;.rule[3]&#8203;.rule[0]&#8203;.dependent[0]&#8203;.variable[0] (l1&#8203;/c51019)</b></td><td><b>error</b></td><td><b>The parameter 'src' refers to the variable 'cdaname : http://hl7.org/cda/stds/core/StructureDefinition/PN (source)' but its type is 'EN' which is not compatible with the type required for the group 'ENHumanName', which is 'EN' (from map 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes|0.1.0')</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_DEPENDENT_PARAM_TYPE_MISMATCH</span></td>
    </tr>
    <tr style="background-color: #ffffe6">
-     <td><b>StructureMap&#8203;.group[7]&#8203;.rule[0]&#8203;.source[0] (l1&#8203;/c43798)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
+     <td><b>StructureMap&#8203;.group[7]&#8203;.rule[0]&#8203;.source[0] (l1&#8203;/c51574)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
    </tr>
    <tr style="background-color: #ffffe6">
-     <td><b>StructureMap&#8203;.group[7]&#8203;.rule[1]&#8203;.source[0] (l1&#8203;/c44043)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
+     <td><b>StructureMap&#8203;.group[7]&#8203;.rule[1]&#8203;.source[0] (l1&#8203;/c51819)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>StructureMap&#8203;.group[7]&#8203;.rule[2]&#8203;.dependent[0]&#8203;.variable[0] (l1&#8203;/c44566)</b></td><td><b>error</b></td><td><b>The parameter 'src' refers to the variable 'receivedOrganization : http://hl7.org/cda/stds/core/StructureDefinition/Organization (source)' but its type is 'CustodianOrganization' which is not compatible with the type required for the group 'ClinicalDocumentOrganization', which is 'CustodianOrganization' (from map 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle|0.1.0')</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_DEPENDENT_PARAM_TYPE_MISMATCH</span></td>
+     <td><b>StructureMap&#8203;.group[7]&#8203;.rule[2]&#8203;.dependent[0]&#8203;.variable[0] (l1&#8203;/c52342)</b></td><td><b>error</b></td><td><b>The parameter 'src' refers to the variable 'receivedOrganization : http://hl7.org/cda/stds/core/StructureDefinition/Organization (source)' but its type is 'CustodianOrganization' which is not compatible with the type required for the group 'ClinicalDocumentOrganization', which is 'CustodianOrganization' (from map 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle|0.1.0')</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_DEPENDENT_PARAM_TYPE_MISMATCH</span></td>
    </tr>
    <tr style="background-color: #ffffe6">
-     <td><b>StructureMap&#8203;.group[8]&#8203;.rule[0]&#8203;.source[0] (l1&#8203;/c45146)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
+     <td><b>StructureMap&#8203;.group[8]&#8203;.rule[0]&#8203;.source[0] (l1&#8203;/c52922)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>StructureMap&#8203;.group[8]&#8203;.rule[2]&#8203;.dependent[0] (l1&#8203;/c46212)</b></td><td><b>error</b></td><td><b>The group ChExtEprTime could not be resolved</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULEGROUP_NOT_FOUND</span></td>
+     <td><b>StructureMap&#8203;.group[8]&#8203;.rule[2]&#8203;.dependent[0] (l1&#8203;/c53988)</b></td><td><b>error</b></td><td><b>The group ChExtEprTime could not be resolved</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULEGROUP_NOT_FOUND</span></td>
    </tr>
    <tr style="background-color: #ffffe6">
-     <td><b>StructureMap&#8203;.group[8]&#8203;.rule[3]&#8203;.rule[0]&#8203;.source[0] (l1&#8203;/c46393)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
+     <td><b>StructureMap&#8203;.group[8]&#8203;.rule[3]&#8203;.rule[0]&#8203;.source[0] (l1&#8203;/c54169)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>StructureMap&#8203;.group[8]&#8203;.rule[3]&#8203;.rule[1]&#8203;.dependent[0]&#8203;.variable[0] (l1&#8203;/c48357)</b></td><td><b>error</b></td><td><b>The parameter 'src' refers to the variable 'representedOrganization : http://hl7.org/cda/stds/core/StructureDefinition/Organization (source)' but its type is 'CustodianOrganization' which is not compatible with the type required for the group 'ClinicalDocumentOrganization', which is 'CustodianOrganization' (from map 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle|0.1.0')</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_DEPENDENT_PARAM_TYPE_MISMATCH</span></td>
+     <td><b>StructureMap&#8203;.group[8]&#8203;.rule[3]&#8203;.rule[1]&#8203;.dependent[0]&#8203;.variable[0] (l1&#8203;/c56133)</b></td><td><b>error</b></td><td><b>The parameter 'src' refers to the variable 'representedOrganization : http://hl7.org/cda/stds/core/StructureDefinition/Organization (source)' but its type is 'CustodianOrganization' which is not compatible with the type required for the group 'ClinicalDocumentOrganization', which is 'CustodianOrganization' (from map 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle|0.1.0')</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_DEPENDENT_PARAM_TYPE_MISMATCH</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>StructureMap&#8203;.group[9]&#8203;.rule[0]&#8203;.rule[0]&#8203;.dependent[0]&#8203;.variable[0] (l1&#8203;/c57628)</b></td><td><b>error</b></td><td><b>The parameter 'src' refers to the variable 'confidentialityCode : http://hl7.org/cda/stds/core/StructureDefinition/CE (source)' but its type is 'CE' which is not compatible with the type required for the group 'ChExtEprConfidentialityCode', which is 'CE' (from map '$this')</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_DEPENDENT_PARAM_TYPE_MISMATCH</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>StructureMap&#8203;.group[9]&#8203;.rule[1]&#8203;.dependent[0]&#8203;.variable[0] (l1&#8203;/c57947)</b></td><td><b>error</b></td><td><b>The parameter 'src' refers to the variable 'versionNumber : http://hl7.org/cda/stds/core/StructureDefinition/INT (source)' but its type is 'INT' which is not compatible with the type required for the group 'ChExtEprVersionNumber', which is 'INT' (from map '$this')</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_DEPENDENT_PARAM_TYPE_MISMATCH</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>StructureMap&#8203;.group[9]&#8203;.rule[2]&#8203;.rule[0]&#8203;.dependent[0]&#8203;.variable[0] (l1&#8203;/c58931)</b></td><td><b>error</b></td><td><b>The parameter 'src' refers to the variable 'intendedRecipient : http://hl7.org/cda/stds/core/StructureDefinition/IntendedRecipient (source)' but its type is 'IntendedRecipient' which is not compatible with the type required for the group 'ChExtEprInformationRecipient', which is 'IntendedRecipient' (from map '$this')</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_DEPENDENT_PARAM_TYPE_MISMATCH</span></td>
    </tr>
    <tr style="background-color: #ffffe6">
-     <td><b>StructureMap.group[1] (l1/c37656)</b></td><td><b>information</b></td><td><b>The group SectionOriginalRepresentation is not called successfully from within this mapping script, and does not have types on its inputs, so type verification is not possible</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_ORPHAN_GROUP</span></td>
+     <td><b>StructureMap&#8203;.group[9]&#8203;.rule[2]&#8203;.rule[1]&#8203;.rule[0]&#8203;.source[0] (l1&#8203;/c59228)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>StructureMap&#8203;.group[9]&#8203;.rule[2]&#8203;.rule[1]&#8203;.rule[0]&#8203;.dependent[0]&#8203;.variable[0] (l1&#8203;/c59815)</b></td><td><b>error</b></td><td><b>The parameter 'src' refers to the variable 'intendedRecipient : http://hl7.org/cda/stds/core/StructureDefinition/IntendedRecipient (source)' but its type is 'IntendedRecipient' which is not compatible with the type required for the group 'ChExtEprInformationRecipientOrganization', which is 'IntendedRecipient' (from map '$this')</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_DEPENDENT_PARAM_TYPE_MISMATCH</span></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b>StructureMap.group[1] (l1/c45432)</b></td><td><b>information</b></td><td><b>The group SectionOriginalRepresentation is not called successfully from within this mapping script, and does not have types on its inputs, so type verification is not possible</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_ORPHAN_GROUP</span></td>
    </tr>
    <tr style="background-color: #ffebcc">
-     <td><b>StructureMap&#8203;.group[1]&#8203;.input[3] (l1&#8203;/c36181)</b></td><td><b>warning</b></td><td><b>Group SectionOriginalRepresentation parameter tgt has no type, so the paths cannot be validated</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_GROUP_INPUT_NO_TYPE</span></td>
+     <td><b>StructureMap&#8203;.group[1]&#8203;.input[3] (l1&#8203;/c43957)</b></td><td><b>warning</b></td><td><b>Group SectionOriginalRepresentation parameter tgt has no type, so the paths cannot be validated</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_GROUP_INPUT_NO_TYPE</span></td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>StructureMap&#8203;.group[1]&#8203;.rule[0]&#8203;.target[5] (l1&#8203;/c37094)</b></td><td><b>error</b></td><td><b>The target context 'reference' is not known at this point</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_CONTEXT_UNKNOWN</span></td>
+     <td><b>StructureMap&#8203;.group[1]&#8203;.rule[0]&#8203;.target[5] (l1&#8203;/c44870)</b></td><td><b>error</b></td><td><b>The target context 'reference' is not known at this point</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_CONTEXT_UNKNOWN</span></td>
    </tr>
    <tr style="background-color: #ffffe6">
-     <td><b>StructureMap&#8203;.group[1]&#8203;.rule[0]&#8203;.rule[0]&#8203;.rule[0]&#8203;.source[0] (l1&#8203;/c37299)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
+     <td><b>StructureMap&#8203;.group[1]&#8203;.rule[0]&#8203;.rule[0]&#8203;.rule[0]&#8203;.source[0] (l1&#8203;/c45075)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>StructureMap&#8203;.group[1]&#8203;.rule[0]&#8203;.rule[0]&#8203;.rule[1]&#8203;.target[0] (l1&#8203;/c37582)</b></td><td><b>error</b></td><td><b>The target context 'reference' is not known at this point</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_CONTEXT_UNKNOWN</span></td>
+     <td><b>StructureMap&#8203;.group[1]&#8203;.rule[0]&#8203;.rule[0]&#8203;.rule[1]&#8203;.target[0] (l1&#8203;/c45358)</b></td><td><b>error</b></td><td><b>The target context 'reference' is not known at this point</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_CONTEXT_UNKNOWN</span></td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>StructureMap&#8203;.group[1]&#8203;.rule[0]&#8203;.rule[0]&#8203;.rule[1]&#8203;.dependent[0]&#8203;.variable[1] (l1&#8203;/c37646)</b></td><td><b>error</b></td><td><b>The target parameter 'ext' was not found. Known variables: cda : ClinicalDocument (source), src : Section (source), patient : Patient (source), tgt : null (target), bundle : Bundle (target), cdaEntry : http://hl7.org/cda/stds/core/StructureDefinition/Entry (source), e : BackboneElement (target), binary : Binary (target), uuid : string (target), urnuuid : uri (target), observationMedia : http://hl7.org/cda/stds/core/StructureDefinition/ObservationMedia (source), value : id (source)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_DEPENDENT_PARAM_NOT_FOUND</span></td>
+     <td><b>StructureMap&#8203;.group[1]&#8203;.rule[0]&#8203;.rule[0]&#8203;.rule[1]&#8203;.dependent[0]&#8203;.variable[1] (l1&#8203;/c45422)</b></td><td><b>error</b></td><td><b>The target parameter 'ext' was not found. Known variables: cda : ClinicalDocument (source), src : Section (source), patient : Patient (source), tgt : null (target), bundle : Bundle (target), cdaEntry : http://hl7.org/cda/stds/core/StructureDefinition/Entry (source), e : BackboneElement (target), binary : Binary (target), uuid : string (target), urnuuid : uri (target), observationMedia : http://hl7.org/cda/stds/core/StructureDefinition/ObservationMedia (source), value : id (source)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_DEPENDENT_PARAM_NOT_FOUND</span></td>
    </tr>
    <tr style="background-color: #ffffe6">
-     <td><b>StructureMap.group[2] (l1/c38943)</b></td><td><b>information</b></td><td><b>The group ObservationMedia is not called successfully from within this mapping script, and does not have types on its inputs, so type verification is not possible</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_ORPHAN_GROUP</span></td>
+     <td><b>StructureMap.group[2] (l1/c46719)</b></td><td><b>information</b></td><td><b>The group ObservationMedia is not called successfully from within this mapping script, and does not have types on its inputs, so type verification is not possible</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_ORPHAN_GROUP</span></td>
    </tr>
    <tr style="background-color: #ffffe6">
-     <td><b>StructureMap&#8203;.group[2]&#8203;.rule[0]&#8203;.rule[1]&#8203;.source[0] (l1&#8203;/c38440)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
+     <td><b>StructureMap&#8203;.group[2]&#8203;.rule[0]&#8203;.rule[1]&#8203;.source[0] (l1&#8203;/c46216)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>StructureMap&#8203;.group[2]&#8203;.rule[0]&#8203;.rule[1]&#8203;.target[0] (l1&#8203;/c38590)</b></td><td><b>error</b></td><td><b>The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'value' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Binary] (@char 1)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_TRANSFORM_EXPRESSION_ERROR</span></td>
+     <td><b>StructureMap&#8203;.group[2]&#8203;.rule[0]&#8203;.rule[1]&#8203;.target[0] (l1&#8203;/c46366)</b></td><td><b>error</b></td><td><b>The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'value' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Binary] (@char 1)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_TRANSFORM_EXPRESSION_ERROR</span></td>
    </tr>
    <tr style="background-color: #ffffe6">
-     <td><b>StructureMap.group[5] (l1/c41537)</b></td><td><b>information</b></td><td><b>The group ChExtEprVersionNumber1 is not called successfully from within this mapping script, and does not have types on its inputs, so type verification is not possible</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_ORPHAN_GROUP</span></td>
+     <td><b>StructureMap.group[5] (l1/c49313)</b></td><td><b>information</b></td><td><b>The group ChExtEprVersionNumber1 is not called successfully from within this mapping script, and does not have types on its inputs, so type verification is not possible</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_ORPHAN_GROUP</span></td>
    </tr>
    <tr style="background-color: #ffebcc">
-     <td><b>StructureMap&#8203;.group[5]&#8203;.input[0] (l1&#8203;/c40922)</b></td><td><b>warning</b></td><td><b>Group ChExtEprVersionNumber1 parameter src has no type, so the paths cannot be validated</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_GROUP_INPUT_NO_TYPE</span></td>
+     <td><b>StructureMap&#8203;.group[5]&#8203;.input[0] (l1&#8203;/c48698)</b></td><td><b>warning</b></td><td><b>Group ChExtEprVersionNumber1 parameter src has no type, so the paths cannot be validated</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_GROUP_INPUT_NO_TYPE</span></td>
    </tr>
    <tr style="background-color: #ffebcc">
-     <td><b>StructureMap&#8203;.group[5]&#8203;.rule[1]&#8203;.target[1] (l1&#8203;/c41533)</b></td><td><b>warning</b></td><td><b>The target path value.value refers to the path Extension.value[x].value which could be a reference to multiple elements (unsignedInt.value, unsignedInt.value). No further checking can be performed</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_PATH_MULTIPLE_MATCHES</span></td>
+     <td><b>StructureMap&#8203;.group[5]&#8203;.rule[1]&#8203;.target[1] (l1&#8203;/c49309)</b></td><td><b>warning</b></td><td><b>The target path value.value refers to the path Extension.value[x].value which could be a reference to multiple elements (unsignedInt.value, unsignedInt.value). No further checking can be performed</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_PATH_MULTIPLE_MATCHES</span></td>
    </tr>
 </table>
 <hr/>
@@ -704,6 +756,596 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
      <td><b>ConceptMap&#8203;.group[0]&#8203;.element[3]&#8203;.code (l1&#8203;/c3259)</b></td><td><b>error</b></td><td><b>The source code 'UNK' is not valid in the code system http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender|3.0.0</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">CONCEPTMAP_GROUP_SOURCE_CODE_INVALID</span></td>
    </tr>
 </table>
+<hr/>
+<a name="_home_runner_work_IG-mapping-cda-fhir_IG-mapping-cda-fhir_igSource_input_resources_fr-CSE-MDE_1obs-result"> </a>
+<h2><a href="Bundle-aad5cc88-a2b2-4688-9906-195073d66064.html">input/resources/fr-CSE-MDE_1obs-result.json</a> <span id="svi7" class="toggle" onclick="toggle('vi7')">Show Validation Information</span> <span class="vcount" onclick="toggle('vi7')">(10)</span></h2>
+ <div style="border: 1px grey solid; display: none" id="vi7"><ul style="font-size: 7px"><li>Bundle: Validated against <a href="http://hl7.org/fhir">fhir</a>.<a href="http://hl7.org/fhir/R4/bundle.html">Bundle</a></li><li>Bundle.entry[0].resource: Validated against <a href="http://hl7.org/fhir">fhir</a>.<a href="http://hl7.org/fhir/R4/composition.html">Composition</a></li><li>Bundle.entry[1].resource: Validated against <a href="http://hl7.org/fhir">fhir</a>.<a href="http://hl7.org/fhir/R4/patient.html">Patient</a></li><li>Bundle.entry[2].resource: Validated against <a href="http://hl7.org/fhir">fhir</a>.<a href="http://hl7.org/fhir/R4/encounter.html">Encounter</a></li><li>Bundle.entry[3].resource: Validated against <a href="http://hl7.org/fhir">fhir</a>.<a href="http://hl7.org/fhir/R4/location.html">Location</a></li><li>Bundle.entry[4].resource: Validated against <a href="http://hl7.org/fhir">fhir</a>.<a href="http://hl7.org/fhir/R4/practitioner.html">Practitioner</a></li><li>Bundle.entry[5].resource: Validated against <a href="http://hl7.org/fhir">fhir</a>.<a href="http://hl7.org/fhir/R4/organization.html">Organization</a></li><li>Bundle.entry[6].resource: Validated against <a href="http://hl7.org/fhir">fhir</a>.<a href="http://hl7.org/fhir/R4/practitioner.html">Practitioner</a></li><li>Bundle.entry[7].resource: Validated against <a href="http://hl7.org/fhir">fhir</a>.<a href="http://hl7.org/fhir/R4/organization.html">Organization</a></li><li>Bundle.entry[8].resource: Validated against <a href="http://hl7.org/fhir">fhir</a>.<a href="http://hl7.org/fhir/R4/observation.html">Observation</a></li></ul>
+</div>
+ <table class="grid">
+   <tr>
+     <td><b>Path</b></td><td><b>Severity</b></td><td><b>Message</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle.identifier (l5/c45)</b></td><td><b>error</b></td><td><b>Unrecognized property 'root'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle.timestamp (l8/c4)</b></td><td><b>error</b></td><td><b>This property must be a simple value, not an Object (timestamp at Bundle.timestamp)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[0]&#8203;.resource&#8203;.language (l16&#8203;/c8)</b></td><td><b>error</b></td><td><b>This property must be a simple value, not an Object (language at Bundle.entry[0].resource.language)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[0]&#8203;.resource&#8203;.identifier (l20&#8203;/c47)</b></td><td><b>error</b></td><td><b>Unrecognized property 'root'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle.entry[0].resource.type (l24/c27)</b></td><td><b>error</b></td><td><b>Unrecognized property 'code'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle.entry[0].resource.type (l25/c47)</b></td><td><b>error</b></td><td><b>Unrecognized property 'codeSystem'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle.entry[0].resource.type (l26/c51)</b></td><td><b>error</b></td><td><b>Unrecognized property 'displayName'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle.entry[0].resource.date (l34/c8)</b></td><td><b>error</b></td><td><b>This property must be a simple value, not an Object (date at Bundle.entry[0].resource.date)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[0]&#8203;.resource&#8203;.confidentiality (l44&#8203;/c8)</b></td><td><b>error</b></td><td><b>This property must be a simple value, not an Object (confidentiality at Bundle.entry[0].resource.confidentiality)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[0]&#8203;.resource&#8203;.attester[0]&#8203;.time (l51&#8203;/c10)</b></td><td><b>error</b></td><td><b>This property must be a simple value, not an Object (time at Bundle.entry[0].resource.attester[0].time)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[0]&#8203;.resource&#8203;.event[0]&#8203;.code[0] (l63&#8203;/c30)</b></td><td><b>error</b></td><td><b>Unrecognized property 'code'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[0]&#8203;.resource&#8203;.event[0]&#8203;.code[0] (l64&#8203;/c50)</b></td><td><b>error</b></td><td><b>Unrecognized property 'codeSystem'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[0]&#8203;.resource&#8203;.event[0]&#8203;.code[0] (l65&#8203;/c41)</b></td><td><b>error</b></td><td><b>Unrecognized property 'codeSystemName'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[0]&#8203;.resource&#8203;.event[0]&#8203;.code[0] (l66&#8203;/c41)</b></td><td><b>error</b></td><td><b>Unrecognized property 'displayName'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[0]&#8203;.resource&#8203;.event[0]&#8203;.period (l69&#8203;/c12)</b></td><td><b>error</b></td><td><b>Unrecognized property 'low'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[0]&#8203;.resource&#8203;.section[0]&#8203;.code (l77&#8203;/c28)</b></td><td><b>error</b></td><td><b>Unrecognized property 'code'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[0]&#8203;.resource&#8203;.section[0]&#8203;.code (l78&#8203;/c49)</b></td><td><b>error</b></td><td><b>Unrecognized property 'codeSystem'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[0]&#8203;.resource&#8203;.section[0]&#8203;.code (l79&#8203;/c37)</b></td><td><b>error</b></td><td><b>Unrecognized property 'codeSystemName'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[0]&#8203;.resource&#8203;.section[0]&#8203;.code (l80&#8203;/c42)</b></td><td><b>error</b></td><td><b>Unrecognized property 'displayName'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[1]&#8203;.resource&#8203;.name[0] (l134&#8203;/c11)</b></td><td><b>error</b></td><td><b>Unrecognized property 'item'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[1]&#8203;.resource&#8203;.name[1] (l165&#8203;/c11)</b></td><td><b>error</b></td><td><b>Unrecognized property 'item'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[1]&#8203;.resource&#8203;.telecom[0]&#8203;.use (l197&#8203;/c22)</b></td><td><b>error</b></td><td><b>This property must be a simple value, not an Array (use at Bundle.entry[1].resource.telecom[0].use)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[1]&#8203;.resource&#8203;.telecom[1]&#8203;.use (l201&#8203;/c22)</b></td><td><b>error</b></td><td><b>This property must be a simple value, not an Array (use at Bundle.entry[1].resource.telecom[1].use)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[1]&#8203;.resource&#8203;.birthDate (l204&#8203;/c8)</b></td><td><b>error</b></td><td><b>This property must be a simple value, not an Object (birthDate at Bundle.entry[1].resource.birthDate)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[1]&#8203;.resource&#8203;.address[0] (l208&#8203;/c11)</b></td><td><b>error</b></td><td><b>Unrecognized property 'item'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[1]&#8203;.resource&#8203;.address[1] (l235&#8203;/c11)</b></td><td><b>error</b></td><td><b>Unrecognized property 'item'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[2]&#8203;.resource&#8203;.type[0] (l269&#8203;/c23)</b></td><td><b>error</b></td><td><b>Unrecognized property 'code'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[2]&#8203;.resource&#8203;.type[0] (l270&#8203;/c47)</b></td><td><b>error</b></td><td><b>Unrecognized property 'codeSystem'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[2]&#8203;.resource&#8203;.type[0] (l271&#8203;/c59)</b></td><td><b>error</b></td><td><b>Unrecognized property 'displayName'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[2]&#8203;.resource&#8203;.period (l274&#8203;/c10)</b></td><td><b>error</b></td><td><b>Unrecognized property 'low'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[2]&#8203;.resource&#8203;.period (l277&#8203;/c10)</b></td><td><b>error</b></td><td><b>Unrecognized property 'high'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[3]&#8203;.resource&#8203;.type[0] (l294&#8203;/c24)</b></td><td><b>error</b></td><td><b>Unrecognized property 'code'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[3]&#8203;.resource&#8203;.type[0] (l295&#8203;/c44)</b></td><td><b>error</b></td><td><b>Unrecognized property 'codeSystem'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[3]&#8203;.resource&#8203;.type[0] (l296&#8203;/c42)</b></td><td><b>error</b></td><td><b>Unrecognized property 'displayName'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[3]&#8203;.resource&#8203;.address (l299&#8203;/c11)</b></td><td><b>error</b></td><td><b>Unrecognized property 'item'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[4]&#8203;.resource&#8203;.identifier[0]&#8203;.extension (l329&#8203;/c37)</b></td><td><b>error</b></td><td><b>The property extension must be a JSON Array, not a Primitive property (at Bundle.entry[4].resource.identifier[0])</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[4]&#8203;.resource&#8203;.identifier[0]&#8203;.extension (l329&#8203;/c37)</b></td><td><b>error</b></td><td><b>The property extension must be an Array, not a Primitive property (at Bundle.entry[4].resource.identifier[0].extension)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[4]&#8203;.resource&#8203;.identifier[0] (l328&#8203;/c38)</b></td><td><b>error</b></td><td><b>Unrecognized property 'root'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[4]&#8203;.resource&#8203;.name[0] (l332&#8203;/c11)</b></td><td><b>error</b></td><td><b>Unrecognized property 'item'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[4]&#8203;.resource&#8203;.telecom[0]&#8203;.use (l355&#8203;/c23)</b></td><td><b>error</b></td><td><b>This property must be a simple value, not an Array (use at Bundle.entry[4].resource.telecom[0].use)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[4]&#8203;.resource&#8203;.address[0] (l358&#8203;/c11)</b></td><td><b>error</b></td><td><b>Unrecognized property 'item'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[5]&#8203;.resource&#8203;.identifier[0]&#8203;.extension (l388&#8203;/c38)</b></td><td><b>error</b></td><td><b>The property extension must be a JSON Array, not a Primitive property (at Bundle.entry[5].resource.identifier[0])</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[5]&#8203;.resource&#8203;.identifier[0]&#8203;.extension (l388&#8203;/c38)</b></td><td><b>error</b></td><td><b>The property extension must be an Array, not a Primitive property (at Bundle.entry[5].resource.identifier[0].extension)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[5]&#8203;.resource&#8203;.identifier[0] (l387&#8203;/c38)</b></td><td><b>error</b></td><td><b>Unrecognized property 'root'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[5]&#8203;.resource&#8203;.telecom[0]&#8203;.use (l392&#8203;/c23)</b></td><td><b>error</b></td><td><b>This property must be a simple value, not an Array (use at Bundle.entry[5].resource.telecom[0].use)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[5]&#8203;.resource&#8203;.address[0] (l395&#8203;/c11)</b></td><td><b>error</b></td><td><b>Unrecognized property 'item'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[6]&#8203;.resource&#8203;.identifier[0]&#8203;.extension (l425&#8203;/c37)</b></td><td><b>error</b></td><td><b>The property extension must be a JSON Array, not a Primitive property (at Bundle.entry[6].resource.identifier[0])</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[6]&#8203;.resource&#8203;.identifier[0]&#8203;.extension (l425&#8203;/c37)</b></td><td><b>error</b></td><td><b>The property extension must be an Array, not a Primitive property (at Bundle.entry[6].resource.identifier[0].extension)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[6]&#8203;.resource&#8203;.identifier[0] (l424&#8203;/c38)</b></td><td><b>error</b></td><td><b>Unrecognized property 'root'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[6]&#8203;.resource&#8203;.name[0] (l428&#8203;/c11)</b></td><td><b>error</b></td><td><b>Unrecognized property 'item'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[6]&#8203;.resource&#8203;.telecom[0]&#8203;.use (l451&#8203;/c23)</b></td><td><b>error</b></td><td><b>This property must be a simple value, not an Array (use at Bundle.entry[6].resource.telecom[0].use)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[6]&#8203;.resource&#8203;.address[0] (l454&#8203;/c11)</b></td><td><b>error</b></td><td><b>Unrecognized property 'item'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[7]&#8203;.resource&#8203;.identifier[0]&#8203;.extension (l484&#8203;/c38)</b></td><td><b>error</b></td><td><b>The property extension must be a JSON Array, not a Primitive property (at Bundle.entry[7].resource.identifier[0])</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[7]&#8203;.resource&#8203;.identifier[0]&#8203;.extension (l484&#8203;/c38)</b></td><td><b>error</b></td><td><b>The property extension must be an Array, not a Primitive property (at Bundle.entry[7].resource.identifier[0].extension)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[7]&#8203;.resource&#8203;.identifier[0] (l483&#8203;/c38)</b></td><td><b>error</b></td><td><b>Unrecognized property 'root'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[7]&#8203;.resource&#8203;.telecom[0]&#8203;.use (l488&#8203;/c23)</b></td><td><b>error</b></td><td><b>This property must be a simple value, not an Array (use at Bundle.entry[7].resource.telecom[0].use)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[7]&#8203;.resource&#8203;.address[0] (l491&#8203;/c11)</b></td><td><b>error</b></td><td><b>Unrecognized property 'item'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[0]&#8203;.resource&#8203;/*Composition&#8203;/2d9a6a14-7a3f-4426-9019-895e2070d3f1*&#8203;/ (l13&#8203;/c6)</b></td><td><b>error</b></td><td><b>Composition.date: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/Composition|4.0.1)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Validation_VAL_Profile_Minimum</span></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b><a href="">Bundle&#8203;.entry[0]&#8203;.resource&#8203;/*Composition&#8203;/2d9a6a14-7a3f-4426-9019-895e2070d3f1*&#8203;/&#8203;.encounter (l31&#8203;/c8)</a></b></td><td><b>Slicing Information</b></td><td><b>Details for urn:uuid:714c41f2-70ef-409a-a32d-fbf1fb7b0ad3 matching against profile http://hl7.org/fhir/StructureDefinition/Encounter|4.0.1</b> <span id="sl246" class="flip" onclick="flip('l246')">Show Reasoning</span><div id="l246" style="display: none"><p>&nbsp;</p><ul><li>Bundle.entry[2].resource/*Encounter/714c41f2-70ef-409a-a32d-fbf1fb7b0ad3*/: Encounter.status: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/Encounter|4.0.1)</li>, <li>Bundle.entry[2].resource/*Encounter/714c41f2-70ef-409a-a32d-fbf1fb7b0ad3*/: Encounter.class: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/Encounter|4.0.1)</li></ul></div> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Details_for__matching_against_Profile_</span></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b><a href="">Bundle&#8203;.entry[0]&#8203;.resource&#8203;/*Composition&#8203;/2d9a6a14-7a3f-4426-9019-895e2070d3f1*&#8203;/&#8203;.author[0] (l37&#8203;/c8)</a></b></td><td><b>Slicing Information</b></td><td><b>Details for urn:uuid:9b9a5570-c929-4baf-ad7f-fbcb2a66d4be matching against profile http://hl7.org/fhir/StructureDefinition/Practitioner|4.0.1</b> <span id="sl247" class="flip" onclick="flip('l247')">Show Reasoning</span><div id="l247" style="display: none"><p>&nbsp;</p><ul><li>Bundle.entry[4].resource/*Practitioner/9b9a5570-c929-4baf-ad7f-fbcb2a66d4be*/.telecom[0]: Constraint failed: cpt-2: 'A system is required if a value is provided. (value.empty() or system.exists())'</li></ul></div> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Details_for__matching_against_Profile_</span></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b><a href="">Bundle&#8203;.entry[0]&#8203;.resource&#8203;/*Composition&#8203;/2d9a6a14-7a3f-4426-9019-895e2070d3f1*&#8203;/&#8203;.author[1] (l40&#8203;/c8)</a></b></td><td><b>Slicing Information</b></td><td><b>Details for urn:uuid:2e465c62-9be5-4103-b1f5-6466e85c21fc matching against profile http://hl7.org/fhir/StructureDefinition/Organization|4.0.1</b> <span id="sl248" class="flip" onclick="flip('l248')">Show Reasoning</span><div id="l248" style="display: none"><p>&nbsp;</p><ul><li>Bundle.entry[5].resource/*Organization/2e465c62-9be5-4103-b1f5-6466e85c21fc*/.telecom[0]: Constraint failed: cpt-2: 'A system is required if a value is provided. (value.empty() or system.exists())'</li></ul></div> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Details_for__matching_against_Profile_</span></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b><a href="">Bundle&#8203;.entry[0]&#8203;.resource&#8203;/*Composition&#8203;/2d9a6a14-7a3f-4426-9019-895e2070d3f1*&#8203;/&#8203;.attester[0]&#8203;.party (l54&#8203;/c10)</a></b></td><td><b>Slicing Information</b></td><td><b>Details for urn:uuid:dca867ed-76b8-452a-8cde-2b73ff887ee7 matching against profile http://hl7.org/fhir/StructureDefinition/Practitioner|4.0.1</b> <span id="sl249" class="flip" onclick="flip('l249')">Show Reasoning</span><div id="l249" style="display: none"><p>&nbsp;</p><ul><li>Bundle.entry[6].resource/*Practitioner/dca867ed-76b8-452a-8cde-2b73ff887ee7*/.telecom[0]: Constraint failed: cpt-2: 'A system is required if a value is provided. (value.empty() or system.exists())'</li></ul></div> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Details_for__matching_against_Profile_</span></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b><a href="">Bundle&#8203;.entry[0]&#8203;.resource&#8203;/*Composition&#8203;/2d9a6a14-7a3f-4426-9019-895e2070d3f1*&#8203;/&#8203;.custodian (l58&#8203;/c8)</a></b></td><td><b>Slicing Information</b></td><td><b>Details for urn:uuid:46ac5fcf-86eb-4a19-ad98-730ef62431b7 matching against profile http://hl7.org/fhir/StructureDefinition/Organization|4.0.1</b> <span id="sl250" class="flip" onclick="flip('l250')">Show Reasoning</span><div id="l250" style="display: none"><p>&nbsp;</p><ul><li>Bundle.entry[7].resource/*Organization/46ac5fcf-86eb-4a19-ad98-730ef62431b7*/.telecom[0]: Constraint failed: cpt-2: 'A system is required if a value is provided. (value.empty() or system.exists())'</li></ul></div> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Details_for__matching_against_Profile_</span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>Bundle&#8203;.entry[1]&#8203;.resource&#8203;/*Patient&#8203;/7de38de8-0328-4319-8e60-ff50ba856531*&#8203;/&#8203;.identifier[0]&#8203;.type&#8203;.coding[0]&#8203;.system (l94&#8203;/c10)</b></td><td><b>warning</b></td><td><b>A definition for CodeSystem 'https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203' could not be found, so the code cannot be validated</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">UNKNOWN_CODESYSTEM</span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>Bundle&#8203;.entry[1]&#8203;.resource&#8203;/*Patient&#8203;/7de38de8-0328-4319-8e60-ff50ba856531*&#8203;/&#8203;.identifier[0]&#8203;.system (l100&#8203;/c49)</b></td><td><b>warning</b></td><td><b>No definition could be found for URL value 'urn:oid:1.2.250.1.213.1.4.8'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Type_Specific_Checks_DT_URL_Resolve</span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>Bundle&#8203;.entry[1]&#8203;.resource&#8203;/*Patient&#8203;/7de38de8-0328-4319-8e60-ff50ba856531*&#8203;/&#8203;.identifier[1]&#8203;.system (l110&#8203;/c50)</b></td><td><b>warning</b></td><td><b>No definition could be found for URL value 'urn:oid:1.2.3.4.5.6.7.8.9.10'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Type_Specific_Checks_DT_URL_Resolve</span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>Bundle&#8203;.entry[1]&#8203;.resource&#8203;/*Patient&#8203;/7de38de8-0328-4319-8e60-ff50ba856531*&#8203;/&#8203;.identifier[2]&#8203;.type&#8203;.coding[0]&#8203;.system (l114&#8203;/c10)</b></td><td><b>warning</b></td><td><b>A definition for CodeSystem 'https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203' could not be found, so the code cannot be validated</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">UNKNOWN_CODESYSTEM</span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>Bundle&#8203;.entry[1]&#8203;.resource&#8203;/*Patient&#8203;/7de38de8-0328-4319-8e60-ff50ba856531*&#8203;/&#8203;.identifier[2]&#8203;.system (l120&#8203;/c49)</b></td><td><b>warning</b></td><td><b>No definition could be found for URL value 'urn:oid:1.2.250.1.213.1.4.8'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Type_Specific_Checks_DT_URL_Resolve</span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>Bundle&#8203;.entry[1]&#8203;.resource&#8203;/*Patient&#8203;/7de38de8-0328-4319-8e60-ff50ba856531*&#8203;/&#8203;.identifier[3]&#8203;.system (l130&#8203;/c50)</b></td><td><b>warning</b></td><td><b>No definition could be found for URL value 'urn:oid:1.2.3.4.5.6.7.8.9.10'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Type_Specific_Checks_DT_URL_Resolve</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[1]&#8203;.resource&#8203;/*Patient&#8203;/7de38de8-0328-4319-8e60-ff50ba856531*&#8203;/&#8203;.telecom[0] (l195&#8203;/c8)</b></td><td><b>error</b></td><td><b>Constraint failed: cpt-2: 'A system is required if a value is provided. (value.empty() or system.exists())'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">http://hl7.org/fhir/StructureDefinition/ContactPoint#cpt-2</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[1]&#8203;.resource&#8203;/*Patient&#8203;/7de38de8-0328-4319-8e60-ff50ba856531*&#8203;/&#8203;.telecom[1] (l199&#8203;/c8)</b></td><td><b>error</b></td><td><b>Constraint failed: cpt-2: 'A system is required if a value is provided. (value.empty() or system.exists())'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">http://hl7.org/fhir/StructureDefinition/ContactPoint#cpt-2</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[2]&#8203;.resource&#8203;/*Encounter&#8203;/714c41f2-70ef-409a-a32d-fbf1fb7b0ad3*&#8203;/ (l265&#8203;/c6)</b></td><td><b>error</b></td><td><b>Encounter.status: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/Encounter|4.0.1)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Validation_VAL_Profile_Minimum</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[2]&#8203;.resource&#8203;/*Encounter&#8203;/714c41f2-70ef-409a-a32d-fbf1fb7b0ad3*&#8203;/ (l265&#8203;/c6)</b></td><td><b>error</b></td><td><b>Encounter.class: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/Encounter|4.0.1)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Validation_VAL_Profile_Minimum</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[4]&#8203;.resource&#8203;/*Practitioner&#8203;/9b9a5570-c929-4baf-ad7f-fbcb2a66d4be*&#8203;/&#8203;.telecom[0] (l353&#8203;/c8)</b></td><td><b>error</b></td><td><b>Constraint failed: cpt-2: 'A system is required if a value is provided. (value.empty() or system.exists())'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">http://hl7.org/fhir/StructureDefinition/ContactPoint#cpt-2</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[5]&#8203;.resource&#8203;/*Organization&#8203;/2e465c62-9be5-4103-b1f5-6466e85c21fc*&#8203;/&#8203;.telecom[0] (l390&#8203;/c8)</b></td><td><b>error</b></td><td><b>Constraint failed: cpt-2: 'A system is required if a value is provided. (value.empty() or system.exists())'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">http://hl7.org/fhir/StructureDefinition/ContactPoint#cpt-2</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[6]&#8203;.resource&#8203;/*Practitioner&#8203;/dca867ed-76b8-452a-8cde-2b73ff887ee7*&#8203;/&#8203;.telecom[0] (l449&#8203;/c8)</b></td><td><b>error</b></td><td><b>Constraint failed: cpt-2: 'A system is required if a value is provided. (value.empty() or system.exists())'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">http://hl7.org/fhir/StructureDefinition/ContactPoint#cpt-2</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[7]&#8203;.resource&#8203;/*Organization&#8203;/46ac5fcf-86eb-4a19-ad98-730ef62431b7*&#8203;/&#8203;.telecom[0] (l486&#8203;/c8)</b></td><td><b>error</b></td><td><b>Constraint failed: cpt-2: 'A system is required if a value is provided. (value.empty() or system.exists())'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">http://hl7.org/fhir/StructureDefinition/ContactPoint#cpt-2</span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>Bundle&#8203;.entry[8]&#8203;.resource&#8203;/*Observation&#8203;/0ff6d14a-82bb-4b78-a978-ae1a3a50e23c*&#8203;/ (l516&#8203;/c6)</b></td><td><b>warning</b></td><td><b>Best Practice Recommendation: In general, all observations should have a performer</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">All_observations_should_have_a_performer</span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>Bundle&#8203;.entry[8]&#8203;.resource&#8203;/*Observation&#8203;/0ff6d14a-82bb-4b78-a978-ae1a3a50e23c*&#8203;/ (l516&#8203;/c6)</b></td><td><b>warning</b></td><td><b>Best Practice Recommendation: In general, all observations should have an effective[x] ()</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">All_observations_should_have_an_effectiveDateTime_or_an_effectivePeriod</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[8]&#8203;.resource&#8203;/*Observation&#8203;/0ff6d14a-82bb-4b78-a978-ae1a3a50e23c*&#8203;/&#8203;.status (l519&#8203;/c29)</b></td><td><b>error</b></td><td><b>The System URI could not be determined for the code 'completed' in the ValueSet 'http://hl7.org/fhir/ValueSet/observation-status|4.0.1'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">UNABLE_TO_INFER_CODESYSTEM</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[8]&#8203;.resource&#8203;/*Observation&#8203;/0ff6d14a-82bb-4b78-a978-ae1a3a50e23c*&#8203;/&#8203;.status (l519&#8203;/c29)</b></td><td><b>error</b></td><td><b>The value provided ('completed') was not found in the value set 'ObservationStatus' (http://hl7.org/fhir/ValueSet/observation-status|4.0.1), and a code is required from this value set  (error message = The System URI could not be determined for the code 'completed' in the ValueSet 'http://hl7.org/fhir/ValueSet/observation-status|4.0.1'; The provided code '#completed' was not found in the value set 'http://hl7.org/fhir/ValueSet/observation-status|4.0.1')</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Terminology_TX_NoValid_16</span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>Bundle&#8203;.entry[8]&#8203;.resource&#8203;/*Observation&#8203;/0ff6d14a-82bb-4b78-a978-ae1a3a50e23c*&#8203;/&#8203;.code&#8203;.coding[0] (l520&#8203;/c8)</b></td><td><b>warning</b></td><td><b>Coding has no system. A code with no system has no defined meaning, and it cannot be validated. A system should be provided</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Coding_has_no_system__cannot_validate</span></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b><a href="">Bundle&#8203;.entry[8]&#8203;.resource&#8203;/*Observation&#8203;/0ff6d14a-82bb-4b78-a978-ae1a3a50e23c*&#8203;/&#8203;.subject (l526&#8203;/c8)</a></b></td><td><b>Slicing Information</b></td><td><b>Details for urn:uuid:7de38de8-0328-4319-8e60-ff50ba856531 matching against profile http://hl7.org/fhir/StructureDefinition/Patient|4.0.1</b> <span id="sl270" class="flip" onclick="flip('l270')">Show Reasoning</span><div id="l270" style="display: none"><p>&nbsp;</p><ul><li>Bundle.entry[1].resource/*Patient/7de38de8-0328-4319-8e60-ff50ba856531*/.telecom[0]: Constraint failed: cpt-2: 'A system is required if a value is provided. (value.empty() or system.exists())'</li>, <li>Bundle.entry[1].resource/*Patient/7de38de8-0328-4319-8e60-ff50ba856531*/.telecom[1]: Constraint failed: cpt-2: 'A system is required if a value is provided. (value.empty() or system.exists())'</li></ul></div> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Details_for__matching_against_Profile_</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle (l1/c2)</b></td><td><b>error</b></td><td><b>Constraint failed: bdl-9: 'A document must have an identifier with a system and a value (type = 'document' implies (identifier.system.exists() and identifier.value.exists()))'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">http://hl7.org/fhir/StructureDefinition/Bundle#bdl-9</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle (l1/c2)</b></td><td><b>error</b></td><td><b>Constraint failed: bdl-10: 'A document must have a date (type = 'document' implies (timestamp.hasValue()))'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">http://hl7.org/fhir/StructureDefinition/Bundle#bdl-10</span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>Bundle.entry[8].resource (l516/c6)</b></td><td><b>warning</b></td><td><b>Best Practice Recommendation: In general, all observations should have a performer</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">All_observations_should_have_a_performer</span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>Bundle.entry[8].resource (l516/c6)</b></td><td><b>warning</b></td><td><b>Best Practice Recommendation: In general, all observations should have an effective[x] ()</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">All_observations_should_have_an_effectiveDateTime_or_an_effectivePeriod</span></td>
+   </tr>
+</table>
+<hr/>
+<a name="_home_runner_work_IG-mapping-cda-fhir_IG-mapping-cda-fhir_igSource_input_resources_fr-CSE-MDE_2023.01-result"> </a>
+<h2><a href="Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.html">input/resources/fr-CSE-MDE_2023.01-result.json</a> <span id="svi8" class="toggle" onclick="toggle('vi8')">Show Validation Information</span> <span class="vcount" onclick="toggle('vi8')">(12)</span></h2>
+ <div style="border: 1px grey solid; display: none" id="vi8"><ul style="font-size: 7px"><li>Bundle: Validated against <a href="http://hl7.org/fhir">fhir</a>.<a href="http://hl7.org/fhir/R4/bundle.html">Bundle</a></li><li>Bundle.entry[0].resource: Validated against <a href="http://hl7.org/fhir">fhir</a>.<a href="http://hl7.org/fhir/R4/composition.html">Composition</a></li><li>Bundle.entry[1].resource: Validated against <a href="http://hl7.org/fhir">fhir</a>.<a href="http://hl7.org/fhir/R4/patient.html">Patient</a></li><li>Bundle.entry[2].resource: Validated against <a href="http://hl7.org/fhir">fhir</a>.<a href="http://hl7.org/fhir/R4/encounter.html">Encounter</a></li><li>Bundle.entry[3].resource: Validated against <a href="http://hl7.org/fhir">fhir</a>.<a href="http://hl7.org/fhir/R4/location.html">Location</a></li><li>Bundle.entry[4].resource: Validated against <a href="http://hl7.org/fhir">fhir</a>.<a href="http://hl7.org/fhir/R4/practitioner.html">Practitioner</a></li><li>Bundle.entry[5].resource: Validated against <a href="http://hl7.org/fhir">fhir</a>.<a href="http://hl7.org/fhir/R4/organization.html">Organization</a></li><li>Bundle.entry[6].resource: Validated against <a href="http://hl7.org/fhir">fhir</a>.<a href="http://hl7.org/fhir/R4/practitioner.html">Practitioner</a></li><li>Bundle.entry[7].resource: Validated against <a href="http://hl7.org/fhir">fhir</a>.<a href="http://hl7.org/fhir/R4/organization.html">Organization</a></li><li>Bundle.entry[8].resource: Validated against <a href="http://hl7.org/fhir">fhir</a>.<a href="http://hl7.org/fhir/R4/observation.html">Observation</a></li><li>Bundle.entry[9].resource: Validated against <a href="http://hl7.org/fhir">fhir</a>.<a href="http://hl7.org/fhir/R4/observation.html">Observation</a></li><li>Bundle.entry[10].resource: Validated against <a href="http://hl7.org/fhir">fhir</a>.<a href="http://hl7.org/fhir/R4/observation.html">Observation</a></li></ul>
+</div>
+ <table class="grid">
+   <tr>
+     <td><b>Path</b></td><td><b>Severity</b></td><td><b>Message</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle.identifier (l5/c45)</b></td><td><b>error</b></td><td><b>Unrecognized property 'root'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle.timestamp (l8/c4)</b></td><td><b>error</b></td><td><b>This property must be a simple value, not an Object (timestamp at Bundle.timestamp)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[0]&#8203;.resource&#8203;.language (l16&#8203;/c8)</b></td><td><b>error</b></td><td><b>This property must be a simple value, not an Object (language at Bundle.entry[0].resource.language)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[0]&#8203;.resource&#8203;.identifier (l20&#8203;/c47)</b></td><td><b>error</b></td><td><b>Unrecognized property 'root'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle.entry[0].resource.type (l24/c27)</b></td><td><b>error</b></td><td><b>Unrecognized property 'code'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle.entry[0].resource.type (l25/c47)</b></td><td><b>error</b></td><td><b>Unrecognized property 'codeSystem'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle.entry[0].resource.type (l26/c51)</b></td><td><b>error</b></td><td><b>Unrecognized property 'displayName'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle.entry[0].resource.date (l34/c8)</b></td><td><b>error</b></td><td><b>This property must be a simple value, not an Object (date at Bundle.entry[0].resource.date)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[0]&#8203;.resource&#8203;.confidentiality (l44&#8203;/c8)</b></td><td><b>error</b></td><td><b>This property must be a simple value, not an Object (confidentiality at Bundle.entry[0].resource.confidentiality)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[0]&#8203;.resource&#8203;.attester[0]&#8203;.time (l51&#8203;/c10)</b></td><td><b>error</b></td><td><b>This property must be a simple value, not an Object (time at Bundle.entry[0].resource.attester[0].time)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[0]&#8203;.resource&#8203;.event[0]&#8203;.code[0] (l63&#8203;/c30)</b></td><td><b>error</b></td><td><b>Unrecognized property 'code'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[0]&#8203;.resource&#8203;.event[0]&#8203;.code[0] (l64&#8203;/c50)</b></td><td><b>error</b></td><td><b>Unrecognized property 'codeSystem'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[0]&#8203;.resource&#8203;.event[0]&#8203;.code[0] (l65&#8203;/c41)</b></td><td><b>error</b></td><td><b>Unrecognized property 'codeSystemName'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[0]&#8203;.resource&#8203;.event[0]&#8203;.code[0] (l66&#8203;/c41)</b></td><td><b>error</b></td><td><b>Unrecognized property 'displayName'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[0]&#8203;.resource&#8203;.event[0]&#8203;.period (l69&#8203;/c12)</b></td><td><b>error</b></td><td><b>Unrecognized property 'low'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[0]&#8203;.resource&#8203;.section[0]&#8203;.code (l77&#8203;/c28)</b></td><td><b>error</b></td><td><b>Unrecognized property 'code'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[0]&#8203;.resource&#8203;.section[0]&#8203;.code (l78&#8203;/c49)</b></td><td><b>error</b></td><td><b>Unrecognized property 'codeSystem'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[0]&#8203;.resource&#8203;.section[0]&#8203;.code (l79&#8203;/c37)</b></td><td><b>error</b></td><td><b>Unrecognized property 'codeSystemName'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[0]&#8203;.resource&#8203;.section[0]&#8203;.code (l80&#8203;/c42)</b></td><td><b>error</b></td><td><b>Unrecognized property 'displayName'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[1]&#8203;.resource&#8203;.name[0] (l140&#8203;/c11)</b></td><td><b>error</b></td><td><b>Unrecognized property 'item'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[1]&#8203;.resource&#8203;.name[1] (l171&#8203;/c11)</b></td><td><b>error</b></td><td><b>Unrecognized property 'item'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[1]&#8203;.resource&#8203;.telecom[0]&#8203;.use (l203&#8203;/c22)</b></td><td><b>error</b></td><td><b>This property must be a simple value, not an Array (use at Bundle.entry[1].resource.telecom[0].use)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[1]&#8203;.resource&#8203;.telecom[1]&#8203;.use (l207&#8203;/c22)</b></td><td><b>error</b></td><td><b>This property must be a simple value, not an Array (use at Bundle.entry[1].resource.telecom[1].use)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[1]&#8203;.resource&#8203;.birthDate (l210&#8203;/c8)</b></td><td><b>error</b></td><td><b>This property must be a simple value, not an Object (birthDate at Bundle.entry[1].resource.birthDate)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[1]&#8203;.resource&#8203;.address[0] (l214&#8203;/c11)</b></td><td><b>error</b></td><td><b>Unrecognized property 'item'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[1]&#8203;.resource&#8203;.address[1] (l241&#8203;/c11)</b></td><td><b>error</b></td><td><b>Unrecognized property 'item'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[2]&#8203;.resource&#8203;.type[0] (l275&#8203;/c23)</b></td><td><b>error</b></td><td><b>Unrecognized property 'code'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[2]&#8203;.resource&#8203;.type[0] (l276&#8203;/c47)</b></td><td><b>error</b></td><td><b>Unrecognized property 'codeSystem'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[2]&#8203;.resource&#8203;.type[0] (l277&#8203;/c59)</b></td><td><b>error</b></td><td><b>Unrecognized property 'displayName'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[2]&#8203;.resource&#8203;.period (l280&#8203;/c10)</b></td><td><b>error</b></td><td><b>Unrecognized property 'low'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[2]&#8203;.resource&#8203;.period (l283&#8203;/c10)</b></td><td><b>error</b></td><td><b>Unrecognized property 'high'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[3]&#8203;.resource&#8203;.type[0] (l300&#8203;/c24)</b></td><td><b>error</b></td><td><b>Unrecognized property 'code'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[3]&#8203;.resource&#8203;.type[0] (l301&#8203;/c44)</b></td><td><b>error</b></td><td><b>Unrecognized property 'codeSystem'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[3]&#8203;.resource&#8203;.type[0] (l302&#8203;/c42)</b></td><td><b>error</b></td><td><b>Unrecognized property 'displayName'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[3]&#8203;.resource&#8203;.address (l305&#8203;/c11)</b></td><td><b>error</b></td><td><b>Unrecognized property 'item'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[4]&#8203;.resource&#8203;.identifier[0]&#8203;.extension (l335&#8203;/c37)</b></td><td><b>error</b></td><td><b>The property extension must be a JSON Array, not a Primitive property (at Bundle.entry[4].resource.identifier[0])</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[4]&#8203;.resource&#8203;.identifier[0]&#8203;.extension (l335&#8203;/c37)</b></td><td><b>error</b></td><td><b>The property extension must be an Array, not a Primitive property (at Bundle.entry[4].resource.identifier[0].extension)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[4]&#8203;.resource&#8203;.identifier[0] (l334&#8203;/c38)</b></td><td><b>error</b></td><td><b>Unrecognized property 'root'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[4]&#8203;.resource&#8203;.name[0] (l338&#8203;/c11)</b></td><td><b>error</b></td><td><b>Unrecognized property 'item'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[4]&#8203;.resource&#8203;.telecom[0]&#8203;.use (l361&#8203;/c23)</b></td><td><b>error</b></td><td><b>This property must be a simple value, not an Array (use at Bundle.entry[4].resource.telecom[0].use)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[4]&#8203;.resource&#8203;.address[0] (l364&#8203;/c11)</b></td><td><b>error</b></td><td><b>Unrecognized property 'item'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[5]&#8203;.resource&#8203;.identifier[0]&#8203;.extension (l394&#8203;/c38)</b></td><td><b>error</b></td><td><b>The property extension must be a JSON Array, not a Primitive property (at Bundle.entry[5].resource.identifier[0])</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[5]&#8203;.resource&#8203;.identifier[0]&#8203;.extension (l394&#8203;/c38)</b></td><td><b>error</b></td><td><b>The property extension must be an Array, not a Primitive property (at Bundle.entry[5].resource.identifier[0].extension)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[5]&#8203;.resource&#8203;.identifier[0] (l393&#8203;/c38)</b></td><td><b>error</b></td><td><b>Unrecognized property 'root'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[5]&#8203;.resource&#8203;.telecom[0]&#8203;.use (l398&#8203;/c23)</b></td><td><b>error</b></td><td><b>This property must be a simple value, not an Array (use at Bundle.entry[5].resource.telecom[0].use)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[5]&#8203;.resource&#8203;.address[0] (l401&#8203;/c11)</b></td><td><b>error</b></td><td><b>Unrecognized property 'item'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[6]&#8203;.resource&#8203;.identifier[0]&#8203;.extension (l431&#8203;/c37)</b></td><td><b>error</b></td><td><b>The property extension must be a JSON Array, not a Primitive property (at Bundle.entry[6].resource.identifier[0])</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[6]&#8203;.resource&#8203;.identifier[0]&#8203;.extension (l431&#8203;/c37)</b></td><td><b>error</b></td><td><b>The property extension must be an Array, not a Primitive property (at Bundle.entry[6].resource.identifier[0].extension)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[6]&#8203;.resource&#8203;.identifier[0] (l430&#8203;/c38)</b></td><td><b>error</b></td><td><b>Unrecognized property 'root'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[6]&#8203;.resource&#8203;.name[0] (l434&#8203;/c11)</b></td><td><b>error</b></td><td><b>Unrecognized property 'item'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[6]&#8203;.resource&#8203;.telecom[0]&#8203;.use (l457&#8203;/c23)</b></td><td><b>error</b></td><td><b>This property must be a simple value, not an Array (use at Bundle.entry[6].resource.telecom[0].use)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[6]&#8203;.resource&#8203;.address[0] (l460&#8203;/c11)</b></td><td><b>error</b></td><td><b>Unrecognized property 'item'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[7]&#8203;.resource&#8203;.identifier[0]&#8203;.extension (l490&#8203;/c38)</b></td><td><b>error</b></td><td><b>The property extension must be a JSON Array, not a Primitive property (at Bundle.entry[7].resource.identifier[0])</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[7]&#8203;.resource&#8203;.identifier[0]&#8203;.extension (l490&#8203;/c38)</b></td><td><b>error</b></td><td><b>The property extension must be an Array, not a Primitive property (at Bundle.entry[7].resource.identifier[0].extension)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[7]&#8203;.resource&#8203;.identifier[0] (l489&#8203;/c38)</b></td><td><b>error</b></td><td><b>Unrecognized property 'root'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[7]&#8203;.resource&#8203;.telecom[0]&#8203;.use (l494&#8203;/c23)</b></td><td><b>error</b></td><td><b>This property must be a simple value, not an Array (use at Bundle.entry[7].resource.telecom[0].use)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[7]&#8203;.resource&#8203;.address[0] (l497&#8203;/c11)</b></td><td><b>error</b></td><td><b>Unrecognized property 'item'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[0]&#8203;.resource&#8203;/*Composition&#8203;/08c3cac7-6c37-4ff6-b4e8-6ee68575f40f*&#8203;/ (l13&#8203;/c6)</b></td><td><b>error</b></td><td><b>Composition.date: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/Composition|4.0.1)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Validation_VAL_Profile_Minimum</span></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b><a href="">Bundle&#8203;.entry[0]&#8203;.resource&#8203;/*Composition&#8203;/08c3cac7-6c37-4ff6-b4e8-6ee68575f40f*&#8203;/&#8203;.encounter (l31&#8203;/c8)</a></b></td><td><b>Slicing Information</b></td><td><b>Details for urn:uuid:a9c1f538-7d76-4588-a7dd-d0628fef70d3 matching against profile http://hl7.org/fhir/StructureDefinition/Encounter|4.0.1</b> <span id="sl333" class="flip" onclick="flip('l333')">Show Reasoning</span><div id="l333" style="display: none"><p>&nbsp;</p><ul><li>Bundle.entry[2].resource/*Encounter/a9c1f538-7d76-4588-a7dd-d0628fef70d3*/: Encounter.status: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/Encounter|4.0.1)</li>, <li>Bundle.entry[2].resource/*Encounter/a9c1f538-7d76-4588-a7dd-d0628fef70d3*/: Encounter.class: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/Encounter|4.0.1)</li></ul></div> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Details_for__matching_against_Profile_</span></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b><a href="">Bundle&#8203;.entry[0]&#8203;.resource&#8203;/*Composition&#8203;/08c3cac7-6c37-4ff6-b4e8-6ee68575f40f*&#8203;/&#8203;.author[0] (l37&#8203;/c8)</a></b></td><td><b>Slicing Information</b></td><td><b>Details for urn:uuid:c230487c-a77a-42ea-a80e-bd6618539379 matching against profile http://hl7.org/fhir/StructureDefinition/Practitioner|4.0.1</b> <span id="sl334" class="flip" onclick="flip('l334')">Show Reasoning</span><div id="l334" style="display: none"><p>&nbsp;</p><ul><li>Bundle.entry[4].resource/*Practitioner/c230487c-a77a-42ea-a80e-bd6618539379*/.telecom[0]: Constraint failed: cpt-2: 'A system is required if a value is provided. (value.empty() or system.exists())'</li></ul></div> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Details_for__matching_against_Profile_</span></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b><a href="">Bundle&#8203;.entry[0]&#8203;.resource&#8203;/*Composition&#8203;/08c3cac7-6c37-4ff6-b4e8-6ee68575f40f*&#8203;/&#8203;.author[1] (l40&#8203;/c8)</a></b></td><td><b>Slicing Information</b></td><td><b>Details for urn:uuid:55c11a2d-0536-4cdf-95fe-70e42a1d978a matching against profile http://hl7.org/fhir/StructureDefinition/Organization|4.0.1</b> <span id="sl335" class="flip" onclick="flip('l335')">Show Reasoning</span><div id="l335" style="display: none"><p>&nbsp;</p><ul><li>Bundle.entry[5].resource/*Organization/55c11a2d-0536-4cdf-95fe-70e42a1d978a*/.telecom[0]: Constraint failed: cpt-2: 'A system is required if a value is provided. (value.empty() or system.exists())'</li></ul></div> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Details_for__matching_against_Profile_</span></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b><a href="">Bundle&#8203;.entry[0]&#8203;.resource&#8203;/*Composition&#8203;/08c3cac7-6c37-4ff6-b4e8-6ee68575f40f*&#8203;/&#8203;.attester[0]&#8203;.party (l54&#8203;/c10)</a></b></td><td><b>Slicing Information</b></td><td><b>Details for urn:uuid:0a274c7b-e610-43e9-ab04-371bff7facd9 matching against profile http://hl7.org/fhir/StructureDefinition/Practitioner|4.0.1</b> <span id="sl336" class="flip" onclick="flip('l336')">Show Reasoning</span><div id="l336" style="display: none"><p>&nbsp;</p><ul><li>Bundle.entry[6].resource/*Practitioner/0a274c7b-e610-43e9-ab04-371bff7facd9*/.telecom[0]: Constraint failed: cpt-2: 'A system is required if a value is provided. (value.empty() or system.exists())'</li></ul></div> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Details_for__matching_against_Profile_</span></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b><a href="">Bundle&#8203;.entry[0]&#8203;.resource&#8203;/*Composition&#8203;/08c3cac7-6c37-4ff6-b4e8-6ee68575f40f*&#8203;/&#8203;.custodian (l58&#8203;/c8)</a></b></td><td><b>Slicing Information</b></td><td><b>Details for urn:uuid:6e909256-84ea-42e2-a302-6b78fa4d63f7 matching against profile http://hl7.org/fhir/StructureDefinition/Organization|4.0.1</b> <span id="sl337" class="flip" onclick="flip('l337')">Show Reasoning</span><div id="l337" style="display: none"><p>&nbsp;</p><ul><li>Bundle.entry[7].resource/*Organization/6e909256-84ea-42e2-a302-6b78fa4d63f7*/.telecom[0]: Constraint failed: cpt-2: 'A system is required if a value is provided. (value.empty() or system.exists())'</li></ul></div> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Details_for__matching_against_Profile_</span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>Bundle&#8203;.entry[1]&#8203;.resource&#8203;/*Patient&#8203;/35f40549-4a0a-4eeb-a70d-9b2db3e93e3a*&#8203;/&#8203;.identifier[0]&#8203;.type&#8203;.coding[0]&#8203;.system (l100&#8203;/c10)</b></td><td><b>warning</b></td><td><b>A definition for CodeSystem 'https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203' could not be found, so the code cannot be validated</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">UNKNOWN_CODESYSTEM</span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>Bundle&#8203;.entry[1]&#8203;.resource&#8203;/*Patient&#8203;/35f40549-4a0a-4eeb-a70d-9b2db3e93e3a*&#8203;/&#8203;.identifier[0]&#8203;.system (l106&#8203;/c49)</b></td><td><b>warning</b></td><td><b>No definition could be found for URL value 'urn:oid:1.2.250.1.213.1.4.8'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Type_Specific_Checks_DT_URL_Resolve</span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>Bundle&#8203;.entry[1]&#8203;.resource&#8203;/*Patient&#8203;/35f40549-4a0a-4eeb-a70d-9b2db3e93e3a*&#8203;/&#8203;.identifier[1]&#8203;.system (l116&#8203;/c50)</b></td><td><b>warning</b></td><td><b>No definition could be found for URL value 'urn:oid:1.2.3.4.5.6.7.8.9.10'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Type_Specific_Checks_DT_URL_Resolve</span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>Bundle&#8203;.entry[1]&#8203;.resource&#8203;/*Patient&#8203;/35f40549-4a0a-4eeb-a70d-9b2db3e93e3a*&#8203;/&#8203;.identifier[2]&#8203;.type&#8203;.coding[0]&#8203;.system (l120&#8203;/c10)</b></td><td><b>warning</b></td><td><b>A definition for CodeSystem 'https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203' could not be found, so the code cannot be validated</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">UNKNOWN_CODESYSTEM</span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>Bundle&#8203;.entry[1]&#8203;.resource&#8203;/*Patient&#8203;/35f40549-4a0a-4eeb-a70d-9b2db3e93e3a*&#8203;/&#8203;.identifier[2]&#8203;.system (l126&#8203;/c49)</b></td><td><b>warning</b></td><td><b>No definition could be found for URL value 'urn:oid:1.2.250.1.213.1.4.8'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Type_Specific_Checks_DT_URL_Resolve</span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>Bundle&#8203;.entry[1]&#8203;.resource&#8203;/*Patient&#8203;/35f40549-4a0a-4eeb-a70d-9b2db3e93e3a*&#8203;/&#8203;.identifier[3]&#8203;.system (l136&#8203;/c50)</b></td><td><b>warning</b></td><td><b>No definition could be found for URL value 'urn:oid:1.2.3.4.5.6.7.8.9.10'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Type_Specific_Checks_DT_URL_Resolve</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[1]&#8203;.resource&#8203;/*Patient&#8203;/35f40549-4a0a-4eeb-a70d-9b2db3e93e3a*&#8203;/&#8203;.telecom[0] (l201&#8203;/c8)</b></td><td><b>error</b></td><td><b>Constraint failed: cpt-2: 'A system is required if a value is provided. (value.empty() or system.exists())'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">http://hl7.org/fhir/StructureDefinition/ContactPoint#cpt-2</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[1]&#8203;.resource&#8203;/*Patient&#8203;/35f40549-4a0a-4eeb-a70d-9b2db3e93e3a*&#8203;/&#8203;.telecom[1] (l205&#8203;/c8)</b></td><td><b>error</b></td><td><b>Constraint failed: cpt-2: 'A system is required if a value is provided. (value.empty() or system.exists())'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">http://hl7.org/fhir/StructureDefinition/ContactPoint#cpt-2</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[2]&#8203;.resource&#8203;/*Encounter&#8203;/a9c1f538-7d76-4588-a7dd-d0628fef70d3*&#8203;/ (l271&#8203;/c6)</b></td><td><b>error</b></td><td><b>Encounter.status: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/Encounter|4.0.1)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Validation_VAL_Profile_Minimum</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[2]&#8203;.resource&#8203;/*Encounter&#8203;/a9c1f538-7d76-4588-a7dd-d0628fef70d3*&#8203;/ (l271&#8203;/c6)</b></td><td><b>error</b></td><td><b>Encounter.class: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/Encounter|4.0.1)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Validation_VAL_Profile_Minimum</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[4]&#8203;.resource&#8203;/*Practitioner&#8203;/c230487c-a77a-42ea-a80e-bd6618539379*&#8203;/&#8203;.telecom[0] (l359&#8203;/c8)</b></td><td><b>error</b></td><td><b>Constraint failed: cpt-2: 'A system is required if a value is provided. (value.empty() or system.exists())'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">http://hl7.org/fhir/StructureDefinition/ContactPoint#cpt-2</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[5]&#8203;.resource&#8203;/*Organization&#8203;/55c11a2d-0536-4cdf-95fe-70e42a1d978a*&#8203;/&#8203;.telecom[0] (l396&#8203;/c8)</b></td><td><b>error</b></td><td><b>Constraint failed: cpt-2: 'A system is required if a value is provided. (value.empty() or system.exists())'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">http://hl7.org/fhir/StructureDefinition/ContactPoint#cpt-2</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[6]&#8203;.resource&#8203;/*Practitioner&#8203;/0a274c7b-e610-43e9-ab04-371bff7facd9*&#8203;/&#8203;.telecom[0] (l455&#8203;/c8)</b></td><td><b>error</b></td><td><b>Constraint failed: cpt-2: 'A system is required if a value is provided. (value.empty() or system.exists())'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">http://hl7.org/fhir/StructureDefinition/ContactPoint#cpt-2</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[7]&#8203;.resource&#8203;/*Organization&#8203;/6e909256-84ea-42e2-a302-6b78fa4d63f7*&#8203;/&#8203;.telecom[0] (l492&#8203;/c8)</b></td><td><b>error</b></td><td><b>Constraint failed: cpt-2: 'A system is required if a value is provided. (value.empty() or system.exists())'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">http://hl7.org/fhir/StructureDefinition/ContactPoint#cpt-2</span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>Bundle&#8203;.entry[8]&#8203;.resource&#8203;/*Observation&#8203;/189a0f3d-5971-4652-b967-9158f92c06a0*&#8203;/ (l522&#8203;/c6)</b></td><td><b>warning</b></td><td><b>Best Practice Recommendation: In general, all observations should have a performer</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">All_observations_should_have_a_performer</span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>Bundle&#8203;.entry[8]&#8203;.resource&#8203;/*Observation&#8203;/189a0f3d-5971-4652-b967-9158f92c06a0*&#8203;/ (l522&#8203;/c6)</b></td><td><b>warning</b></td><td><b>Best Practice Recommendation: In general, all observations should have an effective[x] ()</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">All_observations_should_have_an_effectiveDateTime_or_an_effectivePeriod</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[8]&#8203;.resource&#8203;/*Observation&#8203;/189a0f3d-5971-4652-b967-9158f92c06a0*&#8203;/&#8203;.status (l525&#8203;/c29)</b></td><td><b>error</b></td><td><b>The System URI could not be determined for the code 'completed' in the ValueSet 'http://hl7.org/fhir/ValueSet/observation-status|4.0.1'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">UNABLE_TO_INFER_CODESYSTEM</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[8]&#8203;.resource&#8203;/*Observation&#8203;/189a0f3d-5971-4652-b967-9158f92c06a0*&#8203;/&#8203;.status (l525&#8203;/c29)</b></td><td><b>error</b></td><td><b>The value provided ('completed') was not found in the value set 'ObservationStatus' (http://hl7.org/fhir/ValueSet/observation-status|4.0.1), and a code is required from this value set  (error message = The System URI could not be determined for the code 'completed' in the ValueSet 'http://hl7.org/fhir/ValueSet/observation-status|4.0.1'; The provided code '#completed' was not found in the value set 'http://hl7.org/fhir/ValueSet/observation-status|4.0.1')</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Terminology_TX_NoValid_16</span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>Bundle&#8203;.entry[8]&#8203;.resource&#8203;/*Observation&#8203;/189a0f3d-5971-4652-b967-9158f92c06a0*&#8203;/&#8203;.code&#8203;.coding[0] (l526&#8203;/c8)</b></td><td><b>warning</b></td><td><b>Coding has no system. A code with no system has no defined meaning, and it cannot be validated. A system should be provided</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Coding_has_no_system__cannot_validate</span></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b><a href="">Bundle&#8203;.entry[8]&#8203;.resource&#8203;/*Observation&#8203;/189a0f3d-5971-4652-b967-9158f92c06a0*&#8203;/&#8203;.subject (l532&#8203;/c8)</a></b></td><td><b>Slicing Information</b></td><td><b>Details for urn:uuid:35f40549-4a0a-4eeb-a70d-9b2db3e93e3a matching against profile http://hl7.org/fhir/StructureDefinition/Patient|4.0.1</b> <span id="sl357" class="flip" onclick="flip('l357')">Show Reasoning</span><div id="l357" style="display: none"><p>&nbsp;</p><ul><li>Bundle.entry[1].resource/*Patient/35f40549-4a0a-4eeb-a70d-9b2db3e93e3a*/.telecom[0]: Constraint failed: cpt-2: 'A system is required if a value is provided. (value.empty() or system.exists())'</li>, <li>Bundle.entry[1].resource/*Patient/35f40549-4a0a-4eeb-a70d-9b2db3e93e3a*/.telecom[1]: Constraint failed: cpt-2: 'A system is required if a value is provided. (value.empty() or system.exists())'</li></ul></div> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Details_for__matching_against_Profile_</span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>Bundle&#8203;.entry[9]&#8203;.resource&#8203;/*Observation&#8203;/99d607dd-a4b8-4aef-9148-e9c0611aaa42*&#8203;/ (l543&#8203;/c6)</b></td><td><b>warning</b></td><td><b>Best Practice Recommendation: In general, all observations should have a performer</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">All_observations_should_have_a_performer</span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>Bundle&#8203;.entry[9]&#8203;.resource&#8203;/*Observation&#8203;/99d607dd-a4b8-4aef-9148-e9c0611aaa42*&#8203;/ (l543&#8203;/c6)</b></td><td><b>warning</b></td><td><b>Best Practice Recommendation: In general, all observations should have an effective[x] ()</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">All_observations_should_have_an_effectiveDateTime_or_an_effectivePeriod</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[9]&#8203;.resource&#8203;/*Observation&#8203;/99d607dd-a4b8-4aef-9148-e9c0611aaa42*&#8203;/&#8203;.status (l546&#8203;/c29)</b></td><td><b>error</b></td><td><b>The System URI could not be determined for the code 'completed' in the ValueSet 'http://hl7.org/fhir/ValueSet/observation-status|4.0.1'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">UNABLE_TO_INFER_CODESYSTEM</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[9]&#8203;.resource&#8203;/*Observation&#8203;/99d607dd-a4b8-4aef-9148-e9c0611aaa42*&#8203;/&#8203;.status (l546&#8203;/c29)</b></td><td><b>error</b></td><td><b>The value provided ('completed') was not found in the value set 'ObservationStatus' (http://hl7.org/fhir/ValueSet/observation-status|4.0.1), and a code is required from this value set  (error message = The System URI could not be determined for the code 'completed' in the ValueSet 'http://hl7.org/fhir/ValueSet/observation-status|4.0.1'; The provided code '#completed' was not found in the value set 'http://hl7.org/fhir/ValueSet/observation-status|4.0.1')</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Terminology_TX_NoValid_16</span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>Bundle&#8203;.entry[9]&#8203;.resource&#8203;/*Observation&#8203;/99d607dd-a4b8-4aef-9148-e9c0611aaa42*&#8203;/&#8203;.code&#8203;.coding[0] (l547&#8203;/c8)</b></td><td><b>warning</b></td><td><b>Coding has no system. A code with no system has no defined meaning, and it cannot be validated. A system should be provided</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Coding_has_no_system__cannot_validate</span></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b><a href="">Bundle&#8203;.entry[9]&#8203;.resource&#8203;/*Observation&#8203;/99d607dd-a4b8-4aef-9148-e9c0611aaa42*&#8203;/&#8203;.subject (l553&#8203;/c8)</a></b></td><td><b>Slicing Information</b></td><td><b>Details for urn:uuid:35f40549-4a0a-4eeb-a70d-9b2db3e93e3a matching against profile http://hl7.org/fhir/StructureDefinition/Patient|4.0.1</b> <span id="sl363" class="flip" onclick="flip('l363')">Show Reasoning</span><div id="l363" style="display: none"><p>&nbsp;</p><ul><li>Bundle.entry[1].resource/*Patient/35f40549-4a0a-4eeb-a70d-9b2db3e93e3a*/.telecom[0]: Constraint failed: cpt-2: 'A system is required if a value is provided. (value.empty() or system.exists())'</li>, <li>Bundle.entry[1].resource/*Patient/35f40549-4a0a-4eeb-a70d-9b2db3e93e3a*/.telecom[1]: Constraint failed: cpt-2: 'A system is required if a value is provided. (value.empty() or system.exists())'</li></ul></div> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Details_for__matching_against_Profile_</span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>Bundle&#8203;.entry[10]&#8203;.resource&#8203;/*Observation&#8203;/c66dead7-ef85-4c32-b4f1-5d72319b83e3*&#8203;/ (l564&#8203;/c6)</b></td><td><b>warning</b></td><td><b>Best Practice Recommendation: In general, all observations should have a performer</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">All_observations_should_have_a_performer</span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>Bundle&#8203;.entry[10]&#8203;.resource&#8203;/*Observation&#8203;/c66dead7-ef85-4c32-b4f1-5d72319b83e3*&#8203;/ (l564&#8203;/c6)</b></td><td><b>warning</b></td><td><b>Best Practice Recommendation: In general, all observations should have an effective[x] ()</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">All_observations_should_have_an_effectiveDateTime_or_an_effectivePeriod</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[10]&#8203;.resource&#8203;/*Observation&#8203;/c66dead7-ef85-4c32-b4f1-5d72319b83e3*&#8203;/&#8203;.status (l567&#8203;/c29)</b></td><td><b>error</b></td><td><b>The System URI could not be determined for the code 'completed' in the ValueSet 'http://hl7.org/fhir/ValueSet/observation-status|4.0.1'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">UNABLE_TO_INFER_CODESYSTEM</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle&#8203;.entry[10]&#8203;.resource&#8203;/*Observation&#8203;/c66dead7-ef85-4c32-b4f1-5d72319b83e3*&#8203;/&#8203;.status (l567&#8203;/c29)</b></td><td><b>error</b></td><td><b>The value provided ('completed') was not found in the value set 'ObservationStatus' (http://hl7.org/fhir/ValueSet/observation-status|4.0.1), and a code is required from this value set  (error message = The System URI could not be determined for the code 'completed' in the ValueSet 'http://hl7.org/fhir/ValueSet/observation-status|4.0.1'; The provided code '#completed' was not found in the value set 'http://hl7.org/fhir/ValueSet/observation-status|4.0.1')</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Terminology_TX_NoValid_16</span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>Bundle&#8203;.entry[10]&#8203;.resource&#8203;/*Observation&#8203;/c66dead7-ef85-4c32-b4f1-5d72319b83e3*&#8203;/&#8203;.code&#8203;.coding[0] (l568&#8203;/c8)</b></td><td><b>warning</b></td><td><b>Coding has no system. A code with no system has no defined meaning, and it cannot be validated. A system should be provided</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Coding_has_no_system__cannot_validate</span></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b><a href="">Bundle&#8203;.entry[10]&#8203;.resource&#8203;/*Observation&#8203;/c66dead7-ef85-4c32-b4f1-5d72319b83e3*&#8203;/&#8203;.subject (l574&#8203;/c8)</a></b></td><td><b>Slicing Information</b></td><td><b>Details for urn:uuid:35f40549-4a0a-4eeb-a70d-9b2db3e93e3a matching against profile http://hl7.org/fhir/StructureDefinition/Patient|4.0.1</b> <span id="sl369" class="flip" onclick="flip('l369')">Show Reasoning</span><div id="l369" style="display: none"><p>&nbsp;</p><ul><li>Bundle.entry[1].resource/*Patient/35f40549-4a0a-4eeb-a70d-9b2db3e93e3a*/.telecom[0]: Constraint failed: cpt-2: 'A system is required if a value is provided. (value.empty() or system.exists())'</li>, <li>Bundle.entry[1].resource/*Patient/35f40549-4a0a-4eeb-a70d-9b2db3e93e3a*/.telecom[1]: Constraint failed: cpt-2: 'A system is required if a value is provided. (value.empty() or system.exists())'</li></ul></div> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Details_for__matching_against_Profile_</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle (l1/c2)</b></td><td><b>error</b></td><td><b>Constraint failed: bdl-9: 'A document must have an identifier with a system and a value (type = 'document' implies (identifier.system.exists() and identifier.value.exists()))'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">http://hl7.org/fhir/StructureDefinition/Bundle#bdl-9</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Bundle (l1/c2)</b></td><td><b>error</b></td><td><b>Constraint failed: bdl-10: 'A document must have a date (type = 'document' implies (timestamp.hasValue()))'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">http://hl7.org/fhir/StructureDefinition/Bundle#bdl-10</span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>Bundle.entry[8].resource (l522/c6)</b></td><td><b>warning</b></td><td><b>Best Practice Recommendation: In general, all observations should have a performer</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">All_observations_should_have_a_performer</span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>Bundle.entry[8].resource (l522/c6)</b></td><td><b>warning</b></td><td><b>Best Practice Recommendation: In general, all observations should have an effective[x] ()</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">All_observations_should_have_an_effectiveDateTime_or_an_effectivePeriod</span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>Bundle.entry[9].resource (l543/c6)</b></td><td><b>warning</b></td><td><b>Best Practice Recommendation: In general, all observations should have a performer</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">All_observations_should_have_a_performer</span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>Bundle.entry[9].resource (l543/c6)</b></td><td><b>warning</b></td><td><b>Best Practice Recommendation: In general, all observations should have an effective[x] ()</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">All_observations_should_have_an_effectiveDateTime_or_an_effectivePeriod</span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>Bundle.entry[10].resource (l564/c6)</b></td><td><b>warning</b></td><td><b>Best Practice Recommendation: In general, all observations should have a performer</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">All_observations_should_have_a_performer</span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>Bundle.entry[10].resource (l564/c6)</b></td><td><b>warning</b></td><td><b>Best Practice Recommendation: In general, all observations should have an effective[x] ()</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">All_observations_should_have_an_effectiveDateTime_or_an_effectivePeriod</span></td>
+   </tr>
+</table>
 <a name="suppressed"> </a>
 <p><b>Suppressed Messages (Warnings, hints, broken links)</b></p>
 <p><b>Have verified that these examples are being checked against the expected profiles/resources.</b></p><ul>
@@ -744,6 +1386,64 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
 <a name="sorted"> </a>
 <p><b>Errors sorted by type</b></p>
 <hr/>
+<a name="All_observations_should_have_a_performer"> </a>
+<h2>All_observations_should_have_a_performer</h2>
+ <table class="grid">
+   <tr style="background-color: #fff4ee">
+     <td><a href="Bundle-aad5cc88-a2b2-4688-9906-195073d66064.html">input/resources/fr-CSE-MDE_1obs-result.json</a></td><td><b>Best Practice Recommendation: In general, all observations should have a performer</b></td>
+   </tr>
+   <tr style="background-color: #fff4ee">
+     <td><a href="Bundle-aad5cc88-a2b2-4688-9906-195073d66064.html">input/resources/fr-CSE-MDE_1obs-result.json</a></td><td><b>Best Practice Recommendation: In general, all observations should have a performer</b></td>
+   </tr>
+   <tr style="background-color: #fff4ee">
+     <td><a href="Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.html">input/resources/fr-CSE-MDE_2023.01-result.json</a></td><td><b>Best Practice Recommendation: In general, all observations should have a performer</b></td>
+   </tr>
+   <tr style="background-color: #fff4ee">
+     <td><a href="Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.html">input/resources/fr-CSE-MDE_2023.01-result.json</a></td><td><b>Best Practice Recommendation: In general, all observations should have a performer</b></td>
+   </tr>
+   <tr style="background-color: #fff4ee">
+     <td><a href="Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.html">input/resources/fr-CSE-MDE_2023.01-result.json</a></td><td><b>Best Practice Recommendation: In general, all observations should have a performer</b></td>
+   </tr>
+   <tr style="background-color: #fff4ee">
+     <td><a href="Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.html">input/resources/fr-CSE-MDE_2023.01-result.json</a></td><td><b>Best Practice Recommendation: In general, all observations should have a performer</b></td>
+   </tr>
+   <tr style="background-color: #fff4ee">
+     <td><a href="Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.html">input/resources/fr-CSE-MDE_2023.01-result.json</a></td><td><b>Best Practice Recommendation: In general, all observations should have a performer</b></td>
+   </tr>
+   <tr style="background-color: #fff4ee">
+     <td><a href="Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.html">input/resources/fr-CSE-MDE_2023.01-result.json</a></td><td><b>Best Practice Recommendation: In general, all observations should have a performer</b></td>
+   </tr>
+</table>
+<hr/>
+<a name="All_observations_should_have_an_effectiveDateTime_or_an_effectivePeriod"> </a>
+<h2>All_observations_should_have_an_effectiveDateTime_or_an_effectivePeriod</h2>
+ <table class="grid">
+   <tr style="background-color: #fff4ee">
+     <td><a href="Bundle-aad5cc88-a2b2-4688-9906-195073d66064.html">input/resources/fr-CSE-MDE_1obs-result.json</a></td><td><b>Best Practice Recommendation: In general, all observations should have an effective[x] ()</b></td>
+   </tr>
+   <tr style="background-color: #fff4ee">
+     <td><a href="Bundle-aad5cc88-a2b2-4688-9906-195073d66064.html">input/resources/fr-CSE-MDE_1obs-result.json</a></td><td><b>Best Practice Recommendation: In general, all observations should have an effective[x] ()</b></td>
+   </tr>
+   <tr style="background-color: #fff4ee">
+     <td><a href="Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.html">input/resources/fr-CSE-MDE_2023.01-result.json</a></td><td><b>Best Practice Recommendation: In general, all observations should have an effective[x] ()</b></td>
+   </tr>
+   <tr style="background-color: #fff4ee">
+     <td><a href="Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.html">input/resources/fr-CSE-MDE_2023.01-result.json</a></td><td><b>Best Practice Recommendation: In general, all observations should have an effective[x] ()</b></td>
+   </tr>
+   <tr style="background-color: #fff4ee">
+     <td><a href="Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.html">input/resources/fr-CSE-MDE_2023.01-result.json</a></td><td><b>Best Practice Recommendation: In general, all observations should have an effective[x] ()</b></td>
+   </tr>
+   <tr style="background-color: #fff4ee">
+     <td><a href="Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.html">input/resources/fr-CSE-MDE_2023.01-result.json</a></td><td><b>Best Practice Recommendation: In general, all observations should have an effective[x] ()</b></td>
+   </tr>
+   <tr style="background-color: #fff4ee">
+     <td><a href="Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.html">input/resources/fr-CSE-MDE_2023.01-result.json</a></td><td><b>Best Practice Recommendation: In general, all observations should have an effective[x] ()</b></td>
+   </tr>
+   <tr style="background-color: #fff4ee">
+     <td><a href="Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.html">input/resources/fr-CSE-MDE_2023.01-result.json</a></td><td><b>Best Practice Recommendation: In general, all observations should have an effective[x] ()</b></td>
+   </tr>
+</table>
+<hr/>
 <a name="CONCEPTMAP_GROUP_SOURCE_CODE_INVALID"> </a>
 <h2>CONCEPTMAP_GROUP_SOURCE_CODE_INVALID</h2>
  <table class="grid">
@@ -752,27 +1452,75 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
    </tr>
 </table>
 <hr/>
+<a name="Coding_has_no_system__cannot_validate"> </a>
+<h2>Coding_has_no_system__cannot_validate</h2>
+ <table class="grid">
+   <tr style="background-color: #fff4ee">
+     <td><a href="Bundle-aad5cc88-a2b2-4688-9906-195073d66064.html">input/resources/fr-CSE-MDE_1obs-result.json</a></td><td><b>Coding has no system. A code with no system has no defined meaning, and it cannot be validated. A system should be provided</b></td>
+   </tr>
+   <tr style="background-color: #fff4ee">
+     <td><a href="Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.html">input/resources/fr-CSE-MDE_2023.01-result.json</a></td><td><b>Coding has no system. A code with no system has no defined meaning, and it cannot be validated. A system should be provided</b></td>
+   </tr>
+   <tr style="background-color: #fff4ee">
+     <td><a href="Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.html">input/resources/fr-CSE-MDE_2023.01-result.json</a></td><td><b>Coding has no system. A code with no system has no defined meaning, and it cannot be validated. A system should be provided</b></td>
+   </tr>
+   <tr style="background-color: #fff4ee">
+     <td><a href="Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.html">input/resources/fr-CSE-MDE_2023.01-result.json</a></td><td><b>Coding has no system. A code with no system has no defined meaning, and it cannot be validated. A system should be provided</b></td>
+   </tr>
+</table>
+<hr/>
+<a name="Details_for__matching_against_Profile_"> </a>
+<h2>Details_for__matching_against_Profile_</h2>
+ <table class="grid">
+   <tr style="background-color: #fffff2">
+     <td><a href="Bundle-aad5cc88-a2b2-4688-9906-195073d66064.html">input/resources/fr-CSE-MDE_1obs-result.json</a></td><td><b>Details for urn:uuid:714c41f2-70ef-409a-a32d-fbf1fb7b0ad3 matching against profile http://hl7.org/fhir/StructureDefinition/Encounter|4.0.1</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="Bundle-aad5cc88-a2b2-4688-9906-195073d66064.html">input/resources/fr-CSE-MDE_1obs-result.json</a></td><td><b>Details for urn:uuid:9b9a5570-c929-4baf-ad7f-fbcb2a66d4be matching against profile http://hl7.org/fhir/StructureDefinition/Practitioner|4.0.1</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="Bundle-aad5cc88-a2b2-4688-9906-195073d66064.html">input/resources/fr-CSE-MDE_1obs-result.json</a></td><td><b>Details for urn:uuid:2e465c62-9be5-4103-b1f5-6466e85c21fc matching against profile http://hl7.org/fhir/StructureDefinition/Organization|4.0.1</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="Bundle-aad5cc88-a2b2-4688-9906-195073d66064.html">input/resources/fr-CSE-MDE_1obs-result.json</a></td><td><b>Details for urn:uuid:dca867ed-76b8-452a-8cde-2b73ff887ee7 matching against profile http://hl7.org/fhir/StructureDefinition/Practitioner|4.0.1</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="Bundle-aad5cc88-a2b2-4688-9906-195073d66064.html">input/resources/fr-CSE-MDE_1obs-result.json</a></td><td><b>Details for urn:uuid:46ac5fcf-86eb-4a19-ad98-730ef62431b7 matching against profile http://hl7.org/fhir/StructureDefinition/Organization|4.0.1</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="Bundle-aad5cc88-a2b2-4688-9906-195073d66064.html">input/resources/fr-CSE-MDE_1obs-result.json</a></td><td><b>Details for urn:uuid:7de38de8-0328-4319-8e60-ff50ba856531 matching against profile http://hl7.org/fhir/StructureDefinition/Patient|4.0.1</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.html">input/resources/fr-CSE-MDE_2023.01-result.json</a></td><td><b>Details for urn:uuid:a9c1f538-7d76-4588-a7dd-d0628fef70d3 matching against profile http://hl7.org/fhir/StructureDefinition/Encounter|4.0.1</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.html">input/resources/fr-CSE-MDE_2023.01-result.json</a></td><td><b>Details for urn:uuid:c230487c-a77a-42ea-a80e-bd6618539379 matching against profile http://hl7.org/fhir/StructureDefinition/Practitioner|4.0.1</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.html">input/resources/fr-CSE-MDE_2023.01-result.json</a></td><td><b>Details for urn:uuid:55c11a2d-0536-4cdf-95fe-70e42a1d978a matching against profile http://hl7.org/fhir/StructureDefinition/Organization|4.0.1</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.html">input/resources/fr-CSE-MDE_2023.01-result.json</a></td><td><b>Details for urn:uuid:0a274c7b-e610-43e9-ab04-371bff7facd9 matching against profile http://hl7.org/fhir/StructureDefinition/Practitioner|4.0.1</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.html">input/resources/fr-CSE-MDE_2023.01-result.json</a></td><td><b>Details for urn:uuid:6e909256-84ea-42e2-a302-6b78fa4d63f7 matching against profile http://hl7.org/fhir/StructureDefinition/Organization|4.0.1</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.html">input/resources/fr-CSE-MDE_2023.01-result.json</a></td><td><b>Details for urn:uuid:35f40549-4a0a-4eeb-a70d-9b2db3e93e3a matching against profile http://hl7.org/fhir/StructureDefinition/Patient|4.0.1</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.html">input/resources/fr-CSE-MDE_2023.01-result.json</a></td><td><b>Details for urn:uuid:35f40549-4a0a-4eeb-a70d-9b2db3e93e3a matching against profile http://hl7.org/fhir/StructureDefinition/Patient|4.0.1</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.html">input/resources/fr-CSE-MDE_2023.01-result.json</a></td><td><b>Details for urn:uuid:35f40549-4a0a-4eeb-a70d-9b2db3e93e3a matching against profile http://hl7.org/fhir/StructureDefinition/Patient|4.0.1</b></td>
+   </tr>
+</table>
+<hr/>
 <a name="IG_DEPENDENCY_VERSION_WARNING"> </a>
 <h2>IG_DEPENDENCY_VERSION_WARNING</h2>
  <table class="grid">
    <tr style="background-color: #fff4ee">
      <td><a href="index.html">fsh-generated/resources/ImplementationGuide-ans.fhir.fr.mappingcdafhir.json</a></td><td><b>The ImplementationGuide is based on FHIR version 4.0.1 but package hl7.cda.uv.core#2.0.0-sd is based on FHIR version 5.0.0. In general, this version mismatch should be avoided - some tools will try to make this work with variable degrees of success, but others will not even try</b></td>
-   </tr>
-</table>
-<hr/>
-<a name="RESOURCE_CANONICAL_MISMATCH"> </a>
-<h2>RESOURCE_CANONICAL_MISMATCH</h2>
- <table class="grid">
-   <tr style="background-color: #ffeeee">
-     <td><a href="StructureMap-CDAFrMDEToBundle.html">input/fml/CDAFrMDEToBundle.fml</a></td><td><b>Conformance resource /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/input/fml/CDAFrMDEToBundle.fml - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CDAFrMDEToBundle) does not match the URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrMDEToBundle). Use the special-url parameter if you really mean for it not to match</b></td>
-   </tr>
-</table>
-<hr/>
-<a name="RESOURCE_ID_MISMATCH"> </a>
-<h2>RESOURCE_ID_MISMATCH</h2>
- <table class="grid">
-   <tr style="background-color: #ffeeee">
-     <td><a href="StructureMap-CDAFrMDEToBundle.html">input/fml/CDAFrMDEToBundle.fml</a></td><td><b>Resource id/url mismatch: CDAFrMDEToBundle/https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrMDEToBundle</b></td>
    </tr>
 </table>
 <hr/>
@@ -791,16 +1539,10 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
 <h2>SM_DEPENDENT_PARAM_TYPE_MISMATCH</h2>
  <table class="grid">
    <tr style="background-color: #ffeeee">
-     <td><a href="StructureMap-CDAFrMDEToBundle.html">input/fml/CDAFrMDEToBundle.fml</a></td><td><b>The parameter 'cda' refers to the variable 'cda : ClinicalDocument (source)' but its type is 'ClinicalDocument' which is not compatible with the type required for the group 'ClinicalDocumentChEmedMedicationCardDocumentToBundle', which is 'ClinicalDocument' (from map '$this')</b></td>
+     <td><a href="StructureMap-CdaFrMDEToBundle.html">input/fml/CDAFrMDEToBundle.fml</a></td><td><b>The parameter 'src' refers to the variable 'code : http://hl7.org/cda/stds/core/StructureDefinition/CD (source)' but its type is 'CD' which is not compatible with the type required for the group 'CDCodeableConcept', which is 'CD' (from map 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes|0.1.0')</b></td>
    </tr>
    <tr style="background-color: #ffeeee">
-     <td><a href="StructureMap-CDAFrMDEToBundle.html">input/fml/CDAFrMDEToBundle.fml</a></td><td><b>The parameter 'ob' refers to the variable 'ob : http://hl7.org/cda/stds/core/StructureDefinition/Observation (source)' but its type is 'Observation' which is not compatible with the type required for the group 'OrganizerComponentToObservation', which is 'Observation' (from map '$this')</b></td>
-   </tr>
-   <tr style="background-color: #ffeeee">
-     <td><a href="StructureMap-CDAFrMDEToBundle.html">input/fml/CDAFrMDEToBundle.fml</a></td><td><b>The parameter 'src' refers to the variable 'loincCode : CodeableConcept (source)' but its type is 'CD' which is not compatible with the type required for the group 'CDCodeableConcept', which is 'CD' (from map 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes|0.1.0')</b></td>
-   </tr>
-   <tr style="background-color: #ffeeee">
-     <td><a href="StructureMap-CDAFrMDEToBundle.html">input/fml/CDAFrMDEToBundle.fml</a></td><td><b>The parameter 'src' refers to the variable 'ObsValue : null (source)' but its type is 'PQ' which is not compatible with the type required for the group 'PQQuantity', which is 'PQ' (from map 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes|0.1.0')</b></td>
+     <td><a href="StructureMap-CdaFrMDEToBundle.html">input/fml/CDAFrMDEToBundle.fml</a></td><td><b>The parameter 'src' refers to the variable 'value : null (source)' but its type is 'PQ' which is not compatible with the type required for the group 'PQQuantity', which is 'PQ' (from map 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes|0.1.0')</b></td>
    </tr>
    <tr style="background-color: #ffeeee">
      <td><a href="StructureMap-CdaFrToBundle.html">input/fml/CDAFrToBundle.fml</a></td><td><b>The parameter 'src' refers to the variable 'src : INT (source)' but its type is 'INT' which is not compatible with the type required for the group 'INT', which is 'INT' (from map 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes|0.1.0')</b></td>
@@ -813,6 +1555,18 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
    </tr>
    <tr style="background-color: #ffeeee">
      <td><a href="StructureMap-CdaFrToBundle.html">input/fml/CDAFrToBundle.fml</a></td><td><b>The parameter 'src' refers to the variable 'representedOrganization : http://hl7.org/cda/stds/core/StructureDefinition/Organization (source)' but its type is 'CustodianOrganization' which is not compatible with the type required for the group 'ClinicalDocumentOrganization', which is 'CustodianOrganization' (from map 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle|0.1.0')</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="StructureMap-CdaFrToBundle.html">input/fml/CDAFrToBundle.fml</a></td><td><b>The parameter 'src' refers to the variable 'confidentialityCode : http://hl7.org/cda/stds/core/StructureDefinition/CE (source)' but its type is 'CE' which is not compatible with the type required for the group 'ChExtEprConfidentialityCode', which is 'CE' (from map '$this')</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="StructureMap-CdaFrToBundle.html">input/fml/CDAFrToBundle.fml</a></td><td><b>The parameter 'src' refers to the variable 'versionNumber : http://hl7.org/cda/stds/core/StructureDefinition/INT (source)' but its type is 'INT' which is not compatible with the type required for the group 'ChExtEprVersionNumber', which is 'INT' (from map '$this')</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="StructureMap-CdaFrToBundle.html">input/fml/CDAFrToBundle.fml</a></td><td><b>The parameter 'src' refers to the variable 'intendedRecipient : http://hl7.org/cda/stds/core/StructureDefinition/IntendedRecipient (source)' but its type is 'IntendedRecipient' which is not compatible with the type required for the group 'ChExtEprInformationRecipient', which is 'IntendedRecipient' (from map '$this')</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="StructureMap-CdaFrToBundle.html">input/fml/CDAFrToBundle.fml</a></td><td><b>The parameter 'src' refers to the variable 'intendedRecipient : http://hl7.org/cda/stds/core/StructureDefinition/IntendedRecipient (source)' but its type is 'IntendedRecipient' which is not compatible with the type required for the group 'ChExtEprInformationRecipientOrganization', which is 'IntendedRecipient' (from map '$this')</b></td>
    </tr>
    <tr style="background-color: #ffeeee">
      <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/CDAtoFHIRTypes.fml</a></td><td><b>The parameter 'src' refers to the variable 's : http://hl7.org/cda/stds/core/StructureDefinition/IVXB-TS (source)' but its type is 'TS' which is not compatible with the type required for the group 'TSDateTime', which is 'TS' (from map '$this')</b></td>
@@ -858,9 +1612,6 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
 <h2>SM_GROUP_INPUT_NO_TYPE</h2>
  <table class="grid">
    <tr style="background-color: #fff4ee">
-     <td><a href="StructureMap-CDAFrMDEToBundle.html">input/fml/CDAFrMDEToBundle.fml</a></td><td><b>Group SectionMedicationCardSectionContentModule parameter tgt has no type, so the paths cannot be validated</b></td>
-   </tr>
-   <tr style="background-color: #fff4ee">
      <td><a href="StructureMap-CdaFrToBundle.html">input/fml/CDAFrToBundle.fml</a></td><td><b>Group SectionOriginalRepresentation parameter tgt has no type, so the paths cannot be validated</b></td>
    </tr>
    <tr style="background-color: #fff4ee">
@@ -886,9 +1637,6 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
 <a name="SM_ORPHAN_GROUP"> </a>
 <h2>SM_ORPHAN_GROUP</h2>
  <table class="grid">
-   <tr style="background-color: #fffff2">
-     <td><a href="StructureMap-CDAFrMDEToBundle.html">input/fml/CDAFrMDEToBundle.fml</a></td><td><b>The group SectionMedicationCardSectionContentModule is not called successfully from within this mapping script, and does not have types on its inputs, so type verification is not possible</b></td>
-   </tr>
    <tr style="background-color: #fffff2">
      <td><a href="StructureMap-CdaFrToBundle.html">input/fml/CDAFrToBundle.fml</a></td><td><b>The group SectionOriginalRepresentation is not called successfully from within this mapping script, and does not have types on its inputs, so type verification is not possible</b></td>
    </tr>
@@ -916,12 +1664,6 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
 <h2>SM_RULEGROUP_NOT_FOUND</h2>
  <table class="grid">
    <tr style="background-color: #ffeeee">
-     <td><a href="StructureMap-CDAFrMDEToBundle.html">input/fml/CDAFrMDEToBundle.fml</a></td><td><b>The group ClinicalDocumentCompositionFr could not be resolved</b></td>
-   </tr>
-   <tr style="background-color: #ffeeee">
-     <td><a href="StructureMap-CDAFrMDEToBundle.html">input/fml/CDAFrMDEToBundle.fml</a></td><td><b>The group MedicationTreatmentPlanItemEntryContentModule could not be resolved</b></td>
-   </tr>
-   <tr style="background-color: #ffeeee">
      <td><a href="StructureMap-CdaFrToBundle.html">input/fml/CDAFrToBundle.fml</a></td><td><b>The group ClinicalDocumentFrToBundle could not be resolved</b></td>
    </tr>
    <tr style="background-color: #ffeeee">
@@ -939,16 +1681,40 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
 <h2>SM_RULE_SOURCE_UNASSIGNED</h2>
  <table class="grid">
    <tr style="background-color: #fffff2">
-     <td><a href="StructureMap-CDAFrMDEToBundle.html">input/fml/CDAFrMDEToBundle.fml</a></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b></td>
+     <td><a href="StructureMap-CdaFrMDEToBundle.html">input/fml/CDAFrMDEToBundle.fml</a></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b></td>
    </tr>
    <tr style="background-color: #fffff2">
-     <td><a href="StructureMap-CDAFrMDEToBundle.html">input/fml/CDAFrMDEToBundle.fml</a></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b></td>
+     <td><a href="StructureMap-CdaFrMDEToBundle.html">input/fml/CDAFrMDEToBundle.fml</a></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b></td>
    </tr>
    <tr style="background-color: #fffff2">
-     <td><a href="StructureMap-CDAFrMDEToBundle.html">input/fml/CDAFrMDEToBundle.fml</a></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b></td>
+     <td><a href="StructureMap-CdaFrMDEToBundle.html">input/fml/CDAFrMDEToBundle.fml</a></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b></td>
    </tr>
    <tr style="background-color: #fffff2">
-     <td><a href="StructureMap-CDAFrMDEToBundle.html">input/fml/CDAFrMDEToBundle.fml</a></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b></td>
+     <td><a href="StructureMap-CdaFrMDEToBundle.html">input/fml/CDAFrMDEToBundle.fml</a></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="StructureMap-CdaFrMDEToBundle.html">input/fml/CDAFrMDEToBundle.fml</a></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="StructureMap-CdaFrMDEToBundle.html">input/fml/CDAFrMDEToBundle.fml</a></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="StructureMap-CdaFrMDEToBundle.html">input/fml/CDAFrMDEToBundle.fml</a></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="StructureMap-CdaFrMDEToBundle.html">input/fml/CDAFrMDEToBundle.fml</a></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="StructureMap-CdaFrMDEToBundle.html">input/fml/CDAFrMDEToBundle.fml</a></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="StructureMap-CdaFrMDEToBundle.html">input/fml/CDAFrMDEToBundle.fml</a></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="StructureMap-CdaFrMDEToBundle.html">input/fml/CDAFrMDEToBundle.fml</a></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="StructureMap-CdaFrToBundle.html">input/fml/CDAFrToBundle.fml</a></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b></td>
    </tr>
    <tr style="background-color: #fffff2">
      <td><a href="StructureMap-CdaFrToBundle.html">input/fml/CDAFrToBundle.fml</a></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b></td>
@@ -1097,9 +1863,6 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
 <h2>SM_SOURCE_PATH_INVALID</h2>
  <table class="grid">
    <tr style="background-color: #ffeeee">
-     <td><a href="StructureMap-CDAFrMDEToBundle.html">input/fml/CDAFrMDEToBundle.fml</a></td><td><b>The source path ob.statusCode refers to the path Observation.statusCode which is unknown</b></td>
-   </tr>
-   <tr style="background-color: #ffeeee">
      <td><a href="StructureMap-CdaToBundle.html">input/fml/CdaToBundle.fml</a></td><td><b>The source path src.section refers to the path Section.section which is unknown</b></td>
    </tr>
    <tr style="background-color: #ffeeee">
@@ -1119,9 +1882,6 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
 <a name="SM_TARGET_CONTEXT_UNKNOWN"> </a>
 <h2>SM_TARGET_CONTEXT_UNKNOWN</h2>
  <table class="grid">
-   <tr style="background-color: #ffeeee">
-     <td><a href="StructureMap-CDAFrMDEToBundle.html">input/fml/CDAFrMDEToBundle.fml</a></td><td><b>The target context 'reference' is not known at this point</b></td>
-   </tr>
    <tr style="background-color: #ffeeee">
      <td><a href="StructureMap-CdaFrToBundle.html">input/fml/CDAFrToBundle.fml</a></td><td><b>The target context 'reference' is not known at this point</b></td>
    </tr>
@@ -1167,6 +1927,9 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
 <a name="SM_TARGET_TRANSFORM_EXPRESSION_ERROR"> </a>
 <h2>SM_TARGET_TRANSFORM_EXPRESSION_ERROR</h2>
  <table class="grid">
+   <tr style="background-color: #ffeeee">
+     <td><a href="StructureMap-CdaFrMDEToBundle.html">input/fml/CDAFrMDEToBundle.fml</a></td><td><b>The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'sectionTitle' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Composition#Composition.section] (@char 1)</b></td>
+   </tr>
    <tr style="background-color: #ffeeee">
      <td><a href="StructureMap-CdaFrToBundle.html">input/fml/CDAFrToBundle.fml</a></td><td><b>The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'value' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Binary] (@char 1)</b></td>
    </tr>
@@ -1299,11 +2062,86 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
    </tr>
 </table>
 <hr/>
+<a name="Terminology_TX_NoValid_16"> </a>
+<h2>Terminology_TX_NoValid_16</h2>
+ <table class="grid">
+   <tr style="background-color: #ffeeee">
+     <td><a href="Bundle-aad5cc88-a2b2-4688-9906-195073d66064.html">input/resources/fr-CSE-MDE_1obs-result.json</a></td><td><b>The value provided ('completed') was not found in the value set 'ObservationStatus' (http://hl7.org/fhir/ValueSet/observation-status|4.0.1), and a code is required from this value set  (error message = The System URI could not be determined for the code 'completed' in the ValueSet 'http://hl7.org/fhir/ValueSet/observation-status|4.0.1'; The provided code '#completed' was not found in the value set 'http://hl7.org/fhir/ValueSet/observation-status|4.0.1')</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.html">input/resources/fr-CSE-MDE_2023.01-result.json</a></td><td><b>The value provided ('completed') was not found in the value set 'ObservationStatus' (http://hl7.org/fhir/ValueSet/observation-status|4.0.1), and a code is required from this value set  (error message = The System URI could not be determined for the code 'completed' in the ValueSet 'http://hl7.org/fhir/ValueSet/observation-status|4.0.1'; The provided code '#completed' was not found in the value set 'http://hl7.org/fhir/ValueSet/observation-status|4.0.1')</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.html">input/resources/fr-CSE-MDE_2023.01-result.json</a></td><td><b>The value provided ('completed') was not found in the value set 'ObservationStatus' (http://hl7.org/fhir/ValueSet/observation-status|4.0.1), and a code is required from this value set  (error message = The System URI could not be determined for the code 'completed' in the ValueSet 'http://hl7.org/fhir/ValueSet/observation-status|4.0.1'; The provided code '#completed' was not found in the value set 'http://hl7.org/fhir/ValueSet/observation-status|4.0.1')</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.html">input/resources/fr-CSE-MDE_2023.01-result.json</a></td><td><b>The value provided ('completed') was not found in the value set 'ObservationStatus' (http://hl7.org/fhir/ValueSet/observation-status|4.0.1), and a code is required from this value set  (error message = The System URI could not be determined for the code 'completed' in the ValueSet 'http://hl7.org/fhir/ValueSet/observation-status|4.0.1'; The provided code '#completed' was not found in the value set 'http://hl7.org/fhir/ValueSet/observation-status|4.0.1')</b></td>
+   </tr>
+</table>
+<hr/>
 <a name="Type_Specific_Checks_DT_URL_Resolve"> </a>
 <h2>Type_Specific_Checks_DT_URL_Resolve</h2>
  <table class="grid">
    <tr style="background-color: #ffeeee">
      <td><a href="index.html">fsh-generated/resources/ImplementationGuide-ans.fhir.fr.mappingcdafhir.json</a></td><td><b>No definition could be found for URL value 'http://hl7.org/fhir/tools/StructureDefinition/expansion-parameters'</b></td>
+   </tr>
+   <tr style="background-color: #fff4ee">
+     <td><a href="Bundle-aad5cc88-a2b2-4688-9906-195073d66064.html">input/resources/fr-CSE-MDE_1obs-result.json</a></td><td><b>No definition could be found for URL value 'urn:oid:1.2.250.1.213.1.4.8'</b></td>
+   </tr>
+   <tr style="background-color: #fff4ee">
+     <td><a href="Bundle-aad5cc88-a2b2-4688-9906-195073d66064.html">input/resources/fr-CSE-MDE_1obs-result.json</a></td><td><b>No definition could be found for URL value 'urn:oid:1.2.3.4.5.6.7.8.9.10'</b></td>
+   </tr>
+   <tr style="background-color: #fff4ee">
+     <td><a href="Bundle-aad5cc88-a2b2-4688-9906-195073d66064.html">input/resources/fr-CSE-MDE_1obs-result.json</a></td><td><b>No definition could be found for URL value 'urn:oid:1.2.250.1.213.1.4.8'</b></td>
+   </tr>
+   <tr style="background-color: #fff4ee">
+     <td><a href="Bundle-aad5cc88-a2b2-4688-9906-195073d66064.html">input/resources/fr-CSE-MDE_1obs-result.json</a></td><td><b>No definition could be found for URL value 'urn:oid:1.2.3.4.5.6.7.8.9.10'</b></td>
+   </tr>
+   <tr style="background-color: #fff4ee">
+     <td><a href="Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.html">input/resources/fr-CSE-MDE_2023.01-result.json</a></td><td><b>No definition could be found for URL value 'urn:oid:1.2.250.1.213.1.4.8'</b></td>
+   </tr>
+   <tr style="background-color: #fff4ee">
+     <td><a href="Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.html">input/resources/fr-CSE-MDE_2023.01-result.json</a></td><td><b>No definition could be found for URL value 'urn:oid:1.2.3.4.5.6.7.8.9.10'</b></td>
+   </tr>
+   <tr style="background-color: #fff4ee">
+     <td><a href="Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.html">input/resources/fr-CSE-MDE_2023.01-result.json</a></td><td><b>No definition could be found for URL value 'urn:oid:1.2.250.1.213.1.4.8'</b></td>
+   </tr>
+   <tr style="background-color: #fff4ee">
+     <td><a href="Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.html">input/resources/fr-CSE-MDE_2023.01-result.json</a></td><td><b>No definition could be found for URL value 'urn:oid:1.2.3.4.5.6.7.8.9.10'</b></td>
+   </tr>
+</table>
+<hr/>
+<a name="UNABLE_TO_INFER_CODESYSTEM"> </a>
+<h2>UNABLE_TO_INFER_CODESYSTEM</h2>
+ <table class="grid">
+   <tr style="background-color: #ffeeee">
+     <td><a href="Bundle-aad5cc88-a2b2-4688-9906-195073d66064.html">input/resources/fr-CSE-MDE_1obs-result.json</a></td><td><b>The System URI could not be determined for the code 'completed' in the ValueSet 'http://hl7.org/fhir/ValueSet/observation-status|4.0.1'</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.html">input/resources/fr-CSE-MDE_2023.01-result.json</a></td><td><b>The System URI could not be determined for the code 'completed' in the ValueSet 'http://hl7.org/fhir/ValueSet/observation-status|4.0.1'</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.html">input/resources/fr-CSE-MDE_2023.01-result.json</a></td><td><b>The System URI could not be determined for the code 'completed' in the ValueSet 'http://hl7.org/fhir/ValueSet/observation-status|4.0.1'</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.html">input/resources/fr-CSE-MDE_2023.01-result.json</a></td><td><b>The System URI could not be determined for the code 'completed' in the ValueSet 'http://hl7.org/fhir/ValueSet/observation-status|4.0.1'</b></td>
+   </tr>
+</table>
+<hr/>
+<a name="UNKNOWN_CODESYSTEM"> </a>
+<h2>UNKNOWN_CODESYSTEM</h2>
+ <table class="grid">
+   <tr style="background-color: #fff4ee">
+     <td><a href="Bundle-aad5cc88-a2b2-4688-9906-195073d66064.html">input/resources/fr-CSE-MDE_1obs-result.json</a></td><td><b>A definition for CodeSystem 'https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203' could not be found, so the code cannot be validated</b></td>
+   </tr>
+   <tr style="background-color: #fff4ee">
+     <td><a href="Bundle-aad5cc88-a2b2-4688-9906-195073d66064.html">input/resources/fr-CSE-MDE_1obs-result.json</a></td><td><b>A definition for CodeSystem 'https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203' could not be found, so the code cannot be validated</b></td>
+   </tr>
+   <tr style="background-color: #fff4ee">
+     <td><a href="Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.html">input/resources/fr-CSE-MDE_2023.01-result.json</a></td><td><b>A definition for CodeSystem 'https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203' could not be found, so the code cannot be validated</b></td>
+   </tr>
+   <tr style="background-color: #fff4ee">
+     <td><a href="Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.html">input/resources/fr-CSE-MDE_2023.01-result.json</a></td><td><b>A definition for CodeSystem 'https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203' could not be found, so the code cannot be validated</b></td>
    </tr>
 </table>
 <hr/>
@@ -1339,6 +2177,24 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
    </tr>
    <tr style="background-color: #ffeeee">
      <td><a href="StructureMap-CdaToFHIRTypes.html">input/fml/CDAtoFHIRTypes.fml</a></td><td><b>StructureMap.group.rule: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/StructureMap|4.0.1)</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="Bundle-aad5cc88-a2b2-4688-9906-195073d66064.html">input/resources/fr-CSE-MDE_1obs-result.json</a></td><td><b>Composition.date: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/Composition|4.0.1)</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="Bundle-aad5cc88-a2b2-4688-9906-195073d66064.html">input/resources/fr-CSE-MDE_1obs-result.json</a></td><td><b>Encounter.status: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/Encounter|4.0.1)</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="Bundle-aad5cc88-a2b2-4688-9906-195073d66064.html">input/resources/fr-CSE-MDE_1obs-result.json</a></td><td><b>Encounter.class: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/Encounter|4.0.1)</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.html">input/resources/fr-CSE-MDE_2023.01-result.json</a></td><td><b>Composition.date: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/Composition|4.0.1)</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.html">input/resources/fr-CSE-MDE_2023.01-result.json</a></td><td><b>Encounter.status: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/Encounter|4.0.1)</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d.html">input/resources/fr-CSE-MDE_2023.01-result.json</a></td><td><b>Encounter.class: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/Encounter|4.0.1)</b></td>
    </tr>
 </table>
 </body>

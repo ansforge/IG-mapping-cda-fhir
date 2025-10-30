@@ -21,7 +21,7 @@
   fhir:name [ fhir:v "CDA2FHIRMAP"] ; # 
   fhir:title [ fhir:v "POC - Mapping CDA to FHIR"] ; # 
   fhir:status [ fhir:v "draft"] ; # 
-  fhir:date [ fhir:v "2025-10-30T13:05:17+00:00"^^xsd:dateTime] ; # 
+  fhir:date [ fhir:v "2025-10-30T16:35:25+00:00"^^xsd:dateTime] ; # 
   fhir:publisher [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"] ; # 
   fhir:contact ( [
      fhir:name [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris" ] ;
@@ -1461,6 +1461,46 @@
          ] ;
          fhir:value [
            a fhir:String ;
+           fhir:v "Bundle"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/Bundle/1812b285-b1e2-40a6-a4cf-0463aff4c82d> ;
+         fhir:reference [ fhir:v "Bundle/1812b285-b1e2-40a6-a4cf-0463aff4c82d" ]
+       ] ;
+       fhir:name [ fhir:v "1812b285-b1e2-40a6-a4cf-0463aff4c82d" ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v false
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Bundle"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/Bundle/aad5cc88-a2b2-4688-9906-195073d66064> ;
+         fhir:reference [ fhir:v "Bundle/aad5cc88-a2b2-4688-9906-195073d66064" ]
+       ] ;
+       fhir:name [ fhir:v "aad5cc88-a2b2-4688-9906-195073d66064" ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v false
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
            fhir:v "ConceptMap"
          ]
        ] ) ;
@@ -1486,11 +1526,11 @@
          ]
        ] ) ;
        fhir:reference [
-         fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CDAFrMDEToBundle> ;
-         fhir:reference [ fhir:v "StructureMap/CDAFrMDEToBundle" ]
+         fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrMDEToBundle> ;
+         fhir:reference [ fhir:v "StructureMap/CdaFrMDEToBundle" ]
        ] ;
-       fhir:name [ fhir:v "Mapping de CDA Mesure de lEnfant vers FHIR Bundle (A partir des sources de Oliver Egger)" ] ;
-       fhir:description [ fhir:v "Mapping de CDA Mesure de lEnfant vers FHIR Bundle (A partir des sources de Oliver Egger)" ]
+       fhir:name [ fhir:v "Mapping CSE-MDE vers FHIR Bundle - Contexte Français" ] ;
+       fhir:description [ fhir:v "Mapping CSE-MDE vers FHIR Bundle - Contexte Français" ]
      ] [
        fhir:extension ( [
          fhir:url [
