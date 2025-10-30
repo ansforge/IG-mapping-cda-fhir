@@ -227,9 +227,15 @@ Le mapping `CdaFrMDEToBundle.fml` est un mapping spécialisé pour les documents
 {
   "resourceType": "Observation",
   "status": "final",
+  "category": [{
+    "coding": [{
+      "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+      "code": "vital-signs"
+    }]
+  }],
   "code": {
     "coding": [{
-      "system": "urn:oid:2.16.840.1.113883.6.1",
+      "system": "http://loinc.org",
       "code": "29463-7",
       "display": "Poids"
     }]
@@ -237,15 +243,60 @@ Le mapping `CdaFrMDEToBundle.fml` est un mapping spécialisé pour les documents
   "subject": {
     "reference": "urn:uuid:..."
   },
+  "effectiveDateTime": "2023-01-06",
   "valueQuantity": {
     "value": 3900,
     "unit": "g",
+    "system": "http://unitsofmeasure.org",
     "code": "g"
   }
 }
 ```
 
-**Note** : Pour plus de détails sur l'historique technique du développement, les problèmes rencontrés et les leçons apprises, consultez le fichier [Notes techniques (claude.md)](claude.html).
+**Améliorations récentes apportées au mapping :**
+
+* ✅ **Ajout de `Observation.category`** : Toutes les observations sont catégorisées comme `vital-signs` conformément au package ANS [ans.fhir.fr.mesures#3.1.0](https://interop.esante.gouv.fr/ig/fhir/mesures/3.1.0/)
+* ✅ **Ajout de `Observation.effectiveDateTime`** : Extrait depuis `effectiveTime` de l'observation CDA (si présent et non `nullFlavor`)
+* ✅ **Correction de `Observation.status`** : Mapping de CDA "completed" vers FHIR "final"
+* ✅ **Ajout du système UCUM aux quantités** : Toutes les `valueQuantity` incluent `system: "http://unitsofmeasure.org"` et `code` en plus de `unit`
+* ✅ **Conversion des codes LOINC** : Système correctement mappé vers `http://loinc.org`
+* ✅ **Ajout de `Encounter.status`** : Défini à `finished` pour les rencontres terminées
+* ✅ **Ajout de `Encounter.class`** : Extrait du code CDA de la rencontre
+* ✅ **Correction de `Patient.birthDate`** : Format date simple conforme FHIR
+* ✅ **Correction de `Composition.confidentiality`** : Code simple au lieu d'objet complexe
+* ✅ **Correction de `attester.time`** : Format dateTime conforme FHIR
+* ✅ **Ajout de `meta.profile`** : Profils ANS ajoutés selon le code LOINC (mesures-fr-observation-body-weight, mesures-fr-observation-bodyheight, mesures-observation-head-circumference)
+
+**Limitations identifiées dans les données CDA source :**
+
+Les exemples CDA fournis présentent certaines limitations qui génèrent des warnings FHIR (non bloquants) :
+
+1. ⚠️ **Absence de timezone sur `Encounter.period`** : Les dates/heures de la rencontre dans le CDA n'incluent pas de timezone
+   ```xml
+   <!-- CDA source -->
+   <effectiveTime>
+     <low value="20250106111510"/>  <!-- Pas de timezone +0100 -->
+     <high value="20250106113623"/> <!-- Pas de timezone +0100 -->
+   </effectiveTime>
+   ```
+   **Impact** : Warning FHIR "If a date has a time, it must have a timezone"
+
+   **Solution** : Ajouter le timezone dans le CDA source (ex: `20250106111510+0100`)
+
+2. ⚠️ **Absence de `Observation.effectiveDateTime`** : Les observations CDA utilisent `nullFlavor="NASK"` (Not Asked)
+   ```xml
+   <!-- CDA source -->
+   <observation>
+     <code code="29463-7" displayName="Poids" codeSystem="2.16.840.1.113883.6.1"/>
+     <effectiveTime nullFlavor="NASK"/>  <!-- Pas de date effective -->
+     <value xsi:type="PQ" value="3900" unit="g"/>
+   </observation>
+   ```
+   **Impact** : Warning FHIR "Best Practice Recommendation: In general, all observations should have an effective[x]"
+
+   **Solution** : Fournir une date/heure effective dans le CDA source (ex: `<effectiveTime value="20230106"/>`)
+
+**Note** : Ces limitations proviennent des données CDA d'exemple et non du mapping FML. Le mapping transforme fidèlement les données CDA disponibles. Pour plus de détails sur l'historique technique du développement, les problèmes rencontrés et les leçons apprises, consultez le fichier [Notes techniques (claude.md)](claude.html).
 
 ### Arrêter et redémarrer
 

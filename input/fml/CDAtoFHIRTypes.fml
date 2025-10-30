@@ -81,8 +81,8 @@ group TSDate(source src : TS, target tgt : date) extends TSInstant <<types>> {
 }
 
 group IVLTSPeriod(source src : IVL_TS, target tgt : Period) extends Any <<types>> {
-  src.low as low -> tgt.start = low;
-  src.high as high -> tgt.end = high;
+  src.low as low -> tgt.start = create('dateTime') as start then TSDateTime(low, start);
+  src.high as high -> tgt.end = create('dateTime') as end then TSDateTime(high, end);
 }
 
 group IVLTSDateTime(source src : IVL_TS, target tgt : dateTime) extends Any <<types>> {
@@ -113,12 +113,12 @@ group CECodeableConcept(source src : CE, target tgt : CodeableConcept) {
   src.originalText as originalText -> tgt.text = originalText "setOriginalText";
   src -> tgt.coding as coding then {
     src.code as code -> coding.code = cast(code, 'string');
-    // src.codeSystem as system -> coding.system = translate(system, 'http://hl7.org/fhir/ConceptMap/special-oid2uri', 'uri');
+    src.codeSystem as system -> coding.system = translate(system, 'http://hl7.org/fhir/ConceptMap/special-oid2uri', 'uri');
     src.displayName as display -> coding.display = cast(display, 'string');
   } "code";
   src.translation as translation -> tgt.coding as coding then {
     translation.code as code -> coding.code = cast(code, 'string');
-    // translation.codeSystem as system -> coding.system = translate(system, 'http://hl7.org/fhir/ConceptMap/special-oid2uri', 'uri');
+    translation.codeSystem as system -> coding.system = translate(system, 'http://hl7.org/fhir/ConceptMap/special-oid2uri', 'uri');
     translation.displayName as display -> coding.display = cast(display, 'string');
   } "translation";
 }
@@ -181,8 +181,9 @@ group TELContactPoint(source src : TEL, target tgt : ContactPoint) {
 }
 
 group PQQuantity(source src : PQ, target tgt : Quantity) {
-  //src.unit as unit -> tgt.code = unit;
   src.unit as unit -> tgt.unit = unit;
+  src.unit as unit -> tgt.code = unit;
+  src.unit as unit -> tgt.system = 'http://unitsofmeasure.org';
   src.value as value -> tgt.value = value;
 }
 
