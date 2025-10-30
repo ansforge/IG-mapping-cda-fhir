@@ -150,8 +150,8 @@ curl -X POST "http://localhost:8080/matchbox/fhir/StructureMap/\$transform?sourc
 
 Le dossier `input/attachments/` contient deux exemples de documents CDA français :
 
-* **[fr-CSE-MDE_1obs.xml](Bundle-fr-CSE-MDE-1obs-result.md)** : Carnet de santé de l'enfant - Mesures (1 observation : Poids)
-* **[fr-CSE-MDE_2023.01.xml](Bundle-fr-CSE-MDE-2023-01-result.md)** : Carnet de santé de l'enfant - Mesures (3 observations : Poids, Taille, Périmètre crânien)
+* **[fr-CSE-MDE_1obs.xml](Bundle-edef0890-a41a-46f3-a5b6-ea5758f820e5.md)** : Carnet de santé de l'enfant - Mesures (1 observation : Poids)
+* **[fr-CSE-MDE_2023.01.xml](Bundle-86be429f-d9df-4810-a817-0e098b4483fd.md)** : Carnet de santé de l'enfant - Mesures (3 observations : Poids, Taille, Périmètre crânien)
 
 #### Résultat attendu
 
@@ -167,8 +167,8 @@ Les transformations CDA-FHIR ont été exécutées avec les résultats suivants 
 
 | | | | | | |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| [fr-CSE-MDE_1obs.xml](Bundle-fr-CSE-MDE-1obs-result.md) | CdaFrMDEToBundle | [fr-CSE-MDE_1obs-result.json](Bundle-fr-CSE-MDE-1obs-result.json.md) | 9 | 1 | ✅ Succès complet |
-| [fr-CSE-MDE_2023.01.xml](Bundle-fr-CSE-MDE-2023-01-result.md) | CdaFrMDEToBundle | [fr-CSE-MDE_2023.01-result.json](Bundle-fr-CSE-MDE-2023-01-result.json.md) | 11 | 3 | ✅ Succès complet |
+| [fr-CSE-MDE_1obs.xml](Bundle-edef0890-a41a-46f3-a5b6-ea5758f820e5.md) | [CdaFrMDEToBundle](StructureMap-CdaFrMDEToBundle.md) | [fr-CSE-MDE_1obs-result.json](Bundle-edef0890-a41a-46f3-a5b6-ea5758f820e5.json.md) | 9 | 1 | ✅ Succès complet |
+| [fr-CSE-MDE_2023.01.xml](Bundle-86be429f-d9df-4810-a817-0e098b4483fd.md) | [CdaFrMDEToBundle](StructureMap-CdaFrMDEToBundle.md) | [fr-CSE-MDE_2023.01-result.json](Bundle-86be429f-d9df-4810-a817-0e098b4483fd.json.md) | 11 | 3 | ✅ Succès complet |
 
 **Détails des transformations :**
 
@@ -185,10 +185,10 @@ Les transformations CDA-FHIR ont été exécutées avec les résultats suivants 
 * 2 Organization (organisations de santé)
 * 1 à 3 Observation(s) selon le document
  
-* **[fr-CSE-MDE_1obs.xml](Bundle-aad5cc88-a2b2-4688-9906-195073d66064)** : 9 ressources 
+* **[fr-CSE-MDE_1obs.xml](Bundle-edef0890-a41a-46f3-a5b6-ea5758f820e5.md)** : 9 ressources 
 * 1 Observation : Poids (code LOINC 29463-7) = 3900 g
  
-* **[fr-CSE-MDE_2023.01.xml](Bundle-1812b285-b1e2-40a6-a4cf-0463aff4c82d)** : 11 ressources 
+* **[fr-CSE-MDE_2023.01.xml](Bundle-86be429f-d9df-4810-a817-0e098b4483fd.md)** : 11 ressources 
 * 3 Observations : 
 * Poids (29463-7) = 3900 g
 * Taille (8302-2) = 52 cm
@@ -293,7 +293,7 @@ Les exemples CDA fournis présentent certaines limitations qui génèrent des wa
 
 **Impact**: Warning FHIR "Best Practice Recommendation: In general, all observations should have an effective[x]"**Solution**: Fournir une date/heure effective dans le CDA source (ex:`<effectiveTime value="20230106"/>`)
 
-**Note** : Ces limitations proviennent des données CDA d'exemple et non du mapping FML. Le mapping transforme fidèlement les données CDA disponibles. Pour plus de détails sur l'historique technique du développement, les problèmes rencontrés et les leçons apprises, consultez le fichier [Notes techniques (claude.md)](claude.md).
+**Note** : Ces limitations proviennent des données CDA d'exemple et non du mapping FML. Le mapping transforme fidèlement les données CDA disponibles.
 
 ### Arrêter et redémarrer
 
@@ -388,7 +388,7 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2025-10-30T20:58:23+00:00",
+  "date" : "2025-10-30T21:07:17+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {

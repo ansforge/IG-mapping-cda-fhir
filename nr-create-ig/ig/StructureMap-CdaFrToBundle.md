@@ -168,7 +168,7 @@ group ClinicalDocumentCompositionFr(source src : ClinicalDocument, target tgt : 
   "name" : "CdaFrToBundle",
   "title" : "Mapping de CDAFr vers FHIR Bundle (A partir des sources de Oliver Egger)",
   "status" : "draft",
-  "date" : "2025-10-30T20:58:23+00:00",
+  "date" : "2025-10-30T21:07:17+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {
