@@ -221,6 +221,7 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
   <li><a href="#guide-de-démarrage-rapide-quick-start" id="markdown-toc-guide-de-démarrage-rapide-quick-start">Guide de démarrage rapide (Quick Start)</a></li>
   <li><a href="#résultats-des-transformations" id="markdown-toc-résultats-des-transformations">Résultats des transformations</a></li>
   <li><a href="#architecture-du-mapping-cdafrmdetobundle" id="markdown-toc-architecture-du-mapping-cdafrmdetobundle">Architecture du mapping CdaFrMDEToBundle</a></li>
+  <li><a href="#difficultés-identifiées-dans-le-mapping-automatique-cda-fhir" id="markdown-toc-difficultés-identifiées-dans-le-mapping-automatique-cda-fhir">Difficultés identifiées dans le mapping automatique CDA-FHIR</a></li>
   <li><a href="#arrêter-et-redémarrer" id="markdown-toc-arrêter-et-redémarrer">Arrêter et redémarrer</a></li>
   <li><a href="#configuration-avancée" id="markdown-toc-configuration-avancée">Configuration avancée</a></li>
   <li><a href="#auteurs-et-contributeurs" id="markdown-toc-auteurs-et-contributeurs">Auteurs et contributeurs</a></li>
@@ -397,7 +398,7 @@ curl <span class="nt">-X</span> POST <span class="s2">"http://localhost:8080/mat
     <tr>
       <td>CSE-MDE_2023.01.xml</td>
       <td><a href="StructureMap-CdaFrMDEToBundle.html">CdaFrMDEToBundle</a></td>
-      <td><a name="l860">​</a><a href="Bundle-fe569e1f-32d4-4ba4-b5ad-88082bf5470a.html">Bundle-fe569e1f-32d4-4ba4-b5ad-88082bf5470a.json</a></td>
+      <td><a name="l864">​</a><a href="Bundle-fe569e1f-32d4-4ba4-b5ad-88082bf5470a.html">Bundle-fe569e1f-32d4-4ba4-b5ad-88082bf5470a.json</a></td>
       <td>11</td>
       <td>3</td>
       <td>✅ Succès complet</td>
@@ -532,6 +533,55 @@ curl <span class="nt">-X</span> POST <span class="s2">"http://localhost:8080/mat
 
 <p><strong>Note</strong> : Ces limitations proviennent des données CDA d'exemple et non du mapping FML. Le mapping transforme fidèlement les données CDA disponibles.</p>
 
+<h3 id="difficultés-identifiées-dans-le-mapping-automatique-cda-fhir">Difficultés identifiées dans le mapping automatique CDA-FHIR</h3>
+
+<p>Le processus de transformation automatique CDA vers FHIR présente certaines difficultés inhérentes aux différences de modélisation entre les deux standards :</p>
+
+<h4 id="1-ambiguïté-sémantique-des-structures-cda">1. Ambiguïté sémantique des structures CDA</h4>
+
+<p><strong>Problème identifié</strong> : <code class="language-plaintext highlighter-rouge">healthCareFacility</code> et <code class="language-plaintext highlighter-rouge">serviceProviderOrganization</code></p>
+
+<p>Dans le CDA, la structure <code class="language-plaintext highlighter-rouge">componentOf &gt; encompassingEncounter &gt; location &gt; healthCareFacility</code> contient :</p>
+<ul>
+  <li>Un <code class="language-plaintext highlighter-rouge">code</code> décrivant le type d'établissement (ex: SA05 "Centre de santé" du TRE_R02-SecteurActivite)</li>
+  <li>Une <code class="language-plaintext highlighter-rouge">location</code> (lieu physique avec adresse)</li>
+  <li>Optionnellement un <code class="language-plaintext highlighter-rouge">serviceProviderOrganization</code> (organisation gestionnaire)</li>
+</ul>
+
+<p><strong>Difficulté de mapping</strong> :</p>
+
+<p>Le code SA05 du <code class="language-plaintext highlighter-rouge">healthCareFacility</code> devrait logiquement être mappé vers :</p>
+<ol>
+  <li>✅ <code class="language-plaintext highlighter-rouge">Location.type</code> - pour indiquer le type de lieu physique</li>
+  <li>❓ <code class="language-plaintext highlighter-rouge">Organization.type:secteurActiviteRASS</code> - pour indiquer le secteur d'activité de l'organisation</li>
+</ol>
+
+<p>Cependant, il existe une <strong>ambiguïté sémantique</strong> :</p>
+<ul>
+  <li>Le <code class="language-plaintext highlighter-rouge">serviceProviderOrganization</code> dans le CDA peut représenter :
+    <ul>
+      <li>L'organisation qui opère directement le centre de santé (dans ce cas, SA05 s'applique bien)</li>
+      <li>Une organisation parente ou gestionnaire différente (dans ce cas, SA05 pourrait ne pas s'appliquer)</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Impact</strong> :</p>
+<ul>
+  <li>Un mapping automatique qui copie systématiquement le code du <code class="language-plaintext highlighter-rouge">healthCareFacility</code> vers l'<code class="language-plaintext highlighter-rouge">Organization</code> peut introduire des <strong>incohérences sémantiques</strong></li>
+  <li>Il n'existe pas de règle universelle dans le CDA pour distinguer ces deux cas</li>
+  <li>Cette ambiguïté nécessite souvent une <strong>analyse contextuelle manuelle</strong> ou des <strong>règles métier spécifiques</strong> au projet</li>
+</ul>
+
+<p><strong>Solutions possibles</strong> :</p>
+<ol>
+  <li><strong>Mapping conservateur</strong> : Ne mapper que vers <code class="language-plaintext highlighter-rouge">Location.type</code> (approche actuelle)</li>
+  <li><strong>Mapping avec hypothèse</strong> : Copier vers <code class="language-plaintext highlighter-rouge">Organization.type</code> en documentant l'hypothèse que le <code class="language-plaintext highlighter-rouge">serviceProviderOrganization</code> est l'établissement lui-même</li>
+  <li><strong>Mapping conditionnel</strong> : Définir des règles métier basées sur le contexte du document (type de document, type d'établissement, etc.)</li>
+</ol>
+
+<p>Cette difficulté illustre que <strong>le mapping CDA-FHIR n'est pas toujours une transformation mécanique 1:1</strong>, mais nécessite parfois des choix d'implémentation basés sur la compréhension du contexte métier.</p>
+
 <h3 id="arrêter-et-redémarrer">Arrêter et redémarrer</h3>
 
 <p>Pour arrêter le conteneur :</p>
@@ -642,25 +692,25 @@ curl <span class="nt">-X</span> POST <span class="s2">"http://localhost:8080/mat
 </div></li>
 <li>The UCUM codes, UCUM table (regardless of format), and UCUM Specification are copyright 1999-2009, Regenstrief Institute, Inc. and the Unified Codes for Units of Measures (UCUM) Organization. All rights reserved. <a href="https://ucum.org/trac/wiki/TermsOfUse">https://ucum.org/trac/wiki/TermsOfUse</a><div onclick="if (document.getElementById('ipp2_2').innerHTML != '') {document.getElementById('ipp_2').innerHTML = document.getElementById('ipp2_2').innerHTML; document.getElementById('ipp2_2').innerHTML = ''}" id="ipp_2" data-fhir="generated"> <span style="cursor: pointer; border: 1px grey solid; background-color: #fcdcb3; padding-left: 3px; padding-right: 3px; color: black">Show Usage</span></div><div style="display: none" id="ipp2_2">
 <ul>
-<li><a href="http://terminology.hl7.org/6.5.0/CodeSystem-v3-ucum.html">Unified Code for Units of Measure (UCUM)</a>: <a href="Bundle-16d1b808-0087-44bc-9a33-ee3775be9bee.html">Bundle/16d1b808-0087-44bc-9a33-ee3775be9bee</a></li>
+<li><a href="http://terminology.hl7.org/6.5.0/CodeSystem-v3-ucum.html">Unified Code for Units of Measure (UCUM)</a>: <a href="Bundle-93b9690f-efa3-4a9e-8bee-e0783831a94e.html">Bundle/93b9690f-efa3-4a9e-8bee-e0783831a94e</a></li>
 </ul>
 </div></li>
 <li>This material contains content from <a href="http://loinc.org">LOINC</a>. LOINC is copyright &copy; 1995-2020, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the <a href="http://loinc.org/license">license</a>. LOINC&reg; is a registered United States trademark of Regenstrief Institute, Inc.<div onclick="if (document.getElementById('ipp2_3').innerHTML != '') {document.getElementById('ipp_3').innerHTML = document.getElementById('ipp2_3').innerHTML; document.getElementById('ipp2_3').innerHTML = ''}" id="ipp_3" data-fhir="generated"> <span style="cursor: pointer; border: 1px grey solid; background-color: #fcdcb3; padding-left: 3px; padding-right: 3px; color: black">Show Usage</span></div><div style="display: none" id="ipp2_3">
 <ul>
-<li><a href="http://terminology.hl7.org/6.5.0/CodeSystem-v3-loinc.html">LOINC</a>: <a href="Bundle-16d1b808-0087-44bc-9a33-ee3775be9bee.html">Bundle/16d1b808-0087-44bc-9a33-ee3775be9bee</a></li>
+<li><a href="http://terminology.hl7.org/6.5.0/CodeSystem-v3-loinc.html">LOINC</a>: <a href="Bundle-93b9690f-efa3-4a9e-8bee-e0783831a94e.html">Bundle/93b9690f-efa3-4a9e-8bee-e0783831a94e</a></li>
 </ul>
 </div></li>
 <li>This material contains content that is copyright of SNOMED International. Implementers of these specifications must have the appropriate SNOMED CT Affiliate license - for more information contact <a href="https://www.snomed.org/get-snomed">https://www.snomed.org/get-snomed</a> or <a href="mailto:info@snomed.org">info@snomed.org</a>.<div onclick="if (document.getElementById('ipp2_4').innerHTML != '') {document.getElementById('ipp_4').innerHTML = document.getElementById('ipp2_4').innerHTML; document.getElementById('ipp2_4').innerHTML = ''}" id="ipp_4" data-fhir="generated"> <span style="cursor: pointer; border: 1px grey solid; background-color: #fcdcb3; padding-left: 3px; padding-right: 3px; color: black">Show Usage</span></div><div style="display: none" id="ipp2_4">
 <ul>
-<li><a href="http://hl7.org/fhir/R4/codesystem-snomedct.html">SNOMED Clinical Terms&amp;reg; (SNOMED CT&amp;reg;)</a>: <a href="Bundle-16d1b808-0087-44bc-9a33-ee3775be9bee.html">Bundle/16d1b808-0087-44bc-9a33-ee3775be9bee</a></li>
+<li><a href="http://hl7.org/fhir/R4/codesystem-snomedct.html">SNOMED Clinical Terms&amp;reg; (SNOMED CT&amp;reg;)</a>: <a href="Bundle-93b9690f-efa3-4a9e-8bee-e0783831a94e.html">Bundle/93b9690f-efa3-4a9e-8bee-e0783831a94e</a></li>
 </ul>
 </div></li>
 <li>This material derives from the HL7 Terminology (THO). THO is copyright &copy;1989+ Health Level Seven International and is made available under the CC0 designation. For more licensing information see: <a href="https://terminology.hl7.org/license.html">https://terminology.hl7.org/license.html</a><div onclick="if (document.getElementById('ipp2_5').innerHTML != '') {document.getElementById('ipp_5').innerHTML = document.getElementById('ipp2_5').innerHTML; document.getElementById('ipp2_5').innerHTML = ''}" id="ipp_5" data-fhir="generated"> <span style="cursor: pointer; border: 1px grey solid; background-color: #fcdcb3; padding-left: 3px; padding-right: 3px; color: black">Show Usage</span></div><div style="display: none" id="ipp2_5">
 <ul>
-<li><a href="http://terminology.hl7.org/6.5.0/CodeSystem-observation-category.html">Observation Category Codes</a>: <a href="Bundle-16d1b808-0087-44bc-9a33-ee3775be9bee.html">Bundle/16d1b808-0087-44bc-9a33-ee3775be9bee</a></li>
-<li><a href="http://terminology.hl7.org/6.5.0/CodeSystem-v2-0203.html">identifierType</a>: <a href="Bundle-16d1b808-0087-44bc-9a33-ee3775be9bee.html">Bundle/16d1b808-0087-44bc-9a33-ee3775be9bee</a></li>
-<li><a href="http://terminology.hl7.org/6.5.0/CodeSystem-v3-ActCode.html">ActCode</a>: <a href="Bundle-16d1b808-0087-44bc-9a33-ee3775be9bee.html">Bundle/16d1b808-0087-44bc-9a33-ee3775be9bee</a></li>
-<li><a href="http://terminology.hl7.org/6.5.0/CodeSystem-v3-RoleCode.html">RoleCode</a>: <a href="Bundle-16d1b808-0087-44bc-9a33-ee3775be9bee.html">Bundle/16d1b808-0087-44bc-9a33-ee3775be9bee</a></li>
+<li><a href="http://terminology.hl7.org/6.5.0/CodeSystem-observation-category.html">Observation Category Codes</a>: <a href="Bundle-93b9690f-efa3-4a9e-8bee-e0783831a94e.html">Bundle/93b9690f-efa3-4a9e-8bee-e0783831a94e</a></li>
+<li><a href="http://terminology.hl7.org/6.5.0/CodeSystem-v2-0203.html">identifierType</a>: <a href="Bundle-93b9690f-efa3-4a9e-8bee-e0783831a94e.html">Bundle/93b9690f-efa3-4a9e-8bee-e0783831a94e</a></li>
+<li><a href="http://terminology.hl7.org/6.5.0/CodeSystem-v3-ActCode.html">ActCode</a>: <a href="Bundle-93b9690f-efa3-4a9e-8bee-e0783831a94e.html">Bundle/93b9690f-efa3-4a9e-8bee-e0783831a94e</a></li>
+<li><a href="http://terminology.hl7.org/6.5.0/CodeSystem-v3-RoleCode.html">RoleCode</a>: <a href="Bundle-93b9690f-efa3-4a9e-8bee-e0783831a94e.html">Bundle/93b9690f-efa3-4a9e-8bee-e0783831a94e</a></li>
 </ul>
 </div></li>
 </ul>
@@ -707,7 +757,7 @@ curl <span class="nt">-X</span> POST <span class="s2">"http://localhost:8080/mat
 
       <div class="inner-wrapper">
         <p>
-          IG &copy; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris</a>.  Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Fri, Oct 31, 2025 16:13+0000">2025-10-31</span>
+          IG &copy; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris</a>.  Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Fri, Oct 31, 2025 16:25+0000">2025-10-31</span>
           <br/>
           <span style="color: var(--footer-highlight-text-color)"></span>
             Liens : <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table des matières</a> |

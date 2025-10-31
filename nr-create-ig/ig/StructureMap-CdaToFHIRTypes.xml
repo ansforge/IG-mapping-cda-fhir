@@ -32,10 +32,11 @@
 <b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#Period" title="Period">http://hl7.org/fhir/StructureDefinition/Period</a><span style="color: navy">&quot; </span><b>alias </b>Period <b>as </b><b>target</b>
 
 <b>group </b>Any<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy">)</span><span style="color: navy"> {
-</span><span style="color: navy">}
+</span>  src<span style="color: navy"><b> -&gt; </b></span>tgt <i>&quot;base&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
 
 </span><b>group </b>II<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>II, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Identifier<span style="color: navy">)</span><b> extends </b>Any<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
-</span>  src.root<b> as </b><span style="color: maroon">r</span><b> where </b>src.extension.exists()<span style="color: navy"><b> -&gt; </b></span>tgt.system = <b>translate</b><span style="color: navy">(</span><span style="color: maroon">r</span><span style="color: navy">, </span><span style="color: blue">'http://hl7.org/fhir/ConceptMap/special-oid2uri'</span><span style="color: navy">, </span><span style="color: blue">'uri'</span><span style="color: navy">)</span> <i>&quot;root1&quot;</i><span style="color: navy">;</span>
+</span>  src.root<b> as </b><span style="color: maroon">r</span><b> where </b>src.extension.exists()<span style="color: navy"><b> -&gt; </b></span>tgt.system = <b>translate</b><span style="color: navy">(</span><span style="color: maroon">r</span><span style="color: navy">, </span><span style="color: blue">'http://hl7.org/fhir/ConceptMap/special-oid2uri'</span><span style="color: navy">, </span><span style="color: blue">'code'</span><span style="color: navy">)</span> <i>&quot;root1&quot;</i><span style="color: navy">;</span>
   src.root<b> as </b><span style="color: maroon">r</span><b> where </b>src.extension.empty() and src.root.matches('[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}')<span style="color: navy"><b> -&gt; </b></span> tgt.system = <span style="color: blue">'urn:ietf:rfc:3986'</span><span style="color: navy">, </span> tgt.value = <span style="color: navy">(</span>'urn:uuid:' + r.lower()<span style="color: navy">)</span> <i>&quot;rootuuid&quot;</i><span style="color: navy">;</span>
   src.root<b> as </b><span style="color: maroon">r</span><b> where </b>src.extension.empty() and src.root.contains('.')<span style="color: navy"><b> -&gt; </b></span> tgt.system = <span style="color: blue">'urn:ietf:rfc:3986'</span><span style="color: navy">, </span> tgt.value = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:oid:'</span><span style="color: navy">, </span><span style="color: maroon">r</span><span style="color: navy">)</span> <i>&quot;rootoid&quot;</i><span style="color: navy">;</span>
   src.extension<b> as </b><span style="color: maroon">e</span><span style="color: navy"><b> -&gt; </b></span>tgt.value = <span style="color: maroon">e</span><span style="color: navy">;</span>
@@ -69,10 +70,12 @@
 <span style="color: navy">}
 
 </span><b>group </b>TSDateTime<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>TS, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>dateTime<span style="color: navy">)</span><b> extends </b>TSInstant<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
-</span><span style="color: navy">}
+</span>  src<span style="color: navy"><b> -&gt; </b></span>tgt <i>&quot;inherit&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
 
 </span><b>group </b>TSDate<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>TS, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>date<span style="color: navy">)</span><b> extends </b>TSInstant<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
-</span><span style="color: navy">}
+</span>  src<span style="color: navy"><b> -&gt; </b></span>tgt <i>&quot;inherit&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
 
 </span><b>group </b>IVLTSPeriod<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>IVL_TS, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Period<span style="color: navy">)</span><b> extends </b>Any<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
 </span>  src.low<b> as </b><span style="color: maroon">low</span><span style="color: navy"><b> -&gt; </b></span>tgt.start = <b>create</b><span style="color: navy">(</span><span style="color: blue">'dateTime'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">start</span><b> then </b>TSDateTime<span style="color: navy">(</span><span style="color: maroon">low</span><span style="color: navy">, </span><span style="color: maroon">start</span><span style="color: navy">)</span><span style="color: navy">;</span>
@@ -88,40 +91,46 @@
 <span style="color: navy">}
 
 </span><b>group </b>EDstring<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>ED, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>string<span style="color: navy">)</span><b> extends </b>STstring<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
-</span><span style="color: navy">}
+</span>  src<span style="color: navy"><b> -&gt; </b></span>tgt <i>&quot;inherit&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
 
 </span><b>group </b>ONstring<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>ON, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>string<span style="color: navy">)</span><b> extends </b>STstring<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
-</span><span style="color: navy">}
+</span>  src<span style="color: navy"><b> -&gt; </b></span>tgt <i>&quot;inherit&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
 
 </span><b>group </b>CSCode<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>CS, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>code<span style="color: navy">)</span><span style="color: navy"> {
 </span>  src.code<b> as </b><span style="color: maroon">c</span><span style="color: navy"><b> -&gt; </b></span>tgt.value = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">c</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span><span style="color: navy">;</span>
 <span style="color: navy">}
 
 </span><b>group </b>CECode<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>CE, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>code<span style="color: navy">)</span><b> extends </b>CSCode<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
-</span><span style="color: navy">}
+</span>  src<span style="color: navy"><b> -&gt; </b></span>tgt <i>&quot;inherit&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
 
 </span><b>group </b>CDCode<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>CD, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>code<span style="color: navy">)</span><b> extends </b>CSCode<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
-</span><span style="color: navy">}
+</span>  src<span style="color: navy"><b> -&gt; </b></span>tgt <i>&quot;inherit&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
 
 </span><b>group </b>CECodeableConcept<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>CE, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>CodeableConcept<span style="color: navy">)</span><span style="color: navy"> {
 </span>  src.originalText<b> as </b><span style="color: maroon">originalText</span><span style="color: navy"><b> -&gt; </b></span>tgt.text = <span style="color: maroon">originalText</span> <i>&quot;setOriginalText&quot;</i><span style="color: navy">;</span>
   src<span style="color: navy"><b> -&gt; </b></span>tgt.coding<b> as </b><span style="color: maroon">coding</span><b> then</b><span style="color: navy"> {
 </span>    src.code<b> as </b><span style="color: maroon">code</span><span style="color: navy"><b> -&gt; </b></span>coding.code = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">code</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span><span style="color: navy">;</span>
-    src.codeSystem<b> as </b><span style="color: maroon">system</span><span style="color: navy"><b> -&gt; </b></span>coding.system = <b>translate</b><span style="color: navy">(</span><span style="color: maroon">system</span><span style="color: navy">, </span><span style="color: blue">'http://hl7.org/fhir/ConceptMap/special-oid2uri'</span><span style="color: navy">, </span><span style="color: blue">'uri'</span><span style="color: navy">)</span><span style="color: navy">;</span>
+    src.codeSystem<b> as </b><span style="color: maroon">system</span><span style="color: navy"><b> -&gt; </b></span>coding.system = <b>translate</b><span style="color: navy">(</span><span style="color: maroon">system</span><span style="color: navy">, </span><span style="color: blue">'http://hl7.org/fhir/ConceptMap/special-oid2uri'</span><span style="color: navy">, </span><span style="color: blue">'code'</span><span style="color: navy">)</span><span style="color: navy">;</span>
     src.displayName<b> as </b><span style="color: maroon">display</span><span style="color: navy"><b> -&gt; </b></span>coding.display = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">display</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span><span style="color: navy">;</span>
   <span style="color: navy">}</span> <i>&quot;code&quot;</i><span style="color: navy">;</span>
   src.translation<b> as </b><span style="color: maroon">translation</span><span style="color: navy"><b> -&gt; </b></span>tgt.coding<b> as </b><span style="color: maroon">coding</span><b> then</b><span style="color: navy"> {
 </span>    translation.code<b> as </b><span style="color: maroon">code</span><span style="color: navy"><b> -&gt; </b></span>coding.code = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">code</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span><span style="color: navy">;</span>
-    translation.codeSystem<b> as </b><span style="color: maroon">system</span><span style="color: navy"><b> -&gt; </b></span>coding.system = <b>translate</b><span style="color: navy">(</span><span style="color: maroon">system</span><span style="color: navy">, </span><span style="color: blue">'http://hl7.org/fhir/ConceptMap/special-oid2uri'</span><span style="color: navy">, </span><span style="color: blue">'uri'</span><span style="color: navy">)</span><span style="color: navy">;</span>
+    translation.codeSystem<b> as </b><span style="color: maroon">system</span><span style="color: navy"><b> -&gt; </b></span>coding.system = <b>translate</b><span style="color: navy">(</span><span style="color: maroon">system</span><span style="color: navy">, </span><span style="color: blue">'http://hl7.org/fhir/ConceptMap/special-oid2uri'</span><span style="color: navy">, </span><span style="color: blue">'code'</span><span style="color: navy">)</span><span style="color: navy">;</span>
     translation.displayName<b> as </b><span style="color: maroon">display</span><span style="color: navy"><b> -&gt; </b></span>coding.display = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">display</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span><span style="color: navy">;</span>
   <span style="color: navy">}</span><span style="color: navy">;</span>
 <span style="color: navy">}
 
 </span><b>group </b>CSCodeableConcept<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>CS, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>CodeableConcept<span style="color: navy">)</span><b> extends </b>CECodeableConcept<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
-</span><span style="color: navy">}
+</span>  src<span style="color: navy"><b> -&gt; </b></span>tgt <i>&quot;inherit&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
 
 </span><b>group </b>CDCodeableConcept<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>CD, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>CodeableConcept<span style="color: navy">)</span><b> extends </b>CECodeableConcept<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
-</span><span style="color: navy">}
+</span>  src<span style="color: navy"><b> -&gt; </b></span>tgt <i>&quot;inherit&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
 
 </span><b>group </b>ENHumanName<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>EN, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>HumanName<span style="color: navy">)</span><span style="color: navy"> {
 </span>  src.item<b> as </b><span style="color: maroon">item</span><b> then</b><span style="color: navy"> {
@@ -134,7 +143,8 @@
 <span style="color: navy">}
 
 </span><b>group </b>PNHumanName<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>PN, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>HumanName<span style="color: navy">)</span><b> extends </b>ENHumanName<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
-</span><span style="color: navy">}
+</span>  src<span style="color: navy"><b> -&gt; </b></span>tgt <i>&quot;inherit&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
 
 </span><b>group </b>ADAddress<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>AD, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Address<span style="color: navy">)</span><span style="color: navy"> {
 </span>  src.item<b> as </b><span style="color: maroon">item</span><b> then</b><span style="color: navy"> {
@@ -190,7 +200,7 @@
   <name value="CdaToFHIRTypes"/>
   <title value="Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)"/>
   <status value="draft"/>
-  <date value="2025-10-31T16:13:56+00:00"/>
+  <date value="2025-10-31T16:25:02+00:00"/>
   <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
   <contact>
     <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
@@ -328,6 +338,16 @@
       <name value="tgt"/>
       <mode value="target"/>
     </input>
+    <rule>
+      <name value="base"/>
+      <source>
+        <context value="src"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+      </target>
+    </rule>
   </group>
   <group>
     <name value="II"/>
@@ -363,7 +383,7 @@
           <valueString value="http://hl7.org/fhir/ConceptMap/special-oid2uri"/>
         </parameter>
         <parameter>
-          <valueString value="uri"/>
+          <valueString value="code"/>
         </parameter>
       </target>
     </rule>
@@ -722,6 +742,16 @@
       <type value="dateTime"/>
       <mode value="target"/>
     </input>
+    <rule>
+      <name value="inherit"/>
+      <source>
+        <context value="src"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+      </target>
+    </rule>
   </group>
   <group>
     <name value="TSDate"/>
@@ -737,6 +767,16 @@
       <type value="date"/>
       <mode value="target"/>
     </input>
+    <rule>
+      <name value="inherit"/>
+      <source>
+        <context value="src"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+      </target>
+    </rule>
   </group>
   <group>
     <name value="IVLTSPeriod"/>
@@ -874,6 +914,16 @@
       <type value="string"/>
       <mode value="target"/>
     </input>
+    <rule>
+      <name value="inherit"/>
+      <source>
+        <context value="src"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+      </target>
+    </rule>
   </group>
   <group>
     <name value="ONstring"/>
@@ -889,6 +939,16 @@
       <type value="string"/>
       <mode value="target"/>
     </input>
+    <rule>
+      <name value="inherit"/>
+      <source>
+        <context value="src"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+      </target>
+    </rule>
   </group>
   <group>
     <name value="CSCode"/>
@@ -938,6 +998,16 @@
       <type value="code"/>
       <mode value="target"/>
     </input>
+    <rule>
+      <name value="inherit"/>
+      <source>
+        <context value="src"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+      </target>
+    </rule>
   </group>
   <group>
     <name value="CDCode"/>
@@ -953,6 +1023,16 @@
       <type value="code"/>
       <mode value="target"/>
     </input>
+    <rule>
+      <name value="inherit"/>
+      <source>
+        <context value="src"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+      </target>
+    </rule>
   </group>
   <group>
     <name value="CECodeableConcept"/>
@@ -1034,7 +1114,7 @@
             <valueString value="http://hl7.org/fhir/ConceptMap/special-oid2uri"/>
           </parameter>
           <parameter>
-            <valueString value="uri"/>
+            <valueString value="code"/>
           </parameter>
         </target>
       </rule>
@@ -1111,7 +1191,7 @@
             <valueString value="http://hl7.org/fhir/ConceptMap/special-oid2uri"/>
           </parameter>
           <parameter>
-            <valueString value="uri"/>
+            <valueString value="code"/>
           </parameter>
         </target>
       </rule>
@@ -1151,6 +1231,16 @@
       <type value="CodeableConcept"/>
       <mode value="target"/>
     </input>
+    <rule>
+      <name value="inherit"/>
+      <source>
+        <context value="src"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+      </target>
+    </rule>
   </group>
   <group>
     <name value="CDCodeableConcept"/>
@@ -1166,6 +1256,16 @@
       <type value="CodeableConcept"/>
       <mode value="target"/>
     </input>
+    <rule>
+      <name value="inherit"/>
+      <source>
+        <context value="src"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+      </target>
+    </rule>
   </group>
   <group>
     <name value="ENHumanName"/>
@@ -1288,6 +1388,16 @@
       <type value="HumanName"/>
       <mode value="target"/>
     </input>
+    <rule>
+      <name value="inherit"/>
+      <source>
+        <context value="src"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+      </target>
+    </rule>
   </group>
   <group>
     <name value="ADAddress"/>

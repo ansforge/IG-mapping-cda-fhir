@@ -44,10 +44,11 @@ uses "http://hl7.org/cda/stds/core/StructureDefinition/IVL-TS" alias IVL_TS as s
 uses "http://hl7.org/fhir/StructureDefinition/Period" alias Period as target
 
 group Any(source src, target tgt) {
+  src -> tgt "base";
 }
 
 group II(source src : II, target tgt : Identifier) extends Any <<types>> {
-  src.root as r where src.extension.exists() -> tgt.system = translate(r, 'http://hl7.org/fhir/ConceptMap/special-oid2uri', 'uri') "root1";
+  src.root as r where src.extension.exists() -> tgt.system = translate(r, 'http://hl7.org/fhir/ConceptMap/special-oid2uri', 'code') "root1";
   src.root as r where src.extension.empty() and src.root.matches('[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}') ->  tgt.system = 'urn:ietf:rfc:3986',  tgt.value = ('urn:uuid:' + r.lower()) "rootuuid";
   src.root as r where src.extension.empty() and src.root.contains('.') ->  tgt.system = 'urn:ietf:rfc:3986',  tgt.value = append('urn:oid:', r) "rootoid";
   src.extension as e -> tgt.value = e;
@@ -81,9 +82,11 @@ group TSInstant(source src : TS, target tgt : instant) extends Any <<types>> {
 }
 
 group TSDateTime(source src : TS, target tgt : dateTime) extends TSInstant <<types>> {
+  src -> tgt "inherit";
 }
 
 group TSDate(source src : TS, target tgt : date) extends TSInstant <<types>> {
+  src -> tgt "inherit";
 }
 
 group IVLTSPeriod(source src : IVL_TS, target tgt : Period) extends Any <<types>> {
@@ -100,9 +103,11 @@ group STstring(source src : ST, target tgt : string) {
 }
 
 group EDstring(source src : ED, target tgt : string) extends STstring <<types>> {
+  src -> tgt "inherit";
 }
 
 group ONstring(source src : ON, target tgt : string) extends STstring <<types>> {
+  src -> tgt "inherit";
 }
 
 group CSCode(source src : CS, target tgt : code) {
@@ -110,29 +115,33 @@ group CSCode(source src : CS, target tgt : code) {
 }
 
 group CECode(source src : CE, target tgt : code) extends CSCode <<types>> {
+  src -> tgt "inherit";
 }
 
 group CDCode(source src : CD, target tgt : code) extends CSCode <<types>> {
+  src -> tgt "inherit";
 }
 
 group CECodeableConcept(source src : CE, target tgt : CodeableConcept) {
   src.originalText as originalText -> tgt.text = originalText "setOriginalText";
   src -> tgt.coding as coding then {
     src.code as code -> coding.code = cast(code, 'string');
-    src.codeSystem as system -> coding.system = translate(system, 'http://hl7.org/fhir/ConceptMap/special-oid2uri', 'uri');
+    src.codeSystem as system -> coding.system = translate(system, 'http://hl7.org/fhir/ConceptMap/special-oid2uri', 'code');
     src.displayName as display -> coding.display = cast(display, 'string');
   } "code";
   src.translation as translation -> tgt.coding as coding then {
     translation.code as code -> coding.code = cast(code, 'string');
-    translation.codeSystem as system -> coding.system = translate(system, 'http://hl7.org/fhir/ConceptMap/special-oid2uri', 'uri');
+    translation.codeSystem as system -> coding.system = translate(system, 'http://hl7.org/fhir/ConceptMap/special-oid2uri', 'code');
     translation.displayName as display -> coding.display = cast(display, 'string');
   };
 }
 
 group CSCodeableConcept(source src : CS, target tgt : CodeableConcept) extends CECodeableConcept <<types>> {
+  src -> tgt "inherit";
 }
 
 group CDCodeableConcept(source src : CD, target tgt : CodeableConcept) extends CECodeableConcept <<types>> {
+  src -> tgt "inherit";
 }
 
 group ENHumanName(source src : EN, target tgt : HumanName) {
@@ -146,6 +155,7 @@ group ENHumanName(source src : EN, target tgt : HumanName) {
 }
 
 group PNHumanName(source src : PN, target tgt : HumanName) extends ENHumanName <<types>> {
+  src -> tgt "inherit";
 }
 
 group ADAddress(source src : AD, target tgt : Address) {
@@ -211,7 +221,7 @@ group RTOPQPQRatio(source src : RTO_PQ_PQ, target tgt : Ratio) {
   "name" : "CdaToFHIRTypes",
   "title" : "Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)",
   "status" : "draft",
-  "date" : "2025-10-31T16:13:56+00:00",
+  "date" : "2025-10-31T16:25:02+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {
@@ -361,6 +371,22 @@ group RTOPQPQRatio(source src : RTO_PQ_PQ, target tgt : Ratio) {
           "name" : "tgt",
           "mode" : "target"
         }
+      ],
+      "rule" : [
+        {
+          "name" : "base",
+          "source" : [
+            {
+              "context" : "src"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "tgt",
+              "contextType" : "variable"
+            }
+          ]
+        }
       ]
     },
     {
@@ -404,7 +430,7 @@ group RTOPQPQRatio(source src : RTO_PQ_PQ, target tgt : Ratio) {
                   "valueString" : "http://hl7.org/fhir/ConceptMap/special-oid2uri"
                 },
                 {
-                  "valueString" : "uri"
+                  "valueString" : "code"
                 }
               ]
             }
@@ -880,6 +906,22 @@ group RTOPQPQRatio(source src : RTO_PQ_PQ, target tgt : Ratio) {
           "type" : "dateTime",
           "mode" : "target"
         }
+      ],
+      "rule" : [
+        {
+          "name" : "inherit",
+          "source" : [
+            {
+              "context" : "src"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "tgt",
+              "contextType" : "variable"
+            }
+          ]
+        }
       ]
     },
     {
@@ -896,6 +938,22 @@ group RTOPQPQRatio(source src : RTO_PQ_PQ, target tgt : Ratio) {
           "name" : "tgt",
           "type" : "date",
           "mode" : "target"
+        }
+      ],
+      "rule" : [
+        {
+          "name" : "inherit",
+          "source" : [
+            {
+              "context" : "src"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "tgt",
+              "contextType" : "variable"
+            }
+          ]
         }
       ]
     },
@@ -1071,6 +1129,22 @@ group RTOPQPQRatio(source src : RTO_PQ_PQ, target tgt : Ratio) {
           "type" : "string",
           "mode" : "target"
         }
+      ],
+      "rule" : [
+        {
+          "name" : "inherit",
+          "source" : [
+            {
+              "context" : "src"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "tgt",
+              "contextType" : "variable"
+            }
+          ]
+        }
       ]
     },
     {
@@ -1087,6 +1161,22 @@ group RTOPQPQRatio(source src : RTO_PQ_PQ, target tgt : Ratio) {
           "name" : "tgt",
           "type" : "string",
           "mode" : "target"
+        }
+      ],
+      "rule" : [
+        {
+          "name" : "inherit",
+          "source" : [
+            {
+              "context" : "src"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "tgt",
+              "contextType" : "variable"
+            }
+          ]
         }
       ]
     },
@@ -1149,6 +1239,22 @@ group RTOPQPQRatio(source src : RTO_PQ_PQ, target tgt : Ratio) {
           "type" : "code",
           "mode" : "target"
         }
+      ],
+      "rule" : [
+        {
+          "name" : "inherit",
+          "source" : [
+            {
+              "context" : "src"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "tgt",
+              "contextType" : "variable"
+            }
+          ]
+        }
       ]
     },
     {
@@ -1165,6 +1271,22 @@ group RTOPQPQRatio(source src : RTO_PQ_PQ, target tgt : Ratio) {
           "name" : "tgt",
           "type" : "code",
           "mode" : "target"
+        }
+      ],
+      "rule" : [
+        {
+          "name" : "inherit",
+          "source" : [
+            {
+              "context" : "src"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "tgt",
+              "contextType" : "variable"
+            }
+          ]
         }
       ]
     },
@@ -1272,7 +1394,7 @@ group RTOPQPQRatio(source src : RTO_PQ_PQ, target tgt : Ratio) {
                       "valueString" : "http://hl7.org/fhir/ConceptMap/special-oid2uri"
                     },
                     {
-                      "valueString" : "uri"
+                      "valueString" : "code"
                     }
                   ]
                 }
@@ -1373,7 +1495,7 @@ group RTOPQPQRatio(source src : RTO_PQ_PQ, target tgt : Ratio) {
                       "valueString" : "http://hl7.org/fhir/ConceptMap/special-oid2uri"
                     },
                     {
-                      "valueString" : "uri"
+                      "valueString" : "code"
                     }
                   ]
                 }
@@ -1424,6 +1546,22 @@ group RTOPQPQRatio(source src : RTO_PQ_PQ, target tgt : Ratio) {
           "type" : "CodeableConcept",
           "mode" : "target"
         }
+      ],
+      "rule" : [
+        {
+          "name" : "inherit",
+          "source" : [
+            {
+              "context" : "src"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "tgt",
+              "contextType" : "variable"
+            }
+          ]
+        }
       ]
     },
     {
@@ -1440,6 +1578,22 @@ group RTOPQPQRatio(source src : RTO_PQ_PQ, target tgt : Ratio) {
           "name" : "tgt",
           "type" : "CodeableConcept",
           "mode" : "target"
+        }
+      ],
+      "rule" : [
+        {
+          "name" : "inherit",
+          "source" : [
+            {
+              "context" : "src"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "tgt",
+              "contextType" : "variable"
+            }
+          ]
         }
       ]
     },
@@ -1602,6 +1756,22 @@ group RTOPQPQRatio(source src : RTO_PQ_PQ, target tgt : Ratio) {
           "name" : "tgt",
           "type" : "HumanName",
           "mode" : "target"
+        }
+      ],
+      "rule" : [
+        {
+          "name" : "inherit",
+          "source" : [
+            {
+              "context" : "src"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "tgt",
+              "contextType" : "variable"
+            }
+          ]
         }
       ]
     },

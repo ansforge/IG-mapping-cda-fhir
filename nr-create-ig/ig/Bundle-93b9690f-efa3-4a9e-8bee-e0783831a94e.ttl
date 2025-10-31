@@ -1,0 +1,787 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <https://loinc.org/rdf/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/Bundle/93b9690f-efa3-4a9e-8bee-e0783831a94e> a fhir:Bundle ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "93b9690f-efa3-4a9e-8bee-e0783831a94e"] ; # 
+  fhir:identifier [
+     fhir:system [
+       fhir:v "urn:ietf:rfc:3986"^^xsd:anyURI ;
+       fhir:l <urn:ietf:rfc:3986>
+     ] ;
+     fhir:value [ fhir:v "urn:oid:1.2.250.1.213.1.1.1.5.2023.1.1" ]
+  ] ; # 
+  fhir:type [ fhir:v "document"] ; # 
+  fhir:timestamp [ fhir:v "2023-01-06T11:36:23+01:00"^^xsd:dateTime] ; # 
+  fhir:entry ( [
+     fhir:fullUrl [
+       fhir:v "urn:uuid:0bc9ef85-abed-4c21-ad19-6be60d395c34"^^xsd:anyURI ;
+       fhir:l <urn:uuid:0bc9ef85-abed-4c21-ad19-6be60d395c34>
+     ] ;
+     fhir:resource ( <urn:uuid:0bc9ef85-abed-4c21-ad19-6be60d395c34> )
+  ] [
+     fhir:fullUrl [
+       fhir:v "urn:uuid:8fdf1e1a-47cc-4f01-a70b-b18e600ae139"^^xsd:anyURI ;
+       fhir:l <urn:uuid:8fdf1e1a-47cc-4f01-a70b-b18e600ae139>
+     ] ;
+     fhir:resource ( <urn:uuid:8fdf1e1a-47cc-4f01-a70b-b18e600ae139> )
+  ] [
+     fhir:fullUrl [
+       fhir:v "urn:uuid:956110fc-359e-481e-a3ee-c8d8c54dd47a"^^xsd:anyURI ;
+       fhir:l <urn:uuid:956110fc-359e-481e-a3ee-c8d8c54dd47a>
+     ] ;
+     fhir:resource ( <urn:uuid:956110fc-359e-481e-a3ee-c8d8c54dd47a> )
+  ] [
+     fhir:fullUrl [
+       fhir:v "urn:uuid:30d2f98a-7013-4567-83dd-62401ae22d9c"^^xsd:anyURI ;
+       fhir:l <urn:uuid:30d2f98a-7013-4567-83dd-62401ae22d9c>
+     ] ;
+     fhir:resource ( <urn:uuid:30d2f98a-7013-4567-83dd-62401ae22d9c> )
+  ] [
+     fhir:fullUrl [
+       fhir:v "urn:uuid:70b7f786-08be-4212-a3ff-4cb462378ee9"^^xsd:anyURI ;
+       fhir:l <urn:uuid:70b7f786-08be-4212-a3ff-4cb462378ee9>
+     ] ;
+     fhir:resource ( <urn:uuid:70b7f786-08be-4212-a3ff-4cb462378ee9> )
+  ] [
+     fhir:fullUrl [
+       fhir:v "urn:uuid:be48d052-868a-42a8-92cc-46341bd554a4"^^xsd:anyURI ;
+       fhir:l <urn:uuid:be48d052-868a-42a8-92cc-46341bd554a4>
+     ] ;
+     fhir:resource ( <urn:uuid:be48d052-868a-42a8-92cc-46341bd554a4> )
+  ] [
+     fhir:fullUrl [
+       fhir:v "urn:uuid:8672de3a-6397-4c95-91ff-563aa7ee441e"^^xsd:anyURI ;
+       fhir:l <urn:uuid:8672de3a-6397-4c95-91ff-563aa7ee441e>
+     ] ;
+     fhir:resource ( <urn:uuid:8672de3a-6397-4c95-91ff-563aa7ee441e> )
+  ] [
+     fhir:fullUrl [
+       fhir:v "urn:uuid:c3c0dd6b-bf15-4add-95bc-3be1d1f98146"^^xsd:anyURI ;
+       fhir:l <urn:uuid:c3c0dd6b-bf15-4add-95bc-3be1d1f98146>
+     ] ;
+     fhir:resource ( <urn:uuid:c3c0dd6b-bf15-4add-95bc-3be1d1f98146> )
+  ] [
+     fhir:fullUrl [
+       fhir:v "urn:uuid:5d7832dd-94d5-40eb-b4b3-972c0dfceb10"^^xsd:anyURI ;
+       fhir:l <urn:uuid:5d7832dd-94d5-40eb-b4b3-972c0dfceb10>
+     ] ;
+     fhir:resource ( <urn:uuid:5d7832dd-94d5-40eb-b4b3-972c0dfceb10> )
+  ] [
+     fhir:fullUrl [
+       fhir:v "urn:uuid:cce25550-15cd-4a7b-a98b-2ac6bfa0847d"^^xsd:anyURI ;
+       fhir:l <urn:uuid:cce25550-15cd-4a7b-a98b-2ac6bfa0847d>
+     ] ;
+     fhir:resource ( <urn:uuid:cce25550-15cd-4a7b-a98b-2ac6bfa0847d> )
+  ] [
+     fhir:fullUrl [
+       fhir:v "urn:uuid:18154128-e5fb-472b-b0d1-b13aca70971c"^^xsd:anyURI ;
+       fhir:l <urn:uuid:18154128-e5fb-472b-b0d1-b13aca70971c>
+     ] ;
+     fhir:resource ( <urn:uuid:18154128-e5fb-472b-b0d1-b13aca70971c> )
+  ] [
+     fhir:fullUrl [
+       fhir:v "urn:uuid:e5faea04-ffdc-4bec-8b44-0fd9066f4600"^^xsd:anyURI ;
+       fhir:l <urn:uuid:e5faea04-ffdc-4bec-8b44-0fd9066f4600>
+     ] ;
+     fhir:resource ( <urn:uuid:e5faea04-ffdc-4bec-8b44-0fd9066f4600> )
+  ] [
+     fhir:fullUrl [
+       fhir:v "urn:uuid:f8cf6d41-fa58-41f5-a342-049eea0c53ee"^^xsd:anyURI ;
+       fhir:l <urn:uuid:f8cf6d41-fa58-41f5-a342-049eea0c53ee>
+     ] ;
+     fhir:resource ( <urn:uuid:f8cf6d41-fa58-41f5-a342-049eea0c53ee> )
+  ] [
+     fhir:fullUrl [
+       fhir:v "urn:uuid:81965025-d5b6-4667-bf48-d9eacb7b5d2d"^^xsd:anyURI ;
+       fhir:l <urn:uuid:81965025-d5b6-4667-bf48-d9eacb7b5d2d>
+     ] ;
+     fhir:resource ( <urn:uuid:81965025-d5b6-4667-bf48-d9eacb7b5d2d> )
+  ] [
+     fhir:fullUrl [
+       fhir:v "urn:uuid:b42d812f-11cf-493e-bbe5-5bfb01d00361"^^xsd:anyURI ;
+       fhir:l <urn:uuid:b42d812f-11cf-493e-bbe5-5bfb01d00361>
+     ] ;
+     fhir:resource ( <urn:uuid:b42d812f-11cf-493e-bbe5-5bfb01d00361> )
+  ] [
+     fhir:fullUrl [
+       fhir:v "urn:uuid:ec17f0af-cac0-4759-aac4-d4707f134324"^^xsd:anyURI ;
+       fhir:l <urn:uuid:ec17f0af-cac0-4759-aac4-d4707f134324>
+     ] ;
+     fhir:resource ( <urn:uuid:ec17f0af-cac0-4759-aac4-d4707f134324> )
+  ] ) . # 
+
+<urn:uuid:0bc9ef85-abed-4c21-ad19-6be60d395c34> a fhir:Composition ;
+  fhir:id [ fhir:v "0bc9ef85-abed-4c21-ad19-6be60d395c34"] ; # 
+  fhir:language [ fhir:v "fr-FR"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div [ fhir:v "<div xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"fr-FR\" lang=\"fr-FR\"><a name=\"Composition_0bc9ef85-abed-4c21-ad19-6be60d395c34\"> </a><p class=\"res-header-id\"><b>Narratif généré : Composition 0bc9ef85-abed-4c21-ad19-6be60d395c34</b></p><a name=\"0bc9ef85-abed-4c21-ad19-6be60d395c34\"> </a><a name=\"hc0bc9ef85-abed-4c21-ad19-6be60d395c34\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Langue : fr-FR</p></div><p><b>identifier</b>: <a href=\"http://terminology.hl7.org/5.5.0/NamingSystem-uri.html\" title=\"As defined by RFC 3986 (http://www.ietf.org/rfc/rfc3986.txt)(with many schemes defined in many RFCs). For OIDs and UUIDs, use the URN form (urn:oid:(note: lowercase) and urn:uuid:). See http://www.ietf.org/rfc/rfc3001.txt and http://www.ietf.org/rfc/rfc4122.txt #xD;#xA;#xD;#xA;This oid is used as an identifier II.root to indicate the the extension is an absolute URI (technically, an IRI). Typically, this is used for OIDs and GUIDs. Note that when this OID is used with OIDs and GUIDs, the II.extension should start with urn:oid or urn:uuid: #xD;#xA;#xD;#xA;Note that this OID is created to aid with interconversion between CDA and FHIR - FHIR uses urn:ietf:rfc:3986 as equivalent to this OID. URIs as identifiers appear more commonly in FHIR.#xD;#xA;#xD;#xA;This OID may also be used in CD.codeSystem.\">Uniform Resource Identifier (URI)</a>/urn:oid:1.2.250.1.213.1.1.1.5.4.2023.1</p><p><b>status</b>: Final</p><p><b>type</b>: <span title=\"Codes :{http://loinc.org 29274-8}\">Mesures de signes vitaux</span></p><p><b>encounter</b>: <a href=\"Bundle-93b9690f-efa3-4a9e-8bee-e0783831a94e.html#urn-uuid-956110fc-359e-481e-a3ee-c8d8c54dd47a\">Encounter : status = finished; class = Ambulatoire (hors établissement) (ActCode#AMB); type = Ambulatoire (hors établissement); period = 2023-01-06 11:15:10+0100 --&gt; 2023-01-06 11:36:23+0100</a></p><p><b>date</b>: 2023-01-06 11:36:23+0100</p><p><b>author</b>: <a href=\"Bundle-93b9690f-efa3-4a9e-8bee-e0783831a94e.html#urn-uuid-be48d052-868a-42a8-92cc-46341bd554a4\">PractitionerRole Médecin - Pédiatrie (SM)</a></p><p><b>title</b>: Carnet de santé de l'enfant - Mesures de l'enfant</p><p><b>confidentiality</b>: normal</p><h3>Attesters</h3><table class=\"grid\"><tr><td style=\"display: none\">-</td><td><b>Mode</b></td><td><b>Time</b></td><td><b>Party</b></td></tr><tr><td style=\"display: none\">*</td><td>Legal</td><td>2023-01-06 11:36:23+0100</td><td><a href=\"Bundle-93b9690f-efa3-4a9e-8bee-e0783831a94e.html#urn-uuid-e5faea04-ffdc-4bec-8b44-0fd9066f4600\">Practitioner Charles MULLER </a></td></tr></table><p><b>custodian</b>: <a href=\"Bundle-93b9690f-efa3-4a9e-8bee-e0783831a94e.html#urn-uuid-f8cf6d41-fa58-41f5-a342-049eea0c53ee\">Organization : identifier = urn:oid:1.2.250.1.71.4.2.2#2801234567; telecom = ph: 0140404022(Work)</a></p><h3>Events</h3><table class=\"grid\"><tr><td style=\"display: none\">-</td><td><b>Code</b></td><td><b>Period</b></td></tr><tr><td style=\"display: none\">*</td><td><span title=\"Codes :{http://snomed.info/sct 11429006}\">consultation</span></td><td>2023-01-06 11:36:23+0100 --&gt; (en cours)</td></tr></table></div>"^^rdf:XMLLiteral ]
+  ] ; # 
+  fhir:identifier [
+     fhir:system [
+       fhir:v "urn:ietf:rfc:3986"^^xsd:anyURI ;
+       fhir:l <urn:ietf:rfc:3986>
+     ] ;
+     fhir:value [ fhir:v "urn:oid:1.2.250.1.213.1.1.1.5.4.2023.1" ]
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:type [
+     fhir:coding ( [
+       a loinc:29274-8 ;
+       fhir:system [
+         fhir:v "http://loinc.org"^^xsd:anyURI ;
+         fhir:l <http://loinc.org>
+       ] ;
+       fhir:code [ fhir:v "29274-8" ] ;
+       fhir:display [ fhir:v "Mesures de signes vitaux" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:l <urn:uuid:8fdf1e1a-47cc-4f01-a70b-b18e600ae139> ;
+     fhir:reference [ fhir:v "urn:uuid:8fdf1e1a-47cc-4f01-a70b-b18e600ae139" ]
+  ] ; # 
+  fhir:encounter [
+     fhir:l <urn:uuid:956110fc-359e-481e-a3ee-c8d8c54dd47a> ;
+     fhir:reference [ fhir:v "urn:uuid:956110fc-359e-481e-a3ee-c8d8c54dd47a" ]
+  ] ; # 
+  fhir:date [ fhir:v "2023-01-06T11:36:23+01:00"^^xsd:dateTime] ; # 
+  fhir:author ( [
+     fhir:l <urn:uuid:be48d052-868a-42a8-92cc-46341bd554a4> ;
+     fhir:reference [ fhir:v "urn:uuid:be48d052-868a-42a8-92cc-46341bd554a4" ]
+  ] ) ; # 
+  fhir:title [ fhir:v "Carnet de santé de l'enfant - Mesures de l'enfant"] ; # 
+  fhir:confidentiality [ fhir:v "N"] ; # 
+  fhir:attester ( [
+     fhir:mode [ fhir:v "legal" ] ;
+     fhir:time [ fhir:v "2023-01-06T11:36:23+01:00"^^xsd:dateTime ] ;
+     fhir:party [
+       fhir:l <urn:uuid:e5faea04-ffdc-4bec-8b44-0fd9066f4600> ;
+       fhir:reference [ fhir:v "urn:uuid:e5faea04-ffdc-4bec-8b44-0fd9066f4600" ]
+     ]
+  ] ) ; # 
+  fhir:custodian [
+     fhir:l <urn:uuid:f8cf6d41-fa58-41f5-a342-049eea0c53ee> ;
+     fhir:reference [ fhir:v "urn:uuid:f8cf6d41-fa58-41f5-a342-049eea0c53ee" ]
+  ] ; # 
+  fhir:event ( [
+     fhir:code ( [
+       fhir:coding ( [
+         a sct:11429006 ;
+         fhir:system [
+           fhir:v "http://snomed.info/sct"^^xsd:anyURI ;
+           fhir:l <http://snomed.info/sct>
+         ] ;
+         fhir:code [ fhir:v "11429006" ] ;
+         fhir:display [ fhir:v "consultation" ]
+       ] )
+     ] ) ;
+     fhir:period [
+       fhir:start [ fhir:v "2023-01-06T11:36:23+01:00"^^xsd:dateTime ]
+     ]
+  ] ) ; # 
+  fhir:section ( [
+     fhir:title [ fhir:v "Signes vitaux" ] ;
+     fhir:code [
+       fhir:coding ( [
+         a loinc:8716-3 ;
+         fhir:system [
+           fhir:v "http://loinc.org"^^xsd:anyURI ;
+           fhir:l <http://loinc.org>
+         ] ;
+         fhir:code [ fhir:v "8716-3" ] ;
+         fhir:display [ fhir:v "Signes vitaux" ]
+       ] )
+     ] ;
+     fhir:entry ( [
+       fhir:l <urn:uuid:81965025-d5b6-4667-bf48-d9eacb7b5d2d> ;
+       fhir:reference [ fhir:v "urn:uuid:81965025-d5b6-4667-bf48-d9eacb7b5d2d" ]
+     ] [
+       fhir:l <urn:uuid:b42d812f-11cf-493e-bbe5-5bfb01d00361> ;
+       fhir:reference [ fhir:v "urn:uuid:b42d812f-11cf-493e-bbe5-5bfb01d00361" ]
+     ] [
+       fhir:l <urn:uuid:ec17f0af-cac0-4759-aac4-d4707f134324> ;
+       fhir:reference [ fhir:v "urn:uuid:ec17f0af-cac0-4759-aac4-d4707f134324" ]
+     ] )
+  ] ) . # 
+
+<urn:uuid:8fdf1e1a-47cc-4f01-a70b-b18e600ae139> a fhir:Patient ;
+  fhir:id [ fhir:v "8fdf1e1a-47cc-4f01-a70b-b18e600ae139"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div [ fhir:v "<div xmlns=\"http://www.w3.org/1999/xhtml\"><a name=\"Patient_8fdf1e1a-47cc-4f01-a70b-b18e600ae139\"> </a><p class=\"res-header-id\"><b>Narratif généré : Patient 8fdf1e1a-47cc-4f01-a70b-b18e600ae139</b></p><a name=\"8fdf1e1a-47cc-4f01-a70b-b18e600ae139\"> </a><a name=\"hc8fdf1e1a-47cc-4f01-a70b-b18e600ae139\"> </a><p style=\"border: 1px #661aff solid; background-color: #e6e6ff; padding: 10px;\">Ruth Isabelle Ruth Ruth DECOURCY  Female, Date de Naissance :2022-12-25 ( NIR définitif)</p><hr/><table class=\"grid\"><tr><td style=\"background-color: #f3f5da\" title=\"Autre identifiant (voir ci-dessus)\">Autre identifiant :</td><td colspan=\"3\">Patient internal identifier/1234567890121</td></tr><tr><td style=\"background-color: #f3f5da\" title=\"Moyens de contacter le Patient\">Coordonnées</td><td colspan=\"3\"><ul><li>ph: 0147150000(Home)</li><li>24 Avenue de Breteuil PARIS 75007 FRANCE </li></ul></td></tr></table></div>"^^rdf:XMLLiteral ]
+  ] ; # 
+  fhir:identifier ( [
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [
+           fhir:v "https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203"^^xsd:anyURI ;
+           fhir:l <https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203>
+         ] ;
+         fhir:code [ fhir:v "INS-NIR" ]
+       ] )
+     ] ;
+     fhir:system [
+       fhir:v "urn:oid:1.2.250.1.213.1.4.8"^^xsd:anyURI ;
+       fhir:l <urn:oid:1.2.250.1.213.1.4.8>
+     ] ;
+     fhir:value [ fhir:v "222127505611201" ]
+  ] [
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [
+           fhir:v "http://terminology.hl7.org/CodeSystem/v2-0203"^^xsd:anyURI ;
+           fhir:l <http://terminology.hl7.org/CodeSystem/v2-0203>
+         ] ;
+         fhir:code [ fhir:v "PI" ]
+       ] )
+     ] ;
+     fhir:system [
+       fhir:v "urn:oid:1.2.3.4.5.6.7.8.9.10"^^xsd:anyURI ;
+       fhir:l <urn:oid:1.2.3.4.5.6.7.8.9.10>
+     ] ;
+     fhir:value [ fhir:v "1234567890121" ]
+  ] ) ; # 
+  fhir:name ( [
+     fhir:family [ fhir:v "DECOURCY" ] ;
+     fhir:given ( [ fhir:v "Ruth Isabelle" ] [ fhir:v "Ruth" ] [ fhir:v "Ruth" ] )
+  ] ) ; # 
+  fhir:telecom ( [
+     fhir:system [ fhir:v "phone" ] ;
+     fhir:value [ fhir:v "0147150000" ] ;
+     fhir:use [ fhir:v "home" ]
+  ] ) ; # 
+  fhir:gender [ fhir:v "female"] ; # 
+  fhir:birthDate [ fhir:v "2022-12-25"^^xsd:date] ; # 
+  fhir:address ( [
+     fhir:line ( [ fhir:v "24" ] [ fhir:v "Avenue de Breteuil" ] ) ;
+     fhir:city [ fhir:v "PARIS" ] ;
+     fhir:postalCode [ fhir:v "75007" ] ;
+     fhir:country [ fhir:v "FRANCE" ]
+  ] ) . # 
+
+<urn:uuid:956110fc-359e-481e-a3ee-c8d8c54dd47a> a fhir:Encounter ;
+  fhir:id [ fhir:v "956110fc-359e-481e-a3ee-c8d8c54dd47a"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div [ fhir:v "<div xmlns=\"http://www.w3.org/1999/xhtml\"><a name=\"Encounter_956110fc-359e-481e-a3ee-c8d8c54dd47a\"> </a><p class=\"res-header-id\"><b>Narratif généré : Venue 956110fc-359e-481e-a3ee-c8d8c54dd47a</b></p><a name=\"956110fc-359e-481e-a3ee-c8d8c54dd47a\"> </a><a name=\"hc956110fc-359e-481e-a3ee-c8d8c54dd47a\"> </a><p><b>status</b>: Finished</p><p><b>class</b>: <a href=\"http://terminology.hl7.org/6.5.0/CodeSystem-v3-ActCode.html#v3-ActCode-AMB\">ActCode: AMB</a> (Ambulatoire (hors établissement))</p><p><b>type</b>: <span title=\"Codes :{http://terminology.hl7.org/CodeSystem/v3-ActCode AMB}\">Ambulatoire (hors établissement)</span></p><p><b>period</b>: 2023-01-06 11:15:10+0100 --&gt; 2023-01-06 11:36:23+0100</p><h3>Locations</h3><table class=\"grid\"><tr><td style=\"display: none\">-</td><td><b>Location</b></td></tr><tr><td style=\"display: none\">*</td><td><a href=\"Bundle-93b9690f-efa3-4a9e-8bee-e0783831a94e.html#urn-uuid-30d2f98a-7013-4567-83dd-62401ae22d9c\">Location : type = Centre de santé</a></td></tr></table></div>"^^rdf:XMLLiteral ]
+  ] ; # 
+  fhir:status [ fhir:v "finished"] ; # 
+  fhir:class [
+     fhir:system [
+       fhir:v "http://terminology.hl7.org/CodeSystem/v3-ActCode"^^xsd:anyURI ;
+       fhir:l <http://terminology.hl7.org/CodeSystem/v3-ActCode>
+     ] ;
+     fhir:code [ fhir:v "AMB" ] ;
+     fhir:display [ fhir:v "Ambulatoire (hors établissement)" ]
+  ] ; # 
+  fhir:type ( [
+     fhir:coding ( [
+       fhir:system [
+         fhir:v "http://terminology.hl7.org/CodeSystem/v3-ActCode"^^xsd:anyURI ;
+         fhir:l <http://terminology.hl7.org/CodeSystem/v3-ActCode>
+       ] ;
+       fhir:code [ fhir:v "AMB" ] ;
+       fhir:display [ fhir:v "Ambulatoire (hors établissement)" ]
+     ] )
+  ] ) ; # 
+  fhir:period [
+     fhir:start [ fhir:v "2023-01-06T11:15:10+01:00"^^xsd:dateTime ] ;
+     fhir:end [ fhir:v "2023-01-06T11:36:23+01:00"^^xsd:dateTime ]
+  ] ; # 
+  fhir:location ( [
+     fhir:location [
+       fhir:l <urn:uuid:30d2f98a-7013-4567-83dd-62401ae22d9c> ;
+       fhir:reference [ fhir:v "urn:uuid:30d2f98a-7013-4567-83dd-62401ae22d9c" ]
+     ]
+  ] ) . # 
+
+<urn:uuid:30d2f98a-7013-4567-83dd-62401ae22d9c> a fhir:Location ;
+  fhir:id [ fhir:v "30d2f98a-7013-4567-83dd-62401ae22d9c"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div [ fhir:v "<div xmlns=\"http://www.w3.org/1999/xhtml\"><a name=\"Location_30d2f98a-7013-4567-83dd-62401ae22d9c\"> </a><p class=\"res-header-id\"><b>Narratif généré : Localisation 30d2f98a-7013-4567-83dd-62401ae22d9c</b></p><a name=\"30d2f98a-7013-4567-83dd-62401ae22d9c\"> </a><a name=\"hc30d2f98a-7013-4567-83dd-62401ae22d9c\"> </a><p><b>type</b>: <span title=\"Codes :{https://mos.esante.gouv.fr/NOS/TRE_R02-SecteurActivite/FHIR/TRE-R02-SecteurActivite SA05}\">Centre de santé</span></p><p><b>address</b>: 3 Rue Petit Pont PARIS 75005 </p></div>"^^rdf:XMLLiteral ]
+  ] ; # 
+  fhir:type ( [
+     fhir:coding ( [
+       fhir:system [
+         fhir:v "https://mos.esante.gouv.fr/NOS/TRE_R02-SecteurActivite/FHIR/TRE-R02-SecteurActivite"^^xsd:anyURI ;
+         fhir:l <https://mos.esante.gouv.fr/NOS/TRE_R02-SecteurActivite/FHIR/TRE-R02-SecteurActivite>
+       ] ;
+       fhir:code [ fhir:v "SA05" ] ;
+       fhir:display [ fhir:v "Centre de santé" ]
+     ] )
+  ] ) ; # 
+  fhir:address [
+     fhir:line ( [ fhir:v "3" ] [ fhir:v "Rue Petit Pont" ] ) ;
+     fhir:city [ fhir:v "PARIS" ] ;
+     fhir:postalCode [ fhir:v "75005" ]
+  ] . # 
+
+<urn:uuid:70b7f786-08be-4212-a3ff-4cb462378ee9> a fhir:Practitioner ;
+  fhir:id [ fhir:v "70b7f786-08be-4212-a3ff-4cb462378ee9"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-practitioner"^^xsd:anyURI ;
+       fhir:l <https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-practitioner>
+     ] )
+  ] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div [ fhir:v "<div xmlns=\"http://www.w3.org/1999/xhtml\"><a name=\"Practitioner_70b7f786-08be-4212-a3ff-4cb462378ee9\"> </a><p class=\"res-header-id\"><b>Narratif généré : Praticien 70b7f786-08be-4212-a3ff-4cb462378ee9</b></p><a name=\"70b7f786-08be-4212-a3ff-4cb462378ee9\"> </a><a name=\"hc70b7f786-08be-4212-a3ff-4cb462378ee9\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\"/><p style=\"margin-bottom: 0px\">Profil: <a href=\"https://interop.esante.gouv.fr/ig/fhir/annuaire/1.1.0/StructureDefinition-as-practitioner.html\">AS Practitioner Profile</a></p></div><p><b>identifier</b>: <code>urn:oid:1.2.250.1.71.4.2.1</code>/801234567897</p><p><b>name</b>: Charles MULLER </p><p><b>telecom</b>: ph: 0140404022(Work)</p><p><b>address</b>: 3 Rue Petit Pont PARIS 75005 </p><blockquote><p><b>qualification</b></p><p><b>code</b>: <span title=\"Codes :{https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale SM40}\">Médecin - Pédiatrie (SM)</span></p></blockquote><blockquote><p><b>qualification</b></p><p><b>code</b>: <span title=\"Codes :{https://mos.esante.gouv.fr/NOS/TRE_G15-ProfessionSante/FHIR/TRE-G15-ProfessionSante 10}\">Médecin</span></p></blockquote></div>"^^rdf:XMLLiteral ]
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [
+       fhir:v "urn:oid:1.2.250.1.71.4.2.1"^^xsd:anyURI ;
+       fhir:l <urn:oid:1.2.250.1.71.4.2.1>
+     ] ;
+     fhir:value [ fhir:v "801234567897" ]
+  ] ) ; # 
+  fhir:name ( [
+     fhir:family [ fhir:v "MULLER" ] ;
+     fhir:given ( [ fhir:v "Charles" ] ) ;
+     fhir:prefix ( [ fhir:v "M" ] ) ;
+     fhir:suffix ( [ fhir:v "DR" ] )
+  ] ) ; # 
+  fhir:telecom ( [
+     fhir:system [ fhir:v "phone" ] ;
+     fhir:value [ fhir:v "0140404022" ] ;
+     fhir:use [ fhir:v "work" ]
+  ] ) ; # 
+  fhir:address ( [
+     fhir:line ( [ fhir:v "3" ] [ fhir:v "Rue Petit Pont" ] ) ;
+     fhir:city [ fhir:v "PARIS" ] ;
+     fhir:postalCode [ fhir:v "75005" ]
+  ] ) ; # 
+  fhir:qualification ( [
+     fhir:code [
+       fhir:coding ( [
+         fhir:system [
+           fhir:v "https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale"^^xsd:anyURI ;
+           fhir:l <https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale>
+         ] ;
+         fhir:code [ fhir:v "SM40" ] ;
+         fhir:display [ fhir:v "Médecin - Pédiatrie (SM)" ]
+       ] )
+     ]
+  ] [
+     fhir:code [
+       fhir:coding ( [
+         fhir:system [
+           fhir:v "https://mos.esante.gouv.fr/NOS/TRE_G15-ProfessionSante/FHIR/TRE-G15-ProfessionSante"^^xsd:anyURI ;
+           fhir:l <https://mos.esante.gouv.fr/NOS/TRE_G15-ProfessionSante/FHIR/TRE-G15-ProfessionSante>
+         ] ;
+         fhir:code [ fhir:v "10" ] ;
+         fhir:display [ fhir:v "Médecin" ]
+       ] )
+     ]
+  ] ) . # 
+
+<urn:uuid:be48d052-868a-42a8-92cc-46341bd554a4> a fhir:PractitionerRole ;
+  fhir:id [ fhir:v "be48d052-868a-42a8-92cc-46341bd554a4"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-practitionerrole"^^xsd:anyURI ;
+       fhir:l <https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-practitionerrole>
+     ] )
+  ] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div [ fhir:v "<div xmlns=\"http://www.w3.org/1999/xhtml\"><a name=\"PractitionerRole_be48d052-868a-42a8-92cc-46341bd554a4\"> </a><p class=\"res-header-id\"><b>Narratif généré : PractitionerRole be48d052-868a-42a8-92cc-46341bd554a4</b></p><a name=\"be48d052-868a-42a8-92cc-46341bd554a4\"> </a><a name=\"hcbe48d052-868a-42a8-92cc-46341bd554a4\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\"/><p style=\"margin-bottom: 0px\">Profil: <a href=\"https://interop.esante.gouv.fr/ig/fhir/annuaire/1.1.0/StructureDefinition-as-practitionerrole.html\">AS PractitionerRole Profile</a></p></div><p><b>practitioner</b>: <a href=\"Bundle-93b9690f-efa3-4a9e-8bee-e0783831a94e.html#urn-uuid-70b7f786-08be-4212-a3ff-4cb462378ee9\">Practitioner Charles MULLER </a></p><p><b>organization</b>: <a href=\"Bundle-93b9690f-efa3-4a9e-8bee-e0783831a94e.html#urn-uuid-8672de3a-6397-4c95-91ff-563aa7ee441e\">Organization : identifier = urn:oid:1.2.250.1.71.4.2.2#2801234567; telecom = ph: 0140404022(Work)</a></p><p><b>code</b>: <span title=\"Codes :{urn:oid:1.2.250.1.213.1.1.4.5 G15_10/SM40}\">Médecin - Pédiatrie (SM)</span></p></div>"^^rdf:XMLLiteral ]
+  ] ; # 
+  fhir:practitioner [
+     fhir:l <urn:uuid:70b7f786-08be-4212-a3ff-4cb462378ee9> ;
+     fhir:reference [ fhir:v "urn:uuid:70b7f786-08be-4212-a3ff-4cb462378ee9" ]
+  ] ; # 
+  fhir:organization [
+     fhir:l <urn:uuid:8672de3a-6397-4c95-91ff-563aa7ee441e> ;
+     fhir:reference [ fhir:v "urn:uuid:8672de3a-6397-4c95-91ff-563aa7ee441e" ]
+  ] ; # 
+  fhir:code ( [
+     fhir:coding ( [
+       fhir:system [
+         fhir:v "urn:oid:1.2.250.1.213.1.1.4.5"^^xsd:anyURI ;
+         fhir:l <urn:oid:1.2.250.1.213.1.1.4.5>
+       ] ;
+       fhir:code [ fhir:v "G15_10/SM40" ] ;
+       fhir:display [ fhir:v "Médecin - Pédiatrie (SM)" ]
+     ] )
+  ] ) . # 
+
+<urn:uuid:8672de3a-6397-4c95-91ff-563aa7ee441e> a fhir:Organization ;
+  fhir:id [ fhir:v "8672de3a-6397-4c95-91ff-563aa7ee441e"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-organization"^^xsd:anyURI ;
+       fhir:l <https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-organization>
+     ] )
+  ] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div [ fhir:v "<div xmlns=\"http://www.w3.org/1999/xhtml\"><a name=\"Organization_8672de3a-6397-4c95-91ff-563aa7ee441e\"> </a><p class=\"res-header-id\"><b>Narratif généré : Organisation 8672de3a-6397-4c95-91ff-563aa7ee441e</b></p><a name=\"8672de3a-6397-4c95-91ff-563aa7ee441e\"> </a><a name=\"hc8672de3a-6397-4c95-91ff-563aa7ee441e\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\"/><p style=\"margin-bottom: 0px\">Profil: <a href=\"https://interop.esante.gouv.fr/ig/fhir/annuaire/1.1.0/StructureDefinition-as-organization.html\">AS Organization Profile</a></p></div><p><b>identifier</b>: <code>urn:oid:1.2.250.1.71.4.2.2</code>/2801234567</p><p><b>telecom</b>: ph: 0140404022(Work)</p><p><b>address</b>: 3 Rue Petit Pont PARIS 75005 </p></div>"^^rdf:XMLLiteral ]
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [
+       fhir:v "urn:oid:1.2.250.1.71.4.2.2"^^xsd:anyURI ;
+       fhir:l <urn:oid:1.2.250.1.71.4.2.2>
+     ] ;
+     fhir:value [ fhir:v "2801234567" ]
+  ] ) ; # 
+  fhir:telecom ( [
+     fhir:system [ fhir:v "phone" ] ;
+     fhir:value [ fhir:v "0140404022" ] ;
+     fhir:use [ fhir:v "work" ]
+  ] ) ; # 
+  fhir:address ( [
+     fhir:line ( [ fhir:v "3" ] [ fhir:v "Rue Petit Pont" ] ) ;
+     fhir:city [ fhir:v "PARIS" ] ;
+     fhir:postalCode [ fhir:v "75005" ]
+  ] ) . # 
+
+<urn:uuid:c3c0dd6b-bf15-4add-95bc-3be1d1f98146> a fhir:RelatedPerson ;
+  fhir:id [ fhir:v "c3c0dd6b-bf15-4add-95bc-3be1d1f98146"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div [ fhir:v "<div xmlns=\"http://www.w3.org/1999/xhtml\"><a name=\"RelatedPerson_c3c0dd6b-bf15-4add-95bc-3be1d1f98146\"> </a><p class=\"res-header-id\"><b>Narratif généré : PersonneEnRelation c3c0dd6b-bf15-4add-95bc-3be1d1f98146</b></p><a name=\"c3c0dd6b-bf15-4add-95bc-3be1d1f98146\"> </a><a name=\"hcc3c0dd6b-bf15-4add-95bc-3be1d1f98146\"> </a><p><b>patient</b>: <a href=\"Bundle-93b9690f-efa3-4a9e-8bee-e0783831a94e.html#urn-uuid-8fdf1e1a-47cc-4f01-a70b-b18e600ae139\">Ruth Isabelle Ruth Ruth DECOURCY  Female, Date de Naissance :2022-12-25 ( NIR définitif)</a></p><p><b>relationship</b>: <span title=\"Codes :{http://terminology.hl7.org/CodeSystem/v3-RoleCode MTH}\">Mère</span></p><p><b>name</b>: Marie DECOURCY </p><p><b>telecom</b>: ph: 0147150000(Home)</p><p><b>address</b>: 24 Avenue de Breteuil 75007 PARIS </p></div>"^^rdf:XMLLiteral ]
+  ] ; # 
+  fhir:patient [
+     fhir:l <urn:uuid:8fdf1e1a-47cc-4f01-a70b-b18e600ae139> ;
+     fhir:reference [ fhir:v "urn:uuid:8fdf1e1a-47cc-4f01-a70b-b18e600ae139" ]
+  ] ; # 
+  fhir:relationship ( [
+     fhir:coding ( [
+       fhir:system [
+         fhir:v "http://terminology.hl7.org/CodeSystem/v3-RoleCode"^^xsd:anyURI ;
+         fhir:l <http://terminology.hl7.org/CodeSystem/v3-RoleCode>
+       ] ;
+       fhir:code [ fhir:v "MTH" ] ;
+       fhir:display [ fhir:v "Mère" ]
+     ] )
+  ] ) ; # 
+  fhir:name ( [
+     fhir:family [ fhir:v "DECOURCY" ] ;
+     fhir:given ( [ fhir:v "Marie" ] ) ;
+     fhir:prefix ( [ fhir:v "MME" ] )
+  ] ) ; # 
+  fhir:telecom ( [
+     fhir:system [ fhir:v "phone" ] ;
+     fhir:value [ fhir:v "0147150000" ] ;
+     fhir:use [ fhir:v "home" ]
+  ] ) ; # 
+  fhir:address ( [
+     fhir:line ( [ fhir:v "24 Avenue de Breteuil" ] [ fhir:v "75007 PARIS" ] )
+  ] ) . # 
+
+<urn:uuid:5d7832dd-94d5-40eb-b4b3-972c0dfceb10> a fhir:RelatedPerson ;
+  fhir:id [ fhir:v "5d7832dd-94d5-40eb-b4b3-972c0dfceb10"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div [ fhir:v "<div xmlns=\"http://www.w3.org/1999/xhtml\"><a name=\"RelatedPerson_5d7832dd-94d5-40eb-b4b3-972c0dfceb10\"> </a><p class=\"res-header-id\"><b>Narratif généré : PersonneEnRelation 5d7832dd-94d5-40eb-b4b3-972c0dfceb10</b></p><a name=\"5d7832dd-94d5-40eb-b4b3-972c0dfceb10\"> </a><a name=\"hc5d7832dd-94d5-40eb-b4b3-972c0dfceb10\"> </a><p><b>patient</b>: <a href=\"Bundle-93b9690f-efa3-4a9e-8bee-e0783831a94e.html#urn-uuid-8fdf1e1a-47cc-4f01-a70b-b18e600ae139\">Ruth Isabelle Ruth Ruth DECOURCY  Female, Date de Naissance :2022-12-25 ( NIR définitif)</a></p><p><b>relationship</b>: <span title=\"Codes :{http://terminology.hl7.org/CodeSystem/v3-RoleCode FTH}\">Père</span></p><p><b>name</b>: Guillaume DECOURCY </p><p><b>telecom</b>: ph: 0147150000(Home)</p><p><b>address</b>: 24 Avenue de Breteuil 75007 PARIS </p></div>"^^rdf:XMLLiteral ]
+  ] ; # 
+  fhir:patient [
+     fhir:l <urn:uuid:8fdf1e1a-47cc-4f01-a70b-b18e600ae139> ;
+     fhir:reference [ fhir:v "urn:uuid:8fdf1e1a-47cc-4f01-a70b-b18e600ae139" ]
+  ] ; # 
+  fhir:relationship ( [
+     fhir:coding ( [
+       fhir:system [
+         fhir:v "http://terminology.hl7.org/CodeSystem/v3-RoleCode"^^xsd:anyURI ;
+         fhir:l <http://terminology.hl7.org/CodeSystem/v3-RoleCode>
+       ] ;
+       fhir:code [ fhir:v "FTH" ] ;
+       fhir:display [ fhir:v "Père" ]
+     ] )
+  ] ) ; # 
+  fhir:name ( [
+     fhir:family [ fhir:v "DECOURCY" ] ;
+     fhir:given ( [ fhir:v "Guillaume" ] ) ;
+     fhir:prefix ( [ fhir:v "M" ] )
+  ] ) ; # 
+  fhir:telecom ( [
+     fhir:system [ fhir:v "phone" ] ;
+     fhir:value [ fhir:v "0147150000" ] ;
+     fhir:use [ fhir:v "home" ]
+  ] ) ; # 
+  fhir:address ( [
+     fhir:line ( [ fhir:v "24 Avenue de Breteuil" ] [ fhir:v "75007 PARIS" ] )
+  ] ) . # 
+
+<urn:uuid:cce25550-15cd-4a7b-a98b-2ac6bfa0847d> a fhir:RelatedPerson ;
+  fhir:id [ fhir:v "cce25550-15cd-4a7b-a98b-2ac6bfa0847d"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div [ fhir:v "<div xmlns=\"http://www.w3.org/1999/xhtml\"><a name=\"RelatedPerson_cce25550-15cd-4a7b-a98b-2ac6bfa0847d\"> </a><p class=\"res-header-id\"><b>Narratif généré : PersonneEnRelation cce25550-15cd-4a7b-a98b-2ac6bfa0847d</b></p><a name=\"cce25550-15cd-4a7b-a98b-2ac6bfa0847d\"> </a><a name=\"hccce25550-15cd-4a7b-a98b-2ac6bfa0847d\"> </a><p><b>patient</b>: <a href=\"Bundle-93b9690f-efa3-4a9e-8bee-e0783831a94e.html#urn-uuid-8fdf1e1a-47cc-4f01-a70b-b18e600ae139\">Ruth Isabelle Ruth Ruth DECOURCY  Female, Date de Naissance :2022-12-25 ( NIR définitif)</a></p><p><b>relationship</b>: <span title=\"Codes :{http://terminology.hl7.org/CodeSystem/v3-RoleCode SIS}\">Soeur</span></p><p><b>name</b>: Sophie DECOURCY </p><p><b>telecom</b>: ph: 0647150100(Mobile)</p></div>"^^rdf:XMLLiteral ]
+  ] ; # 
+  fhir:patient [
+     fhir:l <urn:uuid:8fdf1e1a-47cc-4f01-a70b-b18e600ae139> ;
+     fhir:reference [ fhir:v "urn:uuid:8fdf1e1a-47cc-4f01-a70b-b18e600ae139" ]
+  ] ; # 
+  fhir:relationship ( [
+     fhir:coding ( [
+       fhir:system [
+         fhir:v "http://terminology.hl7.org/CodeSystem/v3-RoleCode"^^xsd:anyURI ;
+         fhir:l <http://terminology.hl7.org/CodeSystem/v3-RoleCode>
+       ] ;
+       fhir:code [ fhir:v "SIS" ] ;
+       fhir:display [ fhir:v "Soeur" ]
+     ] )
+  ] ) ; # 
+  fhir:name ( [
+     fhir:family [ fhir:v "DECOURCY" ] ;
+     fhir:given ( [ fhir:v "Sophie" ] )
+  ] ) ; # 
+  fhir:telecom ( [
+     fhir:system [ fhir:v "phone" ] ;
+     fhir:value [ fhir:v "0647150100" ] ;
+     fhir:use [ fhir:v "mobile" ]
+  ] ) . # 
+
+<urn:uuid:18154128-e5fb-472b-b0d1-b13aca70971c> a fhir:RelatedPerson ;
+  fhir:id [ fhir:v "18154128-e5fb-472b-b0d1-b13aca70971c"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div [ fhir:v "<div xmlns=\"http://www.w3.org/1999/xhtml\"><a name=\"RelatedPerson_18154128-e5fb-472b-b0d1-b13aca70971c\"> </a><p class=\"res-header-id\"><b>Narratif généré : PersonneEnRelation 18154128-e5fb-472b-b0d1-b13aca70971c</b></p><a name=\"18154128-e5fb-472b-b0d1-b13aca70971c\"> </a><a name=\"hc18154128-e5fb-472b-b0d1-b13aca70971c\"> </a><p><b>patient</b>: <a href=\"Bundle-93b9690f-efa3-4a9e-8bee-e0783831a94e.html#urn-uuid-8fdf1e1a-47cc-4f01-a70b-b18e600ae139\">Ruth Isabelle Ruth Ruth DECOURCY  Female, Date de Naissance :2022-12-25 ( NIR définitif)</a></p><p><b>relationship</b>: <span title=\"Codes :{http://terminology.hl7.org/CodeSystem/v3-RoleCode SIS}\">Soeur</span></p><p><b>name</b>: Sophie DECOURCY </p><p><b>telecom</b>: ph: 0647150100(Mobile)</p></div>"^^rdf:XMLLiteral ]
+  ] ; # 
+  fhir:patient [
+     fhir:l <urn:uuid:8fdf1e1a-47cc-4f01-a70b-b18e600ae139> ;
+     fhir:reference [ fhir:v "urn:uuid:8fdf1e1a-47cc-4f01-a70b-b18e600ae139" ]
+  ] ; # 
+  fhir:relationship ( [
+     fhir:coding ( [
+       fhir:system [
+         fhir:v "http://terminology.hl7.org/CodeSystem/v3-RoleCode"^^xsd:anyURI ;
+         fhir:l <http://terminology.hl7.org/CodeSystem/v3-RoleCode>
+       ] ;
+       fhir:code [ fhir:v "SIS" ] ;
+       fhir:display [ fhir:v "Soeur" ]
+     ] )
+  ] ) ; # 
+  fhir:name ( [
+     fhir:family [ fhir:v "DECOURCY" ] ;
+     fhir:given ( [ fhir:v "Sophie" ] )
+  ] ) ; # 
+  fhir:telecom ( [
+     fhir:system [ fhir:v "phone" ] ;
+     fhir:value [ fhir:v "0647150100" ] ;
+     fhir:use [ fhir:v "mobile" ]
+  ] ) . # 
+
+<urn:uuid:e5faea04-ffdc-4bec-8b44-0fd9066f4600> a fhir:Practitioner ;
+  fhir:id [ fhir:v "e5faea04-ffdc-4bec-8b44-0fd9066f4600"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-practitioner"^^xsd:anyURI ;
+       fhir:l <https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-practitioner>
+     ] )
+  ] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div [ fhir:v "<div xmlns=\"http://www.w3.org/1999/xhtml\"><a name=\"Practitioner_e5faea04-ffdc-4bec-8b44-0fd9066f4600\"> </a><p class=\"res-header-id\"><b>Narratif généré : Praticien e5faea04-ffdc-4bec-8b44-0fd9066f4600</b></p><a name=\"e5faea04-ffdc-4bec-8b44-0fd9066f4600\"> </a><a name=\"hce5faea04-ffdc-4bec-8b44-0fd9066f4600\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\"/><p style=\"margin-bottom: 0px\">Profil: <a href=\"https://interop.esante.gouv.fr/ig/fhir/annuaire/1.1.0/StructureDefinition-as-practitioner.html\">AS Practitioner Profile</a></p></div><p><b>identifier</b>: <code>urn:oid:1.2.250.1.71.4.2.1</code>/801234567897</p><p><b>name</b>: Charles MULLER </p><p><b>telecom</b>: ph: 0140404022(Work)</p><p><b>address</b>: 3 Rue Petit Pont PARIS 75005 </p></div>"^^rdf:XMLLiteral ]
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [
+       fhir:v "urn:oid:1.2.250.1.71.4.2.1"^^xsd:anyURI ;
+       fhir:l <urn:oid:1.2.250.1.71.4.2.1>
+     ] ;
+     fhir:value [ fhir:v "801234567897" ]
+  ] ) ; # 
+  fhir:name ( [
+     fhir:family [ fhir:v "MULLER" ] ;
+     fhir:given ( [ fhir:v "Charles" ] ) ;
+     fhir:prefix ( [ fhir:v "M" ] ) ;
+     fhir:suffix ( [ fhir:v "DR" ] )
+  ] ) ; # 
+  fhir:telecom ( [
+     fhir:system [ fhir:v "phone" ] ;
+     fhir:value [ fhir:v "0140404022" ] ;
+     fhir:use [ fhir:v "work" ]
+  ] ) ; # 
+  fhir:address ( [
+     fhir:line ( [ fhir:v "3" ] [ fhir:v "Rue Petit Pont" ] ) ;
+     fhir:city [ fhir:v "PARIS" ] ;
+     fhir:postalCode [ fhir:v "75005" ]
+  ] ) . # 
+
+<urn:uuid:f8cf6d41-fa58-41f5-a342-049eea0c53ee> a fhir:Organization ;
+  fhir:id [ fhir:v "f8cf6d41-fa58-41f5-a342-049eea0c53ee"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-organization"^^xsd:anyURI ;
+       fhir:l <https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-organization>
+     ] )
+  ] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div [ fhir:v "<div xmlns=\"http://www.w3.org/1999/xhtml\"><a name=\"Organization_f8cf6d41-fa58-41f5-a342-049eea0c53ee\"> </a><p class=\"res-header-id\"><b>Narratif généré : Organisation f8cf6d41-fa58-41f5-a342-049eea0c53ee</b></p><a name=\"f8cf6d41-fa58-41f5-a342-049eea0c53ee\"> </a><a name=\"hcf8cf6d41-fa58-41f5-a342-049eea0c53ee\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\"/><p style=\"margin-bottom: 0px\">Profil: <a href=\"https://interop.esante.gouv.fr/ig/fhir/annuaire/1.1.0/StructureDefinition-as-organization.html\">AS Organization Profile</a></p></div><p><b>identifier</b>: <code>urn:oid:1.2.250.1.71.4.2.2</code>/2801234567</p><p><b>telecom</b>: ph: 0140404022(Work)</p><p><b>address</b>: 3 Rue Petit Pont PARIS 75005 </p></div>"^^rdf:XMLLiteral ]
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [
+       fhir:v "urn:oid:1.2.250.1.71.4.2.2"^^xsd:anyURI ;
+       fhir:l <urn:oid:1.2.250.1.71.4.2.2>
+     ] ;
+     fhir:value [ fhir:v "2801234567" ]
+  ] ) ; # 
+  fhir:telecom ( [
+     fhir:system [ fhir:v "phone" ] ;
+     fhir:value [ fhir:v "0140404022" ] ;
+     fhir:use [ fhir:v "work" ]
+  ] ) ; # 
+  fhir:address ( [
+     fhir:line ( [ fhir:v "3" ] [ fhir:v "Rue Petit Pont" ] ) ;
+     fhir:city [ fhir:v "PARIS" ] ;
+     fhir:postalCode [ fhir:v "75005" ]
+  ] ) . # 
+
+<urn:uuid:81965025-d5b6-4667-bf48-d9eacb7b5d2d> a fhir:Observation ;
+  fhir:id [ fhir:v "81965025-d5b6-4667-bf48-d9eacb7b5d2d"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-fr-observation-body-weight"^^xsd:anyURI ;
+       fhir:l <https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-fr-observation-body-weight>
+     ] )
+  ] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div [ fhir:v "<div xmlns=\"http://www.w3.org/1999/xhtml\"><a name=\"Observation_81965025-d5b6-4667-bf48-d9eacb7b5d2d\"> </a><p class=\"res-header-id\"><b>Narratif généré : Observation 81965025-d5b6-4667-bf48-d9eacb7b5d2d</b></p><a name=\"81965025-d5b6-4667-bf48-d9eacb7b5d2d\"> </a><a name=\"hc81965025-d5b6-4667-bf48-d9eacb7b5d2d\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\"/><p style=\"margin-bottom: 0px\">Profil: <a href=\"https://simplifier.net/resolve?scope=hl7.fhir.fr.core@1.1.0&amp;canonical=https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-fr-observation-body-weight\">https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-fr-observation-body-weight</a></p></div><p><b>status</b>: Final</p><p><b>category</b>: <span title=\"Codes :{http://terminology.hl7.org/CodeSystem/observation-category vital-signs}\">Vital Signs</span></p><p><b>code</b>: <span title=\"Codes :{http://loinc.org 29463-7}\">Poids</span></p><p><b>subject</b>: <a href=\"Bundle-93b9690f-efa3-4a9e-8bee-e0783831a94e.html#urn-uuid-8fdf1e1a-47cc-4f01-a70b-b18e600ae139\">Ruth Isabelle Ruth Ruth DECOURCY  Female, Date de Naissance :2022-12-25 ( NIR définitif)</a></p><p><b>value</b>: 3900 g<span style=\"background: LightGoldenRodYellow\"> (Détails : code UCUMg = 'g')</span></p></div>"^^rdf:XMLLiteral ]
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [
+         fhir:v "http://terminology.hl7.org/CodeSystem/observation-category"^^xsd:anyURI ;
+         fhir:l <http://terminology.hl7.org/CodeSystem/observation-category>
+       ] ;
+       fhir:code [ fhir:v "vital-signs" ]
+     ] )
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:29463-7 ;
+       fhir:system [
+         fhir:v "http://loinc.org"^^xsd:anyURI ;
+         fhir:l <http://loinc.org>
+       ] ;
+       fhir:code [ fhir:v "29463-7" ] ;
+       fhir:display [ fhir:v "Poids" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:l <urn:uuid:8fdf1e1a-47cc-4f01-a70b-b18e600ae139> ;
+     fhir:reference [ fhir:v "urn:uuid:8fdf1e1a-47cc-4f01-a70b-b18e600ae139" ]
+  ] ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "3900"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "g" ] ;
+     fhir:system [
+       fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ;
+       fhir:l <http://unitsofmeasure.org>
+     ] ;
+     fhir:code [ fhir:v "g" ]
+  ] . # 
+
+<urn:uuid:b42d812f-11cf-493e-bbe5-5bfb01d00361> a fhir:Observation ;
+  fhir:id [ fhir:v "b42d812f-11cf-493e-bbe5-5bfb01d00361"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-fr-observation-bodyheight"^^xsd:anyURI ;
+       fhir:l <https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-fr-observation-bodyheight>
+     ] )
+  ] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div [ fhir:v "<div xmlns=\"http://www.w3.org/1999/xhtml\"><a name=\"Observation_b42d812f-11cf-493e-bbe5-5bfb01d00361\"> </a><p class=\"res-header-id\"><b>Narratif généré : Observation b42d812f-11cf-493e-bbe5-5bfb01d00361</b></p><a name=\"b42d812f-11cf-493e-bbe5-5bfb01d00361\"> </a><a name=\"hcb42d812f-11cf-493e-bbe5-5bfb01d00361\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\"/><p style=\"margin-bottom: 0px\">Profil: <a href=\"https://simplifier.net/resolve?scope=hl7.fhir.fr.core@1.1.0&amp;canonical=https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-fr-observation-bodyheight\">https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-fr-observation-bodyheight</a></p></div><p><b>status</b>: Final</p><p><b>category</b>: <span title=\"Codes :{http://terminology.hl7.org/CodeSystem/observation-category vital-signs}\">Vital Signs</span></p><p><b>code</b>: <span title=\"Codes :{http://loinc.org 8302-2}\">Taille</span></p><p><b>subject</b>: <a href=\"Bundle-93b9690f-efa3-4a9e-8bee-e0783831a94e.html#urn-uuid-8fdf1e1a-47cc-4f01-a70b-b18e600ae139\">Ruth Isabelle Ruth Ruth DECOURCY  Female, Date de Naissance :2022-12-25 ( NIR définitif)</a></p><p><b>value</b>: 52 cm<span style=\"background: LightGoldenRodYellow\"> (Détails : code UCUMcm = 'cm')</span></p></div>"^^rdf:XMLLiteral ]
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [
+         fhir:v "http://terminology.hl7.org/CodeSystem/observation-category"^^xsd:anyURI ;
+         fhir:l <http://terminology.hl7.org/CodeSystem/observation-category>
+       ] ;
+       fhir:code [ fhir:v "vital-signs" ]
+     ] )
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:8302-2 ;
+       fhir:system [
+         fhir:v "http://loinc.org"^^xsd:anyURI ;
+         fhir:l <http://loinc.org>
+       ] ;
+       fhir:code [ fhir:v "8302-2" ] ;
+       fhir:display [ fhir:v "Taille" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:l <urn:uuid:8fdf1e1a-47cc-4f01-a70b-b18e600ae139> ;
+     fhir:reference [ fhir:v "urn:uuid:8fdf1e1a-47cc-4f01-a70b-b18e600ae139" ]
+  ] ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "52"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "cm" ] ;
+     fhir:system [
+       fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ;
+       fhir:l <http://unitsofmeasure.org>
+     ] ;
+     fhir:code [ fhir:v "cm" ]
+  ] . # 
+
+<urn:uuid:ec17f0af-cac0-4759-aac4-d4707f134324> a fhir:Observation ;
+  fhir:id [ fhir:v "ec17f0af-cac0-4759-aac4-d4707f134324"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-observation-head-circumference"^^xsd:anyURI ;
+       fhir:l <https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-observation-head-circumference>
+     ] )
+  ] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div [ fhir:v "<div xmlns=\"http://www.w3.org/1999/xhtml\"><a name=\"Observation_ec17f0af-cac0-4759-aac4-d4707f134324\"> </a><p class=\"res-header-id\"><b>Narratif généré : Observation ec17f0af-cac0-4759-aac4-d4707f134324</b></p><a name=\"ec17f0af-cac0-4759-aac4-d4707f134324\"> </a><a name=\"hcec17f0af-cac0-4759-aac4-d4707f134324\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\"/><p style=\"margin-bottom: 0px\">Profil: <a href=\"https://simplifier.net/resolve?scope=hl7.fhir.fr.core@1.1.0&amp;canonical=https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-observation-head-circumference\">https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-observation-head-circumference</a></p></div><p><b>status</b>: Final</p><p><b>category</b>: <span title=\"Codes :{http://terminology.hl7.org/CodeSystem/observation-category vital-signs}\">Vital Signs</span></p><p><b>code</b>: <span title=\"Codes :{http://loinc.org 8287-5}\">Périmètre crânien</span></p><p><b>subject</b>: <a href=\"Bundle-93b9690f-efa3-4a9e-8bee-e0783831a94e.html#urn-uuid-8fdf1e1a-47cc-4f01-a70b-b18e600ae139\">Ruth Isabelle Ruth Ruth DECOURCY  Female, Date de Naissance :2022-12-25 ( NIR définitif)</a></p><p><b>value</b>: 35 cm<span style=\"background: LightGoldenRodYellow\"> (Détails : code UCUMcm = 'cm')</span></p></div>"^^rdf:XMLLiteral ]
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [
+         fhir:v "http://terminology.hl7.org/CodeSystem/observation-category"^^xsd:anyURI ;
+         fhir:l <http://terminology.hl7.org/CodeSystem/observation-category>
+       ] ;
+       fhir:code [ fhir:v "vital-signs" ]
+     ] )
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:8287-5 ;
+       fhir:system [
+         fhir:v "http://loinc.org"^^xsd:anyURI ;
+         fhir:l <http://loinc.org>
+       ] ;
+       fhir:code [ fhir:v "8287-5" ] ;
+       fhir:display [ fhir:v "Périmètre crânien" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:l <urn:uuid:8fdf1e1a-47cc-4f01-a70b-b18e600ae139> ;
+     fhir:reference [ fhir:v "urn:uuid:8fdf1e1a-47cc-4f01-a70b-b18e600ae139" ]
+  ] ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "35"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "cm" ] ;
+     fhir:system [
+       fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ;
+       fhir:l <http://unitsofmeasure.org>
+     ] ;
+     fhir:code [ fhir:v "cm" ]
+  ] . # 
+
+# -------------------------------------------------------------------------------------
+

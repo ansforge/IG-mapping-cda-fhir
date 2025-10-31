@@ -277,6 +277,48 @@ Les exemples CDA fournis présentent certaines limitations qui génèrent des wa
 
 **Note** : Ces limitations proviennent des données CDA d'exemple et non du mapping FML. Le mapping transforme fidèlement les données CDA disponibles.
 
+### Difficultés identifiées dans le mapping automatique CDA-FHIR
+
+Le processus de transformation automatique CDA vers FHIR présente certaines difficultés inhérentes aux différences de modélisation entre les deux standards :
+
+#### 1. Ambiguïté sémantique des structures CDA
+
+**Problème identifié** : `healthCareFacility` et `serviceProviderOrganization`
+
+Dans le CDA, la structure `componentOf > encompassingEncounter > location > healthCareFacility` contient :
+
+* Un `code` décrivant le type d'établissement (ex: SA05 "Centre de santé" du TRE_R02-SecteurActivite)
+* Une `location` (lieu physique avec adresse)
+* Optionnellement un `serviceProviderOrganization` (organisation gestionnaire)
+
+**Difficulté de mapping** :
+
+Le code SA05 du `healthCareFacility` devrait logiquement être mappé vers :
+
+1. ✅`Location.type`- pour indiquer le type de lieu physique
+1. ❓`Organization.type:secteurActiviteRASS`- pour indiquer le secteur d'activité de l'organisation
+
+Cependant, il existe une **ambiguïté sémantique** :
+
+* Le `serviceProviderOrganization` dans le CDA peut représenter : 
+* L'organisation qui opère directement le centre de santé (dans ce cas, SA05 s'applique bien)
+* Une organisation parente ou gestionnaire différente (dans ce cas, SA05 pourrait ne pas s'appliquer)
+ 
+
+**Impact** :
+
+* Un mapping automatique qui copie systématiquement le code du `healthCareFacility` vers l'`Organization` peut introduire des **incohérences sémantiques**
+* Il n'existe pas de règle universelle dans le CDA pour distinguer ces deux cas
+* Cette ambiguïté nécessite souvent une **analyse contextuelle manuelle** ou des **règles métier spécifiques** au projet
+
+**Solutions possibles** :
+
+1. **Mapping conservateur**: Ne mapper que vers`Location.type`(approche actuelle)
+1. **Mapping avec hypothèse**: Copier vers`Organization.type`en documentant l'hypothèse que le`serviceProviderOrganization`est l'établissement lui-même
+1. **Mapping conditionnel**: Définir des règles métier basées sur le contexte du document (type de document, type d'établissement, etc.)
+
+Cette difficulté illustre que **le mapping CDA-FHIR n'est pas toujours une transformation mécanique 1:1**, mais nécessite parfois des choix d'implémentation basés sur la compréhension du contexte métier.
+
 ### Arrêter et redémarrer
 
 Pour arrêter le conteneur :
@@ -341,25 +383,25 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
 
 * The UCUM codes, UCUM table (regardless of format), and UCUM Specification are copyright 1999-2009, Regenstrief Institute, Inc. and the Unified Codes for Units of Measures (UCUM) Organization. All rights reserved. [https://ucum.org/trac/wiki/TermsOfUse](https://ucum.org/trac/wiki/TermsOfUse)
 
-* [Unified Code for Units of Measure (UCUM)](http://terminology.hl7.org/6.5.0/CodeSystem-v3-ucum.html): [Bundle/16d1b808-0087-44bc-9a33-ee3775be9bee](Bundle-16d1b808-0087-44bc-9a33-ee3775be9bee.md)
+* [Unified Code for Units of Measure (UCUM)](http://terminology.hl7.org/6.5.0/CodeSystem-v3-ucum.html): [Bundle/93b9690f-efa3-4a9e-8bee-e0783831a94e](Bundle-93b9690f-efa3-4a9e-8bee-e0783831a94e.md)
 
 
 * This material contains content from [LOINC](http://loinc.org). LOINC is copyright © 1995-2020, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the [license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc.
 
-* [LOINC](http://terminology.hl7.org/6.5.0/CodeSystem-v3-loinc.html): [Bundle/16d1b808-0087-44bc-9a33-ee3775be9bee](Bundle-16d1b808-0087-44bc-9a33-ee3775be9bee.md)
+* [LOINC](http://terminology.hl7.org/6.5.0/CodeSystem-v3-loinc.html): [Bundle/93b9690f-efa3-4a9e-8bee-e0783831a94e](Bundle-93b9690f-efa3-4a9e-8bee-e0783831a94e.md)
 
 
 * This material contains content that is copyright of SNOMED International. Implementers of these specifications must have the appropriate SNOMED CT Affiliate license - for more information contact [https://www.snomed.org/get-snomed](https://www.snomed.org/get-snomed) or [info@snomed.org](mailto:info@snomed.org).
 
-* [SNOMED Clinical Terms&reg; (SNOMED CT&reg;)](http://hl7.org/fhir/R4/codesystem-snomedct.html): [Bundle/16d1b808-0087-44bc-9a33-ee3775be9bee](Bundle-16d1b808-0087-44bc-9a33-ee3775be9bee.md)
+* [SNOMED Clinical Terms&reg; (SNOMED CT&reg;)](http://hl7.org/fhir/R4/codesystem-snomedct.html): [Bundle/93b9690f-efa3-4a9e-8bee-e0783831a94e](Bundle-93b9690f-efa3-4a9e-8bee-e0783831a94e.md)
 
 
 * This material derives from the HL7 Terminology (THO). THO is copyright ©1989+ Health Level Seven International and is made available under the CC0 designation. For more licensing information see: [https://terminology.hl7.org/license.html](https://terminology.hl7.org/license.html)
 
-* [Observation Category Codes](http://terminology.hl7.org/6.5.0/CodeSystem-observation-category.html): [Bundle/16d1b808-0087-44bc-9a33-ee3775be9bee](Bundle-16d1b808-0087-44bc-9a33-ee3775be9bee.md)
-* [identifierType](http://terminology.hl7.org/6.5.0/CodeSystem-v2-0203.html): [Bundle/16d1b808-0087-44bc-9a33-ee3775be9bee](Bundle-16d1b808-0087-44bc-9a33-ee3775be9bee.md)
-* [ActCode](http://terminology.hl7.org/6.5.0/CodeSystem-v3-ActCode.html): [Bundle/16d1b808-0087-44bc-9a33-ee3775be9bee](Bundle-16d1b808-0087-44bc-9a33-ee3775be9bee.md)
-* [RoleCode](http://terminology.hl7.org/6.5.0/CodeSystem-v3-RoleCode.html): [Bundle/16d1b808-0087-44bc-9a33-ee3775be9bee](Bundle-16d1b808-0087-44bc-9a33-ee3775be9bee.md)
+* [Observation Category Codes](http://terminology.hl7.org/6.5.0/CodeSystem-observation-category.html): [Bundle/93b9690f-efa3-4a9e-8bee-e0783831a94e](Bundle-93b9690f-efa3-4a9e-8bee-e0783831a94e.md)
+* [identifierType](http://terminology.hl7.org/6.5.0/CodeSystem-v2-0203.html): [Bundle/93b9690f-efa3-4a9e-8bee-e0783831a94e](Bundle-93b9690f-efa3-4a9e-8bee-e0783831a94e.md)
+* [ActCode](http://terminology.hl7.org/6.5.0/CodeSystem-v3-ActCode.html): [Bundle/93b9690f-efa3-4a9e-8bee-e0783831a94e](Bundle-93b9690f-efa3-4a9e-8bee-e0783831a94e.md)
+* [RoleCode](http://terminology.hl7.org/6.5.0/CodeSystem-v3-RoleCode.html): [Bundle/93b9690f-efa3-4a9e-8bee-e0783831a94e](Bundle-93b9690f-efa3-4a9e-8bee-e0783831a94e.md)
 
 
 
@@ -375,7 +417,7 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2025-10-31T16:13:56+00:00",
+  "date" : "2025-10-31T16:25:02+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {
@@ -1196,9 +1238,9 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
           }
         ],
         "reference" : {
-          "reference" : "Bundle/16d1b808-0087-44bc-9a33-ee3775be9bee"
+          "reference" : "Bundle/93b9690f-efa3-4a9e-8bee-e0783831a94e"
         },
-        "name" : "16d1b808-0087-44bc-9a33-ee3775be9bee",
+        "name" : "93b9690f-efa3-4a9e-8bee-e0783831a94e",
         "exampleBoolean" : false
       },
       {

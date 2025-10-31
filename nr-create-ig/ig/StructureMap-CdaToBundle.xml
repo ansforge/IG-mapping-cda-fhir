@@ -265,7 +265,13 @@
 
 </span><b>group </b>ClinicalDocumentLocation<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>HealthCareFacility, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Location<span style="color: navy">)</span><span style="color: navy"> {
 </span>  src.id<b> as </b><span style="color: maroon">srcIdentifier</span><span style="color: navy"><b> -&gt; </b></span>tgt.identifier = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Identifier'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">identifier</span><b> then </b>II<span style="color: navy">(</span><span style="color: maroon">srcIdentifier</span><span style="color: navy">, </span><span style="color: maroon">identifier</span><span style="color: navy">)</span><span style="color: navy">;</span>
-  src.code<b> as </b><span style="color: maroon">srcCode</span><span style="color: navy"><b> -&gt; </b></span>tgt.type = <b>create</b><span style="color: navy">(</span><span style="color: blue">'CodeableConcept'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">cc</span><b> then </b>CDCodeableConcept<span style="color: navy">(</span><span style="color: maroon">srcCode</span><span style="color: navy">, </span><span style="color: maroon">cc</span><span style="color: navy">)</span><span style="color: navy">;</span>
+  src.code<b> as </b><span style="color: maroon">srcCode</span><span style="color: navy"><b> -&gt; </b></span>tgt.type = <b>create</b><span style="color: navy">(</span><span style="color: blue">'CodeableConcept'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">cc</span><b> then</b><span style="color: navy"> {
+</span>    srcCode.code<b> as </b><span style="color: maroon">code</span><span style="color: navy"><b> -&gt; </b></span>cc.coding = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Coding'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">coding</span><b> then</b><span style="color: navy"> {
+</span>      code<span style="color: navy"><b> -&gt; </b></span>coding.code = <span style="color: maroon">code</span> <i>&quot;code&quot;</i><span style="color: navy">;</span>
+      code<span style="color: navy"><b> -&gt; </b></span>coding.system = <span style="color: blue">'https://mos.esante.gouv.fr/NOS/TRE_R02-SecteurActivite/FHIR/TRE-R02-SecteurActivite'</span> <i>&quot;system&quot;</i><span style="color: navy">;</span>
+      srcCode.displayName<b> as </b><span style="color: maroon">display</span><span style="color: navy"><b> -&gt; </b></span>coding.display = <span style="color: maroon">display</span> <i>&quot;display&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;coding&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;locationType&quot;</i><span style="color: navy">;</span>
   src.location<b> as </b><span style="color: maroon">location</span><b> then</b><span style="color: navy"> {
 </span>    <span style="color: navy">// </span><span style="color: green">place names are usually stored with no parts    location.name as srcName -&gt; tgt.name = cast(srcName, 'string');</span>
     location.addr<b> as </b><span style="color: maroon">locAddr</span><span style="color: navy"><b> -&gt; </b></span>tgt.address = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Address'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">address</span><b> then </b>ADAddress<span style="color: navy">(</span><span style="color: maroon">locAddr</span><span style="color: navy">, </span><span style="color: maroon">address</span><span style="color: navy">)</span><span style="color: navy">;</span>
@@ -288,7 +294,7 @@
   <name value="CdaToBundle"/>
   <title value="Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)"/>
   <status value="draft"/>
-  <date value="2025-10-31T16:13:56+00:00"/>
+  <date value="2025-10-31T16:25:02+00:00"/>
   <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
   <contact>
     <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
@@ -3706,7 +3712,7 @@
       </dependent>
     </rule>
     <rule>
-      <name value="code"/>
+      <name value="locationType"/>
       <source>
         <context value="src"/>
         <element value="code"/>
@@ -3722,11 +3728,71 @@
           <valueString value="CodeableConcept"/>
         </parameter>
       </target>
-      <dependent>
-        <name value="CDCodeableConcept"/>
-        <variable value="srcCode"/>
-        <variable value="cc"/>
-      </dependent>
+      <rule>
+        <name value="coding"/>
+        <source>
+          <context value="srcCode"/>
+          <element value="code"/>
+          <variable value="code"/>
+        </source>
+        <target>
+          <context value="cc"/>
+          <contextType value="variable"/>
+          <element value="coding"/>
+          <variable value="coding"/>
+          <transform value="create"/>
+          <parameter>
+            <valueString value="Coding"/>
+          </parameter>
+        </target>
+        <rule>
+          <name value="code"/>
+          <source>
+            <context value="code"/>
+          </source>
+          <target>
+            <context value="coding"/>
+            <contextType value="variable"/>
+            <element value="code"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="code"/>
+            </parameter>
+          </target>
+        </rule>
+        <rule>
+          <name value="system"/>
+          <source>
+            <context value="code"/>
+          </source>
+          <target>
+            <context value="coding"/>
+            <contextType value="variable"/>
+            <element value="system"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueString value="https://mos.esante.gouv.fr/NOS/TRE_R02-SecteurActivite/FHIR/TRE-R02-SecteurActivite"/>
+            </parameter>
+          </target>
+        </rule>
+        <rule>
+          <name value="display"/>
+          <source>
+            <context value="srcCode"/>
+            <element value="displayName"/>
+            <variable value="display"/>
+          </source>
+          <target>
+            <context value="coding"/>
+            <contextType value="variable"/>
+            <element value="display"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="display"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
     </rule>
     <rule>
       <name value="location"/>

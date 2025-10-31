@@ -277,7 +277,13 @@ group ClinicalDocumentEncounter(source src : EncompassingEncounter, target bundl
 
 group ClinicalDocumentLocation(source src : HealthCareFacility, target bundle : Bundle, target tgt : Location) {
   src.id as srcIdentifier -> tgt.identifier = create('Identifier') as identifier then II(srcIdentifier, identifier);
-  src.code as srcCode -> tgt.type = create('CodeableConcept') as cc then CDCodeableConcept(srcCode, cc);
+  src.code as srcCode -> tgt.type = create('CodeableConcept') as cc then {
+    srcCode.code as code -> cc.coding = create('Coding') as coding then {
+      code -> coding.code = code "code";
+      code -> coding.system = 'https://mos.esante.gouv.fr/NOS/TRE_R02-SecteurActivite/FHIR/TRE-R02-SecteurActivite' "system";
+      srcCode.displayName as display -> coding.display = display "display";
+    } "coding";
+  } "locationType";
   src.location as location then {
     // place names are usually stored with no parts    location.name as srcName -> tgt.name = cast(srcName, 'string');
     location.addr as locAddr -> tgt.address = create('Address') as address then ADAddress(locAddr, address);
@@ -309,7 +315,7 @@ group NarrativeLink(source url, target ext : Extension) {
   "name" : "CdaToBundle",
   "title" : "Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)",
   "status" : "draft",
-  "date" : "2025-10-31T16:13:56+00:00",
+  "date" : "2025-10-31T16:25:02+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {
@@ -4757,7 +4763,7 @@ group NarrativeLink(source url, target ext : Extension) {
           ]
         },
         {
-          "name" : "code",
+          "name" : "locationType",
           "source" : [
             {
               "context" : "src",
@@ -4779,10 +4785,97 @@ group NarrativeLink(source url, target ext : Extension) {
               ]
             }
           ],
-          "dependent" : [
+          "rule" : [
             {
-              "name" : "CDCodeableConcept",
-              "variable" : ["srcCode", "cc"]
+              "name" : "coding",
+              "source" : [
+                {
+                  "context" : "srcCode",
+                  "element" : "code",
+                  "variable" : "code"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "cc",
+                  "contextType" : "variable",
+                  "element" : "coding",
+                  "variable" : "coding",
+                  "transform" : "create",
+                  "parameter" : [
+                    {
+                      "valueString" : "Coding"
+                    }
+                  ]
+                }
+              ],
+              "rule" : [
+                {
+                  "name" : "code",
+                  "source" : [
+                    {
+                      "context" : "code"
+                    }
+                  ],
+                  "target" : [
+                    {
+                      "context" : "coding",
+                      "contextType" : "variable",
+                      "element" : "code",
+                      "transform" : "copy",
+                      "parameter" : [
+                        {
+                          "valueId" : "code"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name" : "system",
+                  "source" : [
+                    {
+                      "context" : "code"
+                    }
+                  ],
+                  "target" : [
+                    {
+                      "context" : "coding",
+                      "contextType" : "variable",
+                      "element" : "system",
+                      "transform" : "copy",
+                      "parameter" : [
+                        {
+                          "valueString" : "https://mos.esante.gouv.fr/NOS/TRE_R02-SecteurActivite/FHIR/TRE-R02-SecteurActivite"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name" : "display",
+                  "source" : [
+                    {
+                      "context" : "srcCode",
+                      "element" : "displayName",
+                      "variable" : "display"
+                    }
+                  ],
+                  "target" : [
+                    {
+                      "context" : "coding",
+                      "contextType" : "variable",
+                      "element" : "display",
+                      "transform" : "copy",
+                      "parameter" : [
+                        {
+                          "valueId" : "display"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
