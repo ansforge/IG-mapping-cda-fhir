@@ -326,35 +326,40 @@ https://github.com/hl7ch/cda-fhir-maps
 
 
 
+
+
+
+
 ### Propriété intellectuelle
 
 Certaines ressources sémantiques de ce guide sont protégées par des droits de propriété intellectuelle couverte par les déclarations ci-dessous. L’utilisation de ces ressources est soumise à l’acceptation et au respect des conditions précisées dans la licence d’utilisation de chacune d’entre elle.
 
 * ISO maintains the copyright on the country codes, and controls its use carefully. For further details see the ISO 3166 web page: [https://www.iso.org/iso-3166-country-codes.html](https://www.iso.org/iso-3166-country-codes.html)
 
-* [ISO 3166-1 Codes for the representation of names of countries and their subdivisions — Part 1: Country code](http://terminology.hl7.org/6.5.0/CodeSystem-ISO3166Part1.html): [CDA2FHIRMAP](index.md), [CdaFrMDEToBundle](StructureMap-CdaFrMDEToBundle.md)...Show 4 more,[CdaFrToBundle](StructureMap-CdaFrToBundle.md),[CdaToBundle](StructureMap-CdaToBundle.md),[CdaToFHIRTypes](StructureMap-CdaToFHIRTypes.md)and[CdaToFhirAdministrativeGender](ConceptMap-cm-v3-administrative-gender.md)
+* [ISO 3166-1 Codes for the representation of names of countries and their subdivisions — Part 1: Country code](http://terminology.hl7.org/6.5.0/CodeSystem-ISO3166Part1.html): [CDA2FHIRMAP](index.md), [CdaFrMDEToBundle](StructureMap-CdaFrMDEToBundle.md)...Show 6 more,[CdaFrToBundle](StructureMap-CdaFrToBundle.md),[CdaToBundle](StructureMap-CdaToBundle.md),[CdaToFHIRTypes](StructureMap-CdaToFHIRTypes.md),[CdaToFhirAdministrativeGender](ConceptMap-cm-v3-administrative-gender.md),[ConceptMapOidSpecialiteOrdinale](ConceptMap-cm-oid-specialite-ordinale.md)and[OID2URIConceptMapANS](ConceptMap-oid2uri-ans.md)
 
 
 * The UCUM codes, UCUM table (regardless of format), and UCUM Specification are copyright 1999-2009, Regenstrief Institute, Inc. and the Unified Codes for Units of Measures (UCUM) Organization. All rights reserved. [https://ucum.org/trac/wiki/TermsOfUse](https://ucum.org/trac/wiki/TermsOfUse)
 
-* [Unified Code for Units of Measure (UCUM)](http://terminology.hl7.org/6.5.0/CodeSystem-v3-ucum.html): [Bundle/fe569e1f-32d4-4ba4-b5ad-88082bf5470a](Bundle-fe569e1f-32d4-4ba4-b5ad-88082bf5470a.md)
+* [Unified Code for Units of Measure (UCUM)](http://terminology.hl7.org/6.5.0/CodeSystem-v3-ucum.html): [Bundle/16d1b808-0087-44bc-9a33-ee3775be9bee](Bundle-16d1b808-0087-44bc-9a33-ee3775be9bee.md)
 
 
 * This material contains content from [LOINC](http://loinc.org). LOINC is copyright © 1995-2020, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the [license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc.
 
-* [LOINC](http://terminology.hl7.org/6.5.0/CodeSystem-v3-loinc.html): [Bundle/fe569e1f-32d4-4ba4-b5ad-88082bf5470a](Bundle-fe569e1f-32d4-4ba4-b5ad-88082bf5470a.md)
+* [LOINC](http://terminology.hl7.org/6.5.0/CodeSystem-v3-loinc.html): [Bundle/16d1b808-0087-44bc-9a33-ee3775be9bee](Bundle-16d1b808-0087-44bc-9a33-ee3775be9bee.md)
 
 
 * This material contains content that is copyright of SNOMED International. Implementers of these specifications must have the appropriate SNOMED CT Affiliate license - for more information contact [https://www.snomed.org/get-snomed](https://www.snomed.org/get-snomed) or [info@snomed.org](mailto:info@snomed.org).
 
-* [SNOMED Clinical Terms&reg; (SNOMED CT&reg;)](http://hl7.org/fhir/R4/codesystem-snomedct.html): [Bundle/fe569e1f-32d4-4ba4-b5ad-88082bf5470a](Bundle-fe569e1f-32d4-4ba4-b5ad-88082bf5470a.md)
+* [SNOMED Clinical Terms&reg; (SNOMED CT&reg;)](http://hl7.org/fhir/R4/codesystem-snomedct.html): [Bundle/16d1b808-0087-44bc-9a33-ee3775be9bee](Bundle-16d1b808-0087-44bc-9a33-ee3775be9bee.md)
 
 
 * This material derives from the HL7 Terminology (THO). THO is copyright ©1989+ Health Level Seven International and is made available under the CC0 designation. For more licensing information see: [https://terminology.hl7.org/license.html](https://terminology.hl7.org/license.html)
 
-* [Observation Category Codes](http://terminology.hl7.org/6.5.0/CodeSystem-observation-category.html): [Bundle/fe569e1f-32d4-4ba4-b5ad-88082bf5470a](Bundle-fe569e1f-32d4-4ba4-b5ad-88082bf5470a.md)
-* [identifierType](http://terminology.hl7.org/6.5.0/CodeSystem-v2-0203.html): [Bundle/fe569e1f-32d4-4ba4-b5ad-88082bf5470a](Bundle-fe569e1f-32d4-4ba4-b5ad-88082bf5470a.md)
-* [ActCode](http://terminology.hl7.org/6.5.0/CodeSystem-v3-ActCode.html): [Bundle/fe569e1f-32d4-4ba4-b5ad-88082bf5470a](Bundle-fe569e1f-32d4-4ba4-b5ad-88082bf5470a.md)
+* [Observation Category Codes](http://terminology.hl7.org/6.5.0/CodeSystem-observation-category.html): [Bundle/16d1b808-0087-44bc-9a33-ee3775be9bee](Bundle-16d1b808-0087-44bc-9a33-ee3775be9bee.md)
+* [identifierType](http://terminology.hl7.org/6.5.0/CodeSystem-v2-0203.html): [Bundle/16d1b808-0087-44bc-9a33-ee3775be9bee](Bundle-16d1b808-0087-44bc-9a33-ee3775be9bee.md)
+* [ActCode](http://terminology.hl7.org/6.5.0/CodeSystem-v3-ActCode.html): [Bundle/16d1b808-0087-44bc-9a33-ee3775be9bee](Bundle-16d1b808-0087-44bc-9a33-ee3775be9bee.md)
+* [RoleCode](http://terminology.hl7.org/6.5.0/CodeSystem-v3-RoleCode.html): [Bundle/16d1b808-0087-44bc-9a33-ee3775be9bee](Bundle-16d1b808-0087-44bc-9a33-ee3775be9bee.md)
 
 
 
@@ -370,7 +375,7 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2025-10-31T13:29:03+00:00",
+  "date" : "2025-10-31T16:13:56+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {
@@ -427,6 +432,18 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
       "uri" : "http://hl7.org/cda/stds/core/ImplementationGuide/hl7.cda.uv.core",
       "packageId" : "hl7.cda.uv.core",
       "version" : "2.0.0-sd"
+    },
+    {
+      "id" : "ans_fhir_fr_annuaire",
+      "uri" : "https://interop.esante.gouv.fr/ig/fhir/annuaire/ImplementationGuide/ans.fhir.fr.annuaire",
+      "packageId" : "ans.fhir.fr.annuaire",
+      "version" : "1.1.0"
+    },
+    {
+      "id" : "hl7_fhir_fr_core",
+      "uri" : "http://fhir.org/packages/hl7.fhir.fr.core/ImplementationGuide/hl7.fhir.fr.core",
+      "packageId" : "hl7.fhir.fr.core",
+      "version" : "1.1.0"
     }
   ],
   "definition" : {
@@ -1175,6 +1192,19 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
         "extension" : [
           {
             "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString" : "Bundle"
+          }
+        ],
+        "reference" : {
+          "reference" : "Bundle/16d1b808-0087-44bc-9a33-ee3775be9bee"
+        },
+        "name" : "16d1b808-0087-44bc-9a33-ee3775be9bee",
+        "exampleBoolean" : false
+      },
+      {
+        "extension" : [
+          {
+            "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
             "valueString" : "ConceptMap"
           }
         ],
@@ -1189,13 +1219,28 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
         "extension" : [
           {
             "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-            "valueString" : "Bundle"
+            "valueString" : "ConceptMap"
           }
         ],
         "reference" : {
-          "reference" : "Bundle/fe569e1f-32d4-4ba4-b5ad-88082bf5470a"
+          "reference" : "ConceptMap/cm-oid-specialite-ordinale"
         },
-        "name" : "fe569e1f-32d4-4ba4-b5ad-88082bf5470a",
+        "name" : "ConceptMap - OID to URL for TRE_R38-SpecialiteOrdinale",
+        "description" : "Mapping from OID urn:oid:1.2.250.1.213.1.1.4.5 to URL https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale",
+        "exampleBoolean" : false
+      },
+      {
+        "extension" : [
+          {
+            "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString" : "ConceptMap"
+          }
+        ],
+        "reference" : {
+          "reference" : "ConceptMap/oid2uri-ans"
+        },
+        "name" : "OID to URI Mapping for ANS terminologies",
+        "description" : "Mapping from OID to URI for ANS terminologies",
         "exampleBoolean" : false
       },
       {

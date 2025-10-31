@@ -10,7 +10,7 @@
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2025-10-31T13:29:03+00:00",
+  "date" : "2025-10-31T16:13:56+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -54,6 +54,18 @@
     "uri" : "http://hl7.org/cda/stds/core/ImplementationGuide/hl7.cda.uv.core",
     "packageId" : "hl7.cda.uv.core",
     "version" : "2.0.0-sd"
+  },
+  {
+    "id" : "ans_fhir_fr_annuaire",
+    "uri" : "https://interop.esante.gouv.fr/ig/fhir/annuaire/ImplementationGuide/ans.fhir.fr.annuaire",
+    "packageId" : "ans.fhir.fr.annuaire",
+    "version" : "1.1.0"
+  },
+  {
+    "id" : "hl7_fhir_fr_core",
+    "uri" : "http://fhir.org/packages/hl7.fhir.fr.core/ImplementationGuide/hl7.fhir.fr.core",
+    "packageId" : "hl7.fhir.fr.core",
+    "version" : "1.1.0"
   }],
   "definition" : {
     "extension" : [{
@@ -685,6 +697,17 @@
     "resource" : [{
       "extension" : [{
         "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+        "valueString" : "Bundle"
+      }],
+      "reference" : {
+        "reference" : "Bundle/16d1b808-0087-44bc-9a33-ee3775be9bee"
+      },
+      "name" : "16d1b808-0087-44bc-9a33-ee3775be9bee",
+      "exampleBoolean" : false
+    },
+    {
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
         "valueString" : "ConceptMap"
       }],
       "reference" : {
@@ -697,12 +720,25 @@
     {
       "extension" : [{
         "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "Bundle"
+        "valueString" : "ConceptMap"
       }],
       "reference" : {
-        "reference" : "Bundle/fe569e1f-32d4-4ba4-b5ad-88082bf5470a"
+        "reference" : "ConceptMap/cm-oid-specialite-ordinale"
       },
-      "name" : "fe569e1f-32d4-4ba4-b5ad-88082bf5470a",
+      "name" : "ConceptMap - OID to URL for TRE_R38-SpecialiteOrdinale",
+      "description" : "Mapping from OID urn:oid:1.2.250.1.213.1.1.4.5 to URL https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale",
+      "exampleBoolean" : false
+    },
+    {
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+        "valueString" : "ConceptMap"
+      }],
+      "reference" : {
+        "reference" : "ConceptMap/oid2uri-ans"
+      },
+      "name" : "OID to URI Mapping for ANS terminologies",
+      "description" : "Mapping from OID to URI for ANS terminologies",
       "exampleBoolean" : false
     },
     {

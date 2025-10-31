@@ -21,7 +21,7 @@
   fhir:name [ fhir:v "CDA2FHIRMAP"] ; # 
   fhir:title [ fhir:v "POC - Mapping CDA to FHIR"] ; # 
   fhir:status [ fhir:v "draft"] ; # 
-  fhir:date [ fhir:v "2025-10-31T13:29:03+00:00"^^xsd:dateTime] ; # 
+  fhir:date [ fhir:v "2025-10-31T16:13:56+00:00"^^xsd:dateTime] ; # 
   fhir:publisher [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"] ; # 
   fhir:contact ( [
      fhir:name [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris" ] ;
@@ -87,6 +87,22 @@
      ] ;
      fhir:packageId [ fhir:v "hl7.cda.uv.core" ] ;
      fhir:version [ fhir:v "2.0.0-sd" ]
+  ] [
+     fhir:id [ fhir:v "ans_fhir_fr_annuaire" ] ;
+     fhir:uri [
+       fhir:v "https://interop.esante.gouv.fr/ig/fhir/annuaire/ImplementationGuide/ans.fhir.fr.annuaire"^^xsd:anyURI ;
+       fhir:l <https://interop.esante.gouv.fr/ig/fhir/annuaire/ImplementationGuide/ans.fhir.fr.annuaire>
+     ] ;
+     fhir:packageId [ fhir:v "ans.fhir.fr.annuaire" ] ;
+     fhir:version [ fhir:v "1.1.0" ]
+  ] [
+     fhir:id [ fhir:v "hl7_fhir_fr_core" ] ;
+     fhir:uri [
+       fhir:v "http://fhir.org/packages/hl7.fhir.fr.core/ImplementationGuide/hl7.fhir.fr.core"^^xsd:anyURI ;
+       fhir:l <http://fhir.org/packages/hl7.fhir.fr.core/ImplementationGuide/hl7.fhir.fr.core>
+     ] ;
+     fhir:packageId [ fhir:v "hl7.fhir.fr.core" ] ;
+     fhir:version [ fhir:v "1.1.0" ]
   ] ) ; # 
   fhir:definition [
      fhir:extension ( [
@@ -1461,6 +1477,26 @@
          ] ;
          fhir:value [
            a fhir:String ;
+           fhir:v "Bundle"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/Bundle/16d1b808-0087-44bc-9a33-ee3775be9bee> ;
+         fhir:reference [ fhir:v "Bundle/16d1b808-0087-44bc-9a33-ee3775be9bee" ]
+       ] ;
+       fhir:name [ fhir:v "16d1b808-0087-44bc-9a33-ee3775be9bee" ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v false
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
            fhir:v "ConceptMap"
          ]
        ] ) ;
@@ -1482,14 +1518,36 @@
          ] ;
          fhir:value [
            a fhir:String ;
-           fhir:v "Bundle"
+           fhir:v "ConceptMap"
          ]
        ] ) ;
        fhir:reference [
-         fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/Bundle/fe569e1f-32d4-4ba4-b5ad-88082bf5470a> ;
-         fhir:reference [ fhir:v "Bundle/fe569e1f-32d4-4ba4-b5ad-88082bf5470a" ]
+         fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/cm-oid-specialite-ordinale> ;
+         fhir:reference [ fhir:v "ConceptMap/cm-oid-specialite-ordinale" ]
        ] ;
-       fhir:name [ fhir:v "fe569e1f-32d4-4ba4-b5ad-88082bf5470a" ] ;
+       fhir:name [ fhir:v "ConceptMap - OID to URL for TRE_R38-SpecialiteOrdinale" ] ;
+       fhir:description [ fhir:v "Mapping from OID urn:oid:1.2.250.1.213.1.1.4.5 to URL https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale" ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v false
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "ConceptMap"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/oid2uri-ans> ;
+         fhir:reference [ fhir:v "ConceptMap/oid2uri-ans" ]
+       ] ;
+       fhir:name [ fhir:v "OID to URI Mapping for ANS terminologies" ] ;
+       fhir:description [ fhir:v "Mapping from OID to URI for ANS terminologies" ] ;
        fhir:example [
          a fhir:Boolean ;
          fhir:v false

@@ -25,6 +25,8 @@ These define transformations to convert between codes by systems conforming with
 | | |
 | :--- | :--- |
 | [CDA to FHIR Administrative Gender Mapping](ConceptMap-cm-v3-administrative-gender.md) | Mapping between CDA v3 Administrative Gender codes and FHIR Administrative Gender codes |
+| [ConceptMap - OID to URL for TRE_R38-SpecialiteOrdinale](ConceptMap-cm-oid-specialite-ordinale.md) | Mapping from OID urn:oid:1.2.250.1.213.1.1.4.5 to URL https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale |
+| [OID to URI Mapping for ANS terminologies](ConceptMap-oid2uri-ans.md) | Mapping from OID to URI for ANS terminologies |
 
 ### Other 
 
@@ -32,5 +34,5 @@ These are resources that are used within this implementation guide that do not f
 
 | |
 | :--- |
-| [fe569e1f-32d4-4ba4-b5ad-88082bf5470a](Bundle-fe569e1f-32d4-4ba4-b5ad-88082bf5470a.md) |
+| [16d1b808-0087-44bc-9a33-ee3775be9bee](Bundle-16d1b808-0087-44bc-9a33-ee3775be9bee.md) |
 

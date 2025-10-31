@@ -89,7 +89,14 @@ group ClinicalDocumentComposition(source src : ClinicalDocument, target tgt : Co
     comp.encompassingEncounter as srcEnc ->  tgt.encounter = create('Reference') as reference,  reference.reference = ('urn:uuid:' + %encounter.id) then ClinicalDocumentEncounter(srcEnc, bundle, encounter) "srcEncounter";
   } "encompassingEncounter";
   src.effectiveTime as effectiveTime -> tgt.date = create('dateTime') as date then TSDateTime(effectiveTime, date) "compositionDate";
-  src.author as srcAuthor ->  bundle.entry as e,  e.resource = create('Practitioner') as practitioner,  practitioner.id = uuid() as uuid2,  e.fullUrl = append('urn:uuid:', uuid2),  tgt.author = create('Reference') as reference,  reference.reference = ('urn:uuid:' + %practitioner.id) then {
+  src.author as srcAuthor ->  bundle.entry as e,  e.resource = create('Practitioner') as practitioner,  practitioner.id = uuid() as uuid2,  e.fullUrl = append('urn:uuid:', uuid2),  bundle.entry as eRole,  eRole.resource = create('PractitionerRole') as practitionerRole,  practitionerRole.id = uuid() as uuidRole,  eRole.fullUrl = append('urn:uuid:', uuidRole),  tgt.author = create('Reference') as reference,  reference.reference = ('urn:uuid:' + %practitionerRole.id) then {
+    srcAuthor -> practitioner.meta = create('Meta') as meta then {
+      srcAuthor -> meta.profile = 'https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-practitioner' "practitionerProfile";
+    } "practitionerMeta";
+    srcAuthor -> practitionerRole.meta = create('Meta') as metaRole then {
+      srcAuthor -> metaRole.profile = 'https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-practitionerrole' "practitionerRoleProfile";
+    } "practitionerRoleMeta";
+    srcAuthor ->  practitionerRole.practitioner = create('Reference') as refPract,  refPract.reference = ('urn:uuid:' + %practitioner.id) "practitionerRef";
     srcAuthor.assignedAuthor as assignedAuthor then {
       assignedAuthor.id as id -> practitioner.identifier = create('Identifier') as identifier then II(id, identifier);
       assignedAuthor.addr as addr -> practitioner.address = create('Address') as address then ADAddress(addr, address);
@@ -97,9 +104,39 @@ group ClinicalDocumentComposition(source src : ClinicalDocument, target tgt : Co
       assignedAuthor.assignedPerson as assPerson then {
         assPerson.name as pName -> practitioner.name = create('HumanName') as humanName then ENHumanName(pName, humanName);
       } "name";
-      assignedAuthor.representedOrganization as srcOrg ->  bundle.entry as e2,  e2.resource = create('Organization') as organization,  organization.id = uuid() as uuid3,  e2.fullUrl = append('urn:uuid:', uuid3),  tgt.author = create('Reference') as reference2,  reference2.reference = ('urn:uuid:' + %organization.id) then ClinicalDocumentOrganization(srcOrg, organization);
+      assignedAuthor.code as roleCode -> practitionerRole.code = create('CodeableConcept') as cc then CDCodeableConcept(roleCode, cc) "roleCode";
+      assignedAuthor.code as roleCode where code.contains('/') -> practitioner.qualification as qualification then {
+        roleCode -> qualification.code = create('CodeableConcept') as qualCode then {
+          roleCode.code as fullCode -> qualCode.coding = create('Coding') as coding then {
+            fullCode -> coding.code = (%fullCode.substring(%fullCode.indexOf('/') + 1)) "savoirFaireCode";
+            fullCode -> coding.system = 'https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale' "systemSavoirFaire";
+            roleCode.displayName as display -> coding.display = display "display";
+          } "coding";
+        } "qualCode";
+      } "savoirFaire";
+      assignedAuthor.code as roleCode where code.contains('/') and code.contains('_') -> practitioner.qualification as qualification then {
+        roleCode -> qualification.code = create('CodeableConcept') as qualCode then {
+          roleCode.code as fullCode -> qualCode.coding = create('Coding') as coding then {
+            fullCode -> coding.code = (%fullCode.substring(%fullCode.indexOf('_') + 1).substring(0, %fullCode.substring(%fullCode.indexOf('_') + 1).indexOf('/'))) "professionCode";
+            fullCode -> coding.system = 'https://mos.esante.gouv.fr/NOS/TRE_G15-ProfessionSante/FHIR/TRE-G15-ProfessionSante' "systemProfession";
+            fullCode where %fullCode.substring(%fullCode.indexOf('_') + 1).substring(0, %fullCode.substring(%fullCode.indexOf('_') + 1).indexOf('/')) = '10' -> coding.display = 'Médecin' "displayMedecin";
+          } "coding";
+        } "qualCode";
+      } "profession";
+      assignedAuthor.representedOrganization as srcOrg ->  bundle.entry as e2,  e2.resource = create('Organization') as organization,  organization.id = uuid() as uuid3,  e2.fullUrl = append('urn:uuid:', uuid3),  practitionerRole.organization = create('Reference') as refOrg,  refOrg.reference = ('urn:uuid:' + %organization.id) then ClinicalDocumentOrganization(srcOrg, organization);
     } "author";
   } "srcAuthor";
+  src.informant as srcInformant ->  bundle.entry as e,  e.resource = create('RelatedPerson') as relatedPerson,  relatedPerson.id = uuid() as uuidRelated,  e.fullUrl = append('urn:uuid:', uuidRelated) then {
+    srcInformant.relatedEntity as relatedEntity then {
+      relatedEntity ->  relatedPerson.patient = create('Reference') as patientRef,  patientRef.reference = ('urn:uuid:' + %patientResource.id) "patientRef";
+      relatedEntity.code as relationCode -> relatedPerson.relationship = create('CodeableConcept') as cc then CDCodeableConcept(relationCode, cc) "relationship";
+      relatedEntity.addr as addr -> relatedPerson.address = create('Address') as address then ADAddress(addr, address) "address";
+      relatedEntity.telecom as tlc -> relatedPerson.telecom = create('ContactPoint') as contactPoint then TELContactPoint(tlc, contactPoint);
+      relatedEntity.relatedPerson as relPerson then {
+        relPerson.name as pName -> relatedPerson.name = create('HumanName') as humanName then ENHumanName(pName, humanName);
+      } "relatedPersonName";
+    };
+  };
   src.confidentialityCode as confCode -> tgt.confidentiality = create('code') as code then CSCode(confCode, code);
   src.legalAuthenticator as legalAuth ->  bundle.entry as e,  e.resource = create('Practitioner') as practitioner,  practitioner.id = uuid() as uuid2,  e.fullUrl = append('urn:uuid:', uuid2) then {
     legalAuth -> tgt.attester as attester then {
@@ -135,6 +172,9 @@ group ClinicalDocumentComposition(source src : ClinicalDocument, target tgt : Co
 }
 
 group ClinicalDocumentEntityPractitioner(source src : AssignedEntity, target tgt : Practitioner) {
+  src -> tgt.meta = create('Meta') as meta then {
+    src -> meta.profile = 'https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-practitioner' "profile";
+  } "meta";
   src.id as srcId -> tgt.identifier = create('Identifier') as identifier then II(srcId, identifier);
   src.addr as srcAddr -> tgt.address = create('Address') as address then ADAddress(srcAddr, address);
   src.telecom as srcTelecom -> tgt.telecom = create('ContactPoint') as contactPoint then TELContactPoint(srcTelecom, contactPoint);
@@ -144,6 +184,9 @@ group ClinicalDocumentEntityPractitioner(source src : AssignedEntity, target tgt
 }
 
 group ClinicalDocumentOrganization(source src : CustodianOrganization, target tgt : Organization) {
+  src -> tgt.meta = create('Meta') as meta then {
+    src -> meta.profile = 'https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-organization' "profile";
+  } "meta";
   src.id as srcId -> tgt.identifier = create('Identifier') as identifier then II(srcId, identifier);
   src.name as v -> tgt.name = (v.other);
   src.telecom as srcTelecom -> tgt.telecom = create('ContactPoint') as contactPoint then TELContactPoint(srcTelecom, contactPoint);
@@ -266,7 +309,7 @@ group NarrativeLink(source url, target ext : Extension) {
   "name" : "CdaToBundle",
   "title" : "Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)",
   "status" : "draft",
-  "date" : "2025-10-31T13:29:03+00:00",
+  "date" : "2025-10-31T16:13:56+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {
@@ -1359,6 +1402,45 @@ group NarrativeLink(source url, target ext : Extension) {
               ]
             },
             {
+              "context" : "bundle",
+              "contextType" : "variable",
+              "element" : "entry",
+              "variable" : "eRole"
+            },
+            {
+              "context" : "eRole",
+              "contextType" : "variable",
+              "element" : "resource",
+              "variable" : "practitionerRole",
+              "transform" : "create",
+              "parameter" : [
+                {
+                  "valueString" : "PractitionerRole"
+                }
+              ]
+            },
+            {
+              "context" : "practitionerRole",
+              "contextType" : "variable",
+              "element" : "id",
+              "variable" : "uuidRole",
+              "transform" : "uuid"
+            },
+            {
+              "context" : "eRole",
+              "contextType" : "variable",
+              "element" : "fullUrl",
+              "transform" : "append",
+              "parameter" : [
+                {
+                  "valueString" : "urn:uuid:"
+                },
+                {
+                  "valueId" : "uuidRole"
+                }
+              ]
+            },
+            {
               "context" : "tgt",
               "contextType" : "variable",
               "element" : "author",
@@ -1377,12 +1459,135 @@ group NarrativeLink(source url, target ext : Extension) {
               "transform" : "evaluate",
               "parameter" : [
                 {
-                  "valueString" : "'urn:uuid:' + %practitioner.id"
+                  "valueString" : "'urn:uuid:' + %practitionerRole.id"
                 }
               ]
             }
           ],
           "rule" : [
+            {
+              "name" : "practitionerMeta",
+              "source" : [
+                {
+                  "context" : "srcAuthor"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "practitioner",
+                  "contextType" : "variable",
+                  "element" : "meta",
+                  "variable" : "meta",
+                  "transform" : "create",
+                  "parameter" : [
+                    {
+                      "valueString" : "Meta"
+                    }
+                  ]
+                }
+              ],
+              "rule" : [
+                {
+                  "name" : "practitionerProfile",
+                  "source" : [
+                    {
+                      "context" : "srcAuthor"
+                    }
+                  ],
+                  "target" : [
+                    {
+                      "context" : "meta",
+                      "contextType" : "variable",
+                      "element" : "profile",
+                      "transform" : "copy",
+                      "parameter" : [
+                        {
+                          "valueString" : "https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-practitioner"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name" : "practitionerRoleMeta",
+              "source" : [
+                {
+                  "context" : "srcAuthor"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "practitionerRole",
+                  "contextType" : "variable",
+                  "element" : "meta",
+                  "variable" : "metaRole",
+                  "transform" : "create",
+                  "parameter" : [
+                    {
+                      "valueString" : "Meta"
+                    }
+                  ]
+                }
+              ],
+              "rule" : [
+                {
+                  "name" : "practitionerRoleProfile",
+                  "source" : [
+                    {
+                      "context" : "srcAuthor"
+                    }
+                  ],
+                  "target" : [
+                    {
+                      "context" : "metaRole",
+                      "contextType" : "variable",
+                      "element" : "profile",
+                      "transform" : "copy",
+                      "parameter" : [
+                        {
+                          "valueString" : "https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-practitionerrole"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name" : "practitionerRef",
+              "source" : [
+                {
+                  "context" : "srcAuthor"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "practitionerRole",
+                  "contextType" : "variable",
+                  "element" : "practitioner",
+                  "variable" : "refPract",
+                  "transform" : "create",
+                  "parameter" : [
+                    {
+                      "valueString" : "Reference"
+                    }
+                  ]
+                },
+                {
+                  "context" : "refPract",
+                  "contextType" : "variable",
+                  "element" : "reference",
+                  "transform" : "evaluate",
+                  "parameter" : [
+                    {
+                      "valueString" : "'urn:uuid:' + %practitioner.id"
+                    }
+                  ]
+                }
+              ]
+            },
             {
               "name" : "author",
               "source" : [
@@ -1526,6 +1731,307 @@ group NarrativeLink(source url, target ext : Extension) {
                   ]
                 },
                 {
+                  "name" : "roleCode",
+                  "source" : [
+                    {
+                      "context" : "assignedAuthor",
+                      "element" : "code",
+                      "variable" : "roleCode"
+                    }
+                  ],
+                  "target" : [
+                    {
+                      "context" : "practitionerRole",
+                      "contextType" : "variable",
+                      "element" : "code",
+                      "variable" : "cc",
+                      "transform" : "create",
+                      "parameter" : [
+                        {
+                          "valueString" : "CodeableConcept"
+                        }
+                      ]
+                    }
+                  ],
+                  "dependent" : [
+                    {
+                      "name" : "CDCodeableConcept",
+                      "variable" : ["roleCode", "cc"]
+                    }
+                  ]
+                },
+                {
+                  "name" : "savoirFaire",
+                  "source" : [
+                    {
+                      "context" : "assignedAuthor",
+                      "element" : "code",
+                      "variable" : "roleCode",
+                      "condition" : "code.contains('/')"
+                    }
+                  ],
+                  "target" : [
+                    {
+                      "context" : "practitioner",
+                      "contextType" : "variable",
+                      "element" : "qualification",
+                      "variable" : "qualification"
+                    }
+                  ],
+                  "rule" : [
+                    {
+                      "name" : "qualCode",
+                      "source" : [
+                        {
+                          "context" : "roleCode"
+                        }
+                      ],
+                      "target" : [
+                        {
+                          "context" : "qualification",
+                          "contextType" : "variable",
+                          "element" : "code",
+                          "variable" : "qualCode",
+                          "transform" : "create",
+                          "parameter" : [
+                            {
+                              "valueString" : "CodeableConcept"
+                            }
+                          ]
+                        }
+                      ],
+                      "rule" : [
+                        {
+                          "name" : "coding",
+                          "source" : [
+                            {
+                              "context" : "roleCode",
+                              "element" : "code",
+                              "variable" : "fullCode"
+                            }
+                          ],
+                          "target" : [
+                            {
+                              "context" : "qualCode",
+                              "contextType" : "variable",
+                              "element" : "coding",
+                              "variable" : "coding",
+                              "transform" : "create",
+                              "parameter" : [
+                                {
+                                  "valueString" : "Coding"
+                                }
+                              ]
+                            }
+                          ],
+                          "rule" : [
+                            {
+                              "name" : "savoirFaireCode",
+                              "source" : [
+                                {
+                                  "context" : "fullCode"
+                                }
+                              ],
+                              "target" : [
+                                {
+                                  "context" : "coding",
+                                  "contextType" : "variable",
+                                  "element" : "code",
+                                  "transform" : "evaluate",
+                                  "parameter" : [
+                                    {
+                                      "valueString" : "%fullCode.substring(%fullCode.indexOf('/') + 1)"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "name" : "systemSavoirFaire",
+                              "source" : [
+                                {
+                                  "context" : "fullCode"
+                                }
+                              ],
+                              "target" : [
+                                {
+                                  "context" : "coding",
+                                  "contextType" : "variable",
+                                  "element" : "system",
+                                  "transform" : "copy",
+                                  "parameter" : [
+                                    {
+                                      "valueString" : "https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "name" : "display",
+                              "source" : [
+                                {
+                                  "context" : "roleCode",
+                                  "element" : "displayName",
+                                  "variable" : "display"
+                                }
+                              ],
+                              "target" : [
+                                {
+                                  "context" : "coding",
+                                  "contextType" : "variable",
+                                  "element" : "display",
+                                  "transform" : "copy",
+                                  "parameter" : [
+                                    {
+                                      "valueId" : "display"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name" : "profession",
+                  "source" : [
+                    {
+                      "context" : "assignedAuthor",
+                      "element" : "code",
+                      "variable" : "roleCode",
+                      "condition" : "code.contains('/') and code.contains('_')"
+                    }
+                  ],
+                  "target" : [
+                    {
+                      "context" : "practitioner",
+                      "contextType" : "variable",
+                      "element" : "qualification",
+                      "variable" : "qualification"
+                    }
+                  ],
+                  "rule" : [
+                    {
+                      "name" : "qualCode",
+                      "source" : [
+                        {
+                          "context" : "roleCode"
+                        }
+                      ],
+                      "target" : [
+                        {
+                          "context" : "qualification",
+                          "contextType" : "variable",
+                          "element" : "code",
+                          "variable" : "qualCode",
+                          "transform" : "create",
+                          "parameter" : [
+                            {
+                              "valueString" : "CodeableConcept"
+                            }
+                          ]
+                        }
+                      ],
+                      "rule" : [
+                        {
+                          "name" : "coding",
+                          "source" : [
+                            {
+                              "context" : "roleCode",
+                              "element" : "code",
+                              "variable" : "fullCode"
+                            }
+                          ],
+                          "target" : [
+                            {
+                              "context" : "qualCode",
+                              "contextType" : "variable",
+                              "element" : "coding",
+                              "variable" : "coding",
+                              "transform" : "create",
+                              "parameter" : [
+                                {
+                                  "valueString" : "Coding"
+                                }
+                              ]
+                            }
+                          ],
+                          "rule" : [
+                            {
+                              "name" : "professionCode",
+                              "source" : [
+                                {
+                                  "context" : "fullCode"
+                                }
+                              ],
+                              "target" : [
+                                {
+                                  "context" : "coding",
+                                  "contextType" : "variable",
+                                  "element" : "code",
+                                  "transform" : "evaluate",
+                                  "parameter" : [
+                                    {
+                                      "valueString" : "%fullCode.substring(%fullCode.indexOf('_') + 1).substring(0, %fullCode.substring(%fullCode.indexOf('_') + 1).indexOf('/'))"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "name" : "systemProfession",
+                              "source" : [
+                                {
+                                  "context" : "fullCode"
+                                }
+                              ],
+                              "target" : [
+                                {
+                                  "context" : "coding",
+                                  "contextType" : "variable",
+                                  "element" : "system",
+                                  "transform" : "copy",
+                                  "parameter" : [
+                                    {
+                                      "valueString" : "https://mos.esante.gouv.fr/NOS/TRE_G15-ProfessionSante/FHIR/TRE-G15-ProfessionSante"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "name" : "displayMedecin",
+                              "source" : [
+                                {
+                                  "context" : "fullCode",
+                                  "condition" : "%fullCode.substring(%fullCode.indexOf('_') + 1).substring(0, %fullCode.substring(%fullCode.indexOf('_') + 1).indexOf('/')) = '10'"
+                                }
+                              ],
+                              "target" : [
+                                {
+                                  "context" : "coding",
+                                  "contextType" : "variable",
+                                  "element" : "display",
+                                  "transform" : "copy",
+                                  "parameter" : [
+                                    {
+                                      "valueString" : "Médecin"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
                   "name" : "representedOrganization",
                   "source" : [
                     {
@@ -1575,10 +2081,10 @@ group NarrativeLink(source url, target ext : Extension) {
                       ]
                     },
                     {
-                      "context" : "tgt",
+                      "context" : "practitionerRole",
                       "contextType" : "variable",
-                      "element" : "author",
-                      "variable" : "reference2",
+                      "element" : "organization",
+                      "variable" : "refOrg",
                       "transform" : "create",
                       "parameter" : [
                         {
@@ -1587,7 +2093,7 @@ group NarrativeLink(source url, target ext : Extension) {
                       ]
                     },
                     {
-                      "context" : "reference2",
+                      "context" : "refOrg",
                       "contextType" : "variable",
                       "element" : "reference",
                       "transform" : "evaluate",
@@ -1602,6 +2108,236 @@ group NarrativeLink(source url, target ext : Extension) {
                     {
                       "name" : "ClinicalDocumentOrganization",
                       "variable" : ["srcOrg", "organization"]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name" : "informant",
+          "source" : [
+            {
+              "context" : "src",
+              "element" : "informant",
+              "variable" : "srcInformant"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "bundle",
+              "contextType" : "variable",
+              "element" : "entry",
+              "variable" : "e"
+            },
+            {
+              "context" : "e",
+              "contextType" : "variable",
+              "element" : "resource",
+              "variable" : "relatedPerson",
+              "transform" : "create",
+              "parameter" : [
+                {
+                  "valueString" : "RelatedPerson"
+                }
+              ]
+            },
+            {
+              "context" : "relatedPerson",
+              "contextType" : "variable",
+              "element" : "id",
+              "variable" : "uuidRelated",
+              "transform" : "uuid"
+            },
+            {
+              "context" : "e",
+              "contextType" : "variable",
+              "element" : "fullUrl",
+              "transform" : "append",
+              "parameter" : [
+                {
+                  "valueString" : "urn:uuid:"
+                },
+                {
+                  "valueId" : "uuidRelated"
+                }
+              ]
+            }
+          ],
+          "rule" : [
+            {
+              "name" : "relatedEntity",
+              "source" : [
+                {
+                  "context" : "srcInformant",
+                  "element" : "relatedEntity",
+                  "variable" : "relatedEntity"
+                }
+              ],
+              "rule" : [
+                {
+                  "name" : "patientRef",
+                  "source" : [
+                    {
+                      "context" : "relatedEntity"
+                    }
+                  ],
+                  "target" : [
+                    {
+                      "context" : "relatedPerson",
+                      "contextType" : "variable",
+                      "element" : "patient",
+                      "variable" : "patientRef",
+                      "transform" : "create",
+                      "parameter" : [
+                        {
+                          "valueString" : "Reference"
+                        }
+                      ]
+                    },
+                    {
+                      "context" : "patientRef",
+                      "contextType" : "variable",
+                      "element" : "reference",
+                      "transform" : "evaluate",
+                      "parameter" : [
+                        {
+                          "valueString" : "'urn:uuid:' + %patientResource.id"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name" : "relationship",
+                  "source" : [
+                    {
+                      "context" : "relatedEntity",
+                      "element" : "code",
+                      "variable" : "relationCode"
+                    }
+                  ],
+                  "target" : [
+                    {
+                      "context" : "relatedPerson",
+                      "contextType" : "variable",
+                      "element" : "relationship",
+                      "variable" : "cc",
+                      "transform" : "create",
+                      "parameter" : [
+                        {
+                          "valueString" : "CodeableConcept"
+                        }
+                      ]
+                    }
+                  ],
+                  "dependent" : [
+                    {
+                      "name" : "CDCodeableConcept",
+                      "variable" : ["relationCode", "cc"]
+                    }
+                  ]
+                },
+                {
+                  "name" : "address",
+                  "source" : [
+                    {
+                      "context" : "relatedEntity",
+                      "element" : "addr",
+                      "variable" : "addr"
+                    }
+                  ],
+                  "target" : [
+                    {
+                      "context" : "relatedPerson",
+                      "contextType" : "variable",
+                      "element" : "address",
+                      "variable" : "address",
+                      "transform" : "create",
+                      "parameter" : [
+                        {
+                          "valueString" : "Address"
+                        }
+                      ]
+                    }
+                  ],
+                  "dependent" : [
+                    {
+                      "name" : "ADAddress",
+                      "variable" : ["addr", "address"]
+                    }
+                  ]
+                },
+                {
+                  "name" : "telecom",
+                  "source" : [
+                    {
+                      "context" : "relatedEntity",
+                      "element" : "telecom",
+                      "variable" : "tlc"
+                    }
+                  ],
+                  "target" : [
+                    {
+                      "context" : "relatedPerson",
+                      "contextType" : "variable",
+                      "element" : "telecom",
+                      "variable" : "contactPoint",
+                      "transform" : "create",
+                      "parameter" : [
+                        {
+                          "valueString" : "ContactPoint"
+                        }
+                      ]
+                    }
+                  ],
+                  "dependent" : [
+                    {
+                      "name" : "TELContactPoint",
+                      "variable" : ["tlc", "contactPoint"]
+                    }
+                  ]
+                },
+                {
+                  "name" : "relatedPersonName",
+                  "source" : [
+                    {
+                      "context" : "relatedEntity",
+                      "element" : "relatedPerson",
+                      "variable" : "relPerson"
+                    }
+                  ],
+                  "rule" : [
+                    {
+                      "name" : "name",
+                      "source" : [
+                        {
+                          "context" : "relPerson",
+                          "element" : "name",
+                          "variable" : "pName"
+                        }
+                      ],
+                      "target" : [
+                        {
+                          "context" : "relatedPerson",
+                          "contextType" : "variable",
+                          "element" : "name",
+                          "variable" : "humanName",
+                          "transform" : "create",
+                          "parameter" : [
+                            {
+                              "valueString" : "HumanName"
+                            }
+                          ]
+                        }
+                      ],
+                      "dependent" : [
+                        {
+                          "name" : "ENHumanName",
+                          "variable" : ["pName", "humanName"]
+                        }
+                      ]
                     }
                   ]
                 }
@@ -2263,6 +2999,51 @@ group NarrativeLink(source url, target ext : Extension) {
       ],
       "rule" : [
         {
+          "name" : "meta",
+          "source" : [
+            {
+              "context" : "src"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "tgt",
+              "contextType" : "variable",
+              "element" : "meta",
+              "variable" : "meta",
+              "transform" : "create",
+              "parameter" : [
+                {
+                  "valueString" : "Meta"
+                }
+              ]
+            }
+          ],
+          "rule" : [
+            {
+              "name" : "profile",
+              "source" : [
+                {
+                  "context" : "src"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "meta",
+                  "contextType" : "variable",
+                  "element" : "profile",
+                  "transform" : "copy",
+                  "parameter" : [
+                    {
+                      "valueString" : "https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-practitioner"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
           "name" : "id",
           "source" : [
             {
@@ -2412,6 +3193,51 @@ group NarrativeLink(source url, target ext : Extension) {
         }
       ],
       "rule" : [
+        {
+          "name" : "meta",
+          "source" : [
+            {
+              "context" : "src"
+            }
+          ],
+          "target" : [
+            {
+              "context" : "tgt",
+              "contextType" : "variable",
+              "element" : "meta",
+              "variable" : "meta",
+              "transform" : "create",
+              "parameter" : [
+                {
+                  "valueString" : "Meta"
+                }
+              ]
+            }
+          ],
+          "rule" : [
+            {
+              "name" : "profile",
+              "source" : [
+                {
+                  "context" : "src"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "meta",
+                  "contextType" : "variable",
+                  "element" : "profile",
+                  "transform" : "copy",
+                  "parameter" : [
+                    {
+                      "valueString" : "https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-organization"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
         {
           "name" : "id",
           "source" : [

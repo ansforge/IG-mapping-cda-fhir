@@ -1,0 +1,85 @@
+# ConceptMap - OID to URL for TRE_R38-SpecialiteOrdinale - POC - Mapping CDA to FHIR v0.1.0
+
+* [**Table of Contents**](toc.md)
+* [**Artifacts Summary**](artifacts.md)
+* **ConceptMap - OID to URL for TRE_R38-SpecialiteOrdinale**
+
+## ConceptMap: ConceptMap - OID to URL for TRE_R38-SpecialiteOrdinale 
+
+| | |
+| :--- | :--- |
+| *Official URL*:https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/cm-oid-specialite-ordinale | *Version*:0.1.0 |
+| Active as of 2025-10-31 | *Computable Name*:ConceptMapOidSpecialiteOrdinale |
+
+ 
+Mapping from OID urn:oid:1.2.250.1.213.1.1.4.5 to URL https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale 
+
+Mapping de urn:oid:1.2.250.1.213.1.1.4.5 vers [https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale](https://interop.esante.gouv.fr/ig/nos/1.5.0/CodeSystem-TRE-R38-SpecialiteOrdinale.html)
+
+**Groupe 1**Mapping de `urn:oid:1.2.250.1.213.1.1.4.5` to [TRE_R38-SpecialiteOrdinale](https://interop.esante.gouv.fr/ig/nos/1.5.0/CodeSystem-TRE-R38-SpecialiteOrdinale.html)
+
+* **Code source**: urn:oid:1.2.250.1.213.1.1.4.5
+  * **relation**: [is equivalent to](http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent)
+  * **Code cible**: https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale
+
+
+
+## Resource Content
+
+```json
+{
+  "resourceType" : "ConceptMap",
+  "id" : "cm-oid-specialite-ordinale",
+  "url" : "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/cm-oid-specialite-ordinale",
+  "version" : "0.1.0",
+  "name" : "ConceptMapOidSpecialiteOrdinale",
+  "title" : "ConceptMap - OID to URL for TRE_R38-SpecialiteOrdinale",
+  "status" : "active",
+  "experimental" : false,
+  "date" : "2025-10-31",
+  "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
+  "contact" : [
+    {
+      "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
+      "telecom" : [
+        {
+          "system" : "url",
+          "value" : "https://esante.gouv.fr"
+        }
+      ]
+    }
+  ],
+  "description" : "Mapping from OID urn:oid:1.2.250.1.213.1.1.4.5 to URL https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale",
+  "jurisdiction" : [
+    {
+      "coding" : [
+        {
+          "system" : "urn:iso:std:iso:3166",
+          "code" : "FR",
+          "display" : "FRANCE"
+        }
+      ]
+    }
+  ],
+  "sourceUri" : "urn:oid:1.2.250.1.213.1.1.4.5",
+  "targetUri" : "https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale",
+  "group" : [
+    {
+      "source" : "urn:oid:1.2.250.1.213.1.1.4.5",
+      "target" : "https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale",
+      "element" : [
+        {
+          "code" : "urn:oid:1.2.250.1.213.1.1.4.5",
+          "target" : [
+            {
+              "code" : "https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale",
+              "equivalence" : "equivalent"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+```
