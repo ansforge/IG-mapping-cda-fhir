@@ -281,6 +281,42 @@ Les exemples CDA fournis présentent certaines limitations qui génèrent des wa
 
 **Note** : Ces limitations proviennent des données CDA d'exemple et non du mapping FML. Le mapping transforme fidèlement les données CDA disponibles.
 
+### Difficultés identifiées dans le mapping automatique CDA-FHIR
+
+Le processus de transformation automatique CDA vers FHIR présente certaines difficultés inhérentes aux différences de modélisation entre les deux standards :
+
+#### 1. Ambiguïté sémantique des structures CDA
+
+**Problème identifié** : `healthCareFacility` et `serviceProviderOrganization`
+
+Dans le CDA, la structure `componentOf > encompassingEncounter > location > healthCareFacility` contient :
+- Un `code` décrivant le type d'établissement (ex: SA05 "Centre de santé" du TRE_R02-SecteurActivite)
+- Une `location` (lieu physique avec adresse)
+- Optionnellement un `serviceProviderOrganization` (organisation gestionnaire)
+
+**Difficulté de mapping** :
+
+Le code SA05 du `healthCareFacility` devrait logiquement être mappé vers :
+1. ✅ `Location.type` - pour indiquer le type de lieu physique
+2. ❓ `Organization.type:secteurActiviteRASS` - pour indiquer le secteur d'activité de l'organisation
+
+Cependant, il existe une **ambiguïté sémantique** :
+- Le `serviceProviderOrganization` dans le CDA peut représenter :
+  - L'organisation qui opère directement le centre de santé (dans ce cas, SA05 s'applique bien)
+  - Une organisation parente ou gestionnaire différente (dans ce cas, SA05 pourrait ne pas s'appliquer)
+
+**Impact** :
+- Un mapping automatique qui copie systématiquement le code du `healthCareFacility` vers l'`Organization` peut introduire des **incohérences sémantiques**
+- Il n'existe pas de règle universelle dans le CDA pour distinguer ces deux cas
+- Cette ambiguïté nécessite souvent une **analyse contextuelle manuelle** ou des **règles métier spécifiques** au projet
+
+**Solutions possibles** :
+1. **Mapping conservateur** : Ne mapper que vers `Location.type` (approche actuelle)
+2. **Mapping avec hypothèse** : Copier vers `Organization.type` en documentant l'hypothèse que le `serviceProviderOrganization` est l'établissement lui-même
+3. **Mapping conditionnel** : Définir des règles métier basées sur le contexte du document (type de document, type d'établissement, etc.)
+
+Cette difficulté illustre que **le mapping CDA-FHIR n'est pas toujours une transformation mécanique 1:1**, mais nécessite parfois des choix d'implémentation basés sur la compréhension du contexte métier.
+
 ### Arrêter et redémarrer
 
 Pour arrêter le conteneur :

@@ -326,7 +326,13 @@ group ClinicalDocumentEncounter(source src : EncompassingEncounter, target bundl
 
 group ClinicalDocumentLocation(source src : HealthCareFacility, target bundle : Bundle, target tgt : Location) {
   src.id as srcIdentifier -> tgt.identifier = create('Identifier') as identifier then II(srcIdentifier, identifier);
-  src.code as srcCode -> tgt.type = create('CodeableConcept') as cc then CDCodeableConcept(srcCode, cc);
+  src.code as srcCode -> tgt.type = create('CodeableConcept') as cc then {
+    srcCode.code as code -> cc.coding = create('Coding') as coding then {
+      code -> coding.code = code "code";
+      code -> coding.system = 'https://mos.esante.gouv.fr/NOS/TRE_R02-SecteurActivite/FHIR/TRE-R02-SecteurActivite' "system";
+      srcCode.displayName as display -> coding.display = display "display";
+    } "coding";
+  } "locationType";
   src.location as location then {
  // place names are usually stored with no parts    location.name as srcName -> tgt.name = cast(srcName, 'string');
     location.addr as locAddr -> tgt.address = create('Address') as address then ADAddress(locAddr, address);
