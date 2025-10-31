@@ -66,14 +66,6 @@ docker run -d --name matchbox -p 8080:8080 \
   europe-west6-docker.pkg.dev/ahdis-ch/ahdis/matchbox:v4.0.12
 ```
 
-Exemple concret :
-
-```bash
-docker run -d --name matchbox -p 8080:8080 \
-  -v /Users/nicolasriss/Desktop/ANSFORGE_ans-ig/1-Mapping-CDA-to-FHIR/IG-mapping-cda-fhir/input/with-all:/config \
-  europe-west6-docker.pkg.dev/ahdis-ch/ahdis/matchbox:v4.0.12
-```
-
 **Ou utilisez le script de démarrage automatique** :
 
 ```bash
