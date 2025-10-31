@@ -52,15 +52,6 @@ docker run -d --name matchbox -p 8080:8080 \
 
 ```
 
-Exemple concret :
-
-```
-docker run -d --name matchbox -p 8080:8080 \
-  -v /Users/nicolasriss/Desktop/ANSFORGE_ans-ig/1-Mapping-CDA-to-FHIR/IG-mapping-cda-fhir/input/with-all:/config \
-  europe-west6-docker.pkg.dev/ahdis-ch/ahdis/matchbox:v4.0.12
-
-```
-
 **Ou utilisez le script de démarrage automatique** :
 
 ```
@@ -379,7 +370,7 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2025-10-31T13:28:44+00:00",
+  "date" : "2025-10-31T13:29:03+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {
