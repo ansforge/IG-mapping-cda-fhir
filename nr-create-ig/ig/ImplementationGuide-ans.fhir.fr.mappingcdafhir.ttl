@@ -21,7 +21,7 @@
   fhir:name [ fhir:v "CDA2FHIRMAP"] ; # 
   fhir:title [ fhir:v "POC - Mapping CDA to FHIR"] ; # 
   fhir:status [ fhir:v "draft"] ; # 
-  fhir:date [ fhir:v "2025-10-31T10:55:25+00:00"^^xsd:dateTime] ; # 
+  fhir:date [ fhir:v "2025-10-31T13:28:44+00:00"^^xsd:dateTime] ; # 
   fhir:publisher [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"] ; # 
   fhir:contact ( [
      fhir:name [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris" ] ;
@@ -1461,46 +1461,6 @@
          ] ;
          fhir:value [
            a fhir:String ;
-           fhir:v "Bundle"
-         ]
-       ] ) ;
-       fhir:reference [
-         fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/Bundle/2937bc70-0b09-4c9c-a395-4f088f0cd3ec> ;
-         fhir:reference [ fhir:v "Bundle/2937bc70-0b09-4c9c-a395-4f088f0cd3ec" ]
-       ] ;
-       fhir:name [ fhir:v "2937bc70-0b09-4c9c-a395-4f088f0cd3ec" ] ;
-       fhir:example [
-         a fhir:Boolean ;
-         fhir:v false
-       ]
-     ] [
-       fhir:extension ( [
-         fhir:url [
-           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
-           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
-         ] ;
-         fhir:value [
-           a fhir:String ;
-           fhir:v "Bundle"
-         ]
-       ] ) ;
-       fhir:reference [
-         fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/Bundle/8628f435-5674-4da4-beb5-433e9e2d25ab> ;
-         fhir:reference [ fhir:v "Bundle/8628f435-5674-4da4-beb5-433e9e2d25ab" ]
-       ] ;
-       fhir:name [ fhir:v "8628f435-5674-4da4-beb5-433e9e2d25ab" ] ;
-       fhir:example [
-         a fhir:Boolean ;
-         fhir:v false
-       ]
-     ] [
-       fhir:extension ( [
-         fhir:url [
-           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
-           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
-         ] ;
-         fhir:value [
-           a fhir:String ;
            fhir:v "ConceptMap"
          ]
        ] ) ;
@@ -1510,6 +1470,26 @@
        ] ;
        fhir:name [ fhir:v "CDA to FHIR Administrative Gender Mapping" ] ;
        fhir:description [ fhir:v "Mapping between CDA v3 Administrative Gender codes and FHIR Administrative Gender codes" ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v false
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Bundle"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/Bundle/fe569e1f-32d4-4ba4-b5ad-88082bf5470a> ;
+         fhir:reference [ fhir:v "Bundle/fe569e1f-32d4-4ba4-b5ad-88082bf5470a" ]
+       ] ;
+       fhir:name [ fhir:v "fe569e1f-32d4-4ba4-b5ad-88082bf5470a" ] ;
        fhir:example [
          a fhir:Boolean ;
          fhir:v false

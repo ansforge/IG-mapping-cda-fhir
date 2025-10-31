@@ -10,7 +10,7 @@
   <name value="CDA2FHIRMAP"/>
   <title value="POC - Mapping CDA to FHIR"/>
   <status value="draft"/>
-  <date value="2025-10-31T10:55:25+00:00"/>
+  <date value="2025-10-31T13:28:44+00:00"/>
   <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
   <contact>
     <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
@@ -509,26 +509,6 @@
     </extension>
     <resource>
       <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
-        <valueString value="Bundle"/>
-      </extension>
-      <reference>
-        <reference value="Bundle/2937bc70-0b09-4c9c-a395-4f088f0cd3ec"/>
-      </reference>
-      <name value="2937bc70-0b09-4c9c-a395-4f088f0cd3ec"/>
-      <exampleBoolean value="false"/>
-    </resource>
-    <resource>
-      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
-        <valueString value="Bundle"/>
-      </extension>
-      <reference>
-        <reference value="Bundle/8628f435-5674-4da4-beb5-433e9e2d25ab"/>
-      </reference>
-      <name value="8628f435-5674-4da4-beb5-433e9e2d25ab"/>
-      <exampleBoolean value="false"/>
-    </resource>
-    <resource>
-      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
         <valueString value="ConceptMap"/>
       </extension>
       <reference>
@@ -536,6 +516,16 @@
       </reference>
       <name value="CDA to FHIR Administrative Gender Mapping"/>
       <description value="Mapping between CDA v3 Administrative Gender codes and FHIR Administrative Gender codes"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="Bundle"/>
+      </extension>
+      <reference>
+        <reference value="Bundle/fe569e1f-32d4-4ba4-b5ad-88082bf5470a"/>
+      </reference>
+      <name value="fe569e1f-32d4-4ba4-b5ad-88082bf5470a"/>
       <exampleBoolean value="false"/>
     </resource>
     <resource>

@@ -104,8 +104,7 @@ Les fichiers HTTP de test se trouvent dans le dossier `http-test/`. Utilisez le 
 * **Requête 2** : Charger CdaToBundle.fml
 * **Requête 3** : Charger CDAFrToBundle.fml
 * **Requête 4** : Charger CDAFrMDEToBundle.fml
-* **Requête 5** : Transformer fr-CSE-MDE_1obs.xml (sortie JSON)
-* **Requête 6** : Transformer fr-CSE-MDE_2023.01.xml (sortie XML)
+* **Requête 5** : Transformer CSE-MDE_2023.01.xml (sortie JSON)
 
 1. Cliquez sur "Send Request" au-dessus de chaque requête
 
@@ -139,19 +138,18 @@ curl -X POST http://localhost:8080/matchbox/fhir/StructureMap \
   --data-binary @input/fml/CDAFrMDEToBundle.fml
 
 # 3. Transformer un document CDA
-curl -X POST "http://localhost:8080/matchbox/fhir/StructureMap/\$transform?source=https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle" \
+curl -X POST "http://localhost:8080/matchbox/fhir/StructureMap/\$transform?source=https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrMDEToBundle" \
   -H "Accept: application/fhir+json;fhirVersion=4.0" \
   -H "Content-Type: application/fhir+xml;fhirVersion=4.0" \
-  --data-binary @input/attachments/fr-CSE-MDE_1obs.xml
+  --data-binary @input/attachments/CSE-MDE_2023.01.xml
 
 ```
 
-#### Exemples CDA disponibles
+#### Exemple CDA disponible
 
-Le dossier `input/attachments/` contient deux exemples de documents CDA français :
+Le dossier `input/attachments/` contient un exemple de document CDA français :
 
-* **[fr-CSE-MDE_1obs.xml](Bundle-edef0890-a41a-46f3-a5b6-ea5758f820e5.md)** : Carnet de santé de l'enfant - Mesures (1 observation : Poids)
-* **[fr-CSE-MDE_2023.01.xml](Bundle-86be429f-d9df-4810-a817-0e098b4483fd.md)** : Carnet de santé de l'enfant - Mesures (3 observations : Poids, Taille, Périmètre crânien)
+* **CSE-MDE_2023.01.xml** : Carnet de santé de l'enfant - Mesures (3 observations : Poids, Taille, Périmètre crânien)
 
 #### Résultat attendu
 
@@ -163,32 +161,25 @@ Si la transformation réussit, vous obtiendrez un Bundle FHIR contenant les ress
 
 Les transformations CDA-FHIR ont été exécutées avec les résultats suivants :
 
-#### Transformations réussies
+#### Transformation réussie
 
 | | | | | | |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| [fr-CSE-MDE_1obs.xml](Bundle-edef0890-a41a-46f3-a5b6-ea5758f820e5.md) | [CdaFrMDEToBundle](StructureMap-CdaFrMDEToBundle.md) | [fr-CSE-MDE_1obs-result.json](Bundle-edef0890-a41a-46f3-a5b6-ea5758f820e5.json.md) | 9 | 1 | ✅ Succès complet |
-| [fr-CSE-MDE_2023.01.xml](Bundle-86be429f-d9df-4810-a817-0e098b4483fd.md) | [CdaFrMDEToBundle](StructureMap-CdaFrMDEToBundle.md) | [fr-CSE-MDE_2023.01-result.json](Bundle-86be429f-d9df-4810-a817-0e098b4483fd.json.md) | 11 | 3 | ✅ Succès complet |
+| CSE-MDE_2023.01.xml | [CdaFrMDEToBundle](StructureMap-CdaFrMDEToBundle.md) | [Bundle-fe569e1f-32d4-4ba4-b5ad-88082bf5470a.json](Bundle-fe569e1f-32d4-4ba4-b5ad-88082bf5470a.md) | 11 | 3 | ✅ Succès complet |
 
-**Détails des transformations :**
+**Détails de la transformation :**
 
-**Documents français CSE-MDE (Carnet de Santé de l'Enfant - Mesures)** :
+**Document CSE-MDE (Carnet de Santé de l'Enfant - Mesures)** :
 
 * **StructureMap utilisé** : `CdaFrMDEToBundle` - Mapping spécifique pour le contexte français
 * **Imports** : Utilise `CdaToFHIRTypes`, `CdaToBundle` et `CdaFrToBundle`
-* **Ressources générées** : 
+* **Ressources générées** (11 au total) : 
 * 1 Composition (métadonnées du document)
 * 1 Patient (avec identifiant INS-NIR, nom, genre, date de naissance)
 * 1 Encounter (contexte de la rencontre)
 * 1 Location (lieu de la consultation)
 * 2 Practitioner (praticiens impliqués)
 * 2 Organization (organisations de santé)
-* 1 à 3 Observation(s) selon le document
- 
-* **[fr-CSE-MDE_1obs.xml](Bundle-edef0890-a41a-46f3-a5b6-ea5758f820e5.md)** : 9 ressources 
-* 1 Observation : Poids (code LOINC 29463-7) = 3900 g
- 
-* **[fr-CSE-MDE_2023.01.xml](Bundle-86be429f-d9df-4810-a817-0e098b4483fd.md)** : 11 ressources 
 * 3 Observations : 
 * Poids (29463-7) = 3900 g
 * Taille (8302-2) = 52 cm
@@ -355,24 +346,24 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
 
 * The UCUM codes, UCUM table (regardless of format), and UCUM Specification are copyright 1999-2009, Regenstrief Institute, Inc. and the Unified Codes for Units of Measures (UCUM) Organization. All rights reserved. [https://ucum.org/trac/wiki/TermsOfUse](https://ucum.org/trac/wiki/TermsOfUse)
 
-* [Unified Code for Units of Measure (UCUM)](http://terminology.hl7.org/6.5.0/CodeSystem-v3-ucum.html): [Bundle/2937bc70-0b09-4c9c-a395-4f088f0cd3ec](Bundle-2937bc70-0b09-4c9c-a395-4f088f0cd3ec.md) and [Bundle/8628f435-5674-4da4-beb5-433e9e2d25ab](Bundle-8628f435-5674-4da4-beb5-433e9e2d25ab.md)
+* [Unified Code for Units of Measure (UCUM)](http://terminology.hl7.org/6.5.0/CodeSystem-v3-ucum.html): [Bundle/fe569e1f-32d4-4ba4-b5ad-88082bf5470a](Bundle-fe569e1f-32d4-4ba4-b5ad-88082bf5470a.md)
 
 
 * This material contains content from [LOINC](http://loinc.org). LOINC is copyright © 1995-2020, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the [license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc.
 
-* [LOINC](http://terminology.hl7.org/6.5.0/CodeSystem-v3-loinc.html): [Bundle/2937bc70-0b09-4c9c-a395-4f088f0cd3ec](Bundle-2937bc70-0b09-4c9c-a395-4f088f0cd3ec.md) and [Bundle/8628f435-5674-4da4-beb5-433e9e2d25ab](Bundle-8628f435-5674-4da4-beb5-433e9e2d25ab.md)
+* [LOINC](http://terminology.hl7.org/6.5.0/CodeSystem-v3-loinc.html): [Bundle/fe569e1f-32d4-4ba4-b5ad-88082bf5470a](Bundle-fe569e1f-32d4-4ba4-b5ad-88082bf5470a.md)
 
 
 * This material contains content that is copyright of SNOMED International. Implementers of these specifications must have the appropriate SNOMED CT Affiliate license - for more information contact [https://www.snomed.org/get-snomed](https://www.snomed.org/get-snomed) or [info@snomed.org](mailto:info@snomed.org).
 
-* [SNOMED Clinical Terms&reg; (SNOMED CT&reg;)](http://hl7.org/fhir/R4/codesystem-snomedct.html): [Bundle/2937bc70-0b09-4c9c-a395-4f088f0cd3ec](Bundle-2937bc70-0b09-4c9c-a395-4f088f0cd3ec.md) and [Bundle/8628f435-5674-4da4-beb5-433e9e2d25ab](Bundle-8628f435-5674-4da4-beb5-433e9e2d25ab.md)
+* [SNOMED Clinical Terms&reg; (SNOMED CT&reg;)](http://hl7.org/fhir/R4/codesystem-snomedct.html): [Bundle/fe569e1f-32d4-4ba4-b5ad-88082bf5470a](Bundle-fe569e1f-32d4-4ba4-b5ad-88082bf5470a.md)
 
 
 * This material derives from the HL7 Terminology (THO). THO is copyright ©1989+ Health Level Seven International and is made available under the CC0 designation. For more licensing information see: [https://terminology.hl7.org/license.html](https://terminology.hl7.org/license.html)
 
-* [Observation Category Codes](http://terminology.hl7.org/6.5.0/CodeSystem-observation-category.html): [Bundle/2937bc70-0b09-4c9c-a395-4f088f0cd3ec](Bundle-2937bc70-0b09-4c9c-a395-4f088f0cd3ec.md) and [Bundle/8628f435-5674-4da4-beb5-433e9e2d25ab](Bundle-8628f435-5674-4da4-beb5-433e9e2d25ab.md)
-* [identifierType](http://terminology.hl7.org/6.5.0/CodeSystem-v2-0203.html): [Bundle/2937bc70-0b09-4c9c-a395-4f088f0cd3ec](Bundle-2937bc70-0b09-4c9c-a395-4f088f0cd3ec.md) and [Bundle/8628f435-5674-4da4-beb5-433e9e2d25ab](Bundle-8628f435-5674-4da4-beb5-433e9e2d25ab.md)
-* [ActCode](http://terminology.hl7.org/6.5.0/CodeSystem-v3-ActCode.html): [Bundle/2937bc70-0b09-4c9c-a395-4f088f0cd3ec](Bundle-2937bc70-0b09-4c9c-a395-4f088f0cd3ec.md) and [Bundle/8628f435-5674-4da4-beb5-433e9e2d25ab](Bundle-8628f435-5674-4da4-beb5-433e9e2d25ab.md)
+* [Observation Category Codes](http://terminology.hl7.org/6.5.0/CodeSystem-observation-category.html): [Bundle/fe569e1f-32d4-4ba4-b5ad-88082bf5470a](Bundle-fe569e1f-32d4-4ba4-b5ad-88082bf5470a.md)
+* [identifierType](http://terminology.hl7.org/6.5.0/CodeSystem-v2-0203.html): [Bundle/fe569e1f-32d4-4ba4-b5ad-88082bf5470a](Bundle-fe569e1f-32d4-4ba4-b5ad-88082bf5470a.md)
+* [ActCode](http://terminology.hl7.org/6.5.0/CodeSystem-v3-ActCode.html): [Bundle/fe569e1f-32d4-4ba4-b5ad-88082bf5470a](Bundle-fe569e1f-32d4-4ba4-b5ad-88082bf5470a.md)
 
 
 
@@ -388,7 +379,7 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2025-10-31T10:55:25+00:00",
+  "date" : "2025-10-31T13:28:44+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {
@@ -1193,32 +1184,6 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
         "extension" : [
           {
             "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-            "valueString" : "Bundle"
-          }
-        ],
-        "reference" : {
-          "reference" : "Bundle/2937bc70-0b09-4c9c-a395-4f088f0cd3ec"
-        },
-        "name" : "2937bc70-0b09-4c9c-a395-4f088f0cd3ec",
-        "exampleBoolean" : false
-      },
-      {
-        "extension" : [
-          {
-            "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-            "valueString" : "Bundle"
-          }
-        ],
-        "reference" : {
-          "reference" : "Bundle/8628f435-5674-4da4-beb5-433e9e2d25ab"
-        },
-        "name" : "8628f435-5674-4da4-beb5-433e9e2d25ab",
-        "exampleBoolean" : false
-      },
-      {
-        "extension" : [
-          {
-            "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
             "valueString" : "ConceptMap"
           }
         ],
@@ -1227,6 +1192,19 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
         },
         "name" : "CDA to FHIR Administrative Gender Mapping",
         "description" : "Mapping between CDA v3 Administrative Gender codes and FHIR Administrative Gender codes",
+        "exampleBoolean" : false
+      },
+      {
+        "extension" : [
+          {
+            "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString" : "Bundle"
+          }
+        ],
+        "reference" : {
+          "reference" : "Bundle/fe569e1f-32d4-4ba4-b5ad-88082bf5470a"
+        },
+        "name" : "fe569e1f-32d4-4ba4-b5ad-88082bf5470a",
         "exampleBoolean" : false
       },
       {
