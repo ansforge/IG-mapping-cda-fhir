@@ -77,7 +77,7 @@ group CdaFrMDEMapping(source cda : ClinicalDocument, target patient : Patient, t
                     observation.id = uuid() as obsUuid,
                     obsEntry.fullUrl = append('urn:uuid:', obsUuid),
                     compSection.entry = create('Reference') as obsRef,
-                    obsRef.reference = append('Observation/', obsUuid)
+                    obsRef.reference = append('urn:uuid:', obsUuid)
                     then ProcessObservation(cda, obs, observation, patient, composition) "processObs";
                   } "observation";
                 } "orgComponent";
@@ -125,7 +125,7 @@ group ProcessObservation(source cda : ClinicalDocument, source obs, target obser
   obs.value as value -> observation.value = create('Quantity') as qty then PQQuantity(value, qty) "obsValue";
 
   // Subject reference
-  obs -> observation.subject = create('Reference') as ref, ref.reference = ('Patient/' + %patient.id) "obsSubject";
+  obs -> observation.subject = create('Reference') as ref, ref.reference = ('urn:uuid:' + %patient.id) "obsSubject";
 }
 
 // Map CDA v3 administrative gender to FHIR gender

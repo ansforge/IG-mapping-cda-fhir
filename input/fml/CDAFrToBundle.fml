@@ -120,7 +120,7 @@ group ChExtEprVersionNumber1(source src, target ext: Extension) {
 // target: http://build.fhir.org/ig/hl7ch/ch-core/branches/master/StructureDefinition-ch-ext-epr-informationrecipient.html
 group ChExtEprInformationRecipient(source src: IntendedRecipient, target patient: Patient, target ext: Extension) {
   src -> ext.url = 'http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-informationrecipient' "url";
-  src -> ext.value = create('Reference') as reference, reference.reference = ('Patient/'+%patient.id) "value";
+  src -> ext.value = create('Reference') as reference, reference.reference = ('urn:uuid:'+%patient.id) "value";
   src.addr as addr -> patient.address as address then ADAddress(addr, address) "address";
   src.informationRecipient as informationRecipient then {
     informationRecipient.name as cdaname -> patient.name as fhirname then ENHumanName(cdaname, fhirname) "name";
@@ -131,7 +131,7 @@ group ChExtEprInformationRecipient(source src: IntendedRecipient, target patient
 // target: http://build.fhir.org/ig/hl7ch/ch-core/branches/master/StructureDefinition-ch-ext-epr-informationrecipient.html
 group ChExtEprInformationRecipientOrganization(source src: IntendedRecipient, target organization: Organization, target ext: Extension) {
   src -> ext.url = 'http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-informationrecipient' "url";
-  src -> ext.value = create('Reference') as reference, reference.reference = ('Organization/'+%organization.id) "value";
+  src -> ext.value = create('Reference') as reference, reference.reference = ('urn:uuid:'+%organization.id) "value";
   src.receivedOrganization as receivedOrganization then ClinicalDocumentOrganization(receivedOrganization, organization) "organization";
 }
 
@@ -140,15 +140,15 @@ group ChExtEprInformationRecipientOrganization(source src: IntendedRecipient, ta
 group ChExtEprDataEnterer(source src: DataEnterer, target bundle: Bundle, target practitionerRole: PractitionerRole, target ext: Extension) {
   src -> ext.url = 'http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-dataenterer' "url";
 
-  src.assignedEntity as assignedEntity -> ext.extension as ext, ext.url='enterer', ext.value = create('Reference') as reference,
-                reference.reference = ('PractitionerRole/'+%practitionerRole.id) "PractitionerRole";
+  src.assignedEntity as assignedEntity -> ext.extension as ext, ext.url='enterer', ext.value = create('Reference') as reference, 
+                reference.reference = ('urn:uuid:'+%practitionerRole.id) "PractitionerRole";
   src.time as time -> ext.extension as exttime then ChExtEprTime(time, exttime) "time";
 
   src.assignedEntity as assignedEntity then {
     assignedEntity -> bundle.entry as e, e.resource = create('Practitioner') as practitioner, practitioner.id = uuid() as uuid,
-            e.fullUrl = append('urn:uuid:',uuid), practitionerRole.practitioner = create('Reference') as reference, reference.reference = append('Practitioner/',uuid) then ClinicalDocumentEntityPractitioner(assignedEntity, practitioner) "Practitioner";
+            e.fullUrl = append('urn:uuid:',uuid), practitionerRole.practitioner = create('Reference') as reference, reference.reference = append('urn:uuid:',uuid) then ClinicalDocumentEntityPractitioner(assignedEntity, practitioner) "Practitioner";
     assignedEntity.representedOrganization as representedOrganization -> bundle.entry as e, e.resource = create('Organization') as organization, organization.id = uuid() as uuid2,
-            e.fullUrl = append('urn:uuid:',uuid2), practitionerRole.organization = create('Reference') as referenceOrg, referenceOrg.reference = append('Organization/',uuid2) then ClinicalDocumentOrganization(representedOrganization, organization) "Organization";
+            e.fullUrl = append('urn:uuid:',uuid2), practitionerRole.organization = create('Reference') as referenceOrg, referenceOrg.reference = append('urn:uuid:',uuid2) then ClinicalDocumentOrganization(representedOrganization, organization) "Organization";
   } "assignedEntity";
 }
 
