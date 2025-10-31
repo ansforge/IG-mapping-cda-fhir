@@ -174,7 +174,7 @@ Les transformations CDA-FHIR ont été exécutées avec les résultats suivants 
 
 | Fichier source | StructureMap utilisé | Fichier résultat | Ressources FHIR | Observations | Statut |
 |---------------|---------------------|------------------|----------------|-------------|--------|
-| CSE-MDE_2023.01.xml | [CdaFrMDEToBundle](StructureMap-CdaFrMDEToBundle.html) | CSE-MDE_2023.01-result.json | 11 | 3 | ✅ Succès complet |
+| CSE-MDE_2023.01.xml | [CdaFrMDEToBundle](StructureMap-CdaFrMDEToBundle.html) | [Bundle-fe569e1f-32d4-4ba4-b5ad-88082bf5470a.json](Bundle-fe569e1f-32d4-4ba4-b5ad-88082bf5470a.html) | 11 | 3 | ✅ Succès complet |
 
 **Détails de la transformation :**
 
