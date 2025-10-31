@@ -48,7 +48,7 @@ group Any(source src, target tgt) {
 }
 
 group II(source src : II, target tgt : Identifier) extends Any <<types>> {
-  src.root as r where src.extension.exists() -> tgt.system = translate(r, 'http://hl7.org/fhir/ConceptMap/special-oid2uri', 'code') "root1";
+  src.root as r where src.extension.exists() -> tgt.system = append('urn:oid:', r) "root1";
   src.root as r where src.extension.empty() and src.root.matches('[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}') ->  tgt.system = 'urn:ietf:rfc:3986',  tgt.value = ('urn:uuid:' + r.lower()) "rootuuid";
   src.root as r where src.extension.empty() and src.root.contains('.') ->  tgt.system = 'urn:ietf:rfc:3986',  tgt.value = append('urn:oid:', r) "rootoid";
   src.extension as e -> tgt.value = e;
@@ -126,12 +126,12 @@ group CECodeableConcept(source src : CE, target tgt : CodeableConcept) {
   src.originalText as originalText -> tgt.text = originalText "setOriginalText";
   src -> tgt.coding as coding then {
     src.code as code -> coding.code = cast(code, 'string');
-    src.codeSystem as system -> coding.system = translate(system, 'http://hl7.org/fhir/ConceptMap/special-oid2uri', 'code');
+    src.codeSystem as system -> coding.system = append('urn:oid:', system);
     src.displayName as display -> coding.display = cast(display, 'string');
   } "code";
   src.translation as translation -> tgt.coding as coding then {
     translation.code as code -> coding.code = cast(code, 'string');
-    translation.codeSystem as system -> coding.system = translate(system, 'http://hl7.org/fhir/ConceptMap/special-oid2uri', 'code');
+    translation.codeSystem as system -> coding.system = append('urn:oid:', system);
     translation.displayName as display -> coding.display = cast(display, 'string');
   };
 }
@@ -221,7 +221,7 @@ group RTOPQPQRatio(source src : RTO_PQ_PQ, target tgt : Ratio) {
   "name" : "CdaToFHIRTypes",
   "title" : "Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)",
   "status" : "draft",
-  "date" : "2025-10-31T16:25:02+00:00",
+  "date" : "2025-10-31T16:31:50+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {
@@ -421,16 +421,13 @@ group RTOPQPQRatio(source src : RTO_PQ_PQ, target tgt : Ratio) {
               "context" : "tgt",
               "contextType" : "variable",
               "element" : "system",
-              "transform" : "translate",
+              "transform" : "append",
               "parameter" : [
                 {
+                  "valueString" : "urn:oid:"
+                },
+                {
                   "valueId" : "r"
-                },
-                {
-                  "valueString" : "http://hl7.org/fhir/ConceptMap/special-oid2uri"
-                },
-                {
-                  "valueString" : "code"
                 }
               ]
             }
@@ -1385,16 +1382,13 @@ group RTOPQPQRatio(source src : RTO_PQ_PQ, target tgt : Ratio) {
                   "context" : "coding",
                   "contextType" : "variable",
                   "element" : "system",
-                  "transform" : "translate",
+                  "transform" : "append",
                   "parameter" : [
                     {
+                      "valueString" : "urn:oid:"
+                    },
+                    {
                       "valueId" : "system"
-                    },
-                    {
-                      "valueString" : "http://hl7.org/fhir/ConceptMap/special-oid2uri"
-                    },
-                    {
-                      "valueString" : "code"
                     }
                   ]
                 }
@@ -1486,16 +1480,13 @@ group RTOPQPQRatio(source src : RTO_PQ_PQ, target tgt : Ratio) {
                   "context" : "coding",
                   "contextType" : "variable",
                   "element" : "system",
-                  "transform" : "translate",
+                  "transform" : "append",
                   "parameter" : [
                     {
+                      "valueString" : "urn:oid:"
+                    },
+                    {
                       "valueId" : "system"
-                    },
-                    {
-                      "valueString" : "http://hl7.org/fhir/ConceptMap/special-oid2uri"
-                    },
-                    {
-                      "valueString" : "code"
                     }
                   ]
                 }

@@ -36,7 +36,7 @@
 <span style="color: navy">}
 
 </span><b>group </b>II<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>II, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Identifier<span style="color: navy">)</span><b> extends </b>Any<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
-</span>  src.root<b> as </b><span style="color: maroon">r</span><b> where </b>src.extension.exists()<span style="color: navy"><b> -&gt; </b></span>tgt.system = <b>translate</b><span style="color: navy">(</span><span style="color: maroon">r</span><span style="color: navy">, </span><span style="color: blue">'http://hl7.org/fhir/ConceptMap/special-oid2uri'</span><span style="color: navy">, </span><span style="color: blue">'code'</span><span style="color: navy">)</span> <i>&quot;root1&quot;</i><span style="color: navy">;</span>
+</span>  src.root<b> as </b><span style="color: maroon">r</span><b> where </b>src.extension.exists()<span style="color: navy"><b> -&gt; </b></span>tgt.system = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:oid:'</span><span style="color: navy">, </span><span style="color: maroon">r</span><span style="color: navy">)</span> <i>&quot;root1&quot;</i><span style="color: navy">;</span>
   src.root<b> as </b><span style="color: maroon">r</span><b> where </b>src.extension.empty() and src.root.matches('[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}')<span style="color: navy"><b> -&gt; </b></span> tgt.system = <span style="color: blue">'urn:ietf:rfc:3986'</span><span style="color: navy">, </span> tgt.value = <span style="color: navy">(</span>'urn:uuid:' + r.lower()<span style="color: navy">)</span> <i>&quot;rootuuid&quot;</i><span style="color: navy">;</span>
   src.root<b> as </b><span style="color: maroon">r</span><b> where </b>src.extension.empty() and src.root.contains('.')<span style="color: navy"><b> -&gt; </b></span> tgt.system = <span style="color: blue">'urn:ietf:rfc:3986'</span><span style="color: navy">, </span> tgt.value = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:oid:'</span><span style="color: navy">, </span><span style="color: maroon">r</span><span style="color: navy">)</span> <i>&quot;rootoid&quot;</i><span style="color: navy">;</span>
   src.extension<b> as </b><span style="color: maroon">e</span><span style="color: navy"><b> -&gt; </b></span>tgt.value = <span style="color: maroon">e</span><span style="color: navy">;</span>
@@ -114,12 +114,12 @@
 </span>  src.originalText<b> as </b><span style="color: maroon">originalText</span><span style="color: navy"><b> -&gt; </b></span>tgt.text = <span style="color: maroon">originalText</span> <i>&quot;setOriginalText&quot;</i><span style="color: navy">;</span>
   src<span style="color: navy"><b> -&gt; </b></span>tgt.coding<b> as </b><span style="color: maroon">coding</span><b> then</b><span style="color: navy"> {
 </span>    src.code<b> as </b><span style="color: maroon">code</span><span style="color: navy"><b> -&gt; </b></span>coding.code = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">code</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span><span style="color: navy">;</span>
-    src.codeSystem<b> as </b><span style="color: maroon">system</span><span style="color: navy"><b> -&gt; </b></span>coding.system = <b>translate</b><span style="color: navy">(</span><span style="color: maroon">system</span><span style="color: navy">, </span><span style="color: blue">'http://hl7.org/fhir/ConceptMap/special-oid2uri'</span><span style="color: navy">, </span><span style="color: blue">'code'</span><span style="color: navy">)</span><span style="color: navy">;</span>
+    src.codeSystem<b> as </b><span style="color: maroon">system</span><span style="color: navy"><b> -&gt; </b></span>coding.system = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:oid:'</span><span style="color: navy">, </span><span style="color: maroon">system</span><span style="color: navy">)</span><span style="color: navy">;</span>
     src.displayName<b> as </b><span style="color: maroon">display</span><span style="color: navy"><b> -&gt; </b></span>coding.display = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">display</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span><span style="color: navy">;</span>
   <span style="color: navy">}</span> <i>&quot;code&quot;</i><span style="color: navy">;</span>
   src.translation<b> as </b><span style="color: maroon">translation</span><span style="color: navy"><b> -&gt; </b></span>tgt.coding<b> as </b><span style="color: maroon">coding</span><b> then</b><span style="color: navy"> {
 </span>    translation.code<b> as </b><span style="color: maroon">code</span><span style="color: navy"><b> -&gt; </b></span>coding.code = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">code</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span><span style="color: navy">;</span>
-    translation.codeSystem<b> as </b><span style="color: maroon">system</span><span style="color: navy"><b> -&gt; </b></span>coding.system = <b>translate</b><span style="color: navy">(</span><span style="color: maroon">system</span><span style="color: navy">, </span><span style="color: blue">'http://hl7.org/fhir/ConceptMap/special-oid2uri'</span><span style="color: navy">, </span><span style="color: blue">'code'</span><span style="color: navy">)</span><span style="color: navy">;</span>
+    translation.codeSystem<b> as </b><span style="color: maroon">system</span><span style="color: navy"><b> -&gt; </b></span>coding.system = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:oid:'</span><span style="color: navy">, </span><span style="color: maroon">system</span><span style="color: navy">)</span><span style="color: navy">;</span>
     translation.displayName<b> as </b><span style="color: maroon">display</span><span style="color: navy"><b> -&gt; </b></span>coding.display = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">display</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span><span style="color: navy">;</span>
   <span style="color: navy">}</span><span style="color: navy">;</span>
 <span style="color: navy">}
@@ -200,7 +200,7 @@
   <name value="CdaToFHIRTypes"/>
   <title value="Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)"/>
   <status value="draft"/>
-  <date value="2025-10-31T16:25:02+00:00"/>
+  <date value="2025-10-31T16:31:50+00:00"/>
   <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
   <contact>
     <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
@@ -375,15 +375,12 @@
         <context value="tgt"/>
         <contextType value="variable"/>
         <element value="system"/>
-        <transform value="translate"/>
+        <transform value="append"/>
+        <parameter>
+          <valueString value="urn:oid:"/>
+        </parameter>
         <parameter>
           <valueId value="r"/>
-        </parameter>
-        <parameter>
-          <valueString value="http://hl7.org/fhir/ConceptMap/special-oid2uri"/>
-        </parameter>
-        <parameter>
-          <valueString value="code"/>
         </parameter>
       </target>
     </rule>
@@ -1106,15 +1103,12 @@
           <context value="coding"/>
           <contextType value="variable"/>
           <element value="system"/>
-          <transform value="translate"/>
+          <transform value="append"/>
+          <parameter>
+            <valueString value="urn:oid:"/>
+          </parameter>
           <parameter>
             <valueId value="system"/>
-          </parameter>
-          <parameter>
-            <valueString value="http://hl7.org/fhir/ConceptMap/special-oid2uri"/>
-          </parameter>
-          <parameter>
-            <valueString value="code"/>
           </parameter>
         </target>
       </rule>
@@ -1183,15 +1177,12 @@
           <context value="coding"/>
           <contextType value="variable"/>
           <element value="system"/>
-          <transform value="translate"/>
+          <transform value="append"/>
+          <parameter>
+            <valueString value="urn:oid:"/>
+          </parameter>
           <parameter>
             <valueId value="system"/>
-          </parameter>
-          <parameter>
-            <valueString value="http://hl7.org/fhir/ConceptMap/special-oid2uri"/>
-          </parameter>
-          <parameter>
-            <valueString value="code"/>
           </parameter>
         </target>
       </rule>
