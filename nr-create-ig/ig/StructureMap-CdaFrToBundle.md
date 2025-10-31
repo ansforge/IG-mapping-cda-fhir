@@ -9,7 +9,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrToBundle | *Version*:0.1.0 |
-| Draft as of 2025-10-30 | *Computable Name*:CdaFrToBundle |
+| Draft as of 2025-10-31 | *Computable Name*:CdaFrToBundle |
 
  
 Mapping de CDAFr vers FHIR Bundle (A partir des sources de Oliver Egger) 
@@ -108,7 +108,7 @@ group ChExtEprVersionNumber1(source src, target ext : Extension) {
 // target: http://build.fhir.org/ig/hl7ch/ch-core/branches/master/StructureDefinition-ch-ext-epr-informationrecipient.html
 group ChExtEprInformationRecipient(source src : IntendedRecipient, target patient : Patient, target ext : Extension) {
   src -> ext.url = 'http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-informationrecipient' "url";
-  src ->  ext.value = create('Reference') as reference,  reference.reference = ('urn:uuid:' + %patient.id) "value";
+  src ->  ext.value = create('Reference') as reference,  reference.reference = ('Patient/' + %patient.id) "value";
   src.addr as addr -> patient.address as address then ADAddress(addr, address) "address";
   src.informationRecipient as informationRecipient then {
     informationRecipient.name as cdaname -> patient.name as fhirname then ENHumanName(cdaname, fhirname);
@@ -119,7 +119,7 @@ group ChExtEprInformationRecipient(source src : IntendedRecipient, target patien
 // target: http://build.fhir.org/ig/hl7ch/ch-core/branches/master/StructureDefinition-ch-ext-epr-informationrecipient.html
 group ChExtEprInformationRecipientOrganization(source src : IntendedRecipient, target organization : Organization, target ext : Extension) {
   src -> ext.url = 'http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-informationrecipient' "url";
-  src ->  ext.value = create('Reference') as reference,  reference.reference = ('urn:uuid:' + %organization.id) "value";
+  src ->  ext.value = create('Reference') as reference,  reference.reference = ('Organization/' + %organization.id) "value";
   src.receivedOrganization as receivedOrganization then ClinicalDocumentOrganization(receivedOrganization, organization) "organization";
 }
 
@@ -127,11 +127,11 @@ group ChExtEprInformationRecipientOrganization(source src : IntendedRecipient, t
 // target: http://build.fhir.org/ig/hl7ch/ch-core/StructureDefinition-ch-ext-epr-dataenterer.html
 group ChExtEprDataEnterer(source src : DataEnterer, target bundle : Bundle, target practitionerRole : PractitionerRole, target ext : Extension) {
   src -> ext.url = 'http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-dataenterer' "url";
-  src.assignedEntity as assignedEntity ->  ext.extension as ext,  ext.url = 'enterer',  ext.value = create('Reference') as reference,  reference.reference = ('urn:uuid:' + %practitionerRole.id) "PractitionerRole";
+  src.assignedEntity as assignedEntity ->  ext.extension as ext,  ext.url = 'enterer',  ext.value = create('Reference') as reference,  reference.reference = ('PractitionerRole/' + %practitionerRole.id) "PractitionerRole";
   src.time as time -> ext.extension as exttime then ChExtEprTime(time, exttime);
   src.assignedEntity as assignedEntity then {
-    assignedEntity ->  bundle.entry as e,  e.resource = create('Practitioner') as practitioner,  practitioner.id = uuid() as uuid,  e.fullUrl = append('urn:uuid:', uuid),  practitionerRole.practitioner = create('Reference') as reference,  reference.reference = append('urn:uuid:', uuid) then ClinicalDocumentEntityPractitioner(assignedEntity, practitioner) "Practitioner";
-    assignedEntity.representedOrganization as representedOrganization ->  bundle.entry as e,  e.resource = create('Organization') as organization,  organization.id = uuid() as uuid2,  e.fullUrl = append('urn:uuid:', uuid2),  practitionerRole.organization = create('Reference') as referenceOrg,  referenceOrg.reference = append('urn:uuid:', uuid2) then ClinicalDocumentOrganization(representedOrganization, organization) "Organization";
+    assignedEntity ->  bundle.entry as e,  e.resource = create('Practitioner') as practitioner,  practitioner.id = uuid() as uuid,  e.fullUrl = append('urn:uuid:', uuid),  practitionerRole.practitioner = create('Reference') as reference,  reference.reference = append('Practitioner/', uuid) then ClinicalDocumentEntityPractitioner(assignedEntity, practitioner) "Practitioner";
+    assignedEntity.representedOrganization as representedOrganization ->  bundle.entry as e,  e.resource = create('Organization') as organization,  organization.id = uuid() as uuid2,  e.fullUrl = append('urn:uuid:', uuid2),  practitionerRole.organization = create('Reference') as referenceOrg,  referenceOrg.reference = append('Organization/', uuid2) then ClinicalDocumentOrganization(representedOrganization, organization) "Organization";
   };
 }
 
@@ -168,7 +168,7 @@ group ClinicalDocumentCompositionFr(source src : ClinicalDocument, target tgt : 
   "name" : "CdaFrToBundle",
   "title" : "Mapping de CDAFr vers FHIR Bundle (A partir des sources de Oliver Egger)",
   "status" : "draft",
-  "date" : "2025-10-30T21:07:17+00:00",
+  "date" : "2025-10-31T10:04:57+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {
@@ -915,7 +915,7 @@ group ClinicalDocumentCompositionFr(source src : ClinicalDocument, target tgt : 
               "transform" : "evaluate",
               "parameter" : [
                 {
-                  "valueString" : "'urn:uuid:' + %patient.id"
+                  "valueString" : "'Patient/' + %patient.id"
                 }
               ]
             }
@@ -1053,7 +1053,7 @@ group ClinicalDocumentCompositionFr(source src : ClinicalDocument, target tgt : 
               "transform" : "evaluate",
               "parameter" : [
                 {
-                  "valueString" : "'urn:uuid:' + %organization.id"
+                  "valueString" : "'Organization/' + %organization.id"
                 }
               ]
             }
@@ -1171,7 +1171,7 @@ group ClinicalDocumentCompositionFr(source src : ClinicalDocument, target tgt : 
               "transform" : "evaluate",
               "parameter" : [
                 {
-                  "valueString" : "'urn:uuid:' + %practitionerRole.id"
+                  "valueString" : "'PractitionerRole/' + %practitionerRole.id"
                 }
               ]
             }
@@ -1277,7 +1277,7 @@ group ClinicalDocumentCompositionFr(source src : ClinicalDocument, target tgt : 
                   "transform" : "append",
                   "parameter" : [
                     {
-                      "valueString" : "urn:uuid:"
+                      "valueString" : "Practitioner/"
                     },
                     {
                       "valueId" : "uuid"
@@ -1360,7 +1360,7 @@ group ClinicalDocumentCompositionFr(source src : ClinicalDocument, target tgt : 
                   "transform" : "append",
                   "parameter" : [
                     {
-                      "valueString" : "urn:uuid:"
+                      "valueString" : "Organization/"
                     },
                     {
                       "valueId" : "uuid2"

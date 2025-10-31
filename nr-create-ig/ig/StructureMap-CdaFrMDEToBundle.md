@@ -9,7 +9,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrMDEToBundle | *Version*:0.1.0 |
-| Draft as of 2025-10-30 | *Computable Name*:CdaFrMDEToBundle |
+| Draft as of 2025-10-31 | *Computable Name*:CdaFrMDEToBundle |
 
  
 Mapping CSE-MDE vers FHIR Bundle - Contexte Français 
@@ -72,7 +72,7 @@ group CdaFrMDEMapping(source cda : ClinicalDocument, target patient : Patient, t
               entry.organizer as organizer then {
                 organizer.component as orgComp then {
                   orgComp.observation as obs then {
-                    obs ->  bundle.entry as obsEntry,  obsEntry.resource = create('Observation') as observation,  observation.id = uuid() as obsUuid,  obsEntry.fullUrl = append('urn:uuid:', obsUuid),  compSection.entry = create('Reference') as obsRef,  obsRef.reference = append('urn:uuid:', obsUuid) then ProcessObservation(cda, obs, observation, patient, composition) "processObs";
+                    obs ->  bundle.entry as obsEntry,  obsEntry.resource = create('Observation') as observation,  observation.id = uuid() as obsUuid,  obsEntry.fullUrl = append('urn:uuid:', obsUuid),  compSection.entry = create('Reference') as obsRef,  obsRef.reference = append('Observation/', obsUuid) then ProcessObservation(cda, obs, observation, patient, composition) "processObs";
                   };
                 } "orgComponent";
               };
@@ -113,7 +113,7 @@ group ProcessObservation(source cda : ClinicalDocument, source obs, target obser
   // Value as Quantity using PQQuantity from CdaToFHIRTypes
   obs.value as value -> observation.value = create('Quantity') as qty then PQQuantity(value, qty) "obsValue";
   // Subject reference
-  obs ->  observation.subject = create('Reference') as ref,  ref.reference = ('urn:uuid:' + %patient.id) "obsSubject";
+  obs ->  observation.subject = create('Reference') as ref,  ref.reference = ('Patient/' + %patient.id) "obsSubject";
 }
 
 // Map CDA v3 administrative gender to FHIR gender
@@ -140,7 +140,7 @@ group MapGender(source src, target patient : Patient) {
   "name" : "CdaFrMDEToBundle",
   "title" : "Mapping CSE-MDE vers FHIR Bundle - Contexte Français",
   "status" : "draft",
-  "date" : "2025-10-30T21:07:17+00:00",
+  "date" : "2025-10-31T10:04:57+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {
@@ -839,7 +839,7 @@ group MapGender(source src, target patient : Patient) {
                                                   "transform" : "append",
                                                   "parameter" : [
                                                     {
-                                                      "valueString" : "urn:uuid:"
+                                                      "valueString" : "Observation/"
                                                     },
                                                     {
                                                       "valueId" : "obsUuid"
@@ -1311,7 +1311,7 @@ group MapGender(source src, target patient : Patient) {
               "transform" : "evaluate",
               "parameter" : [
                 {
-                  "valueString" : "'urn:uuid:' + %patient.id"
+                  "valueString" : "'Patient/' + %patient.id"
                 }
               ]
             }

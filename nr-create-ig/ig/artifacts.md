@@ -32,6 +32,6 @@ These are resources that are used within this implementation guide that do not f
 
 | |
 | :--- |
-| [86be429f-d9df-4810-a817-0e098b4483fd](Bundle-86be429f-d9df-4810-a817-0e098b4483fd.md) |
-| [edef0890-a41a-46f3-a5b6-ea5758f820e5](Bundle-edef0890-a41a-46f3-a5b6-ea5758f820e5.md) |
+| [9c526a33-9ce9-4b13-891d-2c647c89769d](Bundle-9c526a33-9ce9-4b13-891d-2c647c89769d.md) |
+| [e6fdbbd6-0964-47c1-b971-7a1469d5ab81](Bundle-e6fdbbd6-0964-47c1-b971-7a1469d5ab81.md) |
 
