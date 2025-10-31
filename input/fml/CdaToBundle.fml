@@ -95,11 +95,22 @@ group ClinicalDocumentComposition(source src : ClinicalDocument, target tgt : Co
       comp.encompassingEncounter as srcEnc -> tgt.encounter = create('Reference') as reference, reference.reference = ('urn:uuid:'+%encounter.id) then ClinicalDocumentEncounter(srcEnc, bundle, encounter) "srcEncounter";
     } "encompassingEncounter";
   src.effectiveTime as effectiveTime -> tgt.date = create('dateTime') as date then TSDateTime(effectiveTime, date) "compositionDate";
-  src.author as srcAuthor ->  bundle.entry as e,  
-    e.resource = create('Practitioner') as practitioner, 
+  src.author as srcAuthor ->  bundle.entry as e,
+    e.resource = create('Practitioner') as practitioner,
     practitioner.id = uuid() as uuid2,
     e.fullUrl = append('urn:uuid:',uuid2),
-    tgt.author = create('Reference') as reference, reference.reference = ('urn:uuid:'+%practitioner.id) then {
+    bundle.entry as eRole,
+    eRole.resource = create('PractitionerRole') as practitionerRole,
+    practitionerRole.id = uuid() as uuidRole,
+    eRole.fullUrl = append('urn:uuid:',uuidRole),
+    tgt.author = create('Reference') as reference, reference.reference = ('urn:uuid:'+%practitionerRole.id) then {
+    srcAuthor -> practitioner.meta = create('Meta') as meta then {
+      srcAuthor -> meta.profile = 'https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-practitioner' "practitionerProfile";
+    } "practitionerMeta";
+    srcAuthor -> practitionerRole.meta = create('Meta') as metaRole then {
+      srcAuthor -> metaRole.profile = 'https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-practitionerrole' "practitionerRoleProfile";
+    } "practitionerRoleMeta";
+    srcAuthor -> practitionerRole.practitioner = create('Reference') as refPract, refPract.reference = ('urn:uuid:'+%practitioner.id) "practitionerRef";
     srcAuthor.assignedAuthor as assignedAuthor then {
       assignedAuthor.id as id -> practitioner.identifier = create('Identifier') as identifier then II(id, identifier);
       assignedAuthor.addr as addr -> practitioner.address = create('Address') as address then ADAddress(addr, address);
@@ -107,14 +118,47 @@ group ClinicalDocumentComposition(source src : ClinicalDocument, target tgt : Co
       assignedAuthor.assignedPerson as assPerson then {
         assPerson.name as pName -> practitioner.name = create('HumanName') as humanName then ENHumanName(pName, humanName);
       } "name";
-      assignedAuthor.representedOrganization as srcOrg ->  
-        bundle.entry as e2,  
+      assignedAuthor.code as roleCode -> practitionerRole.code = create('CodeableConcept') as cc then CDCodeableConcept(roleCode, cc) "roleCode";
+      assignedAuthor.code as roleCode where code.contains('/') -> practitioner.qualification as qualification then {
+        roleCode -> qualification.code = create('CodeableConcept') as qualCode then {
+          roleCode.code as fullCode -> qualCode.coding = create('Coding') as coding then {
+            fullCode -> coding.code = (%fullCode.substring(%fullCode.indexOf('/') + 1)) "savoirFaireCode";
+            fullCode -> coding.system = 'https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale' "systemSavoirFaire";
+            roleCode.displayName as display -> coding.display = display "display";
+          } "coding";
+        } "qualCode";
+      } "savoirFaire";
+      assignedAuthor.code as roleCode where code.contains('/') and code.contains('_') -> practitioner.qualification as qualification then {
+        roleCode -> qualification.code = create('CodeableConcept') as qualCode then {
+          roleCode.code as fullCode -> qualCode.coding = create('Coding') as coding then {
+            fullCode -> coding.code = (%fullCode.substring(%fullCode.indexOf('_') + 1).substring(0, %fullCode.substring(%fullCode.indexOf('_') + 1).indexOf('/'))) "professionCode";
+            fullCode -> coding.system = 'https://mos.esante.gouv.fr/NOS/TRE_G15-ProfessionSante/FHIR/TRE-G15-ProfessionSante' "systemProfession";
+            fullCode where %fullCode.substring(%fullCode.indexOf('_') + 1).substring(0, %fullCode.substring(%fullCode.indexOf('_') + 1).indexOf('/')) = '10' -> coding.display = 'Médecin' "displayMedecin";
+          } "coding";
+        } "qualCode";
+      } "profession";
+      assignedAuthor.representedOrganization as srcOrg ->
+        bundle.entry as e2,
         e2.resource = create('Organization') as organization,
         organization.id = uuid() as uuid3,
-        e2.fullUrl = append('urn:uuid:',uuid3), 
-        tgt.author = create('Reference') as reference2, reference2.reference = ('urn:uuid:'+%organization.id) then ClinicalDocumentOrganization(srcOrg, organization);
+        e2.fullUrl = append('urn:uuid:',uuid3),
+        practitionerRole.organization = create('Reference') as refOrg, refOrg.reference = ('urn:uuid:'+%organization.id) then ClinicalDocumentOrganization(srcOrg, organization);
     } "author";
   } "srcAuthor";
+  src.informant as srcInformant -> bundle.entry as e,
+    e.resource = create('RelatedPerson') as relatedPerson,
+    relatedPerson.id = uuid() as uuidRelated,
+    e.fullUrl = append('urn:uuid:',uuidRelated) then {
+    srcInformant.relatedEntity as relatedEntity then {
+      relatedEntity -> relatedPerson.patient = create('Reference') as patientRef, patientRef.reference = ('urn:uuid:'+%patientResource.id) "patientRef";
+      relatedEntity.code as relationCode -> relatedPerson.relationship = create('CodeableConcept') as cc then CDCodeableConcept(relationCode, cc) "relationship";
+      relatedEntity.addr as addr -> relatedPerson.address = create('Address') as address then ADAddress(addr, address) "address";
+      relatedEntity.telecom as tlc -> relatedPerson.telecom = create('ContactPoint') as contactPoint then TELContactPoint(tlc, contactPoint) "telecom";
+      relatedEntity.relatedPerson as relPerson then {
+        relPerson.name as pName -> relatedPerson.name = create('HumanName') as humanName then ENHumanName(pName, humanName) "name";
+      } "relatedPersonName";
+    } "relatedEntity";
+  } "informant";
   src.confidentialityCode as confCode -> tgt.confidentiality = create('code') as code then CSCode(confCode, code);
   src.legalAuthenticator as legalAuth ->  bundle.entry as e,  
     e.resource = create('Practitioner') as practitioner, 
@@ -158,6 +202,9 @@ group ClinicalDocumentComposition(source src : ClinicalDocument, target tgt : Co
 }
 
 group ClinicalDocumentEntityPractitioner(source src : AssignedEntity, target tgt : Practitioner) {
+  src -> tgt.meta = create('Meta') as meta then {
+    src -> meta.profile = 'https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-practitioner' "profile";
+  } "meta";
   src.id as srcId -> tgt.identifier = create('Identifier') as identifier then II(srcId, identifier);
   src.addr as srcAddr -> tgt.address = create('Address') as address then ADAddress(srcAddr, address);
   src.telecom as srcTelecom -> tgt.telecom = create('ContactPoint') as contactPoint then TELContactPoint(srcTelecom, contactPoint);
@@ -167,6 +214,9 @@ group ClinicalDocumentEntityPractitioner(source src : AssignedEntity, target tgt
 }
 
 group ClinicalDocumentOrganization(source src : CustodianOrganization, target tgt : Organization) {
+  src -> tgt.meta = create('Meta') as meta then {
+    src -> meta.profile = 'https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-organization' "profile";
+  } "meta";
   src.id as srcId -> tgt.identifier = create('Identifier') as identifier then II(srcId, identifier);
   src.name as v -> tgt.name = (v.other);
   src.telecom as srcTelecom -> tgt.telecom = create('ContactPoint') as contactPoint then TELContactPoint(srcTelecom, contactPoint);
