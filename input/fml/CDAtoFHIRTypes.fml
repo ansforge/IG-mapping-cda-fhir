@@ -39,7 +39,7 @@ group Any(source src, target tgt) {
 
 group II(source src : II, target tgt : Identifier) extends Any <<types>> {
   src.root as r where src.extension.exists()
-     -> tgt.system = translate(r, 'http://hl7.org/fhir/ConceptMap/special-oid2uri', 'code') "root1";
+     -> tgt.system = append('urn:oid:', r) "root1";
   src.root as r where src.extension.empty() 
         and src.root.matches('[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}') 
      -> tgt.system = 'urn:ietf:rfc:3986', tgt.value = ('urn:uuid:' + r.lower()) "rootuuid";
@@ -120,12 +120,12 @@ group CECodeableConcept(source src : CE, target tgt : CodeableConcept) {
   src.originalText as originalText -> tgt.text = originalText "setOriginalText";
   src -> tgt.coding as coding then {
     src.code as code -> coding.code = cast(code, 'string');
-    src.codeSystem as system -> coding.system = translate(system, 'http://hl7.org/fhir/ConceptMap/special-oid2uri', 'code');
+    src.codeSystem as system -> coding.system = append('urn:oid:', system);
     src.displayName as display -> coding.display = cast(display, 'string');
   } "code";
   src.translation as translation -> tgt.coding as coding then {
     translation.code as code -> coding.code = cast(code, 'string');
-    translation.codeSystem as system -> coding.system = translate(system, 'http://hl7.org/fhir/ConceptMap/special-oid2uri', 'code');
+    translation.codeSystem as system -> coding.system = append('urn:oid:', system);
     translation.displayName as display -> coding.display = cast(display, 'string');
   } "translation";
 }
