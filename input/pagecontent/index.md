@@ -115,8 +115,7 @@ Les fichiers HTTP de test se trouvent dans le dossier `http-test/`. Utilisez le 
    * **Requête 2** : Charger CdaToBundle.fml
    * **Requête 3** : Charger CDAFrToBundle.fml
    * **Requête 4** : Charger CDAFrMDEToBundle.fml
-   * **Requête 5** : Transformer fr-CSE-MDE_1obs.xml (sortie JSON)
-   * **Requête 6** : Transformer fr-CSE-MDE_2023.01.xml (sortie XML)
+   * **Requête 5** : Transformer CSE-MDE_2023.01.xml (sortie JSON)
 3. Cliquez sur "Send Request" au-dessus de chaque requête
 
 **Avec curl** (exemple complet) :
@@ -149,18 +148,17 @@ curl -X POST http://localhost:8080/matchbox/fhir/StructureMap \
   --data-binary @input/fml/CDAFrMDEToBundle.fml
 
 # 3. Transformer un document CDA
-curl -X POST "http://localhost:8080/matchbox/fhir/StructureMap/\$transform?source=https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle" \
+curl -X POST "http://localhost:8080/matchbox/fhir/StructureMap/\$transform?source=https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrMDEToBundle" \
   -H "Accept: application/fhir+json;fhirVersion=4.0" \
   -H "Content-Type: application/fhir+xml;fhirVersion=4.0" \
-  --data-binary @input/attachments/fr-CSE-MDE_1obs.xml
+  --data-binary @input/attachments/CSE-MDE_2023.01.xml
 ```
 
-#### Exemples CDA disponibles
+#### Exemple CDA disponible
 
-Le dossier `input/attachments/` contient deux exemples de documents CDA français :
+Le dossier `input/attachments/` contient un exemple de document CDA français :
 
-* **[fr-CSE-MDE_1obs.xml](Bundle-edef0890-a41a-46f3-a5b6-ea5758f820e5.html)** : Carnet de santé de l'enfant - Mesures (1 observation : Poids)
-* **[fr-CSE-MDE_2023.01.xml](Bundle-86be429f-d9df-4810-a817-0e098b4483fd.html)** : Carnet de santé de l'enfant - Mesures (3 observations : Poids, Taille, Périmètre crânien)
+* **CSE-MDE_2023.01.xml** : Carnet de santé de l'enfant - Mesures (3 observations : Poids, Taille, Périmètre crânien)
 
 #### Résultat attendu
 
@@ -172,32 +170,25 @@ Si la transformation réussit, vous obtiendrez un Bundle FHIR contenant les ress
 
 Les transformations CDA-FHIR ont été exécutées avec les résultats suivants :
 
-#### Transformations réussies
+#### Transformation réussie
 
 | Fichier source | StructureMap utilisé | Fichier résultat | Ressources FHIR | Observations | Statut |
 |---------------|---------------------|------------------|----------------|-------------|--------|
-| [fr-CSE-MDE_1obs.xml](Bundle-edef0890-a41a-46f3-a5b6-ea5758f820e5.html) | [CdaFrMDEToBundle](StructureMap-CdaFrMDEToBundle.html) | [fr-CSE-MDE_1obs-result.json](Bundle-edef0890-a41a-46f3-a5b6-ea5758f820e5.json.html) | 9 | 1 | ✅ Succès complet |
-| [fr-CSE-MDE_2023.01.xml](Bundle-86be429f-d9df-4810-a817-0e098b4483fd.html) | [CdaFrMDEToBundle](StructureMap-CdaFrMDEToBundle.html) | [fr-CSE-MDE_2023.01-result.json](Bundle-86be429f-d9df-4810-a817-0e098b4483fd.json.html) | 11 | 3 | ✅ Succès complet |
+| CSE-MDE_2023.01.xml | [CdaFrMDEToBundle](StructureMap-CdaFrMDEToBundle.html) | CSE-MDE_2023.01-result.json | 11 | 3 | ✅ Succès complet |
 
-**Détails des transformations :**
+**Détails de la transformation :**
 
-**Documents français CSE-MDE (Carnet de Santé de l'Enfant - Mesures)** :
+**Document CSE-MDE (Carnet de Santé de l'Enfant - Mesures)** :
 
 - **StructureMap utilisé** : `CdaFrMDEToBundle` - Mapping spécifique pour le contexte français
 - **Imports** : Utilise `CdaToFHIRTypes`, `CdaToBundle` et `CdaFrToBundle`
-- **Ressources générées** :
+- **Ressources générées** (11 au total) :
   * 1 Composition (métadonnées du document)
   * 1 Patient (avec identifiant INS-NIR, nom, genre, date de naissance)
   * 1 Encounter (contexte de la rencontre)
   * 1 Location (lieu de la consultation)
   * 2 Practitioner (praticiens impliqués)
   * 2 Organization (organisations de santé)
-  * 1 à 3 Observation(s) selon le document
-
-- **[fr-CSE-MDE_1obs.xml](Bundle-edef0890-a41a-46f3-a5b6-ea5758f820e5.html)** : 9 ressources
-  * 1 Observation : Poids (code LOINC 29463-7) = 3900 g
-
-- **[fr-CSE-MDE_2023.01.xml](Bundle-86be429f-d9df-4810-a817-0e098b4483fd.html)** : 11 ressources
   * 3 Observations :
     - Poids (29463-7) = 3900 g
     - Taille (8302-2) = 52 cm
