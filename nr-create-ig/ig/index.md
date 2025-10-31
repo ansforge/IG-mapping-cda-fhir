@@ -355,24 +355,24 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
 
 * The UCUM codes, UCUM table (regardless of format), and UCUM Specification are copyright 1999-2009, Regenstrief Institute, Inc. and the Unified Codes for Units of Measures (UCUM) Organization. All rights reserved. [https://ucum.org/trac/wiki/TermsOfUse](https://ucum.org/trac/wiki/TermsOfUse)
 
-* [Unified Code for Units of Measure (UCUM)](http://terminology.hl7.org/6.5.0/CodeSystem-v3-ucum.html): [Bundle/86be429f-d9df-4810-a817-0e098b4483fd](Bundle-86be429f-d9df-4810-a817-0e098b4483fd.md) and [Bundle/edef0890-a41a-46f3-a5b6-ea5758f820e5](Bundle-edef0890-a41a-46f3-a5b6-ea5758f820e5.md)
+* [Unified Code for Units of Measure (UCUM)](http://terminology.hl7.org/6.5.0/CodeSystem-v3-ucum.html): [Bundle/2937bc70-0b09-4c9c-a395-4f088f0cd3ec](Bundle-2937bc70-0b09-4c9c-a395-4f088f0cd3ec.md) and [Bundle/8628f435-5674-4da4-beb5-433e9e2d25ab](Bundle-8628f435-5674-4da4-beb5-433e9e2d25ab.md)
 
 
 * This material contains content from [LOINC](http://loinc.org). LOINC is copyright © 1995-2020, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the [license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc.
 
-* [LOINC](http://terminology.hl7.org/6.5.0/CodeSystem-v3-loinc.html): [Bundle/86be429f-d9df-4810-a817-0e098b4483fd](Bundle-86be429f-d9df-4810-a817-0e098b4483fd.md) and [Bundle/edef0890-a41a-46f3-a5b6-ea5758f820e5](Bundle-edef0890-a41a-46f3-a5b6-ea5758f820e5.md)
+* [LOINC](http://terminology.hl7.org/6.5.0/CodeSystem-v3-loinc.html): [Bundle/2937bc70-0b09-4c9c-a395-4f088f0cd3ec](Bundle-2937bc70-0b09-4c9c-a395-4f088f0cd3ec.md) and [Bundle/8628f435-5674-4da4-beb5-433e9e2d25ab](Bundle-8628f435-5674-4da4-beb5-433e9e2d25ab.md)
 
 
 * This material contains content that is copyright of SNOMED International. Implementers of these specifications must have the appropriate SNOMED CT Affiliate license - for more information contact [https://www.snomed.org/get-snomed](https://www.snomed.org/get-snomed) or [info@snomed.org](mailto:info@snomed.org).
 
-* [SNOMED Clinical Terms&reg; (SNOMED CT&reg;)](http://hl7.org/fhir/R4/codesystem-snomedct.html): [Bundle/86be429f-d9df-4810-a817-0e098b4483fd](Bundle-86be429f-d9df-4810-a817-0e098b4483fd.md) and [Bundle/edef0890-a41a-46f3-a5b6-ea5758f820e5](Bundle-edef0890-a41a-46f3-a5b6-ea5758f820e5.md)
+* [SNOMED Clinical Terms&reg; (SNOMED CT&reg;)](http://hl7.org/fhir/R4/codesystem-snomedct.html): [Bundle/2937bc70-0b09-4c9c-a395-4f088f0cd3ec](Bundle-2937bc70-0b09-4c9c-a395-4f088f0cd3ec.md) and [Bundle/8628f435-5674-4da4-beb5-433e9e2d25ab](Bundle-8628f435-5674-4da4-beb5-433e9e2d25ab.md)
 
 
 * This material derives from the HL7 Terminology (THO). THO is copyright ©1989+ Health Level Seven International and is made available under the CC0 designation. For more licensing information see: [https://terminology.hl7.org/license.html](https://terminology.hl7.org/license.html)
 
-* [Observation Category Codes](http://terminology.hl7.org/6.5.0/CodeSystem-observation-category.html): [Bundle/86be429f-d9df-4810-a817-0e098b4483fd](Bundle-86be429f-d9df-4810-a817-0e098b4483fd.md) and [Bundle/edef0890-a41a-46f3-a5b6-ea5758f820e5](Bundle-edef0890-a41a-46f3-a5b6-ea5758f820e5.md)
-* [identifierType](http://terminology.hl7.org/6.5.0/CodeSystem-v2-0203.html): [Bundle/86be429f-d9df-4810-a817-0e098b4483fd](Bundle-86be429f-d9df-4810-a817-0e098b4483fd.md) and [Bundle/edef0890-a41a-46f3-a5b6-ea5758f820e5](Bundle-edef0890-a41a-46f3-a5b6-ea5758f820e5.md)
-* [ActCode](http://terminology.hl7.org/6.5.0/CodeSystem-v3-ActCode.html): [Bundle/86be429f-d9df-4810-a817-0e098b4483fd](Bundle-86be429f-d9df-4810-a817-0e098b4483fd.md) and [Bundle/edef0890-a41a-46f3-a5b6-ea5758f820e5](Bundle-edef0890-a41a-46f3-a5b6-ea5758f820e5.md)
+* [Observation Category Codes](http://terminology.hl7.org/6.5.0/CodeSystem-observation-category.html): [Bundle/2937bc70-0b09-4c9c-a395-4f088f0cd3ec](Bundle-2937bc70-0b09-4c9c-a395-4f088f0cd3ec.md) and [Bundle/8628f435-5674-4da4-beb5-433e9e2d25ab](Bundle-8628f435-5674-4da4-beb5-433e9e2d25ab.md)
+* [identifierType](http://terminology.hl7.org/6.5.0/CodeSystem-v2-0203.html): [Bundle/2937bc70-0b09-4c9c-a395-4f088f0cd3ec](Bundle-2937bc70-0b09-4c9c-a395-4f088f0cd3ec.md) and [Bundle/8628f435-5674-4da4-beb5-433e9e2d25ab](Bundle-8628f435-5674-4da4-beb5-433e9e2d25ab.md)
+* [ActCode](http://terminology.hl7.org/6.5.0/CodeSystem-v3-ActCode.html): [Bundle/2937bc70-0b09-4c9c-a395-4f088f0cd3ec](Bundle-2937bc70-0b09-4c9c-a395-4f088f0cd3ec.md) and [Bundle/8628f435-5674-4da4-beb5-433e9e2d25ab](Bundle-8628f435-5674-4da4-beb5-433e9e2d25ab.md)
 
 
 
@@ -388,7 +388,7 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2025-10-31T10:52:01+00:00",
+  "date" : "2025-10-31T10:55:25+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {
@@ -1197,9 +1197,22 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
           }
         ],
         "reference" : {
-          "reference" : "Bundle/86be429f-d9df-4810-a817-0e098b4483fd"
+          "reference" : "Bundle/2937bc70-0b09-4c9c-a395-4f088f0cd3ec"
         },
-        "name" : "86be429f-d9df-4810-a817-0e098b4483fd",
+        "name" : "2937bc70-0b09-4c9c-a395-4f088f0cd3ec",
+        "exampleBoolean" : false
+      },
+      {
+        "extension" : [
+          {
+            "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString" : "Bundle"
+          }
+        ],
+        "reference" : {
+          "reference" : "Bundle/8628f435-5674-4da4-beb5-433e9e2d25ab"
+        },
+        "name" : "8628f435-5674-4da4-beb5-433e9e2d25ab",
         "exampleBoolean" : false
       },
       {
@@ -1214,19 +1227,6 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
         },
         "name" : "CDA to FHIR Administrative Gender Mapping",
         "description" : "Mapping between CDA v3 Administrative Gender codes and FHIR Administrative Gender codes",
-        "exampleBoolean" : false
-      },
-      {
-        "extension" : [
-          {
-            "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-            "valueString" : "Bundle"
-          }
-        ],
-        "reference" : {
-          "reference" : "Bundle/edef0890-a41a-46f3-a5b6-ea5758f820e5"
-        },
-        "name" : "edef0890-a41a-46f3-a5b6-ea5758f820e5",
         "exampleBoolean" : false
       },
       {
