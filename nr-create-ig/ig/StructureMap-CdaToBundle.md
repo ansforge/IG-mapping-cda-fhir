@@ -98,7 +98,15 @@ group ClinicalDocumentComposition(source src : ClinicalDocument, target tgt : Co
     } "practitionerRoleMeta";
     srcAuthor ->  practitionerRole.practitioner = create('Reference') as refPract,  refPract.reference = ('urn:uuid:' + %practitioner.id) "practitionerRef";
     srcAuthor.assignedAuthor as assignedAuthor then {
-      assignedAuthor.id as id -> practitioner.identifier = create('Identifier') as identifier then II(id, identifier);
+      assignedAuthor.id as id -> practitioner.identifier = create('Identifier') as identifier then {
+        id -> identifier then II(id, identifier) "baseIdentifier";
+        id where root = '1.2.250.1.71.4.2.1' -> identifier.type = create('CodeableConcept') as type then {
+          id -> type.coding = create('Coding') as coding then {
+            id -> coding.system = 'https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203' "system";
+            id -> coding.code = 'IDNPS' "code";
+          } "coding";
+        } "idNatPs";
+      } "identifier";
       assignedAuthor.addr as addr -> practitioner.address = create('Address') as address then ADAddress(addr, address);
       assignedAuthor.telecom as tlc -> practitioner.telecom = create('ContactPoint') as contactPoint then TELContactPoint(tlc, contactPoint);
       assignedAuthor.assignedPerson as assPerson then {
@@ -175,7 +183,15 @@ group ClinicalDocumentEntityPractitioner(source src : AssignedEntity, target tgt
   src -> tgt.meta = create('Meta') as meta then {
     src -> meta.profile = 'https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-practitioner' "profile";
   } "meta";
-  src.id as srcId -> tgt.identifier = create('Identifier') as identifier then II(srcId, identifier);
+  src.id as srcId -> tgt.identifier = create('Identifier') as identifier then {
+    srcId -> identifier then II(srcId, identifier) "baseIdentifier";
+    srcId where root = '1.2.250.1.71.4.2.1' -> identifier.type = create('CodeableConcept') as type then {
+      srcId -> type.coding = create('Coding') as coding then {
+        srcId -> coding.system = 'https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203' "system";
+        srcId -> coding.code = 'IDNPS' "code";
+      } "coding";
+    } "idNatPs";
+  } "identifier";
   src.addr as srcAddr -> tgt.address = create('Address') as address then ADAddress(srcAddr, address);
   src.telecom as srcTelecom -> tgt.telecom = create('ContactPoint') as contactPoint then TELContactPoint(srcTelecom, contactPoint);
   src.assignedPerson as person then {
@@ -315,7 +331,7 @@ group NarrativeLink(source url, target ext : Extension) {
   "name" : "CdaToBundle",
   "title" : "Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)",
   "status" : "draft",
-  "date" : "2025-10-31T16:31:50+00:00",
+  "date" : "2025-10-31T16:48:30+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {
@@ -1605,7 +1621,7 @@ group NarrativeLink(source url, target ext : Extension) {
               ],
               "rule" : [
                 {
-                  "name" : "id",
+                  "name" : "identifier",
                   "source" : [
                     {
                       "context" : "assignedAuthor",
@@ -1627,10 +1643,117 @@ group NarrativeLink(source url, target ext : Extension) {
                       ]
                     }
                   ],
-                  "dependent" : [
+                  "rule" : [
                     {
-                      "name" : "II",
-                      "variable" : ["id", "identifier"]
+                      "name" : "baseIdentifier",
+                      "source" : [
+                        {
+                          "context" : "id"
+                        }
+                      ],
+                      "target" : [
+                        {
+                          "context" : "identifier",
+                          "contextType" : "variable"
+                        }
+                      ],
+                      "dependent" : [
+                        {
+                          "name" : "II",
+                          "variable" : ["id", "identifier"]
+                        }
+                      ]
+                    },
+                    {
+                      "name" : "idNatPs",
+                      "source" : [
+                        {
+                          "context" : "id",
+                          "condition" : "root = '1.2.250.1.71.4.2.1'"
+                        }
+                      ],
+                      "target" : [
+                        {
+                          "context" : "identifier",
+                          "contextType" : "variable",
+                          "element" : "type",
+                          "variable" : "type",
+                          "transform" : "create",
+                          "parameter" : [
+                            {
+                              "valueString" : "CodeableConcept"
+                            }
+                          ]
+                        }
+                      ],
+                      "rule" : [
+                        {
+                          "name" : "coding",
+                          "source" : [
+                            {
+                              "context" : "id"
+                            }
+                          ],
+                          "target" : [
+                            {
+                              "context" : "type",
+                              "contextType" : "variable",
+                              "element" : "coding",
+                              "variable" : "coding",
+                              "transform" : "create",
+                              "parameter" : [
+                                {
+                                  "valueString" : "Coding"
+                                }
+                              ]
+                            }
+                          ],
+                          "rule" : [
+                            {
+                              "name" : "system",
+                              "source" : [
+                                {
+                                  "context" : "id"
+                                }
+                              ],
+                              "target" : [
+                                {
+                                  "context" : "coding",
+                                  "contextType" : "variable",
+                                  "element" : "system",
+                                  "transform" : "copy",
+                                  "parameter" : [
+                                    {
+                                      "valueString" : "https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "name" : "code",
+                              "source" : [
+                                {
+                                  "context" : "id"
+                                }
+                              ],
+                              "target" : [
+                                {
+                                  "context" : "coding",
+                                  "contextType" : "variable",
+                                  "element" : "code",
+                                  "transform" : "copy",
+                                  "parameter" : [
+                                    {
+                                      "valueString" : "IDNPS"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
                     }
                   ]
                 },
@@ -3050,7 +3173,7 @@ group NarrativeLink(source url, target ext : Extension) {
           ]
         },
         {
-          "name" : "id",
+          "name" : "identifier",
           "source" : [
             {
               "context" : "src",
@@ -3072,10 +3195,117 @@ group NarrativeLink(source url, target ext : Extension) {
               ]
             }
           ],
-          "dependent" : [
+          "rule" : [
             {
-              "name" : "II",
-              "variable" : ["srcId", "identifier"]
+              "name" : "baseIdentifier",
+              "source" : [
+                {
+                  "context" : "srcId"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "identifier",
+                  "contextType" : "variable"
+                }
+              ],
+              "dependent" : [
+                {
+                  "name" : "II",
+                  "variable" : ["srcId", "identifier"]
+                }
+              ]
+            },
+            {
+              "name" : "idNatPs",
+              "source" : [
+                {
+                  "context" : "srcId",
+                  "condition" : "root = '1.2.250.1.71.4.2.1'"
+                }
+              ],
+              "target" : [
+                {
+                  "context" : "identifier",
+                  "contextType" : "variable",
+                  "element" : "type",
+                  "variable" : "type",
+                  "transform" : "create",
+                  "parameter" : [
+                    {
+                      "valueString" : "CodeableConcept"
+                    }
+                  ]
+                }
+              ],
+              "rule" : [
+                {
+                  "name" : "coding",
+                  "source" : [
+                    {
+                      "context" : "srcId"
+                    }
+                  ],
+                  "target" : [
+                    {
+                      "context" : "type",
+                      "contextType" : "variable",
+                      "element" : "coding",
+                      "variable" : "coding",
+                      "transform" : "create",
+                      "parameter" : [
+                        {
+                          "valueString" : "Coding"
+                        }
+                      ]
+                    }
+                  ],
+                  "rule" : [
+                    {
+                      "name" : "system",
+                      "source" : [
+                        {
+                          "context" : "srcId"
+                        }
+                      ],
+                      "target" : [
+                        {
+                          "context" : "coding",
+                          "contextType" : "variable",
+                          "element" : "system",
+                          "transform" : "copy",
+                          "parameter" : [
+                            {
+                              "valueString" : "https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name" : "code",
+                      "source" : [
+                        {
+                          "context" : "srcId"
+                        }
+                      ],
+                      "target" : [
+                        {
+                          "context" : "coding",
+                          "contextType" : "variable",
+                          "element" : "code",
+                          "transform" : "copy",
+                          "parameter" : [
+                            {
+                              "valueString" : "IDNPS"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },

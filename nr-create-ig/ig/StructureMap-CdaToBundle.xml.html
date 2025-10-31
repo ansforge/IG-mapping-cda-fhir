@@ -314,7 +314,15 @@
     &lt;span style=&quot;color: navy&quot;&gt;}&lt;/span&gt; &lt;i&gt;&amp;quot;practitionerRoleMeta&amp;quot;&lt;/i&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
     srcAuthor&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt; practitionerRole.practitioner = &lt;b&gt;create&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: blue&quot;&gt;'Reference'&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;refPract&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt; refPract.reference = &lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;'urn:uuid:' + %practitioner.id&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt; &lt;i&gt;&amp;quot;practitionerRef&amp;quot;&lt;/i&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
     srcAuthor.assignedAuthor&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;assignedAuthor&lt;/span&gt;&lt;b&gt; then&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; {
-&lt;/span&gt;      assignedAuthor.id&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;id&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt;practitioner.identifier = &lt;b&gt;create&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: blue&quot;&gt;'Identifier'&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;identifier&lt;/span&gt;&lt;b&gt; then &lt;/b&gt;II&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: maroon&quot;&gt;id&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt;&lt;span style=&quot;color: maroon&quot;&gt;identifier&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
+&lt;/span&gt;      assignedAuthor.id&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;id&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt;practitioner.identifier = &lt;b&gt;create&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: blue&quot;&gt;'Identifier'&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;identifier&lt;/span&gt;&lt;b&gt; then&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; {
+&lt;/span&gt;        id&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt;identifier&lt;b&gt; then &lt;/b&gt;II&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: maroon&quot;&gt;id&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt;&lt;span style=&quot;color: maroon&quot;&gt;identifier&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt; &lt;i&gt;&amp;quot;baseIdentifier&amp;quot;&lt;/i&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
+        id&lt;b&gt; where &lt;/b&gt;root = '1.2.250.1.71.4.2.1'&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt;identifier.type = &lt;b&gt;create&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: blue&quot;&gt;'CodeableConcept'&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;type&lt;/span&gt;&lt;b&gt; then&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; {
+&lt;/span&gt;          id&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt;type.coding = &lt;b&gt;create&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: blue&quot;&gt;'Coding'&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;coding&lt;/span&gt;&lt;b&gt; then&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; {
+&lt;/span&gt;            id&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt;coding.system = &lt;span style=&quot;color: blue&quot;&gt;'https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203'&lt;/span&gt; &lt;i&gt;&amp;quot;system&amp;quot;&lt;/i&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
+            id&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt;coding.code = &lt;span style=&quot;color: blue&quot;&gt;'IDNPS'&lt;/span&gt; &lt;i&gt;&amp;quot;code&amp;quot;&lt;/i&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
+          &lt;span style=&quot;color: navy&quot;&gt;}&lt;/span&gt; &lt;i&gt;&amp;quot;coding&amp;quot;&lt;/i&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
+        &lt;span style=&quot;color: navy&quot;&gt;}&lt;/span&gt; &lt;i&gt;&amp;quot;idNatPs&amp;quot;&lt;/i&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
+      &lt;span style=&quot;color: navy&quot;&gt;}&lt;/span&gt; &lt;i&gt;&amp;quot;identifier&amp;quot;&lt;/i&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
       assignedAuthor.addr&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;addr&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt;practitioner.address = &lt;b&gt;create&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: blue&quot;&gt;'Address'&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;address&lt;/span&gt;&lt;b&gt; then &lt;/b&gt;ADAddress&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: maroon&quot;&gt;addr&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt;&lt;span style=&quot;color: maroon&quot;&gt;address&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
       assignedAuthor.telecom&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;tlc&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt;practitioner.telecom = &lt;b&gt;create&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: blue&quot;&gt;'ContactPoint'&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;contactPoint&lt;/span&gt;&lt;b&gt; then &lt;/b&gt;TELContactPoint&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: maroon&quot;&gt;tlc&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt;&lt;span style=&quot;color: maroon&quot;&gt;contactPoint&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
       assignedAuthor.assignedPerson&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;assPerson&lt;/span&gt;&lt;b&gt; then&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; {
@@ -391,7 +399,15 @@
 &lt;/span&gt;  src&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt;tgt.meta = &lt;b&gt;create&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: blue&quot;&gt;'Meta'&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;meta&lt;/span&gt;&lt;b&gt; then&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;    src&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt;meta.profile = &lt;span style=&quot;color: blue&quot;&gt;'https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-practitioner'&lt;/span&gt; &lt;i&gt;&amp;quot;profile&amp;quot;&lt;/i&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
   &lt;span style=&quot;color: navy&quot;&gt;}&lt;/span&gt; &lt;i&gt;&amp;quot;meta&amp;quot;&lt;/i&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
-  src.id&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;srcId&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt;tgt.identifier = &lt;b&gt;create&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: blue&quot;&gt;'Identifier'&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;identifier&lt;/span&gt;&lt;b&gt; then &lt;/b&gt;II&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: maroon&quot;&gt;srcId&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt;&lt;span style=&quot;color: maroon&quot;&gt;identifier&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
+  src.id&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;srcId&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt;tgt.identifier = &lt;b&gt;create&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: blue&quot;&gt;'Identifier'&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;identifier&lt;/span&gt;&lt;b&gt; then&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; {
+&lt;/span&gt;    srcId&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt;identifier&lt;b&gt; then &lt;/b&gt;II&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: maroon&quot;&gt;srcId&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt;&lt;span style=&quot;color: maroon&quot;&gt;identifier&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt; &lt;i&gt;&amp;quot;baseIdentifier&amp;quot;&lt;/i&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
+    srcId&lt;b&gt; where &lt;/b&gt;root = '1.2.250.1.71.4.2.1'&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt;identifier.type = &lt;b&gt;create&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: blue&quot;&gt;'CodeableConcept'&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;type&lt;/span&gt;&lt;b&gt; then&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; {
+&lt;/span&gt;      srcId&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt;type.coding = &lt;b&gt;create&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: blue&quot;&gt;'Coding'&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;coding&lt;/span&gt;&lt;b&gt; then&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; {
+&lt;/span&gt;        srcId&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt;coding.system = &lt;span style=&quot;color: blue&quot;&gt;'https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203'&lt;/span&gt; &lt;i&gt;&amp;quot;system&amp;quot;&lt;/i&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
+        srcId&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt;coding.code = &lt;span style=&quot;color: blue&quot;&gt;'IDNPS'&lt;/span&gt; &lt;i&gt;&amp;quot;code&amp;quot;&lt;/i&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
+      &lt;span style=&quot;color: navy&quot;&gt;}&lt;/span&gt; &lt;i&gt;&amp;quot;coding&amp;quot;&lt;/i&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
+    &lt;span style=&quot;color: navy&quot;&gt;}&lt;/span&gt; &lt;i&gt;&amp;quot;idNatPs&amp;quot;&lt;/i&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
+  &lt;span style=&quot;color: navy&quot;&gt;}&lt;/span&gt; &lt;i&gt;&amp;quot;identifier&amp;quot;&lt;/i&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
   src.addr&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;srcAddr&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt;tgt.address = &lt;b&gt;create&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: blue&quot;&gt;'Address'&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;address&lt;/span&gt;&lt;b&gt; then &lt;/b&gt;ADAddress&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: maroon&quot;&gt;srcAddr&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt;&lt;span style=&quot;color: maroon&quot;&gt;address&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
   src.telecom&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;srcTelecom&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt;tgt.telecom = &lt;b&gt;create&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: blue&quot;&gt;'ContactPoint'&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;contactPoint&lt;/span&gt;&lt;b&gt; then &lt;/b&gt;TELContactPoint&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: maroon&quot;&gt;srcTelecom&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt;&lt;span style=&quot;color: maroon&quot;&gt;contactPoint&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
   src.assignedPerson&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;person&lt;/span&gt;&lt;b&gt; then&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; {
@@ -524,7 +540,7 @@
   &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.title">title</a>
          <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)&quot;/&gt;
   &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.status">status</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;draft&quot;/&gt;
-  &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.date">date</a> <a href="http://hl7.org/fhir/R4/datatypes.html#dateTime">value</a>=&quot;2025-10-31T16:31:50+00:00&quot;/&gt;
+  &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.date">date</a> <a href="http://hl7.org/fhir/R4/datatypes.html#dateTime">value</a>=&quot;2025-10-31T16:48:30+00:00&quot;/&gt;
   &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.publisher">publisher</a>
              <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris&quot;/&gt;
   &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.contact">contact</a>&gt;
@@ -1559,7 +1575,7 @@ _________________________ Header Level Templates _________________________&quot;
           &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.source.variable">variable</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;assignedAuthor&quot;/&gt;
         &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.source">source</a>&gt;
         &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.rule">rule</a>&gt;
-          &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;id&quot;/&gt;
+          &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;identifier&quot;/&gt;
           &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.source">source</a>&gt;
             &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.source.context">context</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;assignedAuthor&quot;/&gt;
             &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.source.element">element</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;id&quot;/&gt;
@@ -1575,11 +1591,85 @@ _________________________ Header Level Templates _________________________&quot;
               &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.parameter.value[x]">valueString</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Identifier&quot;/&gt;
             &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.parameter">parameter</a>&gt;
           &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target">target</a>&gt;
-          &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.dependent">dependent</a>&gt;
-            &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.dependent.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;II&quot;/&gt;
-            &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.dependent.variable">variable</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;id&quot;/&gt;
-            &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.dependent.variable">variable</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;identifier&quot;/&gt;
-          &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.dependent">dependent</a>&gt;
+          &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.rule">rule</a>&gt;
+            &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;baseIdentifier&quot;/&gt;
+            &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.source">source</a>&gt;
+              &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.source.context">context</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;id&quot;/&gt;
+            &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.source">source</a>&gt;
+            &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target">target</a>&gt;
+              &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.context">context</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;identifier&quot;/&gt;
+              &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.contextType">contextType</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;variable&quot;/&gt;
+            &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target">target</a>&gt;
+            &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.dependent">dependent</a>&gt;
+              &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.dependent.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;II&quot;/&gt;
+              &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.dependent.variable">variable</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;id&quot;/&gt;
+              &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.dependent.variable">variable</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;identifier&quot;/&gt;
+            &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.dependent">dependent</a>&gt;
+          &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.rule">rule</a>&gt;
+          &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.rule">rule</a>&gt;
+            &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;idNatPs&quot;/&gt;
+            &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.source">source</a>&gt;
+              &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.source.context">context</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;id&quot;/&gt;
+              &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.source.condition">condition</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;root = '1.2.250.1.71.4.2.1'&quot;/&gt;
+            &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.source">source</a>&gt;
+            &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target">target</a>&gt;
+              &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.context">context</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;identifier&quot;/&gt;
+              &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.contextType">contextType</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;variable&quot;/&gt;
+              &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.element">element</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;type&quot;/&gt;
+              &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.variable">variable</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;type&quot;/&gt;
+              &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.transform">transform</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;create&quot;/&gt;
+              &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.parameter">parameter</a>&gt;
+                &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.parameter.value[x]">valueString</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;CodeableConcept&quot;/&gt;
+              &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.parameter">parameter</a>&gt;
+            &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target">target</a>&gt;
+            &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.rule">rule</a>&gt;
+              &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;coding&quot;/&gt;
+              &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.source">source</a>&gt;
+                &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.source.context">context</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;id&quot;/&gt;
+              &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.source">source</a>&gt;
+              &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target">target</a>&gt;
+                &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.context">context</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;type&quot;/&gt;
+                &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.contextType">contextType</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;variable&quot;/&gt;
+                &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.element">element</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;coding&quot;/&gt;
+                &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.variable">variable</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;coding&quot;/&gt;
+                &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.transform">transform</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;create&quot;/&gt;
+                &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.parameter">parameter</a>&gt;
+                  &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.parameter.value[x]">valueString</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Coding&quot;/&gt;
+                &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.parameter">parameter</a>&gt;
+              &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target">target</a>&gt;
+              &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.rule">rule</a>&gt;
+                &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;system&quot;/&gt;
+                &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.source">source</a>&gt;
+                  &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.source.context">context</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;id&quot;/&gt;
+                &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.source">source</a>&gt;
+                &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target">target</a>&gt;
+                  &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.context">context</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;coding&quot;/&gt;
+                  &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.contextType">contextType</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;variable&quot;/&gt;
+                  &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.element">element</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;system&quot;/&gt;
+                  &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.transform">transform</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;copy&quot;/&gt;
+                  &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.parameter">parameter</a>&gt;
+                    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.parameter.value[x]">valueString</a>
+                                 <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203&quot;/&gt;
+                  &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.parameter">parameter</a>&gt;
+                &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target">target</a>&gt;
+              &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.rule">rule</a>&gt;
+              &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.rule">rule</a>&gt;
+                &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;code&quot;/&gt;
+                &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.source">source</a>&gt;
+                  &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.source.context">context</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;id&quot;/&gt;
+                &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.source">source</a>&gt;
+                &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target">target</a>&gt;
+                  &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.context">context</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;coding&quot;/&gt;
+                  &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.contextType">contextType</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;variable&quot;/&gt;
+                  &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.element">element</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;code&quot;/&gt;
+                  &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.transform">transform</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;copy&quot;/&gt;
+                  &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.parameter">parameter</a>&gt;
+                    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.parameter.value[x]">valueString</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;IDNPS&quot;/&gt;
+                  &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.parameter">parameter</a>&gt;
+                &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target">target</a>&gt;
+              &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.rule">rule</a>&gt;
+            &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.rule">rule</a>&gt;
+          &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.rule">rule</a>&gt;
         &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.rule">rule</a>&gt;
         &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.rule">rule</a>&gt;
           &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;addr&quot;/&gt;
@@ -2651,7 +2741,7 @@ _________________________ Header Level Templates _________________________&quot;
       &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.rule">rule</a>&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule">rule</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule">rule</a>&gt;
-      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;id&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;identifier&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.source">source</a>&gt;
         &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.source.context">context</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;src&quot;/&gt;
         &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.source.element">element</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;id&quot;/&gt;
@@ -2667,11 +2757,85 @@ _________________________ Header Level Templates _________________________&quot;
           &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.parameter.value[x]">valueString</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Identifier&quot;/&gt;
         &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.parameter">parameter</a>&gt;
       &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target">target</a>&gt;
-      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.dependent">dependent</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.dependent.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;II&quot;/&gt;
-        &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.dependent.variable">variable</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;srcId&quot;/&gt;
-        &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.dependent.variable">variable</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;identifier&quot;/&gt;
-      &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.dependent">dependent</a>&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.rule">rule</a>&gt;
+        &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;baseIdentifier&quot;/&gt;
+        &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.source">source</a>&gt;
+          &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.source.context">context</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;srcId&quot;/&gt;
+        &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.source">source</a>&gt;
+        &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target">target</a>&gt;
+          &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.context">context</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;identifier&quot;/&gt;
+          &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.contextType">contextType</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;variable&quot;/&gt;
+        &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target">target</a>&gt;
+        &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.dependent">dependent</a>&gt;
+          &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.dependent.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;II&quot;/&gt;
+          &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.dependent.variable">variable</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;srcId&quot;/&gt;
+          &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.dependent.variable">variable</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;identifier&quot;/&gt;
+        &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.dependent">dependent</a>&gt;
+      &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.rule">rule</a>&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.rule">rule</a>&gt;
+        &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;idNatPs&quot;/&gt;
+        &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.source">source</a>&gt;
+          &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.source.context">context</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;srcId&quot;/&gt;
+          &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.source.condition">condition</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;root = '1.2.250.1.71.4.2.1'&quot;/&gt;
+        &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.source">source</a>&gt;
+        &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target">target</a>&gt;
+          &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.context">context</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;identifier&quot;/&gt;
+          &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.contextType">contextType</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;variable&quot;/&gt;
+          &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.element">element</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;type&quot;/&gt;
+          &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.variable">variable</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;type&quot;/&gt;
+          &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.transform">transform</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;create&quot;/&gt;
+          &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.parameter">parameter</a>&gt;
+            &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.parameter.value[x]">valueString</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;CodeableConcept&quot;/&gt;
+          &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.parameter">parameter</a>&gt;
+        &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target">target</a>&gt;
+        &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.rule">rule</a>&gt;
+          &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;coding&quot;/&gt;
+          &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.source">source</a>&gt;
+            &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.source.context">context</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;srcId&quot;/&gt;
+          &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.source">source</a>&gt;
+          &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target">target</a>&gt;
+            &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.context">context</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;type&quot;/&gt;
+            &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.contextType">contextType</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;variable&quot;/&gt;
+            &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.element">element</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;coding&quot;/&gt;
+            &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.variable">variable</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;coding&quot;/&gt;
+            &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.transform">transform</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;create&quot;/&gt;
+            &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.parameter">parameter</a>&gt;
+              &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.parameter.value[x]">valueString</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Coding&quot;/&gt;
+            &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.parameter">parameter</a>&gt;
+          &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target">target</a>&gt;
+          &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.rule">rule</a>&gt;
+            &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;system&quot;/&gt;
+            &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.source">source</a>&gt;
+              &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.source.context">context</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;srcId&quot;/&gt;
+            &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.source">source</a>&gt;
+            &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target">target</a>&gt;
+              &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.context">context</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;coding&quot;/&gt;
+              &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.contextType">contextType</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;variable&quot;/&gt;
+              &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.element">element</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;system&quot;/&gt;
+              &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.transform">transform</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;copy&quot;/&gt;
+              &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.parameter">parameter</a>&gt;
+                &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.parameter.value[x]">valueString</a>
+                             <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203&quot;/&gt;
+              &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.parameter">parameter</a>&gt;
+            &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target">target</a>&gt;
+          &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.rule">rule</a>&gt;
+          &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.rule">rule</a>&gt;
+            &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;code&quot;/&gt;
+            &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.source">source</a>&gt;
+              &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.source.context">context</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;srcId&quot;/&gt;
+            &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.source">source</a>&gt;
+            &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target">target</a>&gt;
+              &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.context">context</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;coding&quot;/&gt;
+              &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.contextType">contextType</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;variable&quot;/&gt;
+              &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.element">element</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;code&quot;/&gt;
+              &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.transform">transform</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;copy&quot;/&gt;
+              &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.parameter">parameter</a>&gt;
+                &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.parameter.value[x]">valueString</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;IDNPS&quot;/&gt;
+              &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.parameter">parameter</a>&gt;
+            &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target">target</a>&gt;
+          &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.rule">rule</a>&gt;
+        &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.rule">rule</a>&gt;
+      &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.rule">rule</a>&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule">rule</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule">rule</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;addr&quot;/&gt;
@@ -4274,7 +4438,7 @@ Fin état initial&quot;/&gt;
 
       <div class="inner-wrapper">
         <p>
-          IG &#169; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d&#39;Oradour-sur-Glane, 75015 Paris</a>.  Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Fri, Oct 31, 2025 16:31+0000">2025-10-31</span>
+          IG &#169; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d&#39;Oradour-sur-Glane, 75015 Paris</a>.  Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Fri, Oct 31, 2025 16:48+0000">2025-10-31</span>
           <br/>
           <span style="color: var(--footer-highlight-text-color)"></span>
             Liens : <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table des matières</a> |

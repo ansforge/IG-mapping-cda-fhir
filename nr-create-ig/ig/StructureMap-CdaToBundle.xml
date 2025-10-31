@@ -86,7 +86,15 @@
     <span style="color: navy">}</span> <i>&quot;practitionerRoleMeta&quot;</i><span style="color: navy">;</span>
     srcAuthor<span style="color: navy"><b> -&gt; </b></span> practitionerRole.practitioner = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Reference'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">refPract</span><span style="color: navy">, </span> refPract.reference = <span style="color: navy">(</span>'urn:uuid:' + %practitioner.id<span style="color: navy">)</span> <i>&quot;practitionerRef&quot;</i><span style="color: navy">;</span>
     srcAuthor.assignedAuthor<b> as </b><span style="color: maroon">assignedAuthor</span><b> then</b><span style="color: navy"> {
-</span>      assignedAuthor.id<b> as </b><span style="color: maroon">id</span><span style="color: navy"><b> -&gt; </b></span>practitioner.identifier = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Identifier'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">identifier</span><b> then </b>II<span style="color: navy">(</span><span style="color: maroon">id</span><span style="color: navy">, </span><span style="color: maroon">identifier</span><span style="color: navy">)</span><span style="color: navy">;</span>
+</span>      assignedAuthor.id<b> as </b><span style="color: maroon">id</span><span style="color: navy"><b> -&gt; </b></span>practitioner.identifier = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Identifier'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">identifier</span><b> then</b><span style="color: navy"> {
+</span>        id<span style="color: navy"><b> -&gt; </b></span>identifier<b> then </b>II<span style="color: navy">(</span><span style="color: maroon">id</span><span style="color: navy">, </span><span style="color: maroon">identifier</span><span style="color: navy">)</span> <i>&quot;baseIdentifier&quot;</i><span style="color: navy">;</span>
+        id<b> where </b>root = '1.2.250.1.71.4.2.1'<span style="color: navy"><b> -&gt; </b></span>identifier.type = <b>create</b><span style="color: navy">(</span><span style="color: blue">'CodeableConcept'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">type</span><b> then</b><span style="color: navy"> {
+</span>          id<span style="color: navy"><b> -&gt; </b></span>type.coding = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Coding'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">coding</span><b> then</b><span style="color: navy"> {
+</span>            id<span style="color: navy"><b> -&gt; </b></span>coding.system = <span style="color: blue">'https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203'</span> <i>&quot;system&quot;</i><span style="color: navy">;</span>
+            id<span style="color: navy"><b> -&gt; </b></span>coding.code = <span style="color: blue">'IDNPS'</span> <i>&quot;code&quot;</i><span style="color: navy">;</span>
+          <span style="color: navy">}</span> <i>&quot;coding&quot;</i><span style="color: navy">;</span>
+        <span style="color: navy">}</span> <i>&quot;idNatPs&quot;</i><span style="color: navy">;</span>
+      <span style="color: navy">}</span> <i>&quot;identifier&quot;</i><span style="color: navy">;</span>
       assignedAuthor.addr<b> as </b><span style="color: maroon">addr</span><span style="color: navy"><b> -&gt; </b></span>practitioner.address = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Address'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">address</span><b> then </b>ADAddress<span style="color: navy">(</span><span style="color: maroon">addr</span><span style="color: navy">, </span><span style="color: maroon">address</span><span style="color: navy">)</span><span style="color: navy">;</span>
       assignedAuthor.telecom<b> as </b><span style="color: maroon">tlc</span><span style="color: navy"><b> -&gt; </b></span>practitioner.telecom = <b>create</b><span style="color: navy">(</span><span style="color: blue">'ContactPoint'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">contactPoint</span><b> then </b>TELContactPoint<span style="color: navy">(</span><span style="color: maroon">tlc</span><span style="color: navy">, </span><span style="color: maroon">contactPoint</span><span style="color: navy">)</span><span style="color: navy">;</span>
       assignedAuthor.assignedPerson<b> as </b><span style="color: maroon">assPerson</span><b> then</b><span style="color: navy"> {
@@ -163,7 +171,15 @@
 </span>  src<span style="color: navy"><b> -&gt; </b></span>tgt.meta = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Meta'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">meta</span><b> then</b><span style="color: navy"> {
 </span>    src<span style="color: navy"><b> -&gt; </b></span>meta.profile = <span style="color: blue">'https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-practitioner'</span> <i>&quot;profile&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">}</span> <i>&quot;meta&quot;</i><span style="color: navy">;</span>
-  src.id<b> as </b><span style="color: maroon">srcId</span><span style="color: navy"><b> -&gt; </b></span>tgt.identifier = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Identifier'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">identifier</span><b> then </b>II<span style="color: navy">(</span><span style="color: maroon">srcId</span><span style="color: navy">, </span><span style="color: maroon">identifier</span><span style="color: navy">)</span><span style="color: navy">;</span>
+  src.id<b> as </b><span style="color: maroon">srcId</span><span style="color: navy"><b> -&gt; </b></span>tgt.identifier = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Identifier'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">identifier</span><b> then</b><span style="color: navy"> {
+</span>    srcId<span style="color: navy"><b> -&gt; </b></span>identifier<b> then </b>II<span style="color: navy">(</span><span style="color: maroon">srcId</span><span style="color: navy">, </span><span style="color: maroon">identifier</span><span style="color: navy">)</span> <i>&quot;baseIdentifier&quot;</i><span style="color: navy">;</span>
+    srcId<b> where </b>root = '1.2.250.1.71.4.2.1'<span style="color: navy"><b> -&gt; </b></span>identifier.type = <b>create</b><span style="color: navy">(</span><span style="color: blue">'CodeableConcept'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">type</span><b> then</b><span style="color: navy"> {
+</span>      srcId<span style="color: navy"><b> -&gt; </b></span>type.coding = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Coding'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">coding</span><b> then</b><span style="color: navy"> {
+</span>        srcId<span style="color: navy"><b> -&gt; </b></span>coding.system = <span style="color: blue">'https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203'</span> <i>&quot;system&quot;</i><span style="color: navy">;</span>
+        srcId<span style="color: navy"><b> -&gt; </b></span>coding.code = <span style="color: blue">'IDNPS'</span> <i>&quot;code&quot;</i><span style="color: navy">;</span>
+      <span style="color: navy">}</span> <i>&quot;coding&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;idNatPs&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;identifier&quot;</i><span style="color: navy">;</span>
   src.addr<b> as </b><span style="color: maroon">srcAddr</span><span style="color: navy"><b> -&gt; </b></span>tgt.address = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Address'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">address</span><b> then </b>ADAddress<span style="color: navy">(</span><span style="color: maroon">srcAddr</span><span style="color: navy">, </span><span style="color: maroon">address</span><span style="color: navy">)</span><span style="color: navy">;</span>
   src.telecom<b> as </b><span style="color: maroon">srcTelecom</span><span style="color: navy"><b> -&gt; </b></span>tgt.telecom = <b>create</b><span style="color: navy">(</span><span style="color: blue">'ContactPoint'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">contactPoint</span><b> then </b>TELContactPoint<span style="color: navy">(</span><span style="color: maroon">srcTelecom</span><span style="color: navy">, </span><span style="color: maroon">contactPoint</span><span style="color: navy">)</span><span style="color: navy">;</span>
   src.assignedPerson<b> as </b><span style="color: maroon">person</span><b> then</b><span style="color: navy"> {
@@ -294,7 +310,7 @@
   <name value="CdaToBundle"/>
   <title value="Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)"/>
   <status value="draft"/>
-  <date value="2025-10-31T16:31:50+00:00"/>
+  <date value="2025-10-31T16:48:30+00:00"/>
   <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
   <contact>
     <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
@@ -1314,7 +1330,7 @@
           <variable value="assignedAuthor"/>
         </source>
         <rule>
-          <name value="id"/>
+          <name value="identifier"/>
           <source>
             <context value="assignedAuthor"/>
             <element value="id"/>
@@ -1330,11 +1346,84 @@
               <valueString value="Identifier"/>
             </parameter>
           </target>
-          <dependent>
-            <name value="II"/>
-            <variable value="id"/>
-            <variable value="identifier"/>
-          </dependent>
+          <rule>
+            <name value="baseIdentifier"/>
+            <source>
+              <context value="id"/>
+            </source>
+            <target>
+              <context value="identifier"/>
+              <contextType value="variable"/>
+            </target>
+            <dependent>
+              <name value="II"/>
+              <variable value="id"/>
+              <variable value="identifier"/>
+            </dependent>
+          </rule>
+          <rule>
+            <name value="idNatPs"/>
+            <source>
+              <context value="id"/>
+              <condition value="root = '1.2.250.1.71.4.2.1'"/>
+            </source>
+            <target>
+              <context value="identifier"/>
+              <contextType value="variable"/>
+              <element value="type"/>
+              <variable value="type"/>
+              <transform value="create"/>
+              <parameter>
+                <valueString value="CodeableConcept"/>
+              </parameter>
+            </target>
+            <rule>
+              <name value="coding"/>
+              <source>
+                <context value="id"/>
+              </source>
+              <target>
+                <context value="type"/>
+                <contextType value="variable"/>
+                <element value="coding"/>
+                <variable value="coding"/>
+                <transform value="create"/>
+                <parameter>
+                  <valueString value="Coding"/>
+                </parameter>
+              </target>
+              <rule>
+                <name value="system"/>
+                <source>
+                  <context value="id"/>
+                </source>
+                <target>
+                  <context value="coding"/>
+                  <contextType value="variable"/>
+                  <element value="system"/>
+                  <transform value="copy"/>
+                  <parameter>
+                    <valueString value="https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203"/>
+                  </parameter>
+                </target>
+              </rule>
+              <rule>
+                <name value="code"/>
+                <source>
+                  <context value="id"/>
+                </source>
+                <target>
+                  <context value="coding"/>
+                  <contextType value="variable"/>
+                  <element value="code"/>
+                  <transform value="copy"/>
+                  <parameter>
+                    <valueString value="IDNPS"/>
+                  </parameter>
+                </target>
+              </rule>
+            </rule>
+          </rule>
         </rule>
         <rule>
           <name value="addr"/>
@@ -2399,7 +2488,7 @@
       </rule>
     </rule>
     <rule>
-      <name value="id"/>
+      <name value="identifier"/>
       <source>
         <context value="src"/>
         <element value="id"/>
@@ -2415,11 +2504,84 @@
           <valueString value="Identifier"/>
         </parameter>
       </target>
-      <dependent>
-        <name value="II"/>
-        <variable value="srcId"/>
-        <variable value="identifier"/>
-      </dependent>
+      <rule>
+        <name value="baseIdentifier"/>
+        <source>
+          <context value="srcId"/>
+        </source>
+        <target>
+          <context value="identifier"/>
+          <contextType value="variable"/>
+        </target>
+        <dependent>
+          <name value="II"/>
+          <variable value="srcId"/>
+          <variable value="identifier"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="idNatPs"/>
+        <source>
+          <context value="srcId"/>
+          <condition value="root = '1.2.250.1.71.4.2.1'"/>
+        </source>
+        <target>
+          <context value="identifier"/>
+          <contextType value="variable"/>
+          <element value="type"/>
+          <variable value="type"/>
+          <transform value="create"/>
+          <parameter>
+            <valueString value="CodeableConcept"/>
+          </parameter>
+        </target>
+        <rule>
+          <name value="coding"/>
+          <source>
+            <context value="srcId"/>
+          </source>
+          <target>
+            <context value="type"/>
+            <contextType value="variable"/>
+            <element value="coding"/>
+            <variable value="coding"/>
+            <transform value="create"/>
+            <parameter>
+              <valueString value="Coding"/>
+            </parameter>
+          </target>
+          <rule>
+            <name value="system"/>
+            <source>
+              <context value="srcId"/>
+            </source>
+            <target>
+              <context value="coding"/>
+              <contextType value="variable"/>
+              <element value="system"/>
+              <transform value="copy"/>
+              <parameter>
+                <valueString value="https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203"/>
+              </parameter>
+            </target>
+          </rule>
+          <rule>
+            <name value="code"/>
+            <source>
+              <context value="srcId"/>
+            </source>
+            <target>
+              <context value="coding"/>
+              <contextType value="variable"/>
+              <element value="code"/>
+              <transform value="copy"/>
+              <parameter>
+                <valueString value="IDNPS"/>
+              </parameter>
+            </target>
+          </rule>
+        </rule>
+      </rule>
     </rule>
     <rule>
       <name value="addr"/>

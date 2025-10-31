@@ -406,7 +406,7 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2025-10-31T16:31:50+00:00",
+  "date" : "2025-10-31T16:48:30+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {
