@@ -83,13 +83,13 @@ group ClinicalDocumentComposition(source src : ClinicalDocument, target tgt : Co
   src.code as srcCode -> tgt.type = create('CodeableConcept') as cc then CDCodeableConcept(srcCode, cc);
   src.title as t -> tgt.title = (t.xmlText);
   src.recordTarget as recordTarget then {
-    recordTarget.patientRole as patient ->  tgt.subject = create('Reference') as reference,  reference.reference = ('Patient/' + %patientResource.id) then ClinicalDocumentPatientRole(patient, patientResource, bundle) "subject";
+    recordTarget.patientRole as patient ->  tgt.subject = create('Reference') as reference,  reference.reference = ('urn:uuid:' + %patientResource.id) then ClinicalDocumentPatientRole(patient, patientResource, bundle) "subject";
   } "patientRole";
   src.componentOf as comp ->  bundle.entry as e,  e.resource = create('Encounter') as encounter,  encounter.id = uuid() as uuid,  e.fullUrl = append('urn:uuid:', uuid) then {
-    comp.encompassingEncounter as srcEnc ->  tgt.encounter = create('Reference') as reference,  reference.reference = ('Encounter/' + %encounter.id) then ClinicalDocumentEncounter(srcEnc, bundle, encounter) "srcEncounter";
+    comp.encompassingEncounter as srcEnc ->  tgt.encounter = create('Reference') as reference,  reference.reference = ('urn:uuid:' + %encounter.id) then ClinicalDocumentEncounter(srcEnc, bundle, encounter) "srcEncounter";
   } "encompassingEncounter";
   src.effectiveTime as effectiveTime -> tgt.date = create('dateTime') as date then TSDateTime(effectiveTime, date) "compositionDate";
-  src.author as srcAuthor ->  bundle.entry as e,  e.resource = create('Practitioner') as practitioner,  practitioner.id = uuid() as uuid2,  e.fullUrl = append('urn:uuid:', uuid2),  tgt.author = create('Reference') as reference,  reference.reference = ('Practitioner/' + %practitioner.id) then {
+  src.author as srcAuthor ->  bundle.entry as e,  e.resource = create('Practitioner') as practitioner,  practitioner.id = uuid() as uuid2,  e.fullUrl = append('urn:uuid:', uuid2),  tgt.author = create('Reference') as reference,  reference.reference = ('urn:uuid:' + %practitioner.id) then {
     srcAuthor.assignedAuthor as assignedAuthor then {
       assignedAuthor.id as id -> practitioner.identifier = create('Identifier') as identifier then II(id, identifier);
       assignedAuthor.addr as addr -> practitioner.address = create('Address') as address then ADAddress(addr, address);
@@ -97,7 +97,7 @@ group ClinicalDocumentComposition(source src : ClinicalDocument, target tgt : Co
       assignedAuthor.assignedPerson as assPerson then {
         assPerson.name as pName -> practitioner.name = create('HumanName') as humanName then ENHumanName(pName, humanName);
       } "name";
-      assignedAuthor.representedOrganization as srcOrg ->  bundle.entry as e2,  e2.resource = create('Organization') as organization,  organization.id = uuid() as uuid3,  e2.fullUrl = append('urn:uuid:', uuid3),  tgt.author = create('Reference') as reference2,  reference2.reference = ('Organization/' + %organization.id) then ClinicalDocumentOrganization(srcOrg, organization);
+      assignedAuthor.representedOrganization as srcOrg ->  bundle.entry as e2,  e2.resource = create('Organization') as organization,  organization.id = uuid() as uuid3,  e2.fullUrl = append('urn:uuid:', uuid3),  tgt.author = create('Reference') as reference2,  reference2.reference = ('urn:uuid:' + %organization.id) then ClinicalDocumentOrganization(srcOrg, organization);
     } "author";
   } "srcAuthor";
   src.confidentialityCode as confCode -> tgt.confidentiality = create('code') as code then CSCode(confCode, code);
@@ -105,19 +105,19 @@ group ClinicalDocumentComposition(source src : ClinicalDocument, target tgt : Co
     legalAuth -> tgt.attester as attester then {
       legalAuth -> attester.mode = 'legal' "mode";
       legalAuth.time as time -> attester.time = create('dateTime') as dt then TSDateTime(time, dt);
-      legalAuth.assignedEntity as entity ->  attester.party = create('Reference') as reference,  reference.reference = ('Practitioner/' + %practitioner.id) then ClinicalDocumentEntityPractitioner(entity, practitioner) "entity";
+      legalAuth.assignedEntity as entity ->  attester.party = create('Reference') as reference,  reference.reference = ('urn:uuid:' + %practitioner.id) then ClinicalDocumentEntityPractitioner(entity, practitioner) "entity";
     } "attester";
   } "legalAuth";
   src.authenticator as auth ->  bundle.entry as e,  e.resource = create('Practitioner') as practitioner,  practitioner.id = uuid() as uuid2,  e.fullUrl = append('urn:uuid:', uuid2) then {
     auth -> tgt.attester as attester then {
       auth -> attester.mode = 'official' "mode";
       auth.time as time -> attester.time = create('dateTime') as dt then TSDateTime(time, dt);
-      auth.assignedEntity as entity ->  attester.party = create('Reference') as reference,  reference.reference = ('Practitioner/' + %practitioner.id) then ClinicalDocumentEntityPractitioner(entity, practitioner) "entity";
+      auth.assignedEntity as entity ->  attester.party = create('Reference') as reference,  reference.reference = ('urn:uuid:' + %practitioner.id) then ClinicalDocumentEntityPractitioner(entity, practitioner) "entity";
     } "attester";
   } "auth";
   src.custodian as custodian -> bundle.entry as e then {
     custodian.assignedCustodian as assignedCustodian ->  e.resource = create('Organization') as organization,  organization.id = uuid() as uuid3,  e.fullUrl = append('urn:uuid:', uuid3) then {
-      assignedCustodian.representedCustodianOrganization as srcOrg ->  tgt.custodian = create('Reference') as reference,  reference.reference = ('Organization/' + %organization.id) then ClinicalDocumentOrganization(srcOrg, organization) "assignedCustodian";
+      assignedCustodian.representedCustodianOrganization as srcOrg ->  tgt.custodian = create('Reference') as reference,  reference.reference = ('urn:uuid:' + %organization.id) then ClinicalDocumentOrganization(srcOrg, organization) "assignedCustodian";
     } "custodian";
   } "cust";
   src.documentationOf as docOf then {
@@ -171,7 +171,7 @@ group ClinicalDocumentPatientRole(source src : PatientRole, target tgt : Patient
     } "language";
   } "patientrole";
   src.providerOrganization as org ->  bundle.entry as e,  e.resource = create('Organization') as organization,  organization.id = uuid() as uuid3,  e.fullUrl = append('urn:uuid:', uuid3) then {
-    org ->  tgt.managingOrganization = create('Reference') as reference,  reference.reference = ('Organization/' + %organization.id) "reference";
+    org ->  tgt.managingOrganization = create('Reference') as reference,  reference.reference = ('urn:uuid:' + %organization.id) "reference";
     org.id as orgId -> organization.identifier = create('Identifier') as identifier then II(orgId, identifier);
     org.name as v -> organization.name = (v.other);
     org.telecom as orgTel -> organization.telecom = create('ContactPoint') as contactPoint then TELContactPoint(orgTel, contactPoint);
@@ -222,12 +222,12 @@ group ClinicalDocumentEncounter(source src : EncompassingEncounter, target bundl
     srcPart.typeCode as code -> tgtPart.type = cc('http://terminology.hl7.org/CodeSystem/v3-ParticipationType', code);
     srcPart.time as srcTime -> tgtPart.period = create('Period') as period then IVLTSPeriod(srcTime, period);
     srcPart.assignedEntity as entity ->  bundle.entry as e,  e.resource = create('Practitioner') as practitioner,  practitioner.id = uuid() as uuid2,  e.fullUrl = append('urn:uuid:', uuid2) then {
-      entity ->  tgtPart.individual = create('Reference') as reference,  reference.reference = ('Practitioner/' + %practitioner.id) then ClinicalDocumentEntityPractitioner(entity, practitioner) "entry";
+      entity ->  tgtPart.individual = create('Reference') as reference,  reference.reference = ('urn:uuid:' + %practitioner.id) then ClinicalDocumentEntityPractitioner(entity, practitioner) "entry";
     } "entity";
   } "participant";
   src.location as srcLocation then {
     srcLocation.healthCareFacility as facility ->  bundle.entry as e,  e.resource = create('Location') as location,  location.id = uuid() as uuid2,  e.fullUrl = append('urn:uuid:', uuid2) then {
-      facility ->  tgt.location as tgtLocation,  tgtLocation.location = create('Reference') as reference,  reference.reference = ('Location/' + %location.id) then ClinicalDocumentLocation(facility, bundle, location) "facLocation";
+      facility ->  tgt.location as tgtLocation,  tgtLocation.location = create('Reference') as reference,  reference.reference = ('urn:uuid:' + %location.id) then ClinicalDocumentLocation(facility, bundle, location) "facLocation";
     } "facility";
   };
 }
@@ -239,7 +239,7 @@ group ClinicalDocumentLocation(source src : HealthCareFacility, target bundle : 
     // place names are usually stored with no parts    location.name as srcName -> tgt.name = cast(srcName, 'string');
     location.addr as locAddr -> tgt.address = create('Address') as address then ADAddress(locAddr, address);
     location.serviceProviderOrganization as srcOrg ->  bundle.entry as e,  e.resource = create('Organization') as organization,  organization.id = uuid() as uuid3,  e.fullUrl = append('urn:uuid:', uuid3) then {
-      srcOrg ->  tgt.managingOrganization = create('Reference') as reference,  reference.reference = ('Organization/' + %organization.id) then ClinicalDocumentOrganization(srcOrg, organization) "organization";
+      srcOrg ->  tgt.managingOrganization = create('Reference') as reference,  reference.reference = ('urn:uuid:' + %organization.id) then ClinicalDocumentOrganization(srcOrg, organization) "organization";
     } "org";
   }; // place names are usually stored with no parts
 }
@@ -266,7 +266,7 @@ group NarrativeLink(source url, target ext : Extension) {
   "name" : "CdaToBundle",
   "title" : "Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)",
   "status" : "draft",
-  "date" : "2025-10-31T10:04:57+00:00",
+  "date" : "2025-10-31T10:52:01+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {
@@ -1171,7 +1171,7 @@ group NarrativeLink(source url, target ext : Extension) {
                   "transform" : "evaluate",
                   "parameter" : [
                     {
-                      "valueString" : "'Patient/' + %patientResource.id"
+                      "valueString" : "'urn:uuid:' + %patientResource.id"
                     }
                   ]
                 }
@@ -1265,7 +1265,7 @@ group NarrativeLink(source url, target ext : Extension) {
                   "transform" : "evaluate",
                   "parameter" : [
                     {
-                      "valueString" : "'Encounter/' + %encounter.id"
+                      "valueString" : "'urn:uuid:' + %encounter.id"
                     }
                   ]
                 }
@@ -1377,7 +1377,7 @@ group NarrativeLink(source url, target ext : Extension) {
               "transform" : "evaluate",
               "parameter" : [
                 {
-                  "valueString" : "'Practitioner/' + %practitioner.id"
+                  "valueString" : "'urn:uuid:' + %practitioner.id"
                 }
               ]
             }
@@ -1593,7 +1593,7 @@ group NarrativeLink(source url, target ext : Extension) {
                       "transform" : "evaluate",
                       "parameter" : [
                         {
-                          "valueString" : "'Organization/' + %organization.id"
+                          "valueString" : "'urn:uuid:' + %organization.id"
                         }
                       ]
                     }
@@ -1786,7 +1786,7 @@ group NarrativeLink(source url, target ext : Extension) {
                       "transform" : "evaluate",
                       "parameter" : [
                         {
-                          "valueString" : "'Practitioner/' + %practitioner.id"
+                          "valueString" : "'urn:uuid:' + %practitioner.id"
                         }
                       ]
                     }
@@ -1949,7 +1949,7 @@ group NarrativeLink(source url, target ext : Extension) {
                       "transform" : "evaluate",
                       "parameter" : [
                         {
-                          "valueString" : "'Practitioner/' + %practitioner.id"
+                          "valueString" : "'urn:uuid:' + %practitioner.id"
                         }
                       ]
                     }
@@ -2057,7 +2057,7 @@ group NarrativeLink(source url, target ext : Extension) {
                       "transform" : "evaluate",
                       "parameter" : [
                         {
-                          "valueString" : "'Organization/' + %organization.id"
+                          "valueString" : "'urn:uuid:' + %organization.id"
                         }
                       ]
                     }
@@ -2950,7 +2950,7 @@ group NarrativeLink(source url, target ext : Extension) {
                   "transform" : "evaluate",
                   "parameter" : [
                     {
-                      "valueString" : "'Organization/' + %organization.id"
+                      "valueString" : "'urn:uuid:' + %organization.id"
                     }
                   ]
                 }
@@ -3751,7 +3751,7 @@ group NarrativeLink(source url, target ext : Extension) {
                       "transform" : "evaluate",
                       "parameter" : [
                         {
-                          "valueString" : "'Practitioner/' + %practitioner.id"
+                          "valueString" : "'urn:uuid:' + %practitioner.id"
                         }
                       ]
                     }
@@ -3861,7 +3861,7 @@ group NarrativeLink(source url, target ext : Extension) {
                       "transform" : "evaluate",
                       "parameter" : [
                         {
-                          "valueString" : "'Location/' + %location.id"
+                          "valueString" : "'urn:uuid:' + %location.id"
                         }
                       ]
                     }
@@ -4078,7 +4078,7 @@ group NarrativeLink(source url, target ext : Extension) {
                       "transform" : "evaluate",
                       "parameter" : [
                         {
-                          "valueString" : "'Organization/' + %organization.id"
+                          "valueString" : "'urn:uuid:' + %organization.id"
                         }
                       ]
                     }

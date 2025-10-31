@@ -60,7 +60,7 @@
 </span>              entry.organizer<b> as </b><span style="color: maroon">organizer</span><b> then</b><span style="color: navy"> {
 </span>                organizer.component<b> as </b><span style="color: maroon">orgComp</span><b> then</b><span style="color: navy"> {
 </span>                  orgComp.observation<b> as </b><span style="color: maroon">obs</span><b> then</b><span style="color: navy"> {
-</span>                    obs<span style="color: navy"><b> -&gt; </b></span> bundle.entry<b> as </b><span style="color: maroon">obsEntry</span><span style="color: navy">, </span> obsEntry.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Observation'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">observation</span><span style="color: navy">, </span> observation.id = <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">obsUuid</span><span style="color: navy">, </span> obsEntry.fullUrl = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:uuid:'</span><span style="color: navy">, </span><span style="color: maroon">obsUuid</span><span style="color: navy">)</span><span style="color: navy">, </span> compSection.entry = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Reference'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">obsRef</span><span style="color: navy">, </span> obsRef.reference = <b>append</b><span style="color: navy">(</span><span style="color: blue">'Observation/'</span><span style="color: navy">, </span><span style="color: maroon">obsUuid</span><span style="color: navy">)</span><b> then </b>ProcessObservation<span style="color: navy">(</span><span style="color: maroon">cda</span><span style="color: navy">, </span><span style="color: maroon">obs</span><span style="color: navy">, </span><span style="color: maroon">observation</span><span style="color: navy">, </span><span style="color: maroon">patient</span><span style="color: navy">, </span><span style="color: maroon">composition</span><span style="color: navy">)</span> <i>&quot;processObs&quot;</i><span style="color: navy">;</span>
+</span>                    obs<span style="color: navy"><b> -&gt; </b></span> bundle.entry<b> as </b><span style="color: maroon">obsEntry</span><span style="color: navy">, </span> obsEntry.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Observation'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">observation</span><span style="color: navy">, </span> observation.id = <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">obsUuid</span><span style="color: navy">, </span> obsEntry.fullUrl = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:uuid:'</span><span style="color: navy">, </span><span style="color: maroon">obsUuid</span><span style="color: navy">)</span><span style="color: navy">, </span> compSection.entry = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Reference'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">obsRef</span><span style="color: navy">, </span> obsRef.reference = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:uuid:'</span><span style="color: navy">, </span><span style="color: maroon">obsUuid</span><span style="color: navy">)</span><b> then </b>ProcessObservation<span style="color: navy">(</span><span style="color: maroon">cda</span><span style="color: navy">, </span><span style="color: maroon">obs</span><span style="color: navy">, </span><span style="color: maroon">observation</span><span style="color: navy">, </span><span style="color: maroon">patient</span><span style="color: navy">, </span><span style="color: maroon">composition</span><span style="color: navy">)</span> <i>&quot;processObs&quot;</i><span style="color: navy">;</span>
                   <span style="color: navy">}</span><span style="color: navy">;</span>
                 <span style="color: navy">}</span> <i>&quot;orgComponent&quot;</i><span style="color: navy">;</span>
               <span style="color: navy">}</span><span style="color: navy">;</span>
@@ -101,7 +101,7 @@
   <span style="color: navy">// </span><span style="color: green">Value as Quantity using PQQuantity from CdaToFHIRTypes</span>
   obs.value<b> as </b><span style="color: maroon">value</span><span style="color: navy"><b> -&gt; </b></span>observation.value = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Quantity'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">qty</span><b> then </b>PQQuantity<span style="color: navy">(</span><span style="color: maroon">value</span><span style="color: navy">, </span><span style="color: maroon">qty</span><span style="color: navy">)</span> <i>&quot;obsValue&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">Subject reference</span>
-  obs<span style="color: navy"><b> -&gt; </b></span> observation.subject = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Reference'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">ref</span><span style="color: navy">, </span> ref.reference = <span style="color: navy">(</span>'Patient/' + %patient.id<span style="color: navy">)</span> <i>&quot;obsSubject&quot;</i><span style="color: navy">;</span>
+  obs<span style="color: navy"><b> -&gt; </b></span> observation.subject = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Reference'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">ref</span><span style="color: navy">, </span> ref.reference = <span style="color: navy">(</span>'urn:uuid:' + %patient.id<span style="color: navy">)</span> <i>&quot;obsSubject&quot;</i><span style="color: navy">;</span>
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">Map CDA v3 administrative gender to FHIR gender</span>
@@ -119,7 +119,7 @@
   <name value="CdaFrMDEToBundle"/>
   <title value="Mapping CSE-MDE vers FHIR Bundle - Contexte Français"/>
   <status value="draft"/>
-  <date value="2025-10-31T10:04:57+00:00"/>
+  <date value="2025-10-31T10:52:01+00:00"/>
   <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
   <contact>
     <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
@@ -664,7 +664,7 @@
                           <element value="reference"/>
                           <transform value="append"/>
                           <parameter>
-                            <valueString value="Observation/"/>
+                            <valueString value="urn:uuid:"/>
                           </parameter>
                           <parameter>
                             <valueId value="obsUuid"/>
@@ -1013,7 +1013,7 @@
         <element value="reference"/>
         <transform value="evaluate"/>
         <parameter>
-          <valueString value="'Patient/' + %patient.id"/>
+          <valueString value="'urn:uuid:' + %patient.id"/>
         </parameter>
       </target>
     </rule>
