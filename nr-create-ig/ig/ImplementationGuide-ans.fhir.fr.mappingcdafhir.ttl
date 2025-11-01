@@ -21,7 +21,7 @@
   fhir:name [ fhir:v "CDA2FHIRMAP"] ; # 
   fhir:title [ fhir:v "POC - Mapping CDA to FHIR"] ; # 
   fhir:status [ fhir:v "draft"] ; # 
-  fhir:date [ fhir:v "2025-10-31T16:48:30+00:00"^^xsd:dateTime] ; # 
+  fhir:date [ fhir:v "2025-11-01T12:02:40+00:00"^^xsd:dateTime] ; # 
   fhir:publisher [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"] ; # 
   fhir:contact ( [
      fhir:name [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris" ] ;
@@ -1477,26 +1477,6 @@
          ] ;
          fhir:value [
            a fhir:String ;
-           fhir:v "Bundle"
-         ]
-       ] ) ;
-       fhir:reference [
-         fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/Bundle/90756ebc-af68-45fb-b273-b5b66b6720b3> ;
-         fhir:reference [ fhir:v "Bundle/90756ebc-af68-45fb-b273-b5b66b6720b3" ]
-       ] ;
-       fhir:name [ fhir:v "90756ebc-af68-45fb-b273-b5b66b6720b3" ] ;
-       fhir:example [
-         a fhir:Boolean ;
-         fhir:v false
-       ]
-     ] [
-       fhir:extension ( [
-         fhir:url [
-           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
-           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
-         ] ;
-         fhir:value [
-           a fhir:String ;
            fhir:v "ConceptMap"
          ]
        ] ) ;
@@ -1527,6 +1507,26 @@
        ] ;
        fhir:name [ fhir:v "ConceptMap - OID to URL for TRE_R38-SpecialiteOrdinale" ] ;
        fhir:description [ fhir:v "Mapping from OID urn:oid:1.2.250.1.213.1.1.4.5 to URL https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale" ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v false
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Bundle"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/Bundle/e9728b93-b008-405c-91c8-4417d9b78b5e> ;
+         fhir:reference [ fhir:v "Bundle/e9728b93-b008-405c-91c8-4417d9b78b5e" ]
+       ] ;
+       fhir:name [ fhir:v "e9728b93-b008-405c-91c8-4417d9b78b5e" ] ;
        fhir:example [
          a fhir:Boolean ;
          fhir:v false

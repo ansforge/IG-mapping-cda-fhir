@@ -10,7 +10,7 @@
   <name value="CDA2FHIRMAP"/>
   <title value="POC - Mapping CDA to FHIR"/>
   <status value="draft"/>
-  <date value="2025-10-31T16:48:30+00:00"/>
+  <date value="2025-11-01T12:02:40+00:00"/>
   <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
   <contact>
     <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
@@ -519,16 +519,6 @@
     </extension>
     <resource>
       <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
-        <valueString value="Bundle"/>
-      </extension>
-      <reference>
-        <reference value="Bundle/90756ebc-af68-45fb-b273-b5b66b6720b3"/>
-      </reference>
-      <name value="90756ebc-af68-45fb-b273-b5b66b6720b3"/>
-      <exampleBoolean value="false"/>
-    </resource>
-    <resource>
-      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
         <valueString value="ConceptMap"/>
       </extension>
       <reference>
@@ -547,6 +537,16 @@
       </reference>
       <name value="ConceptMap - OID to URL for TRE_R38-SpecialiteOrdinale"/>
       <description value="Mapping from OID urn:oid:1.2.250.1.213.1.1.4.5 to URL https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="Bundle"/>
+      </extension>
+      <reference>
+        <reference value="Bundle/e9728b93-b008-405c-91c8-4417d9b78b5e"/>
+      </reference>
+      <name value="e9728b93-b008-405c-91c8-4417d9b78b5e"/>
       <exampleBoolean value="false"/>
     </resource>
     <resource>

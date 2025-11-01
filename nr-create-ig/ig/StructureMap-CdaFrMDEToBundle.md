@@ -9,7 +9,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrMDEToBundle | *Version*:0.1.0 |
-| Draft as of 2025-10-31 | *Computable Name*:CdaFrMDEToBundle |
+| Draft as of 2025-11-01 | *Computable Name*:CdaFrMDEToBundle |
 
  
 Mapping CSE-MDE vers FHIR Bundle - Contexte Français 
@@ -140,7 +140,7 @@ group MapGender(source src, target patient : Patient) {
   "name" : "CdaFrMDEToBundle",
   "title" : "Mapping CSE-MDE vers FHIR Bundle - Contexte Français",
   "status" : "draft",
-  "date" : "2025-10-31T16:48:30+00:00",
+  "date" : "2025-11-01T12:02:40+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {

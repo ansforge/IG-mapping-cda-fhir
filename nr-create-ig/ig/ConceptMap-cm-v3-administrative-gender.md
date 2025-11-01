@@ -9,7 +9,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/cm-v3-administrative-gender | *Version*:0.1.0 |
-| Active as of 2025-10-31 | *Computable Name*:CdaToFhirAdministrativeGender |
+| Active as of 2025-11-01 | *Computable Name*:CdaToFhirAdministrativeGender |
 
  
 Mapping between CDA v3 Administrative Gender codes and FHIR Administrative Gender codes 
@@ -52,7 +52,7 @@ Mapping de [AdministrativeGender](http://terminology.hl7.org/6.5.0/ValueSet-v3-A
   "title" : "CDA to FHIR Administrative Gender Mapping",
   "status" : "active",
   "experimental" : false,
-  "date" : "2025-10-31T16:48:30+00:00",
+  "date" : "2025-11-01T12:02:40+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {

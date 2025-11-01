@@ -8,7 +8,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ImplementationGuide/ans.fhir.fr.mappingcdafhir | *Version*:0.1.0 |
-| Draft as of 2025-10-31 | *Computable Name*:CDA2FHIRMAP |
+| Draft as of 2025-11-01 | *Computable Name*:CDA2FHIRMAP |
 
  **FHIR Mapping Language for CDA to FHIR transformation**
  Proof of concept for CDA to FHIR transformation 
@@ -383,14 +383,14 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
 
 * The UCUM codes, UCUM table (regardless of format), and UCUM Specification are copyright 1999-2009, Regenstrief Institute, Inc. and the Unified Codes for Units of Measures (UCUM) Organization. All rights reserved. [https://ucum.org/trac/wiki/TermsOfUse](https://ucum.org/trac/wiki/TermsOfUse)
 
-* [Unified Code for Units of Measure (UCUM)](http://terminology.hl7.org/6.5.0/CodeSystem-v3-ucum.html): [Bundle/90756ebc-af68-45fb-b273-b5b66b6720b3](Bundle-90756ebc-af68-45fb-b273-b5b66b6720b3.md)
+* [Unified Code for Units of Measure (UCUM)](http://terminology.hl7.org/6.5.0/CodeSystem-v3-ucum.html): [Bundle/e9728b93-b008-405c-91c8-4417d9b78b5e](Bundle-e9728b93-b008-405c-91c8-4417d9b78b5e.md)
 
 
 * This material derives from the HL7 Terminology (THO). THO is copyright ©1989+ Health Level Seven International and is made available under the CC0 designation. For more licensing information see: [https://terminology.hl7.org/license.html](https://terminology.hl7.org/license.html)
 
-* [Observation Category Codes](http://terminology.hl7.org/6.5.0/CodeSystem-observation-category.html): [Bundle/90756ebc-af68-45fb-b273-b5b66b6720b3](Bundle-90756ebc-af68-45fb-b273-b5b66b6720b3.md)
-* [identifierType](http://terminology.hl7.org/6.5.0/CodeSystem-v2-0203.html): [Bundle/90756ebc-af68-45fb-b273-b5b66b6720b3](Bundle-90756ebc-af68-45fb-b273-b5b66b6720b3.md)
-* [ActCode](http://terminology.hl7.org/6.5.0/CodeSystem-v3-ActCode.html): [Bundle/90756ebc-af68-45fb-b273-b5b66b6720b3](Bundle-90756ebc-af68-45fb-b273-b5b66b6720b3.md)
+* [Observation Category Codes](http://terminology.hl7.org/6.5.0/CodeSystem-observation-category.html): [Bundle/e9728b93-b008-405c-91c8-4417d9b78b5e](Bundle-e9728b93-b008-405c-91c8-4417d9b78b5e.md)
+* [identifierType](http://terminology.hl7.org/6.5.0/CodeSystem-v2-0203.html): [Bundle/e9728b93-b008-405c-91c8-4417d9b78b5e](Bundle-e9728b93-b008-405c-91c8-4417d9b78b5e.md)
+* [ActCode](http://terminology.hl7.org/6.5.0/CodeSystem-v3-ActCode.html): [Bundle/e9728b93-b008-405c-91c8-4417d9b78b5e](Bundle-e9728b93-b008-405c-91c8-4417d9b78b5e.md)
 
 
 
@@ -406,7 +406,7 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2025-10-31T16:48:30+00:00",
+  "date" : "2025-11-01T12:02:40+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {
@@ -1223,19 +1223,6 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
         "extension" : [
           {
             "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-            "valueString" : "Bundle"
-          }
-        ],
-        "reference" : {
-          "reference" : "Bundle/90756ebc-af68-45fb-b273-b5b66b6720b3"
-        },
-        "name" : "90756ebc-af68-45fb-b273-b5b66b6720b3",
-        "exampleBoolean" : false
-      },
-      {
-        "extension" : [
-          {
-            "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
             "valueString" : "ConceptMap"
           }
         ],
@@ -1258,6 +1245,19 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
         },
         "name" : "ConceptMap - OID to URL for TRE_R38-SpecialiteOrdinale",
         "description" : "Mapping from OID urn:oid:1.2.250.1.213.1.1.4.5 to URL https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale",
+        "exampleBoolean" : false
+      },
+      {
+        "extension" : [
+          {
+            "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString" : "Bundle"
+          }
+        ],
+        "reference" : {
+          "reference" : "Bundle/e9728b93-b008-405c-91c8-4417d9b78b5e"
+        },
+        "name" : "e9728b93-b008-405c-91c8-4417d9b78b5e",
         "exampleBoolean" : false
       },
       {
