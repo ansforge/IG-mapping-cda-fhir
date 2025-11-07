@@ -9,7 +9,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrToBundle | *Version*:0.1.0 |
-| Draft as of 2025-11-01 | *Computable Name*:CdaFrToBundle |
+| Draft as of 2025-11-07 | *Computable Name*:CdaFrToBundle |
 
  
 Mapping de CDAFr vers FHIR Bundle (A partir des sources de Oliver Egger) 
@@ -93,18 +93,6 @@ group ChExtEprConfidentialityCode(source src : CE, target ext : Extension) {
 }
 
 // source: https://art-decor.org/art-decor/decor-templates--hl7chcda-?id=2.16.756.5.30.1.1.10.9.36
-// target: http://build.fhir.org/ig/hl7ch/ch-core/branches/master/StructureDefinition-ch-ext-epr-versionnumber.html
-group ChExtEprVersionNumber(source src : INT, target ext : Extension) {
-  src -> ext.url = 'http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-versionnumber' "url";
-  src -> ext.value = create('unsignedInt') as value then INT(src, value) "value";
-}
-
-group ChExtEprVersionNumber1(source src, target ext : Extension) {
-  src -> ext.url = 'http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-versionnumber' "url";
-  src ->  ext.value = create('unsignedInt') as value,  value.value = '1' "value";
-}
-
-// source: https://art-decor.org/art-decor/decor-templates--hl7chcda-?id=2.16.756.5.30.1.1.10.9.36
 // target: http://build.fhir.org/ig/hl7ch/ch-core/branches/master/StructureDefinition-ch-ext-epr-informationrecipient.html
 group ChExtEprInformationRecipient(source src : IntendedRecipient, target patient : Patient, target ext : Extension) {
   src -> ext.url = 'http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-informationrecipient' "url";
@@ -142,7 +130,6 @@ group ClinicalDocumentCompositionFr(source src : ClinicalDocument, target tgt : 
   src.confidentialityCode as confidentialityCode then {
     confidentialityCode.code as v where ('http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.confidentialityCode'.resolve().compose.include.concept.where($this.code = src.confidentialityCode.code).exists()) ->  tgt.confidentiality = translate(v, 'http://fhir.ch/ig/ch-core/ConceptMap/documententry-confidentialitycode-to-fhir', 'code') as fhirconf,  fhirconf.extension as ext then ChExtEprConfidentialityCode(confidentialityCode, ext) "confCode";
   };
-  src.versionNumber as versionNumber where (versionNumber > 1) -> tgt.extension as ext2 then ChExtEprVersionNumber(versionNumber, ext2);
   src.informationRecipient as informationRecipient -> bundle.entry as e then {
     informationRecipient.intendedRecipient as intendedRecipient where $this.receivedOrganization.exists() = false ->  e.resource = create('Patient') as recipient,  recipient.id = uuid() as uuid,  e.fullUrl = append('urn:uuid:', uuid),  tgt.extension as ext then ChExtEprInformationRecipient(intendedRecipient, recipient, ext) "informationRecipient";
     informationRecipient.intendedRecipient as intendedRecipient then {
@@ -168,7 +155,7 @@ group ClinicalDocumentCompositionFr(source src : ClinicalDocument, target tgt : 
   "name" : "CdaFrToBundle",
   "title" : "Mapping de CDAFr vers FHIR Bundle (A partir des sources de Oliver Egger)",
   "status" : "draft",
-  "date" : "2025-11-01T12:02:40+00:00",
+  "date" : "2025-11-07T10:30:30+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {
@@ -701,145 +688,6 @@ group ClinicalDocumentCompositionFr(source src : ClinicalDocument, target tgt : 
             {
               "name" : "CECodeableConcept",
               "variable" : ["src", "value"]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name" : "ChExtEprVersionNumber",
-      "typeMode" : "none",
-      "documentation" : "source: https://art-decor.org/art-decor/decor-templates--hl7chcda-?id=2.16.756.5.30.1.1.10.9.36\r\ntarget: http://build.fhir.org/ig/hl7ch/ch-core/branches/master/StructureDefinition-ch-ext-epr-versionnumber.html",
-      "input" : [
-        {
-          "name" : "src",
-          "type" : "INT",
-          "mode" : "source"
-        },
-        {
-          "name" : "ext",
-          "type" : "Extension",
-          "mode" : "target"
-        }
-      ],
-      "rule" : [
-        {
-          "name" : "url",
-          "source" : [
-            {
-              "context" : "src"
-            }
-          ],
-          "target" : [
-            {
-              "context" : "ext",
-              "contextType" : "variable",
-              "element" : "url",
-              "transform" : "copy",
-              "parameter" : [
-                {
-                  "valueString" : "http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-versionnumber"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "name" : "value",
-          "source" : [
-            {
-              "context" : "src"
-            }
-          ],
-          "target" : [
-            {
-              "context" : "ext",
-              "contextType" : "variable",
-              "element" : "value",
-              "variable" : "value",
-              "transform" : "create",
-              "parameter" : [
-                {
-                  "valueString" : "unsignedInt"
-                }
-              ]
-            }
-          ],
-          "dependent" : [
-            {
-              "name" : "INT",
-              "variable" : ["src", "value"]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name" : "ChExtEprVersionNumber1",
-      "typeMode" : "none",
-      "input" : [
-        {
-          "name" : "src",
-          "mode" : "source"
-        },
-        {
-          "name" : "ext",
-          "type" : "Extension",
-          "mode" : "target"
-        }
-      ],
-      "rule" : [
-        {
-          "name" : "url",
-          "source" : [
-            {
-              "context" : "src"
-            }
-          ],
-          "target" : [
-            {
-              "context" : "ext",
-              "contextType" : "variable",
-              "element" : "url",
-              "transform" : "copy",
-              "parameter" : [
-                {
-                  "valueString" : "http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-versionnumber"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "name" : "value",
-          "source" : [
-            {
-              "context" : "src"
-            }
-          ],
-          "target" : [
-            {
-              "context" : "ext",
-              "contextType" : "variable",
-              "element" : "value",
-              "variable" : "value",
-              "transform" : "create",
-              "parameter" : [
-                {
-                  "valueString" : "unsignedInt"
-                }
-              ]
-            },
-            {
-              "context" : "value",
-              "contextType" : "variable",
-              "element" : "value",
-              "transform" : "copy",
-              "parameter" : [
-                {
-                  "valueString" : "1"
-                }
-              ]
             }
           ]
         }
@@ -1458,31 +1306,6 @@ group ClinicalDocumentCompositionFr(source src : ClinicalDocument, target tgt : 
                   "variable" : ["confidentialityCode", "ext"]
                 }
               ]
-            }
-          ]
-        },
-        {
-          "name" : "versionNumber",
-          "source" : [
-            {
-              "context" : "src",
-              "element" : "versionNumber",
-              "variable" : "versionNumber",
-              "condition" : "(versionNumber > 1)"
-            }
-          ],
-          "target" : [
-            {
-              "context" : "tgt",
-              "contextType" : "variable",
-              "element" : "extension",
-              "variable" : "ext2"
-            }
-          ],
-          "dependent" : [
-            {
-              "name" : "ChExtEprVersionNumber",
-              "variable" : ["versionNumber", "ext2"]
             }
           ]
         },

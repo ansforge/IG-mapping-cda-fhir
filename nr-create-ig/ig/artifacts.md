@@ -34,5 +34,6 @@ These are resources that are used within this implementation guide that do not f
 
 | |
 | :--- |
-| [e9728b93-b008-405c-91c8-4417d9b78b5e](Bundle-e9728b93-b008-405c-91c8-4417d9b78b5e.md) |
+| [Binary/CSE-MDE2023.01](Binary-CSE-MDE2023.01.md) |
+| [fe569e1f-32d4-4ba4-b5ad-88082bf5470a](Bundle-fe569e1f-32d4-4ba4-b5ad-88082bf5470a.md) |
 

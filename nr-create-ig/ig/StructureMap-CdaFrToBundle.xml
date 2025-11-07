@@ -81,18 +81,6 @@
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">source: https://art-decor.org/art-decor/decor-templates--hl7chcda-?id=2.16.756.5.30.1.1.10.9.36</span>
-<span style="color: navy">// </span><span style="color: green">target: http://build.fhir.org/ig/hl7ch/ch-core/branches/master/StructureDefinition-ch-ext-epr-versionnumber.html</span>
-<b>group </b>ChExtEprVersionNumber<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>INT, <b>target</b> <span style="color: maroon">ext</span><span style="color: navy"> : </span>Extension<span style="color: navy">)</span><span style="color: navy"> {
-</span>  src<span style="color: navy"><b> -&gt; </b></span>ext.url = <span style="color: blue">'http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-versionnumber'</span> <i>&quot;url&quot;</i><span style="color: navy">;</span>
-  src<span style="color: navy"><b> -&gt; </b></span>ext.value = <b>create</b><span style="color: navy">(</span><span style="color: blue">'unsignedInt'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">value</span><b> then </b>INT<span style="color: navy">(</span><span style="color: maroon">src</span><span style="color: navy">, </span><span style="color: maroon">value</span><span style="color: navy">)</span> <i>&quot;value&quot;</i><span style="color: navy">;</span>
-<span style="color: navy">}
-
-</span><b>group </b>ChExtEprVersionNumber1<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">ext</span><span style="color: navy"> : </span>Extension<span style="color: navy">)</span><span style="color: navy"> {
-</span>  src<span style="color: navy"><b> -&gt; </b></span>ext.url = <span style="color: blue">'http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-versionnumber'</span> <i>&quot;url&quot;</i><span style="color: navy">;</span>
-  src<span style="color: navy"><b> -&gt; </b></span> ext.value = <b>create</b><span style="color: navy">(</span><span style="color: blue">'unsignedInt'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">value</span><span style="color: navy">, </span> value.value = <span style="color: blue">'1'</span> <i>&quot;value&quot;</i><span style="color: navy">;</span>
-<span style="color: navy">}
-
-</span><span style="color: navy">// </span><span style="color: green">source: https://art-decor.org/art-decor/decor-templates--hl7chcda-?id=2.16.756.5.30.1.1.10.9.36</span>
 <span style="color: navy">// </span><span style="color: green">target: http://build.fhir.org/ig/hl7ch/ch-core/branches/master/StructureDefinition-ch-ext-epr-informationrecipient.html</span>
 <b>group </b>ChExtEprInformationRecipient<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>IntendedRecipient, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy"> : </span>Patient, <b>target</b> <span style="color: maroon">ext</span><span style="color: navy"> : </span>Extension<span style="color: navy">)</span><span style="color: navy"> {
 </span>  src<span style="color: navy"><b> -&gt; </b></span>ext.url = <span style="color: blue">'http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-informationrecipient'</span> <i>&quot;url&quot;</i><span style="color: navy">;</span>
@@ -130,7 +118,6 @@
 </span>  src.confidentialityCode<b> as </b><span style="color: maroon">confidentialityCode</span><b> then</b><span style="color: navy"> {
 </span>    confidentialityCode.code<b> as </b><span style="color: maroon">v</span><b> where </b>('http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.confidentialityCode'.resolve().compose.include.concept.where($this.code = src.confidentialityCode.code).exists())<span style="color: navy"><b> -&gt; </b></span> tgt.confidentiality = <b>translate</b><span style="color: navy">(</span><span style="color: maroon">v</span><span style="color: navy">, </span><span style="color: blue">'http://fhir.ch/ig/ch-core/ConceptMap/documententry-confidentialitycode-to-fhir'</span><span style="color: navy">, </span><span style="color: blue">'code'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">fhirconf</span><span style="color: navy">, </span> fhirconf.extension<b> as </b><span style="color: maroon">ext</span><b> then </b>ChExtEprConfidentialityCode<span style="color: navy">(</span><span style="color: maroon">confidentialityCode</span><span style="color: navy">, </span><span style="color: maroon">ext</span><span style="color: navy">)</span> <i>&quot;confCode&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">}</span><span style="color: navy">;</span>
-  src.versionNumber<b> as </b><span style="color: maroon">versionNumber</span><b> where </b>(versionNumber &gt; 1)<span style="color: navy"><b> -&gt; </b></span>tgt.extension<b> as </b><span style="color: maroon">ext2</span><b> then </b>ChExtEprVersionNumber<span style="color: navy">(</span><span style="color: maroon">versionNumber</span><span style="color: navy">, </span><span style="color: maroon">ext2</span><span style="color: navy">)</span><span style="color: navy">;</span>
   src.informationRecipient<b> as </b><span style="color: maroon">informationRecipient</span><span style="color: navy"><b> -&gt; </b></span>bundle.entry<b> as </b><span style="color: maroon">e</span><b> then</b><span style="color: navy"> {
 </span>    informationRecipient.intendedRecipient<b> as </b><span style="color: maroon">intendedRecipient</span><b> where </b>$this.receivedOrganization.exists() = false<span style="color: navy"><b> -&gt; </b></span> e.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Patient'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">recipient</span><span style="color: navy">, </span> recipient.id = <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">uuid</span><span style="color: navy">, </span> e.fullUrl = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:uuid:'</span><span style="color: navy">, </span><span style="color: maroon">uuid</span><span style="color: navy">)</span><span style="color: navy">, </span> tgt.extension<b> as </b><span style="color: maroon">ext</span><b> then </b>ChExtEprInformationRecipient<span style="color: navy">(</span><span style="color: maroon">intendedRecipient</span><span style="color: navy">, </span><span style="color: maroon">recipient</span><span style="color: navy">, </span><span style="color: maroon">ext</span><span style="color: navy">)</span> <i>&quot;informationRecipient&quot;</i><span style="color: navy">;</span>
     informationRecipient.intendedRecipient<b> as </b><span style="color: maroon">intendedRecipient</span><b> then</b><span style="color: navy"> {
@@ -147,7 +134,7 @@
   <name value="CdaFrToBundle"/>
   <title value="Mapping de CDAFr vers FHIR Bundle (A partir des sources de Oliver Egger)"/>
   <status value="draft"/>
-  <date value="2025-11-01T12:02:40+00:00"/>
+  <date value="2025-11-07T10:30:30+00:00"/>
   <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
   <contact>
     <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
@@ -578,110 +565,6 @@
         <variable value="src"/>
         <variable value="value"/>
       </dependent>
-    </rule>
-  </group>
-  <group>
-    <name value="ChExtEprVersionNumber"/>
-    <typeMode value="none"/>
-    <documentation value="source: https://art-decor.org/art-decor/decor-templates--hl7chcda-?id=2.16.756.5.30.1.1.10.9.36&#xD;&#xA;target: http://build.fhir.org/ig/hl7ch/ch-core/branches/master/StructureDefinition-ch-ext-epr-versionnumber.html"/>
-    <input>
-      <name value="src"/>
-      <type value="INT"/>
-      <mode value="source"/>
-    </input>
-    <input>
-      <name value="ext"/>
-      <type value="Extension"/>
-      <mode value="target"/>
-    </input>
-    <rule>
-      <name value="url"/>
-      <source>
-        <context value="src"/>
-      </source>
-      <target>
-        <context value="ext"/>
-        <contextType value="variable"/>
-        <element value="url"/>
-        <transform value="copy"/>
-        <parameter>
-          <valueString value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-versionnumber"/>
-        </parameter>
-      </target>
-    </rule>
-    <rule>
-      <name value="value"/>
-      <source>
-        <context value="src"/>
-      </source>
-      <target>
-        <context value="ext"/>
-        <contextType value="variable"/>
-        <element value="value"/>
-        <variable value="value"/>
-        <transform value="create"/>
-        <parameter>
-          <valueString value="unsignedInt"/>
-        </parameter>
-      </target>
-      <dependent>
-        <name value="INT"/>
-        <variable value="src"/>
-        <variable value="value"/>
-      </dependent>
-    </rule>
-  </group>
-  <group>
-    <name value="ChExtEprVersionNumber1"/>
-    <typeMode value="none"/>
-    <input>
-      <name value="src"/>
-      <mode value="source"/>
-    </input>
-    <input>
-      <name value="ext"/>
-      <type value="Extension"/>
-      <mode value="target"/>
-    </input>
-    <rule>
-      <name value="url"/>
-      <source>
-        <context value="src"/>
-      </source>
-      <target>
-        <context value="ext"/>
-        <contextType value="variable"/>
-        <element value="url"/>
-        <transform value="copy"/>
-        <parameter>
-          <valueString value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-versionnumber"/>
-        </parameter>
-      </target>
-    </rule>
-    <rule>
-      <name value="value"/>
-      <source>
-        <context value="src"/>
-      </source>
-      <target>
-        <context value="ext"/>
-        <contextType value="variable"/>
-        <element value="value"/>
-        <variable value="value"/>
-        <transform value="create"/>
-        <parameter>
-          <valueString value="unsignedInt"/>
-        </parameter>
-      </target>
-      <target>
-        <context value="value"/>
-        <contextType value="variable"/>
-        <element value="value"/>
-        <transform value="copy"/>
-        <parameter>
-          <valueString value="1"/>
-        </parameter>
-      </target>
     </rule>
   </group>
   <group>
@@ -1177,26 +1060,6 @@
           <variable value="ext"/>
         </dependent>
       </rule>
-    </rule>
-    <rule>
-      <name value="versionNumber"/>
-      <source>
-        <context value="src"/>
-        <element value="versionNumber"/>
-        <variable value="versionNumber"/>
-        <condition value="(versionNumber &gt; 1)"/>
-      </source>
-      <target>
-        <context value="tgt"/>
-        <contextType value="variable"/>
-        <element value="extension"/>
-        <variable value="ext2"/>
-      </target>
-      <dependent>
-        <name value="ChExtEprVersionNumber"/>
-        <variable value="versionNumber"/>
-        <variable value="ext2"/>
-      </dependent>
     </rule>
     <rule>
       <name value="entry"/>

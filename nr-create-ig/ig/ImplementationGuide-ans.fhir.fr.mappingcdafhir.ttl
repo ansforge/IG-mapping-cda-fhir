@@ -21,7 +21,7 @@
   fhir:name [ fhir:v "CDA2FHIRMAP"] ; # 
   fhir:title [ fhir:v "POC - Mapping CDA to FHIR"] ; # 
   fhir:status [ fhir:v "draft"] ; # 
-  fhir:date [ fhir:v "2025-11-01T12:02:40+00:00"^^xsd:dateTime] ; # 
+  fhir:date [ fhir:v "2025-11-07T10:30:30+00:00"^^xsd:dateTime] ; # 
   fhir:publisher [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"] ; # 
   fhir:contact ( [
      fhir:name [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris" ] ;
@@ -1523,10 +1523,10 @@
          ]
        ] ) ;
        fhir:reference [
-         fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/Bundle/e9728b93-b008-405c-91c8-4417d9b78b5e> ;
-         fhir:reference [ fhir:v "Bundle/e9728b93-b008-405c-91c8-4417d9b78b5e" ]
+         fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/Bundle/fe569e1f-32d4-4ba4-b5ad-88082bf5470a> ;
+         fhir:reference [ fhir:v "Bundle/fe569e1f-32d4-4ba4-b5ad-88082bf5470a" ]
        ] ;
-       fhir:name [ fhir:v "e9728b93-b008-405c-91c8-4417d9b78b5e" ] ;
+       fhir:name [ fhir:v "fe569e1f-32d4-4ba4-b5ad-88082bf5470a" ] ;
        fhir:example [
          a fhir:Boolean ;
          fhir:v false
@@ -1551,6 +1551,21 @@
        fhir:example [
          a fhir:Boolean ;
          fhir:v false
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Binary"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/Binary/CSE-MDE2023.01> ;
+         fhir:reference [ fhir:v "Binary/CSE-MDE2023.01" ]
        ]
      ] [
        fhir:extension ( [
@@ -1725,6 +1740,9 @@
      ] [
        fhir:code [ fhir:v "path-resource" ] ;
        fhir:value [ fhir:v "input/resources" ]
+     ] [
+       fhir:code [ fhir:v "path-resource" ] ;
+       fhir:value [ fhir:v "input/attachments" ]
      ] [
        fhir:code [ fhir:v "path-resource" ] ;
        fhir:value [ fhir:v "input/capabilities" ]

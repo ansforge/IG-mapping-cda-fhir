@@ -10,7 +10,7 @@
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2025-11-01T12:02:40+00:00",
+  "date" : "2025-11-07T10:30:30+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -724,9 +724,9 @@
         "valueString" : "Bundle"
       }],
       "reference" : {
-        "reference" : "Bundle/e9728b93-b008-405c-91c8-4417d9b78b5e"
+        "reference" : "Bundle/fe569e1f-32d4-4ba4-b5ad-88082bf5470a"
       },
-      "name" : "e9728b93-b008-405c-91c8-4417d9b78b5e",
+      "name" : "fe569e1f-32d4-4ba4-b5ad-88082bf5470a",
       "exampleBoolean" : false
     },
     {
@@ -740,6 +740,15 @@
       "name" : "OID to URI Mapping for ANS terminologies",
       "description" : "Mapping from OID to URI for ANS terminologies",
       "exampleBoolean" : false
+    },
+    {
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+        "valueString" : "Binary"
+      }],
+      "reference" : {
+        "reference" : "Binary/CSE-MDE2023.01"
+      }
     },
     {
       "extension" : [{
@@ -837,6 +846,10 @@
     {
       "code" : "path-resource",
       "value" : "input/resources"
+    },
+    {
+      "code" : "path-resource",
+      "value" : "input/attachments"
     },
     {
       "code" : "path-resource",
