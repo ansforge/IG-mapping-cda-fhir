@@ -27,7 +27,7 @@ Mapping de CDAFr vers FHIR Bundle (A partir des sources de Oliver Egger)
   "name" : "CdaFrToBundle",
   "title" : "Mapping de CDAFr vers FHIR Bundle (A partir des sources de Oliver Egger)",
   "status" : "draft",
-  "date" : "2025-12-15T15:37:21+00:00",
+  "date" : "2025-12-15T15:37:58+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {
