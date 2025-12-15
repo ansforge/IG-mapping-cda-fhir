@@ -1,0 +1,137 @@
+map "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrMDEToBundle" = "CdaFrMDEToBundle"
+
+/// name = 'CdaFrMDEToBundle'
+/// title = 'Mapping CSE-MDE vers FHIR Bundle - Contexte Français'
+/// status = 'draft'
+
+// Mapping pour CSE-MDE (Carnet de Santé de l'Enfant - Mesures de l'Enfant) contexte français
+// Utilise les fonctions de CdaToBundle, CdaFrToBundle et CdaToFHIRTypes
+// Navigation du document personnalisée pour gérer les observations dans les organizers
+
+uses "http://hl7.org/cda/stds/core/StructureDefinition/ClinicalDocument" alias ClinicalDocument as source
+uses "http://hl7.org/fhir/StructureDefinition/Bundle" alias Bundle as target
+uses "http://hl7.org/fhir/StructureDefinition/Composition" alias Composition as target
+uses "http://hl7.org/fhir/StructureDefinition/Patient" alias Patient as target
+uses "http://hl7.org/fhir/StructureDefinition/Observation" alias Observation as target
+
+imports "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes"
+imports "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle"
+imports "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrToBundle"
+
+// Entry point
+group CdaFrMDEToBundle(source cda : ClinicalDocument, target bundle : Bundle) {
+  cda ->  bundle.entry as e,
+             e.resource = create('Composition') as composition,
+             composition.id = uuid() as uuid,
+             e.fullUrl = append('urn:uuid:',uuid),
+             bundle.entry as e2,
+             e2.resource = create('Patient') as patient,
+             patient.id = uuid() as uuid2,
+             e2.fullUrl = append('urn:uuid:',uuid2)
+             then CdaFrMDEMapping(cda, patient, composition, bundle) "main";
+}
+
+// Main mapping group
+group CdaFrMDEMapping(source cda : ClinicalDocument, target patient : Patient, target composition : Composition, target bundle : Bundle) {
+  // Bundle metadata
+  cda -> bundle.id = uuid() "bundleId";
+  cda.id as cdaId -> bundle.identifier as identifier then {
+    cdaId.root as root where cdaId.extension.exists() -> identifier.system = translate(root, '#oid2uri', 'uri') "system";
+    cdaId.extension as extension -> identifier.value = extension "value";
+    cdaId.root as root where cdaId.extension.empty() -> identifier.system = 'urn:ietf:rfc:3986' "systemOid";
+    cdaId.root as root where cdaId.extension.empty() -> identifier.value = append('urn:oid:', root) "valueOid";
+  } "bundleIdentifier";
+  cda -> bundle.type = 'document' "bundleType";
+  cda.effectiveTime as effectiveTime -> bundle.timestamp = create('instant') as timestamp then TSInstant(effectiveTime, timestamp) "bundleTimestamp";
+
+  // Composition using CdaToBundle function (includes patient mapping)
+  cda -> composition then ClinicalDocumentComposition(cda, composition, patient, bundle) "composition";
+
+  // Add gender mapping after ClinicalDocumentComposition (which calls ClinicalDocumentPatientRole)
+  cda.recordTarget as recordTarget then {
+    recordTarget.patientRole as patientRole then {
+      patientRole.patient as cdaPatient then {
+        cdaPatient.administrativeGenderCode as gender then MapGender(gender, patient) "patientGender";
+      } "cdaPatient";
+    } "patientRole";
+  } "recordTargetGender";
+
+  // Process sections with observations
+  cda.component as cdaComp then {
+    cdaComp.structuredBody as body then {
+      body.component as bodyComp then {
+        bodyComp.section as section then {
+          // Create composition section
+          section -> composition.section as compSection then {
+            section.title as sectionTitle -> compSection.title = (sectionTitle.xmlText) "sectionTitle";
+            section.code as sectionCode -> compSection.code = create('CodeableConcept') as cc then CDCodeableConcept(sectionCode, cc) "sectionCode";
+            section.text as sectionText -> compSection.text = sectionText "sectionText";
+
+            // Process observations in organizers
+            section.entry as entry then {
+              entry.organizer as organizer then {
+                organizer.component as orgComp then {
+                  orgComp.observation as obs then {
+                    obs -> bundle.entry as obsEntry,
+                    obsEntry.resource = create('Observation') as observation,
+                    observation.id = uuid() as obsUuid,
+                    obsEntry.fullUrl = append('urn:uuid:', obsUuid),
+                    compSection.entry = create('Reference') as obsRef,
+                    obsRef.reference = append('urn:uuid:', obsUuid)
+                    then ProcessObservation(cda, obs, observation, patient, composition) "processObs";
+                  } "observation";
+                } "orgComponent";
+              } "organizer";
+            } "entry";
+          } "compSection";
+        } "section";
+      } "bodyComponent";
+    } "structuredBody";
+  } "cdaComponent";
+}
+
+// Process individual observation using CdaToFHIRTypes functions
+group ProcessObservation(source cda : ClinicalDocument, source obs, target observation : Observation, target patient : Patient, target composition : Composition) {
+  // Meta profile - ANS profiles based on LOINC code
+  obs.code as obsCode where code = '29463-7' -> observation.meta = create('Meta') as meta then {
+    obsCode -> meta.profile = 'https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-fr-observation-body-weight' "profileWeight";
+  } "metaWeight";
+  obs.code as obsCode where code = '8302-2' -> observation.meta = create('Meta') as meta then {
+    obsCode -> meta.profile = 'https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-fr-observation-bodyheight' "profileHeight";
+  } "metaHeight";
+  obs.code as obsCode where code = '8287-5' -> observation.meta = create('Meta') as meta then {
+    obsCode -> meta.profile = 'https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-observation-head-circumference' "profileHeadCirc";
+  } "metaHeadCirc";
+
+  // Status - map CDA "completed" to FHIR "final"
+  obs.statusCode as statusCode where code = 'completed' -> observation.status = 'final' "statusCompleted";
+  obs.statusCode as statusCode where code != 'completed' -> observation.status = create('code') as status then CSCode(statusCode, status) "statusOther";
+
+  // Category - vital-signs for all observations in CSE-MDE
+  obs -> observation.category = create('CodeableConcept') as category then {
+    obs -> category.coding = create('Coding') as coding then {
+      obs -> coding.system = 'http://terminology.hl7.org/CodeSystem/observation-category' "system";
+      obs -> coding.code = 'vital-signs' "code";
+    } "coding";
+  } "category";
+
+  // Code using CDCodeableConcept from CdaToFHIRTypes
+  obs.code as code -> observation.code = create('CodeableConcept') as cc then CDCodeableConcept(code, cc) "obsCode";
+
+  // EffectiveDateTime - use effectiveTime from observation
+  obs.effectiveTime as effectiveTime -> observation.effective = create('dateTime') as dt then TSDateTime(effectiveTime, dt) "effectiveDateTime";
+
+  // Value as Quantity using PQQuantity from CdaToFHIRTypes
+  obs.value as value -> observation.value = create('Quantity') as qty then PQQuantity(value, qty) "obsValue";
+
+  // Subject reference
+  obs -> observation.subject = create('Reference') as ref, ref.reference = ('urn:uuid:' + %patient.id) "obsSubject";
+}
+
+// Map CDA v3 administrative gender to FHIR gender
+group MapGender(source src, target patient : Patient) {
+  src where code = 'M' -> patient.gender = 'male' "genderMale";
+  src where code = 'F' -> patient.gender = 'female' "genderFemale";
+  src where code = 'UN' -> patient.gender = 'other' "genderOther";
+  src where code = 'UNK' -> patient.gender = 'unknown' "genderUnknown";
+}

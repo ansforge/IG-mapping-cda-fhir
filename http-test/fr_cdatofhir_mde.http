@@ -1,0 +1,57 @@
+# Transformation CDA vers FHIR avec matchbox
+# Basé sur https://github.com/hl7ch/cda-fhir-maps/blob/master/cdatofhir_card.http
+
+### Create and Update CDA maps for converting to FHIR with RESTClient and running matchbox (locally)
+### Note: POST the ConceptMaps first, then the StructureMaps in the following order
+### If you update one map you need to repost also the maps below
+
+# @host = https://test.ahdis.ch/matchbox/fhir
+@host = http://localhost:8080/matchbox/fhir
+
+### 0. POST ConceptMap for administrative-gender
+POST {{host}}/ConceptMap HTTP/1.1
+Accept: application/fhir+json;fhirVersion=4.0
+Content-Type: application/fhir+json
+
+< ../input/resources/ConceptMap-cm-v3-administrative-gender.json
+
+
+### 1. POST CDAtoFHIRTypes.fml
+POST {{host}}/StructureMap HTTP/1.1
+Accept: application/fhir+xml;fhirVersion=4.0
+Content-Type: text/fhir-mapping
+
+< ../input/fml/CDAtoFHIRTypes.fml
+
+
+### 2. POST CdaToBundle.fml
+POST {{host}}/StructureMap HTTP/1.1
+Accept: application/fhir+xml;fhirVersion=4.0
+Content-Type: text/fhir-mapping
+
+< ../input/fml/CdaToBundle.fml
+
+
+### 3. POST CDAFrToBundle.fml
+POST {{host}}/StructureMap HTTP/1.1
+Accept: application/fhir+xml;fhirVersion=4.0
+Content-Type: text/fhir-mapping
+
+< ../input/fml/CDAFrToBundle.fml
+
+
+### 4. POST CDAFrMDEToBundle.fml
+POST {{host}}/StructureMap HTTP/1.1
+Accept: application/fhir+xml;fhirVersion=4.0
+Content-Type: text/fhir-mapping
+
+< ../input/fml/CDAFrMDEToBundle.fml
+
+
+### 5. Transform CSE-MDE_2023.01.xml from CDA to FHIR (JSON output)
+
+POST {{host}}/StructureMap/$transform?source=https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrMDEToBundle
+Accept: application/fhir+json;fhirVersion=4.0
+Content-Type: application/fhir+xml;fhirVersion=4.0
+
+< ../input/attachments/CSE-MDE_2023.01.xml
