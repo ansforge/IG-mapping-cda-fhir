@@ -1,3 +1,5 @@
+Preview : https://ansforge.github.io/IG-mapping-cda-fhir/mai/ig/
+
 # fhir-transformation
 
 This repository works like a proof of concept for transforming data from FHIR or to FHIR to another data format.
