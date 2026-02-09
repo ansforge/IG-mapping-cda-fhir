@@ -3,6 +3,14 @@ server:
     context-path: /matchbox
 hapi:
   fhir:
+    supported_resource_types:
+      - ImplementationGuide
+      - OperationDefinition
+      - Questionnaire
+      - QuestionnaireResponse
+      - StructureDefinition
+      - StructureMap
+      - ConceptMap
     server_address: http://localhost:8080/matchbox/fhir
     implementationguides:
       fhir_r4_core:
