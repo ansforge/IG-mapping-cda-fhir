@@ -154,7 +154,7 @@
         <div class="row">
           <div class="inner-wrapper">
 <div class="col-12">
-  <!--ReleaseHeader--><p id="publish-box">POC - Mapping CDA to FHIR - version de développement local (v0.1.0) construite par les outils de publication FHIR (HL7® FHIR® Standard). Voir le <a href='https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/history.html'>répertoire des versions publiées</a></p><!--EndReleaseHeader-->
+  <!--ReleaseHeader--><p id="publish-box">POC - Mapping CDA to FHIR - version de développement local (intégration continue v0.1.0) construite par les outils de publication FHIR (HL7® FHIR® Standard). Voir le <a href='https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/history.html'>répertoire des versions publiées</a></p><!--EndReleaseHeader-->
   
 
 
@@ -224,7 +224,7 @@
         
           Draft
           
-            as of 2025-12-15
+            as of 2026-02-09
           
         
       </td>
@@ -453,7 +453,7 @@
 <span style="color: navy">}
 
 </span><b>group </b>ClinicalDocumentPatientRole<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>PatientRole, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Patient, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle<span style="color: navy">)</span><span style="color: navy"> {
-</span>  <span style="color: #b36b00" title="Cet élément nétait pas défini avant R5">// src.id -&gt; tgt.identifier;</span>
+</span>  <span style="color: #b36b00" title="Cet élément n'était pas défini avant R5">// src.id -&gt; tgt.identifier;</span>
   <span style="color: navy">// </span><span style="color: green">Patient.identifier.type for EPR context, because there is only the identifier &quot;LocalPid&quot; allowed, LocalPid requires an type -&gt; http://build.fhir.org/ig/hl7ch/ch-core/branches/master/StructureDefinition-ch-core-composition-patient-epr.html</span>
   <span style="color: navy">// </span><span style="color: green">Modification NR</span>
   src.id<b> as </b><span style="color: maroon">id</span><span style="color: navy"><b> -&gt; </b></span>tgt.identifier = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Identifier'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">identifier</span><b> then </b>setFrPatientIdentifier<span style="color: navy">(</span><span style="color: maroon">id</span><span style="color: navy">, </span><span style="color: maroon">identifier</span><span style="color: navy">)</span><span style="color: navy">;</span>
@@ -497,10 +497,10 @@
 
 </span><span style="color: navy">// </span><span style="color: green">Fin modification NR</span>
 <span style="color: navy">// </span><span style="color: green">Etat initial</span>
-<span style="color: #b36b00" title="Cet élément nétait pas défini avant R5">// src -&gt; tgt.identifier as identifier then {</span>
-<span style="color: #b36b00" title="Cet élément nétait pas défini avant R5">// src.id as id -&gt; identifier.type as type, type.coding as coding, coding.system as system, coding.code as code then {</span>
-<span style="color: #b36b00" title="Cet élément nétait pas défini avant R5">// src -&gt; system.value = 'http://terminology.hl7.org/CodeSystem/v2-0203' &quot;system&quot;;</span>
-<span style="color: #b36b00" title="Cet élément nétait pas défini avant R5">// src -&gt; code.value = 'MR' &quot;code&quot;;</span>
+<span style="color: #b36b00" title="Cet élément n'était pas défini avant R5">// src -&gt; tgt.identifier as identifier then {</span>
+<span style="color: #b36b00" title="Cet élément n'était pas défini avant R5">// src.id as id -&gt; identifier.type as type, type.coding as coding, coding.system as system, coding.code as code then {</span>
+<span style="color: #b36b00" title="Cet élément n'était pas défini avant R5">// src -&gt; system.value = 'http://terminology.hl7.org/CodeSystem/v2-0203' &quot;system&quot;;</span>
+<span style="color: #b36b00" title="Cet élément n'était pas défini avant R5">// src -&gt; code.value = 'MR' &quot;code&quot;;</span>
 <span style="color: navy">// </span><span style="color: green">id.extension as extension -&gt; identifier.value as value, value.value = extension &quot;extension&quot;;</span>
 <span style="color: navy">// </span><span style="color: green">id.root as root -&gt; identifier.system as system, system.value = append('urn:oid:', root) &quot;root&quot;;</span>
 <span style="color: navy">// </span><span style="color: green">} &quot;id&quot;;</span>
@@ -605,7 +605,7 @@
 
       <div class="inner-wrapper">
         <p>
-          IG &#169; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d&#39;Oradour-sur-Glane, 75015 Paris</a>.  Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Mon, Dec 15, 2025 15:37+0000">2025-12-15</span>
+          IG &#169; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d&#39;Oradour-sur-Glane, 75015 Paris</a>.  Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Mon, Feb 9, 2026 11:09+0000">2026-02-09</span>
           <br/>
           <span style="color: var(--footer-highlight-text-color)"></span>
             Liens : <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table des matières</a> |

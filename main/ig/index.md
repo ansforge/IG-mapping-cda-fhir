@@ -8,7 +8,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ImplementationGuide/ans.fhir.fr.mappingcdafhir | *Version*:0.1.0 |
-| Draft as of 2025-12-15 | *Computable Name*:CDA2FHIRMAP |
+| Draft as of 2026-02-09 | *Computable Name*:CDA2FHIRMAP |
 
  **FHIR Mapping Language for CDA to FHIR transformation**
  Proof of concept for CDA to FHIR transformation 
@@ -233,23 +233,23 @@ Le mapping `CdaFrMDEToBundle.fml` est un mapping spécialisé pour les documents
 
 **Améliorations récentes apportées au mapping :**
 
-* ✅ **Ajout de`Observation.category`** : Toutes les observations sont catégorisées comme `vital-signs` conformément au package ANS [ans.fhir.fr.mesures#3.1.0](https://interop.esante.gouv.fr/ig/fhir/mesures/3.1.0/)
-* ✅ **Ajout de`Observation.effectiveDateTime`** : Extrait depuis `effectiveTime` de l'observation CDA (si présent et non `nullFlavor`)
-* ✅ **Correction de`Observation.status`** : Mapping de CDA "completed" vers FHIR "final"
+* ✅ **Ajout de `Observation.category`** : Toutes les observations sont catégorisées comme `vital-signs` conformément au package ANS [ans.fhir.fr.mesures#3.1.0](https://interop.esante.gouv.fr/ig/fhir/mesures/3.1.0/)
+* ✅ **Ajout de `Observation.effectiveDateTime`** : Extrait depuis `effectiveTime` de l'observation CDA (si présent et non `nullFlavor`)
+* ✅ **Correction de `Observation.status`** : Mapping de CDA "completed" vers FHIR "final"
 * ✅ **Ajout du système UCUM aux quantités** : Toutes les `valueQuantity` incluent `system: "http://unitsofmeasure.org"` et `code` en plus de `unit`
 * ✅ **Conversion des codes LOINC** : Système correctement mappé vers `http://loinc.org`
-* ✅ **Ajout de`Encounter.status`** : Défini à `finished` pour les rencontres terminées
-* ✅ **Ajout de`Encounter.class`** : Extrait du code CDA de la rencontre
-* ✅ **Correction de`Patient.birthDate`** : Format date simple conforme FHIR
-* ✅ **Correction de`Composition.confidentiality`** : Code simple au lieu d'objet complexe
-* ✅ **Correction de`attester.time`** : Format dateTime conforme FHIR
-* ✅ **Ajout de`meta.profile`** : Profils ANS ajoutés selon le code LOINC (mesures-fr-observation-body-weight, mesures-fr-observation-bodyheight, mesures-observation-head-circumference)
+* ✅ **Ajout de `Encounter.status`** : Défini à `finished` pour les rencontres terminées
+* ✅ **Ajout de `Encounter.class`** : Extrait du code CDA de la rencontre
+* ✅ **Correction de `Patient.birthDate`** : Format date simple conforme FHIR
+* ✅ **Correction de `Composition.confidentiality`** : Code simple au lieu d'objet complexe
+* ✅ **Correction de `attester.time`** : Format dateTime conforme FHIR
+* ✅ **Ajout de `meta.profile`** : Profils ANS ajoutés selon le code LOINC (mesures-fr-observation-body-weight, mesures-fr-observation-bodyheight, mesures-observation-head-circumference)
 
 **Limitations identifiées dans les données CDA source :**
 
 Les exemples CDA fournis présentent certaines limitations qui génèrent des warnings FHIR (non bloquants) :
 
-1. ⚠️**Absence de timezone sur`Encounter.period`**: Les dates/heures de la rencontre dans le CDA n'incluent pas de timezone
+1. ⚠️**Absence de timezone sur `Encounter.period`**: Les dates/heures de la rencontre dans le CDA n'incluent pas de timezone
 
 ```
 <!-- CDA source -->
@@ -260,8 +260,8 @@ Les exemples CDA fournis présentent certaines limitations qui génèrent des wa
 
 ```
 
-**Impact**: Warning FHIR "If a date has a time, it must have a timezone"**Solution**: Ajouter le timezone dans le CDA source (ex:`20250106111510+0100`)
-1. ⚠️**Absence de`Observation.effectiveDateTime`**: Les observations CDA utilisent`nullFlavor="NASK"`(Not Asked)
+**Impact** : Warning FHIR "If a date has a time, it must have a timezone"**Solution** : Ajouter le timezone dans le CDA source (ex: `20250106111510+0100`)
+1. ⚠️**Absence de `Observation.effectiveDateTime`**: Les observations CDA utilisent`nullFlavor="NASK"`(Not Asked)
 
 ```
 <!-- CDA source -->
@@ -273,7 +273,7 @@ Les exemples CDA fournis présentent certaines limitations qui génèrent des wa
 
 ```
 
-**Impact**: Warning FHIR "Best Practice Recommendation: In general, all observations should have an effective[x]"**Solution**: Fournir une date/heure effective dans le CDA source (ex:`<effectiveTime value="20230106"/>`)
+**Impact** : Warning FHIR "Best Practice Recommendation: In general, all observations should have an effective[x]"**Solution** : Fournir une date/heure effective dans le CDA source (ex: `<effectiveTime value="20230106"/>`)
 
 **Note** : Ces limitations proviennent des données CDA d'exemple et non du mapping FML. Le mapping transforme fidèlement les données CDA disponibles.
 
@@ -378,7 +378,7 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
 
 * ISO maintains the copyright on the country codes, and controls its use carefully. For further details see the ISO 3166 web page: [https://www.iso.org/iso-3166-country-codes.html](https://www.iso.org/iso-3166-country-codes.html)
 
-* [ISO 3166-1 Codes for the representation of names of countries and their subdivisions — Part 1: Country code](http://terminology.hl7.org/6.2.0/CodeSystem-ISO3166Part1.html): [CDA2FHIRMAP](index.md), [CdaFrMDEToBundle](StructureMap-CdaFrMDEToBundle.md)...Show 6 more,[CdaFrToBundle](StructureMap-CdaFrToBundle.md),[CdaToBundle](StructureMap-CdaToBundle.md),[CdaToFHIRTypes](StructureMap-CdaToFHIRTypes.md),[CdaToFhirAdministrativeGender](ConceptMap-cm-v3-administrative-gender.md),[ConceptMapOidSpecialiteOrdinale](ConceptMap-cm-oid-specialite-ordinale.md)and[OID2URIConceptMapANS](ConceptMap-oid2uri-ans.md)
+* [ISO 3166-1 Codes for the representation of names of countries and their subdivisions — Part 1: Country code](http://terminology.hl7.org/6.2.0/CodeSystem-ISO3166Part1.html): [CDA2FHIRMAP](index.md), [CdaFrMDEToBundle](StructureMap-CdaFrMDEToBundle.md)... Show 6 more, [CdaFrToBundle](StructureMap-CdaFrToBundle.md), [CdaToBundle](StructureMap-CdaToBundle.md), [CdaToFHIRTypes](StructureMap-CdaToFHIRTypes.md), [CdaToFhirAdministrativeGender](ConceptMap-cm-v3-administrative-gender.md), [ConceptMapOidSpecialiteOrdinale](ConceptMap-cm-oid-specialite-ordinale.md) and [OID2URIConceptMapANS](ConceptMap-oid2uri-ans.md)
 
 
 * The UCUM codes, UCUM table (regardless of format), and UCUM Specification are copyright 1999-2009, Regenstrief Institute, Inc. and the Unified Codes for Units of Measures (UCUM) Organization. All rights reserved. [https://ucum.org/trac/wiki/TermsOfUse](https://ucum.org/trac/wiki/TermsOfUse)
@@ -406,7 +406,7 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2025-12-15T15:37:58+00:00",
+  "date" : "2026-02-09T11:09:38+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [
     {
@@ -851,7 +851,7 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
       },
       {
         "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-internal-dependency",
-        "valueCode" : "hl7.fhir.uv.tools.r4#0.8.0"
+        "valueCode" : "hl7.fhir.uv.tools.r4#0.9.0"
       },
       {
         "extension" : [

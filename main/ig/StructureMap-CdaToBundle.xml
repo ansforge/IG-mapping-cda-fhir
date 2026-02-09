@@ -198,7 +198,7 @@
 <span style="color: navy">}
 
 </span><b>group </b>ClinicalDocumentPatientRole<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>PatientRole, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Patient, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle<span style="color: navy">)</span><span style="color: navy"> {
-</span>  <span style="color: #b36b00" title="Cet élément nétait pas défini avant R5">// src.id -&gt; tgt.identifier;</span>
+</span>  <span style="color: #b36b00" title="Cet élément n'était pas défini avant R5">// src.id -&gt; tgt.identifier;</span>
   <span style="color: navy">// </span><span style="color: green">Patient.identifier.type for EPR context, because there is only the identifier &quot;LocalPid&quot; allowed, LocalPid requires an type -&gt; http://build.fhir.org/ig/hl7ch/ch-core/branches/master/StructureDefinition-ch-core-composition-patient-epr.html</span>
   <span style="color: navy">// </span><span style="color: green">Modification NR</span>
   src.id<b> as </b><span style="color: maroon">id</span><span style="color: navy"><b> -&gt; </b></span>tgt.identifier = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Identifier'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">identifier</span><b> then </b>setFrPatientIdentifier<span style="color: navy">(</span><span style="color: maroon">id</span><span style="color: navy">, </span><span style="color: maroon">identifier</span><span style="color: navy">)</span><span style="color: navy">;</span>
@@ -242,10 +242,10 @@
 
 </span><span style="color: navy">// </span><span style="color: green">Fin modification NR</span>
 <span style="color: navy">// </span><span style="color: green">Etat initial</span>
-<span style="color: #b36b00" title="Cet élément nétait pas défini avant R5">// src -&gt; tgt.identifier as identifier then {</span>
-<span style="color: #b36b00" title="Cet élément nétait pas défini avant R5">// src.id as id -&gt; identifier.type as type, type.coding as coding, coding.system as system, coding.code as code then {</span>
-<span style="color: #b36b00" title="Cet élément nétait pas défini avant R5">// src -&gt; system.value = 'http://terminology.hl7.org/CodeSystem/v2-0203' &quot;system&quot;;</span>
-<span style="color: #b36b00" title="Cet élément nétait pas défini avant R5">// src -&gt; code.value = 'MR' &quot;code&quot;;</span>
+<span style="color: #b36b00" title="Cet élément n'était pas défini avant R5">// src -&gt; tgt.identifier as identifier then {</span>
+<span style="color: #b36b00" title="Cet élément n'était pas défini avant R5">// src.id as id -&gt; identifier.type as type, type.coding as coding, coding.system as system, coding.code as code then {</span>
+<span style="color: #b36b00" title="Cet élément n'était pas défini avant R5">// src -&gt; system.value = 'http://terminology.hl7.org/CodeSystem/v2-0203' &quot;system&quot;;</span>
+<span style="color: #b36b00" title="Cet élément n'était pas défini avant R5">// src -&gt; code.value = 'MR' &quot;code&quot;;</span>
 <span style="color: navy">// </span><span style="color: green">id.extension as extension -&gt; identifier.value as value, value.value = extension &quot;extension&quot;;</span>
 <span style="color: navy">// </span><span style="color: green">id.root as root -&gt; identifier.system as system, system.value = append('urn:oid:', root) &quot;root&quot;;</span>
 <span style="color: navy">// </span><span style="color: green">} &quot;id&quot;;</span>
@@ -310,7 +310,7 @@
   <name value="CdaToBundle"/>
   <title value="Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)"/>
   <status value="draft"/>
-  <date value="2025-12-15T15:37:58+00:00"/>
+  <date value="2026-02-09T11:09:38+00:00"/>
   <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
   <contact>
     <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
