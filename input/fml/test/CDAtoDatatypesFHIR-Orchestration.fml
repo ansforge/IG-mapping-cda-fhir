@@ -1,0 +1,22 @@
+// Generated: 2026-02-20 14:38:10
+// Purpose: Orchestration map — imports the functions & uses direct mappings to achieve full CDA → FHIR coverage
+
+map "urn:map:CDA2FHIR-Orchestration" = "CDA → FHIR — Orchestration (exhaustif)"
+
+imports "urn:map:CDA2FHIR-Direct"
+imports "urn:map:CDA2FHIR-Functions"
+
+// Entry points
+//  - Map any CDA datatype (ANY) to the appropriate FHIR datatype
+//  - Handles multi-cases and extensions via the function library
+
+group Map_ANY_to_FHIR(source s : ANY, target t : Element) {
+  s as x then ANY_to_FHIR(x, t) "dispatch";
+}
+
+// Example: orchestrate a list of CDA values → target list
+// (illustrative; adapt in your StructureMap where needed)
+
+group Map_List_of_ANY(source s : ANY[], target t : Element[]) {
+  s as item, t as out then Map_ANY_to_FHIR(item, out) "each";
+}

@@ -1,0 +1,287 @@
+// Generated: 2026-02-20 14:38:10
+// Purpose: Functions library for complex CDA → FHIR datatype mappings
+
+map "urn:map:CDA2FHIR-Functions" = "CDA → FHIR — Bibliothèque de fonctions (complex)"
+
+// =============================
+// Constants (replace with your IG URLs if needed)
+// =============================
+// Standard FHIR extension URLs
+//   - data-absent-reason: http://hl7.org/fhir/StructureDefinition/data-absent-reason
+// Local extension base (À RENSEIGNER selon votre IG)
+//   - base: http://example.org/fhir/StructureDefinition/cda-
+
+// Helper: add data-absent-reason on any element
+// usage: addDAR(nf, targetElement)
+group addDataAbsentReason(source nf : code, target tgt : Element) {
+  nf as c where exists(c) -> tgt.extension as e then {
+    'http://hl7.org/fhir/StructureDefinition/data-absent-reason' -> e.url = 'http://hl7.org/fhir/StructureDefinition/data-absent-reason' "url";
+    c -> e.value = c "val";
+  } "addDAR";
+}
+
+// Helper: add simple boolean extension (local)
+// usage: addBooleanExt(url, value, targetElement)
+group addBooleanExtension(source url : string, source value : boolean, target tgt : Element) {
+  url as u, value as b -> tgt.extension as e then {
+    u -> e.url = u "url";
+    b -> e.value = b "val";
+  } "addBoolExt";
+}
+
+// Helper: add code extension (local)
+// usage: addCodeExtension(url, code, targetElement)
+group addCodeExtension(source url : string, source value : code, target tgt : Element) {
+  url as u, value as c -> tgt.extension as e then {
+    u -> e.url = u "url";
+    c -> e.value = c "val";
+  } "addCodeExt";
+}
+
+// =============================
+// OID → URI mapping (known systems else urn:oid:<oid>)
+// =============================
+group OID_to_URI(source s : string, target t : uri) {
+  s as oid where oid = '2.16.840.1.113883.6.96' -> t = 'http://snomed.info/sct' "SNOMED"; // SNOMED CT
+  s as oid where oid = '2.16.840.1.113883.6.1'  -> t = 'http://loinc.org'          "LOINC"; // LOINC
+  s as oid where oid = '2.16.840.1.113883.6.88' -> t = 'http://www.nlm.nih.gov/research/umls/rxnorm' "RxNorm"; // RxNorm
+  s as oid where oid = '2.16.840.1.113883.6.8'  -> t = 'http://unitsofmeasure.org'  "UCUM"; // UCUM
+  s as oid where oid = '2.16.840.1.113883.6.12' -> t = 'http://www.ama-assn.org/go/cpt' "CPT"; // CPT
+  s as oid where oid = '2.16.840.1.113883.6.69' -> t = 'http://hl7.org/fhir/sid/ndc' "NDC"; // NDC
+  s as oid where oid = '2.16.840.1.113883.12.292' -> t = 'http://hl7.org/fhir/sid/cvx' "CVX"; // CVX
+
+  s as oid where oid = '2.16.840.1.113883.2.20.5.1' -> t = 'https://fhir.infoway-inforoute.ca/CodeSystem/pCLOCD' "pCLOCD"; // pCLOCD
+  s as oid where oid = '2.16.840.1.113883.6.345' -> t = 'http://va.gov/terminology/medrt' "MED-RT"; // MED-RT
+  s as oid where oid = '2.16.840.1.113883.4.9'   -> t = 'http://fdasis.nlm.nih.gov' "UNII"; // UNII
+  // Default: urn:oid:<oid>
+  s as oid -> t = append('urn:oid:', oid) "default";
+}
+
+
+// =============================
+// TS (CDA) → FHIR (date | dateTime | instant) per granularity
+// =============================
+// Note: normalise au format ISO-8601 FHIR (insertion des séparateurs)
+
+group TS_to_date(source s : TS, target t : date) {
+  // 4, 6, 8 digits → YYYY | YYYY-MM | YYYY-MM-DD
+  s.value as v where length(v) = 4 -> t = v "Y";
+  s.value as v where length(v) = 6 -> t = append(append(substring(v,0,4),'-'), substring(v,4,2)) "YM";
+  s.value as v where length(v) = 8 -> t = append(append(append(substring(v,0,4),'-'), substring(v,4,2)),'-') "YMDa";
+  s.value as v where length(v) = 8 -> t = append(t, substring(v,6,2)) "YMDb";
+}
+
+group TS_to_dateTime(source s : TS, target t : dateTime) {
+  // 10 → YYYYMMDDHH → YYYY-MM-DDTHH
+  s.value as v where length(v) = 10 -> t = append(append(append(append(append(substring(v,0,4),'-'), substring(v,4,2)),'-'), substring(v,6,2)),'T') "YMDT";
+  s.value as v where length(v) = 10 -> t = append(t, substring(v,8,2)) "YMDTHH";
+  // 12 → +:mm
+  s.value as v where length(v) = 12 -> t = append(append(append(append(append(substring(v,0,4),'-'), substring(v,4,2)),'-'), substring(v,6,2)),'T') "YMDTh";
+  s.value as v where length(v) = 12 -> t = append(append(t, substring(v,8,2)), ':' ) "YMDThh:";
+  s.value as v where length(v) = 12 -> t = append(t, substring(v,10,2)) "YMDThhmm";
+  // 14 → +:mm:ss
+  s.value as v where length(v) = 14 -> t = append(append(append(append(append(substring(v,0,4),'-'), substring(v,4,2)),'-'), substring(v,6,2)),'T') "YMDThms";
+  s.value as v where length(v) = 14 -> t = append(append(append(t, substring(v,8,2)), ':'), substring(v,10,2)) "YMDThhmm:";
+  s.value as v where length(v) = 14 -> t = append(append(t, ':'), substring(v,12,2)) "YMDThhmmss";
+}
+
+group TS_to_instant(source s : TS, target t : instant) {
+  // 19 → YYYYMMDDhhmmss+ZZZZ → YYYY-MM-DDThh:mm:ss+ZZ:ZZ
+  s.value as v where length(v) = 19 -> t = append(append(append(append(append(substring(v,0,4),'-'), substring(v,4,2)),'-'), substring(v,6,2)),'T') "head";
+  s.value as v where length(v) = 19 -> t = append(append(append(t, substring(v,8,2)), ':'), substring(v,10,2)) "timehhmm";
+  s.value as v where length(v) = 19 -> t = append(append(t, ':'), substring(v,12,2)) "timess";
+  // timezone +ZZZZ → +ZZ:ZZ
+  s.value as v where length(v) = 19 -> t = append(t, substring(v,14,3)) "tzHh+colon"; // +hh
+  s.value as v where length(v) = 19 -> t = append(append(t, ':'), substring(v,17,2)) "tzhhmm"; // :mm
+}
+
+// Unified entry: TS_to_FHIR → picks date | dateTime | instant
+// (Choix par longueur, comme dans le document)
+group TS_to_FHIR(source s : TS, target out : dateTime) {
+  s.value as v where length(v) = 4 or length(v) = 6 or length(v) = 8 then TS_to_date(s, out) "asDate";
+  s.value as v where length(v) = 10 or length(v) = 12 or length(v) = 14 then TS_to_dateTime(s, out) "asDateTime";
+  s.value as v where length(v) = 19 then TS_to_instant(s, out) "asInstant";
+}
+
+// =============================
+// IVL_TS → Period (+ inclusivité via extension locale) & width → extension
+// =============================
+group IVL_TS_to_Period(source s : IVL_TS, target t : Period) {
+  // low/high
+  s.low   as l then TS_to_FHIR(l,  t.start) "start";
+  s.high  as h then TS_to_FHIR(h,  t.end)   "end";
+  // inclusivity (IVXB_TS)
+  s.low.inclusive  as li where exists(li)  -> t.start as st then addBooleanExtension('http://example.org/fhir/StructureDefinition/cda-boundary-inclusive', li, st) "lowInc";
+  s.high.inclusive as hi where exists(hi)  -> t.end   as en then addBooleanExtension('http://example.org/fhir/StructureDefinition/cda-boundary-inclusive', hi, en) "highInc";
+  // center → optional display extension
+  s.center as c where exists(c) -> t as per then addCodeExtension('http://example.org/fhir/StructureDefinition/cda-center-ts', 'present', per) "centerExt";
+  // width (duration) → store as extension if present
+  s.width  as w where exists(w) -> t as per then {
+    per.extension as e then {
+      'http://example.org/fhir/StructureDefinition/cda-interval-width' -> e.url = 'http://example.org/fhir/StructureDefinition/cda-interval-width' "url";
+      w.value as val -> e.valueDecimal = val "w-val";
+      w.unit  as u   -> e.extension as eu then { 'unit' -> eu.url = 'unit'; u -> eu.valueString = u; } "w-unit";
+    }
+  } "widthExt";
+  // nullFlavor on low/high/center
+  s.low.nullFlavor   as n -> t.start as st then addDataAbsentReason(n, st) "nf-low";
+  s.high.nullFlavor  as n -> t.end   as en then addDataAbsentReason(n, en) "nf-high";
+  s.center.nullFlavor as n -> t as per then addDataAbsentReason(n, per) "nf-center";
+}
+
+// =============================
+// EIVL_TS / PIVL_TS → Timing (+ extensions)
+// =============================
+group EIVL_TS_to_Timing(source s : EIVL_TS, target t : Timing) {
+  // event → repeat.when or extension
+  s.event as ev.code -> t.repeat.when = ev.code "when";
+  s.event.displayName as dn -> t.repeat.when.extension as e then { 'http://example.org/fhir/StructureDefinition/cda-event-display' -> e.url = 'http://example.org/fhir/StructureDefinition/cda-event-display'; dn -> e.valueString = dn; } "when-display";
+  // offset (IVL_PQ) in minutes if possible
+  s.offset as off.value where off.unit = 'min' -> t.repeat.offset = off.value "off-min";
+  s.offset as off.value where off.unit = 'h'   -> t.repeat.offset = (off.value * 60) "off-hour";
+  s.offset as off.value where off.unit = 's'   -> t.repeat.offset = (off.value div 60) "off-sec";
+  // if other unit → extension keeps original
+  s.offset as off where off.unit != 'min' and off.unit != 'h' and off.unit != 's' -> t as tt then {
+    tt.extension as e then { 'http://example.org/fhir/StructureDefinition/cda-offset' -> e.url = 'http://example.org/fhir/StructureDefinition/cda-offset'; off.value as v -> e.extension as ev then { 'value' -> ev.url = 'value'; v -> ev.valueDecimal = v; }; off.unit as u -> e.extension as eu then { 'unit' -> eu.url = 'unit'; u -> eu.valueString = u; } }
+  } "off-ext";
+  // operator, institutionSpecified → local extensions
+  s.operator as op -> t as tt then addCodeExtension('http://example.org/fhir/StructureDefinition/cda-operator', op, tt) "op";
+  s.institutionSpecified as b -> t as tt then addBooleanExtension('http://example.org/fhir/StructureDefinition/cda-institutionSpecified', b, tt) "inst";
+  // nullFlavor
+  s.nullFlavor as n -> t as tt then addDataAbsentReason(n, tt) "nf";
+}
+
+group PIVL_TS_to_Timing(source s : PIVL_TS, target t : Timing) {
+  // period (PQ) → repeat.period + periodUnit (UCUM-friendly)
+  s.period.value as v -> t.repeat.period = v "period-val";
+  s.period.unit  as u where u in ('s','min','h','d','wk','mo','a') -> t.repeat.periodUnit = u "period-unit";
+  // alignment → when or extension
+  s.alignment as al where exists(al) -> t.repeat.when = al "align-when";
+  s.alignment as al where not(exists(t.repeat.when)) -> t as tt then addCodeExtension('http://example.org/fhir/StructureDefinition/cda-alignment', al, tt) "align-ext";
+  // operator, institutionSpecified → extensions
+  s.operator as op -> t as tt then addCodeExtension('http://example.org/fhir/StructureDefinition/cda-operator', op, tt) "op";
+  s.institutionSpecified as b -> t as tt then addBooleanExtension('http://example.org/fhir/StructureDefinition/cda-institutionSpecified', b, tt) "inst";
+  // phase (IVL_TS) → extension valuePeriod
+  s.phase as ph -> t.extension as e then { 'http://example.org/fhir/StructureDefinition/cda-phase' -> e.url = 'http://example.org/fhir/StructureDefinition/cda-phase'; } then IVL_TS_to_Period(ph, e.value) "phase";
+  // nullFlavor
+  s.nullFlavor as n -> t as tt then addDataAbsentReason(n, tt) "nf";
+}
+
+// =============================
+// SXPR_TS / SXCM_TS dispatchers
+// =============================
+group SXPR_TS_to_TypedOutput(source s : SXPR_TS, target t : Element) {
+  // If all comp are TS → produce list of dateTime
+  s.comp as c where c is TS then TS_to_FHIR(c, t) "comp-ts";
+  // If all comp are IVL_TS → list of Period
+  s.comp as c where c is IVL_TS then IVL_TS_to_Period(c, t) "comp-ivl";
+  // If comp are patterns → Timing
+  s.comp as c where c is PIVL_TS then PIVL_TS_to_Timing(c, t) "comp-pivl";
+  s.comp as c where c is EIVL_TS then EIVL_TS_to_Timing(c, t) "comp-eivl";
+  // Mixed set → keep as extension (caller decides)
+}
+
+group SXCM_TS_to_FHIR(source s : SXCM_TS, target t : Element) {
+  s as x where x is TS      then TS_to_FHIR(x, t) "ts";
+  s as x where x is IVL_TS  then IVL_TS_to_Period(x, t) "ivl";
+  s as x where x is PIVL_TS then PIVL_TS_to_Timing(x, t) "pivl";
+  s as x where x is EIVL_TS then EIVL_TS_to_Timing(x, t) "eivl";
+  s as x where x is SXPR_TS then SXPR_TS_to_TypedOutput(x, t) "sxpr";
+}
+
+// =============================
+// Code data types: CE/CV/CD/CS/SC/CO/CR
+// =============================
+// CE/CV/CD/CS → Coding
+
+group CE_to_Coding(source s : CE, target t : Coding) {
+  s.code as c -> t.code = c "code";
+  s.codeSystem as sys -> t.system = append('urn:oid:', sys) "system"; // use OID_to_URI for better mapping
+  s.displayName as d -> t.display = d "display";
+}
+
+group CE_to_CodeableConcept(source s : CE, target t : CodeableConcept) {
+  s as x then CE_to_Coding(x, t.coding) "main";
+  // translations
+  s.translation as tr then CE_to_Coding(tr, t.coding) "tr";
+  s.originalText as ot -> t.text = ot "text";
+}
+
+// SC (coded string) → prefer CodeableConcept, else plain string if no code
+
+group SC_to_CodeableConcept(source s : SC, target t : CodeableConcept) {
+  s.code as c where exists(c) then CE_to_CodeableConcept(s, t) "as-coded";
+  s.code as c where not(exists(c)) -> t.text = s.value "as-text";
+}
+
+// CO (ordinal coded) → CodeableConcept + extension ordinalValue
+
+group CO_to_CodeableConcept(source s : CO, target t : CodeableConcept) {
+  s as x then CE_to_Coding(x, t.coding) "main";
+  s.displayName as d -> t.text = d "text";
+  // ordinalValue if provided as number
+  s.value as v where exists(v) -> t.extension as e then { 'http://example.org/fhir/StructureDefinition/cda-ordinalValue' -> e.url = 'http://example.org/fhir/StructureDefinition/cda-ordinalValue'; v -> e.valueDecimal = v; } "ordinal";
+  // nullFlavor on CO
+  s.nullFlavor as n -> t as tt then addDataAbsentReason(n, tt) "nf";
+}
+
+// CR (ConceptRole) → extension with sub-extensions name/value (both Coding)
+
+group CR_to_Extension(source s : CR, target t : Extension) {
+  'http://example.org/fhir/StructureDefinition/cda-conceptRole' -> t.url = 'http://example.org/fhir/StructureDefinition/cda-conceptRole' "url";
+  // name
+  t.extension as en then { 'name' -> en.url = 'name'; };
+  s.name as n then CE_to_Coding(n, t.extension['name'].valueCoding) "name";
+  // value
+  t.extension as ev then { 'value' -> ev.url = 'value'; };
+  s.value as v then CE_to_Coding(v, t.extension['value'].valueCoding) "value";
+  // inverted (optional)
+  s.inverted as inv where exists(inv) -> t.extension as ei then { 'inverted' -> ei.url = 'inverted'; inv -> ei.valueBoolean = inv; } "inverted";
+  // nullFlavor
+  s.nullFlavor as n -> t as tt then addDataAbsentReason(n, tt) "nf";
+}
+
+// =============================
+// PQ / PQR (quantities & symbolic)
+// =============================
+
+group PQ_to_Duration(source s : PQ, target t : Duration) {
+  s.value as v -> t.value = v "val";
+  s.unit  as u -> t.unit  = u "unit";
+  s.unit  as u -> t.code  = u "code";
+  'http://unitsofmeasure.org' -> t.system = 'http://unitsofmeasure.org' "sys";
+}
+
+group PQR_to_CodeableConcept(source s : PQR, target t : CodeableConcept) {
+  s.code as c -> t.coding.code = c "code";
+  s.codeSystem as sys -> t.coding.system = append('urn:oid:', sys) "system";
+  s.displayName as d -> t.coding.display = d "display";
+}
+
+// =============================
+// ANY dispatcher (xsi:type-driven)
+// =============================
+
+group ANY_to_FHIR(source s : ANY, target t : Element) {
+  s as x where x is BL      then BL_to_boolean(x, t) "bl";
+  s as x where x is INT     then INT_to_integer(x, t) "int";
+  s as x where x is REAL    then REAL_to_decimal(x, t) "real";
+  s as x where x is ST      then ST_to_string(x, t) "st";
+  s as x where x is TS      then TS_to_FHIR(x, t) "ts";
+  s as x where x is II      then II_to_Identifier(x, t) "ii";
+  s as x where x is PQ      then PQ_to_Quantity(x, t) "pq";
+  s as x where x is IVL_PQ  then IVL_PQ_to_Range(x, t) "ivl_pq";
+  s as x where x is RTO_PQ_PQ then RTO_PQ_PQ_to_Ratio(x, t) "rto";
+  s as x where x is AD      then AD_to_Address(x, t) "ad";
+  s as x where x is PN      then PN_to_HumanName(x, t) "pn";
+  s as x where x is TEL     then TEL_to_ContactPoint(x, t) "tel";
+  s as x where x is ED      then ED_to_Attachment(x, t) "ed";
+  // coded types
+  s as x where x is CE or x is CV or x is CD or x is CS then CE_to_CodeableConcept(x, t) "coded";
+  s as x where x is SC      then SC_to_CodeableConcept(x, t) "sc";
+  // time expression sets
+  s as x where x is IVL_TS  then IVL_TS_to_Period(x, t) "ivl_ts";
+  s as x where x is EIVL_TS then EIVL_TS_to_Timing(x, t) "eivl";
+  s as x where x is PIVL_TS then PIVL_TS_to_Timing(x, t) "pivl";
+  s as x where x is SXPR_TS then SXPR_TS_to_TypedOutput(x, t) "sxpr";
+}

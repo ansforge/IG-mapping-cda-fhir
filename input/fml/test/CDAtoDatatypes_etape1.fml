@@ -1,0 +1,120 @@
+// Generated: 2026-02-20 14:38:10
+// Purpose: Direct (simple) CDA → FHIR datatype mappings
+
+map "urn:map:CDA2FHIR-Direct" = "CDA → FHIR — Mappings directs (datatypes)" // simple only
+
+// --- Address (AD → Address) ---
+group AD_to_Address(source s : AD, target t : Address) {
+  // Parts → FHIR Address
+  s.streetAddressLine as v -> t.line = v "line";
+  s.city as v           -> t.city = v "city";
+  s.state as v          -> t.state = v "state";
+  s.postalCode as v     -> t.postalCode = v "postal";
+  s.country as v        -> t.country = v "country";
+}
+
+// --- Address Part (ADXP → string) ---
+group ADXP_to_string(source s : ADXP, target t : string) {
+  s.value as v -> t = v "copy";
+}
+
+// --- Boolean (BL → boolean) ---
+group BL_to_boolean(source s : BL, target t : boolean) {
+  s.value as v -> t = v "copy";
+}
+
+// --- Integer (INT → integer) ---
+group INT_to_integer(source s : INT, target t : integer) {
+  s.value as v -> t = v "copy";
+}
+
+// --- Positive Integer (INT_POS → positiveInt) ---
+group INTPOS_to_positiveInt(source s : INT_POS, target t : positiveInt) {
+  s.value as v -> t = v "copy";
+}
+
+// --- Decimal (REAL → decimal) ---
+group REAL_to_decimal(source s : REAL, target t : decimal) {
+  s.value as v -> t = v "copy";
+}
+
+// --- String (ST → string) ---
+group ST_to_string(source s : ST, target t : string) {
+  s.value as v -> t = v "copy";
+}
+
+// --- Attachment (ED → Attachment) ---
+group ED_to_Attachment(source s : ED, target t : Attachment) {
+  s.mediaType as v -> t.contentType = v "ct";
+  s.language  as v -> t.language    = v "lang";
+  s.data      as v -> t.data        = v "data";
+  s.url       as v -> t.url         = v "url";
+  s.title     as v -> t.title       = v "title";
+}
+
+// --- Quantity (PQ → Quantity) ---
+group PQ_to_Quantity(source s : PQ, target t : Quantity) {
+  // Assumes UCUM when unit present. Use function library for non-UCUM cases.
+  s.value as v -> t.value = v "value";
+  s.unit  as u -> t.unit  = u "unit";
+  s.unit  as u -> t.code  = u "code";
+  // UCUM system
+  'http://unitsofmeasure.org' -> t.system = 'http://unitsofmeasure.org' "sys";
+}
+
+// --- Range (IVL_PQ → Range) ---
+group IVL_PQ_to_Range(source s : IVL_PQ, target t : Range) {
+  s.low  as low  then PQ_to_Quantity(low,  t.low)  "low";
+  s.high as high then PQ_to_Quantity(high, t.high) "high";
+}
+
+// --- Ratio (RTO_PQ_PQ → Ratio) ---
+group RTO_PQ_PQ_to_Ratio(source s : RTO_PQ_PQ, target t : Ratio) {
+  s.numerator   as n  then PQ_to_Quantity(n,  t.numerator)   "num";
+  s.denominator as d  then PQ_to_Quantity(d,  t.denominator) "den";
+}
+
+// --- Money (MO → Money) ---
+group MO_to_Money(source s : MO, target t : Money) {
+  s.value    as v -> t.value    = v "val";
+  s.currency as c -> t.currency = c "cur";
+}
+
+// --- Identifier (II → Identifier) ---
+group II_to_Identifier(source s : II, target t : Identifier) {
+  // Simple direct rule; use library for advanced OID → URI mapping
+  s.root      as r -> t.system = append('urn:oid:', r) "system";
+  s.extension as e -> t.value  = e "value";
+  s.assigningAuthorityName as n -> t.assigner.display = n "assigner-name";
+}
+
+// --- HumanName (PN → HumanName) ---
+group PN_to_HumanName(source s : PN, target t : HumanName) {
+  s.family as v  -> t.family = v "family";
+  s.given  as v  -> t.given  = v "given";
+  s.prefix as v  -> t.prefix = v "prefix";
+  s.suffix as v  -> t.suffix = v "suffix";
+  s.use    as v  -> t.use    = v "use"; // direct copy (value-set harmonization handled elsewhere)
+}
+
+// --- Organization Name (ON → string) ---
+group ON_to_string(source s : ON, target t : string) {
+  s.value as v -> t = v "copy";
+}
+
+// --- Telecom (TEL → ContactPoint) ---
+group TEL_to_ContactPoint(source s : TEL, target t : ContactPoint) {
+  s.value as v -> t.value = v "value";
+  // Minimal direct detection (more complete logic is in the function library)
+  s.value as v where startsWith(v,'tel:')    -> t.system = 'phone'  "sys-phone";
+  s.value as v where startsWith(v,'mailto:') -> t.system = 'email'  "sys-mail";
+}
+
+// --- Binary/base64 (Binary → base64Binary) ---
+group Binary_to_base64Binary(source s : Binary, target t : base64Binary) {
+  s.value as v -> t = v "copy";
+}
+
+// --- URI/URL (uri|url → uri|url) ---
+group URI_to_uri(source s : uri, target t : uri) { s as v -> t = v "copy"; }
+group URL_to_url(source s : url, target t : url) { s as v -> t = v "copy"; }
