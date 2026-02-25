@@ -8,7 +8,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ImplementationGuide/ans.fhir.fr.mappingcdafhir | *Version*:0.1.0 |
-| Draft as of 2026-02-24 | *Computable Name*:CDA2FHIRMAP |
+| Draft as of 2026-02-25 | *Computable Name*:CDA2FHIRMAP |
 
  **FHIR Mapping Language for CDA to FHIR transformation**
  Proof of concept for CDA to FHIR transformation 
@@ -406,7 +406,7 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2026-02-24T10:20:20+00:00",
+  "date" : "2026-02-25T14:48:56+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -1205,6 +1205,15 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
         }],
         "nameUrl" : "index.html",
         "title" : "Accueil",
+        "generation" : "markdown"
+      },
+      {
+        "extension" : [{
+          "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
+          "valueUrl" : "mapping-mechanisms.html"
+        }],
+        "nameUrl" : "mapping-mechanisms.html",
+        "title" : "Mécanisme de mapping",
         "generation" : "markdown"
       },
       {
