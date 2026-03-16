@@ -27,7 +27,7 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
   "name" : "CdaToBundle",
   "title" : "Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)",
   "status" : "draft",
-  "date" : "2026-03-16T13:19:58+00:00",
+  "date" : "2026-03-16T13:48:43+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -2645,7 +2645,7 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
           }]
         }],
         "dependent" : [{
-          "name" : "boolean",
+          "name" : "BLBoolean",
           "variable" : ["indicator", "bool"]
         }]
       },

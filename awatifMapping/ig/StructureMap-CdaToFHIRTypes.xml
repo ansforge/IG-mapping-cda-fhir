@@ -6,67 +6,90 @@
     <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Narratif généré : StructureMap CdaToFHIRTypes</b></p><a name="CdaToFHIRTypes"> </a><a name="hcCdaToFHIRTypes"> </a><pre class="fml">
 <b>map</b><span style="color: navy"> &quot;</span>https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes<span style="color: navy">&quot; = &quot;</span>CdaToFHIRTypes<span style="color: navy">&quot;
 
-</span><span style="color: navy">// </span><span style="color: green">Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)</span>
+</span><span style="color: navy">// </span><span style="color: green">Métadonnées</span>
 
 <b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ED.html" title="ED: EncapsulatedData (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/ED</a><span style="color: navy">&quot; </span><b>alias </b>ED <b>as </b><b>source</b>
 <b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-PN.html" title="PN: PersonName (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/PN</a><span style="color: navy">&quot; </span><b>alias </b>PN <b>as </b><b>source</b>
 <b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html" title="II: InstanceIdentifier (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/II</a><span style="color: navy">&quot; </span><b>alias </b>II <b>as </b><b>source</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#Identifier" title="Identifier">http://hl7.org/fhir/StructureDefinition/Identifier</a><span style="color: navy">&quot; </span><b>alias </b>Identifier <b>as </b><b>target</b>
 <b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TS.html" title="TS: PointInTime (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/TS</a><span style="color: navy">&quot; </span><b>alias </b>TS <b>as </b><b>source</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#instant" title="instant">http://hl7.org/fhir/StructureDefinition/instant</a><span style="color: navy">&quot; </span><b>alias </b>instant <b>as </b><b>target</b>
 <b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CS.html" title="CS: CodedSimpleValue (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/CS</a><span style="color: navy">&quot; </span><b>alias </b>CS <b>as </b><b>source</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#code" title="code">http://hl7.org/fhir/StructureDefinition/code</a><span style="color: navy">&quot; </span><b>alias </b>code <b>as </b><b>target</b>
 <b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CE.html" title="CE: CodedWithEquivalents (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/CE</a><span style="color: navy">&quot; </span><b>alias </b>CE <b>as </b><b>source</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#CodeableConcept" title="CodeableConcept">http://hl7.org/fhir/StructureDefinition/CodeableConcept</a><span style="color: navy">&quot; </span><b>alias </b>CodeableConcept <b>as </b><b>target</b>
 <b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html" title="ST: CharacterString (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/ST</a><span style="color: navy">&quot; </span><b>alias </b>ST <b>as </b><b>source</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#string" title="string">http://hl7.org/fhir/StructureDefinition/string</a><span style="color: navy">&quot; </span><b>alias </b>string <b>as </b><b>target</b>
 <b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html" title="EN: EntityName (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/EN</a><span style="color: navy">&quot; </span><b>alias </b>EN <b>as </b><b>source</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#HumanName" title="HumanName">http://hl7.org/fhir/StructureDefinition/HumanName</a><span style="color: navy">&quot; </span><b>alias </b>HumanName <b>as </b><b>target</b>
 <b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html" title="AD: PostalAddress (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/AD</a><span style="color: navy">&quot; </span><b>alias </b>AD <b>as </b><b>source</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#Address" title="Address">http://hl7.org/fhir/StructureDefinition/Address</a><span style="color: navy">&quot; </span><b>alias </b>Address <b>as </b><b>target</b>
 <b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html" title="TEL: TelecommunicationAddress (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/TEL</a><span style="color: navy">&quot; </span><b>alias </b>TEL <b>as </b><b>source</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#ContactPoint" title="ContactPoint">http://hl7.org/fhir/StructureDefinition/ContactPoint</a><span style="color: navy">&quot; </span><b>alias </b>ContactPoint <b>as </b><b>target</b>
 <b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-BL.html" title="BL: Boolean (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/BL</a><span style="color: navy">&quot; </span><b>alias </b>BL <b>as </b><b>source</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#boolean" title="boolean">http://hl7.org/fhir/StructureDefinition/boolean</a><span style="color: navy">&quot; </span><b>alias </b>boolean <b>as </b><b>target</b>
 <b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-IVL-TS.html" title="IVL_TS: Interval (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/IVL-TS</a><span style="color: navy">&quot; </span><b>alias </b>IVL_TS <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-INT.html" title="INT: IntegerNumber (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/INT</a><span style="color: navy">&quot; </span><b>alias </b>INT <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ON.html" title="ON: OrganizationName (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/ON</a><span style="color: navy">&quot; </span><b>alias </b>ON <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html" title="CD: ConceptDescriptor (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/CD</a><span style="color: navy">&quot; </span><b>alias </b>CD <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-PQ.html" title="PQ: PhysicalQuantity (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/PQ</a><span style="color: navy">&quot; </span><b>alias </b>PQ <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span>http://hl7.org/cda/stds/core/StructureDefinition/RTO_PQ_PQ<span style="color: navy">&quot; </span><b>alias </b>RTO_PQ_PQ <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#Identifier" title="Identifier">http://hl7.org/fhir/StructureDefinition/Identifier</a><span style="color: navy">&quot; </span><b>alias </b>Identifier <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#instant" title="instant">http://hl7.org/fhir/StructureDefinition/instant</a><span style="color: navy">&quot; </span><b>alias </b>instant <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#code" title="code">http://hl7.org/fhir/StructureDefinition/code</a><span style="color: navy">&quot; </span><b>alias </b>code <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#CodeableConcept" title="CodeableConcept">http://hl7.org/fhir/StructureDefinition/CodeableConcept</a><span style="color: navy">&quot; </span><b>alias </b>CodeableConcept <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#string" title="string">http://hl7.org/fhir/StructureDefinition/string</a><span style="color: navy">&quot; </span><b>alias </b>string <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#HumanName" title="HumanName">http://hl7.org/fhir/StructureDefinition/HumanName</a><span style="color: navy">&quot; </span><b>alias </b>HumanName <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#Address" title="Address">http://hl7.org/fhir/StructureDefinition/Address</a><span style="color: navy">&quot; </span><b>alias </b>Address <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#ContactPoint" title="ContactPoint">http://hl7.org/fhir/StructureDefinition/ContactPoint</a><span style="color: navy">&quot; </span><b>alias </b>ContactPoint <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#boolean" title="boolean">http://hl7.org/fhir/StructureDefinition/boolean</a><span style="color: navy">&quot; </span><b>alias </b>boolean <b>as </b><b>target</b>
 <b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#Period" title="Period">http://hl7.org/fhir/StructureDefinition/Period</a><span style="color: navy">&quot; </span><b>alias </b>Period <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#integer" title="integer">http://hl7.org/fhir/StructureDefinition/integer</a><span style="color: navy">&quot; </span><b>alias </b>integer <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#dateTime" title="dateTime">http://hl7.org/fhir/StructureDefinition/dateTime</a><span style="color: navy">&quot; </span><b>alias </b>dateTime <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#date" title="date">http://hl7.org/fhir/StructureDefinition/date</a><span style="color: navy">&quot; </span><b>alias </b>date <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#Quantity" title="Quantity">http://hl7.org/fhir/StructureDefinition/Quantity</a><span style="color: navy">&quot; </span><b>alias </b>Quantity <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#Ratio" title="Ratio">http://hl7.org/fhir/StructureDefinition/Ratio</a><span style="color: navy">&quot; </span><b>alias </b>Ratio <b>as </b><b>target</b>
 
+<span style="color: navy">// </span><span style="color: green">=========================</span>
+<span style="color: navy">// </span><span style="color: green">   Groupes</span>
+<span style="color: navy">// </span><span style="color: green">   =========================</span>
 <b>group </b>Any<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy">)</span><span style="color: navy"> {
 </span>  src<span style="color: navy"><b> -&gt; </b></span>tgt <i>&quot;base&quot;</i><span style="color: navy">;</span>
 <span style="color: navy">}
 
-</span><b>group </b>II<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>II, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Identifier<span style="color: navy">)</span><b> extends </b>Any<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
+</span><span style="color: navy">// </span><span style="color: green">---------- II → Identifier ----------</span>
+<b>group </b>II<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>II, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Identifier<span style="color: navy">)</span><b> extends </b>Any<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
 </span>  src.root<b> as </b><span style="color: maroon">r</span><b> where </b>src.extension.exists()<span style="color: navy"><b> -&gt; </b></span>tgt.system = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:oid:'</span><span style="color: navy">, </span><span style="color: maroon">r</span><span style="color: navy">)</span> <i>&quot;root1&quot;</i><span style="color: navy">;</span>
   src.root<b> as </b><span style="color: maroon">r</span><b> where </b>src.extension.empty() and src.root.matches('[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}')<span style="color: navy"><b> -&gt; </b></span> tgt.system = <span style="color: blue">'urn:ietf:rfc:3986'</span><span style="color: navy">, </span> tgt.value = <span style="color: navy">(</span>'urn:uuid:' + r.lower()<span style="color: navy">)</span> <i>&quot;rootuuid&quot;</i><span style="color: navy">;</span>
   src.root<b> as </b><span style="color: maroon">r</span><b> where </b>src.extension.empty() and src.root.contains('.')<span style="color: navy"><b> -&gt; </b></span> tgt.system = <span style="color: blue">'urn:ietf:rfc:3986'</span><span style="color: navy">, </span> tgt.value = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:oid:'</span><span style="color: navy">, </span><span style="color: maroon">r</span><span style="color: navy">)</span> <i>&quot;rootoid&quot;</i><span style="color: navy">;</span>
-  src.extension<b> as </b><span style="color: maroon">e</span><span style="color: navy"><b> -&gt; </b></span>tgt.value = <span style="color: maroon">e</span><span style="color: navy">;</span>
-  src.assigningAuthorityName<b> as </b><span style="color: maroon">s</span><span style="color: navy"><b> -&gt; </b></span> tgt.assigner<b> as </b><span style="color: maroon">a</span><span style="color: navy">, </span> a.display = <span style="color: maroon">s</span><span style="color: navy">;</span> <span style="color: navy">// </span><span style="color: green">there's no equivalent for displayable in FHIR - and it probably will never matter, but if it does, it might map to Identifier.use.</span>
+  src.extension<b> as </b><span style="color: maroon">e</span><span style="color: navy"><b> -&gt; </b></span>tgt.value = <span style="color: maroon">e</span> <i>&quot;value&quot;</i><span style="color: navy">;</span>
+  src.assigningAuthorityName<b> as </b><span style="color: maroon">s</span><span style="color: navy"><b> -&gt; </b></span> tgt.assigner<b> as </b><span style="color: maroon">a</span><span style="color: navy">, </span> a.display = <span style="color: maroon">s</span> <i>&quot;assigner&quot;</i><span style="color: navy">;</span>
   src.displayable<b> as </b><span style="color: maroon">displayable</span><span style="color: navy"><b> -&gt; </b></span>tgt.extension<b> as </b><span style="color: maroon">ext</span><b> then</b><span style="color: navy"> {
 </span>    displayable<span style="color: navy"><b> -&gt; </b></span>ext.url = <span style="color: blue">'http://hl7.org/fhir/cdaStructureDefinition/extension-displayable'</span> <i>&quot;url&quot;</i><span style="color: navy">;</span>
     displayable.value<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>ext.value = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">v</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span><span style="color: navy">;</span>
   <span style="color: navy">}</span> <i>&quot;extension&quot;</i><span style="color: navy">;</span>
 <span style="color: navy">}
 
-</span><b>group </b>INT<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>INT, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>integer<span style="color: navy">)</span><b> extends </b>Any<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
+</span><span style="color: navy">// </span><span style="color: green">---------- INT → integer ----------</span>
+<b>group </b>INT<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>INT, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>integer<span style="color: navy">)</span><b> extends </b>Any<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
 </span>  src.value<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.value = <span style="color: maroon">v</span> <i>&quot;integer&quot;</i><span style="color: navy">;</span>
 <span style="color: navy">}
 
-</span><b>group </b>TemplateID<span style="color: navy">(</span><b>source</b> <span style="color: maroon">template</span><span style="color: navy"> : </span>II, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy">)</span><span style="color: navy"> {
+</span><span style="color: navy">// </span><span style="color: green">---------- TemplateId (II → Identifier dans une extension) ----------</span>
+<b>group </b>TemplateID<span style="color: navy">(</span><b>source</b> <span style="color: maroon">template</span><span style="color: navy"> : </span>II, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy">)</span><span style="color: navy"> {
 </span>  template<span style="color: navy"><b> -&gt; </b></span>tgt.extension<b> as </b><span style="color: maroon">ext</span><b> then</b><span style="color: navy"> {
 </span>    template<span style="color: navy"><b> -&gt; </b></span>ext.url = <span style="color: blue">'http://hl7.org/cda/stds/core/StructureDefinition/templateID'</span> <i>&quot;url&quot;</i><span style="color: navy">;</span>
     template<span style="color: navy"><b> -&gt; </b></span>ext.value = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Identifier'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">value</span><b> then </b>II<span style="color: navy">(</span><span style="color: maroon">template</span><span style="color: navy">, </span><span style="color: maroon">value</span><span style="color: navy">)</span> <i>&quot;value&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">}</span> <i>&quot;templateId&quot;</i><span style="color: navy">;</span>
 <span style="color: navy">}
 
-</span><b>group </b>Negation<span style="color: navy">(</span><b>source</b> <span style="color: maroon">negation</span><span style="color: navy"> : </span>BL, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy">)</span><span style="color: navy"> {
+</span><span style="color: navy">// </span><span style="color: green">---------- BL → modifierExtension.valueBoolean (negationInd) ----------</span>
+<b>group </b>Negation<span style="color: navy">(</span><b>source</b> <span style="color: maroon">negation</span><span style="color: navy"> : </span>BL, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy">)</span><span style="color: navy"> {
 </span>  negation<span style="color: navy"><b> -&gt; </b></span>tgt.modifierExtension<b> as </b><span style="color: maroon">ext</span><b> then</b><span style="color: navy"> {
 </span>    negation<span style="color: navy"><b> -&gt; </b></span>ext.url = <span style="color: blue">'http://hl7.org/cda/stds/core/StructureDefinition/negationIndicator'</span> <i>&quot;url&quot;</i><span style="color: navy">;</span>
     negation<b> as </b><span style="color: maroon">neg</span><span style="color: navy"><b> -&gt; </b></span> ext.value = <b>create</b><span style="color: navy">(</span><span style="color: blue">'boolean'</span><span style="color: navy">)</span><span style="color: navy">, </span> ext.value = <span style="color: maroon">neg</span> <i>&quot;value&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">}</span> <i>&quot;negation&quot;</i><span style="color: navy">;</span>
 <span style="color: navy">}
 
-</span><b>group </b>TSInstant<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>TS, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>instant<span style="color: navy">)</span><b> extends </b>Any<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
-</span>  src.value<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.value = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">v</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span><span style="color: navy">;</span>
+</span><span style="color: navy">// </span><span style="color: green">---------- BL → boolean (générique) ----------</span>
+<b>group </b>BLBoolean<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>BL, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>boolean<span style="color: navy">)</span><b> extends </b>Any<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
+</span>  src<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.value = <span style="color: maroon">v</span> <i>&quot;boolean&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><span style="color: navy">// </span><span style="color: green">---------- TS → instant/dateTime/date ----------</span>
+<b>group </b>TSInstant<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>TS, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>instant<span style="color: navy">)</span><b> extends </b>Any<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
+</span>  src.value<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.value = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">v</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span> <i>&quot;v&quot;</i><span style="color: navy">;</span>
 <span style="color: navy">}
 
 </span><b>group </b>TSDateTime<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>TS, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>dateTime<span style="color: navy">)</span><b> extends </b>TSInstant<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
@@ -77,16 +100,18 @@
 </span>  src<span style="color: navy"><b> -&gt; </b></span>tgt <i>&quot;inherit&quot;</i><span style="color: navy">;</span>
 <span style="color: navy">}
 
-</span><b>group </b>IVLTSPeriod<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>IVL_TS, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Period<span style="color: navy">)</span><b> extends </b>Any<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
-</span>  src.low<b> as </b><span style="color: maroon">low</span><span style="color: navy"><b> -&gt; </b></span>tgt.start = <b>create</b><span style="color: navy">(</span><span style="color: blue">'dateTime'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">start</span><b> then </b>TSDateTime<span style="color: navy">(</span><span style="color: maroon">low</span><span style="color: navy">, </span><span style="color: maroon">start</span><span style="color: navy">)</span><span style="color: navy">;</span>
-  src.high<b> as </b><span style="color: maroon">high</span><span style="color: navy"><b> -&gt; </b></span>tgt.end = <b>create</b><span style="color: navy">(</span><span style="color: blue">'dateTime'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">end</span><b> then </b>TSDateTime<span style="color: navy">(</span><span style="color: maroon">high</span><span style="color: navy">, </span><span style="color: maroon">end</span><span style="color: navy">)</span><span style="color: navy">;</span>
+</span><span style="color: navy">// </span><span style="color: green">---------- IVL_TS → Period / dateTime ----------</span>
+<b>group </b>IVLTSPeriod<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>IVL_TS, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Period<span style="color: navy">)</span><b> extends </b>Any<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
+</span>  src.low<b> as </b><span style="color: maroon">low</span><span style="color: navy"><b> -&gt; </b></span>tgt.start = <b>create</b><span style="color: navy">(</span><span style="color: blue">'dateTime'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">start</span><b> then </b>TSDateTime<span style="color: navy">(</span><span style="color: maroon">low</span><span style="color: navy">, </span><span style="color: maroon">start</span><span style="color: navy">)</span> <i>&quot;start&quot;</i><span style="color: navy">;</span>
+  src.high<b> as </b><span style="color: maroon">high</span><span style="color: navy"><b> -&gt; </b></span>tgt.end = <b>create</b><span style="color: navy">(</span><span style="color: blue">'dateTime'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">end</span><b> then </b>TSDateTime<span style="color: navy">(</span><span style="color: maroon">high</span><span style="color: navy">, </span><span style="color: maroon">end</span><span style="color: navy">)</span> <i>&quot;end&quot;</i><span style="color: navy">;</span>
 <span style="color: navy">}
 
 </span><b>group </b>IVLTSDateTime<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>IVL_TS, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>dateTime<span style="color: navy">)</span><b> extends </b>Any<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
-</span>  src.low<b> as </b><span style="color: maroon">s</span><b> then </b>TSDateTime<span style="color: navy">(</span><span style="color: maroon">s</span><span style="color: navy">, </span><span style="color: maroon">tgt</span><span style="color: navy">)</span><span style="color: navy">;</span>
+</span>  src.low<b> as </b><span style="color: maroon">s</span><b> then </b>TSDateTime<span style="color: navy">(</span><span style="color: maroon">s</span><span style="color: navy">, </span><span style="color: maroon">tgt</span><span style="color: navy">)</span> <i>&quot;lowAsDateTime&quot;</i><span style="color: navy">;</span>
 <span style="color: navy">}
 
-</span><b>group </b>STstring<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>ST, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>string<span style="color: navy">)</span><span style="color: navy"> {
+</span><span style="color: navy">// </span><span style="color: green">---------- ST/ED/ON → string ----------</span>
+<b>group </b>STstring<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>ST, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>string<span style="color: navy">)</span><span style="color: navy"> {
 </span>  src<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.value = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">v</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span> <i>&quot;value&quot;</i><span style="color: navy">;</span>
 <span style="color: navy">}
 
@@ -98,7 +123,8 @@
 </span>  src<span style="color: navy"><b> -&gt; </b></span>tgt <i>&quot;inherit&quot;</i><span style="color: navy">;</span>
 <span style="color: navy">}
 
-</span><b>group </b>CSCode<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>CS, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>code<span style="color: navy">)</span><span style="color: navy"> {
+</span><span style="color: navy">// </span><span style="color: green">---------- CS/CE/CD → code / CodeableConcept ----------</span>
+<b>group </b>CSCode<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>CS, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>code<span style="color: navy">)</span><span style="color: navy"> {
 </span>  src.code<b> as </b><span style="color: maroon">c</span><span style="color: navy"><b> -&gt; </b></span>tgt.value = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">c</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span><span style="color: navy">;</span>
 <span style="color: navy">}
 
@@ -111,16 +137,16 @@
 <span style="color: navy">}
 
 </span><b>group </b>CECodeableConcept<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>CE, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>CodeableConcept<span style="color: navy">)</span><span style="color: navy"> {
-</span>  src.originalText<b> as </b><span style="color: maroon">originalText</span><span style="color: navy"><b> -&gt; </b></span>tgt.text = <span style="color: maroon">originalText</span> <i>&quot;setOriginalText&quot;</i><span style="color: navy">;</span>
+</span>  src.originalText<b> as </b><span style="color: maroon">originalText</span><span style="color: navy"><b> -&gt; </b></span>tgt.text = <span style="color: maroon">originalText</span> <i>&quot;text&quot;</i><span style="color: navy">;</span>
   src<span style="color: navy"><b> -&gt; </b></span>tgt.coding<b> as </b><span style="color: maroon">coding</span><b> then</b><span style="color: navy"> {
 </span>    src.code<b> as </b><span style="color: maroon">code</span><span style="color: navy"><b> -&gt; </b></span>coding.code = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">code</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span><span style="color: navy">;</span>
-    src.codeSystem<b> as </b><span style="color: maroon">system</span><span style="color: navy"><b> -&gt; </b></span>coding.system = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:oid:'</span><span style="color: navy">, </span><span style="color: maroon">system</span><span style="color: navy">)</span><span style="color: navy">;</span>
-    src.displayName<b> as </b><span style="color: maroon">display</span><span style="color: navy"><b> -&gt; </b></span>coding.display = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">display</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span><span style="color: navy">;</span>
+    src.codeSystem<b> as </b><span style="color: maroon">system</span><span style="color: navy"><b> -&gt; </b></span>coding.system = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:oid:'</span><span style="color: navy">, </span><span style="color: maroon">system</span><span style="color: navy">)</span> <i>&quot;system&quot;</i><span style="color: navy">;</span>
+    src.displayName<b> as </b><span style="color: maroon">display</span><span style="color: navy"><b> -&gt; </b></span>coding.display = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">display</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span> <i>&quot;display&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">}</span> <i>&quot;code&quot;</i><span style="color: navy">;</span>
   src.translation<b> as </b><span style="color: maroon">translation</span><span style="color: navy"><b> -&gt; </b></span>tgt.coding<b> as </b><span style="color: maroon">coding</span><b> then</b><span style="color: navy"> {
-</span>    translation.code<b> as </b><span style="color: maroon">code</span><span style="color: navy"><b> -&gt; </b></span>coding.code = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">code</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span><span style="color: navy">;</span>
-    translation.codeSystem<b> as </b><span style="color: maroon">system</span><span style="color: navy"><b> -&gt; </b></span>coding.system = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:oid:'</span><span style="color: navy">, </span><span style="color: maroon">system</span><span style="color: navy">)</span><span style="color: navy">;</span>
-    translation.displayName<b> as </b><span style="color: maroon">display</span><span style="color: navy"><b> -&gt; </b></span>coding.display = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">display</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span><span style="color: navy">;</span>
+</span>    translation.code<b> as </b><span style="color: maroon">code</span><span style="color: navy"><b> -&gt; </b></span>coding.code = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">code</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span> <i>&quot;tcode&quot;</i><span style="color: navy">;</span>
+    translation.codeSystem<b> as </b><span style="color: maroon">system</span><span style="color: navy"><b> -&gt; </b></span>coding.system = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:oid:'</span><span style="color: navy">, </span><span style="color: maroon">system</span><span style="color: navy">)</span> <i>&quot;tsystem&quot;</i><span style="color: navy">;</span>
+    translation.displayName<b> as </b><span style="color: maroon">display</span><span style="color: navy"><b> -&gt; </b></span>coding.display = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">display</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span> <i>&quot;tdisplay&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">}</span><span style="color: navy">;</span>
 <span style="color: navy">}
 
@@ -132,65 +158,64 @@
 </span>  src<span style="color: navy"><b> -&gt; </b></span>tgt <i>&quot;inherit&quot;</i><span style="color: navy">;</span>
 <span style="color: navy">}
 
-</span><b>group </b>ENHumanName<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>EN, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>HumanName<span style="color: navy">)</span><span style="color: navy"> {
+</span><span style="color: navy">// </span><span style="color: green">---------- EN/PN → HumanName ----------</span>
+<b>group </b>ENHumanName<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>EN, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>HumanName<span style="color: navy">)</span><span style="color: navy"> {
 </span>  src.item<b> as </b><span style="color: maroon">item</span><b> then</b><span style="color: navy"> {
 </span>    item.family<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.family = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
     item.given<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.given = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
     item.prefix<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.prefix = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
     item.suffix<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.suffix = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
   <span style="color: navy">}</span><span style="color: navy">;</span>
-  src.validTime<b> as </b><span style="color: maroon">validTime</span><span style="color: navy"><b> -&gt; </b></span>tgt.period = <span style="color: maroon">validTime</span><span style="color: navy">;</span>
+  src.validTime<b> as </b><span style="color: maroon">validTime</span><span style="color: navy"><b> -&gt; </b></span>tgt.period = <span style="color: maroon">validTime</span> <i>&quot;period&quot;</i><span style="color: navy">;</span>
 <span style="color: navy">}
 
 </span><b>group </b>PNHumanName<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>PN, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>HumanName<span style="color: navy">)</span><b> extends </b>ENHumanName<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
 </span>  src<span style="color: navy"><b> -&gt; </b></span>tgt <i>&quot;inherit&quot;</i><span style="color: navy">;</span>
 <span style="color: navy">}
 
-</span><b>group </b>ADAddress<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>AD, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Address<span style="color: navy">)</span><span style="color: navy"> {
+</span><span style="color: navy">// </span><span style="color: green">---------- AD → Address ----------</span>
+<b>group </b>ADAddress<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>AD, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Address<span style="color: navy">)</span><span style="color: navy"> {
 </span>  src.item<b> as </b><span style="color: maroon">item</span><b> then</b><span style="color: navy"> {
 </span>    item.country<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.country = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
     item.state<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.state = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
-    item.county<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.district = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
+    item.county<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.district = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span> <i>&quot;district&quot;</i><span style="color: navy">;</span>
     item.city<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.city = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
-    item.postalCode<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.postalCode = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
-    item.streetAddressLine<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.line = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
-    item<span style="color: navy"><b> -&gt; </b></span>tgt.line<b> as </b><span style="color: maroon">line</span><b> then</b><span style="color: navy"> {
-</span>      item<b> where </b>src.censusTract.exists()<b> then</b><span style="color: navy"> {
-</span>        item.censusTract<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>line.extension<b> as </b><span style="color: maroon">ext1</span><b> then </b>CensusTract<span style="color: navy">(</span><span style="color: maroon">v</span><span style="color: navy">, </span><span style="color: maroon">ext1</span><span style="color: navy">)</span> <i>&quot;line&quot;</i><span style="color: navy">;</span>
-      <span style="color: navy">}</span> <i>&quot;sfgfdsg&quot;</i><span style="color: navy">;</span>
-    <span style="color: navy">}</span> <i>&quot;CensusTract&quot;</i><span style="color: navy">;</span>
-    <span style="color: navy">// </span><span style="color: green">as streetAddress then{</span>
-    <span style="color: #b36b00" title="Cet élément n'était pas défini avant R5">// src.censusTract as v-&gt;tgt.line as line, line.extension as ext1 then CensusTract(v, ext1) &quot;line&quot;;</span>
-    <span style="color: #b36b00" title="Cet élément n'était pas défini avant R5">// src.censusTract as v -&gt;tgt.line as line, line.extension as ext1 then CensusTract(v, ext1) &quot;line&quot;;</span>
-    item.streetName<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.line = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
-    item.houseNumber<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.line = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
+    item.postalCode<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.postalCode = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span> <i>&quot;postal&quot;</i><span style="color: navy">;</span>
+    item.streetAddressLine<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.line = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span> <i>&quot;line1&quot;</i><span style="color: navy">;</span>
+    item.streetName<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.line = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span> <i>&quot;linestreet&quot;</i><span style="color: navy">;</span>
+    item.houseNumber<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.line = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span> <i>&quot;linenumber&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">}</span><span style="color: navy">;</span>
-  src.useablePeriod<b> as </b><span style="color: maroon">useablePeriod</span><span style="color: navy"><b> -&gt; </b></span>tgt.period = <span style="color: maroon">useablePeriod</span><span style="color: navy">;</span>
+  src.useablePeriod<b> as </b><span style="color: maroon">useablePeriod</span><span style="color: navy"><b> -&gt; </b></span>tgt.period = <span style="color: maroon">useablePeriod</span> <i>&quot;period&quot;</i><span style="color: navy">;</span>
 <span style="color: navy">}
 
-</span><b>group </b>TELContactPoint<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>TEL, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>ContactPoint<span style="color: navy">)</span><span style="color: navy"> {
+</span><span style="color: navy">// </span><span style="color: green">---------- TEL → ContactPoint ----------</span>
+<b>group </b>TELContactPoint<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>TEL, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>ContactPoint<span style="color: navy">)</span><span style="color: navy"> {
 </span>  src.value<b> as </b><span style="color: maroon">v</span><b> where </b>(src.value.startsWith('tel:'))<span style="color: navy"><b> -&gt; </b></span> tgt.value = <span style="color: navy">(</span>v.substring(4)<span style="color: navy">)</span><span style="color: navy">, </span> tgt.system = <span style="color: blue">'phone'</span> <i>&quot;valuetel&quot;</i><span style="color: navy">;</span>
   src.value<b> as </b><span style="color: maroon">v</span><b> where </b>(src.value.startsWith('fax:'))<span style="color: navy"><b> -&gt; </b></span> tgt.value = <span style="color: navy">(</span>v.substring(4)<span style="color: navy">)</span><span style="color: navy">, </span> tgt.system = <span style="color: blue">'fax'</span> <i>&quot;valuefax&quot;</i><span style="color: navy">;</span>
   src.value<b> as </b><span style="color: maroon">v</span><b> where </b>(src.value.startsWith('mailto:'))<span style="color: navy"><b> -&gt; </b></span> tgt.value = <span style="color: navy">(</span>v.substring(7)<span style="color: navy">)</span><span style="color: navy">, </span> tgt.system = <span style="color: blue">'email'</span> <i>&quot;valuemail&quot;</i><span style="color: navy">;</span>
   src.value<b> as </b><span style="color: maroon">v</span><b> where </b>(src.value.startsWith('http:'))<span style="color: navy"><b> -&gt; </b></span> tgt.value = <span style="color: navy">(</span>v.substring(5)<span style="color: navy">)</span><span style="color: navy">, </span> tgt.system = <span style="color: blue">'url'</span> <i>&quot;valuehttp&quot;</i><span style="color: navy">;</span>
+  src.value<b> as </b><span style="color: maroon">v</span><b> where </b>(src.value.startsWith('https:'))<span style="color: navy"><b> -&gt; </b></span> tgt.value = <span style="color: navy">(</span>v.substring(6)<span style="color: navy">)</span><span style="color: navy">, </span> tgt.system = <span style="color: blue">'url'</span> <i>&quot;valuehttps&quot;</i><span style="color: navy">;</span>
   src.use<b> where </b>(src.use.startsWith('H'))<span style="color: navy"><b> -&gt; </b></span>tgt.use = <span style="color: blue">'home'</span> <i>&quot;usehome&quot;</i><span style="color: navy">;</span>
   src.use<b> where </b>((src.use = 'WP') or (src.use = 'DIR') or (src.use = 'PUB'))<span style="color: navy"><b> -&gt; </b></span>tgt.use = <span style="color: blue">'work'</span> <i>&quot;usework&quot;</i><span style="color: navy">;</span>
   src.use<b> where </b>(src.use = 'BAD')<span style="color: navy"><b> -&gt; </b></span>tgt.use = <span style="color: blue">'old'</span> <i>&quot;usebad&quot;</i><span style="color: navy">;</span>
   src.use<b> where </b>(src.use = 'TMP')<span style="color: navy"><b> -&gt; </b></span>tgt.use = <span style="color: blue">'temp'</span> <i>&quot;usetmp&quot;</i><span style="color: navy">;</span>
   src.use<b> where </b>(src.use = 'MC')<span style="color: navy"><b> -&gt; </b></span>tgt.use = <span style="color: blue">'mobile'</span> <i>&quot;usemobile&quot;</i><span style="color: navy">;</span>
-  src.useablePeriod<b> as </b><span style="color: maroon">useablePeriod</span><span style="color: navy"><b> -&gt; </b></span>tgt.period = <span style="color: maroon">useablePeriod</span><span style="color: navy">;</span> <span style="color: navy">// </span><span style="color: green">use: for src.use as c make tgt.use = translate(c, 'http://hl7.org/fhir/ConceptMap/cm-telecom-use-v3', 'code')</span>
+  src.useablePeriod<b> as </b><span style="color: maroon">useablePeriod</span><span style="color: navy"><b> -&gt; </b></span>tgt.period = <span style="color: maroon">useablePeriod</span> <i>&quot;period&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">// </span><span style="color: green">NOTE: Une traduction via ConceptMap reste préférable pour aligner v3→R4 si disponible.</span>
 <span style="color: navy">}
 
-</span><b>group </b>PQQuantity<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>PQ, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Quantity<span style="color: navy">)</span><span style="color: navy"> {
+</span><span style="color: navy">// </span><span style="color: green">---------- PQ → Quantity ----------</span>
+<b>group </b>PQQuantity<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>PQ, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Quantity<span style="color: navy">)</span><span style="color: navy"> {
 </span>  src.unit<b> as </b><span style="color: maroon">unit</span><span style="color: navy"><b> -&gt; </b></span>tgt.unit = <span style="color: maroon">unit</span><span style="color: navy">;</span>
-  src.unit<b> as </b><span style="color: maroon">unit</span><span style="color: navy"><b> -&gt; </b></span>tgt.code = <span style="color: maroon">unit</span><span style="color: navy">;</span>
-  src.unit<b> as </b><span style="color: maroon">unit</span><span style="color: navy"><b> -&gt; </b></span>tgt.system = <span style="color: blue">'http://unitsofmeasure.org'</span><span style="color: navy">;</span>
-  src.value<b> as </b><span style="color: maroon">value</span><span style="color: navy"><b> -&gt; </b></span>tgt.value = <span style="color: maroon">value</span><span style="color: navy">;</span>
+  src.unit<b> as </b><span style="color: maroon">unit</span><span style="color: navy"><b> -&gt; </b></span>tgt.code = <span style="color: maroon">unit</span> <i>&quot;code&quot;</i><span style="color: navy">;</span>
+  src.unit<b> as </b><span style="color: maroon">unit</span><span style="color: navy"><b> -&gt; </b></span>tgt.system = <span style="color: blue">'http://unitsofmeasure.org'</span> <i>&quot;system&quot;</i><span style="color: navy">;</span>
+  src.value<b> as </b><span style="color: maroon">val</span><span style="color: navy"><b> -&gt; </b></span>tgt.value = <span style="color: maroon">val</span><span style="color: navy">;</span>
 <span style="color: navy">}
 
-</span><b>group </b>RTOPQPQRatio<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>RTO_PQ_PQ, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Ratio<span style="color: navy">)</span><span style="color: navy"> {
-</span>  src.numerator<b> as </b><span style="color: maroon">numerator</span><span style="color: navy"><b> -&gt; </b></span>tgt.numerator<b> as </b><span style="color: maroon">targetNumerator</span><b> then </b>PQQuantity<span style="color: navy">(</span><span style="color: maroon">numerator</span><span style="color: navy">, </span><span style="color: maroon">targetNumerator</span><span style="color: navy">)</span><span style="color: navy">;</span>
-  src.denominator<b> as </b><span style="color: maroon">denominator</span><span style="color: navy"><b> -&gt; </b></span>tgt.denominator<b> as </b><span style="color: maroon">targetDenominator</span><b> then </b>PQQuantity<span style="color: navy">(</span><span style="color: maroon">denominator</span><span style="color: navy">, </span><span style="color: maroon">targetDenominator</span><span style="color: navy">)</span><span style="color: navy">;</span>
+</span><span style="color: navy">// </span><span style="color: green">---------- RTO_PQ_PQ → Ratio (numérateur/dénominateur PQ) ----------</span>
+<b>group </b>RTOPQPQRatio<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>RTO_PQ_PQ, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Ratio<span style="color: navy">)</span><span style="color: navy"> {
+</span>  src.numerator<b> as </b><span style="color: maroon">numerator</span><span style="color: navy"><b> -&gt; </b></span>tgt.numerator<b> as </b><span style="color: maroon">tNum</span><b> then </b>PQQuantity<span style="color: navy">(</span><span style="color: maroon">numerator</span><span style="color: navy">, </span><span style="color: maroon">tNum</span><span style="color: navy">)</span><span style="color: navy">;</span>
+  src.denominator<b> as </b><span style="color: maroon">denominator</span><span style="color: navy"><b> -&gt; </b></span>tgt.denominator<b> as </b><span style="color: maroon">tDen</span><b> then </b>PQQuantity<span style="color: navy">(</span><span style="color: maroon">denominator</span><span style="color: navy">, </span><span style="color: maroon">tDen</span><span style="color: navy">)</span><span style="color: navy">;</span>
 <span style="color: navy">}
 
 </span></pre></div>
@@ -200,7 +225,7 @@
   <name value="CdaToFHIRTypes"/>
   <title value="Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)"/>
   <status value="draft"/>
-  <date value="2026-03-16T13:19:58+00:00"/>
+  <date value="2026-03-16T13:48:43+00:00"/>
   <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
   <contact>
     <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
@@ -209,7 +234,7 @@
       <value value="https://esante.gouv.fr"/>
     </telecom>
   </contact>
-  <description value="Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)"/>
+  <description value="Métadonnées"/>
   <jurisdiction>
     <coding>
       <system value="urn:iso:std:iso:3166"/>
@@ -233,19 +258,9 @@
     <alias value="II"/>
   </structure>
   <structure>
-    <url value="http://hl7.org/fhir/StructureDefinition/Identifier"/>
-    <mode value="target"/>
-    <alias value="Identifier"/>
-  </structure>
-  <structure>
     <url value="http://hl7.org/cda/stds/core/StructureDefinition/TS"/>
     <mode value="source"/>
     <alias value="TS"/>
-  </structure>
-  <structure>
-    <url value="http://hl7.org/fhir/StructureDefinition/instant"/>
-    <mode value="target"/>
-    <alias value="instant"/>
   </structure>
   <structure>
     <url value="http://hl7.org/cda/stds/core/StructureDefinition/CS"/>
@@ -253,19 +268,9 @@
     <alias value="CS"/>
   </structure>
   <structure>
-    <url value="http://hl7.org/fhir/StructureDefinition/code"/>
-    <mode value="target"/>
-    <alias value="code"/>
-  </structure>
-  <structure>
     <url value="http://hl7.org/cda/stds/core/StructureDefinition/CE"/>
     <mode value="source"/>
     <alias value="CE"/>
-  </structure>
-  <structure>
-    <url value="http://hl7.org/fhir/StructureDefinition/CodeableConcept"/>
-    <mode value="target"/>
-    <alias value="CodeableConcept"/>
   </structure>
   <structure>
     <url value="http://hl7.org/cda/stds/core/StructureDefinition/ST"/>
@@ -273,19 +278,9 @@
     <alias value="ST"/>
   </structure>
   <structure>
-    <url value="http://hl7.org/fhir/StructureDefinition/string"/>
-    <mode value="target"/>
-    <alias value="string"/>
-  </structure>
-  <structure>
     <url value="http://hl7.org/cda/stds/core/StructureDefinition/EN"/>
     <mode value="source"/>
     <alias value="EN"/>
-  </structure>
-  <structure>
-    <url value="http://hl7.org/fhir/StructureDefinition/HumanName"/>
-    <mode value="target"/>
-    <alias value="HumanName"/>
   </structure>
   <structure>
     <url value="http://hl7.org/cda/stds/core/StructureDefinition/AD"/>
@@ -293,19 +288,9 @@
     <alias value="AD"/>
   </structure>
   <structure>
-    <url value="http://hl7.org/fhir/StructureDefinition/Address"/>
-    <mode value="target"/>
-    <alias value="Address"/>
-  </structure>
-  <structure>
     <url value="http://hl7.org/cda/stds/core/StructureDefinition/TEL"/>
     <mode value="source"/>
     <alias value="TEL"/>
-  </structure>
-  <structure>
-    <url value="http://hl7.org/fhir/StructureDefinition/ContactPoint"/>
-    <mode value="target"/>
-    <alias value="ContactPoint"/>
   </structure>
   <structure>
     <url value="http://hl7.org/cda/stds/core/StructureDefinition/BL"/>
@@ -313,23 +298,114 @@
     <alias value="BL"/>
   </structure>
   <structure>
-    <url value="http://hl7.org/fhir/StructureDefinition/boolean"/>
-    <mode value="target"/>
-    <alias value="boolean"/>
-  </structure>
-  <structure>
     <url value="http://hl7.org/cda/stds/core/StructureDefinition/IVL-TS"/>
     <mode value="source"/>
     <alias value="IVL_TS"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/cda/stds/core/StructureDefinition/INT"/>
+    <mode value="source"/>
+    <alias value="INT"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/cda/stds/core/StructureDefinition/ON"/>
+    <mode value="source"/>
+    <alias value="ON"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/cda/stds/core/StructureDefinition/CD"/>
+    <mode value="source"/>
+    <alias value="CD"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/cda/stds/core/StructureDefinition/PQ"/>
+    <mode value="source"/>
+    <alias value="PQ"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/cda/stds/core/StructureDefinition/RTO_PQ_PQ"/>
+    <mode value="source"/>
+    <alias value="RTO_PQ_PQ"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/Identifier"/>
+    <mode value="target"/>
+    <alias value="Identifier"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/instant"/>
+    <mode value="target"/>
+    <alias value="instant"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/code"/>
+    <mode value="target"/>
+    <alias value="code"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/CodeableConcept"/>
+    <mode value="target"/>
+    <alias value="CodeableConcept"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/string"/>
+    <mode value="target"/>
+    <alias value="string"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/HumanName"/>
+    <mode value="target"/>
+    <alias value="HumanName"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/Address"/>
+    <mode value="target"/>
+    <alias value="Address"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/ContactPoint"/>
+    <mode value="target"/>
+    <alias value="ContactPoint"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/boolean"/>
+    <mode value="target"/>
+    <alias value="boolean"/>
   </structure>
   <structure>
     <url value="http://hl7.org/fhir/StructureDefinition/Period"/>
     <mode value="target"/>
     <alias value="Period"/>
   </structure>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/integer"/>
+    <mode value="target"/>
+    <alias value="integer"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/dateTime"/>
+    <mode value="target"/>
+    <alias value="dateTime"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/date"/>
+    <mode value="target"/>
+    <alias value="date"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/Quantity"/>
+    <mode value="target"/>
+    <alias value="Quantity"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/Ratio"/>
+    <mode value="target"/>
+    <alias value="Ratio"/>
+  </structure>
   <group>
     <name value="Any"/>
     <typeMode value="none"/>
+    <documentation value="=========================&#xA;   Groupes&#xA;   ========================="/>
     <input>
       <name value="src"/>
       <mode value="source"/>
@@ -353,6 +429,7 @@
     <name value="II"/>
     <extends value="Any"/>
     <typeMode value="types"/>
+    <documentation value="---------- II → Identifier ----------"/>
     <input>
       <name value="src"/>
       <type value="II"/>
@@ -442,7 +519,7 @@
       </target>
     </rule>
     <rule>
-      <name value="extension"/>
+      <name value="value"/>
       <source>
         <context value="src"/>
         <element value="extension"/>
@@ -459,7 +536,7 @@
       </target>
     </rule>
     <rule>
-      <name value="assigningAuthorityName"/>
+      <name value="assigner"/>
       <source>
         <context value="src"/>
         <element value="assigningAuthorityName"/>
@@ -480,7 +557,6 @@
           <valueId value="s"/>
         </parameter>
       </target>
-      <documentation value="there's no equivalent for displayable in FHIR - and it probably will never matter, but if it does, it might map to Identifier.use."/>
     </rule>
     <rule>
       <name value="extension"/>
@@ -536,6 +612,7 @@
     <name value="INT"/>
     <extends value="Any"/>
     <typeMode value="types"/>
+    <documentation value="---------- INT → integer ----------"/>
     <input>
       <name value="src"/>
       <type value="INT"/>
@@ -567,6 +644,7 @@
   <group>
     <name value="TemplateID"/>
     <typeMode value="none"/>
+    <documentation value="---------- TemplateId (II → Identifier dans une extension) ----------"/>
     <input>
       <name value="template"/>
       <type value="II"/>
@@ -628,6 +706,7 @@
   <group>
     <name value="Negation"/>
     <typeMode value="none"/>
+    <documentation value="---------- BL → modifierExtension.valueBoolean (negationInd) ----------"/>
     <input>
       <name value="negation"/>
       <type value="BL"/>
@@ -691,9 +770,42 @@
     </rule>
   </group>
   <group>
+    <name value="BLBoolean"/>
+    <extends value="Any"/>
+    <typeMode value="types"/>
+    <documentation value="---------- BL → boolean (générique) ----------"/>
+    <input>
+      <name value="src"/>
+      <type value="BL"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="tgt"/>
+      <type value="boolean"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="boolean"/>
+      <source>
+        <context value="src"/>
+        <variable value="v"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="value"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueId value="v"/>
+        </parameter>
+      </target>
+    </rule>
+  </group>
+  <group>
     <name value="TSInstant"/>
     <extends value="Any"/>
     <typeMode value="types"/>
+    <documentation value="---------- TS → instant/dateTime/date ----------"/>
     <input>
       <name value="src"/>
       <type value="TS"/>
@@ -705,7 +817,7 @@
       <mode value="target"/>
     </input>
     <rule>
-      <name value="value"/>
+      <name value="v"/>
       <source>
         <context value="src"/>
         <element value="value"/>
@@ -779,6 +891,7 @@
     <name value="IVLTSPeriod"/>
     <extends value="Any"/>
     <typeMode value="types"/>
+    <documentation value="---------- IVL_TS → Period / dateTime ----------"/>
     <input>
       <name value="src"/>
       <type value="IVL_TS"/>
@@ -790,7 +903,7 @@
       <mode value="target"/>
     </input>
     <rule>
-      <name value="low"/>
+      <name value="start"/>
       <source>
         <context value="src"/>
         <element value="low"/>
@@ -813,7 +926,7 @@
       </dependent>
     </rule>
     <rule>
-      <name value="high"/>
+      <name value="end"/>
       <source>
         <context value="src"/>
         <element value="high"/>
@@ -851,7 +964,7 @@
       <mode value="target"/>
     </input>
     <rule>
-      <name value="low"/>
+      <name value="lowAsDateTime"/>
       <source>
         <context value="src"/>
         <element value="low"/>
@@ -867,6 +980,7 @@
   <group>
     <name value="STstring"/>
     <typeMode value="none"/>
+    <documentation value="---------- ST/ED/ON → string ----------"/>
     <input>
       <name value="src"/>
       <type value="ST"/>
@@ -950,6 +1064,7 @@
   <group>
     <name value="CSCode"/>
     <typeMode value="none"/>
+    <documentation value="---------- CS/CE/CD → code / CodeableConcept ----------"/>
     <input>
       <name value="src"/>
       <type value="CS"/>
@@ -1045,7 +1160,7 @@
       <mode value="target"/>
     </input>
     <rule>
-      <name value="setOriginalText"/>
+      <name value="text"/>
       <source>
         <context value="src"/>
         <element value="originalText"/>
@@ -1093,7 +1208,7 @@
         </target>
       </rule>
       <rule>
-        <name value="codeSystem"/>
+        <name value="system"/>
         <source>
           <context value="src"/>
           <element value="codeSystem"/>
@@ -1113,7 +1228,7 @@
         </target>
       </rule>
       <rule>
-        <name value="displayName"/>
+        <name value="display"/>
         <source>
           <context value="src"/>
           <element value="displayName"/>
@@ -1147,7 +1262,7 @@
         <variable value="coding"/>
       </target>
       <rule>
-        <name value="code"/>
+        <name value="tcode"/>
         <source>
           <context value="translation"/>
           <element value="code"/>
@@ -1167,7 +1282,7 @@
         </target>
       </rule>
       <rule>
-        <name value="codeSystem"/>
+        <name value="tsystem"/>
         <source>
           <context value="translation"/>
           <element value="codeSystem"/>
@@ -1187,7 +1302,7 @@
         </target>
       </rule>
       <rule>
-        <name value="displayName"/>
+        <name value="tdisplay"/>
         <source>
           <context value="translation"/>
           <element value="displayName"/>
@@ -1261,6 +1376,7 @@
   <group>
     <name value="ENHumanName"/>
     <typeMode value="none"/>
+    <documentation value="---------- EN/PN → HumanName ----------"/>
     <input>
       <name value="src"/>
       <type value="EN"/>
@@ -1348,7 +1464,7 @@
       </rule>
     </rule>
     <rule>
-      <name value="validTime"/>
+      <name value="period"/>
       <source>
         <context value="src"/>
         <element value="validTime"/>
@@ -1393,6 +1509,7 @@
   <group>
     <name value="ADAddress"/>
     <typeMode value="none"/>
+    <documentation value="---------- AD → Address ----------"/>
     <input>
       <name value="src"/>
       <type value="AD"/>
@@ -1445,7 +1562,7 @@
         </target>
       </rule>
       <rule>
-        <name value="county"/>
+        <name value="district"/>
         <source>
           <context value="item"/>
           <element value="county"/>
@@ -1479,7 +1596,7 @@
         </target>
       </rule>
       <rule>
-        <name value="postalCode"/>
+        <name value="postal"/>
         <source>
           <context value="item"/>
           <element value="postalCode"/>
@@ -1496,7 +1613,7 @@
         </target>
       </rule>
       <rule>
-        <name value="streetAddressLine"/>
+        <name value="line1"/>
         <source>
           <context value="item"/>
           <element value="streetAddressLine"/>
@@ -1513,45 +1630,7 @@
         </target>
       </rule>
       <rule>
-        <name value="CensusTract"/>
-        <source>
-          <context value="item"/>
-        </source>
-        <target>
-          <context value="tgt"/>
-          <contextType value="variable"/>
-          <element value="line"/>
-          <variable value="line"/>
-        </target>
-        <rule>
-          <name value="sfgfdsg"/>
-          <source>
-            <context value="item"/>
-            <condition value="src.censusTract.exists()"/>
-          </source>
-          <rule>
-            <name value="line"/>
-            <source>
-              <context value="item"/>
-              <element value="censusTract"/>
-              <variable value="v"/>
-            </source>
-            <target>
-              <context value="line"/>
-              <contextType value="variable"/>
-              <element value="extension"/>
-              <variable value="ext1"/>
-            </target>
-            <dependent>
-              <name value="CensusTract"/>
-              <variable value="v"/>
-              <variable value="ext1"/>
-            </dependent>
-          </rule>
-        </rule>
-      </rule>
-      <rule>
-        <name value="streetName"/>
+        <name value="linestreet"/>
         <source>
           <context value="item"/>
           <element value="streetName"/>
@@ -1568,7 +1647,7 @@
         </target>
       </rule>
       <rule>
-        <name value="houseNumber"/>
+        <name value="linenumber"/>
         <source>
           <context value="item"/>
           <element value="houseNumber"/>
@@ -1586,7 +1665,7 @@
       </rule>
     </rule>
     <rule>
-      <name value="useablePeriod"/>
+      <name value="period"/>
       <source>
         <context value="src"/>
         <element value="useablePeriod"/>
@@ -1606,6 +1685,7 @@
   <group>
     <name value="TELContactPoint"/>
     <typeMode value="none"/>
+    <documentation value="---------- TEL → ContactPoint ----------"/>
     <input>
       <name value="src"/>
       <type value="TEL"/>
@@ -1725,6 +1805,33 @@
       </target>
     </rule>
     <rule>
+      <name value="valuehttps"/>
+      <source>
+        <context value="src"/>
+        <element value="value"/>
+        <variable value="v"/>
+        <condition value="(src.value.startsWith('https:'))"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="value"/>
+        <transform value="evaluate"/>
+        <parameter>
+          <valueString value="v.substring(6)"/>
+        </parameter>
+      </target>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="system"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueString value="url"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
       <name value="usehome"/>
       <source>
         <context value="src"/>
@@ -1810,7 +1917,7 @@
       </target>
     </rule>
     <rule>
-      <name value="useablePeriod"/>
+      <name value="period"/>
       <source>
         <context value="src"/>
         <element value="useablePeriod"/>
@@ -1825,12 +1932,12 @@
           <valueId value="useablePeriod"/>
         </parameter>
       </target>
-      <documentation value="use: for src.use as c make tgt.use = translate(c, 'http://hl7.org/fhir/ConceptMap/cm-telecom-use-v3', 'code')"/>
     </rule>
   </group>
   <group>
     <name value="PQQuantity"/>
     <typeMode value="none"/>
+    <documentation value="---------- PQ → Quantity ----------"/>
     <input>
       <name value="src"/>
       <type value="PQ"/>
@@ -1859,7 +1966,7 @@
       </target>
     </rule>
     <rule>
-      <name value="unit"/>
+      <name value="code"/>
       <source>
         <context value="src"/>
         <element value="unit"/>
@@ -1876,7 +1983,7 @@
       </target>
     </rule>
     <rule>
-      <name value="unit"/>
+      <name value="system"/>
       <source>
         <context value="src"/>
         <element value="unit"/>
@@ -1897,7 +2004,7 @@
       <source>
         <context value="src"/>
         <element value="value"/>
-        <variable value="value"/>
+        <variable value="val"/>
       </source>
       <target>
         <context value="tgt"/>
@@ -1905,7 +2012,7 @@
         <element value="value"/>
         <transform value="copy"/>
         <parameter>
-          <valueId value="value"/>
+          <valueId value="val"/>
         </parameter>
       </target>
     </rule>
@@ -1913,6 +2020,7 @@
   <group>
     <name value="RTOPQPQRatio"/>
     <typeMode value="none"/>
+    <documentation value="---------- RTO_PQ_PQ → Ratio (numérateur/dénominateur PQ) ----------"/>
     <input>
       <name value="src"/>
       <type value="RTO_PQ_PQ"/>
@@ -1934,12 +2042,12 @@
         <context value="tgt"/>
         <contextType value="variable"/>
         <element value="numerator"/>
-        <variable value="targetNumerator"/>
+        <variable value="tNum"/>
       </target>
       <dependent>
         <name value="PQQuantity"/>
         <variable value="numerator"/>
-        <variable value="targetNumerator"/>
+        <variable value="tNum"/>
       </dependent>
     </rule>
     <rule>
@@ -1953,12 +2061,12 @@
         <context value="tgt"/>
         <contextType value="variable"/>
         <element value="denominator"/>
-        <variable value="targetDenominator"/>
+        <variable value="tDen"/>
       </target>
       <dependent>
         <name value="PQQuantity"/>
         <variable value="denominator"/>
-        <variable value="targetDenominator"/>
+        <variable value="tDen"/>
       </dependent>
     </rule>
   </group>

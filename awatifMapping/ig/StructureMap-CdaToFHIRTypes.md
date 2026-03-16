@@ -12,7 +12,7 @@
 | Draft as of 2026-03-16 | *Computable Name*:CdaToFHIRTypes |
 
  
-Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger) 
+Métadonnées 
 
 
 
@@ -27,7 +27,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
   "name" : "CdaToFHIRTypes",
   "title" : "Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)",
   "status" : "draft",
-  "date" : "2026-03-16T13:19:58+00:00",
+  "date" : "2026-03-16T13:48:43+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -36,7 +36,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
       "value" : "https://esante.gouv.fr"
     }]
   }],
-  "description" : "Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)",
+  "description" : "Métadonnées",
   "jurisdiction" : [{
     "coding" : [{
       "system" : "urn:iso:std:iso:3166",
@@ -60,19 +60,9 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
     "alias" : "II"
   },
   {
-    "url" : "http://hl7.org/fhir/StructureDefinition/Identifier",
-    "mode" : "target",
-    "alias" : "Identifier"
-  },
-  {
     "url" : "http://hl7.org/cda/stds/core/StructureDefinition/TS",
     "mode" : "source",
     "alias" : "TS"
-  },
-  {
-    "url" : "http://hl7.org/fhir/StructureDefinition/instant",
-    "mode" : "target",
-    "alias" : "instant"
   },
   {
     "url" : "http://hl7.org/cda/stds/core/StructureDefinition/CS",
@@ -80,19 +70,9 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
     "alias" : "CS"
   },
   {
-    "url" : "http://hl7.org/fhir/StructureDefinition/code",
-    "mode" : "target",
-    "alias" : "code"
-  },
-  {
     "url" : "http://hl7.org/cda/stds/core/StructureDefinition/CE",
     "mode" : "source",
     "alias" : "CE"
-  },
-  {
-    "url" : "http://hl7.org/fhir/StructureDefinition/CodeableConcept",
-    "mode" : "target",
-    "alias" : "CodeableConcept"
   },
   {
     "url" : "http://hl7.org/cda/stds/core/StructureDefinition/ST",
@@ -100,19 +80,9 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
     "alias" : "ST"
   },
   {
-    "url" : "http://hl7.org/fhir/StructureDefinition/string",
-    "mode" : "target",
-    "alias" : "string"
-  },
-  {
     "url" : "http://hl7.org/cda/stds/core/StructureDefinition/EN",
     "mode" : "source",
     "alias" : "EN"
-  },
-  {
-    "url" : "http://hl7.org/fhir/StructureDefinition/HumanName",
-    "mode" : "target",
-    "alias" : "HumanName"
   },
   {
     "url" : "http://hl7.org/cda/stds/core/StructureDefinition/AD",
@@ -120,19 +90,9 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
     "alias" : "AD"
   },
   {
-    "url" : "http://hl7.org/fhir/StructureDefinition/Address",
-    "mode" : "target",
-    "alias" : "Address"
-  },
-  {
     "url" : "http://hl7.org/cda/stds/core/StructureDefinition/TEL",
     "mode" : "source",
     "alias" : "TEL"
-  },
-  {
-    "url" : "http://hl7.org/fhir/StructureDefinition/ContactPoint",
-    "mode" : "target",
-    "alias" : "ContactPoint"
   },
   {
     "url" : "http://hl7.org/cda/stds/core/StructureDefinition/BL",
@@ -140,23 +100,114 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
     "alias" : "BL"
   },
   {
-    "url" : "http://hl7.org/fhir/StructureDefinition/boolean",
-    "mode" : "target",
-    "alias" : "boolean"
-  },
-  {
     "url" : "http://hl7.org/cda/stds/core/StructureDefinition/IVL-TS",
     "mode" : "source",
     "alias" : "IVL_TS"
   },
   {
+    "url" : "http://hl7.org/cda/stds/core/StructureDefinition/INT",
+    "mode" : "source",
+    "alias" : "INT"
+  },
+  {
+    "url" : "http://hl7.org/cda/stds/core/StructureDefinition/ON",
+    "mode" : "source",
+    "alias" : "ON"
+  },
+  {
+    "url" : "http://hl7.org/cda/stds/core/StructureDefinition/CD",
+    "mode" : "source",
+    "alias" : "CD"
+  },
+  {
+    "url" : "http://hl7.org/cda/stds/core/StructureDefinition/PQ",
+    "mode" : "source",
+    "alias" : "PQ"
+  },
+  {
+    "url" : "http://hl7.org/cda/stds/core/StructureDefinition/RTO_PQ_PQ",
+    "mode" : "source",
+    "alias" : "RTO_PQ_PQ"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Identifier",
+    "mode" : "target",
+    "alias" : "Identifier"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/instant",
+    "mode" : "target",
+    "alias" : "instant"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/code",
+    "mode" : "target",
+    "alias" : "code"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/CodeableConcept",
+    "mode" : "target",
+    "alias" : "CodeableConcept"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/string",
+    "mode" : "target",
+    "alias" : "string"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/HumanName",
+    "mode" : "target",
+    "alias" : "HumanName"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Address",
+    "mode" : "target",
+    "alias" : "Address"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/ContactPoint",
+    "mode" : "target",
+    "alias" : "ContactPoint"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/boolean",
+    "mode" : "target",
+    "alias" : "boolean"
+  },
+  {
     "url" : "http://hl7.org/fhir/StructureDefinition/Period",
     "mode" : "target",
     "alias" : "Period"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/integer",
+    "mode" : "target",
+    "alias" : "integer"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/dateTime",
+    "mode" : "target",
+    "alias" : "dateTime"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/date",
+    "mode" : "target",
+    "alias" : "date"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Quantity",
+    "mode" : "target",
+    "alias" : "Quantity"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Ratio",
+    "mode" : "target",
+    "alias" : "Ratio"
   }],
   "group" : [{
     "name" : "Any",
     "typeMode" : "none",
+    "documentation" : "=========================\n   Groupes\n   =========================",
     "input" : [{
       "name" : "src",
       "mode" : "source"
@@ -180,6 +231,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
     "name" : "II",
     "extends" : "Any",
     "typeMode" : "types",
+    "documentation" : "---------- II → Identifier ----------",
     "input" : [{
       "name" : "src",
       "type" : "II",
@@ -269,7 +321,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
       }]
     },
     {
-      "name" : "extension",
+      "name" : "value",
       "source" : [{
         "context" : "src",
         "element" : "extension",
@@ -286,7 +338,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
       }]
     },
     {
-      "name" : "assigningAuthorityName",
+      "name" : "assigner",
       "source" : [{
         "context" : "src",
         "element" : "assigningAuthorityName",
@@ -306,8 +358,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
         "parameter" : [{
           "valueId" : "s"
         }]
-      }],
-      "documentation" : "there's no equivalent for displayable in FHIR - and it probably will never matter, but if it does, it might map to Identifier.use."
+      }]
     },
     {
       "name" : "extension",
@@ -363,6 +414,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
     "name" : "INT",
     "extends" : "Any",
     "typeMode" : "types",
+    "documentation" : "---------- INT → integer ----------",
     "input" : [{
       "name" : "src",
       "type" : "INT",
@@ -394,6 +446,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
   {
     "name" : "TemplateID",
     "typeMode" : "none",
+    "documentation" : "---------- TemplateId (II → Identifier dans une extension) ----------",
     "input" : [{
       "name" : "template",
       "type" : "II",
@@ -454,6 +507,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
   {
     "name" : "Negation",
     "typeMode" : "none",
+    "documentation" : "---------- BL → modifierExtension.valueBoolean (negationInd) ----------",
     "input" : [{
       "name" : "negation",
       "type" : "BL",
@@ -517,9 +571,42 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
     }]
   },
   {
+    "name" : "BLBoolean",
+    "extends" : "Any",
+    "typeMode" : "types",
+    "documentation" : "---------- BL → boolean (générique) ----------",
+    "input" : [{
+      "name" : "src",
+      "type" : "BL",
+      "mode" : "source"
+    },
+    {
+      "name" : "tgt",
+      "type" : "boolean",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "boolean",
+      "source" : [{
+        "context" : "src",
+        "variable" : "v"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "value",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueId" : "v"
+        }]
+      }]
+    }]
+  },
+  {
     "name" : "TSInstant",
     "extends" : "Any",
     "typeMode" : "types",
+    "documentation" : "---------- TS → instant/dateTime/date ----------",
     "input" : [{
       "name" : "src",
       "type" : "TS",
@@ -531,7 +618,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
       "mode" : "target"
     }],
     "rule" : [{
-      "name" : "value",
+      "name" : "v",
       "source" : [{
         "context" : "src",
         "element" : "value",
@@ -605,6 +692,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
     "name" : "IVLTSPeriod",
     "extends" : "Any",
     "typeMode" : "types",
+    "documentation" : "---------- IVL_TS → Period / dateTime ----------",
     "input" : [{
       "name" : "src",
       "type" : "IVL_TS",
@@ -616,7 +704,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
       "mode" : "target"
     }],
     "rule" : [{
-      "name" : "low",
+      "name" : "start",
       "source" : [{
         "context" : "src",
         "element" : "low",
@@ -638,7 +726,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
       }]
     },
     {
-      "name" : "high",
+      "name" : "end",
       "source" : [{
         "context" : "src",
         "element" : "high",
@@ -675,7 +763,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
       "mode" : "target"
     }],
     "rule" : [{
-      "name" : "low",
+      "name" : "lowAsDateTime",
       "source" : [{
         "context" : "src",
         "element" : "low",
@@ -690,6 +778,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
   {
     "name" : "STstring",
     "typeMode" : "none",
+    "documentation" : "---------- ST/ED/ON → string ----------",
     "input" : [{
       "name" : "src",
       "type" : "ST",
@@ -773,6 +862,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
   {
     "name" : "CSCode",
     "typeMode" : "none",
+    "documentation" : "---------- CS/CE/CD → code / CodeableConcept ----------",
     "input" : [{
       "name" : "src",
       "type" : "CS",
@@ -868,7 +958,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
       "mode" : "target"
     }],
     "rule" : [{
-      "name" : "setOriginalText",
+      "name" : "text",
       "source" : [{
         "context" : "src",
         "element" : "originalText",
@@ -916,7 +1006,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
         }]
       },
       {
-        "name" : "codeSystem",
+        "name" : "system",
         "source" : [{
           "context" : "src",
           "element" : "codeSystem",
@@ -936,7 +1026,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
         }]
       },
       {
-        "name" : "displayName",
+        "name" : "display",
         "source" : [{
           "context" : "src",
           "element" : "displayName",
@@ -970,7 +1060,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
         "variable" : "coding"
       }],
       "rule" : [{
-        "name" : "code",
+        "name" : "tcode",
         "source" : [{
           "context" : "translation",
           "element" : "code",
@@ -990,7 +1080,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
         }]
       },
       {
-        "name" : "codeSystem",
+        "name" : "tsystem",
         "source" : [{
           "context" : "translation",
           "element" : "codeSystem",
@@ -1010,7 +1100,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
         }]
       },
       {
-        "name" : "displayName",
+        "name" : "tdisplay",
         "source" : [{
           "context" : "translation",
           "element" : "displayName",
@@ -1084,6 +1174,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
   {
     "name" : "ENHumanName",
     "typeMode" : "none",
+    "documentation" : "---------- EN/PN → HumanName ----------",
     "input" : [{
       "name" : "src",
       "type" : "EN",
@@ -1171,7 +1262,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
       }]
     },
     {
-      "name" : "validTime",
+      "name" : "period",
       "source" : [{
         "context" : "src",
         "element" : "validTime",
@@ -1216,6 +1307,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
   {
     "name" : "ADAddress",
     "typeMode" : "none",
+    "documentation" : "---------- AD → Address ----------",
     "input" : [{
       "name" : "src",
       "type" : "AD",
@@ -1268,7 +1360,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
         }]
       },
       {
-        "name" : "county",
+        "name" : "district",
         "source" : [{
           "context" : "item",
           "element" : "county",
@@ -1302,7 +1394,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
         }]
       },
       {
-        "name" : "postalCode",
+        "name" : "postal",
         "source" : [{
           "context" : "item",
           "element" : "postalCode",
@@ -1319,7 +1411,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
         }]
       },
       {
-        "name" : "streetAddressLine",
+        "name" : "line1",
         "source" : [{
           "context" : "item",
           "element" : "streetAddressLine",
@@ -1336,44 +1428,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
         }]
       },
       {
-        "name" : "CensusTract",
-        "source" : [{
-          "context" : "item"
-        }],
-        "target" : [{
-          "context" : "tgt",
-          "contextType" : "variable",
-          "element" : "line",
-          "variable" : "line"
-        }],
-        "rule" : [{
-          "name" : "sfgfdsg",
-          "source" : [{
-            "context" : "item",
-            "condition" : "src.censusTract.exists()"
-          }],
-          "rule" : [{
-            "name" : "line",
-            "source" : [{
-              "context" : "item",
-              "element" : "censusTract",
-              "variable" : "v"
-            }],
-            "target" : [{
-              "context" : "line",
-              "contextType" : "variable",
-              "element" : "extension",
-              "variable" : "ext1"
-            }],
-            "dependent" : [{
-              "name" : "CensusTract",
-              "variable" : ["v", "ext1"]
-            }]
-          }]
-        }]
-      },
-      {
-        "name" : "streetName",
+        "name" : "linestreet",
         "source" : [{
           "context" : "item",
           "element" : "streetName",
@@ -1390,7 +1445,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
         }]
       },
       {
-        "name" : "houseNumber",
+        "name" : "linenumber",
         "source" : [{
           "context" : "item",
           "element" : "houseNumber",
@@ -1408,7 +1463,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
       }]
     },
     {
-      "name" : "useablePeriod",
+      "name" : "period",
       "source" : [{
         "context" : "src",
         "element" : "useablePeriod",
@@ -1428,6 +1483,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
   {
     "name" : "TELContactPoint",
     "typeMode" : "none",
+    "documentation" : "---------- TEL → ContactPoint ----------",
     "input" : [{
       "name" : "src",
       "type" : "TEL",
@@ -1547,6 +1603,33 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
       }]
     },
     {
+      "name" : "valuehttps",
+      "source" : [{
+        "context" : "src",
+        "element" : "value",
+        "variable" : "v",
+        "condition" : "(src.value.startsWith('https:'))"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "value",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "v.substring(6)"
+        }]
+      },
+      {
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "system",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "url"
+        }]
+      }]
+    },
+    {
       "name" : "usehome",
       "source" : [{
         "context" : "src",
@@ -1632,7 +1715,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
       }]
     },
     {
-      "name" : "useablePeriod",
+      "name" : "period",
       "source" : [{
         "context" : "src",
         "element" : "useablePeriod",
@@ -1646,13 +1729,13 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
         "parameter" : [{
           "valueId" : "useablePeriod"
         }]
-      }],
-      "documentation" : "use: for src.use as c make tgt.use = translate(c, 'http://hl7.org/fhir/ConceptMap/cm-telecom-use-v3', 'code')"
+      }]
     }]
   },
   {
     "name" : "PQQuantity",
     "typeMode" : "none",
+    "documentation" : "---------- PQ → Quantity ----------",
     "input" : [{
       "name" : "src",
       "type" : "PQ",
@@ -1681,7 +1764,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
       }]
     },
     {
-      "name" : "unit",
+      "name" : "code",
       "source" : [{
         "context" : "src",
         "element" : "unit",
@@ -1698,7 +1781,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
       }]
     },
     {
-      "name" : "unit",
+      "name" : "system",
       "source" : [{
         "context" : "src",
         "element" : "unit",
@@ -1719,7 +1802,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
       "source" : [{
         "context" : "src",
         "element" : "value",
-        "variable" : "value"
+        "variable" : "val"
       }],
       "target" : [{
         "context" : "tgt",
@@ -1727,7 +1810,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
         "element" : "value",
         "transform" : "copy",
         "parameter" : [{
-          "valueId" : "value"
+          "valueId" : "val"
         }]
       }]
     }]
@@ -1735,6 +1818,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
   {
     "name" : "RTOPQPQRatio",
     "typeMode" : "none",
+    "documentation" : "---------- RTO_PQ_PQ → Ratio (numérateur/dénominateur PQ) ----------",
     "input" : [{
       "name" : "src",
       "type" : "RTO_PQ_PQ",
@@ -1756,11 +1840,11 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
         "context" : "tgt",
         "contextType" : "variable",
         "element" : "numerator",
-        "variable" : "targetNumerator"
+        "variable" : "tNum"
       }],
       "dependent" : [{
         "name" : "PQQuantity",
-        "variable" : ["numerator", "targetNumerator"]
+        "variable" : ["numerator", "tNum"]
       }]
     },
     {
@@ -1774,11 +1858,11 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
         "context" : "tgt",
         "contextType" : "variable",
         "element" : "denominator",
-        "variable" : "targetDenominator"
+        "variable" : "tDen"
       }],
       "dependent" : [{
         "name" : "PQQuantity",
-        "variable" : ["denominator", "targetDenominator"]
+        "variable" : ["denominator", "tDen"]
       }]
     }]
   }]

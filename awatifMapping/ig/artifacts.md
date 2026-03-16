@@ -15,7 +15,7 @@ These define transformations to convert between data structures used by systems 
 | :--- | :--- |
 | [Mapping CSE-MDE vers FHIR Bundle - Contexte Français](StructureMap-CdaFrMDEToBundle.md) | Mapping CSE-MDE vers FHIR Bundle - Contexte Français |
 | [Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)](StructureMap-CdaToBundle.md) | Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger) |
-| [Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)](StructureMap-CdaToFHIRTypes.md) | Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger) |
+| [Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)](StructureMap-CdaToFHIRTypes.md) | Métadonnées |
 | [Mapping de CDAFr vers FHIR Bundle (A partir des sources de Oliver Egger)](StructureMap-CdaFrToBundle.md) | Mapping de CDAFr vers FHIR Bundle (A partir des sources de Oliver Egger) |
 
 ### Terminology: Concept Maps 

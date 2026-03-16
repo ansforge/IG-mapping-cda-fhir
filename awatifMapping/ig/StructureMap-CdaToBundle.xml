@@ -209,8 +209,9 @@
     patient.administrativeGenderCode<b> as </b><span style="color: maroon">gender</span><b> then</b><span style="color: navy"> {
 </span>      gender.code<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.gender = <b>translate</b><span style="color: navy">(</span><span style="color: maroon">v</span><span style="color: navy">, </span><span style="color: blue">'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/cm-v3-administrative-gender'</span><span style="color: navy">, </span><span style="color: blue">'code'</span><span style="color: navy">)</span> <i>&quot;gender&quot;</i><span style="color: navy">;</span>
     <span style="color: navy">}</span> <i>&quot;gender&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">// </span><span style="color: green">chaangement de then boolean (car group non défini) par BLBoolean</span>
     patient.birthTime<b> as </b><span style="color: maroon">birthTime</span><span style="color: navy"><b> -&gt; </b></span>tgt.birthDate = <b>create</b><span style="color: navy">(</span><span style="color: blue">'date'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">date</span><b> then </b>TSDate<span style="color: navy">(</span><span style="color: maroon">birthTime</span><span style="color: navy">, </span><span style="color: maroon">date</span><span style="color: navy">)</span> <i>&quot;birthDate&quot;</i><span style="color: navy">;</span>
-    patient.deceasedInd<b> as </b><span style="color: maroon">indicator</span><b> where </b>patient.deceasedTime.empty()<span style="color: navy"><b> -&gt; </b></span>tgt.deceased = <b>create</b><span style="color: navy">(</span><span style="color: blue">'boolean'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">bool</span><b> then </b>boolean<span style="color: navy">(</span><span style="color: maroon">indicator</span><span style="color: navy">, </span><span style="color: maroon">bool</span><span style="color: navy">)</span> <i>&quot;deceasedBL&quot;</i><span style="color: navy">;</span>
+    patient.deceasedInd<b> as </b><span style="color: maroon">indicator</span><b> where </b>patient.deceasedTime.empty()<span style="color: navy"><b> -&gt; </b></span>tgt.deceased = <b>create</b><span style="color: navy">(</span><span style="color: blue">'boolean'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">bool</span><b> then </b>BLBoolean<span style="color: navy">(</span><span style="color: maroon">indicator</span><span style="color: navy">, </span><span style="color: maroon">bool</span><span style="color: navy">)</span> <i>&quot;deceasedBL&quot;</i><span style="color: navy">;</span>
     patient.deceasedTime<b> as </b><span style="color: maroon">dTime</span><span style="color: navy"><b> -&gt; </b></span>tgt.deceased = <span style="color: maroon">dTime</span><span style="color: navy">;</span>
     patient.maritalStatusCode<b> as </b><span style="color: maroon">mStatus</span><span style="color: navy"><b> -&gt; </b></span>tgt.maritalStatus = <span style="color: maroon">mStatus</span> <i>&quot;maritalStatus&quot;</i><span style="color: navy">;</span>
     patient.languageCommunication<b> as </b><span style="color: maroon">language</span><span style="color: navy"><b> -&gt; </b></span>tgt.communication<b> as </b><span style="color: maroon">communication</span><b> then</b><span style="color: navy"> {
@@ -310,7 +311,7 @@
   <name value="CdaToBundle"/>
   <title value="Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)"/>
   <status value="draft"/>
-  <date value="2026-03-16T13:19:58+00:00"/>
+  <date value="2026-03-16T13:48:43+00:00"/>
   <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
   <contact>
     <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
@@ -2982,7 +2983,7 @@
           </parameter>
         </target>
         <dependent>
-          <name value="boolean"/>
+          <name value="BLBoolean"/>
           <variable value="indicator"/>
           <variable value="bool"/>
         </dependent>
