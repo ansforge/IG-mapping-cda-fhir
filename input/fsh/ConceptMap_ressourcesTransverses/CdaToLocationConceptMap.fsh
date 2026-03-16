@@ -1,4 +1,4 @@
-Instance: CM-CDA-HealthCareFacility-To-Location
+Instance: CdaToLocationConceptMap
 InstanceOf: ConceptMap
 Title: "ConceptMap — CDA HealthCareFacility → FHIR Location"
 Usage: #definition

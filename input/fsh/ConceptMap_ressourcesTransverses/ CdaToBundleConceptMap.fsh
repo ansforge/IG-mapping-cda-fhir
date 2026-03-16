@@ -1,4 +1,4 @@
-Instance: CM-CDA-ClinicalDocument-To-Bundle
+Instance:  CdaToBundleConceptMap
 InstanceOf: ConceptMap
 Title: "ConceptMap — CDA ClinicalDocument → FHIR Bundle"
 Usage: #definition

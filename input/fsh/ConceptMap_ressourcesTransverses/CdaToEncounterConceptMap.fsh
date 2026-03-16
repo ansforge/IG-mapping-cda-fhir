@@ -1,4 +1,4 @@
-Instance: CM-CDA-EncompassingEncounter-To-Encounter
+Instance: CdaToEncounterConceptMap 
 InstanceOf: ConceptMap
 Title: "ConceptMap — CDA EncompassingEncounter → FHIR Encounter"
 Usage: #definition

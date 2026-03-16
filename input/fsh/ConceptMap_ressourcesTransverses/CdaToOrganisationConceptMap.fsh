@@ -1,4 +1,4 @@
-Instance: CM-CDA-CustodianOrganization-To-Organization
+Instance: CdaToOrganisationConceptMap
 InstanceOf: ConceptMap
 Title: "ConceptMap — CDA CustodianOrganization → FHIR Organization"
 Usage: #definition

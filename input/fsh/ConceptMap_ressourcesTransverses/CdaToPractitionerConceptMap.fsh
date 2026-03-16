@@ -1,4 +1,4 @@
-Instance: CM-CDA-AssignedAuthor-To-Practitioner
+Instance: CdaToPractitionerConceptMap
 InstanceOf: ConceptMap
 Title: "ConceptMap — CDA AssignedAuthor → FHIR Practitioner"
 Usage: #definition

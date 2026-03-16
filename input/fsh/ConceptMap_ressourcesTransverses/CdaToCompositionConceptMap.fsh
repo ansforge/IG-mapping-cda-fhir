@@ -1,4 +1,4 @@
-Instance: CM-CDA-ClinicalDocument-To-Composition
+Instance: CdaToCompositionConceptMap
 InstanceOf: ConceptMap
 Title: "ConceptMap — CDA ClinicalDocument → FHIR Composition"
 Usage: #definition

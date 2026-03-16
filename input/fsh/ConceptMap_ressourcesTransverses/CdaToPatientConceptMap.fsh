@@ -1,4 +1,4 @@
-Instance: CM-CDA-PatientRole-To-Patient
+Instance: CdaToPatientConceptMap
 InstanceOf: ConceptMap
 Title: "ConceptMap — CDA PatientRole → FHIR Patient"
 Usage: #definition
