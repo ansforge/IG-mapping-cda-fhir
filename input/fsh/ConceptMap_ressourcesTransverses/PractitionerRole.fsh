@@ -1,0 +1,34 @@
+Instance: CM-CDA-AssignedAuthor-To-PractitionerRole
+InstanceOf: ConceptMap
+Title: "ConceptMap — CDA AssignedAuthor → FHIR PractitionerRole"
+Usage: #definition
+
+* url = "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/ressourcesTransverses/PractitionerRole"
+* name = "AssignedAuthorToPractitionerRole"
+* status = #draft
+* experimental = true
+* description = "Correspondances entre AssignedAuthor CDA et PractitionerRole FHIR"
+
+* source = "http://hl7.org/cda/stds/core/StructureDefinition/AssignedAuthor"
+* target = "http://hl7.org/fhir/StructureDefinition/PractitionerRole"
+
+* group[0].source = "http://hl7.org/cda/stds/core/StructureDefinition/AssignedAuthor"
+* group[0].target = "http://hl7.org/fhir/StructureDefinition/PractitionerRole"
+
+* group[0].element[0].code = #CDA001
+* group[0].element[0].display = "ClinicalDocument.author.assignedAuthor.code"
+* group[0].element[0].target[0].code = #FHIR001
+* group[0].element[0].target[0].display = "PractitionerRole.code"
+* group[0].element[0].target[0].equivalence = #equal
+
+* group[0].element[1].code = #CDA002
+* group[0].element[1].display = "ClinicalDocument.author.assignedAuthor.representedOrganization"
+* group[0].element[1].target[0].code = #FHIR002
+* group[0].element[1].target[0].display = "PractitionerRole.organization"
+* group[0].element[1].target[0].equivalence = #equal
+
+* group[0].element[2].code = #CDA003
+* group[0].element[2].display = "ClinicalDocument.author.assignedAuthor"
+* group[0].element[2].target[0].code = #FHIR003
+* group[0].element[2].target[0].display = "PractitionerRole.practitioner"
+* group[0].element[2].target[0].equivalence = #equal

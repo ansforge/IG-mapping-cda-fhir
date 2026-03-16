@@ -1,7 +1,17 @@
 ---
 disable_autonumbering: true
+
 feedback:
   - active: true
     dashboard:
       label: New Issue
       url: https://github.com/ansforge/IG-mapping-cda-fhir/issues/new
+
+sql:
+  conceptmapsTransverses:
+    sources:
+      - path: input/ConceptMap_ressourcesTransverses/fsh-generated/resources
+
+  conceptmapsDataTypes:
+    sources:
+      - path: input/ConceptMapsDataTypes/fsh-generated/resources
