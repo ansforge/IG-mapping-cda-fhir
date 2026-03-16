@@ -252,8 +252,9 @@ group ClinicalDocumentPatientRole(source src : PatientRole, target tgt : Patient
     patient.administrativeGenderCode as gender then {
       gender.code as v -> tgt.gender = translate(v, 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/cm-v3-administrative-gender', 'code') "gender";
     } "gender";
+    // chaangement de then boolean (car group non défini) par BLBoolean
     patient.birthTime as birthTime -> tgt.birthDate = create('date') as date then TSDate(birthTime, date) "birthDate";
-    patient.deceasedInd as indicator where patient.deceasedTime.empty() -> tgt.deceased = create('boolean') as bool then boolean(indicator, bool) "deceasedBL";
+    patient.deceasedInd as indicator where patient.deceasedTime.empty() -> tgt.deceased = create('boolean') as bool then BLBoolean(indicator, bool) "deceasedBL";
     patient.deceasedTime as dTime -> tgt.deceased = dTime;
     patient.maritalStatusCode as mStatus-> tgt.maritalStatus = mStatus"maritalStatus";
     patient.languageCommunication as language -> tgt.communication as communication then {
