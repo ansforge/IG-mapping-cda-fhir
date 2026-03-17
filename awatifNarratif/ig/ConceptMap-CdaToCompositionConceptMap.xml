@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ConceptMap xmlns="http://hl7.org/fhir">
+  <id value="CdaToCompositionConceptMap"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Narratif généré : CarteDeConcepts CdaToCompositionConceptMap</b></p><a name="CdaToCompositionConceptMap"> </a><a name="hcCdaToCompositionConceptMap"> </a><p>Mapping de <a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ClinicalDocument.html">ClinicalDocument (CDA Class)</a> vers <a href="http://hl7.org/fhir/R4/composition.html">Composition</a></p><br/><p><b>Groupe 1 </b>Mapping de <a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ClinicalDocument.html">ClinicalDocument (CDA Class)</a> to <a href="http://hl7.org/fhir/R4/composition.html">Composition</a></p><table class="grid"><tr><td><b>Code source</b></td><td><b>relation</b></td><td><b>Code cible</b></td></tr><tr><td>ClinicalDocument_id</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td>Composition_identifier</td></tr><tr><td>ClinicalDocument_code</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td>Composition_type</td></tr><tr><td>ClinicalDocument_title</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td>Composition_title</td></tr><tr><td>ClinicalDocument_effectiveTime</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td>Composition_date</td></tr><tr><td>ClinicalDocument_author</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td>Composition_author</td></tr><tr><td>ClinicalDocument_confidentialityCode</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td>Composition_confidentiality</td></tr></table></div>
+  </text>
+  <url value="https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/ressourcesTransverses/Composition"/>
+  <version value="0.1.0"/>
+  <name value="ClinicalDocumentToComposition"/>
+  <title value="ConceptMap — CDA ClinicalDocument → FHIR Composition"/>
+  <status value="draft"/>
+  <experimental value="true"/>
+  <date value="2026-03-17T13:08:47+00:00"/>
+  <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
+  <contact>
+    <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
+    <telecom>
+      <system value="url"/>
+      <value value="https://esante.gouv.fr"/>
+    </telecom>
+  </contact>
+  <description value="Correspondances entre ClinicalDocument CDA et Composition FHIR"/>
+  <jurisdiction>
+    <coding>
+      <system value="urn:iso:std:iso:3166"/>
+      <code value="FR"/>
+      <display value="FRANCE"/>
+    </coding>
+  </jurisdiction>
+  <sourceUri value="http://hl7.org/cda/stds/core/StructureDefinition/ClinicalDocument"/>
+  <targetUri value="http://hl7.org/fhir/StructureDefinition/Composition"/>
+  <group>
+    <source value="http://hl7.org/cda/stds/core/StructureDefinition/ClinicalDocument"/>
+    <target value="http://hl7.org/fhir/StructureDefinition/Composition"/>
+    <element>
+      <code value="ClinicalDocument_id"/>
+      <target>
+        <code value="Composition_identifier"/>
+        <equivalence value="equivalent"/>
+      </target>
+    </element>
+    <element>
+      <code value="ClinicalDocument_code"/>
+      <target>
+        <code value="Composition_type"/>
+        <equivalence value="equivalent"/>
+      </target>
+    </element>
+    <element>
+      <code value="ClinicalDocument_title"/>
+      <target>
+        <code value="Composition_title"/>
+        <equivalence value="equivalent"/>
+      </target>
+    </element>
+    <element>
+      <code value="ClinicalDocument_effectiveTime"/>
+      <target>
+        <code value="Composition_date"/>
+        <equivalence value="equivalent"/>
+      </target>
+    </element>
+    <element>
+      <code value="ClinicalDocument_author"/>
+      <target>
+        <code value="Composition_author"/>
+        <equivalence value="equivalent"/>
+      </target>
+    </element>
+    <element>
+      <code value="ClinicalDocument_confidentialityCode"/>
+      <target>
+        <code value="Composition_confidentiality"/>
+        <equivalence value="equivalent"/>
+      </target>
+    </element>
+  </group>
+</ConceptMap>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ConceptMap xmlns="http://hl7.org/fhir">
+  <id value="CdaToRatioConceptMap"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Narratif généré : CarteDeConcepts CdaToRatioConceptMap</b></p><a name="CdaToRatioConceptMap"> </a><a name="hcCdaToRatioConceptMap"> </a><p>Mapping de (non spécifié) vers (non spécifié)</p><br/><p><b>Groupe 1 </b>Mapping de <code>http://hl7.org/cda/stds/core/StructureDefinition/RTO_PQ_PQ</code> to <a href="http://hl7.org/fhir/R4/datatypes.html#Ratio">Ratio</a></p><table class="grid"><tr><td><b>Code source</b></td><td><b>relation</b></td><td><b>Code cible</b></td></tr><tr><td>RTO_PQ_PQ_numerator</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td>Ratio_numerator</td></tr><tr><td>RTO_PQ_PQ_denominator</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td>Ratio_denominator</td></tr></table></div>
+  </text>
+  <url value="https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaRTOPQPQToFHIR"/>
+  <version value="0.1.0"/>
+  <name value="CdaRTOPQPQToFHIR"/>
+  <title value="ConceptMap — CDA RTO_PQ_PQ → FHIR Ratio"/>
+  <status value="draft"/>
+  <experimental value="true"/>
+  <date value="2026-03-17T13:08:47+00:00"/>
+  <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
+  <contact>
+    <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
+    <telecom>
+      <system value="url"/>
+      <value value="https://esante.gouv.fr"/>
+    </telecom>
+  </contact>
+  <description value="Correspondances documentaires numerator/denominator CDA → numerator/denominator FHIR."/>
+  <jurisdiction>
+    <coding>
+      <system value="urn:iso:std:iso:3166"/>
+      <code value="FR"/>
+      <display value="FRANCE"/>
+    </coding>
+  </jurisdiction>
+  <group>
+    <source value="http://hl7.org/cda/stds/core/StructureDefinition/RTO_PQ_PQ"/>
+    <target value="http://hl7.org/fhir/StructureDefinition/Ratio"/>
+    <element>
+      <code value="RTO_PQ_PQ_numerator"/>
+      <target>
+        <code value="Ratio_numerator"/>
+        <equivalence value="equivalent"/>
+      </target>
+    </element>
+    <element>
+      <code value="RTO_PQ_PQ_denominator"/>
+      <target>
+        <code value="Ratio_denominator"/>
+        <equivalence value="equivalent"/>
+      </target>
+    </element>
+  </group>
+</ConceptMap>

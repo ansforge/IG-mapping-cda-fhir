@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ConceptMap xmlns="http://hl7.org/fhir">
+  <id value="CdaToQuantityConceptMap"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Narratif généré : CarteDeConcepts CdaToQuantityConceptMap</b></p><a name="CdaToQuantityConceptMap"> </a><a name="hcCdaToQuantityConceptMap"> </a><p>Mapping de (non spécifié) vers (non spécifié)</p><br/><p><b>Groupe 1 </b>Mapping de <a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-PQ.html">PQ: PhysicalQuantity (V3 Data Type)</a> to <a href="http://hl7.org/fhir/R4/datatypes.html#Quantity">Quantity</a></p><table class="grid"><tr><td><b>Code source</b></td><td><b>relation</b></td><td><b>Code cible</b></td></tr><tr><td>PQ_value</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td>Quantity_value</td></tr><tr><td>PQ_unit</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td>Quantity_unit</td></tr></table></div>
+  </text>
+  <url value="https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaPQToFHIR"/>
+  <version value="0.1.0"/>
+  <name value="CdaPQToFHIR"/>
+  <title value="ConceptMap — CDA PQ → FHIR Quantity"/>
+  <status value="draft"/>
+  <experimental value="true"/>
+  <date value="2026-03-17T13:08:47+00:00"/>
+  <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
+  <contact>
+    <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
+    <telecom>
+      <system value="url"/>
+      <value value="https://esante.gouv.fr"/>
+    </telecom>
+  </contact>
+  <description value="Correspondances PQ.value / PQ.unit → Quantity (value, unit, system, code)."/>
+  <jurisdiction>
+    <coding>
+      <system value="urn:iso:std:iso:3166"/>
+      <code value="FR"/>
+      <display value="FRANCE"/>
+    </coding>
+  </jurisdiction>
+  <group>
+    <source value="http://hl7.org/cda/stds/core/StructureDefinition/PQ"/>
+    <target value="http://hl7.org/fhir/StructureDefinition/Quantity"/>
+    <element>
+      <code value="PQ_value"/>
+      <target>
+        <code value="Quantity_value"/>
+        <equivalence value="equivalent"/>
+      </target>
+    </element>
+    <element>
+      <code value="PQ_unit"/>
+      <target>
+        <code value="Quantity_unit"/>
+        <equivalence value="equivalent"/>
+      </target>
+    </element>
+  </group>
+</ConceptMap>

@@ -1,0 +1,134 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaToPatientConceptMap> a fhir:ConceptMap ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "CdaToPatientConceptMap"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div [ fhir:v "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Narratif généré : CarteDeConcepts CdaToPatientConceptMap</b></p><a name=\"CdaToPatientConceptMap\"> </a><a name=\"hcCdaToPatientConceptMap\"> </a><p>Mapping de <a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-PatientRole.html\">PatientRole (CDA Class)</a> vers <a href=\"http://hl7.org/fhir/R4/patient.html\">Patient</a></p><br/><p><b>Groupe 1 </b>Mapping de <a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-PatientRole.html\">PatientRole (CDA Class)</a> to <a href=\"http://hl7.org/fhir/R4/patient.html\">Patient</a></p><table class=\"grid\"><tr><td><b>Code source</b></td><td><b>relation</b></td><td><b>Code cible</b></td></tr><tr><td>ClinicalDocument_recordTarget_patientRole_id</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td>Patient_identifier</td></tr><tr><td>ClinicalDocument_recordTarget_patientRole_patient_name</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td>Patient_name</td></tr><tr><td>ClinicalDocument_recordTarget_patientRole_patient_administrativeGenderCode</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td>Patient_gender</td></tr><tr><td>ClinicalDocument_recordTarget_patientRole_patient_birthTime</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td>Patient_birthDate</td></tr><tr><td>ClinicalDocument_recordTarget_patientRole_patient_deceasedInd</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td>Patient_deceasedBoolean</td></tr><tr><td>ClinicalDocument_recordTarget_patientRole_patient_deceasedTime</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td>Patient_deceasedDateTime</td></tr><tr><td>ClinicalDocument_recordTarget_patientRole_patient_maritalStatusCode</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td>Patient_maritalStatus</td></tr><tr><td>ClinicalDocument_recordTarget_patientRole_patient_languageCommunication_languageCode</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td>Patient_communication_language</td></tr><tr><td>ClinicalDocument_recordTarget_patientRole_addr</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td>Patient_address</td></tr><tr><td>ClinicalDocument_recordTarget_patientRole_telecom</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td>Patient_telecom</td></tr><tr><td>ClinicalDocument_recordTarget_patientRole_providerOrganization</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td>Patient_managingOrganization</td></tr></table></div>"^^rdf:XMLLiteral ]
+  ] ; # 
+  fhir:url [
+     fhir:v "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/ressourcesTransverses/Patient"^^xsd:anyURI ;
+     fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/ressourcesTransverses/Patient>
+  ] ; # 
+  fhir:version [ fhir:v "0.1.0"] ; # 
+  fhir:name [ fhir:v "PatientRoleToPatient"] ; # 
+  fhir:title [ fhir:v "ConceptMap — CDA PatientRole → FHIR Patient"] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:experimental [ fhir:v true] ; # 
+  fhir:date [ fhir:v "2026-03-17T13:08:47+00:00"^^xsd:dateTime] ; # 
+  fhir:publisher [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"] ; # 
+  fhir:contact ( [
+     fhir:name [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris" ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "https://esante.gouv.fr" ]
+     ] )
+  ] ) ; # 
+  fhir:description [ fhir:v "Correspondances CDA PatientRole → FHIR Patient"] ; # 
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [
+         fhir:v "urn:iso:std:iso:3166"^^xsd:anyURI ;
+         fhir:l <urn:iso:std:iso:3166>
+       ] ;
+       fhir:code [ fhir:v "FR" ] ;
+       fhir:display [ fhir:v "FRANCE" ]
+     ] )
+  ] ) ; # 
+  fhir:source [
+     a fhir:Uri ;
+     fhir:v "http://hl7.org/cda/stds/core/StructureDefinition/PatientRole"^^xsd:anyURI ;
+     fhir:l <http://hl7.org/cda/stds/core/StructureDefinition/PatientRole>
+  ] ; # 
+  fhir:target [
+     a fhir:Uri ;
+     fhir:v "http://hl7.org/fhir/StructureDefinition/Patient"^^xsd:anyURI ;
+     fhir:l <http://hl7.org/fhir/StructureDefinition/Patient>
+  ] ; # 
+  fhir:group ( [
+     fhir:source [
+       fhir:v "http://hl7.org/cda/stds/core/StructureDefinition/PatientRole"^^xsd:anyURI ;
+       fhir:l <http://hl7.org/cda/stds/core/StructureDefinition/PatientRole>
+     ] ;
+     fhir:target [
+       fhir:v "http://hl7.org/fhir/StructureDefinition/Patient"^^xsd:anyURI ;
+       fhir:l <http://hl7.org/fhir/StructureDefinition/Patient>
+     ] ;
+     fhir:element ( [
+       fhir:code [ fhir:v "ClinicalDocument_recordTarget_patientRole_id" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "Patient_identifier" ] ;
+         fhir:equivalence [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "ClinicalDocument_recordTarget_patientRole_patient_name" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "Patient_name" ] ;
+         fhir:equivalence [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "ClinicalDocument_recordTarget_patientRole_patient_administrativeGenderCode" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "Patient_gender" ] ;
+         fhir:equivalence [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "ClinicalDocument_recordTarget_patientRole_patient_birthTime" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "Patient_birthDate" ] ;
+         fhir:equivalence [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "ClinicalDocument_recordTarget_patientRole_patient_deceasedInd" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "Patient_deceasedBoolean" ] ;
+         fhir:equivalence [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "ClinicalDocument_recordTarget_patientRole_patient_deceasedTime" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "Patient_deceasedDateTime" ] ;
+         fhir:equivalence [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "ClinicalDocument_recordTarget_patientRole_patient_maritalStatusCode" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "Patient_maritalStatus" ] ;
+         fhir:equivalence [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "ClinicalDocument_recordTarget_patientRole_patient_languageCommunication_languageCode" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "Patient_communication_language" ] ;
+         fhir:equivalence [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "ClinicalDocument_recordTarget_patientRole_addr" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "Patient_address" ] ;
+         fhir:equivalence [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "ClinicalDocument_recordTarget_patientRole_telecom" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "Patient_telecom" ] ;
+         fhir:equivalence [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "ClinicalDocument_recordTarget_patientRole_providerOrganization" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "Patient_managingOrganization" ] ;
+         fhir:equivalence [ fhir:v "equivalent" ]
+       ] )
+     ] )
+  ] ) . # 
+
+# -------------------------------------------------------------------------------------
+

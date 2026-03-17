@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ConceptMap xmlns="http://hl7.org/fhir">
+  <id value="CdaToPractitionerConceptMap"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Narratif généré : CarteDeConcepts CdaToPractitionerConceptMap</b></p><a name="CdaToPractitionerConceptMap"> </a><a name="hcCdaToPractitionerConceptMap"> </a><p>Mapping de <a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AssignedAuthor.html">AssignedAuthor (CDA Class)</a> vers <a href="http://hl7.org/fhir/R4/practitioner.html">Practitioner</a></p><br/><p><b>Groupe 1 </b>Mapping de <a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AssignedAuthor.html">AssignedAuthor (CDA Class)</a> to <a href="http://hl7.org/fhir/R4/practitioner.html">Practitioner</a></p><table class="grid"><tr><td><b>Code source</b></td><td><b>relation</b></td><td><b>Code cible</b></td></tr><tr><td>ClinicalDocument_author_assignedAuthor_id</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td>Practitioner_identifier</td></tr><tr><td>ClinicalDocument_author_assignedAuthor_addr</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td>Practitioner_address</td></tr><tr><td>ClinicalDocument_author_assignedAuthor_telecom</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td>Practitioner_telecom</td></tr><tr><td>ClinicalDocument_author_assignedAuthor_assignedPerson_name</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td>Practitioner_name</td></tr></table></div>
+  </text>
+  <url value="https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/ressourcesTransverses/Practitioner"/>
+  <version value="0.1.0"/>
+  <name value="AssignedAuthorToPractitioner"/>
+  <title value="ConceptMap — CDA AssignedAuthor → FHIR Practitioner"/>
+  <status value="draft"/>
+  <experimental value="true"/>
+  <date value="2026-03-17T13:08:47+00:00"/>
+  <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
+  <contact>
+    <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
+    <telecom>
+      <system value="url"/>
+      <value value="https://esante.gouv.fr"/>
+    </telecom>
+  </contact>
+  <description value="Correspondances entre AssignedAuthor CDA et Practitioner FHIR"/>
+  <jurisdiction>
+    <coding>
+      <system value="urn:iso:std:iso:3166"/>
+      <code value="FR"/>
+      <display value="FRANCE"/>
+    </coding>
+  </jurisdiction>
+  <sourceUri value="http://hl7.org/cda/stds/core/StructureDefinition/AssignedAuthor"/>
+  <targetUri value="http://hl7.org/fhir/StructureDefinition/Practitioner"/>
+  <group>
+    <source value="http://hl7.org/cda/stds/core/StructureDefinition/AssignedAuthor"/>
+    <target value="http://hl7.org/fhir/StructureDefinition/Practitioner"/>
+    <element>
+      <code value="ClinicalDocument_author_assignedAuthor_id"/>
+      <target>
+        <code value="Practitioner_identifier"/>
+        <equivalence value="equivalent"/>
+      </target>
+    </element>
+    <element>
+      <code value="ClinicalDocument_author_assignedAuthor_addr"/>
+      <target>
+        <code value="Practitioner_address"/>
+        <equivalence value="equivalent"/>
+      </target>
+    </element>
+    <element>
+      <code value="ClinicalDocument_author_assignedAuthor_telecom"/>
+      <target>
+        <code value="Practitioner_telecom"/>
+        <equivalence value="equivalent"/>
+      </target>
+    </element>
+    <element>
+      <code value="ClinicalDocument_author_assignedAuthor_assignedPerson_name"/>
+      <target>
+        <code value="Practitioner_name"/>
+        <equivalence value="equivalent"/>
+      </target>
+    </element>
+  </group>
+</ConceptMap>
