@@ -1,34 +1,31 @@
 Instance: CdaToLocationConceptMap
 InstanceOf: ConceptMap
-Title: "ConceptMap — CDA HealthCareFacility → FHIR Location"
 Usage: #definition
+Title: "ConceptMap — CDA HealthCareFacility → FHIR Location"
+Description: "Correspondances entre HealthCareFacility CDA et Location FHIR"
 
 * url = "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/ressourcesTransverses/Location"
 * name = "HealthCareFacilityToLocation"
 * status = #draft
 * experimental = true
-* description = "Correspondances entre HealthCareFacility CDA et Location FHIR"
 
-* source = "http://hl7.org/cda/stds/core/StructureDefinition/HealthCareFacility"
-* target = "http://hl7.org/fhir/StructureDefinition/Location"
+* sourceUri = "http://hl7.org/cda/stds/core/StructureDefinition/HealthCareFacility"
+* targetUri = "http://hl7.org/fhir/StructureDefinition/Location"
 
 * group[0].source = "http://hl7.org/cda/stds/core/StructureDefinition/HealthCareFacility"
 * group[0].target = "http://hl7.org/fhir/StructureDefinition/Location"
 
-* group[0].element[0].code = #CDA001
-* group[0].element[0].display = "ClinicalDocument.componentOf.encompassingEncounter.location.healthCareFacility.id"
-* group[0].element[0].target[0].code = #FHIR001
-* group[0].element[0].target[0].display = "Location.identifier"
-* group[0].element[0].target[0].equivalence = #equal
+/* id */
+* group[0].element[0].code = #ClinicalDocument_componentOf_encompassingEncounter_location_healthCareFacility_id
+* group[0].element[0].target[0].code = #Location_identifier
+* group[0].element[0].target[0].equivalence = #equivalent
 
-* group[0].element[1].code = #CDA002
-* group[0].element[1].display = "ClinicalDocument.componentOf.encompassingEncounter.location.healthCareFacility.code"
-* group[0].element[1].target[0].code = #FHIR002
-* group[0].element[1].target[0].display = "Location.type"
-* group[0].element[1].target[0].equivalence = #equal
+/* code */
+* group[0].element[1].code = #ClinicalDocument_componentOf_encompassingEncounter_location_healthCareFacility_code
+* group[0].element[1].target[0].code = #Location_type
+* group[0].element[1].target[0].equivalence = #equivalent
 
-* group[0].element[2].code = #CDA003
-* group[0].element[2].display = "ClinicalDocument.componentOf.encompassingEncounter.location.healthCareFacility.location.addr"
-* group[0].element[2].target[0].code = #FHIR003
-* group[0].element[2].target[0].display = "Location.address"
-* group[0].element[2].target[0].equivalence = #equal
+/* address */
+* group[0].element[2].code = #ClinicalDocument_componentOf_encompassingEncounter_location_healthCareFacility_location_addr
+* group[0].element[2].target[0].code = #Location_address
+* group[0].element[2].target[0].equivalence = #equivalent

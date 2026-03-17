@@ -1,40 +1,38 @@
-Instance: CdaToEncounterConceptMap 
+Instance: CdaToEncounterConceptMap
 InstanceOf: ConceptMap
-Title: "ConceptMap — CDA EncompassingEncounter → FHIR Encounter"
 Usage: #definition
+Title: "ConceptMap — CDA EncompassingEncounter → FHIR Encounter"
+Description: "Correspondances entre EncompassingEncounter CDA et Encounter FHIR"
 
 * url = "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/ressourcesTransverses/Encounter"
 * name = "EncompassingEncounterToEncounter"
 * status = #draft
 * experimental = true
-* description = "Correspondances entre EncompassingEncounter CDA et Encounter FHIR"
 
-* source = "http://hl7.org/cda/stds/core/StructureDefinition/EncompassingEncounter"
-* target = "http://hl7.org/fhir/StructureDefinition/Encounter"
+
+* sourceUri = "http://hl7.org/cda/stds/core/StructureDefinition/EncompassingEncounter"
+* targetUri = "http://hl7.org/fhir/StructureDefinition/Encounter"
+
 
 * group[0].source = "http://hl7.org/cda/stds/core/StructureDefinition/EncompassingEncounter"
 * group[0].target = "http://hl7.org/fhir/StructureDefinition/Encounter"
 
-* group[0].element[0].code = #CDA001
-* group[0].element[0].display = "ClinicalDocument.componentOf.encompassingEncounter.id"
-* group[0].element[0].target[0].code = #FHIR001
-* group[0].element[0].target[0].display = "Encounter.identifier"
-* group[0].element[0].target[0].equivalence = #equal
+/* id */
+* group[0].element[0].code = #ClinicalDocument_componentOf_encompassingEncounter_id
+* group[0].element[0].target[0].code = #Encounter_identifier
+* group[0].element[0].target[0].equivalence = #equivalent
 
-* group[0].element[1].code = #CDA002
-* group[0].element[1].display = "ClinicalDocument.componentOf.encompassingEncounter.code"
-* group[0].element[1].target[0].code = #FHIR002
-* group[0].element[1].target[0].display = "Encounter.class"
-* group[0].element[1].target[0].equivalence = #equal
+/* code */
+* group[0].element[1].code = #ClinicalDocument_componentOf_encompassingEncounter_code
+* group[0].element[1].target[0].code = #Encounter_class
+* group[0].element[1].target[0].equivalence = #equivalent
 
-* group[0].element[2].code = #CDA003
-* group[0].element[2].display = "ClinicalDocument.componentOf.encompassingEncounter.effectiveTime"
-* group[0].element[2].target[0].code = #FHIR003
-* group[0].element[2].target[0].display = "Encounter.period"
-* group[0].element[2].target[0].equivalence = #equal
+/* effectiveTime */
+* group[0].element[2].code = #ClinicalDocument_componentOf_encompassingEncounter_effectiveTime
+* group[0].element[2].target[0].code = #Encounter_period
+* group[0].element[2].target[0].equivalence = #equivalent
 
-* group[0].element[3].code = #CDA004
-* group[0].element[3].display = "ClinicalDocument.componentOf.encompassingEncounter.location"
-* group[0].element[3].target[0].code = #FHIR004
-* group[0].element[3].target[0].display = "Encounter.location"
-* group[0].element[3].target[0].equivalence = #equal
+/* location */
+* group[0].element[3].code = #ClinicalDocument_componentOf_encompassingEncounter_location
+* group[0].element[3].target[0].code = #Encounter_location
+* group[0].element[3].target[0].equivalence = #equivalent
