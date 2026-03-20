@@ -1,0 +1,65 @@
+{
+  "resourceType" : "ConceptMap",
+  "id" : "CdaToOrganisationConceptMap",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Narratif généré : CarteDeConcepts CdaToOrganisationConceptMap</b></p><a name=\"CdaToOrganisationConceptMap\"> </a><a name=\"hcCdaToOrganisationConceptMap\"> </a><p>Mapping de <a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CustodianOrganization.html\">CustodianOrganization (CDA Class)</a> vers <a href=\"http://hl7.org/fhir/R4/organization.html\">Organization</a></p><br/><p><b>Groupe 1 </b>Mapping de <a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CustodianOrganization.html\">CustodianOrganization (CDA Class)</a> to <a href=\"http://hl7.org/fhir/R4/organization.html\">Organization</a></p><table class=\"grid\"><tr><td><b>Code source</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>relation</b></td><td><b>Code cible</b></td><td><b>Card.</b></td><td><b>Type</b></td></tr><tr><td colspan=\"3\">ClinicalDocument_custodian_assignedCustodian_representedCustodianOrganization_id</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td colspan=\"3\">Organization_identifier</td></tr><tr><td colspan=\"3\">ClinicalDocument_custodian_assignedCustodian_representedCustodianOrganization_name</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td colspan=\"3\">Organization_name</td></tr><tr><td colspan=\"3\">ClinicalDocument_custodian_assignedCustodian_representedCustodianOrganization_addr</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td colspan=\"3\">Organization_address</td></tr><tr><td colspan=\"3\">ClinicalDocument_custodian_assignedCustodian_representedCustodianOrganization_telecom</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td colspan=\"3\">Organization_telecom</td></tr></table></div>"
+  },
+  "url" : "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/ressourcesTransverses/Organization",
+  "version" : "0.1.0",
+  "name" : "CustodianOrganizationToOrganization",
+  "title" : "ConceptMap — CDA CustodianOrganization → FHIR Organization",
+  "status" : "draft",
+  "experimental" : true,
+  "date" : "2026-03-20T13:38:30+00:00",
+  "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
+  "contact" : [{
+    "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
+    "telecom" : [{
+      "system" : "url",
+      "value" : "https://esante.gouv.fr"
+    }]
+  }],
+  "description" : "Correspondances entre CustodianOrganization CDA et Organization FHIR",
+  "jurisdiction" : [{
+    "coding" : [{
+      "system" : "urn:iso:std:iso:3166",
+      "code" : "FR",
+      "display" : "FRANCE"
+    }]
+  }],
+  "sourceUri" : "http://hl7.org/cda/stds/core/StructureDefinition/CustodianOrganization",
+  "targetUri" : "http://hl7.org/fhir/StructureDefinition/Organization",
+  "group" : [{
+    "source" : "http://hl7.org/cda/stds/core/StructureDefinition/CustodianOrganization",
+    "target" : "http://hl7.org/fhir/StructureDefinition/Organization",
+    "element" : [{
+      "code" : "ClinicalDocument_custodian_assignedCustodian_representedCustodianOrganization_id",
+      "target" : [{
+        "code" : "Organization_identifier",
+        "equivalence" : "equivalent"
+      }]
+    },
+    {
+      "code" : "ClinicalDocument_custodian_assignedCustodian_representedCustodianOrganization_name",
+      "target" : [{
+        "code" : "Organization_name",
+        "equivalence" : "equivalent"
+      }]
+    },
+    {
+      "code" : "ClinicalDocument_custodian_assignedCustodian_representedCustodianOrganization_addr",
+      "target" : [{
+        "code" : "Organization_address",
+        "equivalence" : "equivalent"
+      }]
+    },
+    {
+      "code" : "ClinicalDocument_custodian_assignedCustodian_representedCustodianOrganization_telecom",
+      "target" : [{
+        "code" : "Organization_telecom",
+        "equivalence" : "equivalent"
+      }]
+    }]
+  }]
+}

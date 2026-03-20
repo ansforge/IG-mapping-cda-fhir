@@ -1,0 +1,49 @@
+{
+  "resourceType" : "ConceptMap",
+  "id" : "CdaToBooleanConceptMap",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Narratif généré : CarteDeConcepts CdaToBooleanConceptMap</b></p><a name=\"CdaToBooleanConceptMap\"> </a><a name=\"hcCdaToBooleanConceptMap\"> </a><p>Mapping de (non spécifié) vers (non spécifié)</p><br/><p><b>Groupe 1 </b>Mapping de <a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-BL.html\">BL: Boolean (V3 Data Type)</a> to <a href=\"http://hl7.org/fhir/R4/datatypes.html#boolean\">boolean</a></p><table class=\"grid\"><tr><td><b>Code source</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>relation</b></td><td><b>Code cible</b></td><td><b>Card.</b></td><td><b>Type</b></td></tr><tr><td colspan=\"3\">BL_value</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td colspan=\"3\">boolean_value</td></tr><tr><td colspan=\"3\">BL_negationInd</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td colspan=\"3\">boolean_negationInd</td></tr></table></div>"
+  },
+  "url" : "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaBLToFHIR",
+  "version" : "0.1.0",
+  "name" : "CdaBLToFHIR",
+  "title" : "ConceptMap — CDA BL → FHIR boolean / negation",
+  "status" : "draft",
+  "experimental" : true,
+  "date" : "2026-03-20T13:38:30+00:00",
+  "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
+  "contact" : [{
+    "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
+    "telecom" : [{
+      "system" : "url",
+      "value" : "https://esante.gouv.fr"
+    }]
+  }],
+  "description" : "Correspondances BL.value → boolean ; BL.negationInd → boolean (modifierExtension).",
+  "jurisdiction" : [{
+    "coding" : [{
+      "system" : "urn:iso:std:iso:3166",
+      "code" : "FR",
+      "display" : "FRANCE"
+    }]
+  }],
+  "group" : [{
+    "source" : "http://hl7.org/cda/stds/core/StructureDefinition/BL",
+    "target" : "http://hl7.org/fhir/StructureDefinition/boolean",
+    "element" : [{
+      "code" : "BL_value",
+      "target" : [{
+        "code" : "boolean_value",
+        "equivalence" : "equivalent"
+      }]
+    },
+    {
+      "code" : "BL_negationInd",
+      "target" : [{
+        "code" : "boolean_negationInd",
+        "equivalence" : "equivalent"
+      }]
+    }]
+  }]
+}

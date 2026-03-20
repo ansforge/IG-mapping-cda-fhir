@@ -1,0 +1,65 @@
+{
+  "resourceType" : "ConceptMap",
+  "id" : "CdaToEncounterConceptMap",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Narratif généré : CarteDeConcepts CdaToEncounterConceptMap</b></p><a name=\"CdaToEncounterConceptMap\"> </a><a name=\"hcCdaToEncounterConceptMap\"> </a><p>Mapping de <a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EncompassingEncounter.html\">EncompassingEncounter (CDA Class)</a> vers <a href=\"http://hl7.org/fhir/R4/encounter.html\">Encounter</a></p><br/><p><b>Groupe 1 </b>Mapping de <a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EncompassingEncounter.html\">EncompassingEncounter (CDA Class)</a> to <a href=\"http://hl7.org/fhir/R4/encounter.html\">Encounter</a></p><table class=\"grid\"><tr><td><b>Code source</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>relation</b></td><td><b>Code cible</b></td><td><b>Card.</b></td><td><b>Type</b></td></tr><tr><td colspan=\"3\">ClinicalDocument_componentOf_encompassingEncounter_id</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td colspan=\"3\">Encounter_identifier</td></tr><tr><td colspan=\"3\">ClinicalDocument_componentOf_encompassingEncounter_code</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td colspan=\"3\">Encounter_class</td></tr><tr><td colspan=\"3\">ClinicalDocument_componentOf_encompassingEncounter_effectiveTime</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td colspan=\"3\">Encounter_period</td></tr><tr><td colspan=\"3\">ClinicalDocument_componentOf_encompassingEncounter_location</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td colspan=\"3\">Encounter_location</td></tr></table></div>"
+  },
+  "url" : "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/ressourcesTransverses/Encounter",
+  "version" : "0.1.0",
+  "name" : "EncompassingEncounterToEncounter",
+  "title" : "ConceptMap — CDA EncompassingEncounter → FHIR Encounter",
+  "status" : "draft",
+  "experimental" : true,
+  "date" : "2026-03-20T13:38:30+00:00",
+  "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
+  "contact" : [{
+    "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
+    "telecom" : [{
+      "system" : "url",
+      "value" : "https://esante.gouv.fr"
+    }]
+  }],
+  "description" : "Correspondances entre EncompassingEncounter CDA et Encounter FHIR",
+  "jurisdiction" : [{
+    "coding" : [{
+      "system" : "urn:iso:std:iso:3166",
+      "code" : "FR",
+      "display" : "FRANCE"
+    }]
+  }],
+  "sourceUri" : "http://hl7.org/cda/stds/core/StructureDefinition/EncompassingEncounter",
+  "targetUri" : "http://hl7.org/fhir/StructureDefinition/Encounter",
+  "group" : [{
+    "source" : "http://hl7.org/cda/stds/core/StructureDefinition/EncompassingEncounter",
+    "target" : "http://hl7.org/fhir/StructureDefinition/Encounter",
+    "element" : [{
+      "code" : "ClinicalDocument_componentOf_encompassingEncounter_id",
+      "target" : [{
+        "code" : "Encounter_identifier",
+        "equivalence" : "equivalent"
+      }]
+    },
+    {
+      "code" : "ClinicalDocument_componentOf_encompassingEncounter_code",
+      "target" : [{
+        "code" : "Encounter_class",
+        "equivalence" : "equivalent"
+      }]
+    },
+    {
+      "code" : "ClinicalDocument_componentOf_encompassingEncounter_effectiveTime",
+      "target" : [{
+        "code" : "Encounter_period",
+        "equivalence" : "equivalent"
+      }]
+    },
+    {
+      "code" : "ClinicalDocument_componentOf_encompassingEncounter_location",
+      "target" : [{
+        "code" : "Encounter_location",
+        "equivalence" : "equivalent"
+      }]
+    }]
+  }]
+}

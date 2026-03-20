@@ -1,0 +1,58 @@
+{
+  "resourceType" : "ConceptMap",
+  "id" : "CdaToLocationConceptMap",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Narratif généré : CarteDeConcepts CdaToLocationConceptMap</b></p><a name=\"CdaToLocationConceptMap\"> </a><a name=\"hcCdaToLocationConceptMap\"> </a><p>Mapping de <a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-HealthCareFacility.html\">HealthCareFacility (CDA Class)</a> vers <a href=\"http://hl7.org/fhir/R4/location.html\">Location</a></p><br/><p><b>Groupe 1 </b>Mapping de <a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-HealthCareFacility.html\">HealthCareFacility (CDA Class)</a> to <a href=\"http://hl7.org/fhir/R4/location.html\">Location</a></p><table class=\"grid\"><tr><td><b>Code source</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>relation</b></td><td><b>Code cible</b></td><td><b>Card.</b></td><td><b>Type</b></td></tr><tr><td colspan=\"3\">ClinicalDocument_componentOf_encompassingEncounter_location_healthCareFacility_id</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td colspan=\"3\">Location_identifier</td></tr><tr><td colspan=\"3\">ClinicalDocument_componentOf_encompassingEncounter_location_healthCareFacility_code</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td colspan=\"3\">Location_type</td></tr><tr><td colspan=\"3\">ClinicalDocument_componentOf_encompassingEncounter_location_healthCareFacility_location_addr</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td colspan=\"3\">Location_address</td></tr></table></div>"
+  },
+  "url" : "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/ressourcesTransverses/Location",
+  "version" : "0.1.0",
+  "name" : "HealthCareFacilityToLocation",
+  "title" : "ConceptMap — CDA HealthCareFacility → FHIR Location",
+  "status" : "draft",
+  "experimental" : true,
+  "date" : "2026-03-20T13:38:30+00:00",
+  "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
+  "contact" : [{
+    "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
+    "telecom" : [{
+      "system" : "url",
+      "value" : "https://esante.gouv.fr"
+    }]
+  }],
+  "description" : "Correspondances entre HealthCareFacility CDA et Location FHIR",
+  "jurisdiction" : [{
+    "coding" : [{
+      "system" : "urn:iso:std:iso:3166",
+      "code" : "FR",
+      "display" : "FRANCE"
+    }]
+  }],
+  "sourceUri" : "http://hl7.org/cda/stds/core/StructureDefinition/HealthCareFacility",
+  "targetUri" : "http://hl7.org/fhir/StructureDefinition/Location",
+  "group" : [{
+    "source" : "http://hl7.org/cda/stds/core/StructureDefinition/HealthCareFacility",
+    "target" : "http://hl7.org/fhir/StructureDefinition/Location",
+    "element" : [{
+      "code" : "ClinicalDocument_componentOf_encompassingEncounter_location_healthCareFacility_id",
+      "target" : [{
+        "code" : "Location_identifier",
+        "equivalence" : "equivalent"
+      }]
+    },
+    {
+      "code" : "ClinicalDocument_componentOf_encompassingEncounter_location_healthCareFacility_code",
+      "target" : [{
+        "code" : "Location_type",
+        "equivalence" : "equivalent"
+      }]
+    },
+    {
+      "code" : "ClinicalDocument_componentOf_encompassingEncounter_location_healthCareFacility_location_addr",
+      "target" : [{
+        "code" : "Location_address",
+        "equivalence" : "equivalent"
+      }]
+    }]
+  }]
+}

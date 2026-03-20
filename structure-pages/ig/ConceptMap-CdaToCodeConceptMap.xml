@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ConceptMap xmlns="http://hl7.org/fhir">
+  <id value="CdaToCodeConceptMap"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Narratif généré : CarteDeConcepts CdaToCodeConceptMap</b></p><a name="CdaToCodeConceptMap"> </a><a name="hcCdaToCodeConceptMap"> </a><p>Mapping de (non spécifié) vers (non spécifié)</p><br/><p><b>Groupe 1 </b>Mapping de <a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CE.html">CE: CodedWithEquivalents (V3 Data Type)</a> to <a href="http://hl7.org/fhir/R4/datatypes.html#code">code</a></p><table class="grid"><tr><td><b>Code source</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>relation</b></td><td><b>Code cible</b></td><td><b>Card.</b></td><td><b>Type</b></td></tr><tr><td colspan="3">CE_code</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td colspan="3">FHIR_code</td></tr></table><hr/><p><b>Groupe 2 </b>Mapping de <a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CE.html">CE: CodedWithEquivalents (V3 Data Type)</a> to <a href="http://hl7.org/fhir/R4/datatypes.html#CodeableConcept">CodeableConcept</a></p><table class="grid"><tr><td><b>Code source</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>relation</b></td><td><b>Code cible</b></td><td><b>Card.</b></td><td><b>Type</b></td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CE.html#CE">CE</a></td><td>1..*</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td colspan="3">FHIR_CodeableConcept</td></tr></table><hr/><p><b>Groupe 3 </b>Mapping de <a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CS.html">CS: CodedSimpleValue (V3 Data Type)</a> to <a href="http://hl7.org/fhir/R4/datatypes.html#code">code</a></p><table class="grid"><tr><td><b>Code source</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>relation</b></td><td><b>Code cible</b></td><td><b>Card.</b></td><td><b>Type</b></td></tr><tr><td colspan="3">CS_code</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td colspan="3">FHIR_code</td></tr></table><hr/><p><b>Groupe 4 </b>Mapping de <a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html">CD: ConceptDescriptor (V3 Data Type)</a> to <a href="http://hl7.org/fhir/R4/datatypes.html#code">code</a></p><table class="grid"><tr><td><b>Code source</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>relation</b></td><td><b>Code cible</b></td><td><b>Card.</b></td><td><b>Type</b></td></tr><tr><td colspan="3">CD_code</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td colspan="3">FHIR_code</td></tr></table></div>
+  </text>
+  <url value="https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaConceptCodesToFHIR"/>
+  <version value="0.1.0"/>
+  <name value="CdaConceptCodesToFHIR"/>
+  <title value="ConceptMap — CDA CE/CS/CD → FHIR code/CodeableConcept"/>
+  <status value="draft"/>
+  <experimental value="true"/>
+  <date value="2026-03-20T13:38:30+00:00"/>
+  <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
+  <contact>
+    <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
+    <telecom>
+      <system value="url"/>
+      <value value="https://esante.gouv.fr"/>
+    </telecom>
+  </contact>
+  <description value="Correspondances documentaires code/codeSystem/displayName/originalText/translations → code/CodeableConcept."/>
+  <jurisdiction>
+    <coding>
+      <system value="urn:iso:std:iso:3166"/>
+      <code value="FR"/>
+      <display value="FRANCE"/>
+    </coding>
+  </jurisdiction>
+  <group>
+    <source value="http://hl7.org/cda/stds/core/StructureDefinition/CE"/>
+    <target value="http://hl7.org/fhir/StructureDefinition/code"/>
+    <element>
+      <code value="CE_code"/>
+      <target>
+        <code value="FHIR_code"/>
+        <equivalence value="equivalent"/>
+      </target>
+    </element>
+  </group>
+  <group>
+    <source value="http://hl7.org/cda/stds/core/StructureDefinition/CE"/>
+    <target value="http://hl7.org/fhir/StructureDefinition/CodeableConcept"/>
+    <element>
+      <code value="CE"/>
+      <target>
+        <code value="FHIR_CodeableConcept"/>
+        <equivalence value="equivalent"/>
+      </target>
+    </element>
+  </group>
+  <group>
+    <source value="http://hl7.org/cda/stds/core/StructureDefinition/CS"/>
+    <target value="http://hl7.org/fhir/StructureDefinition/code"/>
+    <element>
+      <code value="CS_code"/>
+      <target>
+        <code value="FHIR_code"/>
+        <equivalence value="equivalent"/>
+      </target>
+    </element>
+  </group>
+  <group>
+    <source value="http://hl7.org/cda/stds/core/StructureDefinition/CD"/>
+    <target value="http://hl7.org/fhir/StructureDefinition/code"/>
+    <element>
+      <code value="CD_code"/>
+      <target>
+        <code value="FHIR_code"/>
+        <equivalence value="equivalent"/>
+      </target>
+    </element>
+  </group>
+</ConceptMap>
