@@ -9,7 +9,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/ressourcesTransverses/Bundle | *Version*:0.1.0 |
-| Draft as of 2026-03-20 | *Computable Name*:ClinicalDocumentToBundle |
+| Draft as of 2026-03-23 | *Computable Name*:ClinicalDocumentToBundle |
 
  
 Correspondances CDA ClinicalDocument → FHIR Bundle 
@@ -28,7 +28,7 @@ Correspondances CDA ClinicalDocument → FHIR Bundle
   "title" : "ConceptMap — CDA ClinicalDocument → FHIR Bundle",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-03-20T13:38:30+00:00",
+  "date" : "2026-03-23T12:01:33+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
