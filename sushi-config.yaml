@@ -28,24 +28,39 @@ dependencies:
   hl7.cda.uv.core: 2.0.0-sd
   ans.fhir.fr.annuaire: 1.1.0
   hl7.fhir.fr.core: 1.1.0
-  
+
 
 
 pages:
   index.md:
     title: Accueil
-  change-log.md:
-    title: Historique des versions
-  autres_ressources.md:
-    title: Autres Ressources
-    downloads.md:
-      title: Téléchargements et usages
+
+  mapping-cda-fhir.md:
+    title: Mapping CDA vers FHIR
+    mecanismes-mapping.md:
+      title: Mécanisme du Mapping
+    guide-demarrage.md:
+      title: Guide de démarrage
+    outils-mapping.md:
+      title: Outils de Mapping
+
+  initiatives-internationales.md:
+    title: Initiatives internationales
+
 
 menu:
   Accueil: index.html
+
+  Mapping CDA vers FHIR:
+    Mécanisme du Mapping: mecanismes-mapping.html
+    Guide de démarrage: guide-demarrage.html
+    Outils de Mapping: outils-mapping.html
+
   Ressources de conformité: artifacts.html
+
+  Initiatives internationales: initiatives-internationales.html
+
   Autres ressources:
-    Téléchargements et usage: downloads.html
-    "Spécifications FHIR ": new-tab {{site.data.fhir.path}}index.html
-    "Site de l'ANS ": new-tab https://esante.gouv.fr/
-  Documentation: new-tab https://interop.esante.gouv.fr/ig/documentation/
+    Spécification FHIR: new-tab {{site.data.fhir.path}}index.html
+    Site de l’ANS: new-tab https://esante.gouv.fr/
+    Documentation: new-tab https://interop.esante.gouv.fr/ig/documentation/
