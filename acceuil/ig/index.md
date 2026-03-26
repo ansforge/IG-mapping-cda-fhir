@@ -106,7 +106,6 @@ Le site officiel FHIR inclut, sur de nombreuses ressources et types de données,
 
 
 
-
 ### Propriété intellectuelle
 
 Certaines ressources sémantiques de ce guide sont protégées par des droits de propriété intellectuelle couverte par les déclarations ci-dessous. L’utilisation de ces ressources est soumise à l’acceptation et au respect des conditions précisées dans la licence d’utilisation de chacune d’entre elle.
@@ -141,7 +140,7 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2026-03-26T13:32:38+00:00",
+  "date" : "2026-03-26T17:44:42+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -194,9 +193,9 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
   },
   {
     "id" : "hl7_fhir_fr_core",
-    "uri" : "http://fhir.org/packages/hl7.fhir.fr.core/ImplementationGuide/hl7.fhir.fr.core",
+    "uri" : "https://hl7.fr/ig/fhir/core/ImplementationGuide/hl7.fhir.fr.core",
     "packageId" : "hl7.fhir.fr.core",
-    "version" : "1.1.0"
+    "version" : "2.1.0"
   }],
   "definition" : {
     "extension" : [{
@@ -954,20 +953,47 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
       {
         "extension" : [{
           "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
-          "valueUrl" : "autres_ressources.html"
+          "valueUrl" : "mapping-cda-fhir.html"
         }],
-        "nameUrl" : "autres_ressources.html",
-        "title" : "Autres Ressources",
+        "nameUrl" : "mapping-cda-fhir.html",
+        "title" : "Mapping CDA vers FHIR",
         "generation" : "markdown",
         "page" : [{
           "extension" : [{
             "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
-            "valueUrl" : "downloads.html"
+            "valueUrl" : "mapping-mechanisms.html"
           }],
-          "nameUrl" : "downloads.html",
-          "title" : "Téléchargements et usages",
+          "nameUrl" : "mapping-mechanisms.html",
+          "title" : "Mécanisme du Mapping",
+          "generation" : "markdown"
+        },
+        {
+          "extension" : [{
+            "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
+            "valueUrl" : "guide-demarrage.html"
+          }],
+          "nameUrl" : "guide-demarrage.html",
+          "title" : "Guide de démarrage",
+          "generation" : "markdown"
+        },
+        {
+          "extension" : [{
+            "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
+            "valueUrl" : "outils-mapping.html"
+          }],
+          "nameUrl" : "outils-mapping.html",
+          "title" : "Outils de Mapping",
           "generation" : "markdown"
         }]
+      },
+      {
+        "extension" : [{
+          "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
+          "valueUrl" : "initiatives-internationales.html"
+        }],
+        "nameUrl" : "initiatives-internationales.html",
+        "title" : "Initiatives internationales",
+        "generation" : "markdown"
       }]
     },
     "parameter" : [{
