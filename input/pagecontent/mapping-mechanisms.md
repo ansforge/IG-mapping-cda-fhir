@@ -83,45 +83,34 @@ section.entry as entry then {
 ### 2. Conversion de types de données
 
 #### Types primitifs CDA → FHIR
-Les datatypes représentent les types de données fondamentaux utilisés dans CDA et FHIR pour décrire des informations élémentaires, telles qu’un texte, une date, un identifiant, une quantité ou un code. Comme les deux standards reposent sur des modèles de datatypes différents — souvent plus riches et complexes en CDA, plus simples et modulaires en FHIR — il est nécessaire d’établir une correspondance claire entre eux avant toute transformation.
 
-Le mapping des datatypes constitue ainsi une étape essentielle : il garantit la cohérence des conversions, évite la perte d’information et fournit la base technique sur laquelle reposent toutes les étapes suivantes du mapping CDA → FHIR. Une fois cette correspondance définie, il devient possible de générer un tableau CDA → FHIR fiable et réutilisable pour la suite du processus.
+Le mapping `CdaToFHIRTypes.fml` fournit des fonctions de conversion pour les types de données CDA v3 :
 
+**Nom de personne (EN → HumanName)** :
+```fml
+group ENHumanName(source src : EN, target tgt : HumanName)
+  src.given as v -> tgt.given = v
+  src.family as v -> tgt.family = v
+  src.prefix as v -> tgt.prefix = v
+  src.suffix as v -> tgt.suffix = v
+```
 
-{% sql conceptmapsDataTypes %}
-SELECT 
-  CM.id AS "ConceptMap",
-  E.display AS "CDA (source)",
-  T.display AS "FHIR (cible)",
-  T.equivalence AS "Equivalence"
-FROM ConceptMap CM
-JOIN group G ON G.ConceptMap = CM._row
-JOIN element E ON E.group = G._row
-JOIN target T ON T.element = E._row
-ORDER BY CM.id, E.display;
-{% endsql %}
+**Code (CD → CodeableConcept)** :
+```fml
+group CDCodeableConcept(source src : CD, target tgt : CodeableConcept)
+  src -> tgt.coding as coding then {
+    src.code as code -> coding.code = code
+    src.codeSystem as system -> coding.system = translate(system, '#oid2uri', 'uri')
+    src.displayName as display -> coding.display = display
+  }
+```
 
-
-#### les éléments transverses CDA → FHIR
-les éléments transverses
-La deuxième étape du mapping consiste à traiter les éléments transverses du document CDA, c’est à dire toutes les informations structurantes présentes dans l’en tête et dans certaines parties organisées du corps du document.
-
-Le but de cette étape est de convertir ces éléments transverses en ressources FHIR équivalentes, de manière cohérente et fidèle. Cette opération permet de reconstruire la structure logique du document dans FHIR, en préservant son contexte administratif, clinique et organisationnel. Elle assure que les informations indispensables à la compréhension globale du document — telles que l’identité du patient, les acteurs impliqués, le contexte de production ou les structures narratives — soient correctement représentées dans le modèle cible.
-
-
-{% sql conceptmapsTransverses %}
-SELECT 
-  CM.id AS "ConceptMap",
-  E.display AS "CDA (source)",
-  T.display AS "FHIR (cible)",
-  T.equivalence AS "Equivalence"
-FROM ConceptMap CM
-JOIN group G ON G.ConceptMap = CM._row
-JOIN element E ON E.group = G._row
-JOIN target T ON T.element = E._row
-ORDER BY CM.id, E.display;
-{% endsql %}
-
+**Quantité physique (PQ → Quantity)** :
+```fml
+group PQQuantity(source src : PQ, target tgt : Quantity)
+  src.value as v -> tgt.value = v
+  src.unit as u -> tgt.unit = u, tgt.code = u
+```
 
 #### Conversion de codes terminologiques
 
