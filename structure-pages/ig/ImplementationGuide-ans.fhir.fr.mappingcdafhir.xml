@@ -10,7 +10,7 @@
   <name value="CDA2FHIRMAP"/>
   <title value="POC - Mapping CDA to FHIR"/>
   <status value="draft"/>
-  <date value="2026-03-26T11:41:29+00:00"/>
+  <date value="2026-03-26T16:55:12+00:00"/>
   <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
   <contact>
     <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
@@ -620,7 +620,7 @@
           <valueUrl value="index.html"/>
         </extension>
         <nameUrl value="index.html"/>
-        <title value="Accueil"/>
+        <title value="Home"/>
         <generation value="markdown"/>
       </page>
       <page>
@@ -628,7 +628,23 @@
           <valueUrl value="change-log.html"/>
         </extension>
         <nameUrl value="change-log.html"/>
-        <title value="Historique des versions"/>
+        <title value="Change Log"/>
+        <generation value="markdown"/>
+      </page>
+      <page>
+        <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
+          <valueUrl value="guide-demarrage.html"/>
+        </extension>
+        <nameUrl value="guide-demarrage.html"/>
+        <title value="Guide Demarrage"/>
+        <generation value="markdown"/>
+      </page>
+      <page>
+        <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
+          <valueUrl value="initiatives-internationales.html"/>
+        </extension>
+        <nameUrl value="initiatives-internationales.html"/>
+        <title value="Initiatives Internationales"/>
         <generation value="markdown"/>
       </page>
       <page>
@@ -636,39 +652,23 @@
           <valueUrl value="mapping-cda-fhir.html"/>
         </extension>
         <nameUrl value="mapping-cda-fhir.html"/>
-        <title value="Mapping CDA vers FHIR"/>
+        <title value="Mapping Cda Fhir"/>
         <generation value="markdown"/>
-        <page>
-          <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
-            <valueUrl value="mapping-mechanisms.html"/>
-          </extension>
-          <nameUrl value="mapping-mechanisms.html"/>
-          <title value="Mécanisme du Mapping"/>
-          <generation value="markdown"/>
-        </page>
-        <page>
-          <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
-            <valueUrl value="guide-demarrage.html"/>
-          </extension>
-          <nameUrl value="guide-demarrage.html"/>
-          <title value="Guide de démarrage"/>
-          <generation value="markdown"/>
-        </page>
-        <page>
-          <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
-            <valueUrl value="outils-mapping.html"/>
-          </extension>
-          <nameUrl value="outils-mapping.html"/>
-          <title value="Outils de Mapping"/>
-          <generation value="markdown"/>
-        </page>
       </page>
       <page>
         <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
-          <valueUrl value="initiatives-internationales.html"/>
+          <valueUrl value="mapping-mechanisms.html"/>
         </extension>
-        <nameUrl value="initiatives-internationales.html"/>
-        <title value="Initiatives internationales"/>
+        <nameUrl value="mapping-mechanisms.html"/>
+        <title value="Mapping Mechanisms"/>
+        <generation value="markdown"/>
+      </page>
+      <page>
+        <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
+          <valueUrl value="outils-mapping.html"/>
+        </extension>
+        <nameUrl value="outils-mapping.html"/>
+        <title value="Outils Mapping"/>
         <generation value="markdown"/>
       </page>
     </page>

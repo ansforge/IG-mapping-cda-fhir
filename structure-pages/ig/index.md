@@ -1,9 +1,9 @@
-# Accueil - POC - Mapping CDA to FHIR v0.1.0
+# Home - POC - Mapping CDA to FHIR v0.1.0
 
 * [**Table of Contents**](toc.md)
-* **Accueil**
+* **Home**
 
-## Accueil
+## Home
 
 | | |
 | :--- | :--- |
@@ -405,7 +405,7 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2026-03-26T11:41:29+00:00",
+  "date" : "2026-03-26T16:55:12+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -1203,7 +1203,7 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
           "valueUrl" : "index.html"
         }],
         "nameUrl" : "index.html",
-        "title" : "Accueil",
+        "title" : "Home",
         "generation" : "markdown"
       },
       {
@@ -1212,7 +1212,25 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
           "valueUrl" : "change-log.html"
         }],
         "nameUrl" : "change-log.html",
-        "title" : "Historique des versions",
+        "title" : "Change Log",
+        "generation" : "markdown"
+      },
+      {
+        "extension" : [{
+          "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
+          "valueUrl" : "guide-demarrage.html"
+        }],
+        "nameUrl" : "guide-demarrage.html",
+        "title" : "Guide Demarrage",
+        "generation" : "markdown"
+      },
+      {
+        "extension" : [{
+          "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
+          "valueUrl" : "initiatives-internationales.html"
+        }],
+        "nameUrl" : "initiatives-internationales.html",
+        "title" : "Initiatives Internationales",
         "generation" : "markdown"
       },
       {
@@ -1221,43 +1239,25 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
           "valueUrl" : "mapping-cda-fhir.html"
         }],
         "nameUrl" : "mapping-cda-fhir.html",
-        "title" : "Mapping CDA vers FHIR",
-        "generation" : "markdown",
-        "page" : [{
-          "extension" : [{
-            "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
-            "valueUrl" : "mapping-mechanisms.html"
-          }],
-          "nameUrl" : "mapping-mechanisms.html",
-          "title" : "Mécanisme du Mapping",
-          "generation" : "markdown"
-        },
-        {
-          "extension" : [{
-            "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
-            "valueUrl" : "guide-demarrage.html"
-          }],
-          "nameUrl" : "guide-demarrage.html",
-          "title" : "Guide de démarrage",
-          "generation" : "markdown"
-        },
-        {
-          "extension" : [{
-            "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
-            "valueUrl" : "outils-mapping.html"
-          }],
-          "nameUrl" : "outils-mapping.html",
-          "title" : "Outils de Mapping",
-          "generation" : "markdown"
-        }]
+        "title" : "Mapping Cda Fhir",
+        "generation" : "markdown"
       },
       {
         "extension" : [{
           "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
-          "valueUrl" : "initiatives-internationales.html"
+          "valueUrl" : "mapping-mechanisms.html"
         }],
-        "nameUrl" : "initiatives-internationales.html",
-        "title" : "Initiatives internationales",
+        "nameUrl" : "mapping-mechanisms.html",
+        "title" : "Mapping Mechanisms",
+        "generation" : "markdown"
+      },
+      {
+        "extension" : [{
+          "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
+          "valueUrl" : "outils-mapping.html"
+        }],
+        "nameUrl" : "outils-mapping.html",
+        "title" : "Outils Mapping",
         "generation" : "markdown"
       }]
     },
