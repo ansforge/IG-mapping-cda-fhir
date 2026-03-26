@@ -21,7 +21,7 @@
   fhir:name [ fhir:v "CDA2FHIRMAP"] ; # 
   fhir:title [ fhir:v "POC - Mapping CDA to FHIR"] ; # 
   fhir:status [ fhir:v "draft"] ; # 
-  fhir:date [ fhir:v "2026-03-26T09:30:25+00:00"^^xsd:dateTime] ; # 
+  fhir:date [ fhir:v "2026-03-26T11:41:29+00:00"^^xsd:dateTime] ; # 
   fhir:publisher [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"] ; # 
   fhir:contact ( [
      fhir:name [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris" ] ;
@@ -98,11 +98,11 @@
   ] [
      fhir:id [ fhir:v "hl7_fhir_fr_core" ] ;
      fhir:uri [
-       fhir:v "http://fhir.org/packages/hl7.fhir.fr.core/ImplementationGuide/hl7.fhir.fr.core"^^xsd:anyURI ;
-       fhir:l <http://fhir.org/packages/hl7.fhir.fr.core/ImplementationGuide/hl7.fhir.fr.core>
+       fhir:v "https://hl7.fr/ig/fhir/core/ImplementationGuide/hl7.fhir.fr.core"^^xsd:anyURI ;
+       fhir:l <https://hl7.fr/ig/fhir/core/ImplementationGuide/hl7.fhir.fr.core>
      ] ;
      fhir:packageId [ fhir:v "hl7.fhir.fr.core" ] ;
-     fhir:version [ fhir:v "1.1.0" ]
+     fhir:version [ fhir:v "2.1.0" ]
   ] ) ; # 
   fhir:definition [
      fhir:extension ( [
@@ -1682,6 +1682,25 @@
            ] ;
            fhir:value [
              a fhir:Url ;
+             fhir:v "change-log.html"^^xsd:anyURI ;
+             fhir:l fhir:change-log.html
+           ]
+         ] ) ;
+         fhir:name [
+           a fhir:Url ;
+           fhir:v "change-log.html"^^xsd:anyURI ;
+           fhir:l fhir:change-log.html
+         ] ;
+         fhir:title [ fhir:v "Historique des versions" ] ;
+         fhir:generation [ fhir:v "markdown" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [
+             fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
+             fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
+           ] ;
+           fhir:value [
+             a fhir:Url ;
              fhir:v "mapping-cda-fhir.html"^^xsd:anyURI ;
              fhir:l fhir:mapping-cda-fhir.html
            ]
@@ -1701,14 +1720,14 @@
              ] ;
              fhir:value [
                a fhir:Url ;
-               fhir:v "mecanismes-mapping.html"^^xsd:anyURI ;
-               fhir:l fhir:mecanismes-mapping.html
+               fhir:v "mapping-mechanisms.html"^^xsd:anyURI ;
+               fhir:l fhir:mapping-mechanisms.html
              ]
            ] ) ;
            fhir:name [
              a fhir:Url ;
-             fhir:v "mecanismes-mapping.html"^^xsd:anyURI ;
-             fhir:l fhir:mecanismes-mapping.html
+             fhir:v "mapping-mechanisms.html"^^xsd:anyURI ;
+             fhir:l fhir:mapping-mechanisms.html
            ] ;
            fhir:title [ fhir:v "Mécanisme du Mapping" ] ;
            fhir:generation [ fhir:v "markdown" ]
