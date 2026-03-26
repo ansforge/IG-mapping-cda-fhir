@@ -13,11 +13,11 @@
  **FHIR Mapping Language for CDA to FHIR transformation**
  Proof of concept for CDA to FHIR transformation 
 
-> Cet Implementation Guide n'est pas la version courante, il s'agit de la version en intégration continue, soumise à des changements fréquents et uniquement destinée à suivre les travaux en cours. La version courante sera accessible via l'URL canonique suite à la première release : http://interop.esante.gouv.fr/ig/fhir/[code - ig].
+> Cet Implementation Guide n'est pas la version courante, il s'agit de la version en intégration continue, soumise à des changements fréquents et uniquement destinée à suivre les travaux en cours. La version courante sera accessible via l'URL canonique suite à la première release : http://interop.esante.gouv.fr/ig/fhir/[code - ig]
 
 ### Introduction
 
-Dans le cadre de l’Espace Européen des Données de Santé (EEDS), l’Union européenne souhaite harmoniser les formats d’échange de données de santé en favorisant l’adoption du standard FHIR. Cette évolution vise à remplacer progressivement les documents CDA, encore largement utilisés dans plusieurs pays européens, par des ressources FHIR, le format retenu pour les échanges transfrontaliers.
+Dans le cadre de l’Espace Européen des Données de Santé (EEDS), l’Union européenne souhaite harmoniser les formats d’échange de données de santé en favorisant l’adoption du standard FHIR.
 
 Pour anticiper cette transition, l’Europe a identifié six cas d’usage prioritaires dont les documents doivent migrer vers FHIR :
 
@@ -73,7 +73,7 @@ Cette ressource, publiée par HL7 International, propose une analyse détaillée
 
 #### HL7 FHIR
 
-Le site officiel FHIR inclut, sur de nombreuses pages de ressources et types de données, une section « Mappings » indiquant les équivalents potentiels dans d’autres standards, dont le CDA.
+Le site officiel FHIR inclut, sur de nombreuses ressources et types de données, une section « Mappings » indiquant les équivalents potentiels dans d’autres standards, dont le CDA.
 
 **Périmètre et contenu :**
 
@@ -88,8 +88,8 @@ Le site officiel FHIR inclut, sur de nombreuses pages de ressources et types de 
 * harmoniser les travaux nationaux avec les modèles FHIR internationaux ;
 * réduire les divergences d’interprétation lors de la construction du mapping CDA → FHIR.
 
-**Référence (FHIR R4) :**
- https://www.hl7.org/fhir/
+**Référence :**
+ https://hl7.org/fhir/R4/
 
 ### Auteurs et contributeurs
 
@@ -141,7 +141,7 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2026-03-26T12:27:46+00:00",
+  "date" : "2026-03-26T13:32:38+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
