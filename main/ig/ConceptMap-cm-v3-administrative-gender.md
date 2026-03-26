@@ -9,7 +9,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/cm-v3-administrative-gender | *Version*:0.1.0 |
-| Active as of 2026-02-09 | *Computable Name*:CdaToFhirAdministrativeGender |
+| Active as of 2026-03-26 | *Computable Name*:CdaToFhirAdministrativeGender |
 
  
 Mapping between CDA v3 Administrative Gender codes and FHIR Administrative Gender codes 
@@ -31,87 +31,67 @@ Used in CDA to FHIR transformations to map gender codes
   "title" : "CDA to FHIR Administrative Gender Mapping",
   "status" : "active",
   "experimental" : false,
-  "date" : "2026-02-09T11:09:38+00:00",
+  "date" : "2026-03-26T12:56:02+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
-  "contact" : [
-    {
-      "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
-      "telecom" : [
-        {
-          "system" : "url",
-          "value" : "https://esante.gouv.fr"
-        }
-      ]
-    }
-  ],
+  "contact" : [{
+    "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
+    "telecom" : [{
+      "system" : "url",
+      "value" : "https://esante.gouv.fr"
+    }]
+  }],
   "description" : "Mapping between CDA v3 Administrative Gender codes and FHIR Administrative Gender codes",
-  "jurisdiction" : [
-    {
-      "coding" : [
-        {
-          "system" : "urn:iso:std:iso:3166",
-          "code" : "FR",
-          "display" : "FRANCE"
-        }
-      ]
-    }
-  ],
+  "jurisdiction" : [{
+    "coding" : [{
+      "system" : "urn:iso:std:iso:3166",
+      "code" : "FR",
+      "display" : "FRANCE"
+    }]
+  }],
   "purpose" : "Used in CDA to FHIR transformations to map gender codes",
   "sourceCanonical" : "http://terminology.hl7.org/ValueSet/v3-AdministrativeGender",
   "targetCanonical" : "http://hl7.org/fhir/ValueSet/administrative-gender",
-  "group" : [
+  "group" : [{
+    "source" : "http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender",
+    "target" : "http://hl7.org/fhir/administrative-gender",
+    "element" : [{
+      "code" : "M",
+      "display" : "Male",
+      "target" : [{
+        "code" : "male",
+        "display" : "Male",
+        "equivalence" : "equivalent"
+      }]
+    },
     {
-      "source" : "http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender",
-      "target" : "http://hl7.org/fhir/administrative-gender",
-      "element" : [
-        {
-          "code" : "M",
-          "display" : "Male",
-          "target" : [
-            {
-              "code" : "male",
-              "display" : "Male",
-              "equivalence" : "equivalent"
-            }
-          ]
-        },
-        {
-          "code" : "F",
-          "display" : "Female",
-          "target" : [
-            {
-              "code" : "female",
-              "display" : "Female",
-              "equivalence" : "equivalent"
-            }
-          ]
-        },
-        {
-          "code" : "UN",
-          "display" : "Undifferentiated",
-          "target" : [
-            {
-              "code" : "other",
-              "display" : "Other",
-              "equivalence" : "equivalent",
-              "comment" : "CDA 'Undifferentiated' maps to FHIR 'other'"
-            }
-          ]
-        },
-        {
-          "code" : "UNK",
-          "display" : "Unknown",
-          "target" : [
-            {
-              "code" : "unknown",
-              "display" : "Unknown",
-              "equivalence" : "equivalent"
-            }
-          ]
-        }
-      ]
-    }
-  ]
+      "code" : "F",
+      "display" : "Female",
+      "target" : [{
+        "code" : "female",
+        "display" : "Female",
+        "equivalence" : "equivalent"
+      }]
+    },
+    {
+      "code" : "UN",
+      "display" : "Undifferentiated",
+      "target" : [{
+        "code" : "other",
+        "display" : "Other",
+        "equivalence" : "equivalent",
+        "comment" : "CDA 'Undifferentiated' maps to FHIR 'other'"
+      }]
+    },
+    {
+      "code" : "UNK",
+      "display" : "Unknown",
+      "target" : [{
+        "code" : "unknown",
+        "display" : "Unknown",
+        "equivalence" : "equivalent"
+      }]
+    }]
+  }]
 }
 
 ```
