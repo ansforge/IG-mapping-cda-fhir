@@ -1,7 +1,7 @@
-# Outils Mapping - POC - Mapping CDA to FHIR v0.1.0
+# Outils de Mapping - POC - Mapping CDA to FHIR v0.1.0
 
 * [**Table of Contents**](toc.md)
-* **Outils Mapping**
+* **Outils de Mapping**
 
-## Outils Mapping
+## Outils de Mapping
 

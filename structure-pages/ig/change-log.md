@@ -1,9 +1,9 @@
-# Change Log - POC - Mapping CDA to FHIR v0.1.0
+# Historique des versions - POC - Mapping CDA to FHIR v0.1.0
 
 * [**Table of Contents**](toc.md)
-* **Change Log**
+* **Historique des versions**
 
-## Change Log
+## Historique des versions
 
 ### version xxx
 
