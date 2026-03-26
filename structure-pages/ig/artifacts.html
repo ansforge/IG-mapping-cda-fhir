@@ -98,8 +98,27 @@
   <li>
     <a href="index.html">Accueil</a>
   </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Mapping CDA vers FHIR
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="mecanismes-mapping.html">Mécanisme du Mapping</a>
+      </li>
+      <li>
+        <a href="guide-demarrage.html">Guide de démarrage</a>
+      </li>
+      <li>
+        <a href="outils-mapping.html">Outils de Mapping</a>
+      </li>
+    </ul>
+  </li>
   <li>
     <a href="artifacts.html">Ressources de conformité</a>
+  </li>
+  <li>
+    <a href="initiatives-internationales.html">Initiatives internationales</a>
   </li>
   <li class="dropdown">
     <a data-toggle="dropdown" href="#" class="dropdown-toggle">Autres ressources
@@ -107,18 +126,15 @@
     </a>
     <ul class="dropdown-menu">
       <li>
-        <a href="downloads.html">Téléchargements et usage</a>
+        <a target="_blank" href="http://hl7.org/fhir/R4/index.html">Spécification FHIR</a>
       </li>
       <li>
-        <a target="_blank" href="http://hl7.org/fhir/R4/index.html">Spécifications FHIR </a>
+        <a target="_blank" href="https://esante.gouv.fr/">Site de l’ANS</a>
       </li>
       <li>
-        <a target="_blank" href="https://esante.gouv.fr/">Site de l&apos;ANS </a>
+        <a target="_blank" href="https://interop.esante.gouv.fr/ig/documentation/">Documentation</a>
       </li>
     </ul>
-  </li>
-  <li>
-    <a target="_blank" href="https://interop.esante.gouv.fr/ig/documentation/">Documentation</a>
   </li>
 </ul>
             </div>  <!-- /.nav-collapse -->
@@ -136,7 +152,7 @@
 
           <span style="float:right;">
 
-            <a href="downloads.html">&lt;prev</a> | 
+            <a href="initiatives-internationales.html">&lt;prev</a> | 
 
             <a href="#bottom">bottom</a>
 
@@ -256,177 +272,6 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
          </tr>
          <tr>
             <td style="column-width:30%">
-               <a href="ConceptMap-CdaToAddressConceptMap.html"
-                  title="ConceptMap/CdaToAddressConceptMap">ConceptMap — CDA AD → FHIR Address</a>
-            </td>
-            <td>
-<p>Correspondances documentaires des composants AD vers Address.</p>
-</td>
-         </tr>
-         <tr>
-            <td style="column-width:30%">
-               <a href="ConceptMap-CdaToPractitionerConceptMap.html"
-                  title="ConceptMap/CdaToPractitionerConceptMap">ConceptMap — CDA AssignedAuthor → FHIR Practitioner</a>
-            </td>
-            <td>
-<p>Correspondances entre AssignedAuthor CDA et Practitioner FHIR</p>
-</td>
-         </tr>
-         <tr>
-            <td style="column-width:30%">
-               <a href="ConceptMap-CdaToBooleanConceptMap.html"
-                  title="ConceptMap/CdaToBooleanConceptMap">ConceptMap — CDA BL → FHIR boolean / negation</a>
-            </td>
-            <td>
-<p>Correspondances BL.value → boolean ; BL.negationInd → boolean (modifierExtension).</p>
-</td>
-         </tr>
-         <tr>
-            <td style="column-width:30%">
-               <a href="ConceptMap-CdaToCodeConceptMap.html"
-                  title="ConceptMap/CdaToCodeConceptMap">ConceptMap — CDA CE/CS/CD → FHIR code/CodeableConcept</a>
-            </td>
-            <td>
-<p>Correspondances documentaires code/codeSystem/displayName/originalText/translations → code/CodeableConcept.</p>
-</td>
-         </tr>
-         <tr>
-            <td style="column-width:30%">
-               <a href="ConceptMap-CdaToBundleConceptMap.html"
-                  title="ConceptMap/CdaToBundleConceptMap">ConceptMap — CDA ClinicalDocument → FHIR Bundle</a>
-            </td>
-            <td>
-<p>Correspondances CDA ClinicalDocument → FHIR Bundle</p>
-</td>
-         </tr>
-         <tr>
-            <td style="column-width:30%">
-               <a href="ConceptMap-CdaToCompositionConceptMap.html"
-                  title="ConceptMap/CdaToCompositionConceptMap">ConceptMap — CDA ClinicalDocument → FHIR Composition</a>
-            </td>
-            <td>
-<p>Correspondances entre ClinicalDocument CDA et Composition FHIR</p>
-</td>
-         </tr>
-         <tr>
-            <td style="column-width:30%">
-               <a href="ConceptMap-CdaToOrganisationConceptMap.html"
-                  title="ConceptMap/CdaToOrganisationConceptMap">ConceptMap — CDA CustodianOrganization → FHIR Organization</a>
-            </td>
-            <td>
-<p>Correspondances entre CustodianOrganization CDA et Organization FHIR</p>
-</td>
-         </tr>
-         <tr>
-            <td style="column-width:30%">
-               <a href="ConceptMap-CdaToHumanNameConceptMap.html"
-                  title="ConceptMap/CdaToHumanNameConceptMap">ConceptMap — CDA EN/PN → FHIR HumanName</a>
-            </td>
-            <td>
-<p>Correspondances documentaires des composants EN/PN vers HumanName (family/given/prefix/suffix/period).</p>
-</td>
-         </tr>
-         <tr>
-            <td style="column-width:30%">
-               <a href="ConceptMap-CdaToEncounterConceptMap.html"
-                  title="ConceptMap/CdaToEncounterConceptMap">ConceptMap — CDA EncompassingEncounter → FHIR Encounter</a>
-            </td>
-            <td>
-<p>Correspondances entre EncompassingEncounter CDA et Encounter FHIR</p>
-</td>
-         </tr>
-         <tr>
-            <td style="column-width:30%">
-               <a href="ConceptMap-CdaToLocationConceptMap.html"
-                  title="ConceptMap/CdaToLocationConceptMap">ConceptMap — CDA HealthCareFacility → FHIR Location</a>
-            </td>
-            <td>
-<p>Correspondances entre HealthCareFacility CDA et Location FHIR</p>
-</td>
-         </tr>
-         <tr>
-            <td style="column-width:30%">
-               <a href="ConceptMap-CdaToIdentifierConceptMap.html"
-                  title="ConceptMap/CdaToIdentifierConceptMap">ConceptMap — CDA II → FHIR Identifier</a>
-            </td>
-            <td>
-<p>Correspondances des éléments CDA II → FHIR Identifier (root, extension, assigner).</p>
-</td>
-         </tr>
-         <tr>
-            <td style="column-width:30%">
-               <a href="ConceptMap-CdaToIntegerConceptMap.html"
-                  title="ConceptMap/CdaToIntegerConceptMap">ConceptMap — CDA INT → FHIR integer</a>
-            </td>
-            <td>
-<p>Correspondances documentaires INT.value → integer.</p>
-</td>
-         </tr>
-         <tr>
-            <td style="column-width:30%">
-               <a href="ConceptMap-CdaToPeriodConceptMap.html"
-                  title="ConceptMap/CdaToPeriodConceptMap">ConceptMap — CDA IVL_TS → FHIR Period/dateTime</a>
-            </td>
-            <td>
-<p>Correspondances CDA IVL_TS (low/high) vers Period.start/end ou dateTime.</p>
-</td>
-         </tr>
-         <tr>
-            <td style="column-width:30%">
-               <a href="ConceptMap-CdaToQuantityConceptMap.html"
-                  title="ConceptMap/CdaToQuantityConceptMap">ConceptMap — CDA PQ → FHIR Quantity</a>
-            </td>
-            <td>
-<p>Correspondances PQ.value / PQ.unit → Quantity (value, unit, system, code).</p>
-</td>
-         </tr>
-         <tr>
-            <td style="column-width:30%">
-               <a href="ConceptMap-CdaToPatientConceptMap.html"
-                  title="ConceptMap/CdaToPatientConceptMap">ConceptMap — CDA PatientRole → FHIR Patient</a>
-            </td>
-            <td>
-<p>Correspondances CDA PatientRole → FHIR Patient</p>
-</td>
-         </tr>
-         <tr>
-            <td style="column-width:30%">
-               <a href="ConceptMap-CdaToRatioConceptMap.html"
-                  title="ConceptMap/CdaToRatioConceptMap">ConceptMap — CDA RTO_PQ_PQ → FHIR Ratio</a>
-            </td>
-            <td>
-<p>Correspondances documentaires numerator/denominator CDA → numerator/denominator FHIR.</p>
-</td>
-         </tr>
-         <tr>
-            <td style="column-width:30%">
-               <a href="ConceptMap-CdaToStringConceptMap.html"
-                  title="ConceptMap/CdaToStringConceptMap">ConceptMap — CDA ST/ED/ON → FHIR string</a>
-            </td>
-            <td>
-<p>Correspondances CDA ST/ED/ON → FHIR string.</p>
-</td>
-         </tr>
-         <tr>
-            <td style="column-width:30%">
-               <a href="ConceptMap-CdaToContactPointConceptMap.html"
-                  title="ConceptMap/CdaToContactPointConceptMap">ConceptMap — CDA TEL → FHIR ContactPoint</a>
-            </td>
-            <td>
-<p>Correspondances documentaires TEL.value (tel:/fax:/mailto:/http:/https:) + use + useablePeriod → ContactPoint.</p>
-</td>
-         </tr>
-         <tr>
-            <td style="column-width:30%">
-               <a href="ConceptMap-CdaToDateTimeConceptMap.html"
-                  title="ConceptMap/CdaToDateTimeConceptMap">ConceptMap — CDA TS → FHIR instant/dateTime/date</a>
-            </td>
-            <td>
-<p>Correspondances CDA TS.value → instant, dateTime ou date selon contexte.</p>
-</td>
-         </tr>
-         <tr>
-            <td style="column-width:30%">
                <a href="ConceptMap-oid2uri-ans.html" title="ConceptMap/oid2uri-ans">OID to URI Mapping for ANS terminologies</a>
             </td>
             <td>
@@ -476,7 +321,7 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
             <tr>
               <td style="text-align:left">&#xA0;
 
-                <a href="downloads.html">&lt;prev</a>
+                <a href="initiatives-internationales.html">&lt;prev</a>
 
               </td>
               <td style="text-align:center">
@@ -494,7 +339,7 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
 
       <div class="inner-wrapper">
         <p>
-          IG &#169; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d&#39;Oradour-sur-Glane, 75015 Paris</a>.  Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Mon, Mar 23, 2026 12:01+0000">2026-03-23</span>
+          IG &#169; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d&#39;Oradour-sur-Glane, 75015 Paris</a>.  Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Thu, Mar 26, 2026 09:30+0000">2026-03-26</span>
           <br/>
           <span style="color: var(--footer-highlight-text-color)"></span>
             Liens : <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table des matières</a> |

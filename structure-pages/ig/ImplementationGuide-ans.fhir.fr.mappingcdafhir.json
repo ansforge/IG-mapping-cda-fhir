@@ -10,7 +10,7 @@
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2026-03-23T12:01:33+00:00",
+  "date" : "2026-03-26T09:30:25+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -384,7 +384,7 @@
     },
     {
       "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-internal-dependency",
-      "valueCode" : "hl7.fhir.uv.tools.r4#1.1.0"
+      "valueCode" : "hl7.fhir.uv.tools.r4#1.1.2"
     },
     {
       "extension" : [{
@@ -721,234 +721,6 @@
     {
       "extension" : [{
         "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "ConceptMap"
-      }],
-      "reference" : {
-        "reference" : "ConceptMap/CdaToAddressConceptMap"
-      },
-      "name" : "ConceptMap — CDA AD → FHIR Address",
-      "description" : "Correspondances documentaires des composants AD vers Address.",
-      "exampleBoolean" : false
-    },
-    {
-      "extension" : [{
-        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "ConceptMap"
-      }],
-      "reference" : {
-        "reference" : "ConceptMap/CdaToPractitionerConceptMap"
-      },
-      "name" : "ConceptMap — CDA AssignedAuthor → FHIR Practitioner",
-      "description" : "Correspondances entre AssignedAuthor CDA et Practitioner FHIR",
-      "exampleBoolean" : false
-    },
-    {
-      "extension" : [{
-        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "ConceptMap"
-      }],
-      "reference" : {
-        "reference" : "ConceptMap/CdaToBooleanConceptMap"
-      },
-      "name" : "ConceptMap — CDA BL → FHIR boolean / negation",
-      "description" : "Correspondances BL.value → boolean ; BL.negationInd → boolean (modifierExtension).",
-      "exampleBoolean" : false
-    },
-    {
-      "extension" : [{
-        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "ConceptMap"
-      }],
-      "reference" : {
-        "reference" : "ConceptMap/CdaToCodeConceptMap"
-      },
-      "name" : "ConceptMap — CDA CE/CS/CD → FHIR code/CodeableConcept",
-      "description" : "Correspondances documentaires code/codeSystem/displayName/originalText/translations → code/CodeableConcept.",
-      "exampleBoolean" : false
-    },
-    {
-      "extension" : [{
-        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "ConceptMap"
-      }],
-      "reference" : {
-        "reference" : "ConceptMap/CdaToBundleConceptMap"
-      },
-      "name" : "ConceptMap — CDA ClinicalDocument → FHIR Bundle",
-      "description" : "Correspondances CDA ClinicalDocument → FHIR Bundle",
-      "exampleBoolean" : false
-    },
-    {
-      "extension" : [{
-        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "ConceptMap"
-      }],
-      "reference" : {
-        "reference" : "ConceptMap/CdaToCompositionConceptMap"
-      },
-      "name" : "ConceptMap — CDA ClinicalDocument → FHIR Composition",
-      "description" : "Correspondances entre ClinicalDocument CDA et Composition FHIR",
-      "exampleBoolean" : false
-    },
-    {
-      "extension" : [{
-        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "ConceptMap"
-      }],
-      "reference" : {
-        "reference" : "ConceptMap/CdaToOrganisationConceptMap"
-      },
-      "name" : "ConceptMap — CDA CustodianOrganization → FHIR Organization",
-      "description" : "Correspondances entre CustodianOrganization CDA et Organization FHIR",
-      "exampleBoolean" : false
-    },
-    {
-      "extension" : [{
-        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "ConceptMap"
-      }],
-      "reference" : {
-        "reference" : "ConceptMap/CdaToHumanNameConceptMap"
-      },
-      "name" : "ConceptMap — CDA EN/PN → FHIR HumanName",
-      "description" : "Correspondances documentaires des composants EN/PN vers HumanName (family/given/prefix/suffix/period).",
-      "exampleBoolean" : false
-    },
-    {
-      "extension" : [{
-        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "ConceptMap"
-      }],
-      "reference" : {
-        "reference" : "ConceptMap/CdaToEncounterConceptMap"
-      },
-      "name" : "ConceptMap — CDA EncompassingEncounter → FHIR Encounter",
-      "description" : "Correspondances entre EncompassingEncounter CDA et Encounter FHIR",
-      "exampleBoolean" : false
-    },
-    {
-      "extension" : [{
-        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "ConceptMap"
-      }],
-      "reference" : {
-        "reference" : "ConceptMap/CdaToLocationConceptMap"
-      },
-      "name" : "ConceptMap — CDA HealthCareFacility → FHIR Location",
-      "description" : "Correspondances entre HealthCareFacility CDA et Location FHIR",
-      "exampleBoolean" : false
-    },
-    {
-      "extension" : [{
-        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "ConceptMap"
-      }],
-      "reference" : {
-        "reference" : "ConceptMap/CdaToIdentifierConceptMap"
-      },
-      "name" : "ConceptMap — CDA II → FHIR Identifier",
-      "description" : "Correspondances des éléments CDA II → FHIR Identifier (root, extension, assigner).",
-      "exampleBoolean" : false
-    },
-    {
-      "extension" : [{
-        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "ConceptMap"
-      }],
-      "reference" : {
-        "reference" : "ConceptMap/CdaToIntegerConceptMap"
-      },
-      "name" : "ConceptMap — CDA INT → FHIR integer",
-      "description" : "Correspondances documentaires INT.value → integer.",
-      "exampleBoolean" : false
-    },
-    {
-      "extension" : [{
-        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "ConceptMap"
-      }],
-      "reference" : {
-        "reference" : "ConceptMap/CdaToPeriodConceptMap"
-      },
-      "name" : "ConceptMap — CDA IVL_TS → FHIR Period/dateTime",
-      "description" : "Correspondances CDA IVL_TS (low/high) vers Period.start/end ou dateTime.",
-      "exampleBoolean" : false
-    },
-    {
-      "extension" : [{
-        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "ConceptMap"
-      }],
-      "reference" : {
-        "reference" : "ConceptMap/CdaToPatientConceptMap"
-      },
-      "name" : "ConceptMap — CDA PatientRole → FHIR Patient",
-      "description" : "Correspondances CDA PatientRole → FHIR Patient",
-      "exampleBoolean" : false
-    },
-    {
-      "extension" : [{
-        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "ConceptMap"
-      }],
-      "reference" : {
-        "reference" : "ConceptMap/CdaToQuantityConceptMap"
-      },
-      "name" : "ConceptMap — CDA PQ → FHIR Quantity",
-      "description" : "Correspondances PQ.value / PQ.unit → Quantity (value, unit, system, code).",
-      "exampleBoolean" : false
-    },
-    {
-      "extension" : [{
-        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "ConceptMap"
-      }],
-      "reference" : {
-        "reference" : "ConceptMap/CdaToRatioConceptMap"
-      },
-      "name" : "ConceptMap — CDA RTO_PQ_PQ → FHIR Ratio",
-      "description" : "Correspondances documentaires numerator/denominator CDA → numerator/denominator FHIR.",
-      "exampleBoolean" : false
-    },
-    {
-      "extension" : [{
-        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "ConceptMap"
-      }],
-      "reference" : {
-        "reference" : "ConceptMap/CdaToStringConceptMap"
-      },
-      "name" : "ConceptMap — CDA ST/ED/ON → FHIR string",
-      "description" : "Correspondances CDA ST/ED/ON → FHIR string.",
-      "exampleBoolean" : false
-    },
-    {
-      "extension" : [{
-        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "ConceptMap"
-      }],
-      "reference" : {
-        "reference" : "ConceptMap/CdaToContactPointConceptMap"
-      },
-      "name" : "ConceptMap — CDA TEL → FHIR ContactPoint",
-      "description" : "Correspondances documentaires TEL.value (tel:/fax:/mailto:/http:/https:) + use + useablePeriod → ContactPoint.",
-      "exampleBoolean" : false
-    },
-    {
-      "extension" : [{
-        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "ConceptMap"
-      }],
-      "reference" : {
-        "reference" : "ConceptMap/CdaToDateTimeConceptMap"
-      },
-      "name" : "ConceptMap — CDA TS → FHIR instant/dateTime/date",
-      "description" : "Correspondances CDA TS.value → instant, dateTime ou date selon contexte.",
-      "exampleBoolean" : false
-    },
-    {
-      "extension" : [{
-        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
         "valueString" : "Bundle"
       }],
       "reference" : {
@@ -1042,29 +814,47 @@
       {
         "extension" : [{
           "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
-          "valueUrl" : "change-log.html"
+          "valueUrl" : "mapping-cda-fhir.html"
         }],
-        "nameUrl" : "change-log.html",
-        "title" : "Historique des versions",
-        "generation" : "markdown"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
-          "valueUrl" : "autres_ressources.html"
-        }],
-        "nameUrl" : "autres_ressources.html",
-        "title" : "Autres Ressources",
+        "nameUrl" : "mapping-cda-fhir.html",
+        "title" : "Mapping CDA vers FHIR",
         "generation" : "markdown",
         "page" : [{
           "extension" : [{
             "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
-            "valueUrl" : "downloads.html"
+            "valueUrl" : "mecanismes-mapping.html"
           }],
-          "nameUrl" : "downloads.html",
-          "title" : "Téléchargements et usages",
+          "nameUrl" : "mecanismes-mapping.html",
+          "title" : "Mécanisme du Mapping",
+          "generation" : "markdown"
+        },
+        {
+          "extension" : [{
+            "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
+            "valueUrl" : "guide-demarrage.html"
+          }],
+          "nameUrl" : "guide-demarrage.html",
+          "title" : "Guide de démarrage",
+          "generation" : "markdown"
+        },
+        {
+          "extension" : [{
+            "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
+            "valueUrl" : "outils-mapping.html"
+          }],
+          "nameUrl" : "outils-mapping.html",
+          "title" : "Outils de Mapping",
           "generation" : "markdown"
         }]
+      },
+      {
+        "extension" : [{
+          "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
+          "valueUrl" : "initiatives-internationales.html"
+        }],
+        "nameUrl" : "initiatives-internationales.html",
+        "title" : "Initiatives internationales",
+        "generation" : "markdown"
       }]
     },
     "parameter" : [{

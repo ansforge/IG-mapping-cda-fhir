@@ -21,7 +21,7 @@
   fhir:name [ fhir:v "CDA2FHIRMAP"] ; # 
   fhir:title [ fhir:v "POC - Mapping CDA to FHIR"] ; # 
   fhir:status [ fhir:v "draft"] ; # 
-  fhir:date [ fhir:v "2026-03-23T12:01:33+00:00"^^xsd:dateTime] ; # 
+  fhir:date [ fhir:v "2026-03-26T09:30:25+00:00"^^xsd:dateTime] ; # 
   fhir:publisher [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"] ; # 
   fhir:contact ( [
      fhir:name [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris" ] ;
@@ -794,7 +794,7 @@
        ] ;
        fhir:value [
          a fhir:Code ;
-         fhir:v "hl7.fhir.uv.tools.r4#1.1.0"
+         fhir:v "hl7.fhir.uv.tools.r4#1.1.2"
        ]
      ] [
        fhir:extension ( [
@@ -1519,405 +1519,6 @@
          ] ;
          fhir:value [
            a fhir:String ;
-           fhir:v "ConceptMap"
-         ]
-       ] ) ;
-       fhir:reference [
-         fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaToAddressConceptMap> ;
-         fhir:reference [ fhir:v "ConceptMap/CdaToAddressConceptMap" ]
-       ] ;
-       fhir:name [ fhir:v "ConceptMap — CDA AD → FHIR Address" ] ;
-       fhir:description [ fhir:v "Correspondances documentaires des composants AD vers Address." ] ;
-       fhir:example [
-         a fhir:Boolean ;
-         fhir:v false
-       ]
-     ] [
-       fhir:extension ( [
-         fhir:url [
-           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
-           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
-         ] ;
-         fhir:value [
-           a fhir:String ;
-           fhir:v "ConceptMap"
-         ]
-       ] ) ;
-       fhir:reference [
-         fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaToPractitionerConceptMap> ;
-         fhir:reference [ fhir:v "ConceptMap/CdaToPractitionerConceptMap" ]
-       ] ;
-       fhir:name [ fhir:v "ConceptMap — CDA AssignedAuthor → FHIR Practitioner" ] ;
-       fhir:description [ fhir:v "Correspondances entre AssignedAuthor CDA et Practitioner FHIR" ] ;
-       fhir:example [
-         a fhir:Boolean ;
-         fhir:v false
-       ]
-     ] [
-       fhir:extension ( [
-         fhir:url [
-           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
-           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
-         ] ;
-         fhir:value [
-           a fhir:String ;
-           fhir:v "ConceptMap"
-         ]
-       ] ) ;
-       fhir:reference [
-         fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaToBooleanConceptMap> ;
-         fhir:reference [ fhir:v "ConceptMap/CdaToBooleanConceptMap" ]
-       ] ;
-       fhir:name [ fhir:v "ConceptMap — CDA BL → FHIR boolean / negation" ] ;
-       fhir:description [ fhir:v "Correspondances BL.value → boolean ; BL.negationInd → boolean (modifierExtension)." ] ;
-       fhir:example [
-         a fhir:Boolean ;
-         fhir:v false
-       ]
-     ] [
-       fhir:extension ( [
-         fhir:url [
-           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
-           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
-         ] ;
-         fhir:value [
-           a fhir:String ;
-           fhir:v "ConceptMap"
-         ]
-       ] ) ;
-       fhir:reference [
-         fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaToCodeConceptMap> ;
-         fhir:reference [ fhir:v "ConceptMap/CdaToCodeConceptMap" ]
-       ] ;
-       fhir:name [ fhir:v "ConceptMap — CDA CE/CS/CD → FHIR code/CodeableConcept" ] ;
-       fhir:description [ fhir:v "Correspondances documentaires code/codeSystem/displayName/originalText/translations → code/CodeableConcept." ] ;
-       fhir:example [
-         a fhir:Boolean ;
-         fhir:v false
-       ]
-     ] [
-       fhir:extension ( [
-         fhir:url [
-           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
-           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
-         ] ;
-         fhir:value [
-           a fhir:String ;
-           fhir:v "ConceptMap"
-         ]
-       ] ) ;
-       fhir:reference [
-         fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaToBundleConceptMap> ;
-         fhir:reference [ fhir:v "ConceptMap/CdaToBundleConceptMap" ]
-       ] ;
-       fhir:name [ fhir:v "ConceptMap — CDA ClinicalDocument → FHIR Bundle" ] ;
-       fhir:description [ fhir:v "Correspondances CDA ClinicalDocument → FHIR Bundle" ] ;
-       fhir:example [
-         a fhir:Boolean ;
-         fhir:v false
-       ]
-     ] [
-       fhir:extension ( [
-         fhir:url [
-           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
-           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
-         ] ;
-         fhir:value [
-           a fhir:String ;
-           fhir:v "ConceptMap"
-         ]
-       ] ) ;
-       fhir:reference [
-         fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaToCompositionConceptMap> ;
-         fhir:reference [ fhir:v "ConceptMap/CdaToCompositionConceptMap" ]
-       ] ;
-       fhir:name [ fhir:v "ConceptMap — CDA ClinicalDocument → FHIR Composition" ] ;
-       fhir:description [ fhir:v "Correspondances entre ClinicalDocument CDA et Composition FHIR" ] ;
-       fhir:example [
-         a fhir:Boolean ;
-         fhir:v false
-       ]
-     ] [
-       fhir:extension ( [
-         fhir:url [
-           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
-           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
-         ] ;
-         fhir:value [
-           a fhir:String ;
-           fhir:v "ConceptMap"
-         ]
-       ] ) ;
-       fhir:reference [
-         fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaToOrganisationConceptMap> ;
-         fhir:reference [ fhir:v "ConceptMap/CdaToOrganisationConceptMap" ]
-       ] ;
-       fhir:name [ fhir:v "ConceptMap — CDA CustodianOrganization → FHIR Organization" ] ;
-       fhir:description [ fhir:v "Correspondances entre CustodianOrganization CDA et Organization FHIR" ] ;
-       fhir:example [
-         a fhir:Boolean ;
-         fhir:v false
-       ]
-     ] [
-       fhir:extension ( [
-         fhir:url [
-           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
-           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
-         ] ;
-         fhir:value [
-           a fhir:String ;
-           fhir:v "ConceptMap"
-         ]
-       ] ) ;
-       fhir:reference [
-         fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaToHumanNameConceptMap> ;
-         fhir:reference [ fhir:v "ConceptMap/CdaToHumanNameConceptMap" ]
-       ] ;
-       fhir:name [ fhir:v "ConceptMap — CDA EN/PN → FHIR HumanName" ] ;
-       fhir:description [ fhir:v "Correspondances documentaires des composants EN/PN vers HumanName (family/given/prefix/suffix/period)." ] ;
-       fhir:example [
-         a fhir:Boolean ;
-         fhir:v false
-       ]
-     ] [
-       fhir:extension ( [
-         fhir:url [
-           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
-           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
-         ] ;
-         fhir:value [
-           a fhir:String ;
-           fhir:v "ConceptMap"
-         ]
-       ] ) ;
-       fhir:reference [
-         fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaToEncounterConceptMap> ;
-         fhir:reference [ fhir:v "ConceptMap/CdaToEncounterConceptMap" ]
-       ] ;
-       fhir:name [ fhir:v "ConceptMap — CDA EncompassingEncounter → FHIR Encounter" ] ;
-       fhir:description [ fhir:v "Correspondances entre EncompassingEncounter CDA et Encounter FHIR" ] ;
-       fhir:example [
-         a fhir:Boolean ;
-         fhir:v false
-       ]
-     ] [
-       fhir:extension ( [
-         fhir:url [
-           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
-           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
-         ] ;
-         fhir:value [
-           a fhir:String ;
-           fhir:v "ConceptMap"
-         ]
-       ] ) ;
-       fhir:reference [
-         fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaToLocationConceptMap> ;
-         fhir:reference [ fhir:v "ConceptMap/CdaToLocationConceptMap" ]
-       ] ;
-       fhir:name [ fhir:v "ConceptMap — CDA HealthCareFacility → FHIR Location" ] ;
-       fhir:description [ fhir:v "Correspondances entre HealthCareFacility CDA et Location FHIR" ] ;
-       fhir:example [
-         a fhir:Boolean ;
-         fhir:v false
-       ]
-     ] [
-       fhir:extension ( [
-         fhir:url [
-           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
-           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
-         ] ;
-         fhir:value [
-           a fhir:String ;
-           fhir:v "ConceptMap"
-         ]
-       ] ) ;
-       fhir:reference [
-         fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaToIdentifierConceptMap> ;
-         fhir:reference [ fhir:v "ConceptMap/CdaToIdentifierConceptMap" ]
-       ] ;
-       fhir:name [ fhir:v "ConceptMap — CDA II → FHIR Identifier" ] ;
-       fhir:description [ fhir:v "Correspondances des éléments CDA II → FHIR Identifier (root, extension, assigner)." ] ;
-       fhir:example [
-         a fhir:Boolean ;
-         fhir:v false
-       ]
-     ] [
-       fhir:extension ( [
-         fhir:url [
-           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
-           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
-         ] ;
-         fhir:value [
-           a fhir:String ;
-           fhir:v "ConceptMap"
-         ]
-       ] ) ;
-       fhir:reference [
-         fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaToIntegerConceptMap> ;
-         fhir:reference [ fhir:v "ConceptMap/CdaToIntegerConceptMap" ]
-       ] ;
-       fhir:name [ fhir:v "ConceptMap — CDA INT → FHIR integer" ] ;
-       fhir:description [ fhir:v "Correspondances documentaires INT.value → integer." ] ;
-       fhir:example [
-         a fhir:Boolean ;
-         fhir:v false
-       ]
-     ] [
-       fhir:extension ( [
-         fhir:url [
-           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
-           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
-         ] ;
-         fhir:value [
-           a fhir:String ;
-           fhir:v "ConceptMap"
-         ]
-       ] ) ;
-       fhir:reference [
-         fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaToPeriodConceptMap> ;
-         fhir:reference [ fhir:v "ConceptMap/CdaToPeriodConceptMap" ]
-       ] ;
-       fhir:name [ fhir:v "ConceptMap — CDA IVL_TS → FHIR Period/dateTime" ] ;
-       fhir:description [ fhir:v "Correspondances CDA IVL_TS (low/high) vers Period.start/end ou dateTime." ] ;
-       fhir:example [
-         a fhir:Boolean ;
-         fhir:v false
-       ]
-     ] [
-       fhir:extension ( [
-         fhir:url [
-           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
-           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
-         ] ;
-         fhir:value [
-           a fhir:String ;
-           fhir:v "ConceptMap"
-         ]
-       ] ) ;
-       fhir:reference [
-         fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaToPatientConceptMap> ;
-         fhir:reference [ fhir:v "ConceptMap/CdaToPatientConceptMap" ]
-       ] ;
-       fhir:name [ fhir:v "ConceptMap — CDA PatientRole → FHIR Patient" ] ;
-       fhir:description [ fhir:v "Correspondances CDA PatientRole → FHIR Patient" ] ;
-       fhir:example [
-         a fhir:Boolean ;
-         fhir:v false
-       ]
-     ] [
-       fhir:extension ( [
-         fhir:url [
-           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
-           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
-         ] ;
-         fhir:value [
-           a fhir:String ;
-           fhir:v "ConceptMap"
-         ]
-       ] ) ;
-       fhir:reference [
-         fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaToQuantityConceptMap> ;
-         fhir:reference [ fhir:v "ConceptMap/CdaToQuantityConceptMap" ]
-       ] ;
-       fhir:name [ fhir:v "ConceptMap — CDA PQ → FHIR Quantity" ] ;
-       fhir:description [ fhir:v "Correspondances PQ.value / PQ.unit → Quantity (value, unit, system, code)." ] ;
-       fhir:example [
-         a fhir:Boolean ;
-         fhir:v false
-       ]
-     ] [
-       fhir:extension ( [
-         fhir:url [
-           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
-           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
-         ] ;
-         fhir:value [
-           a fhir:String ;
-           fhir:v "ConceptMap"
-         ]
-       ] ) ;
-       fhir:reference [
-         fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaToRatioConceptMap> ;
-         fhir:reference [ fhir:v "ConceptMap/CdaToRatioConceptMap" ]
-       ] ;
-       fhir:name [ fhir:v "ConceptMap — CDA RTO_PQ_PQ → FHIR Ratio" ] ;
-       fhir:description [ fhir:v "Correspondances documentaires numerator/denominator CDA → numerator/denominator FHIR." ] ;
-       fhir:example [
-         a fhir:Boolean ;
-         fhir:v false
-       ]
-     ] [
-       fhir:extension ( [
-         fhir:url [
-           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
-           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
-         ] ;
-         fhir:value [
-           a fhir:String ;
-           fhir:v "ConceptMap"
-         ]
-       ] ) ;
-       fhir:reference [
-         fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaToStringConceptMap> ;
-         fhir:reference [ fhir:v "ConceptMap/CdaToStringConceptMap" ]
-       ] ;
-       fhir:name [ fhir:v "ConceptMap — CDA ST/ED/ON → FHIR string" ] ;
-       fhir:description [ fhir:v "Correspondances CDA ST/ED/ON → FHIR string." ] ;
-       fhir:example [
-         a fhir:Boolean ;
-         fhir:v false
-       ]
-     ] [
-       fhir:extension ( [
-         fhir:url [
-           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
-           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
-         ] ;
-         fhir:value [
-           a fhir:String ;
-           fhir:v "ConceptMap"
-         ]
-       ] ) ;
-       fhir:reference [
-         fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaToContactPointConceptMap> ;
-         fhir:reference [ fhir:v "ConceptMap/CdaToContactPointConceptMap" ]
-       ] ;
-       fhir:name [ fhir:v "ConceptMap — CDA TEL → FHIR ContactPoint" ] ;
-       fhir:description [ fhir:v "Correspondances documentaires TEL.value (tel:/fax:/mailto:/http:/https:) + use + useablePeriod → ContactPoint." ] ;
-       fhir:example [
-         a fhir:Boolean ;
-         fhir:v false
-       ]
-     ] [
-       fhir:extension ( [
-         fhir:url [
-           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
-           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
-         ] ;
-         fhir:value [
-           a fhir:String ;
-           fhir:v "ConceptMap"
-         ]
-       ] ) ;
-       fhir:reference [
-         fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaToDateTimeConceptMap> ;
-         fhir:reference [ fhir:v "ConceptMap/CdaToDateTimeConceptMap" ]
-       ] ;
-       fhir:name [ fhir:v "ConceptMap — CDA TS → FHIR instant/dateTime/date" ] ;
-       fhir:description [ fhir:v "Correspondances CDA TS.value → instant, dateTime ou date selon contexte." ] ;
-       fhir:example [
-         a fhir:Boolean ;
-         fhir:v false
-       ]
-     ] [
-       fhir:extension ( [
-         fhir:url [
-           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
-           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
-         ] ;
-         fhir:value [
-           a fhir:String ;
            fhir:v "Bundle"
          ]
        ] ) ;
@@ -2081,35 +1682,16 @@
            ] ;
            fhir:value [
              a fhir:Url ;
-             fhir:v "change-log.html"^^xsd:anyURI ;
-             fhir:l fhir:change-log.html
+             fhir:v "mapping-cda-fhir.html"^^xsd:anyURI ;
+             fhir:l fhir:mapping-cda-fhir.html
            ]
          ] ) ;
          fhir:name [
            a fhir:Url ;
-           fhir:v "change-log.html"^^xsd:anyURI ;
-           fhir:l fhir:change-log.html
+           fhir:v "mapping-cda-fhir.html"^^xsd:anyURI ;
+           fhir:l fhir:mapping-cda-fhir.html
          ] ;
-         fhir:title [ fhir:v "Historique des versions" ] ;
-         fhir:generation [ fhir:v "markdown" ]
-       ] [
-         fhir:extension ( [
-           fhir:url [
-             fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
-             fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
-           ] ;
-           fhir:value [
-             a fhir:Url ;
-             fhir:v "autres_ressources.html"^^xsd:anyURI ;
-             fhir:l fhir:autres_ressources.html
-           ]
-         ] ) ;
-         fhir:name [
-           a fhir:Url ;
-           fhir:v "autres_ressources.html"^^xsd:anyURI ;
-           fhir:l fhir:autres_ressources.html
-         ] ;
-         fhir:title [ fhir:v "Autres Ressources" ] ;
+         fhir:title [ fhir:v "Mapping CDA vers FHIR" ] ;
          fhir:generation [ fhir:v "markdown" ] ;
          fhir:page ( [
            fhir:extension ( [
@@ -2119,18 +1701,75 @@
              ] ;
              fhir:value [
                a fhir:Url ;
-               fhir:v "downloads.html"^^xsd:anyURI ;
-               fhir:l fhir:downloads.html
+               fhir:v "mecanismes-mapping.html"^^xsd:anyURI ;
+               fhir:l fhir:mecanismes-mapping.html
              ]
            ] ) ;
            fhir:name [
              a fhir:Url ;
-             fhir:v "downloads.html"^^xsd:anyURI ;
-             fhir:l fhir:downloads.html
+             fhir:v "mecanismes-mapping.html"^^xsd:anyURI ;
+             fhir:l fhir:mecanismes-mapping.html
            ] ;
-           fhir:title [ fhir:v "Téléchargements et usages" ] ;
+           fhir:title [ fhir:v "Mécanisme du Mapping" ] ;
+           fhir:generation [ fhir:v "markdown" ]
+         ] [
+           fhir:extension ( [
+             fhir:url [
+               fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
+               fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
+             ] ;
+             fhir:value [
+               a fhir:Url ;
+               fhir:v "guide-demarrage.html"^^xsd:anyURI ;
+               fhir:l fhir:guide-demarrage.html
+             ]
+           ] ) ;
+           fhir:name [
+             a fhir:Url ;
+             fhir:v "guide-demarrage.html"^^xsd:anyURI ;
+             fhir:l fhir:guide-demarrage.html
+           ] ;
+           fhir:title [ fhir:v "Guide de démarrage" ] ;
+           fhir:generation [ fhir:v "markdown" ]
+         ] [
+           fhir:extension ( [
+             fhir:url [
+               fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
+               fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
+             ] ;
+             fhir:value [
+               a fhir:Url ;
+               fhir:v "outils-mapping.html"^^xsd:anyURI ;
+               fhir:l fhir:outils-mapping.html
+             ]
+           ] ) ;
+           fhir:name [
+             a fhir:Url ;
+             fhir:v "outils-mapping.html"^^xsd:anyURI ;
+             fhir:l fhir:outils-mapping.html
+           ] ;
+           fhir:title [ fhir:v "Outils de Mapping" ] ;
            fhir:generation [ fhir:v "markdown" ]
          ] )
+       ] [
+         fhir:extension ( [
+           fhir:url [
+             fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
+             fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
+           ] ;
+           fhir:value [
+             a fhir:Url ;
+             fhir:v "initiatives-internationales.html"^^xsd:anyURI ;
+             fhir:l fhir:initiatives-internationales.html
+           ]
+         ] ) ;
+         fhir:name [
+           a fhir:Url ;
+           fhir:v "initiatives-internationales.html"^^xsd:anyURI ;
+           fhir:l fhir:initiatives-internationales.html
+         ] ;
+         fhir:title [ fhir:v "Initiatives internationales" ] ;
+         fhir:generation [ fhir:v "markdown" ]
        ] )
      ] ;
      fhir:parameter ( [

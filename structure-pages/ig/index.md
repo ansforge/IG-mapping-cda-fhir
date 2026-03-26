@@ -8,390 +8,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ImplementationGuide/ans.fhir.fr.mappingcdafhir | *Version*:0.1.0 |
-| Draft as of 2026-03-23 | *Computable Name*:CDA2FHIRMAP |
-
- **FHIR Mapping Language for CDA to FHIR transformation**
- Proof of concept for CDA to FHIR transformation 
-
-> Cet Implementation Guide n'est pas la version courante, il s'agit de la version en intégration continue soumise à des changements fréquents uniquement destinée à suivre les travaux en cours. La version courante sera accessible via l'URL canonique suite à la première release : http://interop.esante.gouv.fr/ig/fhir/[code - ig]
-
-### Introduction
-
-Dans le cadre de l'Espace Européen des Données de Santé, l'ANS a entrepris des travaux pour anticiper la transition CDA vers FHIR dans le cadre des 5 cas d'usages priorisés par l'Europe : le compte rendu de biologie, la ePrescription et eDispensiation, le compte rendu d'hospitalisation, le résumé patient et le compte rendu d'imagerie.
-
-Les travaux de l'ANS se distinguent en deux parties :
-
-* créer les spécifications françaises en FHIR qui reprend l'historique CDA tout en s'alignant avec les contraintes européennes (cf. https://github.com/ansforge/IG-document-core)
-* tester le FHIR Mapping Language, outil permettant la transformation des documents CDA vers FHIR.
-
-### Guide de démarrage rapide (Quick Start)
-
-Ce guide vous permet de tester rapidement la transformation de documents CDA vers FHIR en utilisant matchbox et les exemples fournis.
-
-#### Prérequis
-
-* Docker installé sur votre machine
-* Un client REST (ex: VS Code avec l'extension REST Client, IntelliJ IDEA, ou curl)
-* Accès au repository IG-mapping-cda-fhir
-
-#### Étape 1 : Télécharger l'image Docker matchbox
-
-```
-docker pull europe-west6-docker.pkg.dev/ahdis-ch/ahdis/matchbox:v4.0.12
-
-```
-
-#### Étape 2 : Lancer le conteneur Docker
-
-**Important** : Adaptez le chemin selon votre installation locale. Le chemin doit pointer vers le dossier `input/with-all` de votre projet.
-
-```
-docker run -d --name matchbox -p 8080:8080 \
-  -v /chemin/absolu/vers/IG-mapping-cda-fhir/input/with-all:/config \
-  europe-west6-docker.pkg.dev/ahdis-ch/ahdis/matchbox:v4.0.12
-
-```
-
-**Ou utilisez le script de démarrage automatique** :
-
-```
-./start-matchbox.sh
-
-```
-
-#### Étape 3 : Vérifier le démarrage
-
-Pour suivre les logs de matchbox :
-
-```
-docker logs --follow matchbox
-
-```
-
-Attendez que matchbox ait terminé son démarrage. L'interface sera accessible sur : `http://localhost:8080/matchbox`
-
-#### Étape 4 : Charger les ConceptMaps
-
-Certains StructureMaps utilisent des ConceptMaps externes pour la traduction de codes terminologiques. Il faut les charger **avant** les StructureMaps.
-
-```
-# Charger le ConceptMap pour le genre (administrative-gender)
-curl -X POST http://localhost:8080/matchbox/fhir/ConceptMap \
-  -H "Content-Type: application/fhir+json" \
-  --data-binary @input/resources/ConceptMap-cm-v3-administrative-gender.json
-
-```
-
-#### Étape 5 : Charger les StructureMaps et lancer les transformations
-
-Les fichiers HTTP de test se trouvent dans le dossier `http-test/`. Utilisez le fichier `fr_cdatofhir_mde.http` avec votre client REST.
-
-**Avec VS Code et l'extension REST Client** :
-
-1. Ouvrez le fichier`http-test/fr_cdatofhir_mde.http`
-1. Exécutez séquentiellement les requêtes HTTP dans l'ordre suivant :
-* **Requête 0** : Charger ConceptMap-cm-v3-administrative-gender.json
-* **Requête 1** : Charger CDAtoFHIRTypes.fml
-* **Requête 2** : Charger CdaToBundle.fml
-* **Requête 3** : Charger CDAFrToBundle.fml
-* **Requête 4** : Charger CDAFrMDEToBundle.fml
-* **Requête 5** : Transformer CSE-MDE_2023.01.xml (sortie JSON)
-
-1. Cliquez sur "Send Request" au-dessus de chaque requête
-
-**Avec curl** (exemple complet) :
-
-```
-# 1. Charger les ConceptMaps nécessaires
-curl -X POST http://localhost:8080/matchbox/fhir/ConceptMap \
-  -H "Content-Type: application/fhir+json" \
-  --data-binary @input/resources/ConceptMap-cm-v3-administrative-gender.json
-
-# 2. Charger les StructureMaps dans l'ordre
-curl -X POST http://localhost:8080/matchbox/fhir/StructureMap \
-  -H "Accept: application/fhir+xml;fhirVersion=4.0" \
-  -H "Content-Type: text/fhir-mapping" \
-  --data-binary @input/fml/CDAtoFHIRTypes.fml
-
-curl -X POST http://localhost:8080/matchbox/fhir/StructureMap \
-  -H "Accept: application/fhir+xml;fhirVersion=4.0" \
-  -H "Content-Type: text/fhir-mapping" \
-  --data-binary @input/fml/CdaToBundle.fml
-
-curl -X POST http://localhost:8080/matchbox/fhir/StructureMap \
-  -H "Accept: application/fhir+xml;fhirVersion=4.0" \
-  -H "Content-Type: text/fhir-mapping" \
-  --data-binary @input/fml/CDAFrToBundle.fml
-
-curl -X POST http://localhost:8080/matchbox/fhir/StructureMap \
-  -H "Accept: application/fhir+xml;fhirVersion=4.0" \
-  -H "Content-Type: text/fhir-mapping" \
-  --data-binary @input/fml/CDAFrMDEToBundle.fml
-
-# 3. Transformer un document CDA
-curl -X POST "http://localhost:8080/matchbox/fhir/StructureMap/\$transform?source=https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrMDEToBundle" \
-  -H "Accept: application/fhir+json;fhirVersion=4.0" \
-  -H "Content-Type: application/fhir+xml;fhirVersion=4.0" \
-  --data-binary @input/attachments/CSE-MDE_2023.01.xml
-
-```
-
-#### Exemple CDA disponible
-
-Le dossier `input/attachments/` contient un exemple de document CDA français :
-
-* **CSE-MDE_2023.01.xml** : Carnet de santé de l'enfant - Mesures (3 observations : Poids, Taille, Périmètre crânien)
-
-#### Résultat attendu
-
-Si la transformation réussit, vous obtiendrez un Bundle FHIR contenant les ressources converties depuis le document CDA.
-
-**Note importante** : Il peut y avoir des erreurs dans les fichiers FML lors de la transformation. L'objectif de ce POC est de valider le processus de transformation. Les erreurs dans les mappings seront traitées ultérieurement.
-
-### Résultats des transformations
-
-Les transformations CDA-FHIR ont été exécutées avec les résultats suivants :
-
-#### Transformation réussie
-
-| | | | | | |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| CSE-MDE_2023.01.xml | [CdaFrMDEToBundle](StructureMap-CdaFrMDEToBundle.md) | [Bundle-fe569e1f-32d4-4ba4-b5ad-88082bf5470a.json](Bundle-fe569e1f-32d4-4ba4-b5ad-88082bf5470a.md) | 11 | 3 | ✅ Succès complet |
-
-**Détails de la transformation :**
-
-**Document CSE-MDE (Carnet de Santé de l'Enfant - Mesures)** :
-
-* **StructureMap utilisé** : `CdaFrMDEToBundle` - Mapping spécifique pour le contexte français
-* **Imports** : Utilise `CdaToFHIRTypes`, `CdaToBundle` et `CdaFrToBundle`
-* **Ressources générées** (11 au total) : 
-* 1 Composition (métadonnées du document)
-* 1 Patient (avec identifiant INS-NIR, nom, genre, date de naissance)
-* 1 Encounter (contexte de la rencontre)
-* 1 Location (lieu de la consultation)
-* 2 Practitioner (praticiens impliqués)
-* 2 Organization (organisations de santé)
-* 3 Observations : 
-* Poids (29463-7) = 3900 g
-* Taille (8302-2) = 52 cm
-* Périmètre crânien (8287-5) = 35 cm
- 
- 
-
-### Architecture du mapping CdaFrMDEToBundle
-
-Le mapping `CdaFrMDEToBundle.fml` est un mapping spécialisé pour les documents CSE-MDE français qui combine :
-
-**Architecture du mapping :**
-
-* **Imports** : Utilise les mappings de base (`CdaToFHIRTypes`, `CdaToBundle`, `CdaFrToBundle`)
-* **Réutilisation** : Exploite les fonctions existantes pour Patient, Composition, Encounter, Location, etc.
-* **Navigation personnalisée** : Implémente une navigation spécifique pour extraire les observations imbriquées dans les organizers
-* **Traitement complet** : Gère toutes les ressources nécessaires pour un document CSE-MDE
-
-**Résultats obtenus :**
-
-* ✅ Génération du Bundle FHIR avec structure document complète
-* ✅ Transformation du Patient avec identifiant INS-NIR, nom, genre, date de naissance
-* ✅ Création de la Composition avec métadonnées et sections
-* ✅ Génération automatique des ressources contextuelles (Encounter, Location, Practitioner, Organization)
-* ✅ **Extraction des Observations** depuis `organizer > component > observation`
-* ✅ Transformation des codes LOINC et valeurs quantitatives avec unités
-
-**Exemple d'Observation générée :**
-
-```
-{
-  "resourceType": "Observation",
-  "status": "final",
-  "category": [{
-    "coding": [{
-      "system": "http://terminology.hl7.org/CodeSystem/observation-category",
-      "code": "vital-signs"
-    }]
-  }],
-  "code": {
-    "coding": [{
-      "system": "http://loinc.org",
-      "code": "29463-7",
-      "display": "Poids"
-    }]
-  },
-  "subject": {
-    "reference": "urn:uuid:..."
-  },
-  "effectiveDateTime": "2023-01-06",
-  "valueQuantity": {
-    "value": 3900,
-    "unit": "g",
-    "system": "http://unitsofmeasure.org",
-    "code": "g"
-  }
-}
-
-```
-
-**Améliorations récentes apportées au mapping :**
-
-* ✅ **Ajout de `Observation.category`** : Toutes les observations sont catégorisées comme `vital-signs` conformément au package ANS [ans.fhir.fr.mesures#3.1.0](https://interop.esante.gouv.fr/ig/fhir/mesures/3.1.0/)
-* ✅ **Ajout de `Observation.effectiveDateTime`** : Extrait depuis `effectiveTime` de l'observation CDA (si présent et non `nullFlavor`)
-* ✅ **Correction de `Observation.status`** : Mapping de CDA "completed" vers FHIR "final"
-* ✅ **Ajout du système UCUM aux quantités** : Toutes les `valueQuantity` incluent `system: "http://unitsofmeasure.org"` et `code` en plus de `unit`
-* ✅ **Conversion des codes LOINC** : Système correctement mappé vers `http://loinc.org`
-* ✅ **Ajout de `Encounter.status`** : Défini à `finished` pour les rencontres terminées
-* ✅ **Ajout de `Encounter.class`** : Extrait du code CDA de la rencontre
-* ✅ **Correction de `Patient.birthDate`** : Format date simple conforme FHIR
-* ✅ **Correction de `Composition.confidentiality`** : Code simple au lieu d'objet complexe
-* ✅ **Correction de `attester.time`** : Format dateTime conforme FHIR
-* ✅ **Ajout de `meta.profile`** : Profils ANS ajoutés selon le code LOINC (mesures-fr-observation-body-weight, mesures-fr-observation-bodyheight, mesures-observation-head-circumference)
-
-**Limitations identifiées dans les données CDA source :**
-
-Les exemples CDA fournis présentent certaines limitations qui génèrent des warnings FHIR (non bloquants) :
-
-1. ⚠️**Absence de timezone sur `Encounter.period`**: Les dates/heures de la rencontre dans le CDA n'incluent pas de timezone
-
-```
-<!-- CDA source -->
-<effectiveTime>
-  <low value="20250106111510"/>  <!-- Pas de timezone +0100 -->
-  <high value="20250106113623"/> <!-- Pas de timezone +0100 -->
-</effectiveTime>
-
-```
-
-**Impact** : Warning FHIR "If a date has a time, it must have a timezone"**Solution** : Ajouter le timezone dans le CDA source (ex: `20250106111510+0100`)
-1. ⚠️**Absence de `Observation.effectiveDateTime`**: Les observations CDA utilisent`nullFlavor="NASK"`(Not Asked)
-
-```
-<!-- CDA source -->
-<observation>
-  <code code="29463-7" displayName="Poids" codeSystem="2.16.840.1.113883.6.1"/>
-  <effectiveTime nullFlavor="NASK"/>  <!-- Pas de date effective -->
-  <value xsi:type="PQ" value="3900" unit="g"/>
-</observation>
-
-```
-
-**Impact** : Warning FHIR "Best Practice Recommendation: In general, all observations should have an effective[x]"**Solution** : Fournir une date/heure effective dans le CDA source (ex: `<effectiveTime value="20230106"/>`)
-
-**Note** : Ces limitations proviennent des données CDA d'exemple et non du mapping FML. Le mapping transforme fidèlement les données CDA disponibles.
-
-### Difficultés identifiées dans le mapping automatique CDA-FHIR
-
-Le processus de transformation automatique CDA vers FHIR présente certaines difficultés inhérentes aux différences de modélisation entre les deux standards :
-
-#### 1. Ambiguïté sémantique des structures CDA
-
-**Problème identifié** : `healthCareFacility` et `serviceProviderOrganization`
-
-Dans le CDA, la structure `componentOf > encompassingEncounter > location > healthCareFacility` contient :
-
-* Un `code` décrivant le type d'établissement (ex: SA05 "Centre de santé" du TRE_R02-SecteurActivite)
-* Une `location` (lieu physique avec adresse)
-* Optionnellement un `serviceProviderOrganization` (organisation gestionnaire)
-
-**Difficulté de mapping** :
-
-Le code SA05 du `healthCareFacility` devrait logiquement être mappé vers :
-
-1. ✅`Location.type`- pour indiquer le type de lieu physique
-1. ❓`Organization.type:secteurActiviteRASS`- pour indiquer le secteur d'activité de l'organisation
-
-Cependant, il existe une **ambiguïté sémantique** :
-
-* Le `serviceProviderOrganization` dans le CDA peut représenter : 
-* L'organisation qui opère directement le centre de santé (dans ce cas, SA05 s'applique bien)
-* Une organisation parente ou gestionnaire différente (dans ce cas, SA05 pourrait ne pas s'appliquer)
- 
-
-**Impact** :
-
-* Un mapping automatique qui copie systématiquement le code du `healthCareFacility` vers l'`Organization` peut introduire des **incohérences sémantiques**
-* Il n'existe pas de règle universelle dans le CDA pour distinguer ces deux cas
-* Cette ambiguïté nécessite souvent une **analyse contextuelle manuelle** ou des **règles métier spécifiques** au projet
-
-**Solutions possibles** :
-
-1. **Mapping conservateur**: Ne mapper que vers`Location.type`(approche actuelle)
-1. **Mapping avec hypothèse**: Copier vers`Organization.type`en documentant l'hypothèse que le`serviceProviderOrganization`est l'établissement lui-même
-1. **Mapping conditionnel**: Définir des règles métier basées sur le contexte du document (type de document, type d'établissement, etc.)
-
-Cette difficulté illustre que **le mapping CDA-FHIR n'est pas toujours une transformation mécanique 1:1**, mais nécessite parfois des choix d'implémentation basés sur la compréhension du contexte métier.
-
-### Arrêter et redémarrer
-
-Pour arrêter le conteneur :
-
-```
-docker stop matchbox
-
-```
-
-Pour redémarrer :
-
-```
-docker start matchbox
-
-```
-
-Pour supprimer le conteneur (et repartir de zéro) :
-
-```
-docker rm -f matchbox
-
-```
-
-### Configuration avancée
-
-Le fichier `input/with-all/application.yaml` configure matchbox avec :
-
-* Les packages FHIR de base (R4 core, terminologies, extensions)
-* Le package CDA (hl7.cda.uv.core)
-* Le package ANS FHIR EDS
-
-Pour modifier la configuration, éditez `application.yaml` puis supprimez et recréez le conteneur Docker.
-
-### Auteurs et contributeurs
-
-| | | | |
-| :--- | :--- | :--- | :--- |
-| **Primary Editor** | Prenom Nom | Agence du Numérique en Santé | prenom.nom@address.email |
-
-Merci à Oliver Egger (Ahdis, HL7 Suisse) qui a travaillé sur la première brique sur laquelle repose ces travaux et sur l'outil matchbox permettant d'effectuer la transformation.
-
-https://github.com/hl7ch/cda-fhir-maps
-
-### Dépendances
-
-
-
-
-
-
-
-
-
-### Propriété intellectuelle
-
-Certaines ressources sémantiques de ce guide sont protégées par des droits de propriété intellectuelle couverte par les déclarations ci-dessous. L’utilisation de ces ressources est soumise à l’acceptation et au respect des conditions précisées dans la licence d’utilisation de chacune d’entre elle.
-
-* ISO maintains the copyright on the country codes, and controls its use carefully. For further details see the ISO 3166 web page: [https://www.iso.org/iso-3166-country-codes.html](https://www.iso.org/iso-3166-country-codes.html)
-
-* [ISO 3166-1 Codes for the representation of names of countries and their subdivisions — Part 1: Country code](http://terminology.hl7.org/6.2.0/CodeSystem-ISO3166Part1.html): [AssignedAuthorToPractitioner](ConceptMap-CdaToPractitionerConceptMap.md), [CDA2FHIRMAP](index.md)... Show 25 more, [CdaAddressToFHIR](ConceptMap-CdaToAddressConceptMap.md), [CdaBLToFHIR](ConceptMap-CdaToBooleanConceptMap.md), [CdaConceptCodesToFHIR](ConceptMap-CdaToCodeConceptMap.md), [CdaFrMDEToBundle](StructureMap-CdaFrMDEToBundle.md), [CdaFrToBundle](StructureMap-CdaFrToBundle.md), [CdaIIToIdentifier](ConceptMap-CdaToIdentifierConceptMap.md), [CdaINTToInteger](ConceptMap-CdaToIntegerConceptMap.md), [CdaIVL_TSToFHIR](ConceptMap-CdaToPeriodConceptMap.md), [CdaNamesToFHIR](ConceptMap-CdaToHumanNameConceptMap.md), [CdaPQToFHIR](ConceptMap-CdaToQuantityConceptMap.md), [CdaRTOPQPQToFHIR](ConceptMap-CdaToRatioConceptMap.md), [CdaStringTypesToFHIR](ConceptMap-CdaToStringConceptMap.md), [CdaTELToFHIR](ConceptMap-CdaToContactPointConceptMap.md), [CdaTSToFHIR](ConceptMap-CdaToDateTimeConceptMap.md), [CdaToBundle](StructureMap-CdaToBundle.md), [CdaToFHIRTypes](StructureMap-CdaToFHIRTypes.md), [CdaToFhirAdministrativeGender](ConceptMap-cm-v3-administrative-gender.md), [ClinicalDocumentToBundle](ConceptMap-CdaToBundleConceptMap.md), [ClinicalDocumentToComposition](ConceptMap-CdaToCompositionConceptMap.md), [ConceptMapOidSpecialiteOrdinale](ConceptMap-cm-oid-specialite-ordinale.md), [CustodianOrganizationToOrganization](ConceptMap-CdaToOrganisationConceptMap.md), [EncompassingEncounterToEncounter](ConceptMap-CdaToEncounterConceptMap.md), [HealthCareFacilityToLocation](ConceptMap-CdaToLocationConceptMap.md), [OID2URIConceptMapANS](ConceptMap-oid2uri-ans.md) and [PatientRoleToPatient](ConceptMap-CdaToPatientConceptMap.md)
-
-
-* The UCUM codes, UCUM table (regardless of format), and UCUM Specification are copyright 1999-2009, Regenstrief Institute, Inc. and the Unified Codes for Units of Measures (UCUM) Organization. All rights reserved. [https://ucum.org/trac/wiki/TermsOfUse](https://ucum.org/trac/wiki/TermsOfUse)
-
-* [Unified Code for Units of Measure (UCUM)](http://terminology.hl7.org/6.2.0/CodeSystem-v3-ucum.html): [Bundle/fe569e1f-32d4-4ba4-b5ad-88082bf5470a](Bundle-fe569e1f-32d4-4ba4-b5ad-88082bf5470a.md)
-
-
-* This material derives from the HL7 Terminology (THO). THO is copyright ©1989+ Health Level Seven International and is made available under the CC0 designation. For more licensing information see: [https://terminology.hl7.org/license.html](https://terminology.hl7.org/license.html)
-
-* [Observation Category Codes](http://terminology.hl7.org/7.1.0/CodeSystem-observation-category.html): [Bundle/fe569e1f-32d4-4ba4-b5ad-88082bf5470a](Bundle-fe569e1f-32d4-4ba4-b5ad-88082bf5470a.md)
-* [identifierType](http://terminology.hl7.org/7.1.0/CodeSystem-v2-0203.html): [Bundle/fe569e1f-32d4-4ba4-b5ad-88082bf5470a](Bundle-fe569e1f-32d4-4ba4-b5ad-88082bf5470a.md)
-* [ActCode](http://terminology.hl7.org/7.1.0/CodeSystem-v3-ActCode.html): [Bundle/fe569e1f-32d4-4ba4-b5ad-88082bf5470a](Bundle-fe569e1f-32d4-4ba4-b5ad-88082bf5470a.md)
-
+| Draft as of 2026-03-26 | *Computable Name*:CDA2FHIRMAP |
 
 
 
@@ -406,7 +23,7 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2026-03-23T12:01:33+00:00",
+  "date" : "2026-03-26T09:30:25+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -780,7 +397,7 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
     },
     {
       "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-internal-dependency",
-      "valueCode" : "hl7.fhir.uv.tools.r4#1.1.0"
+      "valueCode" : "hl7.fhir.uv.tools.r4#1.1.2"
     },
     {
       "extension" : [{
@@ -1117,234 +734,6 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
     {
       "extension" : [{
         "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "ConceptMap"
-      }],
-      "reference" : {
-        "reference" : "ConceptMap/CdaToAddressConceptMap"
-      },
-      "name" : "ConceptMap — CDA AD → FHIR Address",
-      "description" : "Correspondances documentaires des composants AD vers Address.",
-      "exampleBoolean" : false
-    },
-    {
-      "extension" : [{
-        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "ConceptMap"
-      }],
-      "reference" : {
-        "reference" : "ConceptMap/CdaToPractitionerConceptMap"
-      },
-      "name" : "ConceptMap — CDA AssignedAuthor → FHIR Practitioner",
-      "description" : "Correspondances entre AssignedAuthor CDA et Practitioner FHIR",
-      "exampleBoolean" : false
-    },
-    {
-      "extension" : [{
-        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "ConceptMap"
-      }],
-      "reference" : {
-        "reference" : "ConceptMap/CdaToBooleanConceptMap"
-      },
-      "name" : "ConceptMap — CDA BL → FHIR boolean / negation",
-      "description" : "Correspondances BL.value → boolean ; BL.negationInd → boolean (modifierExtension).",
-      "exampleBoolean" : false
-    },
-    {
-      "extension" : [{
-        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "ConceptMap"
-      }],
-      "reference" : {
-        "reference" : "ConceptMap/CdaToCodeConceptMap"
-      },
-      "name" : "ConceptMap — CDA CE/CS/CD → FHIR code/CodeableConcept",
-      "description" : "Correspondances documentaires code/codeSystem/displayName/originalText/translations → code/CodeableConcept.",
-      "exampleBoolean" : false
-    },
-    {
-      "extension" : [{
-        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "ConceptMap"
-      }],
-      "reference" : {
-        "reference" : "ConceptMap/CdaToBundleConceptMap"
-      },
-      "name" : "ConceptMap — CDA ClinicalDocument → FHIR Bundle",
-      "description" : "Correspondances CDA ClinicalDocument → FHIR Bundle",
-      "exampleBoolean" : false
-    },
-    {
-      "extension" : [{
-        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "ConceptMap"
-      }],
-      "reference" : {
-        "reference" : "ConceptMap/CdaToCompositionConceptMap"
-      },
-      "name" : "ConceptMap — CDA ClinicalDocument → FHIR Composition",
-      "description" : "Correspondances entre ClinicalDocument CDA et Composition FHIR",
-      "exampleBoolean" : false
-    },
-    {
-      "extension" : [{
-        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "ConceptMap"
-      }],
-      "reference" : {
-        "reference" : "ConceptMap/CdaToOrganisationConceptMap"
-      },
-      "name" : "ConceptMap — CDA CustodianOrganization → FHIR Organization",
-      "description" : "Correspondances entre CustodianOrganization CDA et Organization FHIR",
-      "exampleBoolean" : false
-    },
-    {
-      "extension" : [{
-        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "ConceptMap"
-      }],
-      "reference" : {
-        "reference" : "ConceptMap/CdaToHumanNameConceptMap"
-      },
-      "name" : "ConceptMap — CDA EN/PN → FHIR HumanName",
-      "description" : "Correspondances documentaires des composants EN/PN vers HumanName (family/given/prefix/suffix/period).",
-      "exampleBoolean" : false
-    },
-    {
-      "extension" : [{
-        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "ConceptMap"
-      }],
-      "reference" : {
-        "reference" : "ConceptMap/CdaToEncounterConceptMap"
-      },
-      "name" : "ConceptMap — CDA EncompassingEncounter → FHIR Encounter",
-      "description" : "Correspondances entre EncompassingEncounter CDA et Encounter FHIR",
-      "exampleBoolean" : false
-    },
-    {
-      "extension" : [{
-        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "ConceptMap"
-      }],
-      "reference" : {
-        "reference" : "ConceptMap/CdaToLocationConceptMap"
-      },
-      "name" : "ConceptMap — CDA HealthCareFacility → FHIR Location",
-      "description" : "Correspondances entre HealthCareFacility CDA et Location FHIR",
-      "exampleBoolean" : false
-    },
-    {
-      "extension" : [{
-        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "ConceptMap"
-      }],
-      "reference" : {
-        "reference" : "ConceptMap/CdaToIdentifierConceptMap"
-      },
-      "name" : "ConceptMap — CDA II → FHIR Identifier",
-      "description" : "Correspondances des éléments CDA II → FHIR Identifier (root, extension, assigner).",
-      "exampleBoolean" : false
-    },
-    {
-      "extension" : [{
-        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "ConceptMap"
-      }],
-      "reference" : {
-        "reference" : "ConceptMap/CdaToIntegerConceptMap"
-      },
-      "name" : "ConceptMap — CDA INT → FHIR integer",
-      "description" : "Correspondances documentaires INT.value → integer.",
-      "exampleBoolean" : false
-    },
-    {
-      "extension" : [{
-        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "ConceptMap"
-      }],
-      "reference" : {
-        "reference" : "ConceptMap/CdaToPeriodConceptMap"
-      },
-      "name" : "ConceptMap — CDA IVL_TS → FHIR Period/dateTime",
-      "description" : "Correspondances CDA IVL_TS (low/high) vers Period.start/end ou dateTime.",
-      "exampleBoolean" : false
-    },
-    {
-      "extension" : [{
-        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "ConceptMap"
-      }],
-      "reference" : {
-        "reference" : "ConceptMap/CdaToPatientConceptMap"
-      },
-      "name" : "ConceptMap — CDA PatientRole → FHIR Patient",
-      "description" : "Correspondances CDA PatientRole → FHIR Patient",
-      "exampleBoolean" : false
-    },
-    {
-      "extension" : [{
-        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "ConceptMap"
-      }],
-      "reference" : {
-        "reference" : "ConceptMap/CdaToQuantityConceptMap"
-      },
-      "name" : "ConceptMap — CDA PQ → FHIR Quantity",
-      "description" : "Correspondances PQ.value / PQ.unit → Quantity (value, unit, system, code).",
-      "exampleBoolean" : false
-    },
-    {
-      "extension" : [{
-        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "ConceptMap"
-      }],
-      "reference" : {
-        "reference" : "ConceptMap/CdaToRatioConceptMap"
-      },
-      "name" : "ConceptMap — CDA RTO_PQ_PQ → FHIR Ratio",
-      "description" : "Correspondances documentaires numerator/denominator CDA → numerator/denominator FHIR.",
-      "exampleBoolean" : false
-    },
-    {
-      "extension" : [{
-        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "ConceptMap"
-      }],
-      "reference" : {
-        "reference" : "ConceptMap/CdaToStringConceptMap"
-      },
-      "name" : "ConceptMap — CDA ST/ED/ON → FHIR string",
-      "description" : "Correspondances CDA ST/ED/ON → FHIR string.",
-      "exampleBoolean" : false
-    },
-    {
-      "extension" : [{
-        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "ConceptMap"
-      }],
-      "reference" : {
-        "reference" : "ConceptMap/CdaToContactPointConceptMap"
-      },
-      "name" : "ConceptMap — CDA TEL → FHIR ContactPoint",
-      "description" : "Correspondances documentaires TEL.value (tel:/fax:/mailto:/http:/https:) + use + useablePeriod → ContactPoint.",
-      "exampleBoolean" : false
-    },
-    {
-      "extension" : [{
-        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "ConceptMap"
-      }],
-      "reference" : {
-        "reference" : "ConceptMap/CdaToDateTimeConceptMap"
-      },
-      "name" : "ConceptMap — CDA TS → FHIR instant/dateTime/date",
-      "description" : "Correspondances CDA TS.value → instant, dateTime ou date selon contexte.",
-      "exampleBoolean" : false
-    },
-    {
-      "extension" : [{
-        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
         "valueString" : "Bundle"
       }],
       "reference" : {
@@ -1438,29 +827,47 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
       {
         "extension" : [{
           "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
-          "valueUrl" : "change-log.html"
+          "valueUrl" : "mapping-cda-fhir.html"
         }],
-        "nameUrl" : "change-log.html",
-        "title" : "Historique des versions",
-        "generation" : "markdown"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
-          "valueUrl" : "autres_ressources.html"
-        }],
-        "nameUrl" : "autres_ressources.html",
-        "title" : "Autres Ressources",
+        "nameUrl" : "mapping-cda-fhir.html",
+        "title" : "Mapping CDA vers FHIR",
         "generation" : "markdown",
         "page" : [{
           "extension" : [{
             "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
-            "valueUrl" : "downloads.html"
+            "valueUrl" : "mecanismes-mapping.html"
           }],
-          "nameUrl" : "downloads.html",
-          "title" : "Téléchargements et usages",
+          "nameUrl" : "mecanismes-mapping.html",
+          "title" : "Mécanisme du Mapping",
+          "generation" : "markdown"
+        },
+        {
+          "extension" : [{
+            "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
+            "valueUrl" : "guide-demarrage.html"
+          }],
+          "nameUrl" : "guide-demarrage.html",
+          "title" : "Guide de démarrage",
+          "generation" : "markdown"
+        },
+        {
+          "extension" : [{
+            "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
+            "valueUrl" : "outils-mapping.html"
+          }],
+          "nameUrl" : "outils-mapping.html",
+          "title" : "Outils de Mapping",
           "generation" : "markdown"
         }]
+      },
+      {
+        "extension" : [{
+          "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
+          "valueUrl" : "initiatives-internationales.html"
+        }],
+        "nameUrl" : "initiatives-internationales.html",
+        "title" : "Initiatives internationales",
+        "generation" : "markdown"
       }]
     },
     "parameter" : [{

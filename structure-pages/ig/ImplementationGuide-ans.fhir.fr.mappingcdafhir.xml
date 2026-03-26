@@ -10,7 +10,7 @@
   <name value="CDA2FHIRMAP"/>
   <title value="POC - Mapping CDA to FHIR"/>
   <status value="draft"/>
-  <date value="2026-03-23T12:01:33+00:00"/>
+  <date value="2026-03-26T09:30:25+00:00"/>
   <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
   <contact>
     <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
@@ -291,7 +291,7 @@
       </valueReference>
     </extension>
     <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-internal-dependency">
-      <valueCode value="hl7.fhir.uv.tools.r4#1.1.0"/>
+      <valueCode value="hl7.fhir.uv.tools.r4#1.1.2"/>
     </extension>
     <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
       <extension url="code">
@@ -541,215 +541,6 @@
     </resource>
     <resource>
       <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
-        <valueString value="ConceptMap"/>
-      </extension>
-      <reference>
-        <reference value="ConceptMap/CdaToAddressConceptMap"/>
-      </reference>
-      <name value="ConceptMap — CDA AD → FHIR Address"/>
-      <description value="Correspondances documentaires des composants AD vers Address."/>
-      <exampleBoolean value="false"/>
-    </resource>
-    <resource>
-      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
-        <valueString value="ConceptMap"/>
-      </extension>
-      <reference>
-        <reference value="ConceptMap/CdaToPractitionerConceptMap"/>
-      </reference>
-      <name value="ConceptMap — CDA AssignedAuthor → FHIR Practitioner"/>
-      <description value="Correspondances entre AssignedAuthor CDA et Practitioner FHIR"/>
-      <exampleBoolean value="false"/>
-    </resource>
-    <resource>
-      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
-        <valueString value="ConceptMap"/>
-      </extension>
-      <reference>
-        <reference value="ConceptMap/CdaToBooleanConceptMap"/>
-      </reference>
-      <name value="ConceptMap — CDA BL → FHIR boolean / negation"/>
-      <description value="Correspondances BL.value → boolean ; BL.negationInd → boolean (modifierExtension)."/>
-      <exampleBoolean value="false"/>
-    </resource>
-    <resource>
-      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
-        <valueString value="ConceptMap"/>
-      </extension>
-      <reference>
-        <reference value="ConceptMap/CdaToCodeConceptMap"/>
-      </reference>
-      <name value="ConceptMap — CDA CE/CS/CD → FHIR code/CodeableConcept"/>
-      <description value="Correspondances documentaires code/codeSystem/displayName/originalText/translations → code/CodeableConcept."/>
-      <exampleBoolean value="false"/>
-    </resource>
-    <resource>
-      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
-        <valueString value="ConceptMap"/>
-      </extension>
-      <reference>
-        <reference value="ConceptMap/CdaToBundleConceptMap"/>
-      </reference>
-      <name value="ConceptMap — CDA ClinicalDocument → FHIR Bundle"/>
-      <description value="Correspondances CDA ClinicalDocument → FHIR Bundle"/>
-      <exampleBoolean value="false"/>
-    </resource>
-    <resource>
-      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
-        <valueString value="ConceptMap"/>
-      </extension>
-      <reference>
-        <reference value="ConceptMap/CdaToCompositionConceptMap"/>
-      </reference>
-      <name value="ConceptMap — CDA ClinicalDocument → FHIR Composition"/>
-      <description value="Correspondances entre ClinicalDocument CDA et Composition FHIR"/>
-      <exampleBoolean value="false"/>
-    </resource>
-    <resource>
-      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
-        <valueString value="ConceptMap"/>
-      </extension>
-      <reference>
-        <reference value="ConceptMap/CdaToOrganisationConceptMap"/>
-      </reference>
-      <name value="ConceptMap — CDA CustodianOrganization → FHIR Organization"/>
-      <description value="Correspondances entre CustodianOrganization CDA et Organization FHIR"/>
-      <exampleBoolean value="false"/>
-    </resource>
-    <resource>
-      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
-        <valueString value="ConceptMap"/>
-      </extension>
-      <reference>
-        <reference value="ConceptMap/CdaToHumanNameConceptMap"/>
-      </reference>
-      <name value="ConceptMap — CDA EN/PN → FHIR HumanName"/>
-      <description value="Correspondances documentaires des composants EN/PN vers HumanName (family/given/prefix/suffix/period)."/>
-      <exampleBoolean value="false"/>
-    </resource>
-    <resource>
-      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
-        <valueString value="ConceptMap"/>
-      </extension>
-      <reference>
-        <reference value="ConceptMap/CdaToEncounterConceptMap"/>
-      </reference>
-      <name value="ConceptMap — CDA EncompassingEncounter → FHIR Encounter"/>
-      <description value="Correspondances entre EncompassingEncounter CDA et Encounter FHIR"/>
-      <exampleBoolean value="false"/>
-    </resource>
-    <resource>
-      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
-        <valueString value="ConceptMap"/>
-      </extension>
-      <reference>
-        <reference value="ConceptMap/CdaToLocationConceptMap"/>
-      </reference>
-      <name value="ConceptMap — CDA HealthCareFacility → FHIR Location"/>
-      <description value="Correspondances entre HealthCareFacility CDA et Location FHIR"/>
-      <exampleBoolean value="false"/>
-    </resource>
-    <resource>
-      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
-        <valueString value="ConceptMap"/>
-      </extension>
-      <reference>
-        <reference value="ConceptMap/CdaToIdentifierConceptMap"/>
-      </reference>
-      <name value="ConceptMap — CDA II → FHIR Identifier"/>
-      <description value="Correspondances des éléments CDA II → FHIR Identifier (root, extension, assigner)."/>
-      <exampleBoolean value="false"/>
-    </resource>
-    <resource>
-      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
-        <valueString value="ConceptMap"/>
-      </extension>
-      <reference>
-        <reference value="ConceptMap/CdaToIntegerConceptMap"/>
-      </reference>
-      <name value="ConceptMap — CDA INT → FHIR integer"/>
-      <description value="Correspondances documentaires INT.value → integer."/>
-      <exampleBoolean value="false"/>
-    </resource>
-    <resource>
-      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
-        <valueString value="ConceptMap"/>
-      </extension>
-      <reference>
-        <reference value="ConceptMap/CdaToPeriodConceptMap"/>
-      </reference>
-      <name value="ConceptMap — CDA IVL_TS → FHIR Period/dateTime"/>
-      <description value="Correspondances CDA IVL_TS (low/high) vers Period.start/end ou dateTime."/>
-      <exampleBoolean value="false"/>
-    </resource>
-    <resource>
-      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
-        <valueString value="ConceptMap"/>
-      </extension>
-      <reference>
-        <reference value="ConceptMap/CdaToPatientConceptMap"/>
-      </reference>
-      <name value="ConceptMap — CDA PatientRole → FHIR Patient"/>
-      <description value="Correspondances CDA PatientRole → FHIR Patient"/>
-      <exampleBoolean value="false"/>
-    </resource>
-    <resource>
-      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
-        <valueString value="ConceptMap"/>
-      </extension>
-      <reference>
-        <reference value="ConceptMap/CdaToQuantityConceptMap"/>
-      </reference>
-      <name value="ConceptMap — CDA PQ → FHIR Quantity"/>
-      <description value="Correspondances PQ.value / PQ.unit → Quantity (value, unit, system, code)."/>
-      <exampleBoolean value="false"/>
-    </resource>
-    <resource>
-      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
-        <valueString value="ConceptMap"/>
-      </extension>
-      <reference>
-        <reference value="ConceptMap/CdaToRatioConceptMap"/>
-      </reference>
-      <name value="ConceptMap — CDA RTO_PQ_PQ → FHIR Ratio"/>
-      <description value="Correspondances documentaires numerator/denominator CDA → numerator/denominator FHIR."/>
-      <exampleBoolean value="false"/>
-    </resource>
-    <resource>
-      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
-        <valueString value="ConceptMap"/>
-      </extension>
-      <reference>
-        <reference value="ConceptMap/CdaToStringConceptMap"/>
-      </reference>
-      <name value="ConceptMap — CDA ST/ED/ON → FHIR string"/>
-      <description value="Correspondances CDA ST/ED/ON → FHIR string."/>
-      <exampleBoolean value="false"/>
-    </resource>
-    <resource>
-      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
-        <valueString value="ConceptMap"/>
-      </extension>
-      <reference>
-        <reference value="ConceptMap/CdaToContactPointConceptMap"/>
-      </reference>
-      <name value="ConceptMap — CDA TEL → FHIR ContactPoint"/>
-      <description value="Correspondances documentaires TEL.value (tel:/fax:/mailto:/http:/https:) + use + useablePeriod → ContactPoint."/>
-      <exampleBoolean value="false"/>
-    </resource>
-    <resource>
-      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
-        <valueString value="ConceptMap"/>
-      </extension>
-      <reference>
-        <reference value="ConceptMap/CdaToDateTimeConceptMap"/>
-      </reference>
-      <name value="ConceptMap — CDA TS → FHIR instant/dateTime/date"/>
-      <description value="Correspondances CDA TS.value → instant, dateTime ou date selon contexte."/>
-      <exampleBoolean value="false"/>
-    </resource>
-    <resource>
-      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
         <valueString value="Bundle"/>
       </extension>
       <reference>
@@ -834,27 +625,43 @@
       </page>
       <page>
         <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
-          <valueUrl value="change-log.html"/>
+          <valueUrl value="mapping-cda-fhir.html"/>
         </extension>
-        <nameUrl value="change-log.html"/>
-        <title value="Historique des versions"/>
-        <generation value="markdown"/>
-      </page>
-      <page>
-        <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
-          <valueUrl value="autres_ressources.html"/>
-        </extension>
-        <nameUrl value="autres_ressources.html"/>
-        <title value="Autres Ressources"/>
+        <nameUrl value="mapping-cda-fhir.html"/>
+        <title value="Mapping CDA vers FHIR"/>
         <generation value="markdown"/>
         <page>
           <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
-            <valueUrl value="downloads.html"/>
+            <valueUrl value="mecanismes-mapping.html"/>
           </extension>
-          <nameUrl value="downloads.html"/>
-          <title value="Téléchargements et usages"/>
+          <nameUrl value="mecanismes-mapping.html"/>
+          <title value="Mécanisme du Mapping"/>
           <generation value="markdown"/>
         </page>
+        <page>
+          <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
+            <valueUrl value="guide-demarrage.html"/>
+          </extension>
+          <nameUrl value="guide-demarrage.html"/>
+          <title value="Guide de démarrage"/>
+          <generation value="markdown"/>
+        </page>
+        <page>
+          <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
+            <valueUrl value="outils-mapping.html"/>
+          </extension>
+          <nameUrl value="outils-mapping.html"/>
+          <title value="Outils de Mapping"/>
+          <generation value="markdown"/>
+        </page>
+      </page>
+      <page>
+        <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
+          <valueUrl value="initiatives-internationales.html"/>
+        </extension>
+        <nameUrl value="initiatives-internationales.html"/>
+        <title value="Initiatives internationales"/>
+        <generation value="markdown"/>
       </page>
     </page>
     <parameter>
