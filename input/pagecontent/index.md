@@ -6,7 +6,7 @@ Proof of concept for CDA to FHIR transformation
 {% if site.data.info.releaselabel == 'ci-build' %}
 <div style="width: 65%">
     <blockquote class="stu-note">
-    <p>Cet Implementation Guide n'est pas la version courante, il s'agit de la version en intégration continue soumise à des changements fréquents uniquement destinée à suivre les travaux en cours. La version courante sera accessible via l'URL canonique suite à la première release : http://interop.esante.gouv.fr/ig/fhir/[code - ig]</p>
+    <p>Cet Implementation Guide n'est pas la version courante, il s'agit de la version en intégration continue, soumise à des changements fréquents et uniquement destinée à suivre les travaux en cours. La version courante sera accessible via l'URL canonique suite à la première release : http://interop.esante.gouv.fr/ig/fhir/[code - ig].</p>
     </blockquote>
 </div>
 {% endif %}
@@ -17,69 +17,63 @@ Proof of concept for CDA to FHIR transformation
 <p>
   <b>Attention !</b>
   <br>
- Cet Implementation Guide est actuellement en concertation. La version courante est accessible à l'adresse : http://interop.esante.gouv.fr/ig/fhir/[code - ig]
+  Cet Implementation Guide est actuellement en concertation. La version courante est accessible à l'adresse : http://interop.esante.gouv.fr/ig/fhir/[code - ig].
 </p>
 </blockquote>
 </div>
 {% endif %}
 
-<!--  A décommenter si CI-SIS
-<div class="figure">
-    <img src="ci-sis-logo.png" alt="CI-SIS" title="Logo du CI-SIS" style="width:100%;">
-</div>
--->
-
 ### Introduction
 
-Dans le cadre de l’Espace Européen des Données de Santé (EHDS), l’Union européenne souhaite harmoniser les formats d’échange de données de santé en favorisant l’adoption du standard FHIR. Cette évolution vise à remplacer progressivement les documents CDA, encore largement utilisés dans plusieurs pays européens, par des ressources FHIR mieux adaptées aux échanges transfrontaliers.
+Dans le cadre de l’Espace Européen des Données de Santé (EEDS), l’Union européenne souhaite harmoniser les formats d’échange de données de santé en favorisant l’adoption du standard FHIR. Cette évolution vise à remplacer progressivement les documents CDA, encore largement utilisés dans plusieurs pays européens, par des ressources FHIR, le format retenu pour les échanges transfrontaliers.
 
 Pour anticiper cette transition, l’Europe a identifié six cas d’usage prioritaires dont les documents doivent migrer vers FHIR :
-• Compte rendu de biologie 
-• ePrescription
-• eDispensation
-• Compte rendu d’hospitalisation
-• Résumé patient
-• Compte rendu d’imagerie
+* Compte rendu de biologie ;
+* ePrescription ;
+* eDispensation ;
+* Compte rendu d’hospitalisation ;
+* Résumé patient ;
+* Compte rendu d’imagerie.
 
-L’ANS s’inscrit dans cette dynamique afin d’assurer une transition cohérente du CDA Fr vers FHIR, en garantissant la compatibilité avec le CI SIS et les exigences européennes.
+L’ANS s’inscrit dans cette dynamique afin d’assurer une transition cohérente du CDA Fr vers FHIR, en garantissant la compatibilité avec le CI-SIS et les exigences européennes.
 
 ### Objectifs du guide
 
 Ce guide a pour objectifs de :
-• présenter la démarche ANS d’anticipation du passage CDA → FHIR ;
-• documenter de manière structurée les correspondances CDA ↔ FHIR ; 
-• garantir la cohérence avec les référentiels et modèles français (CI SIS, CDA Fr) ;
-• expérimenter cette transformation à l’aide du FHIR Mapping Language ;
-• permettre l’exécution et la validation du mapping via Matchbox ;
-• fournir les artefacts FHIR nécessaires  ;
-• faciliter l’alignement futur avec les exigences EHDS.
+* présenter la démarche ANS d’anticipation du passage CDA → FHIR ;
+* documenter de manière structurée les correspondances CDA ↔ FHIR ; 
+* garantir la cohérence avec les référentiels et modèles français (CI-SIS, CDA Fr) ;
+* expérimenter cette transformation à l’aide du FHIR Mapping Language ;
+* permettre l’exécution et la validation du mapping via Matchbox ;
+* fournir les artefacts FHIR nécessaires ;
+* faciliter l’alignement futur avec les exigences EEDS.
 
-Ce guide constitue un travail exploratoire, servant de base aux travaux de convergence FHIR futurs.
+Ce guide constitue un travail exploratoire, servant de base aux travaux de convergence FFHIR futurs.
 
 ### Recensement des ressources internationales de mapping CDA – FHIR
 
-Dans le cadre de la transition du CDA vers FHIR, il est essentiel de s’appuyer sur les travaux déjà publiés au niveau international. Le recensement des ressources existantes permet d’identifier les correspondances déjà documentées, d’éviter la duplication de travaux lorsqu’une correspondance est disponible, et de favoriser l’harmonisation avec les orientations européennes, notamment dans la perspective du futur Espace Européen des Données de Santé (EHDS).
+Dans le cadre de la transition du CDA vers FHIR, il est essentiel de s’appuyer sur les travaux déjà publiés au niveau international. Le recensement des ressources existantes permet d’identifier les correspondances déjà documentées, d’éviter la duplication de travaux lorsqu’une correspondance est disponible, et de favoriser l’harmonisation avec les orientations européennes, notamment dans la perspective du futur EEDS.
 
-Les ressources présentées ci après constituent des références informatives utiles pour éclairer la transformation du CDA vers FHIR et pour accompagner la construction d’un mapping cohérent, aligné avec l’écosystème HL7 et les exigences du CI SIS.
+Les ressources présentées ci‑après constituent des références informatives utiles pour éclairer la transformation du CDA vers FHIR et pour accompagner la construction d’un mapping cohérent, aligné avec l’écosystème HL7 et les exigences du CI-SIS.
 
 #### HL7 – C CDA on FHIR Mapping Guidance
 
-Cette ressource publiée par HL7 International propose une analyse détaillée des correspondances entre les modèles C CDA et les ressources FHIR. Elle constitue l’un des travaux de référence les plus structurés concernant la transition entre les standards documentaires CDA et les ressources FHIR orientées API.
+Cette ressource, publiée par HL7 International, propose une analyse détaillée des correspondances entre les modèles C CDA et les ressources FHIR. Elle constitue l’un des travaux de référence les plus structurés concernant la transition entre les standards documentaires CDA et les ressources FHIR orientées API.
 
 **Périmètre et contenu :**
-• présentation des correspondances conceptuelles entre sections, entrées et éléments C CDA et leurs équivalents dans FHIR ;
-• principes méthodologiques généraux pour guider la conversion ;
-• recommandations techniques applicables dans différents cas d’usage (biologie, prescriptions, imagerie, etc.) ;
-• identification des écarts de granularité, de structure ou de sémantique entre les deux standards.
+* présentation des correspondances conceptuelles entre sections, entrées et éléments C CDA et leurs équivalents dans FHIR ;
+* principes méthodologiques généraux pour guider la conversion ;
+* recommandations techniques applicables dans différents cas d’usage (biologie, prescriptions, imagerie, etc.) ;
+* identification des écarts de granularité, de structure ou de sémantique entre les deux standards.
 
 **Intérêt pour les travaux français :**
 Cette ressource constitue un appui solide pour :
-• contextualiser les choix de mapping retenus dans le cadre du CI SIS ;
-• identifier les correspondances déjà reconnues internationalement ;
-• garantir une cohérence globale avec l’approche HL7 ;
-• faciliter l’évolution future vers les exigences européennes EHDS.
+* contextualiser les choix de mapping retenus dans le cadre du CI-SIS ;
+* identifier les correspondances déjà reconnues internationalement ;
+* garantir une cohérence globale avec l’approche HL7 ;
+* faciliter l’évolution future vers les exigences européennes EEDS.
 
-**Référence :**
+**Référence :**  
 https://build.fhir.org/ig/HL7/ccda-on-fhir/mappingGuidance.html
 
 #### HL7 FHIR
@@ -87,17 +81,31 @@ https://build.fhir.org/ig/HL7/ccda-on-fhir/mappingGuidance.html
 Le site officiel FHIR inclut, sur de nombreuses pages de ressources et types de données, une section « Mappings » indiquant les équivalents potentiels dans d’autres standards, dont le CDA.
 
 **Périmètre et contenu :**
-• correspondances proposées entre une ressource FFHIR (ex. Observation, Encounter, Medication, Practitioner…) et les éléments CDA associés ;
-• indications également disponibles pour certains datatypes tels que CodeableConcept, Identifier, HumanName, etc. ;
-• visibilité sur les zones de correspondance directe ainsi que sur les écarts conceptuels.
+* correspondances proposées entre une ressource FHIR R4 (ex. Observation, Encounter, Medication, Practitioner…) et les éléments CDA associés ;
+* indications également disponibles pour certains datatypes tels que CodeableConcept, Identifier, HumanName, etc. ;
+* visibilité sur les zones de correspondance directe ainsi que sur les écarts conceptuels.
 
 **Intérêt pour les travaux français :**
 Ces mappings constituent un outil utile pour :
-• analyser les équivalences conceptuelles proposées par HL7 ;
-• valider ou enrichir les correspondances établies dans le cadre du CI SIS ;
-• harmoniser les travaux nationaux avec les modèles FHIR internationaux ;
-• réduire les divergences d’interprétation lors de la construction du mapping CDA → FHIR.
+* analyser les équivalences conceptuelles proposées par HL7 ;
+* valider ou enrichir les correspondances établies dans le cadre du CI-SIS ;
+* harmoniser les travaux nationaux avec les modèles FHIR internationaux ;
+* réduire les divergences d’interprétation lors de la construction du mapping CDA → FHIR.
 
-**Référence générique :**
+**Référence (FHIR R4) :**  
 https://www.hl7.org/fhir/
 
+### Auteurs et contributeurs
+
+| Rôle | Nom | Organisation | Contact |
+| --- | --- | --- | --- |
+| **Primary Editor** | Prénom Nom | Agence du Numérique en Santé | prenom.nom@address.email |
+
+
+### Dépendances
+
+{% include dependency-table.xhtml %}
+
+### Propriété intellectuelle
+
+{% include ip-statements.xhtml %}
