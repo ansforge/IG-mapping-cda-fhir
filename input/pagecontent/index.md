@@ -364,3 +364,4 @@ https://github.com/hl7ch/cda-fhir-maps
 ### Propriété intellectuelle
 
 {% include ip-statements.xhtml %}
+
