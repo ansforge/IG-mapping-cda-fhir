@@ -6,7 +6,7 @@ Proof of concept for CDA to FHIR transformation
 {% if site.data.info.releaselabel == 'ci-build' %}
 <div style="width: 65%">
     <blockquote class="stu-note">
-    <p>Cet Implementation Guide n'est pas la version courante, il s'agit de la version en intégration continue, soumise à des changements fréquents et uniquement destinée à suivre les travaux en cours. La version courante sera accessible via l'URL canonique suite à la première release : http://interop.esante.gouv.fr/ig/fhir/[code - ig].</p>
+    <p>Cet Implementation Guide n'est pas la version courante, il s'agit de la version en intégration continue, soumise à des changements fréquents et uniquement destinée à suivre les travaux en cours. La version courante sera accessible via l'URL canonique suite à la première release : http://interop.esante.gouv.fr/ig/fhir/[code - ig]</p>
     </blockquote>
 </div>
 {% endif %}
@@ -17,7 +17,7 @@ Proof of concept for CDA to FHIR transformation
 <p>
   <b>Attention !</b>
   <br>
-  Cet Implementation Guide est actuellement en concertation. La version courante est accessible à l'adresse : http://interop.esante.gouv.fr/ig/fhir/[code - ig].
+  Cet Implementation Guide est actuellement en concertation. La version courante est accessible à l'adresse : http://interop.esante.gouv.fr/ig/fhir/[code - ig]
 </p>
 </blockquote>
 </div>
@@ -25,7 +25,7 @@ Proof of concept for CDA to FHIR transformation
 
 ### Introduction
 
-Dans le cadre de l’Espace Européen des Données de Santé (EEDS), l’Union européenne souhaite harmoniser les formats d’échange de données de santé en favorisant l’adoption du standard FHIR. Cette évolution vise à remplacer progressivement les documents CDA, encore largement utilisés dans plusieurs pays européens, par des ressources FHIR, le format retenu pour les échanges transfrontaliers.
+Dans le cadre de l’Espace Européen des Données de Santé (EEDS), l’Union européenne souhaite harmoniser les formats d’échange de données de santé en favorisant l’adoption du standard FHIR. 
 
 Pour anticiper cette transition, l’Europe a identifié six cas d’usage prioritaires dont les documents doivent migrer vers FHIR :
 * Compte rendu de biologie ;
@@ -78,7 +78,7 @@ https://build.fhir.org/ig/HL7/ccda-on-fhir/mappingGuidance.html
 
 #### HL7 FHIR
 
-Le site officiel FHIR inclut, sur de nombreuses pages de ressources et types de données, une section « Mappings » indiquant les équivalents potentiels dans d’autres standards, dont le CDA.
+Le site officiel FHIR inclut, sur de nombreuses ressources et types de données, une section « Mappings » indiquant les équivalents potentiels dans d’autres standards, dont le CDA.
 
 **Périmètre et contenu :**
 * correspondances proposées entre une ressource FHIR R4 (ex. Observation, Encounter, Medication, Practitioner…) et les éléments CDA associés ;
@@ -92,8 +92,8 @@ Ces mappings constituent un outil utile pour :
 * harmoniser les travaux nationaux avec les modèles FHIR internationaux ;
 * réduire les divergences d’interprétation lors de la construction du mapping CDA → FHIR.
 
-**Référence (FHIR R4) :**  
-https://www.hl7.org/fhir/
+**Référence :**  
+https://hl7.org/fhir/R4/
 
 ### Auteurs et contributeurs
 
