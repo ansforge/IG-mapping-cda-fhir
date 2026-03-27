@@ -52,7 +52,7 @@ Les ressources présentées ci‑après constituent des références informative
 
 #### HL7 – C-CDA on FHIR Mapping Guidance
 
-Cette ressource, publiée par HL7 International, propose une analyse détaillée des correspondances entre les modèles C‑CDA (Consolidated Clinical Document Architecture) – un ensemble structuré de modèles de documents cliniques basé sur CDA R2 et utilisé dans le contexte américain – et les ressources FHIR. Elle constitue l’un des travaux de référence les plus aboutis concernant la transition entre les standards documentaires CDA et les ressources FHIR orientées API.
+Cette ressource, publiée par HL7 International, propose une analyse détaillée des correspondances entre les modèles C‑CDA (Consolidated Clinical Document Architecture) – un ensemble structuré de modèles de documents cliniques basé sur CDA R2 et utilisé dans le contexte américain – et les ressources FHIR.
 
 **Périmètre et contenu :**
 
@@ -134,7 +134,7 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2026-03-27T10:51:24+00:00",
+  "date" : "2026-03-27T11:04:21+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
