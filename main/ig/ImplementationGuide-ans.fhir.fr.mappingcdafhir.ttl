@@ -21,7 +21,7 @@
   fhir:name [ fhir:v "CDA2FHIRMAP"] ; # 
   fhir:title [ fhir:v "POC - Mapping CDA to FHIR"] ; # 
   fhir:status [ fhir:v "draft"] ; # 
-  fhir:date [ fhir:v "2026-03-27T12:55:15+00:00"^^xsd:dateTime] ; # 
+  fhir:date [ fhir:v "2026-03-27T14:42:15+00:00"^^xsd:dateTime] ; # 
   fhir:publisher [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"] ; # 
   fhir:contact ( [
      fhir:name [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris" ] ;
@@ -1682,44 +1682,6 @@
            ] ;
            fhir:value [
              a fhir:Url ;
-             fhir:v "change-log.html"^^xsd:anyURI ;
-             fhir:l fhir:change-log.html
-           ]
-         ] ) ;
-         fhir:name [
-           a fhir:Url ;
-           fhir:v "change-log.html"^^xsd:anyURI ;
-           fhir:l fhir:change-log.html
-         ] ;
-         fhir:title [ fhir:v "Historique des versions" ] ;
-         fhir:generation [ fhir:v "markdown" ]
-       ] [
-         fhir:extension ( [
-           fhir:url [
-             fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
-             fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
-           ] ;
-           fhir:value [
-             a fhir:Url ;
-             fhir:v "mapping-cda-fhir.html"^^xsd:anyURI ;
-             fhir:l fhir:mapping-cda-fhir.html
-           ]
-         ] ) ;
-         fhir:name [
-           a fhir:Url ;
-           fhir:v "mapping-cda-fhir.html"^^xsd:anyURI ;
-           fhir:l fhir:mapping-cda-fhir.html
-         ] ;
-         fhir:title [ fhir:v "Mapping CDA vers FHIR" ] ;
-         fhir:generation [ fhir:v "markdown" ]
-       ] [
-         fhir:extension ( [
-           fhir:url [
-             fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
-             fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
-           ] ;
-           fhir:value [
-             a fhir:Url ;
              fhir:v "mapping-mechanisms.html"^^xsd:anyURI ;
              fhir:l fhir:mapping-mechanisms.html
            ]
@@ -1787,6 +1749,25 @@
            fhir:l fhir:initiatives-internationales.html
          ] ;
          fhir:title [ fhir:v "Initiatives internationales" ] ;
+         fhir:generation [ fhir:v "markdown" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [
+             fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
+             fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
+           ] ;
+           fhir:value [
+             a fhir:Url ;
+             fhir:v "change-log.html"^^xsd:anyURI ;
+             fhir:l fhir:change-log.html
+           ]
+         ] ) ;
+         fhir:name [
+           a fhir:Url ;
+           fhir:v "change-log.html"^^xsd:anyURI ;
+           fhir:l fhir:change-log.html
+         ] ;
+         fhir:title [ fhir:v "Historique des versions" ] ;
          fhir:generation [ fhir:v "markdown" ]
        ] )
      ] ;
