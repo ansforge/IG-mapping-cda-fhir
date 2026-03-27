@@ -6,12 +6,7 @@
 
 ## Guide de démarrage
 
- **FHIR Mapping Language for CDA to FHIR transformation**
- Proof of concept for CDA to FHIR transformation 
-
-> Cet Implementation Guide n'est pas la version courante, il s'agit de la version en intégration continue soumise à des changements fréquents uniquement destinée à suivre les travaux en cours. La version courante sera accessible via l'URL canonique suite à la première release : http://interop.esante.gouv.fr/ig/fhir/[code - ig]
-
-### Guide de démarrage rapide (Quick Start)
+## Guide de démarrage rapide (Quick Start)
 
 Ce guide vous permet de tester rapidement la transformation de documents CDA vers FHIR en utilisant matchbox et les exemples fournis.
 
@@ -239,13 +234,5 @@ Le fichier `input/with-all/application.yaml` configure matchbox avec :
 
 Pour modifier la configuration, éditez `application.yaml` puis supprimez et recréez le conteneur Docker.
 
-### Auteurs et contributeurs
-
-| | | | |
-| :--- | :--- | :--- | :--- |
-| **Primary Editor** | Prenom Nom | Agence du Numérique en Santé | prenom.nom@address.email |
-
-Merci à Oliver Egger (Ahdis, HL7 Suisse) qui a travaillé sur la première brique sur laquelle repose ces travaux et sur l'outil matchbox permettant d'effectuer la transformation.
-
-https://github.com/hl7ch/cda-fhir-maps
+Merci à Oliver Egger (Ahdis, HL7 Suisse) qui a travaillé sur la première brique sur laquelle repose ces travaux et sur l'outil matchbox permettant d'effectuer la transformation. https://github.com/hl7ch/cda-fhir-maps
 

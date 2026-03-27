@@ -195,33 +195,18 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
     <p><!-- white space is critical inside of capture --></p>
 <div class="markdown-toc">
 <ul id="markdown-toc">
-  <li><a href="#guide-de-démarrage-rapide-quick-start" id="markdown-toc-guide-de-démarrage-rapide-quick-start">Guide de démarrage rapide (Quick Start)</a></li>
-  <li><a href="#résultats-des-transformations" id="markdown-toc-résultats-des-transformations">Résultats des transformations</a></li>
-  <li><a href="#architecture-du-mapping-cdafrmdetobundle" id="markdown-toc-architecture-du-mapping-cdafrmdetobundle">Architecture du mapping CdaFrMDEToBundle</a></li>
-  <li><a href="#arrêter-et-redémarrer" id="markdown-toc-arrêter-et-redémarrer">Arrêter et redémarrer</a></li>
-  <li><a href="#configuration-avancée" id="markdown-toc-configuration-avancée">Configuration avancée</a></li>
-  <li><a href="#auteurs-et-contributeurs" id="markdown-toc-auteurs-et-contributeurs">Auteurs et contributeurs</a></li>
+  <li><a href="#guide-de-démarrage-rapide-quick-start" id="markdown-toc-guide-de-démarrage-rapide-quick-start">Guide de démarrage rapide (Quick Start)</a>    <ul>
+      <li><a href="#résultats-des-transformations" id="markdown-toc-résultats-des-transformations">Résultats des transformations</a></li>
+      <li><a href="#architecture-du-mapping-cdafrmdetobundle" id="markdown-toc-architecture-du-mapping-cdafrmdetobundle">Architecture du mapping CdaFrMDEToBundle</a></li>
+      <li><a href="#arrêter-et-redémarrer" id="markdown-toc-arrêter-et-redémarrer">Arrêter et redémarrer</a></li>
+      <li><a href="#configuration-avancée" id="markdown-toc-configuration-avancée">Configuration avancée</a></li>
+    </ul>
+  </li>
 </ul>
 
 </div>
-<p style="padding: 5px; border-radius: 5px; border: 2px solid maroon; background: #ffffe6; width: 65%">
-<b>FHIR Mapping Language for CDA to FHIR transformation</b><br />
-Proof of concept for CDA to FHIR transformation
-</p>
 
-<div style="width: 65%">
-    <blockquote class="stu-note">
-    <p>Cet Implementation Guide n'est pas la version courante, il s'agit de la version en intégration continue soumise à des changements fréquents uniquement destinée à suivre les travaux en cours. La version courante sera accessible via l'URL canonique suite à la première release : http://interop.esante.gouv.fr/ig/fhir/[code - ig]</p>
-    </blockquote>
-</div>
-
-<!--  A décommenter si CI-SIS
-<div class="figure">
-    <img src="ci-sis-logo.png" alt="CI-SIS" title="Logo du CI-SIS" style="width:100%;">
-</div>
--->
-
-<h3 id="guide-de-démarrage-rapide-quick-start">Guide de démarrage rapide (Quick Start)</h3>
+<h2 id="guide-de-démarrage-rapide-quick-start">Guide de démarrage rapide (Quick Start)</h2>
 <p>Ce guide vous permet de tester rapidement la transformation de documents CDA vers FHIR en utilisant matchbox et les exemples fournis.</p>
 
 <h4 id="prérequis">Prérequis</h4>
@@ -463,30 +448,8 @@ curl <span class="nt">-X</span> POST <span class="s2">"http://localhost:8080/mat
 
 <p>Pour modifier la configuration, éditez <code class="language-plaintext highlighter-rouge">application.yaml</code> puis supprimez et recréez le conteneur Docker.</p>
 
-<h3 id="auteurs-et-contributeurs">Auteurs et contributeurs</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>Role</th>
-      <th>Nom</th>
-      <th>Organisation</th>
-      <th>Contact</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Primary Editor</strong></td>
-      <td>Prenom Nom</td>
-      <td>Agence du Numérique en Santé</td>
-      <td>prenom.nom@address.email</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Merci à Oliver Egger (Ahdis, HL7 Suisse) qui a travaillé sur la première brique sur laquelle repose ces travaux et sur l'outil matchbox permettant d'effectuer la transformation.</p>
-
-<p>https://github.com/hl7ch/cda-fhir-maps</p>
+<p>Merci à Oliver Egger (Ahdis, HL7 Suisse) qui a travaillé sur la première brique sur laquelle repose ces travaux et sur l'outil matchbox permettant d'effectuer la transformation.
+https://github.com/hl7ch/cda-fhir-maps</p>
 
 
 
@@ -529,7 +492,7 @@ curl <span class="nt">-X</span> POST <span class="s2">"http://localhost:8080/mat
 
       <div class="inner-wrapper">
         <p>
-          IG &#169; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d&#39;Oradour-sur-Glane, 75015 Paris</a>.  Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Thu, Mar 26, 2026 14:21+0000">2026-03-26</span>
+          IG &#169; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d&#39;Oradour-sur-Glane, 75015 Paris</a>.  Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Fri, Mar 27, 2026 11:09+0000">2026-03-27</span>
           <br/>
           <span style="color: var(--footer-highlight-text-color)"></span>
             Liens : <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table des matières</a> |
