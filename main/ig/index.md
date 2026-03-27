@@ -8,7 +8,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ImplementationGuide/ans.fhir.fr.mappingcdafhir | *Version*:0.1.0 |
-| Draft as of 2026-03-26 | *Computable Name*:CDA2FHIRMAP |
+| Draft as of 2026-03-27 | *Computable Name*:CDA2FHIRMAP |
 
  **FHIR Mapping Language for CDA to FHIR transformation**
  Proof of concept for CDA to FHIR transformation 
@@ -405,7 +405,7 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2026-03-26T12:56:02+00:00",
+  "date" : "2026-03-27T08:00:01+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -1222,34 +1222,34 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
         }],
         "nameUrl" : "mapping-cda-fhir.html",
         "title" : "Mapping CDA vers FHIR",
-        "generation" : "markdown",
-        "page" : [{
-          "extension" : [{
-            "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
-            "valueUrl" : "mapping-mechanisms.html"
-          }],
-          "nameUrl" : "mapping-mechanisms.html",
-          "title" : "Mécanisme du Mapping",
-          "generation" : "markdown"
-        },
-        {
-          "extension" : [{
-            "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
-            "valueUrl" : "guide-demarrage.html"
-          }],
-          "nameUrl" : "guide-demarrage.html",
-          "title" : "Guide de démarrage",
-          "generation" : "markdown"
-        },
-        {
-          "extension" : [{
-            "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
-            "valueUrl" : "outils-mapping.html"
-          }],
-          "nameUrl" : "outils-mapping.html",
-          "title" : "Outils de Mapping",
-          "generation" : "markdown"
-        }]
+        "generation" : "markdown"
+      },
+      {
+        "extension" : [{
+          "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
+          "valueUrl" : "mapping-mechanisms.html"
+        }],
+        "nameUrl" : "mapping-mechanisms.html",
+        "title" : "Mécanisme du Mapping",
+        "generation" : "markdown"
+      },
+      {
+        "extension" : [{
+          "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
+          "valueUrl" : "guide-demarrage.html"
+        }],
+        "nameUrl" : "guide-demarrage.html",
+        "title" : "Guide de démarrage",
+        "generation" : "markdown"
+      },
+      {
+        "extension" : [{
+          "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
+          "valueUrl" : "outils-mapping.html"
+        }],
+        "nameUrl" : "outils-mapping.html",
+        "title" : "Outils de Mapping",
+        "generation" : "markdown"
       },
       {
         "extension" : [{
