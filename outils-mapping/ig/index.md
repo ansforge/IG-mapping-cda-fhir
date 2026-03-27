@@ -134,7 +134,7 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2026-03-27T14:34:23+00:00",
+  "date" : "2026-03-27T15:11:52+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -938,24 +938,6 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
       {
         "extension" : [{
           "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
-          "valueUrl" : "change-log.html"
-        }],
-        "nameUrl" : "change-log.html",
-        "title" : "Historique des versions",
-        "generation" : "markdown"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
-          "valueUrl" : "mapping-cda-fhir.html"
-        }],
-        "nameUrl" : "mapping-cda-fhir.html",
-        "title" : "Mapping CDA vers FHIR",
-        "generation" : "markdown"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
           "valueUrl" : "mapping-mechanisms.html"
         }],
         "nameUrl" : "mapping-mechanisms.html",
@@ -987,6 +969,15 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
         }],
         "nameUrl" : "initiatives-internationales.html",
         "title" : "Initiatives internationales",
+        "generation" : "markdown"
+      },
+      {
+        "extension" : [{
+          "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
+          "valueUrl" : "change-log.html"
+        }],
+        "nameUrl" : "change-log.html",
+        "title" : "Historique des versions",
         "generation" : "markdown"
       }]
     },

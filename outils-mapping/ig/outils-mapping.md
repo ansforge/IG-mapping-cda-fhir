@@ -25,9 +25,6 @@
 * l’exécution de transformations basées sur StructureMap,
 * la création et le test de mappings FML,
 * la validation des données FHIR produites.
-
-###**Avantages**
-
 * Alignement natif avec les standards FHIR.
 * Formalisation structurée des règles.
 * Réutilisation et mutualisation des cartes de transformation.
