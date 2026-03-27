@@ -238,13 +238,8 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
 <div class="markdown-toc">
 <ul id="markdown-toc">
   <li><a href="#introduction" id="markdown-toc-introduction">Introduction</a></li>
-  <li><a href="#guide-de-démarrage-rapide-quick-start" id="markdown-toc-guide-de-démarrage-rapide-quick-start">Guide de démarrage rapide (Quick Start)</a></li>
-  <li><a href="#résultats-des-transformations" id="markdown-toc-résultats-des-transformations">Résultats des transformations</a></li>
-  <li><a href="#architecture-du-mapping-cdafrmdetobundle" id="markdown-toc-architecture-du-mapping-cdafrmdetobundle">Architecture du mapping CdaFrMDEToBundle</a></li>
-  <li><a href="#difficultés-identifiées-dans-le-mapping-automatique-cda-fhir" id="markdown-toc-difficultés-identifiées-dans-le-mapping-automatique-cda-fhir">Difficultés identifiées dans le mapping automatique CDA-FHIR</a></li>
-  <li><a href="#arrêter-et-redémarrer" id="markdown-toc-arrêter-et-redémarrer">Arrêter et redémarrer</a></li>
-  <li><a href="#configuration-avancée" id="markdown-toc-configuration-avancée">Configuration avancée</a></li>
-  <li><a href="#auteurs-et-contributeurs" id="markdown-toc-auteurs-et-contributeurs">Auteurs et contributeurs</a></li>
+  <li><a href="#objectifs-du-guide" id="markdown-toc-objectifs-du-guide">Objectifs du guide</a></li>
+  <li><a href="#recensement-des-ressources-internationales-de-mapping-cda--fhir" id="markdown-toc-recensement-des-ressources-internationales-de-mapping-cda--fhir">Recensement des ressources internationales de mapping CDA – FHIR</a></li>
   <li><a href="#dépendances" id="markdown-toc-dépendances">Dépendances</a></li>
   <li><a href="#propriété-intellectuelle" id="markdown-toc-propriété-intellectuelle">Propriété intellectuelle</a></li>
 </ul>
@@ -257,405 +252,93 @@ Proof of concept for CDA to FHIR transformation
 
 <div style="width: 65%">
     <blockquote class="stu-note">
-    <p>Cet Implementation Guide n'est pas la version courante, il s'agit de la version en intégration continue soumise à des changements fréquents uniquement destinée à suivre les travaux en cours. La version courante sera accessible via l'URL canonique suite à la première release : http://interop.esante.gouv.fr/ig/fhir/[code - ig]</p>
+    <p>Cet Implementation Guide n'est pas la version courante, il s'agit de la version en intégration continue, soumise à des changements fréquents et uniquement destinée à suivre les travaux en cours. La version courante sera accessible via l'URL canonique suite à la première release : http://interop.esante.gouv.fr/ig/fhir/[code - ig]</p>
     </blockquote>
 </div>
 
-<!--  A décommenter si CI-SIS
-<div class="figure">
-    <img src="ci-sis-logo.png" alt="CI-SIS" title="Logo du CI-SIS" style="width:100%;">
-</div>
--->
-
 <h3 id="introduction">Introduction</h3>
 
-<p>Dans le cadre de l'Espace Européen des Données de Santé, l'ANS a entrepris des travaux pour anticiper la transition CDA vers FHIR dans le cadre des 5 cas d'usages priorisés par l'Europe : le compte rendu de biologie, la ePrescription et eDispensiation, le compte rendu d'hospitalisation, le résumé patient et le compte rendu d'imagerie.</p>
+<p>Dans le cadre de l’Espace Européen des Données de Santé (EEDS), l’Union européenne souhaite harmoniser les formats d’échange de données de santé en favorisant l’adoption du standard FHIR.</p>
 
-<p>Les travaux de l'ANS se distinguent en deux parties :</p>
-
+<p>L'Europe a identifié six cas d’usage prioritaires :</p>
 <ul>
-  <li>créer les spécifications françaises en FHIR qui reprend l'historique CDA tout en s'alignant avec les contraintes européennes (cf. https://github.com/ansforge/IG-document-core)</li>
-  <li>tester le FHIR Mapping Language, outil permettant la transformation des documents CDA vers FHIR.</li>
+  <li>Compte rendu de biologie ;</li>
+  <li>ePrescription ;</li>
+  <li>eDispensation ;</li>
+  <li>Compte rendu d’hospitalisation ;</li>
+  <li>Résumé patient ;</li>
+  <li>Compte rendu d’imagerie.</li>
 </ul>
 
-<h3 id="guide-de-démarrage-rapide-quick-start">Guide de démarrage rapide (Quick Start)</h3>
+<p>L’ANS s’inscrit dans cette dynamique afin d’assurer une transition cohérente du CDA Fr vers FHIR, en garantissant la compatibilité avec le CI-SIS et les exigences européennes.</p>
 
-<p>Ce guide vous permet de tester rapidement la transformation de documents CDA vers FHIR en utilisant matchbox et les exemples fournis.</p>
+<h3 id="objectifs-du-guide">Objectifs du guide</h3>
 
-<h4 id="prérequis">Prérequis</h4>
-
+<p>Ce guide a pour objectifs de :</p>
 <ul>
-  <li>Docker installé sur votre machine</li>
-  <li>Un client REST (ex: VS Code avec l'extension REST Client, IntelliJ IDEA, ou curl)</li>
-  <li>Accès au repository IG-mapping-cda-fhir</li>
+  <li>présenter la démarche ANS d’anticipation du passage CDA → FHIR ;</li>
+  <li>documenter de manière structurée les correspondances CDA ↔ FHIR ;</li>
+  <li>garantir la cohérence avec les référentiels et modèles français (CI-SIS, CDA Fr) ;</li>
+  <li>expérimenter cette transformation à l’aide du FHIR Mapping Language ;</li>
+  <li>permettre l’exécution et la validation du mapping via Matchbox ;</li>
+  <li>fournir les artefacts FHIR nécessaires (StructureMap et ConceptMap) ;</li>
+  <li>faciliter l’alignement futur avec les exigences EEDS.</li>
 </ul>
 
-<h4 id="étape-1--télécharger-limage-docker-matchbox">Étape 1 : Télécharger l'image Docker matchbox</h4>
+<p>Ce guide constitue un travail exploratoire, servant de base aux travaux de convergence FHIR futurs.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker pull europe-west6-docker.pkg.dev/ahdis-ch/ahdis/matchbox:v4.0.12
-</code></pre></div></div>
+<h3 id="recensement-des-ressources-internationales-de-mapping-cda--fhir">Recensement des ressources internationales de mapping CDA – FHIR</h3>
 
-<h4 id="étape-2--lancer-le-conteneur-docker">Étape 2 : Lancer le conteneur Docker</h4>
+<p>Dans le cadre de la transition du CDA vers FHIR, il est essentiel de s’appuyer sur les travaux déjà publiés au niveau international. Le recensement des ressources existantes permet d’identifier les correspondances déjà documentées, d’éviter la duplication de travaux lorsqu’une correspondance est disponible, et de favoriser l’harmonisation avec les orientations européennes, notamment dans la perspective du futur EEDS.</p>
 
-<p><strong>Important</strong> : Adaptez le chemin selon votre installation locale. Le chemin doit pointer vers le dossier <code class="language-plaintext highlighter-rouge">input/with-all</code> de votre projet.</p>
+<p>Les ressources présentées ci‑après constituent des références informatives utiles pour éclairer la transformation du CDA vers FHIR et pour accompagner la construction d’un mapping cohérent, aligné avec l’écosystème HL7 et les exigences du CI-SIS.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">-d</span> <span class="nt">--name</span> matchbox <span class="nt">-p</span> 8080:8080 <span class="se">\</span>
-  <span class="nt">-v</span> /chemin/absolu/vers/IG-mapping-cda-fhir/input/with-all:/config <span class="se">\</span>
-  europe-west6-docker.pkg.dev/ahdis-ch/ahdis/matchbox:v4.0.12
-</code></pre></div></div>
+<h4 id="hl7--c-cda-on-fhir-mapping-guidance">HL7 – C-CDA on FHIR Mapping Guidance</h4>
 
-<p><strong>Ou utilisez le script de démarrage automatique</strong> :</p>
+<p>Cette ressource, publiée par HL7 International, propose une analyse détaillée des correspondances entre les modèles C‑CDA (Consolidated Clinical Document Architecture) – un ensemble structuré de modèles de documents cliniques basé sur CDA R2 et utilisé dans le contexte américain – et les ressources FHIR.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./start-matchbox.sh
-</code></pre></div></div>
-
-<h4 id="étape-3--vérifier-le-démarrage">Étape 3 : Vérifier le démarrage</h4>
-
-<p>Pour suivre les logs de matchbox :</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker logs <span class="nt">--follow</span> matchbox
-</code></pre></div></div>
-
-<p>Attendez que matchbox ait terminé son démarrage. L'interface sera accessible sur : <code class="language-plaintext highlighter-rouge">http://localhost:8080/matchbox</code></p>
-
-<h4 id="étape-4--charger-les-conceptmaps">Étape 4 : Charger les ConceptMaps</h4>
-
-<p>Certains StructureMaps utilisent des ConceptMaps externes pour la traduction de codes terminologiques. Il faut les charger <strong>avant</strong> les StructureMaps.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Charger le ConceptMap pour le genre (administrative-gender)</span>
-curl <span class="nt">-X</span> POST http://localhost:8080/matchbox/fhir/ConceptMap <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Content-Type: application/fhir+json"</span> <span class="se">\</span>
-  <span class="nt">--data-binary</span> @input/resources/ConceptMap-cm-v3-administrative-gender.json
-</code></pre></div></div>
-
-<h4 id="étape-5--charger-les-structuremaps-et-lancer-les-transformations">Étape 5 : Charger les StructureMaps et lancer les transformations</h4>
-
-<p>Les fichiers HTTP de test se trouvent dans le dossier <code class="language-plaintext highlighter-rouge">http-test/</code>. Utilisez le fichier <code class="language-plaintext highlighter-rouge">fr_cdatofhir_mde.http</code> avec votre client REST.</p>
-
-<p><strong>Avec VS Code et l'extension REST Client</strong> :</p>
-
-<ol>
-  <li>Ouvrez le fichier <code class="language-plaintext highlighter-rouge">http-test/fr_cdatofhir_mde.http</code></li>
-  <li>Exécutez séquentiellement les requêtes HTTP dans l'ordre suivant :
-    <ul>
-      <li><strong>Requête 0</strong> : Charger ConceptMap-cm-v3-administrative-gender.json</li>
-      <li><strong>Requête 1</strong> : Charger CDAtoFHIRTypes.fml</li>
-      <li><strong>Requête 2</strong> : Charger CdaToBundle.fml</li>
-      <li><strong>Requête 3</strong> : Charger CDAFrToBundle.fml</li>
-      <li><strong>Requête 4</strong> : Charger CDAFrMDEToBundle.fml</li>
-      <li><strong>Requête 5</strong> : Transformer CSE-MDE_2023.01.xml (sortie JSON)</li>
-    </ul>
-  </li>
-  <li>Cliquez sur "Send Request" au-dessus de chaque requête</li>
-</ol>
-
-<p><strong>Avec curl</strong> (exemple complet) :</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 1. Charger les ConceptMaps nécessaires</span>
-curl <span class="nt">-X</span> POST http://localhost:8080/matchbox/fhir/ConceptMap <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Content-Type: application/fhir+json"</span> <span class="se">\</span>
-  <span class="nt">--data-binary</span> @input/resources/ConceptMap-cm-v3-administrative-gender.json
-
-<span class="c"># 2. Charger les StructureMaps dans l'ordre</span>
-curl <span class="nt">-X</span> POST http://localhost:8080/matchbox/fhir/StructureMap <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Accept: application/fhir+xml;fhirVersion=4.0"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Content-Type: text/fhir-mapping"</span> <span class="se">\</span>
-  <span class="nt">--data-binary</span> @input/fml/CDAtoFHIRTypes.fml
-
-curl <span class="nt">-X</span> POST http://localhost:8080/matchbox/fhir/StructureMap <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Accept: application/fhir+xml;fhirVersion=4.0"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Content-Type: text/fhir-mapping"</span> <span class="se">\</span>
-  <span class="nt">--data-binary</span> @input/fml/CdaToBundle.fml
-
-curl <span class="nt">-X</span> POST http://localhost:8080/matchbox/fhir/StructureMap <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Accept: application/fhir+xml;fhirVersion=4.0"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Content-Type: text/fhir-mapping"</span> <span class="se">\</span>
-  <span class="nt">--data-binary</span> @input/fml/CDAFrToBundle.fml
-
-curl <span class="nt">-X</span> POST http://localhost:8080/matchbox/fhir/StructureMap <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Accept: application/fhir+xml;fhirVersion=4.0"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Content-Type: text/fhir-mapping"</span> <span class="se">\</span>
-  <span class="nt">--data-binary</span> @input/fml/CDAFrMDEToBundle.fml
-
-<span class="c"># 3. Transformer un document CDA</span>
-curl <span class="nt">-X</span> POST <span class="s2">"http://localhost:8080/matchbox/fhir/StructureMap/</span><span class="se">\$</span><span class="s2">transform?source=https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrMDEToBundle"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Accept: application/fhir+json;fhirVersion=4.0"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Content-Type: application/fhir+xml;fhirVersion=4.0"</span> <span class="se">\</span>
-  <span class="nt">--data-binary</span> @input/attachments/CSE-MDE_2023.01.xml
-</code></pre></div></div>
-
-<h4 id="exemple-cda-disponible">Exemple CDA disponible</h4>
-
-<p>Le dossier <code class="language-plaintext highlighter-rouge">input/attachments/</code> contient un exemple de document CDA français :</p>
-
+<p><strong>Périmètre et contenu :</strong></p>
 <ul>
-  <li><strong>CSE-MDE_2023.01.xml</strong> : Carnet de santé de l'enfant - Mesures (3 observations : Poids, Taille, Périmètre crânien)</li>
+  <li>présentation des correspondances conceptuelles entre sections, entrées et éléments C CDA et leurs équivalents dans FHIR ;</li>
+  <li>principes méthodologiques généraux pour guider la conversion ;</li>
+  <li>recommandations techniques applicables dans différents cas d’usage (biologie, prescriptions, imagerie, etc.) ;</li>
+  <li>identification des écarts de granularité, de structure ou de sémantique entre les deux standards.</li>
 </ul>
 
-<h4 id="résultat-attendu">Résultat attendu</h4>
-
-<p>Si la transformation réussit, vous obtiendrez un Bundle FHIR contenant les ressources converties depuis le document CDA.</p>
-
-<p><strong>Note importante</strong> : Il peut y avoir des erreurs dans les fichiers FML lors de la transformation. L'objectif de ce POC est de valider le processus de transformation. Les erreurs dans les mappings seront traitées ultérieurement.</p>
-
-<h3 id="résultats-des-transformations">Résultats des transformations</h3>
-
-<p>Les transformations CDA-FHIR ont été exécutées avec les résultats suivants :</p>
-
-<h4 id="transformation-réussie">Transformation réussie</h4>
-
-<table>
-  <thead>
-    <tr>
-      <th>Fichier source</th>
-      <th>StructureMap utilisé</th>
-      <th>Fichier résultat</th>
-      <th>Ressources FHIR</th>
-      <th>Observations</th>
-      <th>Statut</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>CSE-MDE_2023.01.xml</td>
-      <td><a href="StructureMap-CdaFrMDEToBundle.html">CdaFrMDEToBundle</a></td>
-      <td><a href="Bundle-fe569e1f-32d4-4ba4-b5ad-88082bf5470a.html">Bundle-fe569e1f-32d4-4ba4-b5ad-88082bf5470a.json</a></td>
-      <td>11</td>
-      <td>3</td>
-      <td>✅ Succès complet</td>
-    </tr>
-  </tbody>
-</table>
-
-<p><strong>Détails de la transformation :</strong></p>
-
-<p><strong>Document CSE-MDE (Carnet de Santé de l'Enfant - Mesures)</strong> :</p>
-
+<p><strong>Intérêt pour les travaux français :</strong>
+Cette ressource constitue un appui solide pour :</p>
 <ul>
-  <li><strong>StructureMap utilisé</strong> : <code class="language-plaintext highlighter-rouge">CdaFrMDEToBundle</code> - Mapping spécifique pour le contexte français</li>
-  <li><strong>Imports</strong> : Utilise <code class="language-plaintext highlighter-rouge">CdaToFHIRTypes</code>, <code class="language-plaintext highlighter-rouge">CdaToBundle</code> et <code class="language-plaintext highlighter-rouge">CdaFrToBundle</code></li>
-  <li><strong>Ressources générées</strong> (11 au total) :
-    <ul>
-      <li>1 Composition (métadonnées du document)</li>
-      <li>1 Patient (avec identifiant INS-NIR, nom, genre, date de naissance)</li>
-      <li>1 Encounter (contexte de la rencontre)</li>
-      <li>1 Location (lieu de la consultation)</li>
-      <li>2 Practitioner (praticiens impliqués)</li>
-      <li>2 Organization (organisations de santé)</li>
-      <li>3 Observations :
-        <ul>
-          <li>Poids (29463-7) = 3900 g</li>
-          <li>Taille (8302-2) = 52 cm</li>
-          <li>Périmètre crânien (8287-5) = 35 cm</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
+  <li>contextualiser les choix de mapping retenus dans le cadre du CI-SIS ;</li>
+  <li>identifier les correspondances déjà reconnues internationalement ;</li>
+  <li>garantir une cohérence globale avec l’approche HL7 ;</li>
+  <li>faciliter l’évolution future vers les exigences européennes EEDS.</li>
 </ul>
 
-<h3 id="architecture-du-mapping-cdafrmdetobundle">Architecture du mapping CdaFrMDEToBundle</h3>
+<p><strong>Référence :</strong><br />
+https://build.fhir.org/ig/HL7/ccda-on-fhir/mappingGuidance.html</p>
 
-<p>Le mapping <code class="language-plaintext highlighter-rouge">CdaFrMDEToBundle.fml</code> est un mapping spécialisé pour les documents CSE-MDE français qui combine :</p>
+<h4 id="hl7-fhir">HL7 FHIR</h4>
 
-<p><strong>Architecture du mapping :</strong></p>
+<p>Le site officiel FHIR inclut, sur de nombreuses ressources et types de données, une section « Mappings » indiquant les équivalents potentiels dans d’autres standards, dont le CDA.</p>
+
+<p><strong>Périmètre et contenu :</strong></p>
 <ul>
-  <li><strong>Imports</strong> : Utilise les mappings de base (<code class="language-plaintext highlighter-rouge">CdaToFHIRTypes</code>, <code class="language-plaintext highlighter-rouge">CdaToBundle</code>, <code class="language-plaintext highlighter-rouge">CdaFrToBundle</code>)</li>
-  <li><strong>Réutilisation</strong> : Exploite les fonctions existantes pour Patient, Composition, Encounter, Location, etc.</li>
-  <li><strong>Navigation personnalisée</strong> : Implémente une navigation spécifique pour extraire les observations imbriquées dans les organizers</li>
-  <li><strong>Traitement complet</strong> : Gère toutes les ressources nécessaires pour un document CSE-MDE</li>
+  <li>correspondances proposées entre une ressource FHIR R4 (ex. Observation, Encounter, Medication, Practitioner…) et les éléments CDA associés ;</li>
+  <li>indications également disponibles pour certains datatypes tels que CodeableConcept, Identifier, HumanName, etc. ;</li>
+  <li>visibilité sur les zones de correspondance directe ainsi que sur les écarts conceptuels.</li>
 </ul>
 
-<p><strong>Résultats obtenus :</strong></p>
+<p><strong>Intérêt pour les travaux français :</strong>
+Ces mappings constituent un outil utile pour :</p>
 <ul>
-  <li>✅ Génération du Bundle FHIR avec structure document complète</li>
-  <li>✅ Transformation du Patient avec identifiant INS-NIR, nom, genre, date de naissance</li>
-  <li>✅ Création de la Composition avec métadonnées et sections</li>
-  <li>✅ Génération automatique des ressources contextuelles (Encounter, Location, Practitioner, Organization)</li>
-  <li>✅ <strong>Extraction des Observations</strong> depuis <code class="language-plaintext highlighter-rouge">organizer &gt; component &gt; observation</code></li>
-  <li>✅ Transformation des codes LOINC et valeurs quantitatives avec unités</li>
+  <li>analyser les équivalences conceptuelles proposées par HL7 ;</li>
+  <li>valider ou enrichir les correspondances établies dans le cadre du CI-SIS ;</li>
+  <li>harmoniser les travaux nationaux avec les modèles FHIR internationaux ;</li>
+  <li>réduire les divergences d’interprétation lors de la construction du mapping CDA → FHIR.</li>
 </ul>
 
-<p><strong>Exemple d'Observation générée :</strong></p>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"resourceType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Observation"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"final"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"category"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-    </span><span class="nl">"coding"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-      </span><span class="nl">"system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://terminology.hl7.org/CodeSystem/observation-category"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vital-signs"</span><span class="w">
-    </span><span class="p">}]</span><span class="w">
-  </span><span class="p">}],</span><span class="w">
-  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"coding"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-      </span><span class="nl">"system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://loinc.org"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"29463-7"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"display"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Poids"</span><span class="w">
-    </span><span class="p">}]</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"subject"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"urn:uuid:..."</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"effectiveDateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-01-06"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"valueQuantity"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">3900</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"g"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://unitsofmeasure.org"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"g"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<p><strong>Améliorations récentes apportées au mapping :</strong></p>
-
-<ul>
-  <li>✅ <strong>Ajout de <code class="language-plaintext highlighter-rouge">Observation.category</code></strong> : Toutes les observations sont catégorisées comme <code class="language-plaintext highlighter-rouge">vital-signs</code> conformément au package ANS <a href="https://interop.esante.gouv.fr/ig/fhir/mesures/3.1.0/">ans.fhir.fr.mesures#3.1.0</a></li>
-  <li>✅ <strong>Ajout de <code class="language-plaintext highlighter-rouge">Observation.effectiveDateTime</code></strong> : Extrait depuis <code class="language-plaintext highlighter-rouge">effectiveTime</code> de l'observation CDA (si présent et non <code class="language-plaintext highlighter-rouge">nullFlavor</code>)</li>
-  <li>✅ <strong>Correction de <code class="language-plaintext highlighter-rouge">Observation.status</code></strong> : Mapping de CDA "completed" vers FHIR "final"</li>
-  <li>✅ <strong>Ajout du système UCUM aux quantités</strong> : Toutes les <code class="language-plaintext highlighter-rouge">valueQuantity</code> incluent <code class="language-plaintext highlighter-rouge">system: "http://unitsofmeasure.org"</code> et <code class="language-plaintext highlighter-rouge">code</code> en plus de <code class="language-plaintext highlighter-rouge">unit</code></li>
-  <li>✅ <strong>Conversion des codes LOINC</strong> : Système correctement mappé vers <code class="language-plaintext highlighter-rouge">http://loinc.org</code></li>
-  <li>✅ <strong>Ajout de <code class="language-plaintext highlighter-rouge">Encounter.status</code></strong> : Défini à <code class="language-plaintext highlighter-rouge">finished</code> pour les rencontres terminées</li>
-  <li>✅ <strong>Ajout de <code class="language-plaintext highlighter-rouge">Encounter.class</code></strong> : Extrait du code CDA de la rencontre</li>
-  <li>✅ <strong>Correction de <code class="language-plaintext highlighter-rouge">Patient.birthDate</code></strong> : Format date simple conforme FHIR</li>
-  <li>✅ <strong>Correction de <code class="language-plaintext highlighter-rouge">Composition.confidentiality</code></strong> : Code simple au lieu d'objet complexe</li>
-  <li>✅ <strong>Correction de <code class="language-plaintext highlighter-rouge">attester.time</code></strong> : Format dateTime conforme FHIR</li>
-  <li>✅ <strong>Ajout de <code class="language-plaintext highlighter-rouge">meta.profile</code></strong> : Profils ANS ajoutés selon le code LOINC (mesures-fr-observation-body-weight, mesures-fr-observation-bodyheight, mesures-observation-head-circumference)</li>
-</ul>
-
-<p><strong>Limitations identifiées dans les données CDA source :</strong></p>
-
-<p>Les exemples CDA fournis présentent certaines limitations qui génèrent des warnings FHIR (non bloquants) :</p>
-
-<ol>
-  <li>⚠️ <strong>Absence de timezone sur <code class="language-plaintext highlighter-rouge">Encounter.period</code></strong> : Les dates/heures de la rencontre dans le CDA n'incluent pas de timezone
-    <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- CDA source --&gt;</span>
-<span class="nt">&lt;effectiveTime&gt;</span>
-  <span class="nt">&lt;low</span> <span class="na">value=</span><span class="s">"20250106111510"</span><span class="nt">/&gt;</span>  <span class="c">&lt;!-- Pas de timezone +0100 --&gt;</span>
-  <span class="nt">&lt;high</span> <span class="na">value=</span><span class="s">"20250106113623"</span><span class="nt">/&gt;</span> <span class="c">&lt;!-- Pas de timezone +0100 --&gt;</span>
-<span class="nt">&lt;/effectiveTime&gt;</span>
-</code></pre></div>    </div>
-    <p><strong>Impact</strong> : Warning FHIR "If a date has a time, it must have a timezone"</p>
-
-    <p><strong>Solution</strong> : Ajouter le timezone dans le CDA source (ex: <code class="language-plaintext highlighter-rouge">20250106111510+0100</code>)</p>
-  </li>
-  <li>⚠️ <strong>Absence de <code class="language-plaintext highlighter-rouge">Observation.effectiveDateTime</code></strong> : Les observations CDA utilisent <code class="language-plaintext highlighter-rouge">nullFlavor="NASK"</code> (Not Asked)
-    <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- CDA source --&gt;</span>
-<span class="nt">&lt;observation&gt;</span>
-  <span class="nt">&lt;code</span> <span class="na">code=</span><span class="s">"29463-7"</span> <span class="na">displayName=</span><span class="s">"Poids"</span> <span class="na">codeSystem=</span><span class="s">"2.16.840.1.113883.6.1"</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;effectiveTime</span> <span class="na">nullFlavor=</span><span class="s">"NASK"</span><span class="nt">/&gt;</span>  <span class="c">&lt;!-- Pas de date effective --&gt;</span>
-  <span class="nt">&lt;value</span> <span class="na">xsi:type=</span><span class="s">"PQ"</span> <span class="na">value=</span><span class="s">"3900"</span> <span class="na">unit=</span><span class="s">"g"</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;/observation&gt;</span>
-</code></pre></div>    </div>
-    <p><strong>Impact</strong> : Warning FHIR "Best Practice Recommendation: In general, all observations should have an effective[x]"</p>
-
-    <p><strong>Solution</strong> : Fournir une date/heure effective dans le CDA source (ex: <code class="language-plaintext highlighter-rouge">&lt;effectiveTime value="20230106"/&gt;</code>)</p>
-  </li>
-</ol>
-
-<p><strong>Note</strong> : Ces limitations proviennent des données CDA d'exemple et non du mapping FML. Le mapping transforme fidèlement les données CDA disponibles.</p>
-
-<h3 id="difficultés-identifiées-dans-le-mapping-automatique-cda-fhir">Difficultés identifiées dans le mapping automatique CDA-FHIR</h3>
-
-<p>Le processus de transformation automatique CDA vers FHIR présente certaines difficultés inhérentes aux différences de modélisation entre les deux standards :</p>
-
-<h4 id="1-ambiguïté-sémantique-des-structures-cda">1. Ambiguïté sémantique des structures CDA</h4>
-
-<p><strong>Problème identifié</strong> : <code class="language-plaintext highlighter-rouge">healthCareFacility</code> et <code class="language-plaintext highlighter-rouge">serviceProviderOrganization</code></p>
-
-<p>Dans le CDA, la structure <code class="language-plaintext highlighter-rouge">componentOf &gt; encompassingEncounter &gt; location &gt; healthCareFacility</code> contient :</p>
-<ul>
-  <li>Un <code class="language-plaintext highlighter-rouge">code</code> décrivant le type d'établissement (ex: SA05 "Centre de santé" du TRE_R02-SecteurActivite)</li>
-  <li>Une <code class="language-plaintext highlighter-rouge">location</code> (lieu physique avec adresse)</li>
-  <li>Optionnellement un <code class="language-plaintext highlighter-rouge">serviceProviderOrganization</code> (organisation gestionnaire)</li>
-</ul>
-
-<p><strong>Difficulté de mapping</strong> :</p>
-
-<p>Le code SA05 du <code class="language-plaintext highlighter-rouge">healthCareFacility</code> devrait logiquement être mappé vers :</p>
-<ol>
-  <li>✅ <code class="language-plaintext highlighter-rouge">Location.type</code> - pour indiquer le type de lieu physique</li>
-  <li>❓ <code class="language-plaintext highlighter-rouge">Organization.type:secteurActiviteRASS</code> - pour indiquer le secteur d'activité de l'organisation</li>
-</ol>
-
-<p>Cependant, il existe une <strong>ambiguïté sémantique</strong> :</p>
-<ul>
-  <li>Le <code class="language-plaintext highlighter-rouge">serviceProviderOrganization</code> dans le CDA peut représenter :
-    <ul>
-      <li>L'organisation qui opère directement le centre de santé (dans ce cas, SA05 s'applique bien)</li>
-      <li>Une organisation parente ou gestionnaire différente (dans ce cas, SA05 pourrait ne pas s'appliquer)</li>
-    </ul>
-  </li>
-</ul>
-
-<p><strong>Impact</strong> :</p>
-<ul>
-  <li>Un mapping automatique qui copie systématiquement le code du <code class="language-plaintext highlighter-rouge">healthCareFacility</code> vers l'<code class="language-plaintext highlighter-rouge">Organization</code> peut introduire des <strong>incohérences sémantiques</strong></li>
-  <li>Il n'existe pas de règle universelle dans le CDA pour distinguer ces deux cas</li>
-  <li>Cette ambiguïté nécessite souvent une <strong>analyse contextuelle manuelle</strong> ou des <strong>règles métier spécifiques</strong> au projet</li>
-</ul>
-
-<p><strong>Solutions possibles</strong> :</p>
-<ol>
-  <li><strong>Mapping conservateur</strong> : Ne mapper que vers <code class="language-plaintext highlighter-rouge">Location.type</code> (approche actuelle)</li>
-  <li><strong>Mapping avec hypothèse</strong> : Copier vers <code class="language-plaintext highlighter-rouge">Organization.type</code> en documentant l'hypothèse que le <code class="language-plaintext highlighter-rouge">serviceProviderOrganization</code> est l'établissement lui-même</li>
-  <li><strong>Mapping conditionnel</strong> : Définir des règles métier basées sur le contexte du document (type de document, type d'établissement, etc.)</li>
-</ol>
-
-<p>Cette difficulté illustre que <strong>le mapping CDA-FHIR n'est pas toujours une transformation mécanique 1:1</strong>, mais nécessite parfois des choix d'implémentation basés sur la compréhension du contexte métier.</p>
-
-<h3 id="arrêter-et-redémarrer">Arrêter et redémarrer</h3>
-
-<p>Pour arrêter le conteneur :</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker stop matchbox
-</code></pre></div></div>
-
-<p>Pour redémarrer :</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker start matchbox
-</code></pre></div></div>
-
-<p>Pour supprimer le conteneur (et repartir de zéro) :</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker <span class="nb">rm</span> <span class="nt">-f</span> matchbox
-</code></pre></div></div>
-
-<h3 id="configuration-avancée">Configuration avancée</h3>
-
-<p>Le fichier <code class="language-plaintext highlighter-rouge">input/with-all/application.yaml</code> configure matchbox avec :</p>
-
-<ul>
-  <li>Les packages FHIR de base (R4 core, terminologies, extensions)</li>
-  <li>Le package CDA (hl7.cda.uv.core)</li>
-  <li>Le package ANS FHIR EDS</li>
-</ul>
-
-<p>Pour modifier la configuration, éditez <code class="language-plaintext highlighter-rouge">application.yaml</code> puis supprimez et recréez le conteneur Docker.</p>
-
-<h3 id="auteurs-et-contributeurs">Auteurs et contributeurs</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>Role</th>
-      <th>Nom</th>
-      <th>Organisation</th>
-      <th>Contact</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Primary Editor</strong></td>
-      <td>Prenom Nom</td>
-      <td>Agence du Numérique en Santé</td>
-      <td>prenom.nom@address.email</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Merci à Oliver Egger (Ahdis, HL7 Suisse) qui a travaillé sur la première brique sur laquelle repose ces travaux et sur l'outil matchbox permettant d'effectuer la transformation.</p>
-
-<p>https://github.com/hl7ch/cda-fhir-maps</p>
+<p><strong>Référence :</strong><br />
+https://hl7.org/fhir/R4/</p>
 
 <h3 id="dépendances">Dépendances</h3>
 
@@ -763,7 +446,7 @@ curl <span class="nt">-X</span> POST <span class="s2">"http://localhost:8080/mat
 
       <div class="inner-wrapper">
         <p>
-          IG &#169; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d&#39;Oradour-sur-Glane, 75015 Paris</a>.  Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Fri, Mar 27, 2026 08:00+0000">2026-03-27</span>
+          IG &#169; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d&#39;Oradour-sur-Glane, 75015 Paris</a>.  Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Fri, Mar 27, 2026 12:55+0000">2026-03-27</span>
           <br/>
           <span style="color: var(--footer-highlight-text-color)"></span>
             Liens : <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table des matières</a> |
