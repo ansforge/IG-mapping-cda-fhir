@@ -45,7 +45,7 @@ Ce guide a pour objectifs de :
 * garantir la cohérence avec les référentiels et modèles français (CI-SIS, CDA Fr) ;
 * expérimenter cette transformation à l’aide du FHIR Mapping Language ;
 * permettre l’exécution et la validation du mapping via Matchbox ;
-* fournir les artefacts FHIR nécessaires ;
+* fournir les artefacts FHIR nécessaires (StructureMap et ConceptMap) ;
 * faciliter l’alignement futur avec les exigences EEDS.
 
 Ce guide constitue un travail exploratoire, servant de base aux travaux de convergence FHIR futurs.
@@ -56,9 +56,9 @@ Dans le cadre de la transition du CDA vers FHIR, il est essentiel de s’appuyer
 
 Les ressources présentées ci‑après constituent des références informatives utiles pour éclairer la transformation du CDA vers FHIR et pour accompagner la construction d’un mapping cohérent, aligné avec l’écosystème HL7 et les exigences du CI-SIS.
 
-#### HL7 – C CDA on FHIR Mapping Guidance
+#### HL7 – C-CDA on FHIR Mapping Guidance
 
-Cette ressource, publiée par HL7 International, propose une analyse détaillée des correspondances entre les modèles C CDA et les ressources FHIR. Elle constitue l’un des travaux de référence les plus structurés concernant la transition entre les standards documentaires CDA et les ressources FHIR orientées API.
+Cette ressource, publiée par HL7 International, propose une analyse détaillée des correspondances entre les modèles C‑CDA (Consolidated Clinical Document Architecture) – un ensemble structuré de modèles de documents cliniques basé sur CDA R2 et utilisé dans le contexte américain – et les ressources FHIR. Elle constitue l’un des travaux de référence les plus aboutis concernant la transition entre les standards documentaires CDA et les ressources FHIR orientées API.
 
 **Périmètre et contenu :**
 * présentation des correspondances conceptuelles entre sections, entrées et éléments C CDA et leurs équivalents dans FHIR ;
@@ -94,12 +94,6 @@ Ces mappings constituent un outil utile pour :
 
 **Référence :**  
 https://hl7.org/fhir/R4/
-
-### Auteurs et contributeurs
-
-| Rôle | Nom | Organisation | Contact |
-| --- | --- | --- | --- |
-| **Primary Editor** | Prénom Nom | Agence du Numérique en Santé | prenom.nom@address.email |
 
 
 ### Dépendances
