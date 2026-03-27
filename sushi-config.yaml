@@ -31,22 +31,23 @@ dependencies:
 
 
 
+
 pages:
   index.md:
     title: Accueil
-  change-log.md:
-    title: Historique des versions
-  mapping-cda-fhir.md:
-    title: Mapping CDA vers FHIR
+    
   mapping-mechanisms.md:
     title: Mécanisme du Mapping
   guide-demarrage.md:
     title: Guide de démarrage
   outils-mapping.md:
     title: Outils de Mapping
+
   initiatives-internationales.md:
     title: Initiatives internationales
 
+  change-log.md:
+    title: Historique des versions
 
 menu:
   Accueil: index.html
@@ -54,8 +55,8 @@ menu:
     Mécanisme du Mapping: mapping-mechanisms.html
     Guide de démarrage: guide-demarrage.html
     Outils de Mapping: outils-mapping.html
-  Ressources de conformité: artifacts.html
   Initiatives internationales: initiatives-internationales.html
+  Ressources de conformité: artifacts.html
   Autres ressources:
     Spécification FHIR: new-tab {{site.data.fhir.path}}index.html
     Site de l’ANS: new-tab https://esante.gouv.fr/
