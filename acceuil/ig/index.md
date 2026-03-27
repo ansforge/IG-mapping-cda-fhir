@@ -8,7 +8,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ImplementationGuide/ans.fhir.fr.mappingcdafhir | *Version*:0.1.0 |
-| Draft as of 2026-03-26 | *Computable Name*:CDA2FHIRMAP |
+| Draft as of 2026-03-27 | *Computable Name*:CDA2FHIRMAP |
 
  **FHIR Mapping Language for CDA to FHIR transformation**
  Proof of concept for CDA to FHIR transformation 
@@ -42,7 +42,7 @@ Ce guide a pour objectifs de :
 * fournir les artefacts FHIR nécessaires ;
 * faciliter l’alignement futur avec les exigences EEDS.
 
-Ce guide constitue un travail exploratoire, servant de base aux travaux de convergence FFHIR futurs.
+Ce guide constitue un travail exploratoire, servant de base aux travaux de convergence FHIR futurs.
 
 ### Recensement des ressources internationales de mapping CDA – FHIR
 
@@ -140,7 +140,7 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2026-03-26T17:44:42+00:00",
+  "date" : "2026-03-27T10:46:37+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
