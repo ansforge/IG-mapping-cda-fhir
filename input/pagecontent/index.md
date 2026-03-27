@@ -27,7 +27,7 @@ Proof of concept for CDA to FHIR transformation
 
 Dans le cadre de l’Espace Européen des Données de Santé (EEDS), l’Union européenne souhaite harmoniser les formats d’échange de données de santé en favorisant l’adoption du standard FHIR. 
 
-Pour anticiper cette transition, l’Europe a identifié six cas d’usage prioritaires dont les documents doivent migrer vers FHIR :
+L'Europe a identifié six cas d’usage prioritaires :
 * Compte rendu de biologie ;
 * ePrescription ;
 * eDispensation ;
