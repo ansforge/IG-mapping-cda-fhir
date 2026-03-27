@@ -48,7 +48,7 @@ Ce guide a pour objectifs de :
 * fournir les artefacts FHIR nécessaires ;
 * faciliter l’alignement futur avec les exigences EEDS.
 
-Ce guide constitue un travail exploratoire, servant de base aux travaux de convergence FFHIR futurs.
+Ce guide constitue un travail exploratoire, servant de base aux travaux de convergence FHIR futurs.
 
 ### Recensement des ressources internationales de mapping CDA – FHIR
 
