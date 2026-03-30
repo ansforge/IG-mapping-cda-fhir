@@ -7,7 +7,9 @@
 
 **Note :** Les méthodes et outils de mapping présentés ci‑dessous sont fournis à titre informatif. Ils illustrent différentes approches identifiées sans pour autant avoir été toutes testés dans le cadre de ce guide d'implémentation.
 
-#**Présentation générale des méthodes de mapping CDA vers FHIR** La transformation de documents CDA vers des ressources FHIR peut s’appuyer sur différents outils et mécanismes techniques. Les exemples présentés ci après illustrent quelques unes des solutions existantes ; ils ne couvrent pas l’ensemble des possibilités, mais permettent d’illustrer la diversité des approches disponibles.
+### Présentation générale des méthodes de mapping CDA vers FHIR
+
+La transformation de documents CDA vers des ressources FHIR peut s’appuyer sur différents outils et mécanismes techniques. Les exemples présentés ci après illustrent quelques unes des solutions existantes ; ils ne couvrent pas l’ensemble des possibilités, mais permettent d’illustrer la diversité des approches disponibles.
 
 ##**Fhir mapping mapping langage et moteurs de transformation FHIR** Cette approche repose sur l’utilisation du FHIR Mapping Language (FML) et sur des moteurs de transformation capables d’interpréter des règles formelles pour convertir des structures XML comme le CDA en ressources FHIR. Elle s’appuie sur des outils spécialisés — tels que Matchbox et HAPI FHIR — afin de produire des transformations structurées, reproductibles et conformes au standard
 
