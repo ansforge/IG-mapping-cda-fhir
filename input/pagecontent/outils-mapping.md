@@ -1,7 +1,7 @@
 
 <div class="stu-note" style="width: 65%">
     <p><strong>Note :</strong> Les méthodes et outils de mapping présentés ci‑dessous sont fournis à titre informatif. 
-    Ils illustrent différentes approches possibles,mais n’ont pas été testés dans le cadre de ce guide d'implémentation.</p>
+    Ils illustrent différentes approches identifiées sans pour autant avoir été toutes testés dans le cadre de ce guide d'implémentation.</p>
 </div>
 
 
