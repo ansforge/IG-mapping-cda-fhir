@@ -115,7 +115,7 @@ Ces outils prennent en entrée des modèles définis selon des métamodèles (so
 
 #### **Avantages**
 * Formalisation explicite des règles de transformation: appui sur des métamodèles explicites, structuration cohérente du mapping, lisibilité accrue des correspondances. 
-* Contrôle de la conformité structurelle du modèle cible: production d’instances conformes au métamodèle cible, facilitation des vérifications de structure et de la validation.
+* Contrôle de la conformité structurelle du modèle cible : production d’instances conformes au métamodèle cible, facilitation des vérifications de structure et de la validation.
 
 #### **Limites**
 * Nécessite des métamodèles CDA/FHIR et leur maintenance.
