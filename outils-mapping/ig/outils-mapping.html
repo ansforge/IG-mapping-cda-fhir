@@ -199,12 +199,17 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
 <div class="markdown-toc">
 <ul id="markdown-toc">
   <li><a href="#approche-basée-sur-le-fhir-mapping-language-fml" id="markdown-toc-approche-basée-sur-le-fhir-mapping-language-fml">Approche basée sur le FHIR Mapping Language (FML)</a></li>
-  <li><a href="#méthodes-doutils-visuels-de-transformation" id="markdown-toc-méthodes-doutils-visuels-de-transformation"><strong>Méthodes d’outils visuels de transformation</strong></a></li>
-  <li><a href="#méthodes-de-transformation-xml" id="markdown-toc-méthodes-de-transformation-xml"><strong>Méthodes de transformation XML</strong></a></li>
-  <li><a href="#méthodes-de-transformation-modèle-vers-modèle" id="markdown-toc-méthodes-de-transformation-modèle-vers-modèle"><strong>Méthodes de transformation modèle vers modèle</strong></a></li>
-  <li><a href="#méthodes-model-to-text" id="markdown-toc-méthodes-model-to-text"><strong>Méthodes model to text</strong></a></li>
-  <li><a href="#kodjin-data-mapper" id="markdown-toc-kodjin-data-mapper"><strong>Kodjin Data Mapper</strong></a></li>
-  <li><a href="#méthodes-manuelles-java-javascript-python" id="markdown-toc-méthodes-manuelles-java-javascript-python"><strong>Méthodes manuelles (Java, JavaScript, Python)</strong></a></li>
+  <li><a href="#méthodes-doutils-visuels-de-transformation" id="markdown-toc-méthodes-doutils-visuels-de-transformation">Méthodes d’outils visuels de transformation</a></li>
+  <li><a href="#méthodes-de-transformation-xml" id="markdown-toc-méthodes-de-transformation-xml">Méthodes de transformation XML</a></li>
+  <li><a href="#méthodes-de-transformation-modèle-vers-modèle" id="markdown-toc-méthodes-de-transformation-modèle-vers-modèle">Méthodes de transformation modèle vers modèle</a></li>
+  <li><a href="#méthodes-model-to-text" id="markdown-toc-méthodes-model-to-text">Méthodes model to text</a></li>
+  <li><a href="#méthodes-manuelles-java-javascript-python" id="markdown-toc-méthodes-manuelles-java-javascript-python">Méthodes manuelles (Java, JavaScript, Python)</a></li>
+  <li><a href="#méthodes-assistées-par-les-grands-modèles-de-langage-llm" id="markdown-toc-méthodes-assistées-par-les-grands-modèles-de-langage-llm">Méthodes assistées par les grands modèles de langage (LLM)</a>    <ul>
+      <li><a href="#principe" id="markdown-toc-principe">Principe</a></li>
+      <li><a href="#avantages-5" id="markdown-toc-avantages-5">Avantages</a></li>
+      <li><a href="#limites-5" id="markdown-toc-limites-5">Limites</a></li>
+    </ul>
+  </li>
 </ul>
 
 </div>
@@ -217,29 +222,35 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
 Les exemples présentés ci‑après illustrent quelques‑unes des solutions existantes : ils ne couvrent pas l’ensemble des possibilités, mais montrent la diversité des approches disponibles.</p>
 
 <h3 id="approche-basée-sur-le-fhir-mapping-language-fml">Approche basée sur le FHIR Mapping Language (FML)</h3>
+
 <p>Le FHIR Mapping Language est un langage défini par HL7 pour décrire, sous forme de règles formelles, comment transformer une structure source (par exemple un document CDA en XML) en ressources FHIR.
-Ce langage repose sur FHIRPath et prend en charge des transformations structurelles, conditionnelles ou complexes. Toutefois, il ne dispose pas d’une compréhension native de la structure CDA : cela signifie que les règles doivent décrire explicitement comment interpréter chaque élément XML du document source.
+Ce langage repose sur FHIRPath et prend en charge des transformations structurelles, conditionnelles ou complexes. 
 Les règles écrites en FML doivent être interprétées par un moteur capable d’exécuter des StructureMap. Parmi les moteurs d’exécution disponibles dans l’écosystème open source, on retrouve notamment HAPI FHIR et Matchbox.</p>
 
-<h5 id="hapi-fhir"><strong>HAPI FHIR</strong></h5>
+<h4 id="hapi-fhir">HAPI FHIR</h4>
+
 <p>HAPI FHIR est un framework open source de référence pour la manipulation des ressources FHIR en Java. Il intègre un moteur capable d’interpréter et d’exécuter les cartes de transformation FML (StructureMap). Ce moteur fournit l’ensemble des fonctionnalités nécessaires pour appliquer les règles de conversion définies en FML : navigation dans les données, exécution de FHIRPath, création des ressources FHIR générées et validation de leur conformité aux profils utilisés.</p>
 
-<h5 id="matchbox"><strong>Matchbox</strong></h5>
+<h4 id="matchbox">Matchbox</h4>
+
 <p>Matchbox est une implémentation spécialisée basée sur HAPI FHIR qui enrichit ce moteur d’exécution avec un ensemble d’outils dédiés au développement, au test et à la validation des mappings FML. Il propose un environnement complet incluant l’exécution interactive des StructureMap, des mécanismes avancés de validation FHIR basés sur les Implementation Guides, ainsi que des fonctionnalités facilitant la mise au point des transformations.</p>
 
-<h5 id="avantages"><strong>Avantages</strong></h5>
+<h4 id="avantages">Avantages</h4>
+
 <ul>
   <li>Flexible.</li>
   <li>Adapté aux règles métier complexes.</li>
   <li>Intégration simple.</li>
 </ul>
 
-<h5 id="limites"><strong>Limites</strong></h5>
+<h4 id="limites">Limites</h4>
+
 <ul>
-  <li>Complexité du langage.</li>
+  <li>Complexité du langage FML.</li>
 </ul>
 
-<h5 id="ressources-utiles"><strong>Ressources utiles</strong></h5>
+<h4 id="ressources-utiles">Ressources utiles</h4>
+
 <ul>
   <li>FHIR Mapping Language (FML) : https://build.fhir.org/mapping-language.html</li>
   <li>HAPI FHIR – GitHub : https://github.com/hapifhir/hapi-fhir</li>
@@ -249,32 +260,35 @@ Les règles écrites en FML doivent être interprétées par un moteur capable d
   <li>Matchbox API Utils – GitHub : https://github.com/drmrgd/matchbox_api_utils</li>
 </ul>
 
-<h3 id="méthodes-doutils-visuels-de-transformation"><strong>Méthodes d’outils visuels de transformation</strong></h3>
-<p>Cette catégorie regroupe les solutions permettant de définir des mappings CDA → FHIR à travers des interfaces graphiques. Elles offrent une représentation visuelle des structures sources et cibles, facilitant l’élaboration des règles de transformation par des utilisateurs non développeurs.</p>
+<h3 id="méthodes-doutils-visuels-de-transformation">Méthodes d’outils visuels de transformation</h3>
 
-<h4 id="termx"><strong>TermX</strong></h4>
-<p><a name="l465">​</a>TermX est une solution open source développée par la société estonienne Kodality, dédiée à la modélisation, à la gestion des terminologies et à la transformation de données autour de FHIR. Elle intègre un éditeur visuel du FHIR Mapping Language (FML), conçu pour permettre à des analystes métier ou experts fonctionnels de définir graphiquement les règles de correspondance entre un modèle source et un modèle cible, tout en masquant la complexité syntaxique du langage FML.
-<img src="images/termX.png" alt="TermX"/></p>
+<p>Cette catégorie regroupe les solutions permettant de définir des mappings CDA → FHIR au moyen d’interfaces graphiques. Celles-ci offrent une représentation visuelle des structures source et cible, ce qui facilite l’élaboration des règles de transformation par des utilisateurs non développeurs. Parmi les outils disponibles figure notamment TermX.</p>
 
-<h4 id="ibm-app-connect"><strong>IBM App Connect</strong></h4>
-<p>IBM App Connect est une plateforme d’intégration éditée par IBM. Il ne s’agit pas, à proprement parler, d’un outil spécialisé de mapping CDA → FHIR, mais d’une solution destinée à connecter des applications, des données et des services, puis à orchestrer des flux capables de router, enrichir, transformer et traiter les messages échangés entre systèmes. Le mapping y intervient comme une étape de la transformation, à l’intérieur d’un flux d’intégration : une fois la source et la cible identifiées, il permet de faire correspondre les champs, de convertir les formats et d’appliquer des règles de transformation pour produire la structure attendue. IBM App Connect propose pour cela des mécanismes visuels tels que le Mapping node et l’éditeur de Graphical Data Mapping.</p>
+<h4 id="termx">TermX</h4>
 
-<h4 id="avantages-1"><strong>Avantages</strong></h4>
+<p>TermX est une solution open source développée par la société estonienne Kodality, dédiée à la modélisation, à la gestion des terminologies et à la transformation de données autour de FHIR. Elle intègre un éditeur visuel du FHIR Mapping Language (FML), conçu pour permettre à des analystes métier ou experts fonctionnels de définir graphiquement les règles de correspondance entre un modèle source et un modèle cible, tout en masquant la complexité syntaxique du langage FML.</p>
+
+<p><a name="l471">​</a><img src="images/termX.png" alt="TermX"/></p>
+
+<h4 id="avantages-des-outils-visuels-de-mapping">Avantages des outils visuels de mapping</h4>
+
 <ul>
   <li>Accessibilité pour des utilisateurs non développeurs</li>
   <li>Compréhension facilitée grâce à la représentation visuelle des transformations</li>
 </ul>
 
-<h4 id="limites-1"><strong>Limites</strong></h4>
+<h4 id="limites-des-outils-visuels-de-mapping">Limites des outils visuels de mapping</h4>
+
 <ul>
   <li>Expressivité variable selon l’outil</li>
   <li>Difficulté à exprimer des logiques complexes</li>
   <li>Dépendance à la suite logicielle</li>
-  <li>Compatibilité hétérogène avec les pratiques collaboratives fondées sur Git/GitHub : TermX prévoit explicitement la synchronisation de ses ressources avec GitHub, ce qui facilite la gestion de versions et la collaboration, tandis que dans IBM App Connect, cette compatibilité repose davantage sur des fonctions périphériques de gestion de projet et d’automatisation que sur l’éditeur visuel lui-même.</li>
+  <li>Compatibilité variable avec les pratiques collaboratives fondées sur Git/GitHub : certains outils, comme TermX, intègrent explicitement une synchronisation avec GitHub, tandis que d’autres solutions visuelles ne la prennent en charge qu’indirectement, via des fonctions périphériques de gestion de projet ou d’automatisation.</li>
   <li>L’outil IBM App Connect n’est pas open source.</li>
 </ul>
 
-<h4 id="ressources-utiles-1"><strong>Ressources utiles</strong></h4>
+<h4 id="ressources-utiles-1">Ressources utiles</h4>
+
 <ul>
   <li>TermX – Site officiel : https://termx.org/</li>
   <li>TermX: https://termx.kodality.dev/modeler/transformation-definitions</li>
@@ -282,29 +296,35 @@ Les règles écrites en FML doivent être interprétées par un moteur capable d
   <li>IBM App Connect – Documentation : https://www.ibm.com/docs</li>
 </ul>
 
-<h3 id="méthodes-de-transformation-xml"><strong>Méthodes de transformation XML</strong></h3>
+<h3 id="méthodes-de-transformation-xml">Méthodes de transformation XML</h3>
+
 <p>Les méthodes de transformation XML exploitent directement la structure XML du document CDA pour exprimer des règles de sélection, de réorganisation et de recomposition des données. Dans le cadre d’un mapping CDA vers FHIR, elles sont particulièrement adaptées aux transformations centrées sur l’organisation du document, la navigation dans l’arbre XML et la production d’un résultat structuré, sans recours à une couche intermédiaire de modélisation. Selon le langage et l’outillage retenus, le résultat produit peut être un document XML ou, dans certains cas, une représentation JSON</p>
 
-<h4 id="extensible-stylesheet-language-transformations-xslt"><strong>EXtensible Stylesheet Language Transformations (XSLT)</strong></h4>
+<h4 id="extensible-stylesheet-language-transformations-xslt">EXtensible Stylesheet Language Transformations (XSLT)</h4>
+
 <p>XSLT est un langage standardisé par World Wide Web Consortium (W3C), conçu principalement pour transformer des documents XML en d’autres documents XML. La transformation est décrite sous la forme d’une feuille de style composée de règles, généralement fondées sur des motifs de correspondance et des expressions XPath. XSLT 3.0 introduit notamment des mécanismes de modularisation et de streaming, utiles pour le traitement de documents XML volumineux.</p>
 
-<h4 id="xml-query-language-xquery"><strong>XML Query Language (XQuery)</strong></h4>
+<h4 id="xml-query-language-xquery">XML Query Language (XQuery)</h4>
+
 <p>XQuery est un langage de requête standardisé par le World Wide Web Consortium (W3C) pour interroger, extraire et recomposer des données XML. Fondé sur XPath, il permet d’exprimer une logique de transformation dans laquelle le document source est parcouru, certaines données sont sélectionnées et filtrées, puis un résultat cible est reconstruit sous la forme d’un fragment XML ou JSON. Dans le cadre d’un document CDA, cette approche permet de cibler précisément des sections, des entrées ou des valeurs, puis de les réorganiser selon la structure attendue en sortie. XQuery 3.1 prend également en charge JSON grâce à l’introduction des maps et des arrays dans son modèle de données.</p>
 
-<h4 id="avantages-2"><strong>Avantages</strong></h4>
+<h4 id="avantages-1">Avantages</h4>
+
 <ul>
   <li>Traitement direct du document CDA source : mise en œuvre de la transformation directement à partir de l’arbre XML du document, sans recours préalable à un modèle intermédiaire.</li>
   <li>Capacité fine de ciblage et de recomposition : sélection précise des sections, entrées, attributs et valeurs du document CDA au moyen des mécanismes de navigation XML et XPath.</li>
   <li>Adéquation aux transformations orientées structure documentaire : approche pertinente lorsque la logique de transformation porte principalement sur l’extraction, la réorganisation et la recomposition de fragments du document XML source.</li>
 </ul>
 
-<h4 id="limites-2"><strong>Limites</strong></h4>
+<h4 id="limites-1">Limites</h4>
+
 <ul>
   <li>Lisibilité et maintenabilité réduites sur des mappings étendus : multiplication des feuilles de style, des règles et des requêtes lorsque le périmètre documentaire et les variantes de transformation augmentent.</li>
   <li>Nécessité de maîtriser les langages et mécanismes associés à XSLT et XQuery.</li>
 </ul>
 
-<h4 id="ressources-utiles-2"><strong>Ressources utiles</strong></h4>
+<h4 id="ressources-utiles-2">Ressources utiles</h4>
+
 <ul>
   <li>XSLT – Introduction : https://www.educba.com/xslt-mapping/</li>
   <li>XSLT – Spécifications QT4CG : https://github.com/qt4cg/qtspecs</li>
@@ -313,13 +333,16 @@ Les règles écrites en FML doivent être interprétées par un moteur capable d
   <li>XQuery – Stylus Studio : https://www.stylusstudio.com/xquery-mapper.html</li>
 </ul>
 
-<h3 id="méthodes-de-transformation-modèle-vers-modèle"><strong>Méthodes de transformation modèle vers modèle</strong></h3>
+<h3 id="méthodes-de-transformation-modèle-vers-modèle">Méthodes de transformation modèle vers modèle</h3>
+
 <p>Les approches de transformation modèle vers modèle ne manipulent pas directement un fichier XML comme une suite de nœuds ou de texte. Elles reposent sur une représentation abstraite et structurée des données, dans laquelle les artefacts source et cible sont décrits par des métamodèles. La transformation consiste alors à définir des règles indiquant comment les éléments d’un modèle conforme au métamodèle source doivent être convertis en éléments d’un modèle conforme au métamodèle cible. Ces approches s’inscrivent dans les démarches de Model-Driven Engineering (MDE) et sont souvent mises en œuvre dans des environnements comme Eclipse Modeling Framework (EMF), qui permettent de définir des métamodèles, de manipuler leurs instances et de générer du code ou d’autres artefacts associés.</p>
 
-<h4 id="atlas-transformation-language-atl"><strong>Atlas Transformation Language (ATL)</strong></h4>
+<h4 id="atlas-transformation-language-atl">Atlas Transformation Language (ATL)</h4>
+
 <p>ATL est un langage de transformation de modèles développé dans l’écosystème Eclipse. Il permet d’exprimer des règles décrivant comment des éléments d’un modèle source doivent être reconnus, transformés et projetés dans un modèle cible. ATL est présenté comme un langage principalement déclaratif, tout en proposant également des constructions impératives lorsque certaines transformations sont difficiles à exprimer uniquement sous forme de règles. Son fonctionnement repose donc sur l’application de règles de correspondance entre des instances conformes à un métamodèle source et à un métamodèle cible.</p>
 
-<h4 id="queryviewtransformation-qvt"><strong>Query/View/Transformation (QVT)</strong></h4>
+<h4 id="queryviewtransformation-qvt">Query/View/Transformation (QVT)</h4>
+
 <p>QVT (Query/View/Transformation) est un ensemble de langages normalisés par l’Object Management Group (OMG), permettant de définir comment un modèle peut être transformé en un autre.
 Une transformation QVT s’appuie toujours sur des métamodèles, qui décrivent la structure des modèles manipulés (par exemple les métamodèles CDA ou FHIR, ou les métamodèles Ecore/UML dans Eclipse).
 On distingue trois langages QVT :</p>
@@ -333,20 +356,23 @@ Dans Eclipse, ces langages sont implémentés via :</li>
 Ces outils prennent en entrée des modèles définis selon des métamodèles (souvent Ecore ou UML), qui servent de base à l’exécution des règles QVT.</li>
 </ul>
 
-<h4 id="avantages-3"><strong>Avantages</strong></h4>
+<h4 id="avantages-2">Avantages</h4>
+
 <ul>
   <li>Formalisation explicite des règles de transformation: appui sur des métamodèles explicites, structuration cohérente du mapping, lisibilité accrue des correspondances.</li>
   <li>Contrôle de la conformité structurelle du modèle cible : production d’instances conformes au métamodèle cible, facilitation des vérifications de structure et de la validation.</li>
 </ul>
 
-<h4 id="limites-3"><strong>Limites</strong></h4>
+<h4 id="limites-2">Limites</h4>
+
 <ul>
   <li>Nécessite des métamodèles CDA/FHIR et leur maintenance.</li>
   <li>Mise en œuvre exigeante (ingénierie dirigée par les modèles, Tooling Eclipse).</li>
   <li>Moins adapté lorsque la transformation dépend fortement du contexte: variations du profil FHIR cible, des terminologies, du type de document CDA ou des contraintes d’implémentation rendent l’approche modèle‑vers‑modèle plus complexe à exprimer et à maintenir, en raison de son ancrage dans des correspondances structurelles stables entre métamodèles.</li>
 </ul>
 
-<h4 id="ressources-utiles-3"><strong>Ressources utiles</strong></h4>
+<h4 id="ressources-utiles-3">Ressources utiles</h4>
+
 <ul>
   <li>ATL – Documentation : https://eclipse.dev/atl/documentation/</li>
   <li>ATL – User Guide : https://help.eclipse.org/latest/topic/org.eclipse.m2m.atl.doc/guide/user/ATL%20User%20Guide.html</li>
@@ -355,32 +381,39 @@ Ces outils prennent en entrée des modèles définis selon des métamodèles (so
   <li>QVT – Documentation : https://download.eclipse.org/qvtd/doc/0.14.0/qvtd.pdf</li>
 </ul>
 
-<h3 id="méthodes-model-to-text"><strong>Méthodes model to text</strong></h3>
+<h3 id="méthodes-model-to-text">Méthodes model to text</h3>
+
 <p>Cette catégorie regroupe des approches de génération textuelle fondées sur des templates. Leur mécanisme consiste à appliquer des templates à un modèle ou à des données source afin de produire automatiquement une sortie textuelle structurée ; selon l’outil retenu, cette sortie peut correspondre à du code, de la documentation, des fichiers de configuration ou, dans certains cas, à des ressources FHIR.</p>
 
-<h4 id="acceleo"><strong>Acceleo</strong></h4>
+<h4 id="acceleo">Acceleo</h4>
+
 <p>Acceleo est un générateur de texte basé sur des modèles. Il repose sur EMF (Eclipse Modeling Framework), un environnement de modélisation dans lequel les données ne sont pas manipulées directement comme du texte brut, mais comme des objets organisés selon une structure définie à l’avance. Cette structure est décrite par un métamodèle, souvent exprimé en Ecore, qui précise quelles classes existent, quels attributs elles portent et quelles relations elles entretiennent. À partir de ces modèles EMF, Acceleo parcourt les éléments décrits et leur applique des templates afin de produire automatiquement une sortie textuelle structurée. Le principe est donc le suivant : décrire d’abord la structure du domaine avec EMF, puis utiliser Acceleo pour transformer cette structure en texte.</p>
 
-<h4 id="liquid"><strong>Liquid</strong></h4>
+<h4 id="liquid">Liquid</h4>
+
 <p>Liquid est un langage de templates généraliste qui sert à générer automatiquement un texte à partir de données. Son mécanisme repose sur l’insertion dynamique de variables, de conditions, de boucles et de filtres dans un gabarit textuel, afin de produire une sortie structurée. Dans l’écosystème FHIR, HL7 documente un usage spécifique de Liquid pour la construction de narratifs de ressources et pour la génération de ressources à partir de sources externes telles que HL7 v2 ou CDA.</p>
 
-<h3 id="kodjin-data-mapper"><strong>Kodjin Data Mapper</strong></h3>
+<h4 id="kodjin-data-mapper">Kodjin Data Mapper</h4>
+
 <p>Kodjin Data Mapper est un outil de transformation de données de santé vers FHIR. Il s’appuie sur des templates Liquid pour définir les règles de mapping, puis exécute ces règles afin de convertir des formats tels que HL7v2, C‑CDA ou des formats propriétaires en ressources FHIR. La documentation officielle le présente comme un service de conversion spécialisé dans l’industrialisation de ces mappings.</p>
 
-<h4 id="avantages-4"><strong>Avantages</strong></h4>
+<h4 id="avantages-3">Avantages</h4>
+
 <ul>
   <li>Intégration aisée dans des chaînes de traitement automatisées : exécution répétable des mécanismes de génération ou de transformation dans des workflows structurés.</li>
   <li>Souplesse d’adaptation des règles : évolution des mappings ou des sorties générées par simple ajustement des templates.</li>
   <li>Légèreté relative de mise en œuvre :insertion facilitée dans des processus existants grâce à la production directe d’une sortie textuelle structurée.</li>
 </ul>
 
-<h4 id="limites-4"><strong>Limites</strong></h4>
+<h4 id="limites-3">Limites</h4>
+
 <ul>
   <li>Nécessité fréquente d’une préparation préalable du document CDA : adaptation ou normalisation de la structure source en vue de sa compatibilité avec les chemins et éléments attendus par les templates de transformation.</li>
   <li>Expressivité plus limitée face à des logiques métier complexes.</li>
 </ul>
 
-<h4 id="ressources-utiles-4"><strong>Ressources utiles</strong></h4>
+<h4 id="ressources-utiles-4">Ressources utiles</h4>
+
 <ul>
   <li>Acceleo – User Guide : https://wiki.eclipse.org/Acceleo/User_Guide</li>
   <li>FHIR Liquid Profile : https://confluence.hl7.org/spaces/FHIR/pages/66938964/FHIR+Liquid+Profile</li>
@@ -391,17 +424,20 @@ Ces outils prennent en entrée des modèles définis selon des métamodèles (so
   <li>Kodjin – Documentation : https://docs.kodjin.com/data-mapper/</li>
 </ul>
 
-<h3 id="méthodes-manuelles-java-javascript-python"><strong>Méthodes manuelles (Java, JavaScript, Python)</strong></h3>
+<h3 id="méthodes-manuelles-java-javascript-python">Méthodes manuelles (Java, JavaScript, Python)</h3>
+
 <p>Cette catégorie regroupe les approches dans lesquelles la transformation CDA → FHIR est codée directement dans un langage de programmation généraliste. Elle repose sur le parsing du document XML source, l’écriture explicite des règles de transformation dans le code, puis la construction des ressources FHIR à l’aide de bibliothèques adaptées. Cette logique peut être mise en œuvre en Java, notamment avec HAPI FHIR ; en JavaScript, par transformation du XML en objets puis génération d’un FHIR JSON, avec l’appui éventuel d’un client tel que SMART on FHIR JavaScript Client ; et en Python, par manipulation XML et construction des ressources via des modèles ou clients FHIR tels que fhirclient.</p>
 
-<h4 id="avantages-5"><strong>Avantages</strong></h4>
+<h4 id="avantages-4">Avantages</h4>
+
 <ul>
   <li>Très flexible.</li>
   <li>Adapté aux règles métier complexes.</li>
   <li>Intégration simple.</li>
 </ul>
 
-<h4 id="limites-5"><strong>Limites</strong></h4>
+<h4 id="limites-4">Limites</h4>
+
 <ul>
   <li>Pas de formalisme standard.</li>
   <li>Divergence fonctionnelle possible.</li>
@@ -409,7 +445,8 @@ Ces outils prennent en entrée des modèles définis selon des métamodèles (so
   <li>Dépendance aux compétences.</li>
 </ul>
 
-<h4 id="ressources-utiles-5"><strong>Ressources utiles</strong></h4>
+<h4 id="ressources-utiles-5">Ressources utiles</h4>
+
 <ul>
   <li>HAPI FHIR (Java) : https://github.com/hapifhir/hapi-fhir</li>
   <li>HAPI FHIR – Documentation : https://hapifhir.io/</li>
@@ -418,6 +455,34 @@ Ces outils prennent en entrée des modèles définis selon des métamodèles (so
   <li>Client FHIR JavaScript : https://github.com/smart-on-fhir/client-js</li>
   <li>Client FHIR JavaScript – Documentation : http://docs.smarthealthit.org/client-js/</li>
   <li>fhir.js : https://github.com/FHIR/fhir.js</li>
+</ul>
+
+<h1 id="méthodes-assistées-par-les-grands-modèles-de-langage-llm">Méthodes assistées par les grands modèles de langage (LLM)</h1>
+
+<p>Les grands modèles de langage (LLM) peuvent être mobilisés pour produire des ressources ou des bundles FHIR à partir de documents CDA (XML), de textes cliniques ou de données structurées, au moyen de prompts et de stratégies de guidage.</p>
+
+<h2 id="principe">Principe</h2>
+
+<ul>
+  <li>Écrire un prompt qui précise la tâche attendue (cible FHIR, profils/contraintes, format de sortie).</li>
+  <li>Ajouter des exemples (few‑shot) et/ou des extraits de schémas FHIR pour orienter la génération.</li>
+  <li>Itérer (demander des corrections, reformuler) jusqu’à obtenir un résultat exploitable.</li>
+</ul>
+
+<h2 id="avantages-5">Avantages</h2>
+
+<ul>
+  <li>Démarrage rapide d’un mapping vers FHIR à partir de données sources</li>
+  <li>Guidage par le prompt : prompts structurés, exemples (few‑shot) et fragments de schémas FHIR peuvent améliorer la qualité des sorties.</li>
+  <li>Boucles de correction : l’itération et les retours de type « feedback » aident à converger vers une structure FHIR mieux formée.</li>
+</ul>
+
+<h2 id="limites-5">Limites</h2>
+
+<ul>
+  <li>Hallucinations : attributs inexistants, appariements inadaptés, problèmes de granularité) ; une relecture experte est nécessaire.</li>
+  <li>Sensibilité au prompt : de faibles variations de consignes peuvent modifier la sortie, ce qui réduit la reproductibilité sans stratégie de prompting rigoureuse.</li>
+  <li>Validation indispensable : contrôle systématique vis‑à‑vis des profils/IG avant toute utilisation opérationnelle.</li>
 </ul>
 
 
@@ -461,7 +526,7 @@ Ces outils prennent en entrée des modèles définis selon des métamodèles (so
 
       <div class="inner-wrapper">
         <p>
-          IG &copy; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris</a>.  Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Wed, Apr 1, 2026 13:32+0000">2026-04-01</span>
+          IG &copy; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris</a>.  Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Wed, Apr 1, 2026 15:00+0000">2026-04-01</span>
           <br/>
           <span style="color: var(--footer-highlight-text-color)"></span>
             Liens : <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table des matières</a> |

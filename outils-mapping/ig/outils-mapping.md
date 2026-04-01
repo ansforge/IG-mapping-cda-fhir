@@ -11,27 +11,27 @@ La transformation de documents CDA vers des ressources FHIR peut s’appuyer sur
 
 ### Approche basée sur le FHIR Mapping Language (FML)
 
-Le FHIR Mapping Language est un langage défini par HL7 pour décrire, sous forme de règles formelles, comment transformer une structure source (par exemple un document CDA en XML) en ressources FHIR. Ce langage repose sur FHIRPath et prend en charge des transformations structurelles, conditionnelles ou complexes. Toutefois, il ne dispose pas d’une compréhension native de la structure CDA : cela signifie que les règles doivent décrire explicitement comment interpréter chaque élément XML du document source. Les règles écrites en FML doivent être interprétées par un moteur capable d’exécuter des StructureMap. Parmi les moteurs d’exécution disponibles dans l’écosystème open source, on retrouve notamment HAPI FHIR et Matchbox.
+Le FHIR Mapping Language est un langage défini par HL7 pour décrire, sous forme de règles formelles, comment transformer une structure source (par exemple un document CDA en XML) en ressources FHIR. Ce langage repose sur FHIRPath et prend en charge des transformations structurelles, conditionnelles ou complexes. Les règles écrites en FML doivent être interprétées par un moteur capable d’exécuter des StructureMap. Parmi les moteurs d’exécution disponibles dans l’écosystème open source, on retrouve notamment HAPI FHIR et Matchbox.
 
-##### HAPI FHIR
+#### HAPI FHIR
 
 HAPI FHIR est un framework open source de référence pour la manipulation des ressources FHIR en Java. Il intègre un moteur capable d’interpréter et d’exécuter les cartes de transformation FML (StructureMap). Ce moteur fournit l’ensemble des fonctionnalités nécessaires pour appliquer les règles de conversion définies en FML : navigation dans les données, exécution de FHIRPath, création des ressources FHIR générées et validation de leur conformité aux profils utilisés.
 
-##### Matchbox
+#### Matchbox
 
 Matchbox est une implémentation spécialisée basée sur HAPI FHIR qui enrichit ce moteur d’exécution avec un ensemble d’outils dédiés au développement, au test et à la validation des mappings FML. Il propose un environnement complet incluant l’exécution interactive des StructureMap, des mécanismes avancés de validation FHIR basés sur les Implementation Guides, ainsi que des fonctionnalités facilitant la mise au point des transformations.
 
-##### Avantages
+#### Avantages
 
 * Flexible.
 * Adapté aux règles métier complexes.
 * Intégration simple.
 
-##### Limites
+#### Limites
 
-* Complexité du langage.
+* Complexité du langage FML.
 
-##### Ressources utiles
+#### Ressources utiles
 
 * FHIR Mapping Language (FML) : https://build.fhir.org/mapping-language.html
 * HAPI FHIR – GitHub : https://github.com/hapifhir/hapi-fhir
@@ -42,27 +42,25 @@ Matchbox est une implémentation spécialisée basée sur HAPI FHIR qui enrichit
 
 ### Méthodes d’outils visuels de transformation
 
-Cette catégorie regroupe les solutions permettant de définir des mappings CDA → FHIR à travers des interfaces graphiques. Elles offrent une représentation visuelle des structures sources et cibles, facilitant l’élaboration des règles de transformation par des utilisateurs non développeurs.
+Cette catégorie regroupe les solutions permettant de définir des mappings CDA → FHIR au moyen d’interfaces graphiques. Celles-ci offrent une représentation visuelle des structures source et cible, ce qui facilite l’élaboration des règles de transformation par des utilisateurs non développeurs. Parmi les outils disponibles figure notamment TermX.
 
 #### TermX
 
-TermX est une solution open source développée par la société estonienne Kodality, dédiée à la modélisation, à la gestion des terminologies et à la transformation de données autour de FHIR. Elle intègre un éditeur visuel du FHIR Mapping Language (FML), conçu pour permettre à des analystes métier ou experts fonctionnels de définir graphiquement les règles de correspondance entre un modèle source et un modèle cible, tout en masquant la complexité syntaxique du langage FML. ![](images/termX.png)
+TermX est une solution open source développée par la société estonienne Kodality, dédiée à la modélisation, à la gestion des terminologies et à la transformation de données autour de FHIR. Elle intègre un éditeur visuel du FHIR Mapping Language (FML), conçu pour permettre à des analystes métier ou experts fonctionnels de définir graphiquement les règles de correspondance entre un modèle source et un modèle cible, tout en masquant la complexité syntaxique du langage FML.
 
-#### IBM App Connect
+![](images/termX.png)
 
-IBM App Connect est une plateforme d’intégration éditée par IBM. Il ne s’agit pas, à proprement parler, d’un outil spécialisé de mapping CDA → FHIR, mais d’une solution destinée à connecter des applications, des données et des services, puis à orchestrer des flux capables de router, enrichir, transformer et traiter les messages échangés entre systèmes. Le mapping y intervient comme une étape de la transformation, à l’intérieur d’un flux d’intégration : une fois la source et la cible identifiées, il permet de faire correspondre les champs, de convertir les formats et d’appliquer des règles de transformation pour produire la structure attendue. IBM App Connect propose pour cela des mécanismes visuels tels que le Mapping node et l’éditeur de Graphical Data Mapping.
-
-#### Avantages
+#### Avantages des outils visuels de mapping
 
 * Accessibilité pour des utilisateurs non développeurs
 * Compréhension facilitée grâce à la représentation visuelle des transformations
 
-#### Limites
+#### Limites des outils visuels de mapping
 
 * Expressivité variable selon l’outil
 * Difficulté à exprimer des logiques complexes
 * Dépendance à la suite logicielle
-* Compatibilité hétérogène avec les pratiques collaboratives fondées sur Git/GitHub : TermX prévoit explicitement la synchronisation de ses ressources avec GitHub, ce qui facilite la gestion de versions et la collaboration, tandis que dans IBM App Connect, cette compatibilité repose davantage sur des fonctions périphériques de gestion de projet et d’automatisation que sur l’éditeur visuel lui-même.
+* Compatibilité variable avec les pratiques collaboratives fondées sur Git/GitHub : certains outils, comme TermX, intègrent explicitement une synchronisation avec GitHub, tandis que d’autres solutions visuelles ne la prennent en charge qu’indirectement, via des fonctions périphériques de gestion de projet ou d’automatisation.
 * L’outil IBM App Connect n’est pas open source.
 
 #### Ressources utiles
@@ -152,7 +150,7 @@ Acceleo est un générateur de texte basé sur des modèles. Il repose sur EMF (
 
 Liquid est un langage de templates généraliste qui sert à générer automatiquement un texte à partir de données. Son mécanisme repose sur l’insertion dynamique de variables, de conditions, de boucles et de filtres dans un gabarit textuel, afin de produire une sortie structurée. Dans l’écosystème FHIR, HL7 documente un usage spécifique de Liquid pour la construction de narratifs de ressources et pour la génération de ressources à partir de sources externes telles que HL7 v2 ou CDA.
 
-### Kodjin Data Mapper
+#### Kodjin Data Mapper
 
 Kodjin Data Mapper est un outil de transformation de données de santé vers FHIR. Il s’appuie sur des templates Liquid pour définir les règles de mapping, puis exécute ces règles afin de convertir des formats tels que HL7v2, C‑CDA ou des formats propriétaires en ressources FHIR. La documentation officielle le présente comme un service de conversion spécialisé dans l’industrialisation de ces mappings.
 
@@ -203,4 +201,26 @@ Cette catégorie regroupe les approches dans lesquelles la transformation CDA �
 * Client FHIR JavaScript : https://github.com/smart-on-fhir/client-js
 * Client FHIR JavaScript – Documentation : http://docs.smarthealthit.org/client-js/
 * fhir.js : https://github.com/FHIR/fhir.js
+
+# Méthodes assistées par les grands modèles de langage (LLM)
+
+Les grands modèles de langage (LLM) peuvent être mobilisés pour produire des ressources ou des bundles FHIR à partir de documents CDA (XML), de textes cliniques ou de données structurées, au moyen de prompts et de stratégies de guidage.
+
+## Principe
+
+* Écrire un prompt qui précise la tâche attendue (cible FHIR, profils/contraintes, format de sortie).
+* Ajouter des exemples (few‑shot) et/ou des extraits de schémas FHIR pour orienter la génération.
+* Itérer (demander des corrections, reformuler) jusqu’à obtenir un résultat exploitable.
+
+## Avantages
+
+* Démarrage rapide d’un mapping vers FHIR à partir de données sources
+* Guidage par le prompt : prompts structurés, exemples (few‑shot) et fragments de schémas FHIR peuvent améliorer la qualité des sorties.
+* Boucles de correction : l’itération et les retours de type « feedback » aident à converger vers une structure FHIR mieux formée.
+
+## Limites
+
+* Hallucinations : attributs inexistants, appariements inadaptés, problèmes de granularité) ; une relecture experte est nécessaire.
+* Sensibilité au prompt : de faibles variations de consignes peuvent modifier la sortie, ce qui réduit la reproductibilité sans stratégie de prompting rigoureuse.
+* Validation indispensable : contrôle systématique vis‑à‑vis des profils/IG avant toute utilisation opérationnelle.
 
