@@ -3,16 +3,8 @@
     Ils illustrent différentes approches identifiées sans pour autant avoir été toutes testées dans le cadre de ce guide d'implémentation.</p>
 </div>
 
-
-
-
-
 La transformation de documents CDA vers des ressources FHIR peut s’appuyer sur différentes méthodes.
 Les exemples présentés ci‑après illustrent quelques‑unes des solutions existantes : ils ne couvrent pas l’ensemble des possibilités, mais montrent la diversité des approches disponibles.
-
-
-
-
 
 ### Approche basée sur le FHIR Mapping Language (FML)
 
@@ -20,28 +12,23 @@ Le FHIR Mapping Language est un langage défini par HL7 pour décrire, sous form
 Ce langage repose sur FHIRPath et prend en charge des transformations structurelles, conditionnelles ou complexes. 
 Les règles écrites en FML doivent être interprétées par un moteur capable d’exécuter des StructureMap. Parmi les moteurs d’exécution disponibles dans l’écosystème open source, on retrouve notamment HAPI FHIR et Matchbox.
 
-
 #### HAPI FHIR
 
 HAPI FHIR est un framework open source de référence pour la manipulation des ressources FHIR en Java. Il intègre un moteur capable d’interpréter et d’exécuter les cartes de transformation FML (StructureMap). Ce moteur fournit l’ensemble des fonctionnalités nécessaires pour appliquer les règles de conversion définies en FML : navigation dans les données, exécution de FHIRPath, création des ressources FHIR générées et validation de leur conformité aux profils utilisés.
 
-
 #### Matchbox
 
 Matchbox est une implémentation spécialisée basée sur HAPI FHIR qui enrichit ce moteur d’exécution avec un ensemble d’outils dédiés au développement, au test et à la validation des mappings FML. Il propose un environnement complet incluant l’exécution interactive des StructureMap, des mécanismes avancés de validation FHIR basés sur les Implementation Guides, ainsi que des fonctionnalités facilitant la mise au point des transformations.
-
 
 #### Avantages
 
 * Flexible.
 * Adapté aux règles métier complexes.
 * Intégration simple.
-
   
 #### Limites
 
 * Complexité du langage FML.
-
 
 #### Ressources utiles
 
@@ -52,15 +39,9 @@ Matchbox est une implémentation spécialisée basée sur HAPI FHIR qui enrichit
 * Matchbox API Utils – Documentation : https://matchbox-api-utils.readthedocs.io
 * Matchbox API Utils – GitHub : https://github.com/drmrgd/matchbox_api_utils
 
-
-
-
-
-
 ### Méthodes d’outils visuels de transformation
 
 Cette catégorie regroupe les solutions permettant de définir des mappings CDA → FHIR au moyen d’interfaces graphiques. Celles-ci offrent une représentation visuelle des structures source et cible, ce qui facilite l’élaboration des règles de transformation par des utilisateurs non développeurs. Parmi les outils disponibles figure notamment TermX.
-
 
 #### TermX
 
@@ -68,12 +49,10 @@ TermX est une solution open source développée par la société estonienne Koda
 
 ![TermX](images/termX.png)
 
-
 #### Avantages des outils visuels de mapping 
 
 * Accessibilité pour des utilisateurs non développeurs
 * Compréhension facilitée grâce à la représentation visuelle des transformations
-
 
 #### Limites des outils visuels de mapping
 
@@ -83,7 +62,6 @@ TermX est une solution open source développée par la société estonienne Koda
 * Compatibilité variable avec les pratiques collaboratives fondées sur Git/GitHub : certains outils, comme TermX, intègrent explicitement une synchronisation avec GitHub, tandis que d’autres solutions visuelles ne la prennent en charge qu’indirectement, via des fonctions périphériques de gestion de projet ou d’automatisation.
 * L’outil IBM App Connect n’est pas open source.
   
-
 #### Ressources utiles
 
 * TermX – Site officiel : https://termx.org/
@@ -91,26 +69,17 @@ TermX est une solution open source développée par la société estonienne Koda
 * TermX – GitHub : https://github.com/termx-health
 * IBM App Connect – Documentation : https://www.ibm.com/docs
 
-
-
-
-
-
-
 ### Méthodes de transformation XML
 
 Les méthodes de transformation XML exploitent directement la structure XML du document CDA pour exprimer des règles de sélection, de réorganisation et de recomposition des données. Dans le cadre d’un mapping CDA vers FHIR, elles sont particulièrement adaptées aux transformations centrées sur l’organisation du document, la navigation dans l’arbre XML et la production d’un résultat structuré, sans recours à une couche intermédiaire de modélisation. Selon le langage et l’outillage retenus, le résultat produit peut être un document XML ou, dans certains cas, une représentation JSON
-
 
 #### EXtensible Stylesheet Language Transformations (XSLT)
 
 XSLT est un langage standardisé par World Wide Web Consortium (W3C), conçu principalement pour transformer des documents XML en d’autres documents XML. La transformation est décrite sous la forme d’une feuille de style composée de règles, généralement fondées sur des motifs de correspondance et des expressions XPath. XSLT 3.0 introduit notamment des mécanismes de modularisation et de streaming, utiles pour le traitement de documents XML volumineux. 
 
-
 #### XML Query Language (XQuery)
 
 XQuery est un langage de requête standardisé par le World Wide Web Consortium (W3C) pour interroger, extraire et recomposer des données XML. Fondé sur XPath, il permet d’exprimer une logique de transformation dans laquelle le document source est parcouru, certaines données sont sélectionnées et filtrées, puis un résultat cible est reconstruit sous la forme d’un fragment XML ou JSON. Dans le cadre d’un document CDA, cette approche permet de cibler précisément des sections, des entrées ou des valeurs, puis de les réorganiser selon la structure attendue en sortie. XQuery 3.1 prend également en charge JSON grâce à l’introduction des maps et des arrays dans son modèle de données.
-
 
 #### Avantages
 
@@ -118,12 +87,10 @@ XQuery est un langage de requête standardisé par le World Wide Web Consortium 
 * Capacité fine de ciblage et de recomposition : sélection précise des sections, entrées, attributs et valeurs du document CDA au moyen des mécanismes de navigation XML et XPath.
 * Adéquation aux transformations orientées structure documentaire : approche pertinente lorsque la logique de transformation porte principalement sur l’extraction, la réorganisation et la recomposition de fragments du document XML source.
 
-
 #### Limites
 
 * Lisibilité et maintenabilité réduites sur des mappings étendus : multiplication des feuilles de style, des règles et des requêtes lorsque le périmètre documentaire et les variantes de transformation augmentent.
 * Nécessité de maîtriser les langages et mécanismes associés à XSLT et XQuery.
-
 
 #### Ressources utiles
 
@@ -133,21 +100,13 @@ XQuery est un langage de requête standardisé par le World Wide Web Consortium 
 * XQuery – Tutoriel : https://www.w3schools.com/xml/xquery_intro.asp
 * XQuery – Stylus Studio : https://www.stylusstudio.com/xquery-mapper.html
 
-
-
-
-
-
-
 ### Méthodes de transformation modèle vers modèle
 
 Les approches de transformation modèle vers modèle ne manipulent pas directement un fichier XML comme une suite de nœuds ou de texte. Elles reposent sur une représentation abstraite et structurée des données, dans laquelle les artefacts source et cible sont décrits par des métamodèles. La transformation consiste alors à définir des règles indiquant comment les éléments d’un modèle conforme au métamodèle source doivent être convertis en éléments d’un modèle conforme au métamodèle cible. Ces approches s’inscrivent dans les démarches de Model-Driven Engineering (MDE) et sont souvent mises en œuvre dans des environnements comme Eclipse Modeling Framework (EMF), qui permettent de définir des métamodèles, de manipuler leurs instances et de générer du code ou d’autres artefacts associés.
 
-
 #### Atlas Transformation Language (ATL)
 
 ATL est un langage de transformation de modèles développé dans l’écosystème Eclipse. Il permet d’exprimer des règles décrivant comment des éléments d’un modèle source doivent être reconnus, transformés et projetés dans un modèle cible. ATL est présenté comme un langage principalement déclaratif, tout en proposant également des constructions impératives lorsque certaines transformations sont difficiles à exprimer uniquement sous forme de règles. Son fonctionnement repose donc sur l’application de règles de correspondance entre des instances conformes à un métamodèle source et à un métamodèle cible.
-
 
 #### Query/View/Transformation (QVT)
 
@@ -162,19 +121,16 @@ Dans Eclipse, ces langages sont implémentés via :
 * Eclipse QVTd pour les transformations déclaratives.
 Ces outils prennent en entrée des modèles définis selon des métamodèles (souvent Ecore ou UML), qui servent de base à l’exécution des règles QVT.
 
-
 #### Avantages
 
 * Formalisation explicite des règles de transformation: appui sur des métamodèles explicites, structuration cohérente du mapping, lisibilité accrue des correspondances. 
 * Contrôle de la conformité structurelle du modèle cible : production d’instances conformes au métamodèle cible, facilitation des vérifications de structure et de la validation.
-
 
 #### Limites
 
 * Nécessite des métamodèles CDA/FHIR et leur maintenance.
 * Mise en œuvre exigeante (ingénierie dirigée par les modèles, Tooling Eclipse).
 * Moins adapté lorsque la transformation dépend fortement du contexte: variations du profil FHIR cible, des terminologies, du type de document CDA ou des contraintes d’implémentation rendent l’approche modèle‑vers‑modèle plus complexe à exprimer et à maintenir, en raison de son ancrage dans des correspondances structurelles stables entre métamodèles.
-
 
 #### Ressources utiles
 
@@ -184,31 +140,21 @@ Ces outils prennent en entrée des modèles définis selon des métamodèles (so
 * QVT – Spécification : https://www.omg.org/spec/QVT/1.3/About-QVT/
 * QVT – Documentation : https://download.eclipse.org/qvtd/doc/0.14.0/qvtd.pdf
 
-
-
-
-
-
-
 ### Méthodes model to text
 
 Cette catégorie regroupe des approches de génération textuelle fondées sur des templates. Leur mécanisme consiste à appliquer des templates à un modèle ou à des données source afin de produire automatiquement une sortie textuelle structurée ; selon l’outil retenu, cette sortie peut correspondre à du code, de la documentation, des fichiers de configuration ou, dans certains cas, à des ressources FHIR.
-
 
 #### Acceleo
 
 Acceleo est un générateur de texte basé sur des modèles. Il repose sur EMF (Eclipse Modeling Framework), un environnement de modélisation dans lequel les données ne sont pas manipulées directement comme du texte brut, mais comme des objets organisés selon une structure définie à l’avance. Cette structure est décrite par un métamodèle, souvent exprimé en Ecore, qui précise quelles classes existent, quels attributs elles portent et quelles relations elles entretiennent. À partir de ces modèles EMF, Acceleo parcourt les éléments décrits et leur applique des templates afin de produire automatiquement une sortie textuelle structurée. Le principe est donc le suivant : décrire d’abord la structure du domaine avec EMF, puis utiliser Acceleo pour transformer cette structure en texte.
 
-
 #### Liquid
 
 Liquid est un langage de templates généraliste qui sert à générer automatiquement un texte à partir de données. Son mécanisme repose sur l’insertion dynamique de variables, de conditions, de boucles et de filtres dans un gabarit textuel, afin de produire une sortie structurée. Dans l’écosystème FHIR, HL7 documente un usage spécifique de Liquid pour la construction de narratifs de ressources et pour la génération de ressources à partir de sources externes telles que HL7 v2 ou CDA.
 
-
 #### Kodjin Data Mapper
 
 Kodjin Data Mapper est un outil de transformation de données de santé vers FHIR. Il s’appuie sur des templates Liquid pour définir les règles de mapping, puis exécute ces règles afin de convertir des formats tels que HL7v2, C‑CDA ou des formats propriétaires en ressources FHIR. La documentation officielle le présente comme un service de conversion spécialisé dans l’industrialisation de ces mappings.
-
 
 #### Avantages
 
@@ -216,12 +162,10 @@ Kodjin Data Mapper est un outil de transformation de données de santé vers FHI
 * Souplesse d’adaptation des règles : évolution des mappings ou des sorties générées par simple ajustement des templates. 
 * Légèreté relative de mise en œuvre :insertion facilitée dans des processus existants grâce à la production directe d’une sortie textuelle structurée. 
 
-
 #### Limites
 
 * Nécessité fréquente d’une préparation préalable du document CDA : adaptation ou normalisation de la structure source en vue de sa compatibilité avec les chemins et éléments attendus par les templates de transformation.
 * Expressivité plus limitée face à des logiques métier complexes.
-
 
 #### Ressources utiles
 
@@ -233,16 +177,9 @@ Kodjin Data Mapper est un outil de transformation de données de santé vers FHI
 * Kodjin Data Mapper : https://kodjin.com/mapper/
 * Kodjin – Documentation : https://docs.kodjin.com/data-mapper/
 
-
-
-
-
-
-
 ### Méthodes manuelles (Java, JavaScript, Python)
 
 Cette catégorie regroupe les approches dans lesquelles la transformation CDA → FHIR est codée directement dans un langage de programmation généraliste. Elle repose sur le parsing du document XML source, l’écriture explicite des règles de transformation dans le code, puis la construction des ressources FHIR à l’aide de bibliothèques adaptées. Cette logique peut être mise en œuvre en Java, notamment avec HAPI FHIR ; en JavaScript, par transformation du XML en objets puis génération d’un FHIR JSON, avec l’appui éventuel d’un client tel que SMART on FHIR JavaScript Client ; et en Python, par manipulation XML et construction des ressources via des modèles ou clients FHIR tels que fhirclient.
-
 
 #### Avantages
 
@@ -250,14 +187,12 @@ Cette catégorie regroupe les approches dans lesquelles la transformation CDA �
 * Adapté aux règles métier complexes.
 * Intégration simple.
 
-
 #### Limites
 
 * Pas de formalisme standard.
 * Divergence fonctionnelle possible.
 * Maintenance lourde.
 * Dépendance aux compétences.
-
 
 #### Ressources utiles
 
@@ -269,12 +204,6 @@ Cette catégorie regroupe les approches dans lesquelles la transformation CDA �
 * Client FHIR JavaScript – Documentation : http://docs.smarthealthit.org/client-js/ 
 * fhir.js : https://github.com/FHIR/fhir.js
 
-
-
-
-
-
-
 ### Méthodes assistées par les grands modèles de langage (LLM)
 
 Les grands modèles de langage (LLM) peuvent être mobilisés pour produire des ressources ou des bundles FHIR à partir de documents CDA (XML), de textes cliniques ou de données structurées, au moyen de prompts et de stratégies de guidage.
@@ -285,14 +214,12 @@ Les grands modèles de langage (LLM) peuvent être mobilisés pour produire des 
 * Ajouter des exemples (few‑shot) et/ou des extraits de schémas FHIR pour orienter la génération. 
 * Itérer (demander des corrections, reformuler) jusqu’à obtenir un résultat exploitable.  
 
-
 #### Avantages
 
 * Démarrage rapide d’un mapping vers FHIR à partir de données sources
 * Guidage par le prompt : prompts structurés, exemples (few‑shot) et fragments de schémas FHIR peuvent améliorer la qualité des sorties.   
 * Boucles de correction : l’itération et les retours de type « feedback » aident à converger vers une structure FHIR mieux formée.
 
-  
 #### Limites
 
 * Hallucinations : attributs inexistants, appariements inadaptés, problèmes de granularité) ; une relecture experte est nécessaire. 
