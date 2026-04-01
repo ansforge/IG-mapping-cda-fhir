@@ -6,8 +6,12 @@
 
 
 
+
 La transformation de documents CDA vers des ressources FHIR peut s’appuyer sur différentes méthodes.
 Les exemples présentés ci‑après illustrent quelques‑unes des solutions existantes : ils ne couvrent pas l’ensemble des possibilités, mais montrent la diversité des approches disponibles.
+
+
+
 
 
 ### Approche basée sur le FHIR Mapping Language (FML)
@@ -51,6 +55,8 @@ Matchbox est une implémentation spécialisée basée sur HAPI FHIR qui enrichit
 
 
 
+
+
 ### Méthodes d’outils visuels de transformation
 
 Cette catégorie regroupe les solutions permettant de définir des mappings CDA → FHIR au moyen d’interfaces graphiques. Celles-ci offrent une représentation visuelle des structures source et cible, ce qui facilite l’élaboration des règles de transformation par des utilisateurs non développeurs. Parmi les outils disponibles figure notamment TermX.
@@ -84,6 +90,8 @@ TermX est une solution open source développée par la société estonienne Koda
 * TermX: https://termx.kodality.dev/modeler/transformation-definitions 
 * TermX – GitHub : https://github.com/termx-health
 * IBM App Connect – Documentation : https://www.ibm.com/docs
+
+
 
 
 
@@ -124,6 +132,8 @@ XQuery est un langage de requête standardisé par le World Wide Web Consortium 
 * XSLT – Saxon-HE : https://github.com/Saxonica/Saxon-HE
 * XQuery – Tutoriel : https://www.w3schools.com/xml/xquery_intro.asp
 * XQuery – Stylus Studio : https://www.stylusstudio.com/xquery-mapper.html
+
+
 
 
 
@@ -178,6 +188,8 @@ Ces outils prennent en entrée des modèles définis selon des métamodèles (so
 
 
 
+
+
 ### Méthodes model to text
 
 Cette catégorie regroupe des approches de génération textuelle fondées sur des templates. Leur mécanisme consiste à appliquer des templates à un modèle ou à des données source afin de produire automatiquement une sortie textuelle structurée ; selon l’outil retenu, cette sortie peut correspondre à du code, de la documentation, des fichiers de configuration ou, dans certains cas, à des ressources FHIR.
@@ -225,6 +237,8 @@ Kodjin Data Mapper est un outil de transformation de données de santé vers FHI
 
 
 
+
+
 ### Méthodes manuelles (Java, JavaScript, Python)
 
 Cette catégorie regroupe les approches dans lesquelles la transformation CDA → FHIR est codée directement dans un langage de programmation généraliste. Elle repose sur le parsing du document XML source, l’écriture explicite des règles de transformation dans le code, puis la construction des ressources FHIR à l’aide de bibliothèques adaptées. Cette logique peut être mise en œuvre en Java, notamment avec HAPI FHIR ; en JavaScript, par transformation du XML en objets puis génération d’un FHIR JSON, avec l’appui éventuel d’un client tel que SMART on FHIR JavaScript Client ; et en Python, par manipulation XML et construction des ressources via des modèles ou clients FHIR tels que fhirclient.
@@ -259,25 +273,27 @@ Cette catégorie regroupe les approches dans lesquelles la transformation CDA �
 
 
 
-# Méthodes assistées par les grands modèles de langage (LLM)
+
+
+### Méthodes assistées par les grands modèles de langage (LLM)
 
 Les grands modèles de langage (LLM) peuvent être mobilisés pour produire des ressources ou des bundles FHIR à partir de documents CDA (XML), de textes cliniques ou de données structurées, au moyen de prompts et de stratégies de guidage.
 
-## Principe
+#### Principe
 
 * Écrire un prompt qui précise la tâche attendue (cible FHIR, profils/contraintes, format de sortie). 
 * Ajouter des exemples (few‑shot) et/ou des extraits de schémas FHIR pour orienter la génération. 
 * Itérer (demander des corrections, reformuler) jusqu’à obtenir un résultat exploitable.  
 
 
-## Avantages
+#### Avantages
 
 * Démarrage rapide d’un mapping vers FHIR à partir de données sources
 * Guidage par le prompt : prompts structurés, exemples (few‑shot) et fragments de schémas FHIR peuvent améliorer la qualité des sorties.   
 * Boucles de correction : l’itération et les retours de type « feedback » aident à converger vers une structure FHIR mieux formée.
 
   
-## Limites
+#### Limites
 
 * Hallucinations : attributs inexistants, appariements inadaptés, problèmes de granularité) ; une relecture experte est nécessaire. 
 * Sensibilité au prompt : de faibles variations de consignes peuvent modifier la sortie, ce qui réduit la reproductibilité sans stratégie de prompting rigoureuse. 
