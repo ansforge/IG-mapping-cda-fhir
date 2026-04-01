@@ -7,7 +7,7 @@
 La transformation de documents CDA vers des ressources FHIR peut s’appuyer sur différentes méthodes.
 Les exemples présentés ci‑après illustrent quelques‑unes des solutions existantes : ils ne couvrent pas l’ensemble des possibilités, mais montrent la diversité des approches disponibles.
 
-### **Approche basée sur le FHIR Mapping Language (FML)**
+### Approche basée sur le FHIR Mapping Language (FML)
 Le FHIR Mapping Language est un langage défini par HL7 pour décrire, sous forme de règles formelles, comment transformer une structure source (par exemple un document CDA en XML) en ressources FHIR.
 Ce langage repose sur FHIRPath et prend en charge des transformations structurelles, conditionnelles ou complexes. Toutefois, il ne dispose pas d’une compréhension native de la structure CDA : cela signifie que les règles doivent décrire explicitement comment interpréter chaque élément XML du document source.
 Les règles écrites en FML doivent être interprétées par un moteur capable d’exécuter des StructureMap. Parmi les moteurs d’exécution disponibles dans l’écosystème open source, on retrouve notamment HAPI FHIR et Matchbox.
