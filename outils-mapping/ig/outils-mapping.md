@@ -201,7 +201,7 @@ Cette catégorie regroupe les approches dans lesquelles la transformation CDA �
 * Client FHIR JavaScript – Documentation : http://docs.smarthealthit.org/client-js/
 * fhir.js : https://github.com/FHIR/fhir.js
 
-### Méthodes assistées par les grands modèles de langage (LLM)
+### Les grands modèles de langage (LLM)
 
 Les grands modèles de langage (LLM) peuvent être mobilisés pour produire des ressources ou des bundles FHIR à partir de documents CDA (XML), de textes cliniques ou de données structurées, au moyen de prompts et de stratégies de guidage.
 
