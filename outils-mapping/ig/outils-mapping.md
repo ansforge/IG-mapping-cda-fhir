@@ -61,7 +61,6 @@ TermX est une solution open source développée par la société estonienne Koda
 * Difficulté à exprimer des logiques complexes
 * Dépendance à la suite logicielle
 * Compatibilité variable avec les pratiques collaboratives fondées sur Git/GitHub : certains outils, comme TermX, intègrent explicitement une synchronisation avec GitHub, tandis que d’autres solutions visuelles ne la prennent en charge qu’indirectement, via des fonctions périphériques de gestion de projet ou d’automatisation.
-* L’outil IBM App Connect n’est pas open source.
 
 #### Ressources utiles
 
