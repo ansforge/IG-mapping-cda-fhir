@@ -5,40 +5,25 @@
 </div>
 
 
-### **Présentation générale des méthodes de mapping CDA vers FHIR**
-La transformation de documents CDA vers des ressources FHIR peut s’appuyer sur différents outils et mécanismes techniques.
-Les exemples présentés ci après illustrent quelques unes des solutions existantes ; ils ne couvrent pas l’ensemble des possibilités, mais permettent d’illustrer la diversité des approches disponibles. 
+### **Approche basée sur le FHIR Mapping Language (FML)**
+Le FHIR Mapping Language est un langage défini par HL7 pour décrire, sous forme de règles formelles, comment transformer une structure source (par exemple un document CDA en XML) en ressources FHIR.
+Ce langage repose sur FHIRPath et prend en charge des transformations structurelles, conditionnelles ou complexes. Toutefois, il ne dispose pas d’une compréhension native de la structure CDA : cela signifie que les règles doivent décrire explicitement comment interpréter chaque élément XML du document source.
+Les règles écrites en FML doivent être interprétées par un moteur capable d’exécuter des StructureMap. Parmi les moteurs d’exécution disponibles dans l’écosystème open source, on retrouve notamment HAPI FHIR et Matchbox.
 
-##**Fhir mapping mapping langage et moteurs de transformation FHIR**
-Cette approche repose sur l’utilisation du FHIR Mapping Language (FML) et sur des moteurs de transformation capables d’interpréter des règles formelles pour convertir des structures XML comme le CDA en ressources FHIR. Elle s’appuie sur des outils spécialisés — tels que Matchbox et HAPI FHIR — afin de produire des transformations structurées, reproductibles et conformes au standard
+##### **HAPI FHIR**
+HAPI FHIR est un framework open source de référence pour la manipulation des ressources FHIR en Java. Il intègre un moteur capable d’interpréter et d’exécuter les cartes de transformation FML (StructureMap). Ce moteur fournit l’ensemble des fonctionnalités nécessaires pour appliquer les règles de conversion définies en FML : navigation dans les données, exécution de FHIRPath, création des ressources FHIR générées et validation de leur conformité aux profils utilisés.
 
-###**FHIR Mapping Language (FML)**
-Le FHIR Mapping Language permet d’exprimer des règles de transformation entre une structure source (dont CDA) et des ressources FHIR, sous forme de fichiers StructureMap.
-Le langage repose sur FHIRPath et prend en charge des transformations structurelles, conditionnelles ou complexes.
-Il ne dispose toutefois pas d’une compréhension native de la structure CDA : les règles doivent décrire explicitement comment interpréter les éléments XML du document.
+###### **Matchbox**
+Matchbox est une implémentation spécialisée basée sur HAPI FHIR qui enrichit ce moteur d’exécution avec un ensemble d’outils dédiés au développement, au test et à la validation des mappings FML. Il propose un environnement complet incluant l’exécution interactive des StructureMap, des mécanismes avancés de validation FHIR basés sur les Implementation Guides, ainsi que des fonctionnalités facilitant la mise au point des transformations.
 
-###**HAPI FHIR**
-HAPI FHIR est un framework open source de référence pour la manipulation des ressources FHIR en Java. Il fournit :
-* un moteur complet pour créer, lire, modifier et valider des ressources FHIR,
-* un serveur FHIR natif,
-* des outils pour exécuter des mappings, notamment via l’interprétation de fichiers StructureMap,
-* une intégration naturelle avec d’autres outils comme Matchbox.
-Dans le contexte CDA → FHIR, HAPI FHIR sert de moteur d’exécution des règles FML et apporte une couche technique robuste permettant d’assurer la conformité des ressources générées
+### **Avantages**
+* flexible
+* Adapté aux règles métier complexes
+* Intégration simple
 
-###**Matchbox Mapping Tool**
-Matchbox est un outil open source intégrant un moteur FML. Il est construit sur la base du framework HAPI FHIR, ce qui lui permet de bénéficier de ses capacités de validation, de gestion des structures FHIR et d’un environnement d’exécution robuste.
-Matchbox permet :
-* l’exécution de transformations basées sur StructureMap,
-* la création et le test de mappings FML,
-* la validation des données FHIR produites.
 
-* Alignement natif avec les standards FHIR.
-* Formalisation structurée des règles.
-* Réutilisation et mutualisation des cartes de transformation.
-
-###**Limites**
+##### **Limites**
 * Complexité du langage.
-* Absence de compréhension native du CDA.
 
 ###**Ressources utiles**
 * FHIR Mapping Language (FML) : https://build.fhir.org/mapping-language.html
@@ -69,9 +54,11 @@ IBM App Connect permet de concevoir visuellement des mappings entre structures h
 * Expressivité variable selon l’outil
 * Difficulté à exprimer des logiques complexes
 * Dépendance à la suite logicielle
+* Faible compatibilité avec les pratiques collaboratives reposant sur Git/GitHub
 
 ###**Ressources utiles**
 * TermX – Site officiel : https://termx.org/
+https://termx.kodality.dev/modeler/transformation-definitions  #  un bon lien pour term x
 * TermX – GitHub : https://github.com/termx-health
 * IBM App Connect – Documentation : https://www.ibm.com/docs
 
