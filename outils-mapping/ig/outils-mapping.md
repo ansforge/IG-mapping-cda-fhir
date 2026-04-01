@@ -202,23 +202,23 @@ Cette catégorie regroupe les approches dans lesquelles la transformation CDA �
 * Client FHIR JavaScript – Documentation : http://docs.smarthealthit.org/client-js/
 * fhir.js : https://github.com/FHIR/fhir.js
 
-# Méthodes assistées par les grands modèles de langage (LLM)
+### Méthodes assistées par les grands modèles de langage (LLM)
 
 Les grands modèles de langage (LLM) peuvent être mobilisés pour produire des ressources ou des bundles FHIR à partir de documents CDA (XML), de textes cliniques ou de données structurées, au moyen de prompts et de stratégies de guidage.
 
-## Principe
+#### Principe
 
 * Écrire un prompt qui précise la tâche attendue (cible FHIR, profils/contraintes, format de sortie).
 * Ajouter des exemples (few‑shot) et/ou des extraits de schémas FHIR pour orienter la génération.
 * Itérer (demander des corrections, reformuler) jusqu’à obtenir un résultat exploitable.
 
-## Avantages
+#### Avantages
 
 * Démarrage rapide d’un mapping vers FHIR à partir de données sources
 * Guidage par le prompt : prompts structurés, exemples (few‑shot) et fragments de schémas FHIR peuvent améliorer la qualité des sorties.
 * Boucles de correction : l’itération et les retours de type « feedback » aident à converger vers une structure FHIR mieux formée.
 
-## Limites
+#### Limites
 
 * Hallucinations : attributs inexistants, appariements inadaptés, problèmes de granularité) ; une relecture experte est nécessaire.
 * Sensibilité au prompt : de faibles variations de consignes peuvent modifier la sortie, ce qui réduit la reproductibilité sans stratégie de prompting rigoureuse.

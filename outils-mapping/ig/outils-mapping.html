@@ -204,12 +204,7 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
   <li><a href="#méthodes-de-transformation-modèle-vers-modèle" id="markdown-toc-méthodes-de-transformation-modèle-vers-modèle">Méthodes de transformation modèle vers modèle</a></li>
   <li><a href="#méthodes-model-to-text" id="markdown-toc-méthodes-model-to-text">Méthodes model to text</a></li>
   <li><a href="#méthodes-manuelles-java-javascript-python" id="markdown-toc-méthodes-manuelles-java-javascript-python">Méthodes manuelles (Java, JavaScript, Python)</a></li>
-  <li><a href="#méthodes-assistées-par-les-grands-modèles-de-langage-llm" id="markdown-toc-méthodes-assistées-par-les-grands-modèles-de-langage-llm">Méthodes assistées par les grands modèles de langage (LLM)</a>    <ul>
-      <li><a href="#principe" id="markdown-toc-principe">Principe</a></li>
-      <li><a href="#avantages-5" id="markdown-toc-avantages-5">Avantages</a></li>
-      <li><a href="#limites-5" id="markdown-toc-limites-5">Limites</a></li>
-    </ul>
-  </li>
+  <li><a href="#méthodes-assistées-par-les-grands-modèles-de-langage-llm" id="markdown-toc-méthodes-assistées-par-les-grands-modèles-de-langage-llm">Méthodes assistées par les grands modèles de langage (LLM)</a></li>
 </ul>
 
 </div>
@@ -268,7 +263,7 @@ Les règles écrites en FML doivent être interprétées par un moteur capable d
 
 <p>TermX est une solution open source développée par la société estonienne Kodality, dédiée à la modélisation, à la gestion des terminologies et à la transformation de données autour de FHIR. Elle intègre un éditeur visuel du FHIR Mapping Language (FML), conçu pour permettre à des analystes métier ou experts fonctionnels de définir graphiquement les règles de correspondance entre un modèle source et un modèle cible, tout en masquant la complexité syntaxique du langage FML.</p>
 
-<p><a name="l471">​</a><img src="images/termX.png" alt="TermX"/></p>
+<p><a name="l455">​</a><img src="images/termX.png" alt="TermX"/></p>
 
 <h4 id="avantages-des-outils-visuels-de-mapping">Avantages des outils visuels de mapping</h4>
 
@@ -457,11 +452,11 @@ Ces outils prennent en entrée des modèles définis selon des métamodèles (so
   <li>fhir.js : https://github.com/FHIR/fhir.js</li>
 </ul>
 
-<h1 id="méthodes-assistées-par-les-grands-modèles-de-langage-llm">Méthodes assistées par les grands modèles de langage (LLM)</h1>
+<h3 id="méthodes-assistées-par-les-grands-modèles-de-langage-llm">Méthodes assistées par les grands modèles de langage (LLM)</h3>
 
 <p>Les grands modèles de langage (LLM) peuvent être mobilisés pour produire des ressources ou des bundles FHIR à partir de documents CDA (XML), de textes cliniques ou de données structurées, au moyen de prompts et de stratégies de guidage.</p>
 
-<h2 id="principe">Principe</h2>
+<h4 id="principe">Principe</h4>
 
 <ul>
   <li>Écrire un prompt qui précise la tâche attendue (cible FHIR, profils/contraintes, format de sortie).</li>
@@ -469,7 +464,7 @@ Ces outils prennent en entrée des modèles définis selon des métamodèles (so
   <li>Itérer (demander des corrections, reformuler) jusqu’à obtenir un résultat exploitable.</li>
 </ul>
 
-<h2 id="avantages-5">Avantages</h2>
+<h4 id="avantages-5">Avantages</h4>
 
 <ul>
   <li>Démarrage rapide d’un mapping vers FHIR à partir de données sources</li>
@@ -477,7 +472,7 @@ Ces outils prennent en entrée des modèles définis selon des métamodèles (so
   <li>Boucles de correction : l’itération et les retours de type « feedback » aident à converger vers une structure FHIR mieux formée.</li>
 </ul>
 
-<h2 id="limites-5">Limites</h2>
+<h4 id="limites-5">Limites</h4>
 
 <ul>
   <li>Hallucinations : attributs inexistants, appariements inadaptés, problèmes de granularité) ; une relecture experte est nécessaire.</li>
@@ -526,7 +521,7 @@ Ces outils prennent en entrée des modèles définis selon des métamodèles (so
 
       <div class="inner-wrapper">
         <p>
-          IG &copy; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris</a>.  Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Wed, Apr 1, 2026 15:00+0000">2026-04-01</span>
+          IG &copy; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris</a>.  Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Wed, Apr 1, 2026 15:02+0000">2026-04-01</span>
           <br/>
           <span style="color: var(--footer-highlight-text-color)"></span>
             Liens : <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table des matières</a> |
