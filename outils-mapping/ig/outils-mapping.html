@@ -198,7 +198,7 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
     <p>  <!-- white space is critical inside of capture --></p>
 <div class="markdown-toc">
 <ul id="markdown-toc">
-  <li><a href="#approche-basée-sur-le-fhir-mapping-language-fml" id="markdown-toc-approche-basée-sur-le-fhir-mapping-language-fml"><strong>Approche basée sur le FHIR Mapping Language (FML)</strong></a></li>
+  <li><a href="#approche-basée-sur-le-fhir-mapping-language-fml" id="markdown-toc-approche-basée-sur-le-fhir-mapping-language-fml">Approche basée sur le FHIR Mapping Language (FML)</a></li>
   <li><a href="#méthodes-doutils-visuels-de-transformation" id="markdown-toc-méthodes-doutils-visuels-de-transformation"><strong>Méthodes d’outils visuels de transformation</strong></a></li>
   <li><a href="#méthodes-de-transformation-xml" id="markdown-toc-méthodes-de-transformation-xml"><strong>Méthodes de transformation XML</strong></a></li>
   <li><a href="#méthodes-de-transformation-modèle-vers-modèle" id="markdown-toc-méthodes-de-transformation-modèle-vers-modèle"><strong>Méthodes de transformation modèle vers modèle</strong></a></li>
@@ -216,7 +216,7 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
 <p>La transformation de documents CDA vers des ressources FHIR peut s’appuyer sur différentes méthodes.
 Les exemples présentés ci‑après illustrent quelques‑unes des solutions existantes : ils ne couvrent pas l’ensemble des possibilités, mais montrent la diversité des approches disponibles.</p>
 
-<h3 id="approche-basée-sur-le-fhir-mapping-language-fml"><strong>Approche basée sur le FHIR Mapping Language (FML)</strong></h3>
+<h3 id="approche-basée-sur-le-fhir-mapping-language-fml">Approche basée sur le FHIR Mapping Language (FML)</h3>
 <p>Le FHIR Mapping Language est un langage défini par HL7 pour décrire, sous forme de règles formelles, comment transformer une structure source (par exemple un document CDA en XML) en ressources FHIR.
 Ce langage repose sur FHIRPath et prend en charge des transformations structurelles, conditionnelles ou complexes. Toutefois, il ne dispose pas d’une compréhension native de la structure CDA : cela signifie que les règles doivent décrire explicitement comment interpréter chaque élément XML du document source.
 Les règles écrites en FML doivent être interprétées par un moteur capable d’exécuter des StructureMap. Parmi les moteurs d’exécution disponibles dans l’écosystème open source, on retrouve notamment HAPI FHIR et Matchbox.</p>
@@ -253,7 +253,7 @@ Les règles écrites en FML doivent être interprétées par un moteur capable d
 <p>Cette catégorie regroupe les solutions permettant de définir des mappings CDA → FHIR à travers des interfaces graphiques. Elles offrent une représentation visuelle des structures sources et cibles, facilitant l’élaboration des règles de transformation par des utilisateurs non développeurs.</p>
 
 <h4 id="termx"><strong>TermX</strong></h4>
-<p><a name="l467">​</a>TermX est une solution open source développée par la société estonienne Kodality, dédiée à la modélisation, à la gestion des terminologies et à la transformation de données autour de FHIR. Elle intègre un éditeur visuel du FHIR Mapping Language (FML), conçu pour permettre à des analystes métier ou experts fonctionnels de définir graphiquement les règles de correspondance entre un modèle source et un modèle cible, tout en masquant la complexité syntaxique du langage FML.
+<p><a name="l465">​</a>TermX est une solution open source développée par la société estonienne Kodality, dédiée à la modélisation, à la gestion des terminologies et à la transformation de données autour de FHIR. Elle intègre un éditeur visuel du FHIR Mapping Language (FML), conçu pour permettre à des analystes métier ou experts fonctionnels de définir graphiquement les règles de correspondance entre un modèle source et un modèle cible, tout en masquant la complexité syntaxique du langage FML.
 <img src="images/termX.png" alt="TermX"/></p>
 
 <h4 id="ibm-app-connect"><strong>IBM App Connect</strong></h4>
@@ -461,7 +461,7 @@ Ces outils prennent en entrée des modèles définis selon des métamodèles (so
 
       <div class="inner-wrapper">
         <p>
-          IG &copy; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris</a>.  Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Wed, Apr 1, 2026 07:55+0000">2026-04-01</span>
+          IG &copy; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris</a>.  Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Wed, Apr 1, 2026 13:27+0000">2026-04-01</span>
           <br/>
           <span style="color: var(--footer-highlight-text-color)"></span>
             Liens : <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table des matières</a> |
