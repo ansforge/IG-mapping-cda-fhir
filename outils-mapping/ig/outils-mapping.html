@@ -196,8 +196,12 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
 
 
     <p><!-- white space is critical inside of capture --></p>
-<div>
-<!-- do not remove - needed to prevent Jekyll from adding a p tag to any non block level element in the markdown.-->
+<div class="markdown-toc">
+<ul id="markdown-toc">
+  <li><a href="#approche-basée-sur-le-fhir-mapping-language-fml" id="markdown-toc-approche-basée-sur-le-fhir-mapping-language-fml"><strong>Approche basée sur le FHIR Mapping Language (FML)</strong></a></li>
+  <li><a href="#avantages" id="markdown-toc-avantages"><strong>Avantages</strong></a></li>
+</ul>
+
 </div>
 
 <div class="stu-note" style="width: 65%">
@@ -205,46 +209,27 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
     Ils illustrent différentes approches identifiées sans pour autant avoir été toutes testés dans le cadre de ce guide d'implémentation.</p>
 </div>
 
-<h3 id="présentation-générale-des-méthodes-de-mapping-cda-vers-fhir"><strong>Présentation générale des méthodes de mapping CDA vers FHIR</strong></h3>
-<p>La transformation de documents CDA vers des ressources FHIR peut s’appuyer sur différents outils et mécanismes techniques.
-Les exemples présentés ci après illustrent quelques unes des solutions existantes ; ils ne couvrent pas l’ensemble des possibilités, mais permettent d’illustrer la diversité des approches disponibles.</p>
+<h3 id="approche-basée-sur-le-fhir-mapping-language-fml"><strong>Approche basée sur le FHIR Mapping Language (FML)</strong></h3>
+<p>Le FHIR Mapping Language est un langage défini par HL7 pour décrire, sous forme de règles formelles, comment transformer une structure source (par exemple un document CDA en XML) en ressources FHIR.
+Ce langage repose sur FHIRPath et prend en charge des transformations structurelles, conditionnelles ou complexes. Toutefois, il ne dispose pas d’une compréhension native de la structure CDA : cela signifie que les règles doivent décrire explicitement comment interpréter chaque élément XML du document source.
+Les règles écrites en FML doivent être interprétées par un moteur capable d’exécuter des StructureMap. Parmi les moteurs d’exécution disponibles dans l’écosystème open source, on retrouve notamment HAPI FHIR et Matchbox.</p>
 
-<p>##<strong>Fhir mapping mapping langage et moteurs de transformation FHIR</strong>
-Cette approche repose sur l’utilisation du FHIR Mapping Language (FML) et sur des moteurs de transformation capables d’interpréter des règles formelles pour convertir des structures XML comme le CDA en ressources FHIR. Elle s’appuie sur des outils spécialisés — tels que Matchbox et HAPI FHIR — afin de produire des transformations structurées, reproductibles et conformes au standard</p>
+<h5 id="hapi-fhir"><strong>HAPI FHIR</strong></h5>
+<p>HAPI FHIR est un framework open source de référence pour la manipulation des ressources FHIR en Java. Il intègre un moteur capable d’interpréter et d’exécuter les cartes de transformation FML (StructureMap). Ce moteur fournit l’ensemble des fonctionnalités nécessaires pour appliquer les règles de conversion définies en FML : navigation dans les données, exécution de FHIRPath, création des ressources FHIR générées et validation de leur conformité aux profils utilisés.</p>
 
-<p>###<strong>FHIR Mapping Language (FML)</strong>
-Le FHIR Mapping Language permet d’exprimer des règles de transformation entre une structure source (dont CDA) et des ressources FHIR, sous forme de fichiers StructureMap.
-Le langage repose sur FHIRPath et prend en charge des transformations structurelles, conditionnelles ou complexes.
-Il ne dispose toutefois pas d’une compréhension native de la structure CDA : les règles doivent décrire explicitement comment interpréter les éléments XML du document.</p>
+<h6 id="matchbox"><strong>Matchbox</strong></h6>
+<p>Matchbox est une implémentation spécialisée basée sur HAPI FHIR qui enrichit ce moteur d’exécution avec un ensemble d’outils dédiés au développement, au test et à la validation des mappings FML. Il propose un environnement complet incluant l’exécution interactive des StructureMap, des mécanismes avancés de validation FHIR basés sur les Implementation Guides, ainsi que des fonctionnalités facilitant la mise au point des transformations.</p>
 
-<p>###<strong>HAPI FHIR</strong>
-HAPI FHIR est un framework open source de référence pour la manipulation des ressources FHIR en Java. Il fournit :</p>
+<h3 id="avantages"><strong>Avantages</strong></h3>
 <ul>
-  <li>un moteur complet pour créer, lire, modifier et valider des ressources FHIR,</li>
-  <li>un serveur FHIR natif,</li>
-  <li>des outils pour exécuter des mappings, notamment via l’interprétation de fichiers StructureMap,</li>
-  <li>une intégration naturelle avec d’autres outils comme Matchbox.
-Dans le contexte CDA → FHIR, HAPI FHIR sert de moteur d’exécution des règles FML et apporte une couche technique robuste permettant d’assurer la conformité des ressources générées</li>
+  <li>flexible</li>
+  <li>Adapté aux règles métier complexes</li>
+  <li>Intégration simple</li>
 </ul>
 
-<p>###<strong>Matchbox Mapping Tool</strong>
-Matchbox est un outil open source intégrant un moteur FML. Il est construit sur la base du framework HAPI FHIR, ce qui lui permet de bénéficier de ses capacités de validation, de gestion des structures FHIR et d’un environnement d’exécution robuste.
-Matchbox permet :</p>
-<ul>
-  <li>l’exécution de transformations basées sur StructureMap,</li>
-  <li>la création et le test de mappings FML,</li>
-  <li>
-    <p>la validation des données FHIR produites.</p>
-  </li>
-  <li>Alignement natif avec les standards FHIR.</li>
-  <li>Formalisation structurée des règles.</li>
-  <li>Réutilisation et mutualisation des cartes de transformation.</li>
-</ul>
-
-<p>###<strong>Limites</strong></p>
+<h5 id="limites"><strong>Limites</strong></h5>
 <ul>
   <li>Complexité du langage.</li>
-  <li>Absence de compréhension native du CDA.</li>
 </ul>
 
 <p>###<strong>Ressources utiles</strong></p>
@@ -278,11 +263,13 @@ IBM App Connect permet de concevoir visuellement des mappings entre structures h
   <li>Expressivité variable selon l’outil</li>
   <li>Difficulté à exprimer des logiques complexes</li>
   <li>Dépendance à la suite logicielle</li>
+  <li>Faible compatibilité avec les pratiques collaboratives reposant sur Git/GitHub</li>
 </ul>
 
 <p>###<strong>Ressources utiles</strong></p>
 <ul>
-  <li>TermX – Site officiel : https://termx.org/</li>
+  <li>TermX – Site officiel : https://termx.org/
+https://termx.kodality.dev/modeler/transformation-definitions  #  un bon lien pour term x</li>
   <li>TermX – GitHub : https://github.com/termx-health</li>
   <li>IBM App Connect – Documentation : https://www.ibm.com/docs</li>
 </ul>
@@ -460,7 +447,7 @@ Manipulation XML + génération FHIR.</p>
 
       <div class="inner-wrapper">
         <p>
-          IG &#169; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d&#39;Oradour-sur-Glane, 75015 Paris</a>.  Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Mon, Mar 30, 2026 14:27+0000">2026-03-30</span>
+          IG &#169; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d&#39;Oradour-sur-Glane, 75015 Paris</a>.  Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Wed, Apr 1, 2026 07:35+0000">2026-04-01</span>
           <br/>
           <span style="color: var(--footer-highlight-text-color)"></span>
             Liens : <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table des matières</a> |
