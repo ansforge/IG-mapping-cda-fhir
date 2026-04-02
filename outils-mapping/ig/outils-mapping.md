@@ -60,7 +60,7 @@ TermX est une solution open source développée par la société estonienne Koda
 * Expressivité variable selon l’outil
 * Difficulté à exprimer des logiques complexes
 * Dépendance à la suite logicielle
-* Compatibilité variable avec les pratiques collaboratives fondées sur Git/GitHub : certains outils, comme TermX, intègrent explicitement une synchronisation avec GitHub, tandis que d’autres solutions visuelles ne la prennent en charge qu’indirectement, via des fonctions périphériques de gestion de projet ou d’automatisation.
+* Les solutions graphiques sont souvent contraintes à des exports propriétaires pour conserver les informations visuels (placement des éléments, rendus graphiques,…). Même lorsqu'un export vers un format standard est disponible, la réimportation à iso-fonctionnalité reste partielle. Par ailleurs, ces formats propriétaires sont généralement incompatibles avec les fonctionnalités collaboratives de GitHub (pull requests, revues de code, comparaison de versions), qui ne s'appliquent qu'aux fichiers texte. La collaboration simultanée via les branches reste donc limitée.
 
 #### Ressources utiles
 
@@ -220,6 +220,8 @@ Les grands modèles de langage (LLM) peuvent être mobilisés pour produire des 
 #### Limites
 
 * Hallucinations : attributs inexistants, appariements inadaptés, problèmes de granularité) ; une relecture experte est nécessaire.
+* Non‑déterminisme : à consigne identique, un même modèle peut générer des réponses différentes d’une exécution à l’autre, ce qui rend plus difficile la traçabilité et la stabilité des conversions vers FHIR.
+* Modèle “boîte noire” : le fonctionnement interne n’est pas explicable ; on ne peut pas comprendre comment le modèle produit ses réponses.
 * Sensibilité au prompt : de faibles variations de consignes peuvent modifier la sortie, ce qui réduit la reproductibilité sans stratégie de prompting rigoureuse.
 * Validation indispensable : contrôle systématique vis‑à‑vis des profils/IG avant toute utilisation opérationnelle.
 

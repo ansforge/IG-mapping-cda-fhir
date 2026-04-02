@@ -278,7 +278,7 @@ Les règles écrites en FML doivent être interprétées par un moteur capable d
   <li>Expressivité variable selon l’outil</li>
   <li>Difficulté à exprimer des logiques complexes</li>
   <li>Dépendance à la suite logicielle</li>
-  <li>Compatibilité variable avec les pratiques collaboratives fondées sur Git/GitHub : certains outils, comme TermX, intègrent explicitement une synchronisation avec GitHub, tandis que d’autres solutions visuelles ne la prennent en charge qu’indirectement, via des fonctions périphériques de gestion de projet ou d’automatisation.</li>
+  <li>Les solutions graphiques sont souvent contraintes à des exports propriétaires pour conserver les informations visuels (placement des éléments, rendus graphiques,…). Même lorsqu'un export vers un format standard est disponible, la réimportation à iso-fonctionnalité reste partielle. Par ailleurs, ces formats propriétaires sont généralement incompatibles avec les fonctionnalités collaboratives de GitHub (pull requests, revues de code, comparaison de  versions), qui ne s'appliquent qu'aux fichiers texte. La collaboration simultanée via les branches reste donc limitée.</li>
 </ul>
 
 <h4 id="ressources-utiles-1">Ressources utiles</h4>
@@ -475,6 +475,8 @@ Ces outils prennent en entrée des modèles définis selon des métamodèles (so
 
 <ul>
   <li>Hallucinations : attributs inexistants, appariements inadaptés, problèmes de granularité) ; une relecture experte est nécessaire.</li>
+  <li>Non‑déterminisme : à consigne identique, un même modèle peut générer des réponses différentes d’une exécution à l’autre, ce qui rend plus difficile la traçabilité et la stabilité des conversions vers FHIR.</li>
+  <li>Modèle “boîte noire” : le fonctionnement interne n’est pas explicable ; on ne peut pas comprendre comment le modèle produit ses réponses.</li>
   <li>Sensibilité au prompt : de faibles variations de consignes peuvent modifier la sortie, ce qui réduit la reproductibilité sans stratégie de prompting rigoureuse.</li>
   <li>Validation indispensable : contrôle systématique vis‑à‑vis des profils/IG avant toute utilisation opérationnelle.</li>
 </ul>
@@ -520,7 +522,7 @@ Ces outils prennent en entrée des modèles définis selon des métamodèles (so
 
       <div class="inner-wrapper">
         <p>
-          IG &copy; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris</a>.  Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Wed, Apr 1, 2026 20:41+0000">2026-04-01</span>
+          IG &copy; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris</a>.  Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Thu, Apr 2, 2026 09:31+0000">2026-04-02</span>
           <br/>
           <span style="color: var(--footer-highlight-text-color)"></span>
             Liens : <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table des matières</a> |
