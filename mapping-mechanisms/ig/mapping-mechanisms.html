@@ -198,69 +198,58 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
     <p>  <!-- white space is critical inside of capture --></p>
 <div class="markdown-toc">
 <ul id="markdown-toc">
-  <li><a href="#mécanismes-de-mapping-cda-vers-fhir" id="markdown-toc-mécanismes-de-mapping-cda-vers-fhir">Mécanismes de mapping CDA vers FHIR</a>    <ul>
-      <li><a href="#vue-densemble-du-fhir-mapping-language" id="markdown-toc-vue-densemble-du-fhir-mapping-language">Vue d'ensemble du FHIR Mapping Language</a>        <ul>
-          <li><a href="#caractéristiques-principales" id="markdown-toc-caractéristiques-principales">Caractéristiques principales</a></li>
-        </ul>
-      </li>
-      <li><a href="#architecture-des-mappings" id="markdown-toc-architecture-des-mappings">Architecture des mappings</a>        <ul>
-          <li><a href="#structure-en-couches" id="markdown-toc-structure-en-couches">Structure en couches</a></li>
-          <li><a href="#principe-de-réutilisation" id="markdown-toc-principe-de-réutilisation">Principe de réutilisation</a></li>
-        </ul>
-      </li>
-      <li><a href="#mécanismes-de-transformation" id="markdown-toc-mécanismes-de-transformation">Mécanismes de transformation</a>        <ul>
-          <li><a href="#1-navigation-dans-larbre-cda" id="markdown-toc-1-navigation-dans-larbre-cda">1. Navigation dans l'arbre CDA</a></li>
-          <li><a href="#2-conversion-de-types-de-données" id="markdown-toc-2-conversion-de-types-de-données">2. Conversion de types de données</a></li>
-          <li><a href="#3-création-de-ressources-fhir" id="markdown-toc-3-création-de-ressources-fhir">3. Création de ressources FHIR</a></li>
-          <li><a href="#4-groupes-de-mapping" id="markdown-toc-4-groupes-de-mapping">4. Groupes de mapping</a></li>
-          <li><a href="#5-filtrage-et-conditions" id="markdown-toc-5-filtrage-et-conditions">5. Filtrage et conditions</a></li>
-        </ul>
-      </li>
-      <li><a href="#patterns-de-mapping-courants" id="markdown-toc-patterns-de-mapping-courants">Patterns de mapping courants</a>        <ul>
-          <li><a href="#pattern-1--document-cda--bundle-fhir" id="markdown-toc-pattern-1--document-cda--bundle-fhir">Pattern 1 : Document CDA → Bundle FHIR</a></li>
-          <li><a href="#pattern-2--réutilisation-de-fonctions-importées" id="markdown-toc-pattern-2--réutilisation-de-fonctions-importées">Pattern 2 : Réutilisation de fonctions importées</a></li>
-          <li><a href="#pattern-3--navigation-personnalisée-pour-structures-complexes" id="markdown-toc-pattern-3--navigation-personnalisée-pour-structures-complexes">Pattern 3 : Navigation personnalisée pour structures complexes</a></li>
-          <li><a href="#pattern-4--mapping-conditionnel-selon-le-type" id="markdown-toc-pattern-4--mapping-conditionnel-selon-le-type">Pattern 4 : Mapping conditionnel selon le type</a></li>
-        </ul>
-      </li>
-      <li><a href="#limitations-et-contraintes" id="markdown-toc-limitations-et-contraintes">Limitations et contraintes</a>        <ul>
-          <li><a href="#1-navigation-xml-et-état-du-parser" id="markdown-toc-1-navigation-xml-et-état-du-parser">1. Navigation XML et état du parser</a></li>
-          <li><a href="#2-support-de-translate" id="markdown-toc-2-support-de-translate">2. Support de translate()</a></li>
-          <li><a href="#3-ordre-de-chargement" id="markdown-toc-3-ordre-de-chargement">3. Ordre de chargement</a></li>
-          <li><a href="#4-gestion-des-extensions" id="markdown-toc-4-gestion-des-extensions">4. Gestion des extensions</a></li>
-        </ul>
-      </li>
-      <li><a href="#bonnes-pratiques" id="markdown-toc-bonnes-pratiques">Bonnes pratiques</a>        <ul>
-          <li><a href="#1-modularité" id="markdown-toc-1-modularité">1. Modularité</a></li>
-          <li><a href="#2-nommage" id="markdown-toc-2-nommage">2. Nommage</a></li>
-          <li><a href="#3-gestion-des-erreurs" id="markdown-toc-3-gestion-des-erreurs">3. Gestion des erreurs</a></li>
-          <li><a href="#4-performance" id="markdown-toc-4-performance">4. Performance</a></li>
-          <li><a href="#5-testabilité" id="markdown-toc-5-testabilité">5. Testabilité</a></li>
-        </ul>
-      </li>
-      <li><a href="#exemple-complet--cdafrmdetobundle" id="markdown-toc-exemple-complet--cdafrmdetobundle">Exemple complet : CdaFrMDEToBundle</a>        <ul>
-          <li><a href="#architecture" id="markdown-toc-architecture">Architecture</a></li>
-          <li><a href="#stratégie-de-transformation" id="markdown-toc-stratégie-de-transformation">Stratégie de transformation</a></li>
-          <li><a href="#résultat" id="markdown-toc-résultat">Résultat</a></li>
-        </ul>
-      </li>
-      <li><a href="#ressources-complémentaires" id="markdown-toc-ressources-complémentaires">Ressources complémentaires</a></li>
-      <li><a href="#conclusion" id="markdown-toc-conclusion">Conclusion</a></li>
+  <li><a href="#vue-densemble-du-fhir-mapping-language" id="markdown-toc-vue-densemble-du-fhir-mapping-language">Vue d'ensemble du FHIR Mapping Language</a></li>
+  <li><a href="#organisation-des-mappings-en-couches" id="markdown-toc-organisation-des-mappings-en-couches">Organisation des mappings en couches</a></li>
+  <li><a href="#implémentation-des-transformations-cda-vers-fhir-en-fhir-mapping-language" id="markdown-toc-implémentation-des-transformations-cda-vers-fhir-en-fhir-mapping-language">Implémentation des transformations CDA vers FHIR en FHIR Mapping Language</a></li>
+  <li><a href="#mécanismes-de-transformation" id="markdown-toc-mécanismes-de-transformation">Mécanismes de transformation</a>    <ul>
+      <li><a href="#1-navigation-dans-larbre-cda" id="markdown-toc-1-navigation-dans-larbre-cda">1. Navigation dans l'arbre CDA</a></li>
+      <li><a href="#2-conversion-de-types-de-données" id="markdown-toc-2-conversion-de-types-de-données">2. Conversion de types de données</a></li>
+      <li><a href="#3-création-de-ressources-fhir" id="markdown-toc-3-création-de-ressources-fhir">3. Création de ressources FHIR</a></li>
+      <li><a href="#4-groupes-de-mapping" id="markdown-toc-4-groupes-de-mapping">4. Groupes de mapping</a></li>
+      <li><a href="#5-filtrage-et-conditions" id="markdown-toc-5-filtrage-et-conditions">5. Filtrage et conditions</a></li>
     </ul>
   </li>
+  <li><a href="#patterns-de-mapping-courants" id="markdown-toc-patterns-de-mapping-courants">Patterns de mapping courants</a>    <ul>
+      <li><a href="#pattern-1--document-cda--bundle-fhir" id="markdown-toc-pattern-1--document-cda--bundle-fhir">Pattern 1 : Document CDA → Bundle FHIR</a></li>
+      <li><a href="#pattern-2--réutilisation-de-fonctions-importées" id="markdown-toc-pattern-2--réutilisation-de-fonctions-importées">Pattern 2 : Réutilisation de fonctions importées</a></li>
+      <li><a href="#pattern-3--navigation-personnalisée-pour-structures-complexes" id="markdown-toc-pattern-3--navigation-personnalisée-pour-structures-complexes">Pattern 3 : Navigation personnalisée pour structures complexes</a></li>
+      <li><a href="#pattern-4--mapping-conditionnel-selon-le-type" id="markdown-toc-pattern-4--mapping-conditionnel-selon-le-type">Pattern 4 : Mapping conditionnel selon le type</a></li>
+    </ul>
+  </li>
+  <li><a href="#limitations-et-contraintes" id="markdown-toc-limitations-et-contraintes">Limitations et contraintes</a>    <ul>
+      <li><a href="#1-navigation-xml-et-état-du-parser" id="markdown-toc-1-navigation-xml-et-état-du-parser">1. Navigation XML et état du parser</a></li>
+      <li><a href="#2-support-de-translate" id="markdown-toc-2-support-de-translate">2. Support de translate()</a></li>
+      <li><a href="#3-ordre-de-chargement" id="markdown-toc-3-ordre-de-chargement">3. Ordre de chargement</a></li>
+      <li><a href="#4-gestion-des-extensions" id="markdown-toc-4-gestion-des-extensions">4. Gestion des extensions</a></li>
+    </ul>
+  </li>
+  <li><a href="#bonnes-pratiques" id="markdown-toc-bonnes-pratiques">Bonnes pratiques</a>    <ul>
+      <li><a href="#1-modularité" id="markdown-toc-1-modularité">1. Modularité</a></li>
+      <li><a href="#2-nommage" id="markdown-toc-2-nommage">2. Nommage</a></li>
+      <li><a href="#3-gestion-des-erreurs" id="markdown-toc-3-gestion-des-erreurs">3. Gestion des erreurs</a></li>
+      <li><a href="#4-performance" id="markdown-toc-4-performance">4. Performance</a></li>
+      <li><a href="#5-testabilité" id="markdown-toc-5-testabilité">5. Testabilité</a></li>
+    </ul>
+  </li>
+  <li><a href="#exemple-complet--cdafrmdetobundle" id="markdown-toc-exemple-complet--cdafrmdetobundle">Exemple complet : CdaFrMDEToBundle</a>    <ul>
+      <li><a href="#architecture" id="markdown-toc-architecture">Architecture</a></li>
+      <li><a href="#stratégie-de-transformation" id="markdown-toc-stratégie-de-transformation">Stratégie de transformation</a></li>
+      <li><a href="#résultat" id="markdown-toc-résultat">Résultat</a></li>
+    </ul>
+  </li>
+  <li><a href="#ressources-complémentaires" id="markdown-toc-ressources-complémentaires">Ressources complémentaires</a></li>
+  <li><a href="#conclusion" id="markdown-toc-conclusion">Conclusion</a></li>
 </ul>
 
 </div>
 
-<h1 id="mécanismes-de-mapping-cda-vers-fhir">Mécanismes de mapping CDA vers FHIR</h1>
-
 <p>Cette page explique les différents mécanismes utilisés pour transformer des documents CDA (Clinical Document Architecture) en ressources FHIR à l'aide du FHIR Mapping Language (FML).</p>
 
-<h2 id="vue-densemble-du-fhir-mapping-language">Vue d'ensemble du FHIR Mapping Language</h2>
+<h3 id="vue-densemble-du-fhir-mapping-language">Vue d'ensemble du FHIR Mapping Language</h3>
 
 <p>Le FHIR Mapping Language (FML) est un langage déclaratif développé par HL7 pour transformer des données structurées d'un format à un autre. Il permet de définir des règles de transformation complexes de manière lisible et maintenable.</p>
 
-<h3 id="caractéristiques-principales">Caractéristiques principales</h3>
+<h4 id="caractéristiques-principales">Caractéristiques principales</h4>
 
 <ul>
   <li><strong>Déclaratif</strong> : On décrit <em>ce que</em> l'on veut obtenir plutôt que <em>comment</em> le faire</li>
@@ -269,41 +258,132 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
   <li><strong>Navigation XML/JSON</strong> : Support natif pour parcourir des structures hiérarchiques</li>
 </ul>
 
-<h2 id="architecture-des-mappings">Architecture des mappings</h2>
+<h3 id="organisation-des-mappings-en-couches">Organisation des mappings en couches</h3>
 
-<h3 id="structure-en-couches">Structure en couches</h3>
+<h4 id="structure-générale">Structure générale</h4>
 
-<p>Les mappings sont organisés en couches de réutilisabilité :</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌─────────────────────────────────────┐
-│   CDAFrMDEToBundle.fml              │  ← Mappings spécifiques métier
-│   (Carnet de Santé Enfant)         │
-└─────────────────────────────────────┘
-              ↓ uses
-┌─────────────────────────────────────┐
-│   CDAFrToBundle.fml                 │  ← Mappings français génériques
-│   (Identifiants INS-NIR, etc.)     │
-└─────────────────────────────────────┘
-              ↓ uses
-┌─────────────────────────────────────┐
-│   CdaToBundle.fml                   │  ← Mappings CDA de base
-│   (Patient, Composition, etc.)     │
-└─────────────────────────────────────┘
-              ↓ uses
-┌─────────────────────────────────────┐
-│   CdaToFHIRTypes.fml                │  ← Conversions de types primitifs
-│   (HumanName, CodeableConcept, etc.)│
-└─────────────────────────────────────┘
+<p>Les mappings CDA vers FHIR sont organisés en couches afin de séparer les responsabilités et de faciliter la réutilisation des transformations.
+Chaque couche couvre un niveau précis du mapping et s’appuie sur les couches inférieure.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──────────────────────────────────────────────────┐
+│   Mappings métier spécifiques                    │
+│   (ex. CdaFrMDEToBundle, …)                      │
+│   ← Traitement du corps du document CDA          │
+│     selon le type de document                    │
+└──────────────────────────────────────────────────┘
+                    ↓ imports
+┌──────────────────────────────────────────────────┐
+│   CdaFrToBundle.fml                              │
+│   ← Spécifications françaises                    │
+│     (INS, IDNPS, profils AS, MOS, FINESS, etc.)  │
+└──────────────────────────────────────────────────┘
+                    ↓ imports
+┌──────────────────────────────────────────────────┐
+│   CdaToBundle.fml                                │
+│   ← Mapping générique CDA → Bundle FHIR          │
+│     (en‑tête CDA : Composition, Patient,         │
+│      Encounter, Organization, Location…)         │        
+└──────────────────────────────────────────────────┘
+                    ↓ imports
+┌──────────────────────────────────────────────────┐
+│   CdaToFHIRTypes.fml                             │
+│   ← Conversions des types de données CDA v3      │
+│     (II, EN, AD, CD, PQ, TS, … → types FHIR)     │
+└──────────────────────────────────────────────────┘
 </code></pre></div></div>
+<h4 id="description-des-couches-de-mapping">Description des couches de mapping</h4>
 
-<h3 id="principe-de-réutilisation">Principe de réutilisation</h3>
+<h5 id="mappings-de-conversion-des-types">Mappings de conversion des types</h5>
 
-<p>Chaque couche :</p>
-<ul>
-  <li><strong>Importe</strong> les mappings des couches inférieures via <code class="language-plaintext highlighter-rouge">uses</code></li>
-  <li><strong>Réutilise</strong> les fonctions existantes pour éviter la duplication</li>
-  <li><strong>Ajoute</strong> des règles spécifiques pour son contexte métier</li>
-</ul>
+<p>Le fichier principal de cette couche est CdaToFHIRTypes.fml.
+Cette couche regroupe les mappings de conversion des types de données CDA v3 vers les types de données FHIR.
+Dans le contexte CDA, les datatypes représentent les structures élémentaires utilisées pour porter l’information dans le document : identifiants, noms, adresses, codes, dates, quantités, coordonnées de contact, etc. Avant de transformer un document CDA en ressources FHIR, il est donc nécessaire de convertir correctement ces types sources vers leurs équivalents FHIR.
+Cette couche contient ainsi les transformations de bas niveau permettant, par exemple, de convertir :
+II vers Identifier
+EN / PN vers HumanName
+AD vers Address
+TEL vers ContactPoint
+CD / CE / CS vers CodeableConcept ou code
+PQ vers Quantity
+TS / IVL_TS vers date, dateTime ou Period
+Elle constitue le socle commun de l’ensemble des autres mappings.
+Elle ne contient ni logique métier, ni logique nationale, ni navigation dans la structure du document CDA : son objectif est uniquement d’assurer la correspondance entre les types techniques manipulés dans les mappings.</p>
+
+<p>À compléter : un tableau de correspondance entre les principaux datatypes CDA et les types FHIR associés pourra être ajouté ici pour faciliter la lecture et la réutilisation des mappings.</p>
+
+<h5 id="mappings-cda-génériques">Mappings CDA génériques</h5>
+
+<p>Le fichier principal de cette couche est <code class="language-plaintext highlighter-rouge">CdaToBundle.fml</code>.</p>
+
+<p>Cette couche regroupe les mappings génériques permettant de transformer la structure commune d’un document CDA en un <code class="language-plaintext highlighter-rouge">Bundle</code> FHIR. Elle couvre principalement les éléments de l’en-tête CDA, c’est-à-dire les informations documentaires et contextuelles présentes quel que soit le type de document traité.</p>
+
+<p>Les transformations implémentées dans cette couche concernent notamment :
+*la création du <code class="language-plaintext highlighter-rouge">Bundle</code> ;
+*la création de la <code class="language-plaintext highlighter-rouge">Composition</code> ;
+*le mapping du <code class="language-plaintext highlighter-rouge">Patient</code> ;
+*le mapping du contexte de prise en charge (<code class="language-plaintext highlighter-rouge">Encounter</code>, <code class="language-plaintext highlighter-rouge">Location</code>) ;
+*le mapping des acteurs et des structures (<code class="language-plaintext highlighter-rouge">Practitioner</code>, <code class="language-plaintext highlighter-rouge">PractitionerRole</code>, <code class="language-plaintext highlighter-rouge">Organization</code>) ;
+*la gestion des identifiants techniques et des références internes au Bundle.</p>
+
+<p>Cette couche implémente le mapping générique des éléments communs du document CDA vers FHIR. Elle réutilise les conversions de types déjà définies dans la couche inférieure et n’intègre ni logique nationale ni logique métier spécifique.</p>
+
+<h5 id="spécifications-françaises">Spécifications françaises</h5>
+
+<p>Le fichier principal de cette couche est <code class="language-plaintext highlighter-rouge">CdaFrToBundle.fml</code>.</p>
+
+<p>Cette couche applique les spécifications françaises au mapping générique CDA vers FHIR. Elle permet d’enrichir les ressources FHIR produites avec les profils, identifiants, terminologies et extensions attendus dans le cadre d’implémentation français.</p>
+
+<p>Les adaptations portées par cette couche concernent notamment :
+*l’application de profils français, par exemple <code class="language-plaintext highlighter-rouge">FR-Core</code> et <code class="language-plaintext highlighter-rouge">Annuaire Santé</code> ;
+*la gestion des identifiants nationaux, tels que <code class="language-plaintext highlighter-rouge">INS-NIR</code> pour le patient, <code class="language-plaintext highlighter-rouge">IDNPS</code> pour les professionnels de santé et <code class="language-plaintext highlighter-rouge">FINESS</code> pour les organisations ;
+*l’utilisation de terminologies nationales, notamment les jeux de valeurs <code class="language-plaintext highlighter-rouge">MOS</code> ;
+*l’ajout d’extensions ou de spécialisations propres au contexte français.</p>
+
+<p>Cette couche s’applique aux ressources génériques déjà produites à partir de l’en-tête du document CDA. Elle ne redéfinit pas le mapping générique, mais complète les groupes existants lorsque cela est nécessaire afin d’isoler clairement les spécificités françaises.</p>
+
+<p>Elle ne traite pas le corps du document CDA. Les sections cliniques, organizers, observations et autres contenus métier restent pris en charge dans la couche de mappings spécifiques métier.</p>
+
+<h5 id="mappings-spécifiques-métier">Mappings spécifiques métier</h5>
+
+<p>Cette couche regroupe plusieurs fichiers de mapping, chacun correspondant à un type de document CDA ou à un contexte métier particulier. Le fichier <code class="language-plaintext highlighter-rouge">CdaFrMDEToBundle</code> constitue l’un de ces mappings et est utilisé dans ce guide comme exemple de mapping métier.</p>
+
+<p>Contrairement aux couches précédentes, cette couche traite le corps du document CDA. Elle implémente la navigation dans les sections cliniques et transforme les structures métier du document en ressources FHIR adaptées.</p>
+
+<p>Les traitements réalisés à ce niveau concernent notamment :
+*la navigation dans les <code class="language-plaintext highlighter-rouge">section</code> ;
+*l’accès aux <code class="language-plaintext highlighter-rouge">entry</code>, <code class="language-plaintext highlighter-rouge">organizer</code> et <code class="language-plaintext highlighter-rouge">observation</code> ;
+*l’extraction des données cliniques propres au document traité ;
+*la création des ressources FHIR métier correspondantes, par exemple <code class="language-plaintext highlighter-rouge">Observation</code>.</p>
+
+<p>Cette couche réutilise les mappings génériques et nationaux déjà définis pour l’en-tête du document, puis ajoute les règles spécifiques nécessaires au contenu clinique du document concerné.</p>
+
+<p>Chaque fichier de cette couche correspond donc à une implémentation ciblée, construite à partir du même socle commun mais adaptée à un besoin métier précis.</p>
+
+<blockquote>
+  <p>Remarque : Pour les couches — mappings CDA génériques, spécifications françaises et mappings spécifiques métier — les correspondances détaillées CDA et FHIR sont à consulter dans le guide d’implémentation Document Core : <code class="language-plaintext highlighter-rouge">https://ansforge.github.io/interop-IG-document-core/main/ig/</code>. Ce guide présente de manière structurée les correspondances entre modèle logique, CDA et FHIR</p>
+</blockquote>
+
+<h4 id="réutilisation-entre-les-couches">Réutilisation entre les couches</h4>
+
+<p>Les couches de mapping sont construites de manière progressive. Chaque couche réutilise les mappings définis dans les couches inférieures à l’aide du mécanisme <code class="language-plaintext highlighter-rouge">imports</code>, puis ajoute les transformations correspondant à son propre niveau de spécialisation.</p>
+
+<p>Cette organisation permet :
+*de mutualiser les transformations communes ;
+*d’éviter la duplication des règles ;
+*d’isoler les spécificités génériques, nationales et métier dans des couches distinctes.</p>
+
+<h3 id="implémentation-des-transformations-cda-vers-fhir-en-fhir-mapping-language">Implémentation des transformations CDA vers FHIR en FHIR Mapping Language</h3>
+
+<p>Cette section décrit les principaux mécanismes utilisés pour implémenter les transformations CDA vers FHIR dans les fichiers FML. Elle se concentre sur la mise en œuvre concrète des règles de mapping, notamment la navigation dans la structure CDA, la conversion des données, la création des ressources FHIR et l’orchestration des groupes de transformation.</p>
+
+<h4 id="navigation-dans-la-structure-cda">Navigation dans la structure CDA</h4>
+
+<h4 id="groupes-de-mapping-et-orchestration-des-transformations">Groupes de mapping et orchestration des transformations</h4>
+
+<h4 id="conversion-des-types-de-données-et-des-terminologies">Conversion des types de données et des terminologies</h4>
+
+<h4 id="création-des-ressources-fhir-et-gestion-des-références">Création des ressources FHIR et gestion des références</h4>
+
+<h4 id="filtrage-conditions-et-variations-de-mapping">Filtrage, conditions et variations de mapping</h4>
 
 <h2 id="mécanismes-de-transformation">Mécanismes de transformation</h2>
 
@@ -703,7 +783,7 @@ imports "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaF
   <li><a href="https://www.hl7.org/fhir/structuremap.html">FHIR StructureMap Resource</a></li>
   <li><a href="https://github.com/ahdis/matchbox">Matchbox Documentation</a></li>
   <li><a href="https://github.com/hl7ch/cda-fhir-maps">CDA to FHIR Maps (HL7 Suisse)</a></li>
-  <li><a name="l1134">​</a><a href="claude.html">Notes techniques de développement</a></li>
+  <li><a name="l1255">​</a><a href="claude.html">Notes techniques de développement</a></li>
 </ul>
 
 <h2 id="conclusion">Conclusion</h2>
@@ -760,7 +840,7 @@ imports "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaF
 
       <div class="inner-wrapper">
         <p>
-          IG &copy; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris</a>.  Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Tue, Apr 7, 2026 07:15+0000">2026-04-07</span>
+          IG &copy; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris</a>.  Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Tue, Apr 7, 2026 12:56+0000">2026-04-07</span>
           <br/>
           <span style="color: var(--footer-highlight-text-color)"></span>
             Liens : <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table des matières</a> |
