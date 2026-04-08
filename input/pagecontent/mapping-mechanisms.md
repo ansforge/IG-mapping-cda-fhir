@@ -424,7 +424,22 @@ group MapGender(source src : CS, target tgt : code)
   src where(value = 'UNK') -> tgt.value = 'unknown'
 ```
 
-#### 3. Ordre de chargement des ressources
+
+#### 3. Absence d’équivalence terminologique dans la cible
+
+La conversion terminologique repose sur l’existence d’une correspondance exploitable entre le code source CDA et la terminologie cible attendue en FHIR. Or, dans certains cas, aucun code strictement équivalent n’existe dans le système cible, ou bien la correspondance disponible reste partielle, ambiguë ou dépendante du contexte métier.
+
+**Conséquences** :
+* impossibilité de produire un codage cible strictement équivalent ;
+* risque de perte sémantique lors de la transformation ;
+* nécessité de conserver uniquement le code source, un libellé textuel, ou une représentation partiellement structurée ;
+* hétérogénéité possible dans les ressources FHIR produites selon les cas de mapping retenus.
+
+**Recommandations** :
+* documenter explicitement les cas dans lesquels aucune équivalence terminologique n’est disponible ;
+* définir une stratégie de repli, par exemple en conservant le codage source, en renseignant uniquement `CodeableConcept.text`, ou en utilisant une correspondance plus large lorsque cela est acceptable ;
+
+#### 4. Ordre de chargement des ressources
 
 Le chargement des ressources nécessaires à l’exécution des mappings doit respecter un ordre précis afin que les dépendances soient correctement résolues lors de l’initialisation dans le moteur de transformation.
 
@@ -437,7 +452,7 @@ Le chargement des ressources nécessaires à l’exécution des mappings doit re
 **Conséquence** :
 * un ordre de chargement incorrect peut empêcher la résolution des dépendances entre mappings et bloquer l’exécution.
 
-#### 4. Gestion des extensions
+#### 5. Gestion des extensions
 
 Les extensions FHIR ne sont pas générées automatiquement au cours de la transformation. Lorsqu’une information CDA doit être portée dans une extension, celle-ci doit être créée explicitement dans les règles FML.
 
@@ -453,7 +468,7 @@ patient -> patient.extension as ext then {
 }
 ```
 
-#### 5. Gestion des valeurs absentes et des `nullFlavor`
+#### 6. Gestion des valeurs absentes et des `nullFlavor`
 
 Les documents CDA peuvent contenir des éléments présents dans la structure XML mais dépourvus de valeur exploitable, notamment lorsque l’attribut `nullFlavor` est utilisé. Cette situation complique la transformation, car l’élément existe, mais ne peut pas toujours être converti directement vers un élément FHIR pertinent.
 
@@ -467,7 +482,7 @@ Les documents CDA peuvent contenir des éléments présents dans la structure XM
 * documenter la stratégie retenue pour le traitement des `nullFlavor` ;
 * éviter de produire des ressources partielles lorsque l’information source est insuffisante.
 
-#### 6. Conformité aux profils FHIR cibles
+#### 7. Conformité aux profils FHIR cibles
 
 La validation par rapport aux ressources FHIR internationale n'est pas suffisante pour garantir l'interopérabilité.
 La transformation doit respecter les profils cibles utilisés dans le projet. Elle doit notamment se conformer aux profils nationaux définis dans le cadre d'interopérabilité et dont l'usage est rendu obligatoire par le code de la santé publique imposent des contraintes supplémentaires sur les cardinalités, les terminologies ou les extensions.
