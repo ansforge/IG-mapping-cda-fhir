@@ -469,7 +469,8 @@ Les documents CDA peuvent contenir des éléments présents dans la structure XM
 
 #### 6. Conformité aux profils FHIR cibles
 
-La transformation ne vise pas uniquement à produire des ressources FHIR valides au sens générique du standard, mais doit également respecter les profils cibles utilisés dans le projet. Certains profils imposent des contraintes supplémentaires sur les cardinalités, les terminologies ou les extensions.
+La validation par rapport aux ressources FHIR internationale n'est pas suffisante pour garantir l'interopérabilité.
+La transformation doit respecter les profils cibles utilisés dans le projet. Elle doit notamment se conformer aux profils nationaux définis dans le cadre d'interopérabilité et dont l'usage est rendu obligatoire par le code de la santé publique imposent des contraintes supplémentaires sur les cardinalités, les terminologies ou les extensions.
 
 **Conséquences** :
 * une ressource techniquement conforme aux ressources génériques internationales FHIR peut rester non conforme au profil cible ;
