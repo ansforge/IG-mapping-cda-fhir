@@ -134,7 +134,7 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2026-04-08T13:25:56+00:00",
+  "date" : "2026-04-08T14:49:56+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -990,6 +990,15 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
         }],
         "nameUrl" : "change-log.html",
         "title" : "Historique des versions",
+        "generation" : "markdown"
+      },
+      {
+        "extension" : [{
+          "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
+          "valueUrl" : "tableau-test.html"
+        }],
+        "nameUrl" : "tableau-test.html",
+        "title" : "test",
         "generation" : "markdown"
       }]
     },

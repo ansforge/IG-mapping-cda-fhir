@@ -3,7 +3,7 @@
 <html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
-    <title>ConceptMap - OID to URL for TRE_R38-SpecialiteOrdinale - Testing - POC - Mapping CDA to FHIR v0.1.0</title>
+    <title>test - POC - Mapping CDA to FHIR v0.1.0</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="author" content="http://hl7.org/fhir"/>
@@ -43,8 +43,8 @@
 	  <script src="assets/js/prism.js"></script>
     <script type="text/javascript" src="assets/js/mermaid.js"></script>
     <script type="text/javascript" src="assets/js/mermaid-init.js"></script>
-    <style type="text/css">h2{--heading-prefix:"8.6"}
-    h3,h4,h5,h6{--heading-prefix:"8.6"}</style>
+    <style type="text/css">h2{--heading-prefix:"7"}
+    h3,h4,h5,h6{--heading-prefix:"7"}</style>
     <div id="segment-header" class="segment">  <!-- segment-header -->
       <div class="container">  <!-- container -->
 
@@ -151,15 +151,15 @@
     <div id="segment-breadcrumb" class="segment">  <!-- segment-breadcrumb -->
       <div class="container">  <!-- container -->
         <ul class="breadcrumb">
-          <li><a href='toc.html'><b>Table of Contents</b></a></li><li><a href='artifacts.html'><b>Artifacts Summary</b></a></li><li><b>ConceptMap - OID to URL for TRE_R38-SpecialiteOrdinale</b></li>
+          <li><a href='toc.html'><b>Table of Contents</b></a></li><li><b>test</b></li>
 
           <span style="float:right;">
 
-            <a href="ConceptMap-cm-oid-specialite-ordinale.html">&lt;prev</a> | 
+            <a href="change-log.html">&lt;prev</a> | 
 
             <a href="#bottom">bottom</a>
 
-          | <a href="ConceptMap-cm-oid-specialite-ordinale.xml.html">next&gt;</a>
+          | <a href="artifacts.html">next&gt;</a>
 
           </span>
 
@@ -172,8 +172,16 @@
       <div class="container">  <!-- container -->
         <div class="row">
           <div class="inner-wrapper">
+<style type="text/css">
+h2:before{color:silver;counter-increment:section;content:var(--heading-prefix) " ";}
+h3:before{color:silver;counter-increment:sub-section;content:var(--heading-prefix) "." counter(sub-section) " ";}
+h4:before{color:silver;counter-increment:composite;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) " ";}
+h5:before{color:silver;counter-increment:detail;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) "." counter(detail) " ";}
+h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) "." counter(detail) "." counter(more-detail)" ";}
+</style>
 <div class="col-12">
   <!--ReleaseHeader--><p id="publish-box">POC - Mapping CDA to FHIR - version de développement local (intégration continue v0.1.0) construite par les outils de publication FHIR (HL7® FHIR® Standard). Voir le <a href='https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/history.html'>répertoire des versions publiées</a></p><!--EndReleaseHeader-->
+  <h2>test</h2>
   
 
 
@@ -183,81 +191,43 @@
 
 
 
-<ul class="nav nav-tabs">
-
-  <li>
-    <a href="ConceptMap-cm-oid-specialite-ordinale.html">Narrative Content</a>
-  </li>
-
-
-
-  
-    <li>
-      <a href="ConceptMap-cm-oid-specialite-ordinale.xml.html">XML</a>
-    </li>
-  
-
-
-  
-    <li>
-      <a href="ConceptMap-cm-oid-specialite-ordinale.json.html">JSON</a>
-    </li>
-  
-
-
-  
-    <li>
-      <a href="ConceptMap-cm-oid-specialite-ordinale.ttl.html">TTL</a>
-    </li>
-  
-
-
-
-</ul>
-
-  <a name="root"> </a>
-  <h2 id="root">ConceptMap: ConceptMap - OID to URL for TRE_R38-SpecialiteOrdinale - Testing
-
-  </h2>
-
-
-  <table class="colsi">
-    <tr>
-
-      <td colspan="2">
-        
-          Active
-          
-            as of 2025-10-31
-          
-        
-      </td>
-
-    </tr>
-  </table>
 
 
 
 
-<!-- insert intro if present -->
+    <p><!-- white space is critical inside of capture --></p>
+<div>
+<!-- do not remove - needed to prevent Jekyll from adding a p tag to any non block level element in the markdown.-->
+</div>
+<p>Mapping entre les datatypes CDA et les datatypes FHIR</p>
 
-
-
-
-<h3>Test Plans</h3>
-
-  <p><b>No test plans are currently available for the  ConceptMap.</b></p>
-
-
-<h3>Test Scripts</h3>
-
-  <p><b>No test scripts are currently available for the  ConceptMap.</b></p>
-
-
-<!-- insert notes if present -->
-
-
-
+<table class="lines"><tr><td style="background-color: #eeeeee">CDA</td><td style="background-color: #eeeeee">FHIR</td></tr><tr><td><div><p>II.extension</p>
+</div></td><td><div><p>Identifier.value</p>
+</div></td></tr><tr><td><div><p>II.root</p>
+</div></td><td><div><p>Identifier.system</p>
+</div></td></tr><tr><td><div><p>II.root</p>
+</div></td><td><div><p>Identifier.value</p>
+</div></td></tr><tr><td><div><p>II.assigningAuthorityName</p>
+</div></td><td><div><p>Identifier.assigner.display</p>
+</div></td></tr><tr><td><div><p>II.displayable</p>
+</div></td><td><div><p>Identifier.extension(displayable)</p>
+</div></td></tr><tr><td><div><p>Male</p>
+</div></td><td><div><p>Male</p>
+</div></td></tr><tr><td><div><p>Female</p>
+</div></td><td><div><p>Female</p>
+</div></td></tr><tr><td><div><p>Undifferentiated</p>
+</div></td><td><div><p>Other</p>
+</div></td></tr><tr><td><div><p>Unknown</p>
+</div></td><td><div><p>Unknown</p>
+</div></td></tr><tr><td><div><p>urn:oid:1.2.
+250.1.213.1.1.4.5</p>
+</div></td><td><div><p>https://mos.esante.
+gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale</p>
+</div></td></tr><tr><td><div><p>1.2.
+250.1.213.1.1.4.5</p>
+</div></td><td><div><p>https://mos.esante.
+gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale</p>
+</div></td></tr></table>
 
 
 
@@ -281,7 +251,7 @@
             <tr>
               <td style="text-align:left">&#xA0;
 
-                <a href="ConceptMap-cm-oid-specialite-ordinale.html">&lt;prev</a>
+                <a href="change-log.html">&lt;prev</a>
 
               </td>
               <td style="text-align:center">
@@ -289,7 +259,7 @@
               </td>
               <td style="text-align:right">&#xA0;
 
-                <a href="ConceptMap-cm-oid-specialite-ordinale.xml.html">next&gt;</a>
+                <a href="artifacts.html">next&gt;</a>
 
               </td>
             </tr>

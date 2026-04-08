@@ -1,11 +1,11 @@
 CDA2FHIRMAP : Validation Results
 =========================================
 
-err = 102, warn = 101, info = 157
+err = 100, warn = 98, info = 157
 IG Publisher Version: 2.2.5
-Generated Wed Apr 08 13:28:10 UTC 2026. FHIR version 4.0.1 for ans.fhir.fr.mappingcdafhir#0.1.0 (canonical = https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir)
+Generated Wed Apr 08 14:52:26 UTC 2026. FHIR version 4.0.1 for ans.fhir.fr.mappingcdafhir#0.1.0 (canonical = https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir)
  Build Errors : 6 / 5 / 0
- /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaIIToIdentifierConceptMap : 8 / 11 / 1
+ /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaIIToIdentifierConceptMap : 6 / 8 / 1
  /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ImplementationGuide-ans.fhir.fr.mappingcdafhir : 2 / 2 / 1
  /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/input/attachments/CSE-MDE_2023.01 : 0 / 12 / 27
  /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/input/fml/CDAFrMDEToBundle : 5 / 0 / 19
@@ -38,16 +38,11 @@ WARNING: ConceptMap/CdaIIToIdentifierConceptMap: ConceptMap.group[0].element[0].
 WARNING: ConceptMap/CdaIIToIdentifierConceptMap: ConceptMap.group[0].element[0].target[0].code: The target display 'Identifier.value' for the code 'http://hl7.org/fhir/StructureDefinition/Identifier|4.0.1#Identifier.value' is not valid. Possible displays: 'The value that is unique'
 WARNING: ConceptMap/CdaIIToIdentifierConceptMap: ConceptMap.group[0].element[1].code: The source display 'II.root' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/II|2.0.0-sd#II.root' is not valid. Possible displays: 'Root'
 WARNING: ConceptMap/CdaIIToIdentifierConceptMap: ConceptMap.group[0].element[1].target[0].code: The target display 'Identifier.system' for the code 'http://hl7.org/fhir/StructureDefinition/Identifier|4.0.1#Identifier.system' is not valid. Possible displays: 'The namespace for the identifier value'
-ERROR: ConceptMap/CdaIIToIdentifierConceptMap: ConceptMap.group[0].element[2].code: The source code 'II.root-uuid' is not valid in the code system http://hl7.org/cda/stds/core/StructureDefinition/II|2.0.0-sd
-WARNING: ConceptMap/CdaIIToIdentifierConceptMap: ConceptMap.group[0].element[2].target[0].code: The target display 'Identifier.system' for the code 'http://hl7.org/fhir/StructureDefinition/Identifier|4.0.1#Identifier.system' is not valid. Possible displays: 'The namespace for the identifier value'
-WARNING: ConceptMap/CdaIIToIdentifierConceptMap: ConceptMap.group[0].element[2].target[1].code: The target display 'Identifier.value' for the code 'http://hl7.org/fhir/StructureDefinition/Identifier|4.0.1#Identifier.value' is not valid. Possible displays: 'The value that is unique'
-ERROR: ConceptMap/CdaIIToIdentifierConceptMap: ConceptMap.group[0].element[3].code: The source code 'II.root-oid' is not valid in the code system http://hl7.org/cda/stds/core/StructureDefinition/II|2.0.0-sd
-WARNING: ConceptMap/CdaIIToIdentifierConceptMap: ConceptMap.group[0].element[3].target[0].code: The target display 'Identifier.system' for the code 'http://hl7.org/fhir/StructureDefinition/Identifier|4.0.1#Identifier.system' is not valid. Possible displays: 'The namespace for the identifier value'
-WARNING: ConceptMap/CdaIIToIdentifierConceptMap: ConceptMap.group[0].element[3].target[1].code: The target display 'Identifier.value' for the code 'http://hl7.org/fhir/StructureDefinition/Identifier|4.0.1#Identifier.value' is not valid. Possible displays: 'The value that is unique'
-WARNING: ConceptMap/CdaIIToIdentifierConceptMap: ConceptMap.group[0].element[4].code: The source display 'II.assigningAuthorityName' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/II|2.0.0-sd#II.assigningAuthorityName' is not valid. Possible displays: 'Assigning Authority Name'
-ERROR: ConceptMap/CdaIIToIdentifierConceptMap: ConceptMap.group[0].element[4].target[0].code: The target code 'Identifier.assigner.display' is not valid in the code system http://hl7.org/fhir/StructureDefinition/Identifier|4.0.1
-WARNING: ConceptMap/CdaIIToIdentifierConceptMap: ConceptMap.group[0].element[5].code: The source display 'II.displayable' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/II|2.0.0-sd#II.displayable' is not valid. Possible displays: 'Displayable'
-WARNING: ConceptMap/CdaIIToIdentifierConceptMap: ConceptMap.group[0].element[5].target[0].code: The target display 'Identifier.extension(displayable)' for the code 'http://hl7.org/fhir/StructureDefinition/Identifier|4.0.1#Identifier.extension' is not valid. Possible displays: 'Additional content defined by implementations'
+WARNING: ConceptMap/CdaIIToIdentifierConceptMap: ConceptMap.group[0].element[1].target[1].code: The target display 'Identifier.value' for the code 'http://hl7.org/fhir/StructureDefinition/Identifier|4.0.1#Identifier.value' is not valid. Possible displays: 'The value that is unique'
+WARNING: ConceptMap/CdaIIToIdentifierConceptMap: ConceptMap.group[0].element[2].code: The source display 'II.assigningAuthorityName' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/II|2.0.0-sd#II.assigningAuthorityName' is not valid. Possible displays: 'Assigning Authority Name'
+ERROR: ConceptMap/CdaIIToIdentifierConceptMap: ConceptMap.group[0].element[2].target[0].code: The target code 'Identifier.assigner.display' is not valid in the code system http://hl7.org/fhir/StructureDefinition/Identifier|4.0.1
+WARNING: ConceptMap/CdaIIToIdentifierConceptMap: ConceptMap.group[0].element[3].code: The source display 'II.displayable' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/II|2.0.0-sd#II.displayable' is not valid. Possible displays: 'Displayable'
+WARNING: ConceptMap/CdaIIToIdentifierConceptMap: ConceptMap.group[0].element[3].target[0].code: The target display 'Identifier.extension(displayable)' for the code 'http://hl7.org/fhir/StructureDefinition/Identifier|4.0.1#Identifier.extension' is not valid. Possible displays: 'Additional content defined by implementations'
 ERROR: /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaIIToIdentifierConceptMap: URL Mismatch https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaIIToIdentifierConceptMap vs https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaIIToIdentifier
 == fsh-generated/resources/ImplementationGuide-ans.fhir.fr.mappingcdafhir.json ==
 ERROR: ImplementationGuide/ans.fhir.fr.mappingcdafhir: ImplementationGuide.jurisdiction[0].coding[0].display: Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')

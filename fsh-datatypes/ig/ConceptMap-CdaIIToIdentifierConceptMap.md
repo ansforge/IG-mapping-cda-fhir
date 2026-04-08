@@ -28,7 +28,7 @@ Correspondances entre les éléments du datatype CDA II et les éléments FHIR I
   "title" : "ConceptMap — CDA II vers FHIR Identifier",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-04-08T13:25:56+00:00",
+  "date" : "2026-04-08T14:49:56+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -54,7 +54,8 @@ Correspondances entre les éléments du datatype CDA II et les éléments FHIR I
       "target" : [{
         "code" : "Identifier.value",
         "display" : "Identifier.value",
-        "equivalence" : "equivalent"
+        "equivalence" : "equivalent",
+        "comment" : "Lorsque II.extension est présent, il alimente directement Identifier.value."
       }]
     },
     {
@@ -64,39 +65,13 @@ Correspondances entre les éléments du datatype CDA II et les éléments FHIR I
         "code" : "Identifier.system",
         "display" : "Identifier.system",
         "equivalence" : "relatedto",
-        "comment" : "Utilisé pour alimenter Identifier.system, généralement avec transformation (ex. urn:oid:)."
-      }]
-    },
-    {
-      "code" : "II.root-uuid",
-      "display" : "II.root (UUID sans extension)",
-      "target" : [{
-        "code" : "Identifier.system",
-        "display" : "Identifier.system",
-        "equivalence" : "relatedto",
-        "comment" : "Si II.root est un UUID et II.extension est absent, Identifier.system = 'urn:ietf:rfc:3986'."
+        "comment" : "Utilisé pour alimenter Identifier.system, généralement avec transformation vers un URI (par exemple urn:ietf:rfc:3986 ou urn:oid: selon le cas d’usage)."
       },
       {
         "code" : "Identifier.value",
         "display" : "Identifier.value",
         "equivalence" : "relatedto",
-        "comment" : "Si II.root est un UUID et II.extension est absent, Identifier.value = 'urn:uuid:' + lower(II.root)."
-      }]
-    },
-    {
-      "code" : "II.root-oid",
-      "display" : "II.root (OID sans extension)",
-      "target" : [{
-        "code" : "Identifier.system",
-        "display" : "Identifier.system",
-        "equivalence" : "relatedto",
-        "comment" : "Si II.root contient un OID et II.extension est absent, Identifier.system = 'urn:ietf:rfc:3986'."
-      },
-      {
-        "code" : "Identifier.value",
-        "display" : "Identifier.value",
-        "equivalence" : "relatedto",
-        "comment" : "Si II.root contient un OID et II.extension est absent, Identifier.value = 'urn:oid:' + II.root."
+        "comment" : "En l’absence de II.extension, Identifier.value peut être dérivé de II.root, par exemple sous la forme urn:uuid:[II.root] si II.root est un UUID, ou urn:oid:[II.root] si II.root est un OID."
       }]
     },
     {
