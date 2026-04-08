@@ -677,7 +677,8 @@ patient -&gt; patient.extension as ext then {
 
 <h4 id="6-conformité-aux-profils-fhir-cibles">6. Conformité aux profils FHIR cibles</h4>
 
-<p>La transformation ne vise pas uniquement à produire des ressources FHIR valides au sens générique du standard, mais doit également respecter les profils cibles utilisés dans le projet. Certains profils imposent des contraintes supplémentaires sur les cardinalités, les terminologies ou les extensions.</p>
+<p>La validation par rapport aux ressources FHIR internationale n'est pas suffisante pour garantir l'interopérabilité.
+La transformation doit respecter les profils cibles utilisés dans le projet. Elle doit notamment se conformer aux profils nationaux définis dans le cadre d'interopérabilité et dont l'usage est rendu obligatoire par le code de la santé publique imposent des contraintes supplémentaires sur les cardinalités, les terminologies ou les extensions.</p>
 
 <p><strong>Conséquences</strong> :</p>
 <ul>
@@ -896,7 +897,7 @@ imports "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaF
 
       <div class="inner-wrapper">
         <p>
-          IG &copy; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris</a>.  Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Wed, Apr 8, 2026 12:09+0000">2026-04-08</span>
+          IG &copy; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris</a>.  Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Wed, Apr 8, 2026 12:10+0000">2026-04-08</span>
           <br/>
           <span style="color: var(--footer-highlight-text-color)"></span>
             Liens : <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table des matières</a> |
