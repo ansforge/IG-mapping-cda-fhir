@@ -14,7 +14,7 @@ Le FHIR Mapping Language (FML) est un langage déclaratif développé par HL7 po
 
 * **Déclaratif** : On décrit *ce que* l'on veut obtenir plutôt que *comment* le faire
 * **Modulaire** : Possibilité d'importer et de réutiliser des mappings existants
-* **Type-safe** : Vérification des types lors de la compilation
+* **Type-safe** : Vérification des types nécessaires pour permettre la transformation
 * **Navigation XML/JSON** : Support natif pour parcourir des structures hiérarchiques
 
 
