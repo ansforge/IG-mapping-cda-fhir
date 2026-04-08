@@ -77,7 +77,9 @@ Le fichier principal de cette couche est `CdaFrToBundle.fml`.
 
 Cette couche applique les spécifications françaises au mapping générique CDA vers FHIR. Elle permet d’enrichir les ressources FHIR produites avec les profils, identifiants, terminologies et extensions attendus dans le cadre d’implémentation français.
 
-Les adaptations portées par cette couche concernent notamment : *l’application de profils français, par exemple `FR-Core` et `Annuaire Santé` ; *la gestion des identifiants nationaux, tels que `INS-NIR` pour le patient, `IDNPS` pour les professionnels de santé et `FINESS` pour les organisations ; *l’utilisation de terminologies nationales, notamment les jeux de valeurs `MOS` ; *l’ajout d’extensions ou de spécialisations propres au contexte français.
+Les adaptations portées par cette couche concernent notamment :
+
+* l’application de profils français, par exemple `FR-Core` et `Annuaire Santé` ; *la gestion des identifiants nationaux, tels que `INS-NIR` pour le patient, `IDNPS` pour les professionnels de santé et `FINESS` pour les organisations ; *l’utilisation de terminologies nationales, notamment les jeux de valeurs `MOS` ; *l’ajout d’extensions ou de spécialisations propres au contexte français.
 
 Cette couche s’applique aux ressources génériques déjà produites à partir de l’en-tête du document CDA. Elle ne redéfinit pas le mapping générique, mais complète les groupes existants lorsque cela est nécessaire afin d’isoler clairement les spécificités françaises.
 

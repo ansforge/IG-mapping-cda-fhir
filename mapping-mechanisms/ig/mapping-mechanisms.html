@@ -303,11 +303,13 @@ Elle ne contient ni logique métier, ni logique nationale, ni navigation dans la
 
 <p>Cette couche applique les spécifications françaises au mapping générique CDA vers FHIR. Elle permet d’enrichir les ressources FHIR produites avec les profils, identifiants, terminologies et extensions attendus dans le cadre d’implémentation français.</p>
 
-<p>Les adaptations portées par cette couche concernent notamment :
-*l’application de profils français, par exemple <code class="language-plaintext highlighter-rouge">FR-Core</code> et <code class="language-plaintext highlighter-rouge">Annuaire Santé</code> ;
+<p>Les adaptations portées par cette couche concernent notamment :</p>
+<ul>
+  <li>l’application de profils français, par exemple <code class="language-plaintext highlighter-rouge">FR-Core</code> et <code class="language-plaintext highlighter-rouge">Annuaire Santé</code> ;
 *la gestion des identifiants nationaux, tels que <code class="language-plaintext highlighter-rouge">INS-NIR</code> pour le patient, <code class="language-plaintext highlighter-rouge">IDNPS</code> pour les professionnels de santé et <code class="language-plaintext highlighter-rouge">FINESS</code> pour les organisations ;
 *l’utilisation de terminologies nationales, notamment les jeux de valeurs <code class="language-plaintext highlighter-rouge">MOS</code> ;
-*l’ajout d’extensions ou de spécialisations propres au contexte français.</p>
+*l’ajout d’extensions ou de spécialisations propres au contexte français.</li>
+</ul>
 
 <p>Cette couche s’applique aux ressources génériques déjà produites à partir de l’en-tête du document CDA. Elle ne redéfinit pas le mapping générique, mais complète les groupes existants lorsque cela est nécessaire afin d’isoler clairement les spécificités françaises.</p>
 
@@ -837,7 +839,7 @@ imports "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaF
   <li><a href="https://www.hl7.org/fhir/structuremap.html">FHIR StructureMap Resource</a></li>
   <li><a href="https://github.com/ahdis/matchbox">Matchbox Documentation</a></li>
   <li><a href="https://github.com/hl7ch/cda-fhir-maps">CDA to FHIR Maps (HL7 Suisse)</a></li>
-  <li><a name="l1358">​</a><a href="claude.html">Notes techniques de développement</a></li>
+  <li><a name="l1364">​</a><a href="claude.html">Notes techniques de développement</a></li>
 </ul>
 
 <h3 id="conclusion">Conclusion</h3>
