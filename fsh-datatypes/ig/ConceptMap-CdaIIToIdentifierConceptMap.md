@@ -28,7 +28,7 @@ Correspondances entre les éléments du datatype CDA II et les éléments FHIR I
   "title" : "ConceptMap — CDA II vers FHIR Identifier",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-04-08T14:49:56+00:00",
+  "date" : "2026-04-08T15:17:01+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -65,7 +65,7 @@ Correspondances entre les éléments du datatype CDA II et les éléments FHIR I
         "code" : "Identifier.system",
         "display" : "Identifier.system",
         "equivalence" : "relatedto",
-        "comment" : "Utilisé pour alimenter Identifier.system, généralement avec transformation vers un URI (par exemple urn:ietf:rfc:3986 ou urn:oid: selon le cas d’usage)."
+        "comment" : "Utilisé pour alimenter Identifier.system, généralement avec transformation vers un URI."
       },
       {
         "code" : "Identifier.value",
