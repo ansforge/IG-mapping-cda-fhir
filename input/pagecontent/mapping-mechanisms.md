@@ -472,7 +472,7 @@ Les documents CDA peuvent contenir des éléments présents dans la structure XM
 La transformation ne vise pas uniquement à produire des ressources FHIR valides au sens générique du standard, mais doit également respecter les profils cibles utilisés dans le projet. Certains profils imposent des contraintes supplémentaires sur les cardinalités, les terminologies ou les extensions.
 
 **Conséquences** :
-* une ressource techniquement valide en FHIR peut rester non conforme au profil cible ;
+* une ressource techniquement conforme aux ressources génériques internationales FHIR peut rester non conforme au profil cible ;
 * des règles complémentaires peuvent être nécessaires pour satisfaire certaines obligations métier ou nationales.
 
 **Recommandations** :
