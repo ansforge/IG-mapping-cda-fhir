@@ -549,7 +549,7 @@ La qualité d’une transformation repose sur la capacité à la tester sur des 
 
 #### 6. Traçabilité et débogage
 
-Lorsque la transformation mobilise plusieurs groupes répartis dans plusieurs fichiers, l’identification de la règle responsable d’un comportement inattendu peut devenir difficile. Une bonne traçabilité facilite l’analyse et la correction des erreurs.
+Lorsque la transformation mobilise plusieurs groupes répartis dans différents fichiers, il peut devenir difficile d’identifier la règle à l’origine d’un comportement inattendu. Une bonne lisibilité des groupes et des règles facilite alors l’analyse des erreurs et le débogage du mapping.
 
 **Recommandations** :
 * structurer les groupes de manière lisible ;
