@@ -96,7 +96,7 @@ Cette couche applique les spécifications françaises au mapping générique CDA
 Les adaptations portées par cette couche concernent notamment :
 * l’application de profils français, par exemple `FR-Core` et `Annuaire Santé` ;
 *la gestion des identifiants nationaux, tels que `INS-NIR` pour le patient, `IDNPS` pour les professionnels de santé et `FINESS` pour les organisations ;
-*l’utilisation de terminologies nationales, notamment les jeux de valeurs `MOS` ;
+*l’utilisation de terminologies nationales;
 *l’ajout d’extensions ou de spécialisations propres au contexte français.
 
 Cette couche s’applique aux ressources génériques déjà produites à partir de l’en-tête du document CDA. Elle ne redéfinit pas le mapping générique, mais complète les groupes existants lorsque cela est nécessaire afin d’isoler clairement les spécificités françaises.
