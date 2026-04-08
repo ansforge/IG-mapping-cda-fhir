@@ -471,7 +471,7 @@ La transformation ne vise pas uniquement à produire des ressources FHIR valides
 
 **Conséquences** :
 
-* une ressource techniquement valide en FHIR peut rester non conforme au profil cible ;
+* une ressource techniquement conforme aux ressources génériques internationales FHIR peut rester non conforme au profil cible ;
 * des règles complémentaires peuvent être nécessaires pour satisfaire certaines obligations métier ou nationales.
 
 **Recommandations** :
