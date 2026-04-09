@@ -1,0 +1,1926 @@
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML>
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
+    <title>null - JSON Representation - POC - Mapping CDA to FHIR v0.1.0</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="author" content="http://hl7.org/fhir"/>
+
+    <link href="fhir.css" rel="stylesheet"/>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap-fhir.css" rel="stylesheet"/>
+
+    <!-- Project extras -->
+    <link href="assets/css/project.css" rel="stylesheet"/>
+    <link href="assets/css/pygments-manni.css" rel="stylesheet"/>
+    <link href="assets/css/jquery-ui.css" rel="stylesheet"/>
+  	<link href="assets/css/prism.css" rel="stylesheet" />
+  	<link href="assets/css/cqf.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/style-ans.css"/>
+    <link rel="stylesheet" href="assets/css/style-add-ans.css"/>
+    <!-- Placeholder for child template CSS declarations -->
+
+    <script type="text/javascript" src="fhir-table-scripts.js"> </script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="assets/js/html5shiv.js"></script>
+    <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Favicons -->
+    <link rel="fhir-logo" sizes="144x144" href="assets/ico/icon-fhir-144.png"/>
+    <link rel="fhir-logo" sizes="114x114" href="assets/ico/icon-fhir-114.png"/>
+    <link rel="fhir-logo" sizes="72x72" href="assets/ico/icon-fhir-72.png"/>
+    <link rel="fhir-logo" href="assets/ico/icon-fhir-57.png"/>
+    <link rel="shortcut icon" href="assets/ico/favicon.png"/>
+  </head>
+  <body onload="document.body.style.opacity='1'">
+
+	  <script src="assets/js/prism.js"></script>
+    <script type="text/javascript" src="assets/js/mermaid.js"></script>
+    <script type="text/javascript" src="assets/js/mermaid-init.js"></script>
+    <style type="text/css">h2{--heading-prefix:"6.10"}
+    h3,h4,h5,h6{--heading-prefix:"6.10"}</style>
+    <div id="segment-header" class="segment">  <!-- segment-header -->
+      <div class="container">  <!-- container -->
+
+        <!-- Placeholder for child template header declarations -->
+<div id="family-nav">
+    <a id="hl7-search-lnk" data-no-external="true" href="http://hl7.org/fhir"><img height="50" alt="Visit the FHIR website" src="assets/images/fhir-logo-www.png"/> </a>
+  </div>
+  <div id="ans-nav" style="line-height: 50px; float: left; margin-top: 4px; margin-bottom: 8px; color: #808080; ">
+    <a id="hl7-logo" data-no-external="true" href="https://esante.gouv.fr/"><img height="50" alt="ANS Logo" src="assets/images/logo-ANS.svg"/></a>
+    <a id="hl7-search-lnk" data-no-external="true" href="searchform.html"><img alt="Search FHIR" src="assets/images/search.png"/></a>
+  </div>
+
+  <div id="ig-search">
+ </div>
+
+
+        <div id="ig-status">
+          <p><span style="font-size:12pt;font-weight:bold">POC - Mapping CDA to FHIR</span>
+            <br/>
+            <span style="display:inline-block;">0.1.0 - ci-build
+
+
+
+  FRANCE
+
+
+            </span>
+          </p>
+        </div>
+      </div> <!-- /container -->
+    </div>  <!-- /segment-header -->
+
+    <div id="segment-navbar" class="segment">  <!-- segment-navbar -->
+      <div id="stripe"> </div>
+      <div class="container">  <!-- container -->
+        <!-- HEADER CONTENT -->
+
+        <nav class="navbar navbar-inverse">
+          <!--status-bar-->
+          <div class="container">
+            <button data-target=".navbar-inverse-collapse" class="navbar-toggle" data-toggle="collapse" type="button">
+              <span class="icon-bar"> </span>
+              <span class="icon-bar"> </span>
+              <span class="icon-bar"> </span>
+            </button>
+            <a class="navbar-brand hidden" href="http://hl7.org/fhir/R4/index.html">FHIR</a>
+            <div class="nav-collapse collapse navbar-inverse-collapse">
+              <!-- menu.xml  -->
+
+<ul xmlns="http://www.w3.org/1999/xhtml" class="nav navbar-nav">
+  <li>
+    <a href="index.html">Accueil</a>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Mapping CDA vers FHIR
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="mapping-mechanisms.html">Mécanisme du Mapping</a>
+      </li>
+      <li>
+        <a href="guide-demarrage.html">Guide de démarrage</a>
+      </li>
+      <li>
+        <a href="outils-mapping.html">Outils de Mapping</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="artifacts.html">Ressources de conformité</a>
+  </li>
+  <li>
+    <a href="initiatives-internationales.html">Initiatives internationales</a>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Autres ressources
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a target="_blank" href="http://hl7.org/fhir/R4/index.html">Spécification FHIR</a>
+      </li>
+      <li>
+        <a target="_blank" href="https://esante.gouv.fr/">Site de l’ANS</a>
+      </li>
+      <li>
+        <a target="_blank" href="https://interop.esante.gouv.fr/ig/documentation/">Documentation</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+            </div>  <!-- /.nav-collapse -->
+          </div>  <!-- /.container -->
+        </nav>  <!-- /.navbar -->
+      <!-- /HEADER CONTENT -->
+      </div>  <!-- /container -->
+    </div>  <!-- /segment-navbar -->
+    <!--status-bar-->
+
+    <div id="segment-breadcrumb" class="segment">  <!-- segment-breadcrumb -->
+      <div class="container">  <!-- container -->
+        <ul class="breadcrumb">
+          <li><a href='toc.html'><b>Table of Contents</b></a></li><li><a href='artifacts.html'><b>Artifacts Summary</b></a></li><li><b></b></li>
+
+          <span style="float:right;">
+
+            <a href="Binary-CSE-MDE2023.01.xml.html">&lt;prev</a> | 
+
+            <a href="#bottom">bottom</a>
+
+          | <a href="Binary-CSE-MDE2023.01.ttl.html">next&gt;</a>
+
+          </span>
+
+        </ul>
+      </div>  <!-- /container -->
+    </div>  <!-- /segment-breadcrumb -->
+
+    <a name="top"> </a>
+    <div id="segment-content" class="segment">  <!-- segment-content -->
+      <div class="container">  <!-- container -->
+        <div class="row">
+          <div class="inner-wrapper">
+<div style="counter-reset: section 8" class="col-12">
+<!--ReleaseHeader--><p id="publish-box">POC - Mapping CDA to FHIR - version de développement local (intégration continue v0.1.0) construite par les outils de publication FHIR (HL7® FHIR® Standard). Voir le <a href='https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/history.html'>répertoire des versions publiées</a></p><!--EndReleaseHeader-->
+
+
+
+
+
+
+
+
+
+<ul class="nav nav-tabs">
+
+  <li>
+    <a href="Binary-CSE-MDE2023.01.html">Narrative Content</a>
+  </li>
+
+
+
+  
+    <li>
+      <a href="Binary-CSE-MDE2023.01.xml.html">XML</a>
+    </li>
+  
+
+
+  
+    <li class="active">
+      <a href="#">JSON</a>
+    </li>
+  
+
+
+  
+    <li>
+      <a href="Binary-CSE-MDE2023.01.ttl.html">TTL</a>
+    </li>
+  
+
+
+
+</ul>
+
+
+<a name="root"> </a>
+
+
+<h2 id="root">: null - JSON Representation</h2>
+
+
+<p><a href="Binary-CSE-MDE2023.01.json" no-download="true">Raw json</a> | <a href="Binary-CSE-MDE2023.01.json" download>Download</a></p>
+
+  <!-- insert intro if present -->
+  
+
+
+
+  <pre class="json" data-fhir="generated" style="white-space: pre; text-wrap: nowrap; width: auto;"><code class="language-json" style="white-space: pre; text-wrap: nowrap;">{
+  "<a href="http://build.fhir.org/types.html#Base#ClinicalDocument">resourceType</a>" : "ClinicalDocument",
+  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ClinicalDocument.html#ClinicalDocument.realmCode">realmCode</a>" : [
+    <span style="font-style: italic; color: grey">//  
+      **********************************************************************************************************
+      Document : Carnet de santé de l'enfant - Mesures de l'enfant (CSE-MDE_2023.01)
+      Auteur : ANS
+      **********************************************************************************************************
+      format HL7 - CDA Release 2 N3
+      **********************************************************************************************************
+      Historique :    
+      06/01/2023 : Création du document
+      ********************************************************************************************************** </span>
+    <span style="font-style: italic; color: grey">//  ************************************************************
+        En-tête du document        
+   ************************************************************* </span>
+    {
+      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CS.code">code</a>" : "FR"
+    }
+  ],
+  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ClinicalDocument.html#ClinicalDocument.typeId">typeId</a>" : <span style="font-style: italic; color: grey">//  Référencement au standard CDAr2 </span>
+  {
+    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#ClinicalDocument.typeId.extension">extension</a>" : "POCD_HD000040",
+    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#ClinicalDocument.typeId.root">root</a>" : "2.16.840.1.113883.1.3"
+  },
+  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ClinicalDocument.html#ClinicalDocument.templateId">templateId</a>" : [
+    <span style="font-style: italic; color: grey">//  Conformité spécifications HL7 France </span>
+    {
+      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "2.16.840.1.113883.2.8.2.1"
+    },
+    {
+      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "1.3.6.1.4.1.19376.1.5.3.1.1.1"
+    },
+    {
+      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "1.2.250.1.213.1.1.1.1"
+    },
+    {
+      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "1.2.250.1.213.1.1.1.5"
+    },
+    {
+      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.extension">extension</a>" : "2023.01",
+      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "1.2.250.1.213.1.1.1.5.4"
+    }
+  ],
+  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ClinicalDocument.html#ClinicalDocument.id">id</a>" : <span style="font-style: italic; color: grey">//  Conformité spécifications à IHE PCC </span>
+  <span style="font-style: italic; color: grey">//  Conformité spécifications au CI-SIS </span>
+  <span style="font-style: italic; color: grey">//  Conformité spécifications du CSE </span>
+  <span style="font-style: italic; color: grey">//  Conformité spécifications CSE-MDE_2023.01 </span>
+  <span style="font-style: italic; color: grey">//  Identifiant du document </span>
+  {
+    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "1.2.250.1.213.1.1.1.5.2023.1.1"
+  },
+  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ClinicalDocument.html#ClinicalDocument.code">code</a>" : <span style="font-style: italic; color: grey">//  Code du document </span>
+  {
+    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.code">code</a>" : "29274-8",
+    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.codeSystem">codeSystem</a>" : "2.16.840.1.113883.6.1",
+    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.displayName">displayName</a>" : "Mesures de signes vitaux"
+  },
+  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ClinicalDocument.html#ClinicalDocument.title">title</a>" : <span style="font-style: italic; color: grey">//  Titre du document </span>
+  {
+    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#ST.xmlText">xmlText</a>" : "Carnet de santé de l'enfant - Mesures de l'enfant"
+  },
+  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ClinicalDocument.html#ClinicalDocument.effectiveTime">effectiveTime</a>" : <span style="font-style: italic; color: grey">//  Date de production du document </span>
+  {
+    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TS.html#TS.value">value</a>" : "2023-01-06T11:36:23+01:00"
+  },
+  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ClinicalDocument.html#ClinicalDocument.confidentialityCode">confidentialityCode</a>" : <span style="font-style: italic; color: grey">//  Niveau de confidentialité du document </span>
+  {
+    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.code">code</a>" : "N",
+    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.codeSystem">codeSystem</a>" : "2.16.840.1.113883.5.25",
+    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.displayName">displayName</a>" : "Normal"
+  },
+  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ClinicalDocument.html#ClinicalDocument.languageCode">languageCode</a>" : <span style="font-style: italic; color: grey">//  Langage utilisé dans le document </span>
+  {
+    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CS.code">code</a>" : "fr-FR"
+  },
+  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ClinicalDocument.html#ClinicalDocument.setId">setId</a>" : <span style="font-style: italic; color: grey">//  Identifiant commun à toutes les versions successives du document </span>
+  {
+    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "1.2.250.1.213.1.1.1.5.4.2023.1"
+  },
+  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ClinicalDocument.html#ClinicalDocument.versionNumber">versionNumber</a>" : <span style="font-style: italic; color: grey">//  Numéro de la version du présent document (entier positif) </span>
+  {
+    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-INT.html#INT.value">value</a>" : 4
+  },
+  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ClinicalDocument.html#ClinicalDocument.recordTarget">recordTarget</a>" : [
+    <span style="font-style: italic; color: grey">//  Patient </span>
+    {
+      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-RecordTarget.html#RecordTarget.patientRole">patientRole</a>" : {
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-PatientRole.html#PatientRole.id">id</a>" : [
+          <span style="font-style: italic; color: grey">//  INS-NIR </span>
+          {
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.extension">extension</a>" : "222127505611201",
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "1.2.250.1.213.1.4.8"
+          },
+          {
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.extension">extension</a>" : "1234567890121",
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "1.2.3.4.5.6.7.8.9.10"
+          }
+        ],
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-PatientRole.html#PatientRole.addr">addr</a>" : [
+          <span style="font-style: italic; color: grey">//  IPP </span>
+          <span style="font-style: italic; color: grey">//  Adresse </span>
+          {
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item">item</a>" : [
+              {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.houseNumber">houseNumber</a>" : {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.houseNumber.xmlText">xmlText</a>" : "24"
+                }
+              },
+              {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.streetName">streetName</a>" : {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.streetName.xmlText">xmlText</a>" : "Avenue de Breteuil"
+                }
+              },
+              {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.postalCode">postalCode</a>" : {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.postalCode.xmlText">xmlText</a>" : "75007"
+                }
+              },
+              {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.city">city</a>" : {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.city.xmlText">xmlText</a>" : "PARIS"
+                }
+              },
+              {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.country">country</a>" : {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.country.xmlText">xmlText</a>" : "FRANCE"
+                }
+              }
+            ]
+          }
+        ],
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-PatientRole.html#PatientRole.telecom">telecom</a>" : [
+          {
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html#TEL.use">use</a>" : [
+              "H"
+            ],
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html#TEL.value">value</a>" : "tel:0147150000"
+          }
+        ],
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-PatientRole.html#PatientRole.patient">patient</a>" : {
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Patient.html#Patient.classCode">classCode</a>" : "PSN",
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Patient.html#Patient.name">name</a>" : [
+            {
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item">item</a>" : [
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item.family">family</a>" : [
+                    <span style="font-style: italic; color: grey">//  Nom et prénom(s) de naissance </span>
+                    {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#ENXP.xmlText">xmlText</a>" : "DECOURCY",
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ENXP.html#ENXP.qualifier">qualifier</a>" : [
+                        "BR"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item.given">given</a>" : [
+                    <span style="font-style: italic; color: grey">//  Prénoms de l’acte de naissance </span>
+                    {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#ENXP.xmlText">xmlText</a>" : "Ruth Isabelle"
+                    }
+                  ]
+                },
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item.given">given</a>" : [
+                    <span style="font-style: italic; color: grey">//  Premier prénom de l’acte de naissance </span>
+                    {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#ENXP.xmlText">xmlText</a>" : "Ruth",
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ENXP.html#ENXP.qualifier">qualifier</a>" : [
+                        "BR"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item.family">family</a>" : [
+                    <span style="font-style: italic; color: grey">//  Nom et prénom utilisés </span>
+                    {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#ENXP.xmlText">xmlText</a>" : "DECOURCY",
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ENXP.html#ENXP.qualifier">qualifier</a>" : [
+                        "CL"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item.given">given</a>" : [
+                    {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#ENXP.xmlText">xmlText</a>" : "Ruth",
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ENXP.html#ENXP.qualifier">qualifier</a>" : [
+                        "CL"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Patient.html#Patient.administrativeGenderCode">administrativeGenderCode</a>" : {
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.code">code</a>" : "F",
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.codeSystem">codeSystem</a>" : "2.16.840.1.113883.5.1",
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.displayName">displayName</a>" : "Féminin"
+          },
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Patient.html#Patient.birthTime">birthTime</a>" : {
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TS.html#TS.value">value</a>" : "2022-12-25"
+          },
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Patient.html#Patient.guardian">guardian</a>" : [
+            <span style="font-style: italic; color: grey">//  Représentant de l'enfant </span>
+            {
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Guardian.html#Guardian.addr">addr</a>" : [
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.use">use</a>" : [
+                    "H"
+                  ],
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item">item</a>" : [
+                    {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.houseNumber">houseNumber</a>" : {
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.houseNumber.xmlText">xmlText</a>" : "24"
+                      }
+                    },
+                    {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.streetName">streetName</a>" : {
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.streetName.xmlText">xmlText</a>" : "Avenue de Breteuil"
+                      }
+                    },
+                    {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.postalCode">postalCode</a>" : {
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.postalCode.xmlText">xmlText</a>" : "75007"
+                      }
+                    },
+                    {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.city">city</a>" : {
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.city.xmlText">xmlText</a>" : "PARIS"
+                      }
+                    },
+                    {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.country">country</a>" : {
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.country.xmlText">xmlText</a>" : "FRANCE"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Guardian.html#Guardian.telecom">telecom</a>" : [
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html#TEL.use">use</a>" : [
+                    "H"
+                  ],
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html#TEL.value">value</a>" : "tel:0147150000"
+                }
+              ],
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Guardian.html#Guardian.guardianPerson">guardianPerson</a>" : {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Person.html#Person.name">name</a>" : [
+                  {
+                    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item">item</a>" : [
+                      {
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item.prefix">prefix</a>" : [
+                          {
+                            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#ENXP.xmlText">xmlText</a>" : "MME"
+                          }
+                        ]
+                      },
+                      {
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item.family">family</a>" : [
+                          {
+                            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#ENXP.xmlText">xmlText</a>" : "DECOURCY"
+                          }
+                        ]
+                      },
+                      {
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item.given">given</a>" : [
+                          {
+                            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#ENXP.xmlText">xmlText</a>" : "Marie"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Patient.html#Patient.birthplace">birthplace</a>" : <span style="font-style: italic; color: grey">//  Lieu de naissance </span>
+          {
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Birthplace.html#Birthplace.place">place</a>" : {
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Place.html#Place.name">name</a>" : {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#EN.item">item</a>" : [
+                  {
+                    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#EN.item.xmlText">xmlText</a>" : "Centre Hospitalier Cochin"
+                  }
+                ]
+              },
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Place.html#Place.addr">addr</a>" : {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item">item</a>" : [
+                  {
+                    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.houseNumber">houseNumber</a>" : {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.houseNumber.xmlText">xmlText</a>" : "27"
+                    }
+                  },
+                  {
+                    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.streetName">streetName</a>" : {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.streetName.xmlText">xmlText</a>" : "Rue Faubourg Saint-Jacques"
+                    }
+                  },
+                  {
+                    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.postalCode">postalCode</a>" : {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.postalCode.xmlText">xmlText</a>" : "75014"
+                    }
+                  },
+                  {
+                    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.county">county</a>" : {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.county.xmlText">xmlText</a>" : "75056"
+                    }
+                  },
+                  {
+                    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.city">city</a>" : {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.city.xmlText">xmlText</a>" : "PARIS"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ClinicalDocument.html#ClinicalDocument.author">author</a>" : [
+    <span style="font-style: italic; color: grey">//  Auteur du document </span>
+    {
+      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Author.html#Author.time">time</a>" : {
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TS.html#TS.value">value</a>" : "2023-01-06T11:36:23+01:00"
+      },
+      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Author.html#Author.assignedAuthor">assignedAuthor</a>" : {
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AssignedAuthor.html#AssignedAuthor.id">id</a>" : [
+          {
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.extension">extension</a>" : "801234567897",
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "1.2.250.1.71.4.2.1"
+          }
+        ],
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AssignedAuthor.html#AssignedAuthor.code">code</a>" : {
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.code">code</a>" : "G15_10/SM40",
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.codeSystem">codeSystem</a>" : "1.2.250.1.213.1.1.4.5",
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.displayName">displayName</a>" : "Médecin - Pédiatrie (SM)"
+        },
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AssignedAuthor.html#AssignedAuthor.addr">addr</a>" : [
+          {
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item">item</a>" : [
+              {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.houseNumber">houseNumber</a>" : {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.houseNumber.xmlText">xmlText</a>" : "3"
+                }
+              },
+              {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.streetName">streetName</a>" : {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.streetName.xmlText">xmlText</a>" : "Rue Petit Pont"
+                }
+              },
+              {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.postalCode">postalCode</a>" : {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.postalCode.xmlText">xmlText</a>" : "75005"
+                }
+              },
+              {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.city">city</a>" : {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.city.xmlText">xmlText</a>" : "PARIS"
+                }
+              }
+            ]
+          }
+        ],
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AssignedAuthor.html#AssignedAuthor.telecom">telecom</a>" : [
+          {
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html#TEL.use">use</a>" : [
+              "WP"
+            ],
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html#TEL.value">value</a>" : "tel:0140404022"
+          }
+        ],
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AssignedAuthor.html#AssignedAuthor.assignedPerson">assignedPerson</a>" : {
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Person.html#Person.name">name</a>" : [
+            {
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item">item</a>" : [
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item.given">given</a>" : [
+                    {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#ENXP.xmlText">xmlText</a>" : "Charles"
+                    }
+                  ]
+                },
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item.family">family</a>" : [
+                    {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#ENXP.xmlText">xmlText</a>" : "MULLER"
+                    }
+                  ]
+                },
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item.prefix">prefix</a>" : [
+                    {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#ENXP.xmlText">xmlText</a>" : "M"
+                    }
+                  ]
+                },
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item.suffix">suffix</a>" : [
+                    {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#ENXP.xmlText">xmlText</a>" : "DR"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AssignedAuthor.html#AssignedAuthor.representedOrganization">representedOrganization</a>" : {
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Organization.html#Organization.id">id</a>" : [
+            {
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.extension">extension</a>" : "2801234567",
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "1.2.250.1.71.4.2.2"
+            }
+          ],
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Organization.html#Organization.name">name</a>" : [
+            {
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#ON.item">item</a>" : [
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#ON.item.xmlText">xmlText</a>" : "Centre de santé du Belvédère"
+                }
+              ]
+            }
+          ],
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Organization.html#Organization.telecom">telecom</a>" : [
+            {
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html#TEL.use">use</a>" : [
+                "WP"
+              ],
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html#TEL.value">value</a>" : "tel:0140404022"
+            }
+          ],
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Organization.html#Organization.addr">addr</a>" : [
+            {
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item">item</a>" : [
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.houseNumber">houseNumber</a>" : {
+                    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.houseNumber.xmlText">xmlText</a>" : "3"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.streetName">streetName</a>" : {
+                    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.streetName.xmlText">xmlText</a>" : "Rue Petit Pont"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.postalCode">postalCode</a>" : {
+                    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.postalCode.xmlText">xmlText</a>" : "75005"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.city">city</a>" : {
+                    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.city.xmlText">xmlText</a>" : "PARIS"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ClinicalDocument.html#ClinicalDocument.informant">informant</a>" : [
+    <span style="font-style: italic; color: grey">//  Informateur : la mère de l'enfant </span>
+    {
+      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Informant.html#Informant.relatedEntity">relatedEntity</a>" : {
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-RelatedEntity.html#RelatedEntity.classCode">classCode</a>" : "CON",
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-RelatedEntity.html#RelatedEntity.code">code</a>" : {
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.code">code</a>" : "MTH",
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.codeSystem">codeSystem</a>" : "2.16.840.1.113883.5.111",
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.displayName">displayName</a>" : "Mère"
+        },
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-RelatedEntity.html#RelatedEntity.addr">addr</a>" : [
+          {
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item">item</a>" : [
+              {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.streetAddressLine">streetAddressLine</a>" : {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.streetAddressLine.xmlText">xmlText</a>" : "24 Avenue de Breteuil"
+                }
+              },
+              {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.streetAddressLine">streetAddressLine</a>" : {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.streetAddressLine.xmlText">xmlText</a>" : "75007 PARIS"
+                }
+              }
+            ]
+          }
+        ],
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-RelatedEntity.html#RelatedEntity.telecom">telecom</a>" : [
+          {
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html#TEL.use">use</a>" : [
+              "H"
+            ],
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html#TEL.value">value</a>" : "tel:0147150000"
+          }
+        ],
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-RelatedEntity.html#RelatedEntity.relatedPerson">relatedPerson</a>" : {
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Person.html#Person.name">name</a>" : [
+            {
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item">item</a>" : [
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item.family">family</a>" : [
+                    {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#ENXP.xmlText">xmlText</a>" : "DECOURCY"
+                    }
+                  ]
+                },
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item.given">given</a>" : [
+                    {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#ENXP.xmlText">xmlText</a>" : "Marie"
+                    }
+                  ]
+                },
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item.prefix">prefix</a>" : [
+                    {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#ENXP.xmlText">xmlText</a>" : "MME"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Informant.html#Informant.relatedEntity">relatedEntity</a>" : {
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-RelatedEntity.html#RelatedEntity.classCode">classCode</a>" : "CON",
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-RelatedEntity.html#RelatedEntity.code">code</a>" : {
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.code">code</a>" : "FTH",
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.codeSystem">codeSystem</a>" : "2.16.840.1.113883.5.111",
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.displayName">displayName</a>" : "Père"
+        },
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-RelatedEntity.html#RelatedEntity.addr">addr</a>" : [
+          {
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item">item</a>" : [
+              {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.streetAddressLine">streetAddressLine</a>" : {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.streetAddressLine.xmlText">xmlText</a>" : "24 Avenue de Breteuil"
+                }
+              },
+              {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.streetAddressLine">streetAddressLine</a>" : {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.streetAddressLine.xmlText">xmlText</a>" : "75007 PARIS"
+                }
+              }
+            ]
+          }
+        ],
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-RelatedEntity.html#RelatedEntity.telecom">telecom</a>" : [
+          {
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html#TEL.use">use</a>" : [
+              "H"
+            ],
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html#TEL.value">value</a>" : "tel:0147150000"
+          }
+        ],
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-RelatedEntity.html#RelatedEntity.relatedPerson">relatedPerson</a>" : {
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Person.html#Person.name">name</a>" : [
+            {
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item">item</a>" : [
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item.family">family</a>" : [
+                    {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#ENXP.xmlText">xmlText</a>" : "DECOURCY"
+                    }
+                  ]
+                },
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item.given">given</a>" : [
+                    {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#ENXP.xmlText">xmlText</a>" : "Guillaume"
+                    }
+                  ]
+                },
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item.prefix">prefix</a>" : [
+                    {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#ENXP.xmlText">xmlText</a>" : "M"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Informant.html#Informant.relatedEntity">relatedEntity</a>" : {
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-RelatedEntity.html#RelatedEntity.classCode">classCode</a>" : "ECON",
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-RelatedEntity.html#RelatedEntity.code">code</a>" : {
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.code">code</a>" : "SIS",
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.codeSystem">codeSystem</a>" : "2.16.840.1.113883.5.111",
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.displayName">displayName</a>" : "Soeur"
+        },
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-RelatedEntity.html#RelatedEntity.addr">addr</a>" : [
+          {
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ANY.html#AD.nullFlavor">nullFlavor</a>" : "NAV"
+          }
+        ],
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-RelatedEntity.html#RelatedEntity.telecom">telecom</a>" : [
+          {
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html#TEL.use">use</a>" : [
+              "MC"
+            ],
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html#TEL.value">value</a>" : "tel:0647150100"
+          }
+        ],
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-RelatedEntity.html#RelatedEntity.relatedPerson">relatedPerson</a>" : {
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Person.html#Person.name">name</a>" : [
+            {
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item">item</a>" : [
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item.family">family</a>" : [
+                    {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#ENXP.xmlText">xmlText</a>" : "DECOURCY"
+                    }
+                  ]
+                },
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item.given">given</a>" : [
+                    {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#ENXP.xmlText">xmlText</a>" : "Sophie"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Informant.html#Informant.relatedEntity">relatedEntity</a>" : {
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-RelatedEntity.html#RelatedEntity.classCode">classCode</a>" : "NOK",
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-RelatedEntity.html#RelatedEntity.code">code</a>" : {
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.code">code</a>" : "SIS",
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.codeSystem">codeSystem</a>" : "2.16.840.1.113883.5.111",
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.displayName">displayName</a>" : "Soeur"
+        },
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-RelatedEntity.html#RelatedEntity.addr">addr</a>" : [
+          {
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ANY.html#AD.nullFlavor">nullFlavor</a>" : "NAV"
+          }
+        ],
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-RelatedEntity.html#RelatedEntity.telecom">telecom</a>" : [
+          {
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html#TEL.use">use</a>" : [
+              "MC"
+            ],
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html#TEL.value">value</a>" : "tel:0647150100"
+          }
+        ],
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-RelatedEntity.html#RelatedEntity.relatedPerson">relatedPerson</a>" : {
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Person.html#Person.name">name</a>" : [
+            {
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item">item</a>" : [
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item.family">family</a>" : [
+                    {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#ENXP.xmlText">xmlText</a>" : "DECOURCY"
+                    }
+                  ]
+                },
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item.given">given</a>" : [
+                    {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#ENXP.xmlText">xmlText</a>" : "Sophie"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ClinicalDocument.html#ClinicalDocument.custodian">custodian</a>" : <span style="font-style: italic; color: grey">//  Informateur : le père de l'enfant </span>
+  <span style="font-style: italic; color: grey">//  Personne à prévenir en cas d'urgence </span>
+  <span style="font-style: italic; color: grey">//  Personne de confiance </span>
+  <span style="font-style: italic; color: grey">//  Structure chargée de la conservation du document </span>
+  {
+    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Custodian.html#Custodian.assignedCustodian">assignedCustodian</a>" : {
+      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AssignedCustodian.html#AssignedCustodian.representedCustodianOrganization">representedCustodianOrganization</a>" : {
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CustodianOrganization.html#CustodianOrganization.id">id</a>" : [
+          {
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.extension">extension</a>" : "2801234567",
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "1.2.250.1.71.4.2.2"
+          }
+        ],
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CustodianOrganization.html#CustodianOrganization.name">name</a>" : {
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#ON.item">item</a>" : [
+            {
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#ON.item.xmlText">xmlText</a>" : "Centre de santé du Belvédère"
+            }
+          ]
+        },
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CustodianOrganization.html#CustodianOrganization.telecom">telecom</a>" : {
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html#TEL.use">use</a>" : [
+            "WP"
+          ],
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html#TEL.value">value</a>" : "tel:0140404022"
+        },
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CustodianOrganization.html#CustodianOrganization.addr">addr</a>" : {
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item">item</a>" : [
+            {
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.houseNumber">houseNumber</a>" : {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.houseNumber.xmlText">xmlText</a>" : "3"
+              }
+            },
+            {
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.streetName">streetName</a>" : {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.streetName.xmlText">xmlText</a>" : "Rue Petit Pont"
+              }
+            },
+            {
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.postalCode">postalCode</a>" : {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.postalCode.xmlText">xmlText</a>" : "75005"
+              }
+            },
+            {
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.city">city</a>" : {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.city.xmlText">xmlText</a>" : "PARIS"
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ClinicalDocument.html#ClinicalDocument.legalAuthenticator">legalAuthenticator</a>" : <span style="font-style: italic; color: grey">//  Responsable du document </span>
+  {
+    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-LegalAuthenticator.html#LegalAuthenticator.time">time</a>" : {
+      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TS.html#TS.value">value</a>" : "2023-01-06T11:36:23+01:00"
+    },
+    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-LegalAuthenticator.html#LegalAuthenticator.signatureCode">signatureCode</a>" : {
+      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CS.code">code</a>" : "S"
+    },
+    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-LegalAuthenticator.html#LegalAuthenticator.assignedEntity">assignedEntity</a>" : {
+      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AssignedEntity.html#AssignedEntity.id">id</a>" : [
+        {
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.extension">extension</a>" : "801234567897",
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "1.2.250.1.71.4.2.1"
+        }
+      ],
+      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AssignedEntity.html#AssignedEntity.code">code</a>" : {
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.code">code</a>" : "G15_10/SM40",
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.codeSystem">codeSystem</a>" : "1.2.250.1.213.1.1.4.5",
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.displayName">displayName</a>" : "Médecin - Pédiatrie (SM)"
+      },
+      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AssignedEntity.html#AssignedEntity.addr">addr</a>" : [
+        {
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item">item</a>" : [
+            {
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.houseNumber">houseNumber</a>" : {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.houseNumber.xmlText">xmlText</a>" : "3"
+              }
+            },
+            {
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.streetName">streetName</a>" : {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.streetName.xmlText">xmlText</a>" : "Rue Petit Pont"
+              }
+            },
+            {
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.postalCode">postalCode</a>" : {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.postalCode.xmlText">xmlText</a>" : "75005"
+              }
+            },
+            {
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.city">city</a>" : {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.city.xmlText">xmlText</a>" : "PARIS"
+              }
+            }
+          ]
+        }
+      ],
+      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AssignedEntity.html#AssignedEntity.telecom">telecom</a>" : [
+        {
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html#TEL.use">use</a>" : [
+            "WP"
+          ],
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html#TEL.value">value</a>" : "tel:0140404022"
+        }
+      ],
+      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AssignedEntity.html#AssignedEntity.assignedPerson">assignedPerson</a>" : {
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Person.html#Person.name">name</a>" : [
+          {
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item">item</a>" : [
+              {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item.given">given</a>" : [
+                  {
+                    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#ENXP.xmlText">xmlText</a>" : "Charles"
+                  }
+                ]
+              },
+              {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item.family">family</a>" : [
+                  {
+                    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#ENXP.xmlText">xmlText</a>" : "MULLER"
+                  }
+                ]
+              },
+              {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item.prefix">prefix</a>" : [
+                  {
+                    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#ENXP.xmlText">xmlText</a>" : "M"
+                  }
+                ]
+              },
+              {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item.suffix">suffix</a>" : [
+                  {
+                    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#ENXP.xmlText">xmlText</a>" : "DR"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AssignedEntity.html#AssignedEntity.representedOrganization">representedOrganization</a>" : {
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Organization.html#Organization.id">id</a>" : [
+          {
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.extension">extension</a>" : "2801234567",
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "1.2.250.1.71.4.2.2"
+          }
+        ],
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Organization.html#Organization.name">name</a>" : [
+          {
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#ON.item">item</a>" : [
+              {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#ON.item.xmlText">xmlText</a>" : "Centre de santé du Belvédère"
+              }
+            ]
+          }
+        ],
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Organization.html#Organization.telecom">telecom</a>" : [
+          {
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html#TEL.use">use</a>" : [
+              "WP"
+            ],
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html#TEL.value">value</a>" : "tel:0140404022"
+          }
+        ],
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Organization.html#Organization.addr">addr</a>" : [
+          {
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item">item</a>" : [
+              {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.houseNumber">houseNumber</a>" : {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.houseNumber.xmlText">xmlText</a>" : "3"
+                }
+              },
+              {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.streetName">streetName</a>" : {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.streetName.xmlText">xmlText</a>" : "Rue Petit Pont"
+                }
+              },
+              {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.postalCode">postalCode</a>" : {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.postalCode.xmlText">xmlText</a>" : "75005"
+                }
+              },
+              {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.city">city</a>" : {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.city.xmlText">xmlText</a>" : "PARIS"
+                }
+              }
+            ]
+          }
+        ],
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Organization.html#Organization.standardIndustryClassCode">standardIndustryClassCode</a>" : {
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.code">code</a>" : "ETABLISSEMENT",
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.codeSystem">codeSystem</a>" : "1.2.250.1.213.1.1.4.9",
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.displayName">displayName</a>" : "Etablissement de santé"
+        }
+      }
+    }
+  },
+  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ClinicalDocument.html#ClinicalDocument.participant">participant</a>" : [
+    <span style="font-style: italic; color: grey">//  Participant : Médecin traitant </span>
+    {
+      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Participant1.html#Participant1.typeCode">typeCode</a>" : "INF",
+      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Participant1.html#Participant1.functionCode">functionCode</a>" : {
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.code">code</a>" : "PCP",
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.codeSystem">codeSystem</a>" : "2.16.840.1.113883.5.88",
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.displayName">displayName</a>" : "Médecin traitant"
+      },
+      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Participant1.html#Participant1.time">time</a>" : {
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ANY.html#IVL_TS.nullFlavor">nullFlavor</a>" : "NA"
+      },
+      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Participant1.html#Participant1.associatedEntity">associatedEntity</a>" : {
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AssociatedEntity.html#AssociatedEntity.classCode">classCode</a>" : "PROV",
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AssociatedEntity.html#AssociatedEntity.id">id</a>" : [
+          {
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.extension">extension</a>" : "801234567897",
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "1.2.250.1.71.4.2.1"
+          }
+        ],
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AssociatedEntity.html#AssociatedEntity.code">code</a>" : {
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.code">code</a>" : "G15_10/SM54",
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.codeSystem">codeSystem</a>" : "1.2.250.1.213.1.1.4.5",
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.displayName">displayName</a>" : "Médecin - Médecine Générale (SM)"
+        },
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AssociatedEntity.html#AssociatedEntity.addr">addr</a>" : [
+          {
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item">item</a>" : [
+              {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.houseNumber">houseNumber</a>" : {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.houseNumber.xmlText">xmlText</a>" : "3"
+                }
+              },
+              {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.streetName">streetName</a>" : {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.streetName.xmlText">xmlText</a>" : "Rue Petit Pont"
+                }
+              },
+              {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.postalCode">postalCode</a>" : {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.postalCode.xmlText">xmlText</a>" : "75005"
+                }
+              },
+              {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.city">city</a>" : {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.city.xmlText">xmlText</a>" : "PARIS"
+                }
+              }
+            ]
+          }
+        ],
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AssociatedEntity.html#AssociatedEntity.telecom">telecom</a>" : [
+          {
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html#TEL.use">use</a>" : [
+              "WP"
+            ],
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html#TEL.value">value</a>" : "tel:0140404022"
+          }
+        ],
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AssociatedEntity.html#AssociatedEntity.associatedPerson">associatedPerson</a>" : {
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Person.html#Person.name">name</a>" : [
+            {
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item">item</a>" : [
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item.family">family</a>" : [
+                    {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#ENXP.xmlText">xmlText</a>" : "ANDRE"
+                    }
+                  ]
+                },
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item.given">given</a>" : [
+                    {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#ENXP.xmlText">xmlText</a>" : "Jacques"
+                    }
+                  ]
+                },
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item.prefix">prefix</a>" : [
+                    {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#ENXP.xmlText">xmlText</a>" : "M"
+                    }
+                  ]
+                },
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item.suffix">suffix</a>" : [
+                    {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#ENXP.xmlText">xmlText</a>" : "DR"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AssociatedEntity.html#AssociatedEntity.scopingOrganization">scopingOrganization</a>" : <span style="font-style: italic; color: grey">//  Etablissement de rattachement du PS </span>
+        {
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Organization.html#Organization.id">id</a>" : [
+            {
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.extension">extension</a>" : "2801234567",
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "1.2.250.1.71.4.2.2"
+            }
+          ],
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Organization.html#Organization.name">name</a>" : [
+            {
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#ON.item">item</a>" : [
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#ON.item.xmlText">xmlText</a>" : "Centre de santé du Belvédère"
+                }
+              ]
+            }
+          ],
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Organization.html#Organization.telecom">telecom</a>" : [
+            {
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html#TEL.use">use</a>" : [
+                "WP"
+              ],
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html#TEL.value">value</a>" : "tel:0140404022"
+            }
+          ],
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Organization.html#Organization.addr">addr</a>" : [
+            {
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item">item</a>" : [
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.houseNumber">houseNumber</a>" : {
+                    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.houseNumber.xmlText">xmlText</a>" : "3"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.streetName">streetName</a>" : {
+                    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.streetName.xmlText">xmlText</a>" : "Rue Petit Pont"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.postalCode">postalCode</a>" : {
+                    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.postalCode.xmlText">xmlText</a>" : "75005"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.city">city</a>" : {
+                    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.city.xmlText">xmlText</a>" : "PARIS"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ClinicalDocument.html#ClinicalDocument.documentationOf">documentationOf</a>" : [
+    <span style="font-style: italic; color: grey">//  Évènement documenté </span>
+    {
+      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-DocumentationOf.html#DocumentationOf.serviceEvent">serviceEvent</a>" : {
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ServiceEvent.html#ServiceEvent.classCode">classCode</a>" : "ACT",
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ServiceEvent.html#ServiceEvent.code">code</a>" : {
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.code">code</a>" : "11429006",
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.codeSystem">codeSystem</a>" : "2.16.840.1.113883.6.96",
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.codeSystemName">codeSystemName</a>" : "SNOMED CT",
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.displayName">displayName</a>" : "consultation"
+        },
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ServiceEvent.html#ServiceEvent.effectiveTime">effectiveTime</a>" : <span style="font-style: italic; color: grey">//  Date de l&quot;examen médical </span>
+        {
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-IVL-TS.html#IVL_TS.low">low</a>" : {
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TS.html#IVXB_TS.value">value</a>" : "2023-01-06T11:36:23+01:00"
+          }
+        },
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ServiceEvent.html#ServiceEvent.performer">performer</a>" : [
+          <span style="font-style: italic; color: grey">//  Médecin ayant réalisé la consultation </span>
+          {
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Performer1.html#Performer1.typeCode">typeCode</a>" : "PRF",
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Performer1.html#Performer1.assignedEntity">assignedEntity</a>" : {
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AssignedEntity.html#AssignedEntity.id">id</a>" : [
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.extension">extension</a>" : "801234567897",
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "1.2.250.1.71.4.2.1"
+                }
+              ],
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AssignedEntity.html#AssignedEntity.code">code</a>" : {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.code">code</a>" : "G15_10/SM40",
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.codeSystem">codeSystem</a>" : "1.2.250.1.213.1.1.4.5",
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.displayName">displayName</a>" : "Médecin - Pédiatrie (SM)"
+              },
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AssignedEntity.html#AssignedEntity.addr">addr</a>" : [
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item">item</a>" : [
+                    {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.houseNumber">houseNumber</a>" : {
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.houseNumber.xmlText">xmlText</a>" : "3"
+                      }
+                    },
+                    {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.streetName">streetName</a>" : {
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.streetName.xmlText">xmlText</a>" : "Rue Petit Pont"
+                      }
+                    },
+                    {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.postalCode">postalCode</a>" : {
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.postalCode.xmlText">xmlText</a>" : "75005"
+                      }
+                    },
+                    {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.city">city</a>" : {
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.city.xmlText">xmlText</a>" : "PARIS"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AssignedEntity.html#AssignedEntity.telecom">telecom</a>" : [
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html#TEL.value">value</a>" : "tel:0140404022"
+                }
+              ],
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AssignedEntity.html#AssignedEntity.assignedPerson">assignedPerson</a>" : {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Person.html#Person.name">name</a>" : [
+                  {
+                    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item">item</a>" : [
+                      {
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item.given">given</a>" : [
+                          {
+                            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#ENXP.xmlText">xmlText</a>" : "Charles"
+                          }
+                        ]
+                      },
+                      {
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item.family">family</a>" : [
+                          {
+                            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#ENXP.xmlText">xmlText</a>" : "MULLER"
+                          }
+                        ]
+                      },
+                      {
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item.prefix">prefix</a>" : [
+                          {
+                            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#ENXP.xmlText">xmlText</a>" : "M"
+                          }
+                        ]
+                      },
+                      {
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#PN.item.suffix">suffix</a>" : [
+                          {
+                            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#ENXP.xmlText">xmlText</a>" : "DR"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AssignedEntity.html#AssignedEntity.representedOrganization">representedOrganization</a>" : {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Organization.html#Organization.id">id</a>" : [
+                  {
+                    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.extension">extension</a>" : "2801234567",
+                    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "1.2.250.1.71.4.2.2"
+                  }
+                ],
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Organization.html#Organization.name">name</a>" : [
+                  {
+                    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#ON.item">item</a>" : [
+                      {
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#ON.item.xmlText">xmlText</a>" : "Centre de santé du Belvédère"
+                      }
+                    ]
+                  }
+                ],
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Organization.html#Organization.telecom">telecom</a>" : [
+                  {
+                    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html#TEL.value">value</a>" : "tel:0140404022"
+                  }
+                ],
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Organization.html#Organization.addr">addr</a>" : [
+                  {
+                    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item">item</a>" : [
+                      {
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.houseNumber">houseNumber</a>" : {
+                          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.houseNumber.xmlText">xmlText</a>" : "3"
+                        }
+                      },
+                      {
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.streetName">streetName</a>" : {
+                          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.streetName.xmlText">xmlText</a>" : "Rue Petit Pont"
+                        }
+                      },
+                      {
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.postalCode">postalCode</a>" : {
+                          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.postalCode.xmlText">xmlText</a>" : "75005"
+                        }
+                      },
+                      {
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.city">city</a>" : {
+                          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.city.xmlText">xmlText</a>" : "PARIS"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Organization.html#Organization.standardIndustryClassCode">standardIndustryClassCode</a>" : {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.code">code</a>" : "ETABLISSEMENT",
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.codeSystem">codeSystem</a>" : "1.2.250.1.213.1.1.4.9",
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.displayName">displayName</a>" : "Etablissement de santé"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ClinicalDocument.html#ClinicalDocument.componentOf">componentOf</a>" : <span style="font-style: italic; color: grey">//  Association du document à une prise en charge </span>
+  {
+    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ComponentOf.html#ComponentOf.encompassingEncounter">encompassingEncounter</a>" : {
+      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EncompassingEncounter.html#EncompassingEncounter.code">code</a>" : {
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.code">code</a>" : "AMB",
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.codeSystem">codeSystem</a>" : "2.16.840.1.113883.5.4",
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.displayName">displayName</a>" : "Ambulatoire (hors établissement)"
+      },
+      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EncompassingEncounter.html#EncompassingEncounter.effectiveTime">effectiveTime</a>" : {
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-IVL-TS.html#IVL_TS.low">low</a>" : {
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TS.html#IVXB_TS.value">value</a>" : "2023-01-06T11:15:10+01:00"
+        },
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-IVL-TS.html#IVL_TS.high">high</a>" : {
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TS.html#IVXB_TS.value">value</a>" : "2023-01-06T11:36:23+01:00"
+        }
+      },
+      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EncompassingEncounter.html#EncompassingEncounter.location">location</a>" : {
+        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EncompassingEncounter.html#EncompassingEncounter.location.healthCareFacility">healthCareFacility</a>" : {
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-HealthCareFacility.html#HealthCareFacility.code">code</a>" : {
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.code">code</a>" : "SA05",
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.codeSystem">codeSystem</a>" : "1.2.250.1.71.4.2.4",
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.displayName">displayName</a>" : "Centre de santé"
+          },
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-HealthCareFacility.html#HealthCareFacility.location">location</a>" : {
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Place.html#Place.name">name</a>" : {
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#EN.item">item</a>" : [
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#EN.item.xmlText">xmlText</a>" : "Centre de santé du Belvédère"
+                }
+              ]
+            },
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Place.html#Place.addr">addr</a>" : {
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item">item</a>" : [
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.houseNumber">houseNumber</a>" : {
+                    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.houseNumber.xmlText">xmlText</a>" : "3"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.streetName">streetName</a>" : {
+                    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.streetName.xmlText">xmlText</a>" : "Rue Petit Pont"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.postalCode">postalCode</a>" : {
+                    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.postalCode.xmlText">xmlText</a>" : "75005"
+                  }
+                },
+                {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.city">city</a>" : {
+                    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#AD.item.city.xmlText">xmlText</a>" : "PARIS"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ClinicalDocument.html#ClinicalDocument.component">component</a>" : <span style="font-style: italic; color: grey">//  ************************************************************
+        Corps du document
+   ************************************************************* </span>
+  {
+    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Component.html#Component.structuredBody">structuredBody</a>" : {
+      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-StructuredBody.html#StructuredBody.component">component</a>" : [
+        <span style="font-style: italic; color: grey">//  [1..1] Section FR-Signes-vitaux </span>
+        {
+          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-StructuredBody.html#StructuredBody.component.section">section</a>" : {
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-InfrastructureRoot.html#Section.templateId">templateId</a>" : [
+              <span style="font-style: italic; color: grey">//  Conformité Vital Signs Section (CCD) </span>
+              {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "2.16.840.1.113883.10.20.1.16"
+              },
+              {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "1.3.6.1.4.1.19376.1.5.3.1.3.25"
+              },
+              {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "1.3.6.1.4.1.19376.1.5.3.1.1.5.3.2"
+              },
+              {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "1.2.250.1.213.1.1.2.75"
+              }
+            ],
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Section.html#Section.id">id</a>" : <span style="font-style: italic; color: grey">//  Conformité Vital Signs (IHE PCC) </span>
+            <span style="font-style: italic; color: grey">//  Conformité Coded Vital Signs (IHE PCC) </span>
+            <span style="font-style: italic; color: grey">//  Conformité FR-Signes-vitaux (CI-SIS) </span>
+            {
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "2022BE76-7CC9-11EB-9439-0242AC130026"
+            },
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Section.html#Section.code">code</a>" : {
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.code">code</a>" : "8716-3",
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.codeSystem">codeSystem</a>" : "2.16.840.1.113883.6.1",
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.codeSystemName">codeSystemName</a>" : "LOINC",
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CE.displayName">displayName</a>" : "Signes vitaux"
+            },
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Section.html#Section.title">title</a>" : {
+              "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#ST.xmlText">xmlText</a>" : "Signes vitaux"
+            },
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Section.html#Section.text">text</a>" : "&lt;div xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot;&gt;&lt;table border=\&quot;0\&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th colspan=\&quot;2\&quot;&gt;Mesures&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Poids&lt;/td&gt;&lt;td&gt;&lt;span id=\&quot;poids\&quot;&gt;3900 g&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Taille&lt;/td&gt;&lt;td&gt;&lt;span id=\&quot;taille\&quot;&gt;52 cm&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Périmètre crânien&lt;/td&gt;&lt;td&gt;&lt;span id=\&quot;crane\&quot;&gt;35 cm&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;",
+            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Section.html#Section.entry">entry</a>" : [
+              <span style="font-style: italic; color: grey">//  [1..1] Entrée FR-Signes-vitaux </span>
+              {
+                "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Entry.html#Entry.organizer">organizer</a>" : {
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Organizer.html#Organizer.classCode">classCode</a>" : "CLUSTER",
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Organizer.html#Organizer.moodCode">moodCode</a>" : "EVN",
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-InfrastructureRoot.html#Organizer.templateId">templateId</a>" : [
+                    <span style="font-style: italic; color: grey">//  Conformité Result organizer (CCD) </span>
+                    {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "2.16.840.1.113883.10.20.1.32"
+                    },
+                    {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "2.16.840.1.113883.10.20.1.35"
+                    },
+                    {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "1.3.6.1.4.1.19376.1.5.3.1.4.13.1"
+                    },
+                    {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "1.2.250.1.213.1.1.3.49"
+                    }
+                  ],
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Organizer.html#Organizer.id">id</a>" : [
+                    <span style="font-style: italic; color: grey">//  Conformité Vital signs organizer (CCD) </span>
+                    <span style="font-style: italic; color: grey">//  Conformité Vital Signs Organizer (IHE PCC) </span>
+                    <span style="font-style: italic; color: grey">//  Conformité FR-Signes-vitaux (CI-SIS) </span>
+                    {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "2022BE76-7CC9-11EB-9439-0242AC130027"
+                    }
+                  ],
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Organizer.html#Organizer.code">code</a>" : {
+                    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CD.code">code</a>" : "85353-1",
+                    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CD.codeSystem">codeSystem</a>" : "2.16.840.1.113883.6.1",
+                    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CD.codeSystemName">codeSystemName</a>" : "LOINC",
+                    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CD.displayName">displayName</a>" : "Signes vitaux"
+                  },
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Organizer.html#Organizer.statusCode">statusCode</a>" : {
+                    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CS.code">code</a>" : "completed"
+                  },
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Organizer.html#Organizer.effectiveTime">effectiveTime</a>" : {
+                    "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TS.html#IVL_TS.value">value</a>" : "2021-02-11"
+                  },
+                  "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Organizer.html#Organizer.component">component</a>" : [
+                    <span style="font-style: italic; color: grey">//  Entrée FR-Signe-vital-observe : Poids (g) </span>
+                    {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-OrganizerComponent.html#OrganizerComponent.typeCode">typeCode</a>" : "COMP",
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-OrganizerComponent.html#OrganizerComponent.observation">observation</a>" : {
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Observation.html#Observation.classCode">classCode</a>" : "OBS",
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Observation.html#Observation.moodCode">moodCode</a>" : "EVN",
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-InfrastructureRoot.html#Observation.templateId">templateId</a>" : [
+                          <span style="font-style: italic; color: grey">//  Conformité Result observation (CCD) </span>
+                          {
+                            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "2.16.840.1.113883.10.20.1.31"
+                          },
+                          {
+                            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "1.3.6.1.4.1.19376.1.5.3.1.4.13"
+                          },
+                          {
+                            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "1.3.6.1.4.1.19376.1.5.3.1.4.13.2"
+                          },
+                          {
+                            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "1.2.250.1.213.1.1.3.50"
+                          }
+                        ],
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Observation.html#Observation.id">id</a>" : [
+                          <span style="font-style: italic; color: grey">//  Conformité Simple Observation (IHE PCC) </span>
+                          <span style="font-style: italic; color: grey">//  Conformité Vital Signs Observation (IHE PCC) </span>
+                          <span style="font-style: italic; color: grey">//  Conformité FR-Signe-vital-observé (CI-SIS) </span>
+                          {
+                            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "2022BE76-7CC9-11EB-9439-0242AC130028"
+                          }
+                        ],
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Observation.html#Observation.code">code</a>" : {
+                          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CD.code">code</a>" : "29463-7",
+                          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CD.codeSystem">codeSystem</a>" : "2.16.840.1.113883.6.1",
+                          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CD.codeSystemName">codeSystemName</a>" : "LOINC",
+                          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CD.displayName">displayName</a>" : "Poids"
+                        },
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Observation.html#Observation.text">text</a>" : {
+                          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ED.html#ED.reference">reference</a>" : {
+                            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html#TEL.value">value</a>" : "#poids"
+                          }
+                        },
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Observation.html#Observation.statusCode">statusCode</a>" : {
+                          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CS.code">code</a>" : "completed"
+                        },
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Observation.html#Observation.effectiveTime">effectiveTime</a>" : {
+                          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ANY.html#IVL_TS.nullFlavor">nullFlavor</a>" : "NASK"
+                        },
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Observation.html#Observation.value">value</a>" : [
+                          {
+                            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-PQ.html#PQ.unit">unit</a>" : "g",
+                            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-PQ.html#PQ.value">value</a>" : 3900
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-OrganizerComponent.html#OrganizerComponent.typeCode">typeCode</a>" : "COMP",
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-OrganizerComponent.html#OrganizerComponent.observation">observation</a>" : {
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Observation.html#Observation.classCode">classCode</a>" : "OBS",
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Observation.html#Observation.moodCode">moodCode</a>" : "EVN",
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-InfrastructureRoot.html#Observation.templateId">templateId</a>" : [
+                          <span style="font-style: italic; color: grey">//  Conformité Result observation (CCD) </span>
+                          {
+                            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "2.16.840.1.113883.10.20.1.31"
+                          },
+                          {
+                            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "1.3.6.1.4.1.19376.1.5.3.1.4.13"
+                          },
+                          {
+                            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "1.3.6.1.4.1.19376.1.5.3.1.4.13.2"
+                          },
+                          {
+                            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "1.2.250.1.213.1.1.3.50"
+                          }
+                        ],
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Observation.html#Observation.id">id</a>" : [
+                          <span style="font-style: italic; color: grey">//  Conformité Simple Observation (IHE PCC) </span>
+                          <span style="font-style: italic; color: grey">//  Conformité Vital Signs Observation (IHE PCC) </span>
+                          <span style="font-style: italic; color: grey">//  Conformité FR-Signe-vital-observé (CI-SIS) </span>
+                          {
+                            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "2022BE76-7CC9-11EB-9439-0242AC130029"
+                          }
+                        ],
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Observation.html#Observation.code">code</a>" : {
+                          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CD.code">code</a>" : "8302-2",
+                          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CD.codeSystem">codeSystem</a>" : "2.16.840.1.113883.6.1",
+                          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CD.codeSystemName">codeSystemName</a>" : "LOINC",
+                          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CD.displayName">displayName</a>" : "Taille"
+                        },
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Observation.html#Observation.text">text</a>" : {
+                          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ED.html#ED.reference">reference</a>" : {
+                            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html#TEL.value">value</a>" : "#taille"
+                          }
+                        },
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Observation.html#Observation.statusCode">statusCode</a>" : {
+                          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CS.code">code</a>" : "completed"
+                        },
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Observation.html#Observation.effectiveTime">effectiveTime</a>" : {
+                          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ANY.html#IVL_TS.nullFlavor">nullFlavor</a>" : "NASK"
+                        },
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Observation.html#Observation.value">value</a>" : [
+                          {
+                            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-PQ.html#PQ.unit">unit</a>" : "cm",
+                            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-PQ.html#PQ.value">value</a>" : 52
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-OrganizerComponent.html#OrganizerComponent.typeCode">typeCode</a>" : "COMP",
+                      "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-OrganizerComponent.html#OrganizerComponent.observation">observation</a>" : {
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Observation.html#Observation.classCode">classCode</a>" : "OBS",
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Observation.html#Observation.moodCode">moodCode</a>" : "EVN",
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-InfrastructureRoot.html#Observation.templateId">templateId</a>" : [
+                          <span style="font-style: italic; color: grey">//  Conformité Result observation (CCD) </span>
+                          {
+                            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "2.16.840.1.113883.10.20.1.31"
+                          },
+                          {
+                            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "1.3.6.1.4.1.19376.1.5.3.1.4.13"
+                          },
+                          {
+                            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "1.3.6.1.4.1.19376.1.5.3.1.4.13.2"
+                          },
+                          {
+                            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "1.2.250.1.213.1.1.3.50"
+                          }
+                        ],
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Observation.html#Observation.id">id</a>" : [
+                          <span style="font-style: italic; color: grey">//  Conformité Simple Observation (IHE PCC) </span>
+                          <span style="font-style: italic; color: grey">//  Conformité Vital Signs Observation (IHE PCC) </span>
+                          <span style="font-style: italic; color: grey">//  Conformité FR-Signe-vital-observé (CI-SIS) </span>
+                          {
+                            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#II.root">root</a>" : "2022BE76-7CC9-11EB-9439-0242AC130030"
+                          }
+                        ],
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Observation.html#Observation.code">code</a>" : {
+                          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CD.code">code</a>" : "8287-5",
+                          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CD.codeSystem">codeSystem</a>" : "2.16.840.1.113883.6.1",
+                          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CD.codeSystemName">codeSystemName</a>" : "LOINC",
+                          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CD.displayName">displayName</a>" : "Périmètre crânien"
+                        },
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Observation.html#Observation.text">text</a>" : {
+                          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ED.html#ED.reference">reference</a>" : {
+                            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html#TEL.value">value</a>" : "#crane"
+                          }
+                        },
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Observation.html#Observation.statusCode">statusCode</a>" : {
+                          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CS.code">code</a>" : "completed"
+                        },
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Observation.html#Observation.effectiveTime">effectiveTime</a>" : {
+                          "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ANY.html#IVL_TS.nullFlavor">nullFlavor</a>" : "NASK"
+                        },
+                        "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Observation.html#Observation.value">value</a>" : [
+                          {
+                            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-PQ.html#PQ.unit">unit</a>" : "cm",
+                            "<a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-PQ.html#PQ.value">value</a>" : 35
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}</code></pre>
+
+
+  <!-- insert notes if present -->
+  
+
+
+
+</div>
+        </div>  <!-- /inner-wrapper -->
+      </div>  <!-- /row -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-content -->
+
+  <script type="text/javascript" src="assets/js/jquery.js"> </script>     <!-- note keep space here, otherwise it will be transformed to empty tag -> fails -->
+  <script type="text/javascript" src="assets/js/jquery-ui.min.js"> </script>
+
+<script type="text/javascript" src="assets/js/window-hash.js"> </script>
+  <a name="bottom"> </a>
+  <div id="segment-footer" igtool="footer" class="segment">  <!-- segment-footer -->
+    <div class="container">  <!-- container -->
+
+      <div style="background-color:var(--footer-nav-bg-color)">
+        <table style="width:100%">
+          <tbody>
+            <tr>
+              <td style="text-align:left">&#xA0;
+
+                <a href="Binary-CSE-MDE2023.01.xml.html">&lt;prev</a>
+
+              </td>
+              <td style="text-align:center">
+                <a href="#top">top</a>
+              </td>
+              <td style="text-align:right">&#xA0;
+
+                <a href="Binary-CSE-MDE2023.01.ttl.html">next&gt;</a>
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="inner-wrapper">
+        <p>
+          IG &#169; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d&#39;Oradour-sur-Glane, 75015 Paris</a>.  Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Thu, Apr 9, 2026 14:27+0000">2026-04-09</span>
+          <br/>
+          <span style="color: var(--footer-highlight-text-color)"></span>
+            Liens : <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table des matières</a> |
+<a style="color: var(--footer-hyperlink-text-color)" href="qa.html">QA</a> |
+<a style="color: var(--footer-hyperlink-text-color)" target="_blank" href="https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/history.html">Historique des versions</a>
+<a style="color: var(--footer-hyperlink-text-color)" target="_blank" href="https://interop.esante.gouv.fr/ig/documentation">Documentation</a>
+ | <a style="color: var(--footer-hyperlink-text-color)" target="_blank" href="https://github.com/ansforge/IG-mapping-cda-fhir/issues/new">New Issue</a>
+
+          </span>
+        </p>
+      </div>  <!-- /inner-wrapper -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-footer -->
+  
+  <div id="segment-post-footer" class="segment hidden">  <!-- segment-post-footer -->
+    <div class="container">  <!-- container -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-post-footer -->
+  
+  <!-- JS and analytics only. -->
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script type="text/javascript" src="assets/js/bootstrap.min.js"> </script>
+  <script type="text/javascript" src="assets/js/respond.min.js"> </script>
+  <script type="text/javascript" src="assets/js/anchor.min.js"> </script>
+  <script type="text/javascript" src="assets/js/clipboard.min.js"> </script>
+  <script type="text/javascript" src="assets/js/clipboard-btn.js"> </script>
+
+  <!-- Ajout ANS -->
+  <script src="assets/js/app.js" type="text/javascript"> </script>
+  <script src="assets/js/vendor.js" type="text/javascript"> </script>
+  <!-- Fin ajout ANS -->
+
+  <script type="text/javascript" src="assets/js/anchor-hover.js"> </script>
+  
+
+  <!-- Analytics Below
+  ================================================== -->
+
+
+  <!-- AJOUT ANS -->
+
+<footer class="footer footer-principal" role="contentinfo">
+  <div class="footer__region1">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md-6 col-lg-4 text-center text-md-left">
+          <div class="logos">        
+            <div class="logo logo--0">
+              <a href="https://solidarites-sante.gouv.fr" title="Ministère des Solidarités et de la Santé (nouvelle fenêtre)" target="_blank" rel="nofollow">
+                
+                <img src="assets/images/logo-ministere.svg" alt="Ministère des Solidarités et de la Santé" width="133" height="77" loading="lazy" />
+                
+              </a>
+            </div>
+        
+            <div class="logo logo--1">
+              <a href="https://esante.gouv.fr/" title="Agence du numérique en santé (nouvelle fenêtre)" target="_blank" rel="nofollow">
+                
+                <img src="assets/images/logo-ANS-footer.svg" alt="Agence du numérique en santé" width="106" height="74" loading="lazy" />
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4 text-center text-md-left">
+          <p class="footer__title">Agence du Numérique en Santé</p>
+          <p>2-10 Rue d'Oradour-sur-Glane 75015 Paris</p>
+
+          <!-- <div class="m-social">
+            <ul class="m-social__list">        
+              <li class="m-social__item">
+                <a class="m-social__link" href="https://www.linkedin.com/company/agence-du-numerique-en-sante/" target="_blank" rel="nofollow">
+                  <div class="m-social__icon">
+                    <svg class="svg-icon svg-linkedin" aria-hidden="true" focusable="false"><use href="assets/images/icon-sprite.svg#linkedin"></use></svg>
+                  </div>
+                  <span class="sr-only">linkedin</span>
+                </a>
+              </li>
+              <li class="m-social__item">
+                <a class="m-social__link" href="https://twitter.com/esante_gouv_fr" target="_blank" rel="nofollow">
+                  <div class="m-social__icon">
+                    <svg class="svg-icon svg-twitter" aria-hidden="true" focusable="false"><use href="assets/images/icon-sprite.svg#twitter"></use></svg>
+                  </div>
+                  <span class="sr-only">twitter</span>
+                </a>
+              </li>
+              <li class="m-social__item">
+                <a class="m-social__link" href="https://www.youtube.com/channel/UCd1zuSaU5cE1lRCpwv_HSMA" target="_blank" rel="nofollow">
+                  <div class="m-social__icon">
+                    <svg class="svg-icon svg-youtube" aria-hidden="true" focusable="false"><use href="assets/images/icon-sprite.svg#youtube"></use></svg>
+                  </div>
+                  <span class="sr-only">youtube</span>
+                </a>
+              </li>
+              <li class="m-social__item">
+                <a class="m-social__link" href="https://esante.gouv.fr/rss.xml" target="_blank" rel="nofollow">
+                  <div class="m-social__icon">
+                    <svg class="svg-icon svg-rss" aria-hidden="true" focusable="false"><use href="assets/images/icon-sprite.svg#rss"></use></svg>
+                  </div>
+                  <span class="sr-only">rss</span>
+                </a>
+              </li>
+            </ul>
+          </div> -->
+        </div>
+        
+        <div class="col-6 col-lg-4">
+          <ul class="footer-list">
+            <li class="footer-list__item footer-list__item--hasIcon">
+              <a href="mailto:ci-sis@esante.gouv.fr" class="mailto-link">
+                <svg class="svg-icon svg-angle-right" aria-hidden="true" focusable="false"><use href="assets/images/icon-sprite.svg#angle-right"></use></svg>Contact</a>
+              </li>
+              <!-- <li class="footer-list__item">
+                <a href="https://interop-pprod.esante.gouv.fr/ci-sis-specifications/wp-content/uploads/CGU_espace_de_tests_v1.1.pdf" class="file-link">Mentions légales</a>
+              </li>
+               -->
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    
+    <!-- <div class="footer__region2">
+      <div class="container">
+        <div class="footer-contentinfo">
+          <ul class="footer-list footer-list--inline">
+
+          </ul>
+        </div>
+      </div>
+    </div> -->
+  </footer>
+  </body>
+</html>
+
