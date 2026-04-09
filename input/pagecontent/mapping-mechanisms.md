@@ -4,73 +4,159 @@ layout: default
 active: mapping-mechanisms
 ---
 
-# Mécanismes de mapping CDA vers FHIR
-
 Cette page explique les différents mécanismes utilisés pour transformer des documents CDA (Clinical Document Architecture) en ressources FHIR à l'aide du FHIR Mapping Language (FML).
 
-## Vue d'ensemble du FHIR Mapping Language
+### Vue d'ensemble du FHIR Mapping Language
 
 Le FHIR Mapping Language (FML) est un langage déclaratif développé par HL7 pour transformer des données structurées d'un format à un autre. Il permet de définir des règles de transformation complexes de manière lisible et maintenable.
 
-### Caractéristiques principales
+#### Caractéristiques principales
 
 * **Déclaratif** : On décrit *ce que* l'on veut obtenir plutôt que *comment* le faire
 * **Modulaire** : Possibilité d'importer et de réutiliser des mappings existants
-* **Type-safe** : Vérification des types lors de la compilation
+* **Type-safe** : Vérification des types nécessaires pour permettre la transformation
 * **Navigation XML/JSON** : Support natif pour parcourir des structures hiérarchiques
 
-## Architecture des mappings
 
-### Structure en couches
+### Organisation des mappings en couches
 
-Les mappings sont organisés en couches de réutilisabilité :
+#### Structure générale
 
+Les mappings CDA vers FHIR sont organisés en couches afin de séparer les responsabilités et de faciliter la réutilisation des transformations.
+Chaque couche couvre un niveau précis du mapping et s’appuie sur les couches inférieure.
 ```
-┌─────────────────────────────────────┐
-│   CDAFrMDEToBundle.fml              │  ← Mappings spécifiques métier
-│   (Carnet de Santé Enfant)         │
-└─────────────────────────────────────┘
-              ↓ uses
-┌─────────────────────────────────────┐
-│   CDAFrToBundle.fml                 │  ← Mappings français génériques
-│   (Identifiants INS-NIR, etc.)     │
-└─────────────────────────────────────┘
-              ↓ uses
-┌─────────────────────────────────────┐
-│   CdaToBundle.fml                   │  ← Mappings CDA de base
-│   (Patient, Composition, etc.)     │
-└─────────────────────────────────────┘
-              ↓ uses
-┌─────────────────────────────────────┐
-│   CdaToFHIRTypes.fml                │  ← Conversions de types primitifs
-│   (HumanName, CodeableConcept, etc.)│
-└─────────────────────────────────────┘
+┌──────────────────────────────────────────────────┐
+│   Mappings métier spécifiques                    │
+│   (ex. CdaFrMDEToBundle, …)                      │
+│   ← Traitement du corps du document CDA          │
+│     selon le type de document                    │
+└──────────────────────────────────────────────────┘
+                    ↓ imports
+┌──────────────────────────────────────────────────┐
+│   CdaFrToBundle.fml                              │
+│   ← Spécifications françaises                    │
+│     (INS, IDNPS, profils AS, MOS, FINESS, etc.)  │
+└──────────────────────────────────────────────────┘
+                    ↓ imports
+┌──────────────────────────────────────────────────┐
+│   CdaToBundle.fml                                │
+│   ← Mapping générique CDA → Bundle FHIR          │
+│     (en‑tête CDA : Composition, Patient,         │
+│      Encounter, Organization, Location…)         │        
+└──────────────────────────────────────────────────┘
+                    ↓ imports
+┌──────────────────────────────────────────────────┐
+│   CdaToFHIRTypes.fml                             │
+│   ← Conversions des types de données CDA v3      │
+│     (II, EN, AD, CD, PQ, TS, … → types FHIR)     │
+└──────────────────────────────────────────────────┘
 ```
+#### Description des couches de mapping
 
-### Principe de réutilisation
+##### Mappings de conversion des types
 
-Chaque couche :
-* **Importe** les mappings des couches inférieures via `uses`
-* **Réutilise** les fonctions existantes pour éviter la duplication
-* **Ajoute** des règles spécifiques pour son contexte métier
+Le fichier principal de cette couche est CdaToFHIRTypes.fml.
+Cette couche regroupe les mappings de conversion des types de données CDA v3 vers les types de données FHIR.
+Dans le contexte CDA, les datatypes représentent les structures élémentaires utilisées pour porter l’information dans le document : identifiants, noms, adresses, codes, dates, quantités, coordonnées de contact, etc. Avant de transformer un document CDA en ressources FHIR, il est donc nécessaire de convertir correctement ces types sources vers leurs équivalents FHIR.
+Cette couche contient ainsi les transformations de bas niveau permettant, par exemple, de convertir :
+II vers Identifier
+EN / PN vers HumanName
+AD vers Address
+TEL vers ContactPoint
+CD / CE / CS vers CodeableConcept ou code
+PQ vers Quantity
+TS / IVL_TS vers date, dateTime ou Period
+Elle constitue le socle commun de l’ensemble des autres mappings.
+Elle ne contient ni logique métier, ni logique nationale, ni navigation dans la structure du document CDA : son objectif est uniquement d’assurer la correspondance entre les types techniques manipulés dans les mappings.
 
-## Mécanismes de transformation
+À compléter : un tableau de correspondance entre les principaux datatypes CDA et les types FHIR associés pourra être ajouté ici pour faciliter la lecture et la réutilisation des mappings.
 
-### 1. Navigation dans l'arbre CDA
+##### Mappings CDA génériques
 
-Le FML permet de naviguer dans la structure hiérarchique XML du document CDA :
+Le fichier principal de cette couche est `CdaToBundle.fml`.
+
+Cette couche porte le mapping générique de la structure commune d’un document CDA vers un Bundle FHIR, en s’appuyant sur les transformations de types définies dans la couche inférieure (`CdaToFHIRTypes`).
+
+Elle traite principalement les éléments transverses du document, en particulier l’en-tête CDA, ainsi qu’une structure de base du corps du document.
+
+Les transformations couvertes dans cette couche incluent notamment :
+
+* la création du `Bundle` ;
+* la création de la `Composition` ;
+* le mapping du `Patient` ;
+* le mapping du contexte de prise en charge (`Encounter`, `Location`) ;
+* le mapping des acteurs et des structures (`Practitioner`, `PractitionerRole`, `Organization`) ;
+* la gestion des identifiants techniques et des références internes au `Bundle` ;
+* la reprise de la structure des sections du document dans `Composition.section`.
+
+Cette couche implémente donc le socle commun de transformation CDA → FHIR, indépendant des contraintes nationales et des règles métier spécifiques.
+
+##### Spécifications françaises
+
+Le fichier principal de cette couche est `CdaFrToBundle.fml`.
+
+Cette couche applique les spécifications françaises au mapping générique CDA vers FHIR. Elle permet d’enrichir les ressources FHIR produites avec les profils, identifiants, terminologies et extensions attendus dans le cadre d’implémentation français.
+
+Les adaptations portées par cette couche concernent notamment :
+* l’application de profils français, par exemple `FR-Core` et `Annuaire Santé` ;
+*la gestion des identifiants nationaux, tels que `INS-NIR` pour le patient, `IDNPS` pour les professionnels de santé et `FINESS` pour les organisations ;
+*l’utilisation de terminologies nationales;
+*l’ajout d’extensions ou de spécialisations propres au contexte français.
+
+Cette couche s’applique aux ressources génériques déjà produites à partir de l’en-tête du document CDA. Elle ne redéfinit pas le mapping générique, mais complète les groupes existants lorsque cela est nécessaire afin d’isoler clairement les spécificités françaises.
+
+Elle ne traite pas le corps du document CDA. Les sections cliniques, organizers, observations et autres contenus métier restent pris en charge dans la couche de mappings spécifiques métier.
+
+##### Mappings spécifiques métier
+
+Cette couche regroupe plusieurs fichiers de mapping, chacun correspondant à un type de document CDA ou à un contexte métier particulier. Le fichier `CdaFrMDEToBundle` constitue l’un de ces mappings et est utilisé dans ce guide comme exemple de mapping métier.
+
+Contrairement aux couches précédentes, cette couche traite le corps du document CDA. Elle implémente la navigation dans les sections cliniques et transforme les structures métier du document en ressources FHIR adaptées.
+
+Les traitements réalisés à ce niveau concernent notamment :
+*la navigation dans les `section` ;
+*l’accès aux `entry`, `organizer` et `observation` ;
+*l’extraction des données cliniques propres au document traité ;
+*la création des ressources FHIR métier correspondantes, par exemple `Observation`.
+
+Cette couche réutilise les mappings génériques et nationaux déjà définis pour l’en-tête du document, puis ajoute les règles spécifiques nécessaires au contenu clinique du document concerné.
+
+Chaque fichier de cette couche correspond donc à une implémentation ciblée, construite à partir du même socle commun mais adaptée à un besoin métier précis.
+
+> Remarque : Pour les couches — mappings CDA génériques, spécifications françaises et mappings spécifiques métier — les correspondances détaillées CDA et FHIR sont à consulter dans le guide d’implémentation Document Core : `https://ansforge.github.io/interop-IG-document-core/main/ig/`. Ce guide présente de manière structurée les correspondances entre modèle logique, CDA et FHIR
+
+
+#### Réutilisation entre les couches
+
+Les couches de mapping sont construites de manière progressive. Chaque couche réutilise les mappings définis dans les couches inférieures à l’aide du mécanisme `imports`, puis ajoute les transformations correspondant à son propre niveau de spécialisation.
+
+Cette organisation permet :
+*de mutualiser les transformations communes ;
+*d’éviter la duplication des règles ;
+*d’isoler les spécificités génériques, nationales et métier dans des couches distinctes.
+
+
+
+
+### Implémentation des transformations CDA vers FHIR en FHIR Mapping Language
+
+Dans la continuité de la structuration en couches présentée précédemment, cette section décrit les principaux mécanismes utilisés pour implémenter les transformations CDA vers FHIR dans les fichiers FML. Elle présente concrètement la manière dont les règles de mapping permettent de parcourir la structure CDA, d’organiser les groupes de transformation, de convertir les données et de produire les ressources FHIR cibles.
+
+#### Navigation dans la structure CDA
+
+En FML, les règles de mapping permettent de parcourir la structure hiérarchique XML du document CDA à différents niveaux, depuis les composants principaux jusqu’aux entrées cliniques les plus imbriquées. Ce parcours peut être direct, conditionné par un filtrage, ou réalisé de manière plus profonde selon l’organisation interne des sections et des observations :
 
 ```fml
-// Navigation simple
+// Parcours simple
 src.component as component -> tgt.section as section
 
-// Navigation imbriquée avec filtrage
+// Parcours imbriqué avec filtrage
 src.component.structuredBody.component as comp then {
   comp.section where(code.code = '11450-4') as section
     -> bundle.entry as entry, entry.resource = create('Observation') as obs
 }
 
-// Navigation profonde pour observations imbriquées
+// Parcours profond des observations imbriquées
 section.entry as entry then {
   entry.organizer as organizer then {
     organizer.component as orgComp then {
@@ -80,43 +166,57 @@ section.entry as entry then {
 }
 ```
 
-### 2. Conversion de types de données
+#### Organisation des groupes de mapping et orchestration des transformations
 
-#### Types primitifs CDA → FHIR
+En FML, les transformations sont structurées en groupes de mapping. Chaque groupe prend en charge une partie précise du traitement, tandis qu’un groupe principal orchestre l’ensemble de la transformation en appelant des groupes plus spécialisés. Cette organisation permet de séparer les responsabilités et de rendre le mapping plus lisible et plus facile à maintenir :
 
-Le mapping `CdaToFHIRTypes.fml` fournit des fonctions de conversion pour les types de données CDA v3 :
-
-**Nom de personne (EN → HumanName)** :
 ```fml
-group ENHumanName(source src : EN, target tgt : HumanName)
-  src.given as v -> tgt.given = v
-  src.family as v -> tgt.family = v
-  src.prefix as v -> tgt.prefix = v
-  src.suffix as v -> tgt.suffix = v
+// Groupe principal : point d'entrée de la transformation
+group CdaToBundle(source cda : ClinicalDocument, target bundle : Bundle) {
+  cda -> bundle.type = 'document';
+  cda -> bundle.id = uuid();
+
+  // Orchestration des sous-groupes principaux
+  cda then ClinicalDocumentComposition(cda, bundle);
+  cda.recordTarget as recordTarget then PatientRoleToPatient(recordTarget, bundle);
+  cda.component as component then StructuredBodyToSections(component, bundle);
+}
+
+// Sous-groupe dédié à la transformation du patient
+group PatientRoleToPatient(source recordTarget, target bundle : Bundle) {
+  recordTarget.patientRole as patientRole
+    -> bundle.entry as entry, entry.resource = create('Patient') as patient then {
+      patientRole -> patient;
+    };
+}
+
+// Sous-groupe dédié au traitement des sections du document
+group StructuredBodyToSections(source component, target bundle : Bundle) {
+  component.structuredBody.component as comp then {
+    comp.section as section then SectionToResource(section, bundle);
+  };
+}
 ```
 
-**Code (CD → CodeableConcept)** :
+#### Conversion des types de données et des terminologies
+
+La transformation CDA vers FHIR implique également l’adaptation des types de données du modèle source vers les structures attendues dans les ressources FHIR. Cette conversion concerne notamment les éléments codés, dont les attributs doivent être réorganisés pour alimenter les objets FHIR correspondants, comme `CodeableConcept` :
+
 ```fml
-group CDCodeableConcept(source src : CD, target tgt : CodeableConcept)
+// Conversion d'un code CDA (CD) vers CodeableConcept
+group CDCodeableConcept(source src : CD, target tgt : CodeableConcept) {
   src -> tgt.coding as coding then {
-    src.code as code -> coding.code = code
-    src.codeSystem as system -> coding.system = translate(system, '#oid2uri', 'uri')
-    src.displayName as display -> coding.display = display
-  }
+    src.code as code -> coding.code = code;
+    src.codeSystem as system -> coding.system = translate(system, '#oid2uri', 'uri');
+    src.displayName as display -> coding.display = display;
+  };
+}
 ```
 
-**Quantité physique (PQ → Quantity)** :
-```fml
-group PQQuantity(source src : PQ, target tgt : Quantity)
-  src.value as v -> tgt.value = v
-  src.unit as u -> tgt.unit = u, tgt.code = u
-```
-
-#### Conversion de codes terminologiques
-
-Deux approches sont utilisées :
+La même logique s’applique aux autres types CDA, comme les noms, les identifiants ou les quantités. Elle concerne également les terminologies, lorsqu’un code CDA doit être converti vers une valeur conforme aux jeux de codes attendus dans FHIR. Dans ce cas, deux approches peuvent être mises en œuvre :
 
 **Approche 1 : ConceptMap externe**
+
 ```fml
 // Référence à un ConceptMap chargé dans matchbox
 src.administrativeGenderCode as gender
@@ -126,6 +226,7 @@ src.administrativeGenderCode as gender
 ```
 
 **Approche 2 : Groupe de mapping personnalisé**
+
 ```fml
 group MapGender(source src : CS, target tgt : code)
   src where(value = 'M') -> tgt.value = 'male'
@@ -134,11 +235,9 @@ group MapGender(source src : CS, target tgt : code)
   src where(value = 'UNK') -> tgt.value = 'unknown'
 ```
 
-### 3. Création de ressources FHIR
+#### Création des ressources FHIR et gestion des références
 
-#### Création avec référence
-
-Les ressources sont créées dans le Bundle et référencées entre elles :
+Les règles FML permettent de créer les ressources FHIR à partir des données extraites du CDA et de les ajouter au `Bundle` cible. Cette création s’accompagne généralement de l’attribution d’un identifiant interne, qui servira ensuite à construire les références entre les ressources produites.
 
 ```fml
 // Création du Patient dans le Bundle
@@ -152,15 +251,10 @@ src.recordTarget as recordTarget then {
     }
   }
 }
-
-// Référence au Patient depuis la Composition
-patient -> composition.subject = create('Reference') as reference,
-           reference.reference = ('urn:uuid:' + pid)
 ```
 
-#### Gestion des identifiants
+Pour assurer la cohérence des liens internes au `Bundle`, l’implémentation s’appuie souvent sur des identifiants temporaires générés dynamiquement, comme des UUID. Ces identifiants permettent de relier entre elles les ressources créées au cours de la transformation.
 
-**Identifiants temporaires (UUID)** :
 ```fml
 // Génération d'UUID pour les références internes au Bundle
 entry.resource = create('Patient') as patient,
@@ -170,7 +264,16 @@ patient.id = uuid() as pid
 reference.reference = ('urn:uuid:' + pid)
 ```
 
-**Identifiants métier** :
+Ces identifiants sont ensuite réutilisés pour construire explicitement les références FHIR, par exemple lorsqu’une `Composition` doit désigner le `Patient` correspondant.
+
+```fml
+// Référence au Patient depuis la Composition
+patient -> composition.subject = create('Reference') as reference,
+           reference.reference = ('urn:uuid:' + pid)
+```
+
+Lorsque le document CDA contient des identifiants métier exploitables, ceux-ci peuvent également être repris dans les ressources FHIR. Cela permet de conserver les identifiants source utiles à l’interopérabilité, en complément des identifiants techniques utilisés pour les références internes.
+
 ```fml
 // Identifiant INS-NIR (France)
 patientRole.id as id where(root = '1.2.250.1.213.1.4.8') then {
@@ -181,42 +284,21 @@ patientRole.id as id where(root = '1.2.250.1.213.1.4.8') then {
 }
 ```
 
-### 4. Groupes de mapping
+#### Filtrage, conditions et adaptation des règles de mapping
 
-Les groupes sont l'unité fonctionnelle de base du FML :
-
-```fml
-// Groupe principal (point d'entrée)
-group CdaToBundle(source cda : ClinicalDocument, target bundle : Bundle)
-  cda -> bundle.type = 'document'
-  cda -> bundle.id = uuid()
-
-  // Appel de sous-groupes
-  cda then ClinicalDocumentComposition(cda, bundle)
-  cda.recordTarget as recordTarget then PatientRole(recordTarget, bundle)
-```
-
-**Types de groupes** :
-
-* **Groupe principal** : Point d'entrée de la transformation
-* **Groupes réutilisables** : Fonctions appelées par d'autres mappings
-* **Groupes conditionnels** : Appliqués selon des critères
-
-### 5. Filtrage et conditions
-
-#### Filtrage par code
+Les règles FML intègrent des mécanismes de filtrage permettant de restreindre la transformation à certains éléments du document CDA. Ce filtrage peut s’appuyer, par exemple, sur la valeur d’un code de section ou sur un identifiant précis, afin de n’appliquer le mapping qu’aux données pertinentes.
 
 ```fml
-// Filtrer une section par son code LOINC
+// Filtrage d'une section par son code LOINC
 comp.section where(code.code = '11450-4') as section
   -> ProcessVitalSigns(section, bundle)
 
-// Filtrer un identifiant par son OID
+// Filtrage d'un identifiant par son OID
 patientRole.id as id where(root = '1.2.250.1.213.1.4.8')
   -> patient.identifier as identifier then INSIdentifier(id, identifier)
 ```
 
-#### Conditions imbriquées
+L’implémentation peut également reposer sur des conditions imbriquées, afin de tenir compte de la structure effective du document CDA. Cette logique permet de vérifier la présence de certains éléments avant d’appliquer une transformation plus spécifique, et de rendre ainsi le mapping plus robuste face aux variations de structure.
 
 ```fml
 src.component as component then {
@@ -229,9 +311,9 @@ src.component as component then {
 }
 ```
 
-## Patterns de mapping courants
+### Patterns de mapping courants
 
-### Pattern 1 : Document CDA → Bundle FHIR
+#### Pattern 1 : Document CDA → Bundle FHIR
 
 **Objectif** : Transformer un document CDA en Bundle de type document
 
@@ -306,50 +388,80 @@ obs.value as value where(value.is(ST))
   -> observation.value = create('string') as str, str.value = value
 ```
 
-## Limitations et contraintes
+### Limitations et contraintes
 
-### 1. Navigation XML et état du parser
+#### 1. Navigation XML et état du parser
 
-**Problème** : Le parser XML peut rencontrer des conflits lorsque plusieurs fonctions tentent de parcourir les mêmes éléments du document CDA.
+Le parcours du document CDA peut entraîner des conflits lorsque plusieurs groupes de mapping tentent d’accéder aux mêmes éléments XML. Cette situation peut provoquer des erreurs de parsing, notamment lorsque le moteur de transformation perd le contexte attendu lors de la navigation dans la structure source.
 
 **Erreur typique** :
-```
+```text
 HAPI-0389: Failed to call access method: org.hl7.fhir.exceptions.FHIRFormatError:
 The QName 'urn:hl7-org:v3::ClinicalDocument' does not match the expected QName
 ```
 
-**Solution** :
-* Éviter de parcourir les mêmes éléments XML depuis plusieurs groupes de mapping
-* Privilégier la réutilisation de fonctions de conversion de types plutôt que de navigation
-* Créer une navigation personnalisée pour les structures non couvertes par les mappings de base
+**Conséquences** :
+* échec de la transformation sur certains documents CDA ;
+* comportement instable lors de la réutilisation de groupes parcourant les mêmes nœuds ;
+* difficulté à isoler l’origine exacte de l’erreur.
 
-### 2. Support de translate()
+**Recommandations** :
+* éviter de parcourir les mêmes éléments XML depuis plusieurs groupes de mapping ;
+* privilégier la réutilisation de fonctions de conversion de types plutôt que de multiplier les navigations ;
+* créer une navigation personnalisée pour les structures non couvertes par les mappings de base.
 
-**Problème** : La fonction `translate()` pour les ConceptMaps peut ne pas être supportée dans toutes les versions de matchbox.
+#### 2. Support de `translate()`
 
-**Solution** : Utiliser des groupes de mapping personnalisés pour les conversions de codes simples :
+La fonction `translate()`, utilisée pour exploiter des `ConceptMap`, peut ne pas être disponible ou pleinement supportée selon la version du moteur de transformation utilisée. Cette dépendance peut limiter la portabilité de certains mappings.
+
+**Conséquence** :
+* certaines conversions terminologiques échouent ou nécessitent une solution alternative.
+
+**Recommandation** :
+pour les correspondances simples et stables, il est souvent préférable d’utiliser des groupes de mapping personnalisés :
 
 ```fml
 group MapGender(source src : CS, target tgt : code)
   src where(value = 'M') -> tgt.value = 'male'
   src where(value = 'F') -> tgt.value = 'female'
-  // etc.
+  src where(value = 'UN') -> tgt.value = 'other'
+  src where(value = 'UNK') -> tgt.value = 'unknown'
 ```
 
-### 3. Ordre de chargement
 
-**Contrainte** : Les ressources doivent être chargées dans matchbox dans un ordre spécifique :
+#### 3. Absence d’équivalence terminologique dans la cible
 
-1. ConceptMaps (si utilisés)
-2. StructureMaps de base (CdaToFHIRTypes)
-3. StructureMaps intermédiaires (CdaToBundle)
-4. StructureMaps spécifiques (CdaFrToBundle, CdaFrMDEToBundle)
+La conversion terminologique repose sur l’existence d’une correspondance exploitable entre le code source CDA et la terminologie cible attendue en FHIR. Or, dans certains cas, aucun code strictement équivalent n’existe dans le système cible, ou bien la correspondance disponible reste partielle, ambiguë ou dépendante du contexte métier.
 
-**Raison** : Les dépendances entre mappings doivent être résolues lors du chargement.
+**Conséquences** :
+* impossibilité de produire un codage cible strictement équivalent ;
+* risque de perte sémantique lors de la transformation ;
+* nécessité de conserver uniquement le code source, un libellé textuel, ou une représentation partiellement structurée ;
+* hétérogénéité possible dans les ressources FHIR produites selon les cas de mapping retenus.
 
-### 4. Gestion des extensions
+**Recommandations** :
+* documenter explicitement les cas dans lesquels aucune équivalence terminologique n’est disponible ;
+* définir une stratégie de repli, par exemple en conservant le codage source, en renseignant uniquement `CodeableConcept.text`, ou en utilisant une correspondance plus large lorsque cela est acceptable ;
 
-**Limitation** : Les extensions FHIR doivent être créées explicitement et ne sont pas automatiquement générées.
+#### 4. Ordre de chargement des ressources
+
+Le chargement des ressources nécessaires à l’exécution des mappings doit respecter un ordre précis afin que les dépendances soient correctement résolues lors de l’initialisation dans le moteur de transformation.
+
+**Ordre recommandé** :
+1. `ConceptMap` (si utilisés) ;
+2. `StructureMap` de base (par exemple `CdaToFHIRTypes`) ;
+3. `StructureMap` intermédiaires (par exemple `CdaToBundle`) ;
+4. `StructureMap` spécifiques (par exemple `CdaFrToBundle`, `CdaFrMDEToBundle`).
+
+**Conséquence** :
+* un ordre de chargement incorrect peut empêcher la résolution des dépendances entre mappings et bloquer l’exécution.
+
+#### 5. Gestion des extensions
+
+Les extensions FHIR ne sont pas générées automatiquement au cours de la transformation. Lorsqu’une information CDA doit être portée dans une extension, celle-ci doit être créée explicitement dans les règles FML.
+
+**Conséquence** :
+* l’absence de création explicite d’une extension peut entraîner une perte d’information dans la ressource FHIR cible.
 
 **Exemple** :
 ```fml
@@ -360,43 +472,109 @@ patient -> patient.extension as ext then {
 }
 ```
 
-## Bonnes pratiques
+#### 6. Gestion des valeurs absentes et des `nullFlavor`
 
-### 1. Modularité
+Les documents CDA peuvent contenir des éléments présents dans la structure XML mais dépourvus de valeur exploitable, notamment lorsque l’attribut `nullFlavor` est utilisé. Cette situation complique la transformation, car l’élément existe, mais ne peut pas toujours être converti directement vers un élément FHIR pertinent.
 
-* Créer des groupes réutilisables pour chaque type de transformation
-* Séparer les conversions de types des transformations métier
-* Documenter les dépendances entre mappings
+**Conséquences** :
+* création de ressources ou de champs incomplets ;
+* ambiguïté sur la manière de représenter l’absence d’information ;
+* risque de produire des sorties FHIR peu cohérentes si ces cas ne sont pas filtrés.
 
-### 2. Nommage
+**Recommandations** :
+* filtrer les éléments non exploitables avant transformation ;
+* documenter la stratégie retenue pour le traitement des `nullFlavor` ;
+* éviter de produire des ressources partielles lorsque l’information source est insuffisante.
 
-* Utiliser des noms explicites pour les groupes (`ClinicalDocumentComposition` plutôt que `Transform1`)
-* Préfixer les paramètres : `src` pour source, `tgt` pour target
-* Suivre les conventions de nommage FHIR pour les ressources
+#### 7. Conformité aux profils FHIR cibles
 
-### 3. Gestion des erreurs
+La validation par rapport aux ressources FHIR internationale n'est pas suffisante pour garantir l'interopérabilité.
+La transformation doit respecter les profils cibles utilisés dans le projet. Elle doit notamment se conformer aux profils nationaux définis dans le cadre d'interopérabilité et dont l'usage est rendu obligatoire par le code de la santé publique imposent des contraintes supplémentaires sur les cardinalités, les terminologies ou les extensions.
 
-* Utiliser `where()` pour filtrer les valeurs avant transformation
-* Vérifier l'existence des éléments avec `.exists()`
-* Documenter les cas non gérés
+**Conséquences** :
+* une ressource techniquement conforme aux ressources génériques internationales FHIR peut rester non conforme au profil cible ;
+* des règles complémentaires peuvent être nécessaires pour satisfaire certaines obligations métier ou nationales.
 
-### 4. Performance
+**Recommandations** :
+* vérifier dès la conception du mapping les contraintes des profils cibles ;
+* valider systématiquement les ressources générées contre les profils attendus ;
+* documenter les écarts éventuels entre les données CDA disponibles et les exigences du profil FHIR.
 
-* Minimiser les parcours multiples du document source
-* Regrouper les transformations liées dans un même groupe
-* Utiliser les imports pour éviter la duplication
+### Bonnes pratiques
 
-### 5. Testabilité
+#### 1. Modularité
 
-* Créer des exemples CDA représentatifs
-* Tester chaque couche de mapping indépendamment
-* Valider les Bundles FHIR générés avec un validateur
+Une implémentation modulaire facilite la maintenance, la réutilisation et l’évolution des mappings. Il est recommandé de découper la transformation en groupes spécialisés, chacun étant responsable d’une fonction bien identifiée.
 
-## Exemple complet : CdaFrMDEToBundle
+**Recommandations** :
+* créer des groupes réutilisables pour chaque type de transformation ;
+* séparer les conversions de types des transformations métier ;
+* documenter les dépendances entre mappings ;
+* utiliser les `imports` pour mutualiser les règles déjà définies dans d’autres fichiers FML.
+
+#### 2. Nommage
+
+Un nommage clair améliore la lisibilité du mapping et facilite le débogage. Les groupes, variables et paramètres doivent refléter le rôle qu’ils jouent dans la transformation.
+
+**Recommandations** :
+* utiliser des noms explicites pour les groupes (`ClinicalDocumentComposition` plutôt que `Transform1`) ;
+* conserver des conventions homogènes pour les paramètres (`src` pour la source, `tgt` pour la cible) ;
+* suivre les conventions de nommage FHIR pour les ressources et leurs éléments.
+
+#### 3. Gestion des erreurs
+
+La robustesse d’un mapping dépend en grande partie de sa capacité à filtrer les cas non conformes ou incomplets avant transformation. Il est donc important d’anticiper les erreurs de structure ou de contenu dans le document source.
+
+**Recommandations** :
+* utiliser `where()` pour filtrer les valeurs avant transformation ;
+* vérifier l’existence des éléments avec `.exists()` ;
+* documenter les cas non gérés ;
+* prévoir une stratégie explicite pour les données absentes ou ambiguës.
+
+#### 4. Performance
+
+La performance d’un mapping FML dépend fortement du nombre de parcours effectués sur le document source et du niveau de duplication de certaines règles. Une implémentation trop fragmentée ou redondante peut dégrader les temps de traitement.
+
+**Recommandations** :
+* minimiser les parcours multiples du document source ;
+* regrouper les transformations liées dans un même groupe lorsque cela est pertinent ;
+* réutiliser les conversions existantes au lieu de réimplémenter des logiques équivalentes ;
+* limiter les dépendances inutiles entre fichiers.
+
+#### 5. Testabilité
+
+La qualité d’une transformation repose sur la capacité à la tester sur des cas représentatifs et à valider les sorties produites. Une stratégie de test explicite facilite également l’identification des régressions.
+
+**Recommandations** :
+* créer des exemples CDA représentatifs des cas attendus ;
+* tester chaque couche de mapping indépendamment ;
+* vérifier les cas limites et les structures incomplètes ;
+* valider les `Bundle` FHIR générés à l’aide d’un validateur.
+
+#### 6. Traçabilité et débogage
+
+Lorsque la transformation mobilise plusieurs groupes répartis dans différents fichiers, il peut devenir difficile d’identifier la règle à l’origine d’un comportement inattendu. Une bonne lisibilité des groupes et des règles facilite alors l’analyse des erreurs et le débogage du mapping.
+
+**Recommandations** :
+* structurer les groupes de manière lisible ;
+* conserver des noms explicites pour les groupes et les variables ;
+* isoler les cas de test permettant d’identifier rapidement un comportement erroné ;
+* documenter les hypothèses de transformation et les choix d’implémentation.
+
+#### 7. Stabilité des identifiants générés
+
+L’utilisation d’identifiants techniques tels que des UUID facilite la gestion des références internes, mais peut rendre les sorties moins stables d’une exécution à l’autre. Cette instabilité peut compliquer la comparaison de résultats ou certains scénarios de test.
+
+**Recommandations** :
+* réserver les UUID aux références internes lorsque cela est nécessaire ;
+* réutiliser les identifiants métier dès qu’ils sont disponibles ;
+* documenter la stratégie de génération et de réutilisation des identifiants dans les ressources produites.
+
+### Exemple complet : CdaFrMDEToBundle
 
 Le mapping `CdaFrMDEToBundle.fml` illustre l'application de ces mécanismes pour transformer un document CSE-MDE (Carnet de Santé de l'Enfant - Mesures) français en Bundle FHIR.
 
-### Architecture
+#### Architecture
 
 ```fml
 map "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrMDEToBundle"
@@ -410,7 +588,7 @@ imports "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaT
 imports "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrToBundle"
 ```
 
-### Stratégie de transformation
+#### Stratégie de transformation
 
 1. **Réutilisation des mappings de base** :
    * `ClinicalDocumentComposition` : Crée la Composition et les ressources contextuelles
@@ -424,7 +602,7 @@ imports "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaF
    * Utilisation de `CDCodeableConcept` pour les codes LOINC
    * Utilisation de `PQQuantity` pour les valeurs avec unités
 
-### Résultat
+#### Résultat
 
 Pour un document CSE-MDE avec 3 observations, le mapping génère :
 * 1 Bundle de type document
@@ -438,7 +616,7 @@ Pour un document CSE-MDE avec 3 observations, le mapping génère :
 
 Total : **11 ressources FHIR**
 
-## Ressources complémentaires
+### Ressources complémentaires
 
 * [FHIR Mapping Language Specification](https://www.hl7.org/fhir/mapping-language.html)
 * [FHIR StructureMap Resource](https://www.hl7.org/fhir/structuremap.html)
@@ -446,7 +624,7 @@ Total : **11 ressources FHIR**
 * [CDA to FHIR Maps (HL7 Suisse)](https://github.com/hl7ch/cda-fhir-maps)
 * [Notes techniques de développement](claude.html)
 
-## Conclusion
+### Conclusion
 
 Le FHIR Mapping Language offre un mécanisme puissant et déclaratif pour transformer des documents CDA en ressources FHIR. La clé du succès réside dans :
 
