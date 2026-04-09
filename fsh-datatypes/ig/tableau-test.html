@@ -201,39 +201,16 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
 </div>
 <h2 id="mapping-entre-les-datatypes-cda-et-les-datatypes-fhir">Mapping entre les datatypes CDA et les datatypes FHIR</h2>
 
-<table class="lines"><tr><td style="background-color: #eeeeee">ConceptMap</td><td style="background-color: #eeeeee">CDA</td><td style="background-color: #eeeeee">FHIR</td></tr><tr><td><div><p>CdaIIToIdentifier</p>
-</div></td><td><div><p>II.assigningAuthorityName</p>
-</div></td><td><div><p>Identifier.assigner.display</p>
-</div></td></tr><tr><td><div><p>CdaIIToIdentifier</p>
-</div></td><td><div><p>II.displayable</p>
-</div></td><td><div><p>Identifier.extension(displayable)</p>
-</div></td></tr><tr><td><div><p>CdaIIToIdentifier</p>
-</div></td><td><div><p>II.extension</p>
+<table class="lines"><tr><td style="background-color: #eeeeee">CDA</td><td style="background-color: #eeeeee">FHIR</td></tr><tr><td><div><p>II.extension</p>
 </div></td><td><div><p>Identifier.value</p>
-</div></td></tr><tr><td><div><p>CdaIIToIdentifier</p>
-</div></td><td><div><p>II.root</p>
+</div></td></tr><tr><td><div><p>II.root</p>
 </div></td><td><div><p>Identifier.system</p>
-</div></td></tr><tr><td><div><p>CdaIIToIdentifier</p>
-</div></td><td><div><p>II.root</p>
+</div></td></tr><tr><td><div><p>II.root</p>
 </div></td><td><div><p>Identifier.value</p>
-</div></td></tr><tr><td><div><p>CdaToFhirAdministrativeGender</p>
-</div></td><td><div><p>Female</p>
-</div></td><td><div><p>Female</p>
-</div></td></tr><tr><td><div><p>CdaToFhirAdministrativeGender</p>
-</div></td><td><div><p>Male</p>
-</div></td><td><div><p>Male</p>
-</div></td></tr><tr><td><div><p>CdaToFhirAdministrativeGender</p>
-</div></td><td><div><p>Undifferentiated</p>
-</div></td><td><div><p>Other</p>
-</div></td></tr><tr><td><div><p>CdaToFhirAdministrativeGender</p>
-</div></td><td><div><p>Unknown</p>
-</div></td><td><div><p>Unknown</p>
-</div></td></tr><tr><td><div><p>ConceptMapOidSpecialiteOrdinale</p>
-</div></td><td><div><p>urn:oid:1.2.250.1.213.1.1.4.5</p>
-</div></td><td><div><p>https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale</p>
-</div></td></tr><tr><td><div><p>OID2URIConceptMapANS</p>
-</div></td><td><div><p>1.2.250.1.213.1.1.4.5</p>
-</div></td><td><div><p>https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale</p>
+</div></td></tr><tr><td><div><p>II.assigningAuthorityName</p>
+</div></td><td><div><p>Identifier.assigner.display</p>
+</div></td></tr><tr><td><div><p>II.displayable</p>
+</div></td><td><div><p>Identifier.extension(displayable)</p>
 </div></td></tr></table>
 
 
@@ -277,7 +254,7 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
 
       <div class="inner-wrapper">
         <p>
-          IG &#169; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d&#39;Oradour-sur-Glane, 75015 Paris</a>.  Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Wed, Apr 8, 2026 15:36+0000">2026-04-08</span>
+          IG &#169; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d&#39;Oradour-sur-Glane, 75015 Paris</a>.  Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Thu, Apr 9, 2026 07:09+0000">2026-04-09</span>
           <br/>
           <span style="color: var(--footer-highlight-text-color)"></span>
             Liens : <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table des matières</a> |

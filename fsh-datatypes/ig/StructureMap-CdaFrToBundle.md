@@ -9,7 +9,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrToBundle | *Version*:0.1.0 |
-| Draft as of 2026-04-08 | *Computable Name*:CdaFrToBundle |
+| Draft as of 2026-04-09 | *Computable Name*:CdaFrToBundle |
 
  
 Mapping de CDAFr vers FHIR Bundle (A partir des sources de Oliver Egger) 
@@ -27,7 +27,7 @@ Mapping de CDAFr vers FHIR Bundle (A partir des sources de Oliver Egger)
   "name" : "CdaFrToBundle",
   "title" : "Mapping de CDAFr vers FHIR Bundle (A partir des sources de Oliver Egger)",
   "status" : "draft",
-  "date" : "2026-04-08T15:36:08+00:00",
+  "date" : "2026-04-09T07:09:34+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",

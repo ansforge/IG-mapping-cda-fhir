@@ -7,18 +7,12 @@
 
 ## Mapping entre les datatypes CDA et les datatypes FHIR
 
-| | | |
-| :--- | :--- | :--- |
-| ConceptMap | CDA | FHIR |
-| CdaIIToIdentifier | II.assigningAuthorityName | Identifier.assigner.display |
-| CdaIIToIdentifier | II.displayable | Identifier.extension(displayable) |
-| CdaIIToIdentifier | II.extension | Identifier.value |
-| CdaIIToIdentifier | II.root | Identifier.system |
-| CdaIIToIdentifier | II.root | Identifier.value |
-| CdaToFhirAdministrativeGender | Female | Female |
-| CdaToFhirAdministrativeGender | Male | Male |
-| CdaToFhirAdministrativeGender | Undifferentiated | Other |
-| CdaToFhirAdministrativeGender | Unknown | Unknown |
-| ConceptMapOidSpecialiteOrdinale | urn:oid:1.2.250.1.213.1.1.4.5 | https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale |
-| OID2URIConceptMapANS | 1.2.250.1.213.1.1.4.5 | https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale |
+| | |
+| :--- | :--- |
+| CDA | FHIR |
+| II.extension | Identifier.value |
+| II.root | Identifier.system |
+| II.root | Identifier.value |
+| II.assigningAuthorityName | Identifier.assigner.display |
+| II.displayable | Identifier.extension(displayable) |
 
