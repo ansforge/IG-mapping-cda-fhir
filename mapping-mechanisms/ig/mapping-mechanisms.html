@@ -285,17 +285,23 @@ Elle ne contient ni logique métier, ni logique nationale, ni navigation dans la
 
 <p>Le fichier principal de cette couche est <code class="language-plaintext highlighter-rouge">CdaToBundle.fml</code>.</p>
 
-<p>Cette couche regroupe les mappings génériques permettant de transformer la structure commune d’un document CDA en un <code class="language-plaintext highlighter-rouge">Bundle</code> FHIR. Elle couvre principalement les éléments de l’en-tête CDA, c’est-à-dire les informations documentaires et contextuelles présentes quel que soit le type de document traité.</p>
+<p>Cette couche porte le mapping générique de la structure commune d’un document CDA vers un Bundle FHIR, en s’appuyant sur les transformations de types définies dans la couche inférieure (<code class="language-plaintext highlighter-rouge">CdaToFHIRTypes</code>).</p>
 
-<p>Les transformations implémentées dans cette couche concernent notamment :
-*la création du <code class="language-plaintext highlighter-rouge">Bundle</code> ;
-*la création de la <code class="language-plaintext highlighter-rouge">Composition</code> ;
-*le mapping du <code class="language-plaintext highlighter-rouge">Patient</code> ;
-*le mapping du contexte de prise en charge (<code class="language-plaintext highlighter-rouge">Encounter</code>, <code class="language-plaintext highlighter-rouge">Location</code>) ;
-*le mapping des acteurs et des structures (<code class="language-plaintext highlighter-rouge">Practitioner</code>, <code class="language-plaintext highlighter-rouge">PractitionerRole</code>, <code class="language-plaintext highlighter-rouge">Organization</code>) ;
-*la gestion des identifiants techniques et des références internes au Bundle.</p>
+<p>Elle traite principalement les éléments transverses du document, en particulier l’en-tête CDA, ainsi qu’une structure de base du corps du document.</p>
 
-<p>Cette couche implémente le mapping générique des éléments communs du document CDA vers FHIR. Elle réutilise les conversions de types déjà définies dans la couche inférieure et n’intègre ni logique nationale ni logique métier spécifique.</p>
+<p>Les transformations couvertes dans cette couche incluent notamment :</p>
+
+<ul>
+  <li>la création du <code class="language-plaintext highlighter-rouge">Bundle</code> ;</li>
+  <li>la création de la <code class="language-plaintext highlighter-rouge">Composition</code> ;</li>
+  <li>le mapping du <code class="language-plaintext highlighter-rouge">Patient</code> ;</li>
+  <li>le mapping du contexte de prise en charge (<code class="language-plaintext highlighter-rouge">Encounter</code>, <code class="language-plaintext highlighter-rouge">Location</code>) ;</li>
+  <li>le mapping des acteurs et des structures (<code class="language-plaintext highlighter-rouge">Practitioner</code>, <code class="language-plaintext highlighter-rouge">PractitionerRole</code>, <code class="language-plaintext highlighter-rouge">Organization</code>) ;</li>
+  <li>la gestion des identifiants techniques et des références internes au <code class="language-plaintext highlighter-rouge">Bundle</code> ;</li>
+  <li>la reprise de la structure des sections du document dans <code class="language-plaintext highlighter-rouge">Composition.section</code>.</li>
+</ul>
+
+<p>Cette couche implémente donc le socle commun de transformation CDA → FHIR, indépendant des contraintes nationales et des règles métier spécifiques.</p>
 
 <h5 id="spécifications-françaises">Spécifications françaises</h5>
 
@@ -858,7 +864,7 @@ imports "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaF
   <li><a href="https://www.hl7.org/fhir/structuremap.html">FHIR StructureMap Resource</a></li>
   <li><a href="https://github.com/ahdis/matchbox">Matchbox Documentation</a></li>
   <li><a href="https://github.com/hl7ch/cda-fhir-maps">CDA to FHIR Maps (HL7 Suisse)</a></li>
-  <li><a name="l1404">​</a><a href="claude.html">Notes techniques de développement</a></li>
+  <li><a name="l1437">​</a><a href="claude.html">Notes techniques de développement</a></li>
 </ul>
 
 <h3 id="conclusion">Conclusion</h3>
@@ -915,7 +921,7 @@ imports "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaF
 
       <div class="inner-wrapper">
         <p>
-          IG &copy; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris</a>.  Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Wed, Apr 8, 2026 13:01+0000">2026-04-08</span>
+          IG &copy; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris</a>.  Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Thu, Apr 9, 2026 10:02+0000">2026-04-09</span>
           <br/>
           <span style="color: var(--footer-highlight-text-color)"></span>
             Liens : <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table des matières</a> |

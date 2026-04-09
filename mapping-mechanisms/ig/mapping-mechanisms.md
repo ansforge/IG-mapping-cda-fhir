@@ -65,11 +65,21 @@ Le fichier principal de cette couche est CdaToFHIRTypes.fml. Cette couche regrou
 
 Le fichier principal de cette couche est `CdaToBundle.fml`.
 
-Cette couche regroupe les mappings génériques permettant de transformer la structure commune d’un document CDA en un `Bundle` FHIR. Elle couvre principalement les éléments de l’en-tête CDA, c’est-à-dire les informations documentaires et contextuelles présentes quel que soit le type de document traité.
+Cette couche porte le mapping générique de la structure commune d’un document CDA vers un Bundle FHIR, en s’appuyant sur les transformations de types définies dans la couche inférieure (`CdaToFHIRTypes`).
 
-Les transformations implémentées dans cette couche concernent notamment : *la création du `Bundle` ; *la création de la `Composition` ; *le mapping du `Patient` ; *le mapping du contexte de prise en charge (`Encounter`, `Location`) ; *le mapping des acteurs et des structures (`Practitioner`, `PractitionerRole`, `Organization`) ; *la gestion des identifiants techniques et des références internes au Bundle.
+Elle traite principalement les éléments transverses du document, en particulier l’en-tête CDA, ainsi qu’une structure de base du corps du document.
 
-Cette couche implémente le mapping générique des éléments communs du document CDA vers FHIR. Elle réutilise les conversions de types déjà définies dans la couche inférieure et n’intègre ni logique nationale ni logique métier spécifique.
+Les transformations couvertes dans cette couche incluent notamment :
+
+* la création du `Bundle` ;
+* la création de la `Composition` ;
+* le mapping du `Patient` ;
+* le mapping du contexte de prise en charge (`Encounter`, `Location`) ;
+* le mapping des acteurs et des structures (`Practitioner`, `PractitionerRole`, `Organization`) ;
+* la gestion des identifiants techniques et des références internes au `Bundle` ;
+* la reprise de la structure des sections du document dans `Composition.section`.
+
+Cette couche implémente donc le socle commun de transformation CDA → FHIR, indépendant des contraintes nationales et des règles métier spécifiques.
 
 ##### Spécifications françaises
 
