@@ -94,7 +94,7 @@ WHERE ConceptMapId IN (
   'CdaIIToIdentifierConceptMap',
   'CdaToAddressConceptMap',
   'CdaToCodeConceptMap',
-  'CdaToContactPointConceptMap'
+  'CdaToBooleanConceptMap'
 )
 ORDER BY ConceptMapName, group_index, elem_index, target_index
 ",
