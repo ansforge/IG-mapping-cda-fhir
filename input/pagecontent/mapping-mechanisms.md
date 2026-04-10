@@ -100,10 +100,15 @@ SELECT
   FHIR
 FROM Mappings
 WHERE ConceptMapName IN (
+  
+
+WHERE json_extract(r.json,'$.id') IN (
   'CdaIIToIdentifier',
-  'CdaToAddress',
-  'CdaToCode',
-  'CdaToContact'
+  'CdaAddressToFHIR',
+  'CdaConceptCodesToFHIR',
+  'CdaTELToFHIR'
+)
+
 )
 ORDER BY ConceptMapName, group_index, elem_index, target_index
 ",
