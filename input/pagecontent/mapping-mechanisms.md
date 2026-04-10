@@ -69,7 +69,50 @@ TS / IVL_TS vers date, dateTime ou Period
 Elle constitue le socle commun de l’ensemble des autres mappings.
 Elle ne contient ni logique métier, ni logique nationale, ni navigation dans la structure du document CDA : son objectif est uniquement d’assurer la correspondance entre les types techniques manipulés dans les mappings.
 
-À compléter : un tableau de correspondance entre les principaux datatypes CDA et les types FHIR associés pourra être ajouté ici pour faciliter la lecture et la réutilisation des mappings.
+{% sql {
+  "query": "
+WITH Mappings AS (
+  SELECT
+    COALESCE(
+      r.name,
+      json_extract(r.json, '$.name')
+    ) AS ConceptMapName,
+    COALESCE(
+      json_extract(e.value, '$.display'),
+      json_extract(e.value, '$.code')
+    ) AS CDA,
+    COALESCE(
+      json_extract(t.value, '$.display'),
+      json_extract(t.value, '$.code')
+    ) AS FHIR,
+    g.key AS group_index,
+    e.key AS elem_index,
+    t.key AS target_index
+  FROM Resources r
+  JOIN json_each(r.json, '$.group') g
+  JOIN json_each(g.value, '$.element') e
+  JOIN json_each(e.value, '$.target') t
+  WHERE r.Type = 'ConceptMap'
+)
+
+SELECT
+  CDA,
+  FHIR
+FROM Mappings
+WHERE ConceptMapName IN (
+  'CdaIIToIdentifier',
+  'CdaToAddress',
+  'CdaToCode',
+  'CdaToContact'
+)
+ORDER BY ConceptMapName, group_index, elem_index, target_index
+",
+  "class": "lines",
+  "columns": [
+    { "name": "CDA", "type": "markdown", "source": "CDA" },
+    { "name": "FHIR", "type": "markdown", "source": "FHIR" }
+  ]
+} %}
 
 ##### Mappings CDA génériques
 

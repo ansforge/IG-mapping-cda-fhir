@@ -2,7 +2,7 @@ Instance: CdaIIToIdentifierConceptMap
 InstanceOf: ConceptMap
 Usage: #definition
 Title: "ConceptMap — CDA II vers FHIR Identifier"
-Description: "Correspondances entre les éléments du datatype CDA II et les éléments FHIR Identifier."
+Description: "Correspondances entre les éléments du datatype CDA II et les éléments FHIR Identifier"
 
 * url = "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaIIToIdentifier"
 * name = "CdaIIToIdentifier"
