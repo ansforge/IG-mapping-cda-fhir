@@ -73,18 +73,10 @@ Elle ne contient ni logique métier, ni logique nationale, ni navigation dans la
   "query": "
 WITH Mappings AS (
   SELECT
-    COALESCE(
-      r.name,
-      json_extract(r.json, '$.name')
-    ) AS ConceptMapName,
-    COALESCE(
-      json_extract(e.value, '$.display'),
-      json_extract(e.value, '$.code')
-    ) AS CDA,
-    COALESCE(
-      json_extract(t.value, '$.display'),
-      json_extract(t.value, '$.code')
-    ) AS FHIR,
+    json_extract(r.json, '$.id')   AS ConceptMapId,
+    json_extract(r.json, '$.name') AS ConceptMapName,
+    COALESCE(json_extract(e.value, '$.display'), json_extract(e.value, '$.code')) AS CDA,
+    COALESCE(json_extract(t.value, '$.display'), json_extract(t.value, '$.code')) AS FHIR,
     g.key AS group_index,
     e.key AS elem_index,
     t.key AS target_index
@@ -94,21 +86,15 @@ WITH Mappings AS (
   JOIN json_each(e.value, '$.target') t
   WHERE r.Type = 'ConceptMap'
 )
-
 SELECT
   CDA,
   FHIR
 FROM Mappings
-WHERE ConceptMapName IN (
-  
-
-WHERE json_extract(r.json,'$.id') IN (
-  'CdaIIToIdentifier',
-  'CdaAddressToFHIR',
-  'CdaConceptCodesToFHIR',
-  'CdaTELToFHIR'
-)
-
+WHERE ConceptMapId IN (
+  'CdaIIToIdentifierConceptMap',
+  'CdaToAddressConceptMap',
+  'CdaToCodeConceptMap',
+  'CdaToContactPointConceptMap'
 )
 ORDER BY ConceptMapName, group_index, elem_index, target_index
 ",
