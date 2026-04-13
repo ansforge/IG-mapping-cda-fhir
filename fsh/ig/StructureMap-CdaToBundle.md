@@ -27,7 +27,7 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
   "name" : "CdaToBundle",
   "title" : "Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)",
   "status" : "draft",
-  "date" : "2026-04-13T07:31:01+00:00",
+  "date" : "2026-04-13T09:05:14+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -75,21 +75,6 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
     "alias" : "PatientRole"
   },
   {
-    "url" : "http://hl7.org/cda/stds/core/StructureDefinition/EncompassingEncounter",
-    "mode" : "source",
-    "alias" : "EncompassingEncounter"
-  },
-  {
-    "url" : "http://hl7.org/cda/stds/core/StructureDefinition/HealthCareFacility",
-    "mode" : "source",
-    "alias" : "HealthCareFacility"
-  },
-  {
-    "url" : "http://hl7.org/cda/stds/core/StructureDefinition/RelatedEntity",
-    "mode" : "source",
-    "alias" : "RelatedEntity"
-  },
-  {
     "url" : "http://hl7.org/fhir/StructureDefinition/Bundle",
     "mode" : "target",
     "alias" : "Bundle"
@@ -115,40 +100,15 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
     "alias" : "Practitioner"
   },
   {
-    "url" : "http://hl7.org/fhir/StructureDefinition/Encounter",
-    "mode" : "target",
-    "alias" : "Encounter"
-  },
-  {
-    "url" : "http://hl7.org/fhir/StructureDefinition/Location",
-    "mode" : "target",
-    "alias" : "Location"
-  },
-  {
-    "url" : "http://hl7.org/fhir/StructureDefinition/PractitionerRole",
-    "mode" : "target",
-    "alias" : "PractitionerRole"
-  },
-  {
     "url" : "http://hl7.org/fhir/StructureDefinition/Organization",
     "mode" : "target",
     "alias" : "Organization"
-  },
-  {
-    "url" : "http://hl7.org/fhir/StructureDefinition/RelatedPerson",
-    "mode" : "target",
-    "alias" : "RelatedPerson"
-  },
-  {
-    "url" : "http://hl7.org/fhir/StructureDefinition/Extension",
-    "mode" : "target",
-    "alias" : "Extension"
   }],
   "import" : ["https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes"],
   "group" : [{
     "name" : "CdaToBundle",
     "typeMode" : "none",
-    "documentation" : "Document Level Template",
+    "documentation" : "_________________________ Document Level Template  _________________________",
     "input" : [{
       "name" : "cda",
       "type" : "ClinicalDocument",
@@ -469,7 +429,7 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
   {
     "name" : "ClinicalDocumentSection",
     "typeMode" : "none",
-    "documentation" : "Section Level Templates",
+    "documentation" : "// _________________________ Section Level Templates _________________________",
     "input" : [{
       "name" : "cda",
       "type" : "ClinicalDocument",
@@ -595,7 +555,7 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
   {
     "name" : "ClinicalDocumentComposition",
     "typeMode" : "none",
-    "documentation" : "Entry Level Templates\r\nHeader Level Templates",
+    "documentation" : "_________________________ Entry Level Templates   ________________________\r\n_________________________ Header Level Templates _________________________",
     "input" : [{
       "name" : "src",
       "type" : "ClinicalDocument",
@@ -969,6 +929,68 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
         }]
       }],
       "rule" : [{
+        "name" : "practitionerMeta",
+        "source" : [{
+          "context" : "srcAuthor"
+        }],
+        "target" : [{
+          "context" : "practitioner",
+          "contextType" : "variable",
+          "element" : "meta",
+          "variable" : "meta",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "Meta"
+          }]
+        }],
+        "rule" : [{
+          "name" : "practitionerProfile",
+          "source" : [{
+            "context" : "srcAuthor"
+          }],
+          "target" : [{
+            "context" : "meta",
+            "contextType" : "variable",
+            "element" : "profile",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueString" : "https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-practitioner"
+            }]
+          }]
+        }]
+      },
+      {
+        "name" : "practitionerRoleMeta",
+        "source" : [{
+          "context" : "srcAuthor"
+        }],
+        "target" : [{
+          "context" : "practitionerRole",
+          "contextType" : "variable",
+          "element" : "meta",
+          "variable" : "metaRole",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "Meta"
+          }]
+        }],
+        "rule" : [{
+          "name" : "practitionerRoleProfile",
+          "source" : [{
+            "context" : "srcAuthor"
+          }],
+          "target" : [{
+            "context" : "metaRole",
+            "contextType" : "variable",
+            "element" : "profile",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueString" : "https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-practitionerrole"
+            }]
+          }]
+        }]
+      },
+      {
         "name" : "practitionerRef",
         "source" : [{
           "context" : "srcAuthor"
@@ -1029,6 +1051,69 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
             "dependent" : [{
               "name" : "II",
               "variable" : ["id", "identifier"]
+            }]
+          },
+          {
+            "name" : "idNatPs",
+            "source" : [{
+              "context" : "id",
+              "condition" : "root = '1.2.250.1.71.4.2.1'"
+            }],
+            "target" : [{
+              "context" : "identifier",
+              "contextType" : "variable",
+              "element" : "type",
+              "variable" : "type",
+              "transform" : "create",
+              "parameter" : [{
+                "valueString" : "CodeableConcept"
+              }]
+            }],
+            "rule" : [{
+              "name" : "coding",
+              "source" : [{
+                "context" : "id"
+              }],
+              "target" : [{
+                "context" : "type",
+                "contextType" : "variable",
+                "element" : "coding",
+                "variable" : "coding",
+                "transform" : "create",
+                "parameter" : [{
+                  "valueString" : "Coding"
+                }]
+              }],
+              "rule" : [{
+                "name" : "system",
+                "source" : [{
+                  "context" : "id"
+                }],
+                "target" : [{
+                  "context" : "coding",
+                  "contextType" : "variable",
+                  "element" : "system",
+                  "transform" : "copy",
+                  "parameter" : [{
+                    "valueString" : "https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203"
+                  }]
+                }]
+              },
+              {
+                "name" : "code",
+                "source" : [{
+                  "context" : "id"
+                }],
+                "target" : [{
+                  "context" : "coding",
+                  "contextType" : "variable",
+                  "element" : "code",
+                  "transform" : "copy",
+                  "parameter" : [{
+                    "valueString" : "IDNPS"
+                  }]
+                }]
+              }]
             }]
           }]
         },
@@ -1126,6 +1211,197 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
           "dependent" : [{
             "name" : "CDCodeableConcept",
             "variable" : ["roleCode", "cc"]
+          }]
+        },
+        {
+          "name" : "savoirFaire",
+          "source" : [{
+            "context" : "assignedAuthor",
+            "element" : "code",
+            "variable" : "roleCode",
+            "condition" : "code.contains('/')"
+          }],
+          "target" : [{
+            "context" : "practitioner",
+            "contextType" : "variable",
+            "element" : "qualification",
+            "variable" : "qualification"
+          }],
+          "rule" : [{
+            "name" : "qualCode",
+            "source" : [{
+              "context" : "roleCode"
+            }],
+            "target" : [{
+              "context" : "qualification",
+              "contextType" : "variable",
+              "element" : "code",
+              "variable" : "qualCode",
+              "transform" : "create",
+              "parameter" : [{
+                "valueString" : "CodeableConcept"
+              }]
+            }],
+            "rule" : [{
+              "name" : "coding",
+              "source" : [{
+                "context" : "roleCode",
+                "element" : "code",
+                "variable" : "fullCode"
+              }],
+              "target" : [{
+                "context" : "qualCode",
+                "contextType" : "variable",
+                "element" : "coding",
+                "variable" : "coding",
+                "transform" : "create",
+                "parameter" : [{
+                  "valueString" : "Coding"
+                }]
+              }],
+              "rule" : [{
+                "name" : "savoirFaireCode",
+                "source" : [{
+                  "context" : "fullCode"
+                }],
+                "target" : [{
+                  "context" : "coding",
+                  "contextType" : "variable",
+                  "element" : "code",
+                  "transform" : "evaluate",
+                  "parameter" : [{
+                    "valueString" : "%fullCode.substring(%fullCode.indexOf('/') + 1)"
+                  }]
+                }]
+              },
+              {
+                "name" : "systemSavoirFaire",
+                "source" : [{
+                  "context" : "fullCode"
+                }],
+                "target" : [{
+                  "context" : "coding",
+                  "contextType" : "variable",
+                  "element" : "system",
+                  "transform" : "copy",
+                  "parameter" : [{
+                    "valueString" : "https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale"
+                  }]
+                }]
+              },
+              {
+                "name" : "display",
+                "source" : [{
+                  "context" : "roleCode",
+                  "element" : "displayName",
+                  "variable" : "display"
+                }],
+                "target" : [{
+                  "context" : "coding",
+                  "contextType" : "variable",
+                  "element" : "display",
+                  "transform" : "copy",
+                  "parameter" : [{
+                    "valueId" : "display"
+                  }]
+                }]
+              }]
+            }]
+          }]
+        },
+        {
+          "name" : "profession",
+          "source" : [{
+            "context" : "assignedAuthor",
+            "element" : "code",
+            "variable" : "roleCode",
+            "condition" : "code.contains('/') and code.contains('_')"
+          }],
+          "target" : [{
+            "context" : "practitioner",
+            "contextType" : "variable",
+            "element" : "qualification",
+            "variable" : "qualification"
+          }],
+          "rule" : [{
+            "name" : "qualCode",
+            "source" : [{
+              "context" : "roleCode"
+            }],
+            "target" : [{
+              "context" : "qualification",
+              "contextType" : "variable",
+              "element" : "code",
+              "variable" : "qualCode",
+              "transform" : "create",
+              "parameter" : [{
+                "valueString" : "CodeableConcept"
+              }]
+            }],
+            "rule" : [{
+              "name" : "coding",
+              "source" : [{
+                "context" : "roleCode",
+                "element" : "code",
+                "variable" : "fullCode"
+              }],
+              "target" : [{
+                "context" : "qualCode",
+                "contextType" : "variable",
+                "element" : "coding",
+                "variable" : "coding",
+                "transform" : "create",
+                "parameter" : [{
+                  "valueString" : "Coding"
+                }]
+              }],
+              "rule" : [{
+                "name" : "professionCode",
+                "source" : [{
+                  "context" : "fullCode"
+                }],
+                "target" : [{
+                  "context" : "coding",
+                  "contextType" : "variable",
+                  "element" : "code",
+                  "transform" : "evaluate",
+                  "parameter" : [{
+                    "valueString" : "%fullCode.substring(%fullCode.indexOf('_') + 1).substring(0, %fullCode.substring(%fullCode.indexOf('_') + 1).indexOf('/'))"
+                  }]
+                }]
+              },
+              {
+                "name" : "systemProfession",
+                "source" : [{
+                  "context" : "fullCode"
+                }],
+                "target" : [{
+                  "context" : "coding",
+                  "contextType" : "variable",
+                  "element" : "system",
+                  "transform" : "copy",
+                  "parameter" : [{
+                    "valueString" : "https://mos.esante.gouv.fr/NOS/TRE_G15-ProfessionSante/FHIR/TRE-G15-ProfessionSante"
+                  }]
+                }]
+              },
+              {
+                "name" : "displayMedecin",
+                "source" : [{
+                  "context" : "fullCode",
+                  "condition" : "%fullCode.substring(%fullCode.indexOf('_') + 1).substring(0, %fullCode.substring(%fullCode.indexOf('_') + 1).indexOf('/')) = '10'"
+                }],
+                "target" : [{
+                  "context" : "coding",
+                  "contextType" : "variable",
+                  "element" : "display",
+                  "transform" : "copy",
+                  "parameter" : [{
+                    "valueString" : "Médecin"
+                  }]
+                }]
+              }]
+            }]
           }]
         },
         {
@@ -1780,7 +2056,8 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
           "dependent" : [{
             "name" : "IVLTSPeriod",
             "variable" : ["effectivetime", "period"]
-          }]
+          }],
+          "documentation" : "performerType: for src.performer.typeCode ..."
         }]
       }]
     },
@@ -1855,6 +2132,37 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
       "mode" : "target"
     }],
     "rule" : [{
+      "name" : "meta",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "meta",
+        "variable" : "meta",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Meta"
+        }]
+      }],
+      "rule" : [{
+        "name" : "profile",
+        "source" : [{
+          "context" : "src"
+        }],
+        "target" : [{
+          "context" : "meta",
+          "contextType" : "variable",
+          "element" : "profile",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueString" : "https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-practitioner"
+          }]
+        }]
+      }]
+    },
+    {
       "name" : "identifier",
       "source" : [{
         "context" : "src",
@@ -1883,6 +2191,69 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
         "dependent" : [{
           "name" : "II",
           "variable" : ["srcId", "identifier"]
+        }]
+      },
+      {
+        "name" : "idNatPs",
+        "source" : [{
+          "context" : "srcId",
+          "condition" : "root = '1.2.250.1.71.4.2.1'"
+        }],
+        "target" : [{
+          "context" : "identifier",
+          "contextType" : "variable",
+          "element" : "type",
+          "variable" : "type",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "CodeableConcept"
+          }]
+        }],
+        "rule" : [{
+          "name" : "coding",
+          "source" : [{
+            "context" : "srcId"
+          }],
+          "target" : [{
+            "context" : "type",
+            "contextType" : "variable",
+            "element" : "coding",
+            "variable" : "coding",
+            "transform" : "create",
+            "parameter" : [{
+              "valueString" : "Coding"
+            }]
+          }],
+          "rule" : [{
+            "name" : "system",
+            "source" : [{
+              "context" : "srcId"
+            }],
+            "target" : [{
+              "context" : "coding",
+              "contextType" : "variable",
+              "element" : "system",
+              "transform" : "copy",
+              "parameter" : [{
+                "valueString" : "https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203"
+              }]
+            }]
+          },
+          {
+            "name" : "code",
+            "source" : [{
+              "context" : "srcId"
+            }],
+            "target" : [{
+              "context" : "coding",
+              "contextType" : "variable",
+              "element" : "code",
+              "transform" : "copy",
+              "parameter" : [{
+                "valueString" : "IDNPS"
+              }]
+            }]
+          }]
         }]
       }]
     },
@@ -1975,6 +2346,37 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
       "mode" : "target"
     }],
     "rule" : [{
+      "name" : "meta",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "meta",
+        "variable" : "meta",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Meta"
+        }]
+      }],
+      "rule" : [{
+        "name" : "profile",
+        "source" : [{
+          "context" : "src"
+        }],
+        "target" : [{
+          "context" : "meta",
+          "contextType" : "variable",
+          "element" : "profile",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueString" : "https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-organization"
+          }]
+        }]
+      }]
+    },
+    {
       "name" : "id",
       "source" : [{
         "context" : "src",
@@ -2092,6 +2494,10 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
         "parameter" : [{
           "valueString" : "Identifier"
         }]
+      }],
+      "dependent" : [{
+        "name" : "setFrPatientIdentifier",
+        "variable" : ["id", "identifier"]
       }]
     },
     {
@@ -2239,7 +2645,7 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
           }]
         }],
         "dependent" : [{
-          "name" : "BLBoolean",
+          "name" : "boolean",
           "variable" : ["indicator", "bool"]
         }]
       },
@@ -2305,7 +2711,8 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
             "parameter" : [{
               "valueId" : "lCode"
             }]
-          }]
+          }],
+          "documentation" : "preference: for language.preferenceInd make communication.preferred"
         }]
       }]
     },
@@ -2462,8 +2869,170 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
     }]
   },
   {
+    "name" : "setFrPatientIdentifier",
+    "typeMode" : "none",
+    "input" : [{
+      "name" : "id",
+      "type" : "II",
+      "mode" : "source"
+    },
+    {
+      "name" : "identifier",
+      "type" : "Identifier",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "identifierType",
+      "source" : [{
+        "context" : "id"
+      }],
+      "target" : [{
+        "context" : "identifier",
+        "contextType" : "variable"
+      },
+      {
+        "context" : "identifier",
+        "contextType" : "variable",
+        "element" : "type",
+        "variable" : "type"
+      },
+      {
+        "context" : "type",
+        "contextType" : "variable",
+        "element" : "coding",
+        "variable" : "coding"
+      },
+      {
+        "context" : "coding",
+        "contextType" : "variable",
+        "element" : "system",
+        "variable" : "system"
+      },
+      {
+        "context" : "coding",
+        "contextType" : "variable",
+        "element" : "code",
+        "variable" : "code"
+      }],
+      "rule" : [{
+        "name" : "system",
+        "source" : [{
+          "context" : "id",
+          "condition" : "(id.root = '1.2.250.1.213.1.4.8')"
+        }],
+        "target" : [{
+          "context" : "system",
+          "contextType" : "variable",
+          "element" : "value",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueString" : "https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203"
+          }]
+        }]
+      },
+      {
+        "name" : "code",
+        "source" : [{
+          "context" : "id",
+          "condition" : "(id.root = '1.2.250.1.213.1.4.8')"
+        }],
+        "target" : [{
+          "context" : "code",
+          "contextType" : "variable",
+          "element" : "value",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueString" : "INS-NIR"
+          }]
+        }]
+      },
+      {
+        "name" : "system",
+        "source" : [{
+          "context" : "id",
+          "condition" : "(id.root = '1.2.3.4.5.6.7.8.9.10')"
+        }],
+        "target" : [{
+          "context" : "system",
+          "contextType" : "variable",
+          "element" : "value",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueString" : "http://terminology.hl7.org/CodeSystem/v2-0203"
+          }]
+        }]
+      },
+      {
+        "name" : "code",
+        "source" : [{
+          "context" : "id",
+          "condition" : "(id.root = '1.2.3.4.5.6.7.8.9.10')"
+        }],
+        "target" : [{
+          "context" : "code",
+          "contextType" : "variable",
+          "element" : "value",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueString" : "PI"
+          }]
+        }]
+      }]
+    },
+    {
+      "name" : "extension",
+      "source" : [{
+        "context" : "id",
+        "element" : "extension",
+        "variable" : "extension"
+      }],
+      "target" : [{
+        "context" : "identifier",
+        "contextType" : "variable",
+        "element" : "value",
+        "variable" : "value"
+      },
+      {
+        "context" : "value",
+        "contextType" : "variable",
+        "element" : "value",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueId" : "extension"
+        }]
+      }]
+    },
+    {
+      "name" : "root",
+      "source" : [{
+        "context" : "id",
+        "element" : "root",
+        "variable" : "root"
+      }],
+      "target" : [{
+        "context" : "identifier",
+        "contextType" : "variable",
+        "element" : "system",
+        "variable" : "system"
+      },
+      {
+        "context" : "system",
+        "contextType" : "variable",
+        "element" : "value",
+        "transform" : "append",
+        "parameter" : [{
+          "valueString" : "urn:oid:"
+        },
+        {
+          "valueId" : "root"
+        }]
+      }]
+    }]
+  },
+  {
     "name" : "ClinicalDocumentEncounter",
     "typeMode" : "none",
+    "documentation" : "Fin modification NR\r\nEtat initial\r\nsrc -> tgt.identifier as identifier then {\r\nsrc.id as id -> identifier.type as type, type.coding as coding, coding.system as system, coding.code as code then {\r\nsrc -> system.value = 'http://terminology.hl7.org/CodeSystem/v2-0203' \"system\";\r\nsrc -> code.value = 'MR' \"code\";\r\nid.extension as extension -> identifier.value as value, value.value = extension \"extension\";\r\nid.root as root -> identifier.system as system, system.value = append('urn:oid:', root) \"root\";\r\n} \"id\";\r\n} \"identifier\";\r\nFin état initial",
     "input" : [{
       "name" : "src",
       "type" : "EncompassingEncounter",
@@ -2954,6 +3523,89 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
       }]
     },
     {
+      "name" : "locationType",
+      "source" : [{
+        "context" : "src",
+        "element" : "code",
+        "variable" : "srcCode"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "type",
+        "variable" : "cc",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "CodeableConcept"
+        }]
+      }],
+      "rule" : [{
+        "name" : "coding",
+        "source" : [{
+          "context" : "srcCode",
+          "element" : "code",
+          "variable" : "code"
+        }],
+        "target" : [{
+          "context" : "cc",
+          "contextType" : "variable",
+          "element" : "coding",
+          "variable" : "coding",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "Coding"
+          }]
+        }],
+        "rule" : [{
+          "name" : "code",
+          "source" : [{
+            "context" : "code"
+          }],
+          "target" : [{
+            "context" : "coding",
+            "contextType" : "variable",
+            "element" : "code",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueId" : "code"
+            }]
+          }]
+        },
+        {
+          "name" : "system",
+          "source" : [{
+            "context" : "code"
+          }],
+          "target" : [{
+            "context" : "coding",
+            "contextType" : "variable",
+            "element" : "system",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueString" : "https://mos.esante.gouv.fr/NOS/TRE_R02-SecteurActivite/FHIR/TRE-R02-SecteurActivite"
+            }]
+          }]
+        },
+        {
+          "name" : "display",
+          "source" : [{
+            "context" : "srcCode",
+            "element" : "displayName",
+            "variable" : "display"
+          }],
+          "target" : [{
+            "context" : "coding",
+            "contextType" : "variable",
+            "element" : "display",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueId" : "display"
+            }]
+          }]
+        }]
+      }]
+    },
+    {
       "name" : "location",
       "source" : [{
         "context" : "src",
@@ -3053,13 +3705,14 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
             "variable" : ["srcOrg", "organization"]
           }]
         }]
-      }]
+      }],
+      "documentation" : "place names are usually stored with no parts"
     }]
   },
   {
     "name" : "NarrativeLink",
     "typeMode" : "none",
-    "documentation" : "Template Type not specified",
+    "documentation" : "_________________________ Template Type not specified  ___________________",
     "input" : [{
       "name" : "url",
       "mode" : "source"
