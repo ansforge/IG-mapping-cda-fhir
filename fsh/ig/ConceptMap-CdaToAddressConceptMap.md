@@ -28,7 +28,7 @@ Correspondances documentaires des composants AD vers Address.
   "title" : "ConceptMap — CDA AD vers FHIR Address",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-04-13T09:05:14+00:00",
+  "date" : "2026-04-13T09:40:13+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -112,20 +112,20 @@ Correspondances documentaires des composants AD vers Address.
       "code" : "AD.item.streetName",
       "display" : "AD.item.streetName",
       "target" : [{
-        "code" : "Address.line",
-        "display" : "Address.line",
-        "equivalence" : "relatedto",
-        "comment" : "Le nom de rue est porté dans Address.line, en complément des autres composants de voie."
+        "code" : "Address.line.extension.iso21090-ADXP-streetName",
+        "display" : "Address.line.extension[http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName]",
+        "equivalence" : "equivalent",
+        "comment" : "Le nom de rue CDA alimente l’extension officielle HL7 iso21090-ADXP-streetName portée par Address.line."
       }]
     },
     {
       "code" : "AD.item.houseNumber",
       "display" : "AD.item.houseNumber",
       "target" : [{
-        "code" : "Address.line",
-        "display" : "Address.line",
-        "equivalence" : "relatedto",
-        "comment" : "Le numéro de voie est porté dans Address.line, en complément du nom de rue ou d’une ligne d’adresse."
+        "code" : "Address.line.extension.iso21090-ADXP-houseNumber",
+        "display" : "Address.line.extension[http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber]",
+        "equivalence" : "equivalent",
+        "comment" : "Le numéro de voie CDA alimente l’extension officielle HL7 iso21090-ADXP-houseNumber portée par Address.line."
       }]
     },
     {
