@@ -68,8 +68,8 @@ Le fichier principal de cette couche est CdaToFHIRTypes.fml. Cette couche regrou
 | AD.item.city | Address.city |
 | AD.item.postalCode | Address.postalCode |
 | AD.item.streetAddressLine | Address.line |
-| AD.item.streetName | Address.line.extension[http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName] |
-| AD.item.houseNumber | Address.line.extension[http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber] |
+| AD.item.streetName | Address.line.extension[http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName].valueString |
+| AD.item.houseNumber | Address.line.extension[http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber].valueString |
 | AD.useablePeriod | Address.period |
 | BL.value | boolean |
 | CE.code | code |
