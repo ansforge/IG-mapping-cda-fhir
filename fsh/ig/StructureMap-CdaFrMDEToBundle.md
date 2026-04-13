@@ -27,7 +27,7 @@ Mapping CSE-MDE vers FHIR Bundle - Contexte Français
   "name" : "CdaFrMDEToBundle",
   "title" : "Mapping CSE-MDE vers FHIR Bundle - Contexte Français",
   "status" : "draft",
-  "date" : "2026-04-13T09:48:02+00:00",
+  "date" : "2026-04-13T09:58:36+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",

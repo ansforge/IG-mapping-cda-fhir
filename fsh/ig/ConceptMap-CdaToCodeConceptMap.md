@@ -28,7 +28,7 @@ Correspondances documentaires entre les datatypes CDA CE, CS et CD et les types 
   "title" : "ConceptMap — CDA CE/CS/CD vers FHIR code et CodeableConcept",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-04-13T09:48:02+00:00",
+  "date" : "2026-04-13T09:58:36+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -52,10 +52,10 @@ Correspondances documentaires entre les datatypes CDA CE, CS et CD et les types 
       "code" : "CE.code",
       "display" : "CE.code",
       "target" : [{
-        "code" : "code.value",
-        "display" : "code.value",
-        "equivalence" : "relatedto",
-        "comment" : "Le code CDA CE alimente la valeur du type FHIR code, conformément au mapping hérité de CS -> code."
+        "code" : "code",
+        "display" : "code",
+        "equivalence" : "equivalent",
+        "comment" : "Le code CDA alimente directement le datatype primitif FHIR code."
       }]
     }]
   },
@@ -120,10 +120,10 @@ Correspondances documentaires entre les datatypes CDA CE, CS et CD et les types 
       "code" : "CS.code",
       "display" : "CS.code",
       "target" : [{
-        "code" : "code.value",
-        "display" : "code.value",
+        "code" : "code",
+        "display" : "code",
         "equivalence" : "equivalent",
-        "comment" : "Le code CDA CS alimente directement la valeur du type FHIR code."
+        "comment" : "Le code CDA CS alimente directement le datatype primitif FHIR code."
       }]
     }]
   },
@@ -148,10 +148,10 @@ Correspondances documentaires entre les datatypes CDA CE, CS et CD et les types 
       "code" : "CD.code",
       "display" : "CD.code",
       "target" : [{
-        "code" : "code.value",
-        "display" : "code.value",
+        "code" : "code",
+        "display" : "code",
         "equivalence" : "relatedto",
-        "comment" : "Le code CDA CD alimente la valeur du type FHIR code, conformément au mapping hérité de CS -> code."
+        "comment" : "Le code CDA CD alimente le datatype primitif FHIR code, conformément au mapping hérité de CS -> code."
       }]
     }]
   },

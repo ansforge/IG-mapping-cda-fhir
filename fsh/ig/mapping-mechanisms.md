@@ -72,15 +72,15 @@ Le fichier principal de cette couche est CdaToFHIRTypes.fml. Cette couche regrou
 | AD.item.houseNumber | Address.line.extension[http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber] |
 | AD.useablePeriod | Address.period |
 | BL.value | boolean |
-| CE.code | code.value |
+| CE.code | code |
 | CE.originalText | CodeableConcept.text |
 | CE.code | CodeableConcept.coding.code |
 | CE.codeSystem | CodeableConcept.coding.system |
 | CE.displayName | CodeableConcept.coding.display |
 | CE.translation | CodeableConcept.coding (translation) |
-| CS.code | code.value |
+| CS.code | code |
 | CS.code | CodeableConcept.coding.code |
-| CD.code | code.value |
+| CD.code | code |
 | CD.originalText | CodeableConcept.text |
 | CD.code | CodeableConcept.coding.code |
 | CD.codeSystem | CodeableConcept.coding.system |
