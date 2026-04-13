@@ -1,0 +1,45 @@
+{
+  "resourceType" : "ConceptMap",
+  "id" : "CdaToBooleanConceptMap",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Narratif généré : CarteDeConcepts CdaToBooleanConceptMap</b></p><a name=\"CdaToBooleanConceptMap\"> </a><a name=\"hcCdaToBooleanConceptMap\"> </a><p>Mapping de (non spécifié) vers (non spécifié)</p><br/><p><b>Groupe 1 </b>Mapping de <a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-BL.html\">BL: Boolean (V3 Data Type)</a> to <a href=\"http://hl7.org/fhir/R4/datatypes.html#boolean\">boolean</a></p><table class=\"grid\"><tr><td><b>Code source</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>relation</b></td><td><b>Code cible</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Commentaire</b></td></tr><tr><td><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-BL.html#BL.value\">BL.value</a></td><td>0..1</td><td>todo</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#boolean#boolean.value\">boolean.value</a></td><td>0..1</td><td>todo</td><td>La valeur du datatype CDA BL est reportée directement dans la valeur FHIR boolean.</td></tr></table></div>"
+  },
+  "url" : "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaBLToFHIR",
+  "version" : "0.1.0",
+  "name" : "CdaBLToFHIR",
+  "title" : "ConceptMap — CDA BL vers FHIR boolean",
+  "status" : "draft",
+  "experimental" : true,
+  "date" : "2026-04-13T07:31:01+00:00",
+  "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
+  "contact" : [{
+    "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
+    "telecom" : [{
+      "system" : "url",
+      "value" : "https://esante.gouv.fr"
+    }]
+  }],
+  "description" : "Correspondance documentaire entre le datatype CDA BL et le datatype FHIR boolean.",
+  "jurisdiction" : [{
+    "coding" : [{
+      "system" : "urn:iso:std:iso:3166",
+      "code" : "FR",
+      "display" : "FRANCE"
+    }]
+  }],
+  "group" : [{
+    "source" : "http://hl7.org/cda/stds/core/StructureDefinition/BL",
+    "target" : "http://hl7.org/fhir/StructureDefinition/boolean",
+    "element" : [{
+      "code" : "BL.value",
+      "display" : "BL.value",
+      "target" : [{
+        "code" : "boolean.value",
+        "display" : "boolean.value",
+        "equivalence" : "equivalent",
+        "comment" : "La valeur du datatype CDA BL est reportée directement dans la valeur FHIR boolean."
+      }]
+    }]
+  }]
+}

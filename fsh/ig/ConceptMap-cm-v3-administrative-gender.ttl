@@ -1,0 +1,102 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/cm-v3-administrative-gender> a fhir:ConceptMap ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "cm-v3-administrative-gender"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div [ fhir:v "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Narratif généré : CarteDeConcepts cm-v3-administrative-gender</b></p><a name=\"cm-v3-administrative-gender\"> </a><a name=\"hccm-v3-administrative-gender\"> </a><p>Mapping de <a href=\"http://terminology.hl7.org/7.1.0/ValueSet-v3-AdministrativeGender.html\">AdministrativeGender</a> vers <a href=\"http://hl7.org/fhir/R4/valueset-administrative-gender.html\">AdministrativeGender</a></p><br/><p><b>Groupe 1 </b>Mapping de <a href=\"http://terminology.hl7.org/7.1.0/CodeSystem-v3-AdministrativeGender.html\">AdministrativeGender</a> to <a href=\"http://hl7.org/fhir/R4/codesystem-administrative-gender.html\">AdministrativeGender</a></p><table class=\"grid\"><tr><td><b>Code source</b></td><td><b>relation</b></td><td><b>Code cible</b></td><td><b>Commentaire</b></td></tr><tr><td>M (Male)</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td>male</td><td/></tr><tr><td>F (Female)</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td>female</td><td/></tr><tr><td>UN (Undifferentiated)</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td>other</td><td>CDA 'Undifferentiated' maps to FHIR 'other'</td></tr><tr><td>UNK (Unknown)</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td>unknown</td><td/></tr></table></div>"^^rdf:XMLLiteral ]
+  ] ; # 
+  fhir:url [
+     fhir:v "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/cm-v3-administrative-gender"^^xsd:anyURI ;
+     fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/cm-v3-administrative-gender>
+  ] ; # 
+  fhir:version [ fhir:v "0.1.0"] ; # 
+  fhir:name [ fhir:v "CdaToFhirAdministrativeGender"] ; # 
+  fhir:title [ fhir:v "CDA to FHIR Administrative Gender Mapping"] ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:experimental [ fhir:v false] ; # 
+  fhir:date [ fhir:v "2026-04-13T07:31:01+00:00"^^xsd:dateTime] ; # 
+  fhir:publisher [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"] ; # 
+  fhir:contact ( [
+     fhir:name [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris" ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "https://esante.gouv.fr" ]
+     ] )
+  ] ) ; # 
+  fhir:description [ fhir:v "Mapping between CDA v3 Administrative Gender codes and FHIR Administrative Gender codes"] ; # 
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [
+         fhir:v "urn:iso:std:iso:3166"^^xsd:anyURI ;
+         fhir:l <urn:iso:std:iso:3166>
+       ] ;
+       fhir:code [ fhir:v "FR" ] ;
+       fhir:display [ fhir:v "FRANCE" ]
+     ] )
+  ] ) ; # 
+  fhir:purpose [ fhir:v "Used in CDA to FHIR transformations to map gender codes"] ; # 
+  fhir:source [
+     a fhir:Canonical ;
+     fhir:v "http://terminology.hl7.org/ValueSet/v3-AdministrativeGender"^^xsd:anyURI ;
+     fhir:l <http://terminology.hl7.org/ValueSet/v3-AdministrativeGender>
+  ] ; # 
+  fhir:target [
+     a fhir:Canonical ;
+     fhir:v "http://hl7.org/fhir/ValueSet/administrative-gender"^^xsd:anyURI ;
+     fhir:l <http://hl7.org/fhir/ValueSet/administrative-gender>
+  ] ; # 
+  fhir:group ( [
+     fhir:source [
+       fhir:v "http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender"^^xsd:anyURI ;
+       fhir:l <http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender>
+     ] ;
+     fhir:target [
+       fhir:v "http://hl7.org/fhir/administrative-gender"^^xsd:anyURI ;
+       fhir:l <http://hl7.org/fhir/administrative-gender>
+     ] ;
+     fhir:element ( [
+       fhir:code [ fhir:v "M" ] ;
+       fhir:display [ fhir:v "Male" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "male" ] ;
+         fhir:display [ fhir:v "Male" ] ;
+         fhir:equivalence [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "F" ] ;
+       fhir:display [ fhir:v "Female" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "female" ] ;
+         fhir:display [ fhir:v "Female" ] ;
+         fhir:equivalence [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "UN" ] ;
+       fhir:display [ fhir:v "Undifferentiated" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "other" ] ;
+         fhir:display [ fhir:v "Other" ] ;
+         fhir:equivalence [ fhir:v "equivalent" ] ;
+         fhir:comment [ fhir:v "CDA 'Undifferentiated' maps to FHIR 'other'" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "UNK" ] ;
+       fhir:display [ fhir:v "Unknown" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "unknown" ] ;
+         fhir:display [ fhir:v "Unknown" ] ;
+         fhir:equivalence [ fhir:v "equivalent" ]
+       ] )
+     ] )
+  ] ) . # 
+
+# -------------------------------------------------------------------------------------
+
