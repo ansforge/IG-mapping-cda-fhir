@@ -3,7 +3,7 @@ CDA2FHIRMAP : Validation Results
 
 err = 129, warn = 134, info = 159
 IG Publisher Version: 2.2.6
-Generated Mon Apr 13 09:43:03 UTC 2026. FHIR version 4.0.1 for ans.fhir.fr.mappingcdafhir#0.1.0 (canonical = https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir)
+Generated Mon Apr 13 09:50:18 UTC 2026. FHIR version 4.0.1 for ans.fhir.fr.mappingcdafhir#0.1.0 (canonical = https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir)
  Build Errors : 6 / 5 / 0
  /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaIIToIdentifierConceptMap : 6 / 8 / 1
  /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaToAddressConceptMap : 7 / 16 / 1
@@ -77,7 +77,7 @@ ERROR: ConceptMap.url: Resource id/url mismatch: CdaToBooleanConceptMap/https://
 ERROR: ConceptMap.where(url = 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaBLToFHIR'): Conformance resource /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaToBooleanConceptMap.json - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaToBooleanConceptMap) does not match the URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaBLToFHIR). Use the special-url parameter if you really mean for it not to match
 ERROR: ConceptMap/CdaToBooleanConceptMap: ConceptMap.jurisdiction[0].coding[0].display: Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')
 WARNING: ConceptMap/CdaToBooleanConceptMap: ConceptMap.group[0].element[0].code: The source display 'BL.value' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/BL|2.0.0-sd#BL.value' is not valid. Possible displays: 
-WARNING: ConceptMap/CdaToBooleanConceptMap: ConceptMap.group[0].element[0].target[0].code: The target display 'boolean.value' for the code 'http://hl7.org/fhir/StructureDefinition/boolean|4.0.1#boolean.value' is not valid. Possible displays: 'Primitive value for boolean'
+WARNING: ConceptMap/CdaToBooleanConceptMap: ConceptMap.group[0].element[0].target[0].code: The target display 'boolean' for the code 'http://hl7.org/fhir/StructureDefinition/boolean|4.0.1#boolean' is not valid. Possible displays: 'Primitive Type boolean'
 ERROR: /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaToBooleanConceptMap: URL Mismatch https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaToBooleanConceptMap vs https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaBLToFHIR
 == fsh-generated/resources/ConceptMap-CdaToCodeConceptMap.json ==
 ERROR: ConceptMap.where(url = 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaConceptCodesToFHIR'): Conformance resource /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaToCodeConceptMap.json - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaToCodeConceptMap) does not match the URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaConceptCodesToFHIR). Use the special-url parameter if you really mean for it not to match

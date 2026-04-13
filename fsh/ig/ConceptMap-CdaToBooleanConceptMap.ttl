@@ -11,7 +11,7 @@
   fhir:id [ fhir:v "CdaToBooleanConceptMap"] ; # 
   fhir:text [
      fhir:status [ fhir:v "generated" ] ;
-     fhir:div [ fhir:v "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Narratif généré : CarteDeConcepts CdaToBooleanConceptMap</b></p><a name=\"CdaToBooleanConceptMap\"> </a><a name=\"hcCdaToBooleanConceptMap\"> </a><p>Mapping de (non spécifié) vers (non spécifié)</p><br/><p><b>Groupe 1 </b>Mapping de <a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-BL.html\">BL: Boolean (V3 Data Type)</a> to <a href=\"http://hl7.org/fhir/R4/datatypes.html#boolean\">boolean</a></p><table class=\"grid\"><tr><td><b>Code source</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>relation</b></td><td><b>Code cible</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Commentaire</b></td></tr><tr><td><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-BL.html#BL.value\">BL.value</a></td><td>0..1</td><td>todo</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#boolean#boolean.value\">boolean.value</a></td><td>0..1</td><td>todo</td><td>La valeur du datatype CDA BL est reportée directement dans la valeur FHIR boolean.</td></tr></table></div>"^^rdf:XMLLiteral ]
+     fhir:div [ fhir:v "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Narratif généré : CarteDeConcepts CdaToBooleanConceptMap</b></p><a name=\"CdaToBooleanConceptMap\"> </a><a name=\"hcCdaToBooleanConceptMap\"> </a><p>Mapping de (non spécifié) vers (non spécifié)</p><br/><p><b>Groupe 1 </b>Mapping de <a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-BL.html\">BL: Boolean (V3 Data Type)</a> to <a href=\"http://hl7.org/fhir/R4/datatypes.html#boolean\">boolean</a></p><table class=\"grid\"><tr><td><b>Code source</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>relation</b></td><td><b>Code cible</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Commentaire</b></td></tr><tr><td><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-BL.html#BL.value\">BL.value</a></td><td>0..1</td><td>todo</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#boolean#boolean\">boolean</a></td><td>0..*</td><td>todo</td><td>La valeur BL CDA alimente directement le datatype primitif FHIR boolean.</td></tr></table></div>"^^rdf:XMLLiteral ]
   ] ; # 
   fhir:url [
      fhir:v "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaBLToFHIR"^^xsd:anyURI ;
@@ -22,7 +22,7 @@
   fhir:title [ fhir:v "ConceptMap — CDA BL vers FHIR boolean"] ; # 
   fhir:status [ fhir:v "draft"] ; # 
   fhir:experimental [ fhir:v true] ; # 
-  fhir:date [ fhir:v "2026-04-13T09:40:13+00:00"^^xsd:dateTime] ; # 
+  fhir:date [ fhir:v "2026-04-13T09:48:02+00:00"^^xsd:dateTime] ; # 
   fhir:publisher [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"] ; # 
   fhir:contact ( [
      fhir:name [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris" ] ;
@@ -55,10 +55,10 @@
        fhir:code [ fhir:v "BL.value" ] ;
        fhir:display [ fhir:v "BL.value" ] ;
        fhir:target ( [
-         fhir:code [ fhir:v "boolean.value" ] ;
-         fhir:display [ fhir:v "boolean.value" ] ;
+         fhir:code [ fhir:v "boolean" ] ;
+         fhir:display [ fhir:v "boolean" ] ;
          fhir:equivalence [ fhir:v "equivalent" ] ;
-         fhir:comment [ fhir:v "La valeur du datatype CDA BL est reportée directement dans la valeur FHIR boolean." ]
+         fhir:comment [ fhir:v "La valeur BL CDA alimente directement le datatype primitif FHIR boolean." ]
        ] )
      ] )
   ] ) . # 

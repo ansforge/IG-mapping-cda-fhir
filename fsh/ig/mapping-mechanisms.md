@@ -71,7 +71,7 @@ Le fichier principal de cette couche est CdaToFHIRTypes.fml. Cette couche regrou
 | AD.item.streetName | Address.line.extension[http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName] |
 | AD.item.houseNumber | Address.line.extension[http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber] |
 | AD.useablePeriod | Address.period |
-| BL.value | boolean.value |
+| BL.value | boolean |
 | CE.code | code.value |
 | CE.originalText | CodeableConcept.text |
 | CE.code | CodeableConcept.coding.code |
