@@ -14,13 +14,14 @@ Description: "Correspondances documentaires entre les datatypes CDA CE, CS et CD
 * group[0].source = "http://hl7.org/cda/stds/core/StructureDefinition/CE"
 * group[0].target = "http://hl7.org/fhir/StructureDefinition/code"
 
-/* CE.code -> code.value */
+
+/* CE.code -> code */
 * group[0].element[0].code = #CE.code
 * group[0].element[0].display = "CE.code"
-* group[0].element[0].target[0].code = #code.value
-* group[0].element[0].target[0].display = "code.value"
-* group[0].element[0].target[0].equivalence = #relatedto
-* group[0].element[0].target[0].comment = "Le code CDA CE alimente la valeur du type FHIR code, conformément au mapping hérité de CS -> code."
+* group[0].element[0].target[0].code = #code
+* group[0].element[0].target[0].display = "code"
+* group[0].element[0].target[0].equivalence = #equivalent
+* group[0].element[0].target[0].comment = "Le code CDA alimente directement le datatype primitif FHIR code."
 
 
 // Group 1 — CE -> CodeableConcept
@@ -34,6 +35,7 @@ Description: "Correspondances documentaires entre les datatypes CDA CE, CS et CD
 * group[1].element[0].target[0].display = "CodeableConcept.text"
 * group[1].element[0].target[0].equivalence = #equivalent
 * group[1].element[0].target[0].comment = "Le texte original CDA alimente directement CodeableConcept.text."
+
 
 /* CE.code -> CodeableConcept.coding.code */
 * group[1].element[1].code = #CE.code
@@ -72,13 +74,13 @@ Description: "Correspondances documentaires entre les datatypes CDA CE, CS et CD
 * group[2].source = "http://hl7.org/cda/stds/core/StructureDefinition/CS"
 * group[2].target = "http://hl7.org/fhir/StructureDefinition/code"
 
-/* CS.code -> code.value */
+/* CS.code -> code */
 * group[2].element[0].code = #CS.code
 * group[2].element[0].display = "CS.code"
-* group[2].element[0].target[0].code = #code.value
-* group[2].element[0].target[0].display = "code.value"
+* group[2].element[0].target[0].code = #code
+* group[2].element[0].target[0].display = "code"
 * group[2].element[0].target[0].equivalence = #equivalent
-* group[2].element[0].target[0].comment = "Le code CDA CS alimente directement la valeur du type FHIR code."
+* group[2].element[0].target[0].comment = "Le code CDA CS alimente directement le datatype primitif FHIR code."
 
 
 // Group 3 — CS -> CodeableConcept
@@ -98,13 +100,13 @@ Description: "Correspondances documentaires entre les datatypes CDA CE, CS et CD
 * group[4].source = "http://hl7.org/cda/stds/core/StructureDefinition/CD"
 * group[4].target = "http://hl7.org/fhir/StructureDefinition/code"
 
-/* CD.code -> code.value */
+/* CD.code -> code */
 * group[4].element[0].code = #CD.code
 * group[4].element[0].display = "CD.code"
-* group[4].element[0].target[0].code = #code.value
-* group[4].element[0].target[0].display = "code.value"
+* group[4].element[0].target[0].code = #code
+* group[4].element[0].target[0].display = "code"
 * group[4].element[0].target[0].equivalence = #relatedto
-* group[4].element[0].target[0].comment = "Le code CDA CD alimente la valeur du type FHIR code, conformément au mapping hérité de CS -> code."
+* group[4].element[0].target[0].comment = "Le code CDA CD alimente le datatype primitif FHIR code, conformément au mapping hérité de CS -> code."
 
 // Group 5 — CD -> CodeableConcept
 * group[5].source = "http://hl7.org/cda/stds/core/StructureDefinition/CD"
