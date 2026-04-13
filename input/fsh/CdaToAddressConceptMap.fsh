@@ -60,22 +60,21 @@ Description: "Correspondances documentaires des composants AD vers Address."
 * group[0].element[5].target[0].equivalence = #equivalent
 * group[0].element[5].target[0].comment = "Chaque streetAddressLine CDA alimente une ligne d’adresse FHIR."
 
-/* AD.item.streetName -> Address.line.extension[iso21090-ADXP-streetName] */
+/* AD.item.streetName -> Address.line.extension[iso21090-ADXP-streetName].valueString */
 * group[0].element[6].code = #AD.item.streetName
 * group[0].element[6].display = "AD.item.streetName"
-* group[0].element[6].target[0].code = #Address.line.extension.iso21090-ADXP-streetName
-* group[0].element[6].target[0].display = "Address.line.extension[http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName]"
+* group[0].element[6].target[0].code = #Address.line.extension[iso21090-ADXP-streetName].valueString
+* group[0].element[6].target[0].display = "Address.line.extension[http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName].valueString"
 * group[0].element[6].target[0].equivalence = #equivalent
-* group[0].element[6].target[0].comment = "Le nom de rue CDA alimente l’extension officielle HL7 iso21090-ADXP-streetName portée par Address.line."
+* group[0].element[6].target[0].comment = "Le nom de rue CDA alimente la valeur de l’extension officielle HL7 iso21090-ADXP-streetName portée par Address.line."
 
-/* AD.item.houseNumber -> Address.line.extension[iso21090-ADXP-houseNumber] */
+/* AD.item.houseNumber -> Address.line.extension[iso21090-ADXP-houseNumber].valueString */
 * group[0].element[7].code = #AD.item.houseNumber
 * group[0].element[7].display = "AD.item.houseNumber"
-* group[0].element[7].target[0].code = #Address.line.extension.iso21090-ADXP-houseNumber
-* group[0].element[7].target[0].display = "Address.line.extension[http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber]"
+* group[0].element[7].target[0].code = #Address.line.extension[iso21090-ADXP-houseNumber].valueString
+* group[0].element[7].target[0].display = "Address.line.extension[http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber].valueString"
 * group[0].element[7].target[0].equivalence = #equivalent
-* group[0].element[7].target[0].comment = "Le numéro de voie CDA alimente l’extension officielle HL7 iso21090-ADXP-houseNumber portée par Address.line."
-
+* group[0].element[7].target[0].comment = "Le numéro de voie CDA alimente la valeur de l’extension officielle HL7 iso21090-ADXP-houseNumber portée par Address.line."
 
 /* AD.useablePeriod -> Address.period */
 * group[0].element[8].code = #AD.useablePeriod
