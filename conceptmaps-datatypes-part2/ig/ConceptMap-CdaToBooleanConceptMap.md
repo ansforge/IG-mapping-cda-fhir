@@ -28,7 +28,7 @@ Correspondance documentaire entre le datatype CDA BL et le datatype FHIR boolean
   "title" : "ConceptMap — CDA BL vers FHIR boolean",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-04-14T07:50:58+00:00",
+  "date" : "2026-04-14T12:43:47+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -52,10 +52,10 @@ Correspondance documentaire entre le datatype CDA BL et le datatype FHIR boolean
       "code" : "BL.value",
       "display" : "BL.value",
       "target" : [{
-        "code" : "boolean.value",
-        "display" : "boolean.value",
+        "code" : "boolean",
+        "display" : "boolean",
         "equivalence" : "equivalent",
-        "comment" : "La valeur du datatype CDA BL est reportée directement dans la valeur FHIR boolean."
+        "comment" : "La valeur BL CDA alimente directement le datatype primitif FHIR boolean."
       }]
     }]
   }]
