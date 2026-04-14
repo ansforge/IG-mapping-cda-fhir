@@ -9,7 +9,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaIIToIdentifier | *Version*:0.1.0 |
-| Draft as of 2026-04-13 | *Computable Name*:CdaIIToIdentifier |
+| Draft as of 2026-04-14 | *Computable Name*:CdaIIToIdentifier |
 
  
 Correspondances entre les éléments du datatype CDA II et les éléments FHIR Identifier 
@@ -28,7 +28,7 @@ Correspondances entre les éléments du datatype CDA II et les éléments FHIR I
   "title" : "ConceptMap — CDA II vers FHIR Identifier",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-04-13T12:18:34+00:00",
+  "date" : "2026-04-14T12:56:47+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
