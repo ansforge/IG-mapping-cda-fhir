@@ -59,38 +59,7 @@ Les mappings CDA vers FHIR sont organisés en couches afin de séparer les respo
 
 Le fichier principal de cette couche est CdaToFHIRTypes.fml. Cette couche regroupe les mappings de conversion des types de données CDA v3 vers les types de données FHIR. Dans le contexte CDA, les datatypes représentent les structures élémentaires utilisées pour porter l’information dans le document : identifiants, noms, adresses, codes, dates, quantités, coordonnées de contact, etc. Avant de transformer un document CDA en ressources FHIR, il est donc nécessaire de convertir correctement ces types sources vers leurs équivalents FHIR. Cette couche contient ainsi les transformations de bas niveau permettant, par exemple, de convertir : II vers Identifier EN / PN vers HumanName AD vers Address TEL vers ContactPoint CD / CE / CS vers CodeableConcept ou code PQ vers Quantity TS / IVL_TS vers date, dateTime ou Period Elle constitue le socle commun de l’ensemble des autres mappings. Elle ne contient ni logique métier, ni logique nationale, ni navigation dans la structure du document CDA : son objectif est uniquement d’assurer la correspondance entre les types techniques manipulés dans les mappings.
 
-| | |
-| :--- | :--- |
-| CDA | FHIR |
-| AD.item.country | Address.country |
-| AD.item.state | Address.state |
-| AD.item.county | Address.district |
-| AD.item.city | Address.city |
-| AD.item.postalCode | Address.postalCode |
-| AD.item.streetAddressLine | Address.line |
-| AD.item.streetName | Address.line.extension[http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName].valueString |
-| AD.item.houseNumber | Address.line.extension[http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber].valueString |
-| AD.useablePeriod | Address.period |
-| BL.value | boolean |
-| CE.code | code |
-| CE.originalText | CodeableConcept.text |
-| CE.code | CodeableConcept.coding.code |
-| CE.codeSystem | CodeableConcept.coding.system |
-| CE.displayName | CodeableConcept.coding.display |
-| CE.translation | CodeableConcept.coding (translation) |
-| CS.code | code |
-| CS.code | CodeableConcept.coding.code |
-| CD.code | code |
-| CD.originalText | CodeableConcept.text |
-| CD.code | CodeableConcept.coding.code |
-| CD.codeSystem | CodeableConcept.coding.system |
-| CD.displayName | CodeableConcept.coding.display |
-| CD.translation | CodeableConcept.coding (translation) |
-| II.extension | Identifier.value |
-| II.root | Identifier.system |
-| II.root | Identifier.value |
-| II.assigningAuthorityName | Identifier.assigner.display |
-| II.displayable | Identifier.extension(displayable) |
+Error processing SQL: Error parsing JSON source: Unexpected content '' in json format at Line 36 (path=[//columns[]columns])
 
 ##### Mappings CDA génériques
 
