@@ -10,7 +10,7 @@
   <name value="CDA2FHIRMAP"/>
   <title value="POC - Mapping CDA to FHIR"/>
   <status value="draft"/>
-  <date value="2026-04-15T09:44:30+00:00"/>
+  <date value="2026-04-15T09:46:03+00:00"/>
   <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
   <contact>
     <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
@@ -577,7 +577,7 @@
         <valueString value="ConceptMap"/>
       </extension>
       <reference>
-        <reference value="ConceptMap/CdaToHumanNameConceptMap"/>
+        <reference value="ConceptMap/CdaENPNToHumanNameConceptMap"/>
       </reference>
       <name value="ConceptMap — CDA EN/PN vers FHIR HumanName"/>
       <description value="Correspondances documentaires des composants CDA EN et PN vers FHIR HumanName."/>
@@ -621,7 +621,7 @@
         <valueString value="ConceptMap"/>
       </extension>
       <reference>
-        <reference value="ConceptMap/CdaToDateTimeConceptMap"/>
+        <reference value="ConceptMap/CdaTSToDateTimeConceptMap"/>
       </reference>
       <name value="ConceptMap — CDA TS vers FHIR instant, dateTime et date"/>
       <description value="Correspondances documentaires entre le datatype CDA TS et les types FHIR instant, dateTime et date."/>

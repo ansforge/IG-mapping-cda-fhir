@@ -68,21 +68,6 @@ Le fichier principal de cette couche est CdaToFHIRTypes.fml. Cette couche regrou
 | II.assigningAuthorityName | Identifier.assigner.display |
 | II.displayable | Identifier.extension(displayable) |
 | INT.value | integer |
-| EN.family | HumanName.family |
-| EN.given | HumanName.given |
-| EN.prefix | HumanName.prefix |
-| EN.suffix | HumanName.suffix |
-| EN.xmlText | HumanName.text |
-| EN.validTime | HumanName.period |
-| PN.family | HumanName.family |
-| PN.given | HumanName.given |
-| PN.prefix | HumanName.prefix |
-| PN.suffix | HumanName.suffix |
-| PN.xmlText | HumanName.text |
-| PN.validTime | HumanName.period |
-| TS.value | instant |
-| TS.value | dateTime |
-| TS.value | date |
 
 ##### Mappings CDA génériques
 

@@ -21,14 +21,14 @@ Correspondances documentaires entre le datatype CDA TS et les types FHIR instant
 ```json
 {
   "resourceType" : "ConceptMap",
-  "id" : "CdaToDateTimeConceptMap",
+  "id" : "CdaTSToDateTimeConceptMap",
   "url" : "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaTSToFHIR",
   "version" : "0.1.0",
   "name" : "CdaTSToFHIR",
   "title" : "ConceptMap — CDA TS vers FHIR instant, dateTime et date",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-04-15T09:44:30+00:00",
+  "date" : "2026-04-15T09:46:03+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
