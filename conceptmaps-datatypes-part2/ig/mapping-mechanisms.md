@@ -67,7 +67,6 @@ Le fichier principal de cette couche est CdaToFHIRTypes.fml. Cette couche regrou
 | II.root | Identifier.value |
 | II.assigningAuthorityName | Identifier.assigner.display |
 | II.displayable | Identifier.extension(displayable) |
-| INT.value | integer |
 
 ##### Mappings CDA génériques
 
