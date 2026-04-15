@@ -92,13 +92,13 @@ SELECT
 FROM Mappings
 WHERE ConceptMapId IN (
   'CdaIIToIdentifierConceptMap',
-  'CdaToAddressConceptMap',
-  'CdaToCodeConceptMap',
-  'CdaToBooleanConceptMap',
-  'CdaToContactPointConceptMap',
-  'CdaToDateTimeConceptMap',
-  'CdaToHumanNameConceptMap',
-  'CdaToIntegerConceptMap'
+  'CdaADToAddressConceptMap',
+  'CdaCECSCDToCodeConceptMap',
+  'CdaBLToBooleanConceptMap',
+  'CdaTELToContactPointConceptMap',
+  'CdaTSToDateTimeConceptMap',
+  'CdaENPNToHumanNameConceptMap',
+  'CdaINTToIntegerConceptMap'
 )
 ORDER BY ConceptMapName, group_index, elem_index, target_index
 ",
