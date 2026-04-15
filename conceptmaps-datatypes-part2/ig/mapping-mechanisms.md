@@ -62,11 +62,55 @@ Le fichier principal de cette couche est CdaToFHIRTypes.fml. Cette couche regrou
 | | |
 | :--- | :--- |
 | CDA | FHIR |
+| AD.item.country | Address.country |
+| AD.item.state | Address.state |
+| AD.item.county | Address.district |
+| AD.item.city | Address.city |
+| AD.item.postalCode | Address.postalCode |
+| AD.item.streetAddressLine | Address.line |
+| AD.item.streetName | Address.line.extension[http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName].valueString |
+| AD.item.houseNumber | Address.line.extension[http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber].valueString |
+| AD.useablePeriod | Address.period |
+| BL.value | boolean |
+| CE.code | code |
+| CE.originalText | CodeableConcept.text |
+| CE.code | CodeableConcept.coding.code |
+| CE.codeSystem | CodeableConcept.coding.system |
+| CE.displayName | CodeableConcept.coding.display |
+| CE.translation | CodeableConcept.coding (translation) |
+| CS.code | code |
+| CS.code | CodeableConcept.coding.code |
+| CD.code | code |
+| CD.originalText | CodeableConcept.text |
+| CD.code | CodeableConcept.coding.code |
+| CD.codeSystem | CodeableConcept.coding.system |
+| CD.displayName | CodeableConcept.coding.display |
+| CD.translation | CodeableConcept.coding (translation) |
 | II.extension | Identifier.value |
 | II.root | Identifier.system |
 | II.root | Identifier.value |
 | II.assigningAuthorityName | Identifier.assigner.display |
 | II.displayable | Identifier.extension(displayable) |
+| INT.value | integer |
+| EN.family | HumanName.family |
+| EN.given | HumanName.given |
+| EN.prefix | HumanName.prefix |
+| EN.suffix | HumanName.suffix |
+| EN.xmlText | HumanName.text |
+| EN.validTime | HumanName.period |
+| PN.family | HumanName.family |
+| PN.given | HumanName.given |
+| PN.prefix | HumanName.prefix |
+| PN.suffix | HumanName.suffix |
+| PN.xmlText | HumanName.text |
+| PN.validTime | HumanName.period |
+| TEL.value | ContactPoint.value |
+| TEL.value | ContactPoint.system |
+| TEL.use | ContactPoint.use |
+| TEL.useablePeriod | ContactPoint.period |
+| TS.value | instant |
+| TS.value | dateTime |
+| TS.value | date |
 
 ##### Mappings CDA génériques
 
