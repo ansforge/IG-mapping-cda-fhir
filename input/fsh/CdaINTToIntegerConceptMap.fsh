@@ -1,4 +1,4 @@
-Instance: CdaToIntegerConceptMap
+Instance: CdaINTToIntegerConceptMap
 InstanceOf: ConceptMap
 Usage: #definition
 Title: "ConceptMap — CDA INT vers FHIR integer"
