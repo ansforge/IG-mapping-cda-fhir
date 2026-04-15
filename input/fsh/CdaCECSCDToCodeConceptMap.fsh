@@ -1,4 +1,4 @@
-Instance: CdaToCodeConceptMap
+Instance: CdaCECSCDToCodeConceptMap
 InstanceOf: ConceptMap
 Usage: #definition
 Title: "ConceptMap — CDA CE/CS/CD vers FHIR code et CodeableConcept"
