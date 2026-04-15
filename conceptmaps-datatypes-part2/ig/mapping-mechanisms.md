@@ -80,10 +80,6 @@ Le fichier principal de cette couche est CdaToFHIRTypes.fml. Cette couche regrou
 | PN.suffix | HumanName.suffix |
 | PN.xmlText | HumanName.text |
 | PN.validTime | HumanName.period |
-| TEL.value | ContactPoint.value |
-| TEL.value | ContactPoint.system |
-| TEL.use | ContactPoint.use |
-| TEL.useablePeriod | ContactPoint.period |
 | TS.value | instant |
 | TS.value | dateTime |
 | TS.value | date |

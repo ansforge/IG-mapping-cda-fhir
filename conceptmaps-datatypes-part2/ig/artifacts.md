@@ -32,7 +32,7 @@ These define transformations to convert between codes by systems conforming with
 | [ConceptMap — CDA EN/PN vers FHIR HumanName](ConceptMap-CdaToHumanNameConceptMap.md) | Correspondances documentaires des composants CDA EN et PN vers FHIR HumanName. |
 | [ConceptMap — CDA II vers FHIR Identifier](ConceptMap-CdaIIToIdentifierConceptMap.md) | Correspondances entre les éléments du datatype CDA II et les éléments FHIR Identifier |
 | [ConceptMap — CDA INT vers FHIR integer](ConceptMap-CdaToIntegerConceptMap.md) | Correspondances documentaires entre le datatype CDA INT et le datatype FHIR integer. |
-| [ConceptMap — CDA TEL vers FHIR ContactPoint](ConceptMap-CdaToContactPointConceptMap.md) | Correspondances documentaires entre le datatype CDA TEL et les éléments FHIR ContactPoint. |
+| [ConceptMap — CDA TEL vers FHIR ContactPoint](ConceptMap-CdaTELToContactPointConceptMap.md) | Correspondances documentaires entre le datatype CDA TEL et les éléments FHIR ContactPoint. |
 | [ConceptMap — CDA TS vers FHIR instant, dateTime et date](ConceptMap-CdaToDateTimeConceptMap.md) | Correspondances documentaires entre le datatype CDA TS et les types FHIR instant, dateTime et date. |
 | [OID to URI Mapping for ANS terminologies](ConceptMap-oid2uri-ans.md) | Mapping from OID to URI for ANS terminologies |
 
