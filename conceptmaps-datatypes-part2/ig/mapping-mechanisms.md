@@ -62,7 +62,6 @@ Le fichier principal de cette couche est CdaToFHIRTypes.fml. Cette couche regrou
 | | |
 | :--- | :--- |
 | CDA | FHIR |
-| BL.value | boolean |
 | CE.code | code |
 | CE.originalText | CodeableConcept.text |
 | CE.code | CodeableConcept.coding.code |

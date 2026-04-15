@@ -1,3 +1,5 @@
+<!-- layouts\layout-changehistory.html -->
+<!-- get modelType -->
 
 
 <?xml version="1.0" encoding="UTF-8"?>
@@ -5,7 +7,7 @@
 <html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
-    <title>ConceptMap — CDA BL vers FHIR boolean - XML Representation - POC - Mapping CDA to FHIR v0.1.0</title>
+    <title> - POC - Mapping CDA to FHIR v0.1.0</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="author" content="http://hl7.org/fhir"/>
@@ -45,8 +47,8 @@
 	  <script src="assets/js/prism.js"></script>
     <script type="text/javascript" src="assets/js/mermaid.js"></script>
     <script type="text/javascript" src="assets/js/mermaid-init.js"></script>
-    <style type="text/css">h2{--heading-prefix:"7.8"}
-    h3,h4,h5,h6{--heading-prefix:"7.8"}</style>
+    <style type="text/css">h2{--heading-prefix:""}
+    h3,h4,h5,h6{--heading-prefix:""}</style>
     <div id="segment-header" class="segment">  <!-- segment-header -->
       <div class="container">  <!-- container -->
 
@@ -153,15 +155,11 @@
     <div id="segment-breadcrumb" class="segment">  <!-- segment-breadcrumb -->
       <div class="container">  <!-- container -->
         <ul class="breadcrumb">
-          <li><a href='toc.html'><b>Table of Contents</b></a></li><li><a href='artifacts.html'><b>Artifacts Summary</b></a></li><li><b>ConceptMap — CDA BL vers FHIR boolean</b></li>
+          
 
           <span style="float:right;">
 
-            <a href="ConceptMap-CdaToBooleanConceptMap-testing.html">&lt;prev</a> | 
-
             <a href="#bottom">bottom</a>
-
-          | <a href="ConceptMap-CdaToBooleanConceptMap.json.html">next&gt;</a>
 
           </span>
 
@@ -174,9 +172,10 @@
       <div class="container">  <!-- container -->
         <div class="row">
           <div class="inner-wrapper">
-<div style="counter-reset: section 7" class="col-12">
-<!--ReleaseHeader--><p id="publish-box">POC - Mapping CDA to FHIR - version de développement local (intégration continue v0.1.0) construite par les outils de publication FHIR (HL7® FHIR® Standard). Voir le <a href='https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/history.html'>répertoire des versions publiées</a></p><!--EndReleaseHeader-->
 
+<div style="counter-reset: section 10" class="col-12">
+  <!--ReleaseHeader--><p id="publish-box">POC - Mapping CDA to FHIR - version de développement local (intégration continue v0.1.0) construite par les outils de publication FHIR (HL7® FHIR® Standard). Voir le <a href='https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/history.html'>répertoire des versions publiées</a></p><!--EndReleaseHeader-->
+  
 
 
 
@@ -188,28 +187,28 @@
 <ul class="nav nav-tabs">
 
   <li>
-    <a href="ConceptMap-CdaToBooleanConceptMap.html">Narrative Content</a>
+    <a href="ConceptMap-CdaBLToBooleanConceptMap.html">Narrative Content</a>
   </li>
 
 
 
   
-    <li class="active">
-      <a href="#">XML</a>
+    <li>
+      <a href="ConceptMap-CdaBLToBooleanConceptMap.xml.html">XML</a>
     </li>
   
 
 
   
     <li>
-      <a href="ConceptMap-CdaToBooleanConceptMap.json.html">JSON</a>
+      <a href="ConceptMap-CdaBLToBooleanConceptMap.json.html">JSON</a>
     </li>
   
 
 
   
     <li>
-      <a href="ConceptMap-CdaToBooleanConceptMap.ttl.html">TTL</a>
+      <a href="ConceptMap-CdaBLToBooleanConceptMap.ttl.html">TTL</a>
     </li>
   
 
@@ -218,92 +217,14 @@
 </ul>
 
 
-<a name="root"> </a>
+  <a name="root"> </a>
+  <h2 id="root">: CdaBLToFHIR - Change History</h2>
+  <p>History of changes for CdaBLToBooleanConceptMap .</p>
 
-
-<h2 id="root">: ConceptMap — CDA BL vers FHIR boolean - XML Representation</h2>
-
-  <table class="colsd">
-    <tr>
-
-      <td colspan="2">
-        
-          Draft
-          
-            as of 2026-04-15
-          
-        
-      </td>
-
-    </tr>
-  </table>
-
-
-<p><a href="ConceptMap-CdaToBooleanConceptMap.xml" no-download="true">Raw xml</a> | <a href="ConceptMap-CdaToBooleanConceptMap.xml" download>Download</a></p>
-
-  <!-- insert intro if present -->
   
-
-
-
-  <pre class="xml" data-fhir="generated" style="white-space: pre; text-wrap: nowrap; width: auto;"><code class="language-xml" style="white-space: pre; text-wrap: nowrap;">
-&lt;<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap">ConceptMap</a> xmlns=&quot;http://hl7.org/fhir&quot;&gt;
-  &lt;<a href="http://hl7.org/fhir/R4/resource.html#ConceptMap.id">id</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;CdaToBooleanConceptMap&quot;/&gt;
-  &lt;<a href="http://hl7.org/fhir/R4/domainresource.html#ConceptMap.text">text</a>&gt;
-    &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#Narrative#Narrative.status">status</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;generated&quot;/&gt;
-    &lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;p class=&quot;res-header-id&quot;&gt;&lt;b&gt;Narratif généré : CarteDeConcepts CdaToBooleanConceptMap&lt;/b&gt;&lt;/p&gt;&lt;a name=&quot;CdaToBooleanConceptMap&quot;&gt; &lt;/a&gt;&lt;a name=&quot;hcCdaToBooleanConceptMap&quot;&gt; &lt;/a&gt;&lt;p&gt;Mapping de (non spécifié) vers (non spécifié)&lt;/p&gt;&lt;br/&gt;&lt;p&gt;&lt;b&gt;Groupe 1 &lt;/b&gt;Mapping de &lt;a href=&quot;http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-BL.html&quot;&gt;BL: Boolean (V3 Data Type)&lt;/a&gt; to &lt;a href=&quot;http://hl7.org/fhir/R4/datatypes.html#boolean&quot;&gt;boolean&lt;/a&gt;&lt;/p&gt;&lt;table class=&quot;grid&quot;&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Code source&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Card.&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Type&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;relation&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Code cible&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Card.&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Type&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Commentaire&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;a href=&quot;http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-BL.html#BL.value&quot;&gt;BL.value&lt;/a&gt;&lt;/td&gt;&lt;td&gt;0..1&lt;/td&gt;&lt;td&gt;todo&lt;/td&gt;&lt;td&gt;&lt;a href=&quot;http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent&quot; title=&quot;equivalent&quot;&gt;is equivalent to&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a href=&quot;http://hl7.org/fhir/R4/datatypes.html#boolean#boolean&quot;&gt;boolean&lt;/a&gt;&lt;/td&gt;&lt;td&gt;0..*&lt;/td&gt;&lt;td&gt;todo&lt;/td&gt;&lt;td&gt;La valeur BL CDA alimente directement le datatype primitif FHIR boolean.&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;<a name="end-xhtml"></a>
-  &lt;/<a href="http://hl7.org/fhir/R4/domainresource.html#ConceptMap.text">text</a>&gt;
-  &lt;<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.url">url</a>
-       <a href="http://hl7.org/fhir/R4/datatypes.html#uri">value</a>=&quot;https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaBLToFHIR&quot;/&gt;
-  &lt;<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.version">version</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;0.1.0&quot;/&gt;
-  &lt;<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;CdaBLToFHIR&quot;/&gt;
-  &lt;<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.title">title</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;ConceptMap — CDA BL vers FHIR boolean&quot;/&gt;
-  &lt;<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.status">status</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;draft&quot;/&gt;
-  &lt;<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.experimental">experimental</a> <a href="http://hl7.org/fhir/R4/datatypes.html#boolean">value</a>=&quot;true&quot;/&gt;
-  &lt;<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.date">date</a> <a href="http://hl7.org/fhir/R4/datatypes.html#dateTime">value</a>=&quot;2026-04-15T09:41:07+00:00&quot;/&gt;
-  &lt;<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.publisher">publisher</a>
-             <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris&quot;/&gt;
-  &lt;<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.contact">contact</a>&gt;
-    &lt;<a href="http://hl7.org/fhir/R4/metadatatypes.html#ContactDetail#ContactDetail.name">name</a>
-          <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris&quot;/&gt;
-    &lt;<a href="http://hl7.org/fhir/R4/metadatatypes.html#ContactDetail#ContactDetail.telecom">telecom</a>&gt;
-      &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ContactPoint#ContactPoint.system">system</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;url&quot;/&gt;
-      &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ContactPoint#ContactPoint.value">value</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;https://esante.gouv.fr&quot;/&gt;
-    &lt;/<a href="http://hl7.org/fhir/R4/metadatatypes.html#ContactDetail#ContactDetail.telecom">telecom</a>&gt;
-  &lt;/<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.contact">contact</a>&gt;
-  &lt;<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.description">description</a>
-               <a href="http://hl7.org/fhir/R4/datatypes.html#markdown">value</a>=&quot;Correspondance documentaire entre le datatype CDA BL et le datatype FHIR boolean.&quot;/&gt;
-  &lt;<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.jurisdiction">jurisdiction</a>&gt;
-    &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#CodeableConcept#CodeableConcept.coding">coding</a>&gt;
-      &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a> <a href="http://hl7.org/fhir/R4/datatypes.html#uri">value</a>=&quot;urn:iso:std:iso:3166&quot;/&gt;
-      &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;FR&quot;/&gt;
-      &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;FRANCE&quot;/&gt;
-    &lt;/<a href="http://hl7.org/fhir/R4/datatypes.html#CodeableConcept#CodeableConcept.coding">coding</a>&gt;
-  &lt;/<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.jurisdiction">jurisdiction</a>&gt;
-  &lt;<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.group">group</a>&gt;
-    &lt;<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.group.source">source</a> <a href="http://hl7.org/fhir/R4/datatypes.html#uri">value</a>=&quot;http://hl7.org/cda/stds/core/StructureDefinition/BL&quot;/&gt;
-    &lt;<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.group.target">target</a> <a href="http://hl7.org/fhir/R4/datatypes.html#uri">value</a>=&quot;http://hl7.org/fhir/StructureDefinition/boolean&quot;/&gt;
-    &lt;<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.group.element">element</a>&gt;
-      &lt;<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.group.element.code">code</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;BL.value&quot;/&gt;
-      &lt;<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.group.element.display">display</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;BL.value&quot;/&gt;
-      &lt;<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.group.element.target">target</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.group.element.target.code">code</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;boolean&quot;/&gt;
-        &lt;<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.group.element.target.display">display</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;boolean&quot;/&gt;
-        &lt;<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.group.element.target.equivalence">equivalence</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;equivalent&quot;/&gt;
-        &lt;<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.group.element.target.comment">comment</a>
-                 <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;La valeur BL CDA alimente directement le datatype primitif FHIR boolean.&quot;/&gt;
-      &lt;/<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.group.element.target">target</a>&gt;
-    &lt;/<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.group.element">element</a>&gt;
-  &lt;/<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.group">group</a>&gt;
-&lt;/<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap">ConceptMap</a>&gt;</code></pre>
-
-
-  <!-- insert notes if present -->
-  
-
-
 
 </div>
+
         </div>  <!-- /inner-wrapper -->
       </div>  <!-- /row -->
     </div>  <!-- /container -->
@@ -311,6 +232,8 @@
 
   <script type="text/javascript" src="assets/js/jquery.js"> </script>     <!-- note keep space here, otherwise it will be transformed to empty tag -> fails -->
   <script type="text/javascript" src="assets/js/jquery-ui.min.js"> </script>
+
+  <script type="text/javascript" src="assets/js/tabs.js"> </script>
 
 <script type="text/javascript" src="assets/js/window-hash.js"> </script>
   <a name="bottom"> </a>
@@ -323,7 +246,7 @@
             <tr>
               <td style="text-align:left">&#xA0;
 
-                <a href="ConceptMap-CdaToBooleanConceptMap-testing.html">&lt;prev</a>
+                <span style="visibility:hidden">&lt;prev</span>
 
               </td>
               <td style="text-align:center">
@@ -331,7 +254,7 @@
               </td>
               <td style="text-align:right">&#xA0;
 
-                <a href="ConceptMap-CdaToBooleanConceptMap.json.html">next&gt;</a>
+                <span style="visibility:hidden">next&gt;</span>
 
               </td>
             </tr>
