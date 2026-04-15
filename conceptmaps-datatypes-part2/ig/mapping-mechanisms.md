@@ -62,15 +62,6 @@ Le fichier principal de cette couche est CdaToFHIRTypes.fml. Cette couche regrou
 | | |
 | :--- | :--- |
 | CDA | FHIR |
-| AD.item.country | Address.country |
-| AD.item.state | Address.state |
-| AD.item.county | Address.district |
-| AD.item.city | Address.city |
-| AD.item.postalCode | Address.postalCode |
-| AD.item.streetAddressLine | Address.line |
-| AD.item.streetName | Address.line.extension[http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName].valueString |
-| AD.item.houseNumber | Address.line.extension[http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber].valueString |
-| AD.useablePeriod | Address.period |
 | BL.value | boolean |
 | CE.code | code |
 | CE.originalText | CodeableConcept.text |
