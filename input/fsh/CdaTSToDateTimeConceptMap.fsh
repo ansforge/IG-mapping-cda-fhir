@@ -1,4 +1,4 @@
-Instance: CdaToDateTimeConceptMap
+Instance: CdaTSToDateTimeConceptMap
 InstanceOf: ConceptMap
 Usage: #definition
 Title: "ConceptMap — CDA TS vers FHIR instant, dateTime et date"
