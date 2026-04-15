@@ -62,20 +62,6 @@ Le fichier principal de cette couche est CdaToFHIRTypes.fml. Cette couche regrou
 | | |
 | :--- | :--- |
 | CDA | FHIR |
-| CE.code | code |
-| CE.originalText | CodeableConcept.text |
-| CE.code | CodeableConcept.coding.code |
-| CE.codeSystem | CodeableConcept.coding.system |
-| CE.displayName | CodeableConcept.coding.display |
-| CE.translation | CodeableConcept.coding (translation) |
-| CS.code | code |
-| CS.code | CodeableConcept.coding.code |
-| CD.code | code |
-| CD.originalText | CodeableConcept.text |
-| CD.code | CodeableConcept.coding.code |
-| CD.codeSystem | CodeableConcept.coding.system |
-| CD.displayName | CodeableConcept.coding.display |
-| CD.translation | CodeableConcept.coding (translation) |
 | II.extension | Identifier.value |
 | II.root | Identifier.system |
 | II.root | Identifier.value |

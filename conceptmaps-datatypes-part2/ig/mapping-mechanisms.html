@@ -279,35 +279,7 @@ TS / IVL_TS vers date, dateTime ou Period
 Elle constitue le socle commun de l’ensemble des autres mappings.
 Elle ne contient ni logique métier, ni logique nationale, ni navigation dans la structure du document CDA : son objectif est uniquement d’assurer la correspondance entre les types techniques manipulés dans les mappings.</p>
 
-<table class="lines"><tr><td style="background-color: #eeeeee">CDA</td><td style="background-color: #eeeeee">FHIR</td></tr><tr><td><div><p>CE.code</p>
-</div></td><td><div><p>code</p>
-</div></td></tr><tr><td><div><p>CE.originalText</p>
-</div></td><td><div><p>CodeableConcept.text</p>
-</div></td></tr><tr><td><div><p>CE.code</p>
-</div></td><td><div><p>CodeableConcept.coding.code</p>
-</div></td></tr><tr><td><div><p>CE.codeSystem</p>
-</div></td><td><div><p>CodeableConcept.coding.system</p>
-</div></td></tr><tr><td><div><p>CE.displayName</p>
-</div></td><td><div><p>CodeableConcept.coding.display</p>
-</div></td></tr><tr><td><div><p>CE.translation</p>
-</div></td><td><div><p>CodeableConcept.coding (translation)</p>
-</div></td></tr><tr><td><div><p>CS.code</p>
-</div></td><td><div><p>code</p>
-</div></td></tr><tr><td><div><p>CS.code</p>
-</div></td><td><div><p>CodeableConcept.coding.code</p>
-</div></td></tr><tr><td><div><p>CD.code</p>
-</div></td><td><div><p>code</p>
-</div></td></tr><tr><td><div><p>CD.originalText</p>
-</div></td><td><div><p>CodeableConcept.text</p>
-</div></td></tr><tr><td><div><p>CD.code</p>
-</div></td><td><div><p>CodeableConcept.coding.code</p>
-</div></td></tr><tr><td><div><p>CD.codeSystem</p>
-</div></td><td><div><p>CodeableConcept.coding.system</p>
-</div></td></tr><tr><td><div><p>CD.displayName</p>
-</div></td><td><div><p>CodeableConcept.coding.display</p>
-</div></td></tr><tr><td><div><p>CD.translation</p>
-</div></td><td><div><p>CodeableConcept.coding (translation)</p>
-</div></td></tr><tr><td><div><p>II.extension</p>
+<table class="lines"><tr><td style="background-color: #eeeeee">CDA</td><td style="background-color: #eeeeee">FHIR</td></tr><tr><td><div><p>II.extension</p>
 </div></td><td><div><p>Identifier.value</p>
 </div></td></tr><tr><td><div><p>II.root</p>
 </div></td><td><div><p>Identifier.system</p>
@@ -942,7 +914,7 @@ imports "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaF
   <li><a href="https://www.hl7.org/fhir/structuremap.html">FHIR StructureMap Resource</a></li>
   <li><a href="https://github.com/ahdis/matchbox">Matchbox Documentation</a></li>
   <li><a href="https://github.com/hl7ch/cda-fhir-maps">CDA to FHIR Maps (HL7 Suisse)</a></li>
-  <li><a name="l1870">​</a><a href="claude.html">Notes techniques de développement</a></li>
+  <li><a name="l1716">​</a><a href="claude.html">Notes techniques de développement</a></li>
 </ul>
 
 <h3 id="conclusion">Conclusion</h3>
@@ -999,7 +971,7 @@ imports "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaF
 
       <div class="inner-wrapper">
         <p>
-          IG &copy; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris</a>.  Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Wed, Apr 15, 2026 09:41+0000">2026-04-15</span>
+          IG &copy; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris</a>.  Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Wed, Apr 15, 2026 09:43+0000">2026-04-15</span>
           <br/>
           <span style="color: var(--footer-highlight-text-color)"></span>
             Liens : <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table des matières</a> |

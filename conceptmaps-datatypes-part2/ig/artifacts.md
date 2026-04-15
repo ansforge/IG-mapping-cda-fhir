@@ -28,7 +28,7 @@ These define transformations to convert between codes by systems conforming with
 | [ConceptMap - OID to URL for TRE_R38-SpecialiteOrdinale](ConceptMap-cm-oid-specialite-ordinale.md) | Mapping from OID urn:oid:1.2.250.1.213.1.1.4.5 to URL https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale |
 | [ConceptMap — CDA AD vers FHIR Address](ConceptMap-CdaADToAddressConceptMap.md) | Correspondances documentaires des composants AD vers Address. |
 | [ConceptMap — CDA BL vers FHIR boolean](ConceptMap-CdaBLToBooleanConceptMap.md) | Correspondance documentaire entre le datatype CDA BL et le datatype FHIR boolean. |
-| [ConceptMap — CDA CE/CS/CD vers FHIR code et CodeableConcept](ConceptMap-CdaToCodeConceptMap.md) | Correspondances documentaires entre les datatypes CDA CE, CS et CD et les types FHIR code et CodeableConcept. |
+| [ConceptMap — CDA CE/CS/CD vers FHIR code et CodeableConcept](ConceptMap-CdaCECSCDToCodeConceptMap.md) | Correspondances documentaires entre les datatypes CDA CE, CS et CD et les types FHIR code et CodeableConcept. |
 | [ConceptMap — CDA EN/PN vers FHIR HumanName](ConceptMap-CdaToHumanNameConceptMap.md) | Correspondances documentaires des composants CDA EN et PN vers FHIR HumanName. |
 | [ConceptMap — CDA II vers FHIR Identifier](ConceptMap-CdaIIToIdentifierConceptMap.md) | Correspondances entre les éléments du datatype CDA II et les éléments FHIR Identifier |
 | [ConceptMap — CDA INT vers FHIR integer](ConceptMap-CdaToIntegerConceptMap.md) | Correspondances documentaires entre le datatype CDA INT et le datatype FHIR integer. |
