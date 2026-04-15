@@ -1,4 +1,4 @@
-Instance: CdaToHumanNameConceptMap
+Instance: CdaENPNToHumanNameConceptMap
 InstanceOf: ConceptMap
 Usage: #definition
 Title: "ConceptMap — CDA EN/PN vers FHIR HumanName"
