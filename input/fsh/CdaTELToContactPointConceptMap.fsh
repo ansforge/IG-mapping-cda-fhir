@@ -1,4 +1,4 @@
-Instance: CdaToContactPointConceptMap
+Instance: CdaTELToContactPointConceptMap
 InstanceOf: ConceptMap
 Usage: #definition
 Title: "ConceptMap — CDA TEL vers FHIR ContactPoint"
