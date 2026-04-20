@@ -19,7 +19,7 @@ Description: "Correspondances documentaires entre le datatype CDA TS et les type
 * group[0].element[0].target[0].code = #instant
 * group[0].element[0].target[0].display = "instant"
 * group[0].element[0].target[0].equivalence = #relatedto
-* group[0].element[0].target[0].comment = "TS.value est converti en valeur FHIR date (précision jour ou partielle : AAAA, AAAA-MM ou AAAA-MM-JJ)."
+* group[0].element[0].target[0].comment = "TS.value est converti en valeur FHIR instant (précision jour ou partielle : AAAA, AAAA-MM ou AAAA-MM-JJ)."
 
 // Group 1 — TS -> dateTime
 * group[1].source = "http://hl7.org/cda/stds/core/StructureDefinition/TS"
