@@ -1,5 +1,5 @@
 
-Instance: CdaToBooleanConceptMap
+Instance: CdaBLToBooleanConceptMap
 InstanceOf: ConceptMap
 Usage: #definition
 Title: "ConceptMap — CDA BL vers FHIR boolean"

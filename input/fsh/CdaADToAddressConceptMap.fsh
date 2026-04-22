@@ -1,4 +1,4 @@
-Instance: CdaToAddressConceptMap
+Instance: CdaADToAddressConceptMap
 InstanceOf: ConceptMap
 Usage: #definition
 Title: "ConceptMap — CDA AD vers FHIR Address"
