@@ -10,7 +10,7 @@
   <name value="CDA2FHIRMAP"/>
   <title value="POC - Mapping CDA to FHIR"/>
   <status value="draft"/>
-  <date value="2026-04-14T13:24:37+00:00"/>
+  <date value="2026-04-22T08:32:05+00:00"/>
   <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
   <contact>
     <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
@@ -544,7 +544,7 @@
         <valueString value="ConceptMap"/>
       </extension>
       <reference>
-        <reference value="ConceptMap/CdaToAddressConceptMap"/>
+        <reference value="ConceptMap/CdaADToAddressConceptMap"/>
       </reference>
       <name value="ConceptMap — CDA AD vers FHIR Address"/>
       <description value="Correspondances documentaires des composants AD vers Address."/>
@@ -555,7 +555,7 @@
         <valueString value="ConceptMap"/>
       </extension>
       <reference>
-        <reference value="ConceptMap/CdaToBooleanConceptMap"/>
+        <reference value="ConceptMap/CdaBLToBooleanConceptMap"/>
       </reference>
       <name value="ConceptMap — CDA BL vers FHIR boolean"/>
       <description value="Correspondance documentaire entre le datatype CDA BL et le datatype FHIR boolean."/>
@@ -566,10 +566,21 @@
         <valueString value="ConceptMap"/>
       </extension>
       <reference>
-        <reference value="ConceptMap/CdaToCodeConceptMap"/>
+        <reference value="ConceptMap/CdaCECSCDToCodeConceptMap"/>
       </reference>
       <name value="ConceptMap — CDA CE/CS/CD vers FHIR code et CodeableConcept"/>
       <description value="Correspondances documentaires entre les datatypes CDA CE, CS et CD et les types FHIR code et CodeableConcept."/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="ConceptMap"/>
+      </extension>
+      <reference>
+        <reference value="ConceptMap/CdaENPNToHumanNameConceptMap"/>
+      </reference>
+      <name value="ConceptMap — CDA EN/PN vers FHIR HumanName"/>
+      <description value="Correspondances documentaires des composants CDA EN et PN vers FHIR HumanName."/>
       <exampleBoolean value="false"/>
     </resource>
     <resource>
@@ -581,6 +592,39 @@
       </reference>
       <name value="ConceptMap — CDA II vers FHIR Identifier"/>
       <description value="Correspondances entre les éléments du datatype CDA II et les éléments FHIR Identifier"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="ConceptMap"/>
+      </extension>
+      <reference>
+        <reference value="ConceptMap/CdaINTToIntegerConceptMap"/>
+      </reference>
+      <name value="ConceptMap — CDA INT vers FHIR integer"/>
+      <description value="Correspondances documentaires entre le datatype CDA INT et le datatype FHIR integer."/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="ConceptMap"/>
+      </extension>
+      <reference>
+        <reference value="ConceptMap/CdaTELToContactPointConceptMap"/>
+      </reference>
+      <name value="ConceptMap — CDA TEL vers FHIR ContactPoint"/>
+      <description value="Correspondances documentaires entre le datatype CDA TEL et les éléments FHIR ContactPoint."/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="ConceptMap"/>
+      </extension>
+      <reference>
+        <reference value="ConceptMap/CdaTSToDateTimeConceptMap"/>
+      </reference>
+      <name value="ConceptMap — CDA TS vers FHIR instant, dateTime et date"/>
+      <description value="Correspondances documentaires entre le datatype CDA TS et les types FHIR instant, dateTime et date."/>
       <exampleBoolean value="false"/>
     </resource>
     <resource>

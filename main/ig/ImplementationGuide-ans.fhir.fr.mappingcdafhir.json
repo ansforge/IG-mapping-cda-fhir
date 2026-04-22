@@ -10,7 +10,7 @@
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2026-04-14T13:24:37+00:00",
+  "date" : "2026-04-22T08:32:05+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -724,7 +724,7 @@
         "valueString" : "ConceptMap"
       }],
       "reference" : {
-        "reference" : "ConceptMap/CdaToAddressConceptMap"
+        "reference" : "ConceptMap/CdaADToAddressConceptMap"
       },
       "name" : "ConceptMap — CDA AD vers FHIR Address",
       "description" : "Correspondances documentaires des composants AD vers Address.",
@@ -736,7 +736,7 @@
         "valueString" : "ConceptMap"
       }],
       "reference" : {
-        "reference" : "ConceptMap/CdaToBooleanConceptMap"
+        "reference" : "ConceptMap/CdaBLToBooleanConceptMap"
       },
       "name" : "ConceptMap — CDA BL vers FHIR boolean",
       "description" : "Correspondance documentaire entre le datatype CDA BL et le datatype FHIR boolean.",
@@ -748,10 +748,22 @@
         "valueString" : "ConceptMap"
       }],
       "reference" : {
-        "reference" : "ConceptMap/CdaToCodeConceptMap"
+        "reference" : "ConceptMap/CdaCECSCDToCodeConceptMap"
       },
       "name" : "ConceptMap — CDA CE/CS/CD vers FHIR code et CodeableConcept",
       "description" : "Correspondances documentaires entre les datatypes CDA CE, CS et CD et les types FHIR code et CodeableConcept.",
+      "exampleBoolean" : false
+    },
+    {
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+        "valueString" : "ConceptMap"
+      }],
+      "reference" : {
+        "reference" : "ConceptMap/CdaENPNToHumanNameConceptMap"
+      },
+      "name" : "ConceptMap — CDA EN/PN vers FHIR HumanName",
+      "description" : "Correspondances documentaires des composants CDA EN et PN vers FHIR HumanName.",
       "exampleBoolean" : false
     },
     {
@@ -764,6 +776,42 @@
       },
       "name" : "ConceptMap — CDA II vers FHIR Identifier",
       "description" : "Correspondances entre les éléments du datatype CDA II et les éléments FHIR Identifier",
+      "exampleBoolean" : false
+    },
+    {
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+        "valueString" : "ConceptMap"
+      }],
+      "reference" : {
+        "reference" : "ConceptMap/CdaINTToIntegerConceptMap"
+      },
+      "name" : "ConceptMap — CDA INT vers FHIR integer",
+      "description" : "Correspondances documentaires entre le datatype CDA INT et le datatype FHIR integer.",
+      "exampleBoolean" : false
+    },
+    {
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+        "valueString" : "ConceptMap"
+      }],
+      "reference" : {
+        "reference" : "ConceptMap/CdaTELToContactPointConceptMap"
+      },
+      "name" : "ConceptMap — CDA TEL vers FHIR ContactPoint",
+      "description" : "Correspondances documentaires entre le datatype CDA TEL et les éléments FHIR ContactPoint.",
+      "exampleBoolean" : false
+    },
+    {
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+        "valueString" : "ConceptMap"
+      }],
+      "reference" : {
+        "reference" : "ConceptMap/CdaTSToDateTimeConceptMap"
+      },
+      "name" : "ConceptMap — CDA TS vers FHIR instant, dateTime et date",
+      "description" : "Correspondances documentaires entre le datatype CDA TS et les types FHIR instant, dateTime et date.",
       "exampleBoolean" : false
     },
     {
