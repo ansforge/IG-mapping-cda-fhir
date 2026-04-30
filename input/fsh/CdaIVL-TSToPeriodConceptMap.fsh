@@ -1,4 +1,4 @@
-Instance: CdaIVL_TSToPeriodConceptMap
+Instance: CdaIVL-TSToPeriodConceptMap
 InstanceOf: ConceptMap
 Usage: #definition
 Title: "ConceptMap — CDA IVL_TS vers FHIR Period et dateTime"
