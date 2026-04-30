@@ -98,7 +98,11 @@ WHERE ConceptMapId IN (
   'CdaTELToContactPointConceptMap',
   'CdaTSToDateTimeConceptMap',
   'CdaENPNToHumanNameConceptMap',
-  'CdaINTToIntegerConceptMap'
+  'CdaINTToIntegerConceptMap',
+  'CdaIVL-TSToPeriodConceptMap',
+  'CdaPQToQuantityConceptMap',
+  'CdaRTO-PQ-PQToRatioConceptMap',
+  'CdaSTEDONToStringConceptMap'
 )
 ORDER BY ConceptMapName, group_index, elem_index, target_index
 ",
