@@ -10,7 +10,7 @@
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2026-04-30T10:17:38+00:00",
+  "date" : "2026-04-30T10:19:47+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -800,6 +800,18 @@
       },
       "name" : "ConceptMap — CDA IVL_TS vers FHIR Period et dateTime",
       "description" : "Correspondances documentaires entre le datatype CDA IVL_TS et les types FHIR Period et dateTime.",
+      "exampleBoolean" : false
+    },
+    {
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+        "valueString" : "ConceptMap"
+      }],
+      "reference" : {
+        "reference" : "ConceptMap/CdaPQToQuantityConceptMap"
+      },
+      "name" : "ConceptMap — CDA PQ vers FHIR Quantity",
+      "description" : "Correspondances documentaires entre le datatype CDA PQ et le datatype FHIR Quantity.",
       "exampleBoolean" : false
     },
     {

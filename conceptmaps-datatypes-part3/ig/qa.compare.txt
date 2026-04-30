@@ -1,7 +1,7 @@
 CDA2FHIRMAP : Validation Results
 =========================================
 
-err = 167, warn = 166, info = 159
+err = 172, warn = 172, info = 159
 $--
 Generated $--. FHIR version $-- for ans.fhir.fr.mappingcdafhir#$-- (canonical = https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir)
  Build Errors : 6 / 5 / 0
@@ -12,6 +12,7 @@ Generated $--. FHIR version $-- for ans.fhir.fr.mappingcdafhir#$-- (canonical = 
  /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaIIToIdentifierConceptMap : 6 / 8 / 1
  /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaINTToIntegerConceptMap : 5 / 2 / 1
  /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaIVL-TSToPeriodConceptMap : 8 / 3 / 1
+ /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaPQToQuantityConceptMap : 5 / 6 / 1
  /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaTELToContactPointConceptMap : 5 / 7 / 1
  /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaTSToDateTimeConceptMap : 5 / 6 / 1
  /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ImplementationGuide-ans.fhir.fr.mappingcdafhir : 2 / 2 / 1
@@ -168,6 +169,18 @@ WARNING: ConceptMap/CdaIVL-TSToPeriodConceptMap: ConceptMap.group[0].element[1].
 ERROR: ConceptMap/CdaIVL-TSToPeriodConceptMap: ConceptMap.group[1].element[0].code: The source code 'IVL_TS.low.value' is not valid in the code system http://hl7.org/cda/stds/core/StructureDefinition/IVL-TS|2.0.0-sd
 WARNING: ConceptMap/CdaIVL-TSToPeriodConceptMap: ConceptMap.group[1].element[0].target[0].code: The target display 'dateTime' for the code 'http://hl7.org/fhir/StructureDefinition/dateTime|4.0.1#dateTime' is not valid. Possible displays: 'Primitive Type dateTime'
 ERROR: /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaIVL-TSToPeriodConceptMap: URL Mismatch https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaIVL-TSToPeriodConceptMap vs https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaIVL_TSToFHIR
+== fsh-generated/resources/ConceptMap-CdaPQToQuantityConceptMap.json ==
+ERROR: ConceptMap.where(url = 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaPQToFHIR'): Conformance resource /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaPQToQuantityConceptMap.json - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaPQToQuantityConceptMap) does not match the URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaPQToFHIR). Use the special-url parameter if you really mean for it not to match
+ERROR: ConceptMap.url: Resource id/url mismatch: CdaPQToQuantityConceptMap/https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaPQToFHIR
+ERROR: ConceptMap.where(url = 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaPQToFHIR'): Conformance resource /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaPQToQuantityConceptMap.json - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaPQToQuantityConceptMap) does not match the URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaPQToFHIR). Use the special-url parameter if you really mean for it not to match
+ERROR: ConceptMap/CdaPQToQuantityConceptMap: ConceptMap.jurisdiction[0].coding[0].display: Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')
+WARNING: ConceptMap/CdaPQToQuantityConceptMap: ConceptMap.group[0].element[0].code: The source display 'PQ.value' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/PQ|2.0.0-sd#PQ.value' is not valid. Possible displays: 'Maginitude Value'
+WARNING: ConceptMap/CdaPQToQuantityConceptMap: ConceptMap.group[0].element[0].target[0].code: The target display 'Quantity.value' for the code 'http://hl7.org/fhir/StructureDefinition/Quantity|4.0.1#Quantity.value' is not valid. Possible displays: 'Numerical value (with implicit precision)'
+WARNING: ConceptMap/CdaPQToQuantityConceptMap: ConceptMap.group[0].element[1].code: The source display 'PQ.unit' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/PQ|2.0.0-sd#PQ.unit' is not valid. Possible displays: 'Unit of Measure'
+WARNING: ConceptMap/CdaPQToQuantityConceptMap: ConceptMap.group[0].element[1].target[0].code: The target display 'Quantity.code' for the code 'http://hl7.org/fhir/StructureDefinition/Quantity|4.0.1#Quantity.code' is not valid. Possible displays: 'Coded form of the unit'
+WARNING: ConceptMap/CdaPQToQuantityConceptMap: ConceptMap.group[0].element[1].target[1].code: The target display 'Quantity.unit' for the code 'http://hl7.org/fhir/StructureDefinition/Quantity|4.0.1#Quantity.unit' is not valid. Possible displays: 'Unit representation'
+WARNING: ConceptMap/CdaPQToQuantityConceptMap: ConceptMap.group[0].element[1].target[2].code: The target display 'Quantity.system' for the code 'http://hl7.org/fhir/StructureDefinition/Quantity|4.0.1#Quantity.system' is not valid. Possible displays: 'System that defines coded unit form'
+ERROR: /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaPQToQuantityConceptMap: URL Mismatch https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaPQToQuantityConceptMap vs https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaPQToFHIR
 == fsh-generated/resources/ConceptMap-CdaTELToContactPointConceptMap.json ==
 ERROR: ConceptMap.where(url = 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaTELToFHIR'): Conformance resource /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaTELToContactPointConceptMap.json - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaTELToContactPointConceptMap) does not match the URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaTELToFHIR). Use the special-url parameter if you really mean for it not to match
 ERROR: ConceptMap.url: Resource id/url mismatch: CdaTELToContactPointConceptMap/https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaTELToFHIR
@@ -195,7 +208,7 @@ WARNING: ConceptMap/CdaTSToDateTimeConceptMap: ConceptMap.group[2].element[0].ta
 ERROR: /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaTSToDateTimeConceptMap: URL Mismatch https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaTSToDateTimeConceptMap vs https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaTSToFHIR
 == fsh-generated/resources/ImplementationGuide-ans.fhir.fr.mappingcdafhir.json ==
 ERROR: ImplementationGuide/ans.fhir.fr.mappingcdafhir: ImplementationGuide.jurisdiction[0].coding[0].display: Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')
-ERROR: ImplementationGuide/ans.fhir.fr.mappingcdafhir: ImplementationGuide.definition.resource[13].reference: Unable to resolve resource with reference 'Binary/CSE-MDE2023.01'
+ERROR: ImplementationGuide/ans.fhir.fr.mappingcdafhir: ImplementationGuide.definition.resource[14].reference: Unable to resolve resource with reference 'Binary/CSE-MDE2023.01'
 WARNING: ImplementationGuide/ans.fhir.fr.mappingcdafhir: ImplementationGuide.dependsOn[2]: The ImplementationGuide is based on FHIR version 4.0.1 but package hl7.cda.uv.core#2.0.0-sd is based on FHIR version 5.0.0. In general, this version mismatch should be avoided - some tools will try to make this work with variable degrees of success, but others will not even try
 WARNING: ImplementationGuide/ans.fhir.fr.mappingcdafhir: ImplementationGuide.dependsOn[4]: The ImplementationGuide uses package hl7.fhir.fr.core#2.1.0 released on 2024-09-04, but the most recent appropriate version is 2.2.0. This reference is getting old and the more recent version should be considered
 == input/attachments/CSE-MDE_2023.01.xml ==
