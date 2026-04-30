@@ -10,7 +10,7 @@
   <name value="CDA2FHIRMAP"/>
   <title value="POC - Mapping CDA to FHIR"/>
   <status value="draft"/>
-  <date value="2026-04-30T10:19:47+00:00"/>
+  <date value="2026-04-30T10:20:46+00:00"/>
   <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
   <contact>
     <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
@@ -625,6 +625,28 @@
       </reference>
       <name value="ConceptMap — CDA PQ vers FHIR Quantity"/>
       <description value="Correspondances documentaires entre le datatype CDA PQ et le datatype FHIR Quantity."/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="ConceptMap"/>
+      </extension>
+      <reference>
+        <reference value="ConceptMap/CdaRTO-PQ-PQToRatioConceptMap"/>
+      </reference>
+      <name value="ConceptMap — CDA RTO_PQ_PQ vers FHIR Ratio"/>
+      <description value="Correspondances documentaires entre le datatype CDA RTO_PQ_PQ et le datatype FHIR Ratio."/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="ConceptMap"/>
+      </extension>
+      <reference>
+        <reference value="ConceptMap/CdaSTEDONToStringConceptMap"/>
+      </reference>
+      <name value="ConceptMap — CDA ST/ED/ON vers FHIR string"/>
+      <description value="Correspondances documentaires entre les datatypes CDA ST, ED et ON et le datatype FHIR string."/>
       <exampleBoolean value="false"/>
     </resource>
     <resource>
