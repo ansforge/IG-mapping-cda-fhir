@@ -270,6 +270,49 @@ patientRole.id as id where(root = '1.2.250.1.213.1.4.8') then {
 
 ```
 
+#### Conservation du document CDA source
+
+Afin de garantir la traçabilité de la transformation, le document CDA original peut être conservé directement dans le `Bundle` FHIR généré.
+
+Pour cela, le contenu XML du CDA est encodé en Base64 à l’aide d’un traitement externe (par exemple en Python ou en Java), puis intégré dans une ressource FHIR `Binary`. Cette ressource est conçue pour transporter des contenus bruts (comme un fichier XML) sans les modifier.
+
+Ce traitement d’encodage n’est pas réalisé en FML, mais en amont ou en aval du mapping.
+
+```
+{
+  "resourceType": "Binary",
+  "id": "cda-source",
+  "contentType": "application/xml",
+  "data": "Base64(CDA)"
+}
+Une ressource Provenance est ensuite utilisée pour relier les ressources FHIR produites au document CDA source :
+
+
+```json
+{
+  "resourceType": "Provenance",
+  "target": [
+    { "reference": "urn:uuid:composition-id" },
+    { "reference": "urn:uuid:patient-id" }
+  ],
+  "entity": [
+    {
+      "role": "source",
+      "what": {
+        "reference": "urn:uuid:cda-source"
+      }
+    }
+  ]
+}
+
+```
+
+Dans cette approche :
+
+* la ressource `Binary` contient le CDA original encodé en Base64 ;
+* La ressource `Provenance` établit le lien entre les ressources FHIR générées et leur source ;
+* L’encodage Base64 est réalisé en dehors du mapping FML
+
 #### Filtrage, conditions et adaptation des règles de mapping
 
 Les règles FML intègrent des mécanismes de filtrage permettant de restreindre la transformation à certains éléments du document CDA. Ce filtrage peut s’appuyer, par exemple, sur la valeur d’un code de section ou sur un identifiant précis, afin de n’appliquer le mapping qu’aux données pertinentes.

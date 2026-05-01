@@ -487,6 +487,48 @@ patientRole.id as id where(root = '1.2.250.1.213.1.4.8') then {
 }
 </code></pre>
 
+<h4 id="conservation-du-document-cda-source">Conservation du document CDA source</h4>
+
+<p>Afin de garantir la traçabilité de la transformation, le document CDA original peut être conservé directement dans le <code class="language-plaintext highlighter-rouge">Bundle</code> FHIR généré.</p>
+
+<p>Pour cela, le contenu XML du CDA est encodé en Base64 à l’aide d’un traitement externe (par exemple en Python ou en Java), puis intégré dans une ressource FHIR <code class="language-plaintext highlighter-rouge">Binary</code>. Cette ressource est conçue pour transporter des contenus bruts (comme un fichier XML) sans les modifier.</p>
+
+<p>Ce traitement d’encodage n’est pas réalisé en FML, mais en amont ou en aval du mapping.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"resourceType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Binary"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cda-source"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"contentType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/xml"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Base64(CDA)"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">Une</span><span class="w"> </span><span class="err">ressource</span><span class="w"> </span><span class="err">Provenance</span><span class="w"> </span><span class="err">est</span><span class="w"> </span><span class="err">ensuite</span><span class="w"> </span><span class="err">utilisée</span><span class="w"> </span><span class="err">pour</span><span class="w"> </span><span class="err">relier</span><span class="w"> </span><span class="err">les</span><span class="w"> </span><span class="err">ressources</span><span class="w"> </span><span class="err">FHIR</span><span class="w"> </span><span class="err">produites</span><span class="w"> </span><span class="err">au</span><span class="w"> </span><span class="err">document</span><span class="w"> </span><span class="err">CDA</span><span class="w"> </span><span class="err">source</span><span class="w"> </span><span class="err">:</span><span class="w">
+
+
+</span><span class="err">```json</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"resourceType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Provenance"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"target"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nl">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"urn:uuid:composition-id"</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nl">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"urn:uuid:patient-id"</span><span class="w"> </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"entity"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"source"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"what"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"urn:uuid:cda-source"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Dans cette approche :</p>
+<ul>
+  <li>la ressource <code class="language-plaintext highlighter-rouge">Binary</code> contient le CDA original encodé en Base64 ;</li>
+  <li>La ressource <code class="language-plaintext highlighter-rouge">Provenance</code> établit le lien entre les ressources FHIR générées et leur source ;</li>
+  <li>L’encodage Base64 est réalisé en dehors du mapping FML</li>
+</ul>
+
 <h4 id="filtrage-conditions-et-adaptation-des-règles-de-mapping">Filtrage, conditions et adaptation des règles de mapping</h4>
 
 <p>Les règles FML intègrent des mécanismes de filtrage permettant de restreindre la transformation à certains éléments du document CDA. Ce filtrage peut s’appuyer, par exemple, sur la valeur d’un code de section ou sur un identifiant précis, afin de n’appliquer le mapping qu’aux données pertinentes.</p>
@@ -864,7 +906,7 @@ imports "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaF
   <li><a href="https://www.hl7.org/fhir/structuremap.html">FHIR StructureMap Resource</a></li>
   <li><a href="https://github.com/ahdis/matchbox">Matchbox Documentation</a></li>
   <li><a href="https://github.com/hl7ch/cda-fhir-maps">CDA to FHIR Maps (HL7 Suisse)</a></li>
-  <li><a name="l1438">​</a><a href="claude.html">Notes techniques de développement</a></li>
+  <li><a name="l1736">​</a><a href="claude.html">Notes techniques de développement</a></li>
 </ul>
 
 <h3 id="conclusion">Conclusion</h3>
@@ -921,7 +963,7 @@ imports "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaF
 
       <div class="inner-wrapper">
         <p>
-          IG &copy; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris</a>.  Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Fri, May 1, 2026 15:34+0000">2026-05-01</span>
+          IG &copy; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris</a>.  Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Fri, May 1, 2026 15:47+0000">2026-05-01</span>
           <br/>
           <span style="color: var(--footer-highlight-text-color)"></span>
             Liens : <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table des matières</a> |
