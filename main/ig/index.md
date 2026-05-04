@@ -8,7 +8,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ImplementationGuide/ans.fhir.fr.mappingcdafhir | *Version*:0.1.0 |
-| Draft as of 2026-04-22 | *Computable Name*:CDA2FHIRMAP |
+| Draft as of 2026-05-04 | *Computable Name*:CDA2FHIRMAP |
 
  **FHIR Mapping Language for CDA to FHIR transformation**
  Proof of concept for CDA to FHIR transformation 
@@ -106,7 +106,7 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
 
 * ISO maintains the copyright on the country codes, and controls its use carefully. For further details see the ISO 3166 web page: [https://www.iso.org/iso-3166-country-codes.html](https://www.iso.org/iso-3166-country-codes.html)
 
-* [ISO 3166-1 Codes for the representation of names of countries and their subdivisions — Part 1: Country code](http://terminology.hl7.org/6.2.0/CodeSystem-ISO3166Part1.html): [CDA2FHIRMAP](index.md), [CdaAddressToFHIR](ConceptMap-CdaADToAddressConceptMap.md)... Show 14 more, [CdaBLToFHIR](ConceptMap-CdaBLToBooleanConceptMap.md), [CdaConceptCodesToFHIR](ConceptMap-CdaCECSCDToCodeConceptMap.md), [CdaFrMDEToBundle](StructureMap-CdaFrMDEToBundle.md), [CdaFrToBundle](StructureMap-CdaFrToBundle.md), [CdaIIToIdentifier](ConceptMap-CdaIIToIdentifierConceptMap.md), [CdaINTToInteger](ConceptMap-CdaINTToIntegerConceptMap.md), [CdaNamesToFHIR](ConceptMap-CdaENPNToHumanNameConceptMap.md), [CdaTELToFHIR](ConceptMap-CdaTELToContactPointConceptMap.md), [CdaTSToFHIR](ConceptMap-CdaTSToDateTimeConceptMap.md), [CdaToBundle](StructureMap-CdaToBundle.md), [CdaToFHIRTypes](StructureMap-CdaToFHIRTypes.md), [CdaToFhirAdministrativeGender](ConceptMap-cm-v3-administrative-gender.md), [ConceptMapOidSpecialiteOrdinale](ConceptMap-cm-oid-specialite-ordinale.md) and [OID2URIConceptMapANS](ConceptMap-oid2uri-ans.md)
+* [ISO 3166-1 Codes for the representation of names of countries and their subdivisions — Part 1: Country code](http://terminology.hl7.org/6.2.0/CodeSystem-ISO3166Part1.html): [CDA2FHIRMAP](index.md), [CdaAddressToFHIR](ConceptMap-CdaADToAddressConceptMap.md)... Show 18 more, [CdaBLToFHIR](ConceptMap-CdaBLToBooleanConceptMap.md), [CdaConceptCodesToFHIR](ConceptMap-CdaCECSCDToCodeConceptMap.md), [CdaFrMDEToBundle](StructureMap-CdaFrMDEToBundle.md), [CdaFrToBundle](StructureMap-CdaFrToBundle.md), [CdaIIToIdentifier](ConceptMap-CdaIIToIdentifierConceptMap.md), [CdaINTToInteger](ConceptMap-CdaINTToIntegerConceptMap.md), [CdaIVL_TSToFHIR](ConceptMap-CdaIVL-TSToPeriodConceptMap.md), [CdaNamesToFHIR](ConceptMap-CdaENPNToHumanNameConceptMap.md), [CdaPQToFHIR](ConceptMap-CdaPQToQuantityConceptMap.md), [CdaRTOPQPQToFHIR](ConceptMap-CdaRTO-PQ-PQToRatioConceptMap.md), [CdaStringTypesToFHIR](ConceptMap-CdaSTEDONToStringConceptMap.md), [CdaTELToFHIR](ConceptMap-CdaTELToContactPointConceptMap.md), [CdaTSToFHIR](ConceptMap-CdaTSToDateTimeConceptMap.md), [CdaToBundle](StructureMap-CdaToBundle.md), [CdaToFHIRTypes](StructureMap-CdaToFHIRTypes.md), [CdaToFhirAdministrativeGender](ConceptMap-cm-v3-administrative-gender.md), [ConceptMapOidSpecialiteOrdinale](ConceptMap-cm-oid-specialite-ordinale.md) and [OID2URIConceptMapANS](ConceptMap-oid2uri-ans.md)
 
 
 * The UCUM codes, UCUM table (regardless of format), and UCUM Specification are copyright 1999-2009, Regenstrief Institute, Inc. and the Unified Codes for Units of Measures (UCUM) Organization. All rights reserved. [https://ucum.org/trac/wiki/TermsOfUse](https://ucum.org/trac/wiki/TermsOfUse)
@@ -134,7 +134,7 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2026-04-22T13:26:00+00:00",
+  "date" : "2026-05-04T08:14:07+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -912,6 +912,54 @@ Certaines ressources sémantiques de ce guide sont protégées par des droits de
       },
       "name" : "ConceptMap — CDA INT vers FHIR integer",
       "description" : "Correspondances documentaires entre le datatype CDA INT et le datatype FHIR integer.",
+      "exampleBoolean" : false
+    },
+    {
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+        "valueString" : "ConceptMap"
+      }],
+      "reference" : {
+        "reference" : "ConceptMap/CdaIVL-TSToPeriodConceptMap"
+      },
+      "name" : "ConceptMap — CDA IVL_TS vers FHIR Period et dateTime",
+      "description" : "Correspondances documentaires entre le datatype CDA IVL_TS et les types FHIR Period et dateTime.",
+      "exampleBoolean" : false
+    },
+    {
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+        "valueString" : "ConceptMap"
+      }],
+      "reference" : {
+        "reference" : "ConceptMap/CdaPQToQuantityConceptMap"
+      },
+      "name" : "ConceptMap — CDA PQ vers FHIR Quantity",
+      "description" : "Correspondances documentaires entre le datatype CDA PQ et le datatype FHIR Quantity.",
+      "exampleBoolean" : false
+    },
+    {
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+        "valueString" : "ConceptMap"
+      }],
+      "reference" : {
+        "reference" : "ConceptMap/CdaRTO-PQ-PQToRatioConceptMap"
+      },
+      "name" : "ConceptMap — CDA RTO_PQ_PQ vers FHIR Ratio",
+      "description" : "Correspondances documentaires entre le datatype CDA RTO_PQ_PQ et le datatype FHIR Ratio.",
+      "exampleBoolean" : false
+    },
+    {
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+        "valueString" : "ConceptMap"
+      }],
+      "reference" : {
+        "reference" : "ConceptMap/CdaSTEDONToStringConceptMap"
+      },
+      "name" : "ConceptMap — CDA ST/ED/ON vers FHIR string",
+      "description" : "Correspondances documentaires entre les datatypes CDA ST, ED et ON et le datatype FHIR string.",
       "exampleBoolean" : false
     },
     {

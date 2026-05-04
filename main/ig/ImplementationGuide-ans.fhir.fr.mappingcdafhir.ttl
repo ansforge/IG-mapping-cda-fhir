@@ -21,7 +21,7 @@
   fhir:name [ fhir:v "CDA2FHIRMAP"] ; # 
   fhir:title [ fhir:v "POC - Mapping CDA to FHIR"] ; # 
   fhir:status [ fhir:v "draft"] ; # 
-  fhir:date [ fhir:v "2026-04-22T13:26:00+00:00"^^xsd:dateTime] ; # 
+  fhir:date [ fhir:v "2026-05-04T08:14:07+00:00"^^xsd:dateTime] ; # 
   fhir:publisher [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"] ; # 
   fhir:contact ( [
      fhir:name [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris" ] ;
@@ -1633,6 +1633,90 @@
        ] ;
        fhir:name [ fhir:v "ConceptMap — CDA INT vers FHIR integer" ] ;
        fhir:description [ fhir:v "Correspondances documentaires entre le datatype CDA INT et le datatype FHIR integer." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v false
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "ConceptMap"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaIVL-TSToPeriodConceptMap> ;
+         fhir:reference [ fhir:v "ConceptMap/CdaIVL-TSToPeriodConceptMap" ]
+       ] ;
+       fhir:name [ fhir:v "ConceptMap — CDA IVL_TS vers FHIR Period et dateTime" ] ;
+       fhir:description [ fhir:v "Correspondances documentaires entre le datatype CDA IVL_TS et les types FHIR Period et dateTime." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v false
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "ConceptMap"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaPQToQuantityConceptMap> ;
+         fhir:reference [ fhir:v "ConceptMap/CdaPQToQuantityConceptMap" ]
+       ] ;
+       fhir:name [ fhir:v "ConceptMap — CDA PQ vers FHIR Quantity" ] ;
+       fhir:description [ fhir:v "Correspondances documentaires entre le datatype CDA PQ et le datatype FHIR Quantity." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v false
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "ConceptMap"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaRTO-PQ-PQToRatioConceptMap> ;
+         fhir:reference [ fhir:v "ConceptMap/CdaRTO-PQ-PQToRatioConceptMap" ]
+       ] ;
+       fhir:name [ fhir:v "ConceptMap — CDA RTO_PQ_PQ vers FHIR Ratio" ] ;
+       fhir:description [ fhir:v "Correspondances documentaires entre le datatype CDA RTO_PQ_PQ et le datatype FHIR Ratio." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v false
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "ConceptMap"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaSTEDONToStringConceptMap> ;
+         fhir:reference [ fhir:v "ConceptMap/CdaSTEDONToStringConceptMap" ]
+       ] ;
+       fhir:name [ fhir:v "ConceptMap — CDA ST/ED/ON vers FHIR string" ] ;
+       fhir:description [ fhir:v "Correspondances documentaires entre les datatypes CDA ST, ED et ON et le datatype FHIR string." ] ;
        fhir:example [
          a fhir:Boolean ;
          fhir:v false

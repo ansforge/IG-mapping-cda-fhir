@@ -32,6 +32,10 @@ These define transformations to convert between codes by systems conforming with
 | [ConceptMap — CDA EN/PN vers FHIR HumanName](ConceptMap-CdaENPNToHumanNameConceptMap.md) | Correspondances documentaires des composants CDA EN et PN vers FHIR HumanName. |
 | [ConceptMap — CDA II vers FHIR Identifier](ConceptMap-CdaIIToIdentifierConceptMap.md) | Correspondances entre les éléments du datatype CDA II et les éléments FHIR Identifier |
 | [ConceptMap — CDA INT vers FHIR integer](ConceptMap-CdaINTToIntegerConceptMap.md) | Correspondances documentaires entre le datatype CDA INT et le datatype FHIR integer. |
+| [ConceptMap — CDA IVL_TS vers FHIR Period et dateTime](ConceptMap-CdaIVL-TSToPeriodConceptMap.md) | Correspondances documentaires entre le datatype CDA IVL_TS et les types FHIR Period et dateTime. |
+| [ConceptMap — CDA PQ vers FHIR Quantity](ConceptMap-CdaPQToQuantityConceptMap.md) | Correspondances documentaires entre le datatype CDA PQ et le datatype FHIR Quantity. |
+| [ConceptMap — CDA RTO_PQ_PQ vers FHIR Ratio](ConceptMap-CdaRTO-PQ-PQToRatioConceptMap.md) | Correspondances documentaires entre le datatype CDA RTO_PQ_PQ et le datatype FHIR Ratio. |
+| [ConceptMap — CDA ST/ED/ON vers FHIR string](ConceptMap-CdaSTEDONToStringConceptMap.md) | Correspondances documentaires entre les datatypes CDA ST, ED et ON et le datatype FHIR string. |
 | [ConceptMap — CDA TEL vers FHIR ContactPoint](ConceptMap-CdaTELToContactPointConceptMap.md) | Correspondances documentaires entre le datatype CDA TEL et les éléments FHIR ContactPoint. |
 | [ConceptMap — CDA TS vers FHIR instant, dateTime et date](ConceptMap-CdaTSToDateTimeConceptMap.md) | Correspondances documentaires entre le datatype CDA TS et les types FHIR instant, dateTime et date. |
 | [OID to URI Mapping for ANS terminologies](ConceptMap-oid2uri-ans.md) | Mapping from OID to URI for ANS terminologies |

@@ -10,7 +10,7 @@
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2026-04-22T13:26:00+00:00",
+  "date" : "2026-05-04T08:14:07+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -788,6 +788,54 @@
       },
       "name" : "ConceptMap — CDA INT vers FHIR integer",
       "description" : "Correspondances documentaires entre le datatype CDA INT et le datatype FHIR integer.",
+      "exampleBoolean" : false
+    },
+    {
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+        "valueString" : "ConceptMap"
+      }],
+      "reference" : {
+        "reference" : "ConceptMap/CdaIVL-TSToPeriodConceptMap"
+      },
+      "name" : "ConceptMap — CDA IVL_TS vers FHIR Period et dateTime",
+      "description" : "Correspondances documentaires entre le datatype CDA IVL_TS et les types FHIR Period et dateTime.",
+      "exampleBoolean" : false
+    },
+    {
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+        "valueString" : "ConceptMap"
+      }],
+      "reference" : {
+        "reference" : "ConceptMap/CdaPQToQuantityConceptMap"
+      },
+      "name" : "ConceptMap — CDA PQ vers FHIR Quantity",
+      "description" : "Correspondances documentaires entre le datatype CDA PQ et le datatype FHIR Quantity.",
+      "exampleBoolean" : false
+    },
+    {
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+        "valueString" : "ConceptMap"
+      }],
+      "reference" : {
+        "reference" : "ConceptMap/CdaRTO-PQ-PQToRatioConceptMap"
+      },
+      "name" : "ConceptMap — CDA RTO_PQ_PQ vers FHIR Ratio",
+      "description" : "Correspondances documentaires entre le datatype CDA RTO_PQ_PQ et le datatype FHIR Ratio.",
+      "exampleBoolean" : false
+    },
+    {
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+        "valueString" : "ConceptMap"
+      }],
+      "reference" : {
+        "reference" : "ConceptMap/CdaSTEDONToStringConceptMap"
+      },
+      "name" : "ConceptMap — CDA ST/ED/ON vers FHIR string",
+      "description" : "Correspondances documentaires entre les datatypes CDA ST, ED et ON et le datatype FHIR string.",
       "exampleBoolean" : false
     },
     {
