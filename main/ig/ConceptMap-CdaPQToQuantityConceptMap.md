@@ -9,7 +9,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaPQToFHIR | *Version*:0.1.0 |
-| Draft as of 2026-05-04 | *Computable Name*:CdaPQToFHIR |
+| Draft as of 2026-05-13 | *Computable Name*:CdaPQToFHIR |
 
  
 Correspondances documentaires entre le datatype CDA PQ et le datatype FHIR Quantity. 
@@ -28,7 +28,7 @@ Correspondances documentaires entre le datatype CDA PQ et le datatype FHIR Quant
   "title" : "ConceptMap — CDA PQ vers FHIR Quantity",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-05-04T08:14:07+00:00",
+  "date" : "2026-05-13T07:14:42+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",

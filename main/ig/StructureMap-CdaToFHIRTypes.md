@@ -9,7 +9,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes | *Version*:0.1.0 |
-| Draft as of 2026-05-04 | *Computable Name*:CdaToFHIRTypes |
+| Draft as of 2026-05-13 | *Computable Name*:CdaToFHIRTypes |
 
  
 Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger) 
@@ -27,7 +27,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
   "name" : "CdaToFHIRTypes",
   "title" : "Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)",
   "status" : "draft",
-  "date" : "2026-05-04T08:14:07+00:00",
+  "date" : "2026-05-13T07:14:42+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",

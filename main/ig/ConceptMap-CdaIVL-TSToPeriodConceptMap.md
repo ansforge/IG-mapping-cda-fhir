@@ -9,7 +9,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaIVL_TSToFHIR | *Version*:0.1.0 |
-| Draft as of 2026-05-04 | *Computable Name*:CdaIVL_TSToFHIR |
+| Draft as of 2026-05-13 | *Computable Name*:CdaIVL_TSToFHIR |
 
  
 Correspondances documentaires entre le datatype CDA IVL_TS et les types FHIR Period et dateTime. 
@@ -28,7 +28,7 @@ Correspondances documentaires entre le datatype CDA IVL_TS et les types FHIR Per
   "title" : "ConceptMap — CDA IVL_TS vers FHIR Period et dateTime",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-05-04T08:14:07+00:00",
+  "date" : "2026-05-13T07:14:42+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
