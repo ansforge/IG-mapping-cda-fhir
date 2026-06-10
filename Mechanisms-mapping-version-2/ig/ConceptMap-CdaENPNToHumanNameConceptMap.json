@@ -1,0 +1,159 @@
+{
+  "resourceType" : "ConceptMap",
+  "id" : "CdaENPNToHumanNameConceptMap",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: ConceptMap CdaENPNToHumanNameConceptMap</b></p><a name=\"CdaENPNToHumanNameConceptMap\"> </a><a name=\"hcCdaENPNToHumanNameConceptMap\"> </a><p>Mapping from (not specified) to (not specified)</p><br/><p><b>Group 1 </b>Mapping from <a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html\">EN: EntityName (V3 Data Type)</a> to <a href=\"http://hl7.org/fhir/R4/datatypes.html#HumanName\">HumanName</a></p><table class=\"grid\"><tr><td><b>Source Code</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Relationship</b></td><td><b>Target Code</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Comment</b></td></tr><tr><td colspan=\"3\">EN.family</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#HumanName#HumanName.family\">HumanName.family</a></td><td>0..1</td><td>todo</td><td>Le composant family du nom CDA EN alimente directement HumanName.family.</td></tr><tr><td colspan=\"3\">EN.given</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#HumanName#HumanName.given\">HumanName.given</a></td><td>0..*</td><td>todo</td><td>Le composant given du nom CDA EN alimente directement HumanName.given.</td></tr><tr><td colspan=\"3\">EN.prefix</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#HumanName#HumanName.prefix\">HumanName.prefix</a></td><td>0..*</td><td>todo</td><td>Le composant prefix du nom CDA EN alimente directement HumanName.prefix.</td></tr><tr><td colspan=\"3\">EN.suffix</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#HumanName#HumanName.suffix\">HumanName.suffix</a></td><td>0..*</td><td>todo</td><td>Le composant suffix du nom CDA EN alimente directement HumanName.suffix.</td></tr><tr><td colspan=\"3\">EN.xmlText</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto\" title=\"relatedto\">is related to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#HumanName#HumanName.text\">HumanName.text</a></td><td>0..1</td><td>todo</td><td>La forme textuelle du nom (EN.xmlText) alimente HumanName.text.</td></tr><tr><td><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html#EN.validTime\">EN.validTime</a></td><td>0..1</td><td>todo</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto\" title=\"relatedto\">is related to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#HumanName#HumanName.period\">HumanName.period</a></td><td>0..1</td><td>todo</td><td>La période de validité du nom CDA EN alimente HumanName.period.</td></tr></table><hr/><p><b>Group 2 </b>Mapping from <a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-PN.html\">PN: PersonName (V3 Data Type)</a> to <a href=\"http://hl7.org/fhir/R4/datatypes.html#HumanName\">HumanName</a></p><table class=\"grid\"><tr><td><b>Source Code</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Relationship</b></td><td><b>Target Code</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Comment</b></td></tr><tr><td colspan=\"3\">PN.family</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#HumanName#HumanName.family\">HumanName.family</a></td><td>0..1</td><td>todo</td><td>Par héritage du mapping EN -&gt; HumanName, le composant family du nom CDA PN alimente HumanName.family.</td></tr><tr><td colspan=\"3\">PN.given</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#HumanName#HumanName.given\">HumanName.given</a></td><td>0..*</td><td>todo</td><td>Par héritage du mapping EN -&gt; HumanName, le composant given du nom CDA PN alimente HumanName.given.</td></tr><tr><td colspan=\"3\">PN.prefix</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#HumanName#HumanName.prefix\">HumanName.prefix</a></td><td>0..*</td><td>todo</td><td>Par héritage du mapping EN -&gt; HumanName, le composant prefix du nom CDA PN alimente HumanName.prefix.</td></tr><tr><td colspan=\"3\">PN.suffix</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#HumanName#HumanName.suffix\">HumanName.suffix</a></td><td>0..*</td><td>todo</td><td>Par héritage du mapping EN -&gt; HumanName, le composant suffix du nom CDA PN alimente HumanName.suffix.</td></tr><tr><td colspan=\"3\">PN.xmlText</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto\" title=\"relatedto\">is related to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#HumanName#HumanName.text\">HumanName.text</a></td><td>0..1</td><td>todo</td><td>La forme textuelle du nom (PN.xmlText) alimente HumanName.text.</td></tr><tr><td><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-PN.html#PN.validTime\">PN.validTime</a></td><td>0..1</td><td>todo</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#HumanName#HumanName.period\">HumanName.period</a></td><td>0..1</td><td>todo</td><td>Par héritage du mapping EN -&gt; HumanName, la période de validité du nom CDA PN alimente HumanName.period.</td></tr></table></div>"
+  },
+  "url" : "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaNamesToFHIR",
+  "version" : "0.1.0",
+  "name" : "CdaNamesToFHIR",
+  "title" : "ConceptMap — CDA EN/PN vers FHIR HumanName",
+  "status" : "draft",
+  "experimental" : true,
+  "date" : "2026-06-10T12:24:35+00:00",
+  "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
+  "contact" : [{
+    "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
+    "telecom" : [{
+      "system" : "url",
+      "value" : "https://esante.gouv.fr"
+    }]
+  }],
+  "description" : "Correspondances documentaires des composants CDA EN et PN vers FHIR HumanName.",
+  "jurisdiction" : [{
+    "coding" : [{
+      "system" : "urn:iso:std:iso:3166",
+      "code" : "FR",
+      "display" : "FRANCE"
+    }]
+  }],
+  "group" : [{
+    "source" : "http://hl7.org/cda/stds/core/StructureDefinition/EN",
+    "target" : "http://hl7.org/fhir/StructureDefinition/HumanName",
+    "element" : [{
+      "code" : "EN.family",
+      "display" : "EN.family",
+      "target" : [{
+        "code" : "HumanName.family",
+        "display" : "HumanName.family",
+        "equivalence" : "equivalent",
+        "comment" : "Le composant family du nom CDA EN alimente directement HumanName.family."
+      }]
+    },
+    {
+      "code" : "EN.given",
+      "display" : "EN.given",
+      "target" : [{
+        "code" : "HumanName.given",
+        "display" : "HumanName.given",
+        "equivalence" : "equivalent",
+        "comment" : "Le composant given du nom CDA EN alimente directement HumanName.given."
+      }]
+    },
+    {
+      "code" : "EN.prefix",
+      "display" : "EN.prefix",
+      "target" : [{
+        "code" : "HumanName.prefix",
+        "display" : "HumanName.prefix",
+        "equivalence" : "equivalent",
+        "comment" : "Le composant prefix du nom CDA EN alimente directement HumanName.prefix."
+      }]
+    },
+    {
+      "code" : "EN.suffix",
+      "display" : "EN.suffix",
+      "target" : [{
+        "code" : "HumanName.suffix",
+        "display" : "HumanName.suffix",
+        "equivalence" : "equivalent",
+        "comment" : "Le composant suffix du nom CDA EN alimente directement HumanName.suffix."
+      }]
+    },
+    {
+      "code" : "EN.xmlText",
+      "display" : "EN.xmlText",
+      "target" : [{
+        "code" : "HumanName.text",
+        "display" : "HumanName.text",
+        "equivalence" : "relatedto",
+        "comment" : "La forme textuelle du nom (EN.xmlText) alimente HumanName.text."
+      }]
+    },
+    {
+      "code" : "EN.validTime",
+      "display" : "EN.validTime",
+      "target" : [{
+        "code" : "HumanName.period",
+        "display" : "HumanName.period",
+        "equivalence" : "relatedto",
+        "comment" : "La période de validité du nom CDA EN alimente HumanName.period."
+      }]
+    }]
+  },
+  {
+    "source" : "http://hl7.org/cda/stds/core/StructureDefinition/PN",
+    "target" : "http://hl7.org/fhir/StructureDefinition/HumanName",
+    "element" : [{
+      "code" : "PN.family",
+      "display" : "PN.family",
+      "target" : [{
+        "code" : "HumanName.family",
+        "display" : "HumanName.family",
+        "equivalence" : "equivalent",
+        "comment" : "Par héritage du mapping EN -> HumanName, le composant family du nom CDA PN alimente HumanName.family."
+      }]
+    },
+    {
+      "code" : "PN.given",
+      "display" : "PN.given",
+      "target" : [{
+        "code" : "HumanName.given",
+        "display" : "HumanName.given",
+        "equivalence" : "equivalent",
+        "comment" : "Par héritage du mapping EN -> HumanName, le composant given du nom CDA PN alimente HumanName.given."
+      }]
+    },
+    {
+      "code" : "PN.prefix",
+      "display" : "PN.prefix",
+      "target" : [{
+        "code" : "HumanName.prefix",
+        "display" : "HumanName.prefix",
+        "equivalence" : "equivalent",
+        "comment" : "Par héritage du mapping EN -> HumanName, le composant prefix du nom CDA PN alimente HumanName.prefix."
+      }]
+    },
+    {
+      "code" : "PN.suffix",
+      "display" : "PN.suffix",
+      "target" : [{
+        "code" : "HumanName.suffix",
+        "display" : "HumanName.suffix",
+        "equivalence" : "equivalent",
+        "comment" : "Par héritage du mapping EN -> HumanName, le composant suffix du nom CDA PN alimente HumanName.suffix."
+      }]
+    },
+    {
+      "code" : "PN.xmlText",
+      "display" : "PN.xmlText",
+      "target" : [{
+        "code" : "HumanName.text",
+        "display" : "HumanName.text",
+        "equivalence" : "relatedto",
+        "comment" : "La forme textuelle du nom (PN.xmlText) alimente HumanName.text."
+      }]
+    },
+    {
+      "code" : "PN.validTime",
+      "display" : "PN.validTime",
+      "target" : [{
+        "code" : "HumanName.period",
+        "display" : "HumanName.period",
+        "equivalence" : "equivalent",
+        "comment" : "Par héritage du mapping EN -> HumanName, la période de validité du nom CDA PN alimente HumanName.period."
+      }]
+    }]
+  }]
+}

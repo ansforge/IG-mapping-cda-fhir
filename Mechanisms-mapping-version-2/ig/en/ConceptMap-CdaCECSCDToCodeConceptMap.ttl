@@ -1,0 +1,235 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaCECSCDToCodeConceptMap> a fhir:ConceptMap ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "CdaCECSCDToCodeConceptMap"] ; # 
+  fhir:language [ fhir:v "en"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div [ fhir:v "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: ConceptMap CdaCECSCDToCodeConceptMap</b></p><a name=\"CdaCECSCDToCodeConceptMap\"> </a><a name=\"hcCdaCECSCDToCodeConceptMap\"> </a><p>Mapping from (not specified) to (not specified)</p><br/><p><b>Group 1 </b>Mapping from <a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CE.html\">CE: CodedWithEquivalents (V3 Data Type)</a> to <a href=\"http://hl7.org/fhir/R4/datatypes.html#code\">code</a></p><table class=\"grid\"><tr><td><b>Source Code</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Relationship</b></td><td><b>Target Code</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Comment</b></td></tr><tr><td><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CE.html#CE.code\">CE.code</a></td><td>0..1</td><td>todo</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#code#code\">code</a></td><td>0..*</td><td>todo</td><td>Le code CDA alimente directement le datatype primitif FHIR code.</td></tr></table><hr/><p><b>Group 2 </b>Mapping from <a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CE.html\">CE: CodedWithEquivalents (V3 Data Type)</a> to <a href=\"http://hl7.org/fhir/R4/datatypes.html#CodeableConcept\">CodeableConcept</a></p><table class=\"grid\"><tr><td><b>Source Code</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Relationship</b></td><td><b>Target Code</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Comment</b></td></tr><tr><td><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CE.html#CE.originalText\">CE.originalText</a></td><td>0..1</td><td>todo</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#CodeableConcept#CodeableConcept.text\">CodeableConcept.text</a></td><td>0..1</td><td>todo</td><td>Le texte original CDA alimente directement CodeableConcept.text.</td></tr><tr><td><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CE.html#CE.code\">CE.code</a></td><td>0..1</td><td>todo</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td colspan=\"3\">CodeableConcept.coding.code</td><td>Le code principal CDA CE alimente coding.code.</td></tr><tr><td><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CE.html#CE.codeSystem\">CE.codeSystem</a></td><td>0..1</td><td>todo</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto\" title=\"relatedto\">is related to</a></td><td colspan=\"3\">CodeableConcept.coding.system</td><td>Le codeSystem CDA est transformé en URI de type urn:oid:[codeSystem] pour alimenter coding.system.</td></tr><tr><td><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CE.html#CE.displayName\">CE.displayName</a></td><td>0..1</td><td>todo</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td colspan=\"3\">CodeableConcept.coding.display</td><td>Le libellé CDA displayName alimente coding.display.</td></tr><tr><td><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CE.html#CE.translation\">CE.translation</a></td><td>0..*</td><td>todo</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto\" title=\"relatedto\">is related to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#CodeableConcept#CodeableConcept.coding\">CodeableConcept.coding</a></td><td>0..*</td><td>todo</td><td>Chaque translation CDA crée un coding supplémentaire dans le CodeableConcept cible.</td></tr></table><hr/><p><b>Group 3 </b>Mapping from <a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CS.html\">CS: CodedSimpleValue (V3 Data Type)</a> to <a href=\"http://hl7.org/fhir/R4/datatypes.html#code\">code</a></p><table class=\"grid\"><tr><td><b>Source Code</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Relationship</b></td><td><b>Target Code</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Comment</b></td></tr><tr><td><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CS.html#CS.code\">CS.code</a></td><td>0..1</td><td>todo</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#code#code\">code</a></td><td>0..*</td><td>todo</td><td>Le code CDA CS alimente directement le datatype primitif FHIR code.</td></tr></table><hr/><p><b>Group 4 </b>Mapping from <a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CS.html\">CS: CodedSimpleValue (V3 Data Type)</a> to <a href=\"http://hl7.org/fhir/R4/datatypes.html#CodeableConcept\">CodeableConcept</a></p><table class=\"grid\"><tr><td><b>Source Code</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Relationship</b></td><td><b>Target Code</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Comment</b></td></tr><tr><td><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CS.html#CS.code\">CS.code</a></td><td>0..1</td><td>todo</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto\" title=\"relatedto\">is related to</a></td><td colspan=\"3\">CodeableConcept.coding.code</td><td>Par héritage du mapping CE -&gt; CodeableConcept, le code CS alimente coding.code.</td></tr></table><hr/><p><b>Group 5 </b>Mapping from <a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html\">CD: ConceptDescriptor (V3 Data Type)</a> to <a href=\"http://hl7.org/fhir/R4/datatypes.html#code\">code</a></p><table class=\"grid\"><tr><td><b>Source Code</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Relationship</b></td><td><b>Target Code</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Comment</b></td></tr><tr><td><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CD.code\">CD.code</a></td><td>0..1</td><td>todo</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto\" title=\"relatedto\">is related to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#code#code\">code</a></td><td>0..*</td><td>todo</td><td>Le code CDA CD alimente le datatype primitif FHIR code, conformément au mapping hérité de CS -&gt; code.</td></tr></table><hr/><p><b>Group 6 </b>Mapping from <a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html\">CD: ConceptDescriptor (V3 Data Type)</a> to <a href=\"http://hl7.org/fhir/R4/datatypes.html#CodeableConcept\">CodeableConcept</a></p><table class=\"grid\"><tr><td><b>Source Code</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Relationship</b></td><td><b>Target Code</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Comment</b></td></tr><tr><td><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CD.originalText\">CD.originalText</a></td><td>0..1</td><td>todo</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto\" title=\"relatedto\">is related to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#CodeableConcept#CodeableConcept.text\">CodeableConcept.text</a></td><td>0..1</td><td>todo</td><td>Par héritage du mapping CE -&gt; CodeableConcept, le texte original CDA peut alimenter CodeableConcept.text.</td></tr><tr><td><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CD.code\">CD.code</a></td><td>0..1</td><td>todo</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto\" title=\"relatedto\">is related to</a></td><td colspan=\"3\">CodeableConcept.coding.code</td><td>Le code principal CDA CD alimente coding.code.</td></tr><tr><td><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CD.codeSystem\">CD.codeSystem</a></td><td>0..1</td><td>todo</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto\" title=\"relatedto\">is related to</a></td><td colspan=\"3\">CodeableConcept.coding.system</td><td>Le codeSystem CDA est transformé en URI de type urn:oid:[codeSystem].</td></tr><tr><td><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CD.displayName\">CD.displayName</a></td><td>0..1</td><td>todo</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto\" title=\"relatedto\">is related to</a></td><td colspan=\"3\">CodeableConcept.coding.display</td><td>Le libellé CDA displayName alimente coding.display.</td></tr><tr><td><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html#CD.translation\">CD.translation</a></td><td>0..*</td><td>todo</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto\" title=\"relatedto\">is related to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#CodeableConcept#CodeableConcept.coding\">CodeableConcept.coding</a></td><td>0..*</td><td>todo</td><td>Chaque translation CDA crée un coding supplémentaire dans le CodeableConcept cible.</td></tr></table></div>"^^rdf:XMLLiteral ]
+  ] ; # 
+  fhir:url [
+     fhir:v "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaConceptCodesToFHIR"^^xsd:anyURI ;
+     fhir:l <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaConceptCodesToFHIR>
+  ] ; # 
+  fhir:version [ fhir:v "0.1.0"] ; # 
+  fhir:name [ fhir:v "CdaConceptCodesToFHIR"] ; # 
+  fhir:title [ fhir:v "ConceptMap — CDA CE/CS/CD vers FHIR code et CodeableConcept"] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:experimental [ fhir:v true] ; # 
+  fhir:date [ fhir:v "2026-06-10T12:24:35+00:00"^^xsd:dateTime] ; # 
+  fhir:publisher [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"] ; # 
+  fhir:contact ( [
+     fhir:name [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris" ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "https://esante.gouv.fr" ]
+     ] )
+  ] ) ; # 
+  fhir:description [ fhir:v "Correspondances documentaires entre les datatypes CDA CE, CS et CD et les types FHIR code et CodeableConcept."] ; # 
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [
+         fhir:v "urn:iso:std:iso:3166"^^xsd:anyURI ;
+         fhir:l <urn:iso:std:iso:3166>
+       ] ;
+       fhir:code [ fhir:v "FR" ] ;
+       fhir:display [ fhir:v "FRANCE" ]
+     ] )
+  ] ) ; # 
+  fhir:group ( [
+     fhir:source [
+       fhir:v "http://hl7.org/cda/stds/core/StructureDefinition/CE"^^xsd:anyURI ;
+       fhir:l <http://hl7.org/cda/stds/core/StructureDefinition/CE>
+     ] ;
+     fhir:target [
+       fhir:v "http://hl7.org/fhir/StructureDefinition/code"^^xsd:anyURI ;
+       fhir:l <http://hl7.org/fhir/StructureDefinition/code>
+     ] ;
+     fhir:element ( [
+       fhir:code [ fhir:v "CE.code" ] ;
+       fhir:display [ fhir:v "CE.code" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "code" ] ;
+         fhir:display [ fhir:v "code" ] ;
+         fhir:equivalence [ fhir:v "equivalent" ] ;
+         fhir:comment [ fhir:v "Le code CDA alimente directement le datatype primitif FHIR code." ]
+       ] )
+     ] )
+  ] [
+     fhir:source [
+       fhir:v "http://hl7.org/cda/stds/core/StructureDefinition/CE"^^xsd:anyURI ;
+       fhir:l <http://hl7.org/cda/stds/core/StructureDefinition/CE>
+     ] ;
+     fhir:target [
+       fhir:v "http://hl7.org/fhir/StructureDefinition/CodeableConcept"^^xsd:anyURI ;
+       fhir:l <http://hl7.org/fhir/StructureDefinition/CodeableConcept>
+     ] ;
+     fhir:element ( [
+       fhir:code [ fhir:v "CE.originalText" ] ;
+       fhir:display [ fhir:v "CE.originalText" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "CodeableConcept.text" ] ;
+         fhir:display [ fhir:v "CodeableConcept.text" ] ;
+         fhir:equivalence [ fhir:v "equivalent" ] ;
+         fhir:comment [ fhir:v "Le texte original CDA alimente directement CodeableConcept.text." ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "CE.code" ] ;
+       fhir:display [ fhir:v "CE.code" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "CodeableConcept.coding.code" ] ;
+         fhir:display [ fhir:v "CodeableConcept.coding.code" ] ;
+         fhir:equivalence [ fhir:v "equivalent" ] ;
+         fhir:comment [ fhir:v "Le code principal CDA CE alimente coding.code." ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "CE.codeSystem" ] ;
+       fhir:display [ fhir:v "CE.codeSystem" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "CodeableConcept.coding.system" ] ;
+         fhir:display [ fhir:v "CodeableConcept.coding.system" ] ;
+         fhir:equivalence [ fhir:v "relatedto" ] ;
+         fhir:comment [ fhir:v "Le codeSystem CDA est transformé en URI de type urn:oid:[codeSystem] pour alimenter coding.system." ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "CE.displayName" ] ;
+       fhir:display [ fhir:v "CE.displayName" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "CodeableConcept.coding.display" ] ;
+         fhir:display [ fhir:v "CodeableConcept.coding.display" ] ;
+         fhir:equivalence [ fhir:v "equivalent" ] ;
+         fhir:comment [ fhir:v "Le libellé CDA displayName alimente coding.display." ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "CE.translation" ] ;
+       fhir:display [ fhir:v "CE.translation" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "CodeableConcept.coding" ] ;
+         fhir:display [ fhir:v "CodeableConcept.coding (translation)" ] ;
+         fhir:equivalence [ fhir:v "relatedto" ] ;
+         fhir:comment [ fhir:v "Chaque translation CDA crée un coding supplémentaire dans le CodeableConcept cible." ]
+       ] )
+     ] )
+  ] [
+     fhir:source [
+       fhir:v "http://hl7.org/cda/stds/core/StructureDefinition/CS"^^xsd:anyURI ;
+       fhir:l <http://hl7.org/cda/stds/core/StructureDefinition/CS>
+     ] ;
+     fhir:target [
+       fhir:v "http://hl7.org/fhir/StructureDefinition/code"^^xsd:anyURI ;
+       fhir:l <http://hl7.org/fhir/StructureDefinition/code>
+     ] ;
+     fhir:element ( [
+       fhir:code [ fhir:v "CS.code" ] ;
+       fhir:display [ fhir:v "CS.code" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "code" ] ;
+         fhir:display [ fhir:v "code" ] ;
+         fhir:equivalence [ fhir:v "equivalent" ] ;
+         fhir:comment [ fhir:v "Le code CDA CS alimente directement le datatype primitif FHIR code." ]
+       ] )
+     ] )
+  ] [
+     fhir:source [
+       fhir:v "http://hl7.org/cda/stds/core/StructureDefinition/CS"^^xsd:anyURI ;
+       fhir:l <http://hl7.org/cda/stds/core/StructureDefinition/CS>
+     ] ;
+     fhir:target [
+       fhir:v "http://hl7.org/fhir/StructureDefinition/CodeableConcept"^^xsd:anyURI ;
+       fhir:l <http://hl7.org/fhir/StructureDefinition/CodeableConcept>
+     ] ;
+     fhir:element ( [
+       fhir:code [ fhir:v "CS.code" ] ;
+       fhir:display [ fhir:v "CS.code" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "CodeableConcept.coding.code" ] ;
+         fhir:display [ fhir:v "CodeableConcept.coding.code" ] ;
+         fhir:equivalence [ fhir:v "relatedto" ] ;
+         fhir:comment [ fhir:v "Par héritage du mapping CE -> CodeableConcept, le code CS alimente coding.code." ]
+       ] )
+     ] )
+  ] [
+     fhir:source [
+       fhir:v "http://hl7.org/cda/stds/core/StructureDefinition/CD"^^xsd:anyURI ;
+       fhir:l <http://hl7.org/cda/stds/core/StructureDefinition/CD>
+     ] ;
+     fhir:target [
+       fhir:v "http://hl7.org/fhir/StructureDefinition/code"^^xsd:anyURI ;
+       fhir:l <http://hl7.org/fhir/StructureDefinition/code>
+     ] ;
+     fhir:element ( [
+       fhir:code [ fhir:v "CD.code" ] ;
+       fhir:display [ fhir:v "CD.code" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "code" ] ;
+         fhir:display [ fhir:v "code" ] ;
+         fhir:equivalence [ fhir:v "relatedto" ] ;
+         fhir:comment [ fhir:v "Le code CDA CD alimente le datatype primitif FHIR code, conformément au mapping hérité de CS -> code." ]
+       ] )
+     ] )
+  ] [
+     fhir:source [
+       fhir:v "http://hl7.org/cda/stds/core/StructureDefinition/CD"^^xsd:anyURI ;
+       fhir:l <http://hl7.org/cda/stds/core/StructureDefinition/CD>
+     ] ;
+     fhir:target [
+       fhir:v "http://hl7.org/fhir/StructureDefinition/CodeableConcept"^^xsd:anyURI ;
+       fhir:l <http://hl7.org/fhir/StructureDefinition/CodeableConcept>
+     ] ;
+     fhir:element ( [
+       fhir:code [ fhir:v "CD.originalText" ] ;
+       fhir:display [ fhir:v "CD.originalText" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "CodeableConcept.text" ] ;
+         fhir:display [ fhir:v "CodeableConcept.text" ] ;
+         fhir:equivalence [ fhir:v "relatedto" ] ;
+         fhir:comment [ fhir:v "Par héritage du mapping CE -> CodeableConcept, le texte original CDA peut alimenter CodeableConcept.text." ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "CD.code" ] ;
+       fhir:display [ fhir:v "CD.code" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "CodeableConcept.coding.code" ] ;
+         fhir:display [ fhir:v "CodeableConcept.coding.code" ] ;
+         fhir:equivalence [ fhir:v "relatedto" ] ;
+         fhir:comment [ fhir:v "Le code principal CDA CD alimente coding.code." ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "CD.codeSystem" ] ;
+       fhir:display [ fhir:v "CD.codeSystem" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "CodeableConcept.coding.system" ] ;
+         fhir:display [ fhir:v "CodeableConcept.coding.system" ] ;
+         fhir:equivalence [ fhir:v "relatedto" ] ;
+         fhir:comment [ fhir:v "Le codeSystem CDA est transformé en URI de type urn:oid:[codeSystem]." ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "CD.displayName" ] ;
+       fhir:display [ fhir:v "CD.displayName" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "CodeableConcept.coding.display" ] ;
+         fhir:display [ fhir:v "CodeableConcept.coding.display" ] ;
+         fhir:equivalence [ fhir:v "relatedto" ] ;
+         fhir:comment [ fhir:v "Le libellé CDA displayName alimente coding.display." ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "CD.translation" ] ;
+       fhir:display [ fhir:v "CD.translation" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "CodeableConcept.coding" ] ;
+         fhir:display [ fhir:v "CodeableConcept.coding (translation)" ] ;
+         fhir:equivalence [ fhir:v "relatedto" ] ;
+         fhir:comment [ fhir:v "Chaque translation CDA crée un coding supplémentaire dans le CodeableConcept cible." ]
+       ] )
+     ] )
+  ] ) . # 
+
+# -------------------------------------------------------------------------------------
+
