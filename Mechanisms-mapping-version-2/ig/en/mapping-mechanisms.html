@@ -299,9 +299,19 @@ Elle ne contient ni logique métier, ni logique nationale, ni navigation dans la
 <ul>
   <li>la création du <code class="language-plaintext highlighter-rouge">Bundle</code> ;</li>
   <li>la création de la <code class="language-plaintext highlighter-rouge">Composition</code> ;</li>
-  <li>le mapping du <code class="language-plaintext highlighter-rouge">Patient</code> ;</li>
-  <li>le mapping du contexte de prise en charge (<code class="language-plaintext highlighter-rouge">Encounter</code>, <code class="language-plaintext highlighter-rouge">Location</code>) ;</li>
-  <li>le mapping des acteurs et des structures (<code class="language-plaintext highlighter-rouge">Practitioner</code>, <code class="language-plaintext highlighter-rouge">PractitionerRole</code>, <code class="language-plaintext highlighter-rouge">Organization</code>) ;</li>
+  <li>le mapping de <code class="language-plaintext highlighter-rouge">documentIdentity</code>, c’est-à-dire les identifiants permettant de reconnaître le document et sa version ;</li>
+  <li>le mapping de <code class="language-plaintext highlighter-rouge">documentDescription</code>, notamment son type, son titre, sa date, sa langue ou encore ses métadonnées principales ;</li>
+  <li>le mapping de <code class="language-plaintext highlighter-rouge">recordTarget</code>, qui correspond au patient concerné par le document ;</li>
+  <li>le mapping de <code class="language-plaintext highlighter-rouge">custodian</code>, c’est-à-dire l’organisation responsable de la conservation et de la mise à disposition du document ;</li>
+  <li>le mapping de <code class="language-plaintext highlighter-rouge">author</code>, qui peut correspondre au professionnel ou à l’acteur ayant produit le document ;</li>
+  <li>le mapping de <code class="language-plaintext highlighter-rouge">legalAuthenticator</code>, c’est-à-dire la personne qui valide officiellement le document ;</li>
+  <li>le mapping de <code class="language-plaintext highlighter-rouge">encounterContext</code>, notamment l’épisode de soin, le lieu de prise en charge ou l’établissement concerné, à travers les ressources <code class="language-plaintext highlighter-rouge">Encounter</code> et <code class="language-plaintext highlighter-rouge">Location</code> ;</li>
+  <li>le mapping de <code class="language-plaintext highlighter-rouge">documentationOf</code>, qui permet de relier le document à l’acte, au séjour ou à l’événement clinique documenté ;</li>
+  <li>le mapping de <code class="language-plaintext highlighter-rouge">emergencyContact</code>, qui correspond aux contacts d’urgence du patient ;</li>
+  <li>le mapping de <code class="language-plaintext highlighter-rouge">trustedPerson</code>, qui correspond aux personnes de confiance ;</li>
+  <li>le mapping de <code class="language-plaintext highlighter-rouge">guardian</code>, qui correspond aux représentants légaux ;</li>
+  <li>le mapping de <code class="language-plaintext highlighter-rouge">relatedDocument</code>, par exemple un document remplacé, complété ou associé ;</li>
+  <li>le mapping des acteurs et des structures impliqués dans le document, notamment <code class="language-plaintext highlighter-rouge">Practitioner</code>, <code class="language-plaintext highlighter-rouge">PractitionerRole</code> et <code class="language-plaintext highlighter-rouge">Organization</code> ;</li>
   <li>la gestion des identifiants techniques et des références internes au <code class="language-plaintext highlighter-rouge">Bundle</code> ;</li>
   <li>la reprise de la structure des sections du document dans <code class="language-plaintext highlighter-rouge">Composition.section</code>.</li>
 </ul>
@@ -312,35 +322,36 @@ Elle ne contient ni logique métier, ni logique nationale, ni navigation dans la
 
 <p>Le fichier principal de cette couche est <code class="language-plaintext highlighter-rouge">CdaFrToBundle.fml</code>.</p>
 
-<p>Cette couche applique les spécifications françaises au mapping générique CDA vers FHIR. Elle permet d’enrichir les ressources FHIR produites avec les profils, identifiants, terminologies et extensions attendus dans le cadre d’implémentation français.</p>
+<p>Cette couche reprend le mapping documentaire générique produit par <code class="language-plaintext highlighter-rouge">CdaToBundle.fml</code> afin d’y intégrer les spécifications européennes et françaises applicables au <code class="language-plaintext highlighter-rouge">Patient Summary</code>.</p>
 
-<p>Les adaptations portées par cette couche concernent notamment :</p>
+<p>Les spécifications européennes concernent principalement les ressources documentaires structurantes, à savoir le <code class="language-plaintext highlighter-rouge">Bundle</code> et la <code class="language-plaintext highlighter-rouge">Composition</code>. L’objectif est de rapprocher la structure FHIR produite des exigences du profil européen <code class="language-plaintext highlighter-rouge">HL7 Europe Patient Summary (EPS)</code>, actuellement en cours de concertation .</p>
+
+<p>Les spécifications françaises s’appliquent aux ressources génériques déjà produites à partir de l’en-tête CDA et référencées par le <code class="language-plaintext highlighter-rouge">Bundle</code> ou la <code class="language-plaintext highlighter-rouge">Composition</code>. Elles s’appuient principalement sur les guides d’implémentation français <code class="language-plaintext highlighter-rouge">FR Core</code> et <code class="language-plaintext highlighter-rouge">Annuaire Santé</code>, afin d’ajouter les profils, identifiants, terminologies et extensions requis dans le contexte français.</p>
+
+<p>Cette couche complète donc le socle commun CDA vers FHIR sans redéfinir le mapping générique réalisé dans la couche précédente. Elle ne traite pas le corps du document CDA. Les sections cliniques seront prises en charge dans la couche de mappings spécifiques métier.</p>
+
+<p>Cette couche constitue une étape d’enrichissement du socle commun CDA vers FHIR. Elle complète le mapping générique établi à l’étape 2 en y intégrant les spécifications françaises et européennes. Le mapping des sections cliniques sera, quant à lui, abordé lors de l’étape 4.</p>
+
+<h5 id="mappings-spécifiques-métier--patient-summary">Mappings spécifiques métier : Patient Summary</h5>
+
+<p>Le fichier principal de cette couche est <code class="language-plaintext highlighter-rouge">CdaPatientSummaryToBundle.fml</code>.</p>
+
+<p>Cette couche correspond au mapping spécifique métier du <code class="language-plaintext highlighter-rouge">Patient Summary</code>. Elle réutilise le socle documentaire générique déjà enrichi par les spécifications françaises et européennes, notamment pour l’en-tête CDA, puis ajoute les règles nécessaires au mapping du contenu clinique porté par le corps du document.</p>
+
+<p>Pour le corps CDA, cette couche s’appuie sur la structure documentaire initialisée dans les couches précédentes, en particulier la reprise des sections dans <code class="language-plaintext highlighter-rouge">Composition.section</code>. Elle complète ce premier niveau descriptif par le mapping des contenus cliniques présents dans les sections du <code class="language-plaintext highlighter-rouge">Patient Summary</code>.</p>
+
+<p>Le mapping réalisé à ce niveau concerne notamment :</p>
+
 <ul>
-  <li>l’application de profils français, par exemple <code class="language-plaintext highlighter-rouge">FR-Core</code> et <code class="language-plaintext highlighter-rouge">Annuaire Santé</code> ;
-*la gestion des identifiants nationaux, tels que <code class="language-plaintext highlighter-rouge">INS-NIR</code> pour le patient, <code class="language-plaintext highlighter-rouge">IDNPS</code> pour les professionnels de santé et <code class="language-plaintext highlighter-rouge">FINESS</code> pour les organisations ;
-*l’utilisation de terminologies nationales;
-*l’ajout d’extensions ou de spécialisations propres au contexte français.</li>
+  <li>l’identification des sections propres au <code class="language-plaintext highlighter-rouge">Patient Summary</code>, comme les problèmes de santé, les allergies et intolérances, les traitements, les antécédents familiaux, les vaccinations, les actes, les effets indésirables, les signes vitaux, le mode de vie, les risques professionnels et les résultats ;</li>
+  <li>l’accès aux <code class="language-plaintext highlighter-rouge">entry</code> présentes dans ces sections ;</li>
+  <li>le mapping des éléments cliniques contenus dans ces <code class="language-plaintext highlighter-rouge">entry</code> ;</li>
+  <li>l’extraction des données cliniques portées par ces éléments ;</li>
+  <li>le mapping de ces données vers les ressources FHIR métier adaptées, par exemple <code class="language-plaintext highlighter-rouge">Condition</code>, <code class="language-plaintext highlighter-rouge">AllergyIntolerance</code>, <code class="language-plaintext highlighter-rouge">MedicationStatement</code>, <code class="language-plaintext highlighter-rouge">Procedure</code>, <code class="language-plaintext highlighter-rouge">Immunization</code> ou <code class="language-plaintext highlighter-rouge">Observation</code> ;</li>
+  <li>le rattachement des ressources métier aux sections correspondantes de la <code class="language-plaintext highlighter-rouge">Composition</code>, afin de conserver l’organisation documentaire du <code class="language-plaintext highlighter-rouge">Patient Summary</code> ;</li>
 </ul>
 
-<p>Cette couche s’applique aux ressources génériques déjà produites à partir de l’en-tête du document CDA. Elle ne redéfinit pas le mapping générique, mais complète les groupes existants lorsque cela est nécessaire afin d’isoler clairement les spécificités françaises.</p>
-
-<p>Elle ne traite pas le corps du document CDA. Les sections cliniques, organizers, observations et autres contenus métier restent pris en charge dans la couche de mappings spécifiques métier.</p>
-
-<h5 id="mappings-spécifiques-métier">Mappings spécifiques métier</h5>
-
-<p>Cette couche regroupe plusieurs fichiers de mapping, chacun correspondant à un type de document CDA ou à un contexte métier particulier. Le fichier <code class="language-plaintext highlighter-rouge">CdaFrMDEToBundle</code> constitue l’un de ces mappings et est utilisé dans ce guide comme exemple de mapping métier.</p>
-
-<p>Contrairement aux couches précédentes, cette couche traite le corps du document CDA. Elle implémente la navigation dans les sections cliniques et transforme les structures métier du document en ressources FHIR adaptées.</p>
-
-<p>Les traitements réalisés à ce niveau concernent notamment :
-*la navigation dans les <code class="language-plaintext highlighter-rouge">section</code> ;
-*l’accès aux <code class="language-plaintext highlighter-rouge">entry</code>, <code class="language-plaintext highlighter-rouge">organizer</code> et <code class="language-plaintext highlighter-rouge">observation</code> ;
-*l’extraction des données cliniques propres au document traité ;
-*la création des ressources FHIR métier correspondantes, par exemple <code class="language-plaintext highlighter-rouge">Observation</code>.</p>
-
-<p>Cette couche réutilise les mappings génériques et nationaux déjà définis pour l’en-tête du document, puis ajoute les règles spécifiques nécessaires au contenu clinique du document concerné.</p>
-
-<p>Chaque fichier de cette couche correspond donc à une implémentation ciblée, construite à partir du même socle commun mais adaptée à un besoin métier précis.</p>
+<p>Cette couche complète ainsi le mapping du corps du document CDA en ajoutant les règles nécessaires à la représentation FHIR des données cliniques propres au <code class="language-plaintext highlighter-rouge">Patient Summary</code>.</p>
 
 <blockquote>
   <p>Remarque : Pour les couches — mappings CDA génériques, spécifications françaises et mappings spécifiques métier — les correspondances détaillées CDA et FHIR sont à consulter dans le guide d’implémentation Document Core : <code class="language-plaintext highlighter-rouge">https://ansforge.github.io/interop-IG-document-core/main/ig/</code>. Ce guide présente de manière structurée les correspondances entre modèle logique, CDA et FHIR</p>
@@ -869,7 +880,7 @@ imports "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaF
   <li><a href="https://www.hl7.org/fhir/structuremap.html">FHIR StructureMap Resource</a></li>
   <li><a href="https://github.com/ahdis/matchbox">Matchbox Documentation</a></li>
   <li><a href="https://github.com/hl7ch/cda-fhir-maps">CDA to FHIR Maps (HL7 Suisse)</a></li>
-  <li><a name="l1435">​</a><a href="claude.html">Notes techniques de développement</a></li>
+  <li><a name="l1558">​</a><a href="claude.html">Notes techniques de développement</a></li>
 </ul>
 
 <h3 id="conclusion">Conclusion</h3>
@@ -934,7 +945,7 @@ imports "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaF
           IG &copy; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris</a>.  
           Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>.
           Generated 
-  <span title="2026-06-10 12:24:00 +0000">
+  <span title="2026-06-10 14:04:00 +0000">
     2026-06-10
   </span>
 
