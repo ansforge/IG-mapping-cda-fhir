@@ -3,7 +3,7 @@
 <StructureMap xmlns="http://hl7.org/fhir">
   <id value="CdaFrToBundle"/>
   <text>
-    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Narratif généré : StructureMap CdaFrToBundle</b></p><a name="CdaFrToBundle"> </a><a name="hcCdaFrToBundle"> </a><pre class="fml">
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: StructureMap CdaFrToBundle</b></p><a name="CdaFrToBundle"> </a><a name="hcCdaFrToBundle"> </a><pre class="fml">
 <b>map</b><span style="color: navy"> &quot;</span>https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrToBundle<span style="color: navy">&quot; = &quot;</span>CdaFrToBundle<span style="color: navy">&quot;
 
 </span><span style="color: navy">// </span><span style="color: green">Mapping de CDAFr vers FHIR Bundle (A partir des sources de Oliver Egger)</span>
@@ -35,7 +35,7 @@
 <span style="color: navy">// </span><span style="color: green">group ClinicalDocumentFrToBundle(source cda : ClinicalDocument, target patient : Patient, target composition : Composition, target bundle : Bundle)</span>
 <span style="color: navy">// </span><span style="color: green">extends ClinicalDocumentToBundle {</span>
 <span style="color: navy">// </span><span style="color: green">cda then ClinicalDocumentCompositionFr(cda, composition, patient, bundle) &quot;composition&quot;;</span>
-<span style="color: #b36b00" title="Cet élément n'était pas défini avant R5">// cda.component as component then {</span>
+<span style="color: #b36b00" title="This element was not defined prior to R5">// cda.component as component then {</span>
 <span style="color: navy">// </span><span style="color: green">component.structuredBody as body then {</span>
 <span style="color: navy">// </span><span style="color: green">body.component as component then {</span>
 <span style="color: navy">// </span><span style="color: green">component.section as srcSection where (templateId.where(root='2.16.756.5.30.1.1.10.3.2')) -&gt; composition.section as tgtSection</span>
@@ -134,7 +134,7 @@
   <name value="CdaFrToBundle"/>
   <title value="Mapping de CDAFr vers FHIR Bundle (A partir des sources de Oliver Egger)"/>
   <status value="draft"/>
-  <date value="2026-05-13T07:14:42+00:00"/>
+  <date value="2026-06-10T08:49:37+00:00"/>
   <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
   <contact>
     <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>

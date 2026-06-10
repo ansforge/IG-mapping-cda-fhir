@@ -3,7 +3,7 @@
 <StructureMap xmlns="http://hl7.org/fhir">
   <id value="CdaToFHIRTypes"/>
   <text>
-    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Narratif généré : StructureMap CdaToFHIRTypes</b></p><a name="CdaToFHIRTypes"> </a><a name="hcCdaToFHIRTypes"> </a><pre class="fml">
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: StructureMap CdaToFHIRTypes</b></p><a name="CdaToFHIRTypes"> </a><a name="hcCdaToFHIRTypes"> </a><pre class="fml">
 <b>map</b><span style="color: navy"> &quot;</span>https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes<span style="color: navy">&quot; = &quot;</span>CdaToFHIRTypes<span style="color: navy">&quot;
 
 </span><span style="color: navy">// </span><span style="color: green">Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)</span>
@@ -160,8 +160,8 @@
       <span style="color: navy">}</span> <i>&quot;sfgfdsg&quot;</i><span style="color: navy">;</span>
     <span style="color: navy">}</span> <i>&quot;CensusTract&quot;</i><span style="color: navy">;</span>
     <span style="color: navy">// </span><span style="color: green">as streetAddress then{</span>
-    <span style="color: #b36b00" title="Cet élément n'était pas défini avant R5">// src.censusTract as v-&gt;tgt.line as line, line.extension as ext1 then CensusTract(v, ext1) &quot;line&quot;;</span>
-    <span style="color: #b36b00" title="Cet élément n'était pas défini avant R5">// src.censusTract as v -&gt;tgt.line as line, line.extension as ext1 then CensusTract(v, ext1) &quot;line&quot;;</span>
+    <span style="color: #b36b00" title="This element was not defined prior to R5">// src.censusTract as v-&gt;tgt.line as line, line.extension as ext1 then CensusTract(v, ext1) &quot;line&quot;;</span>
+    <span style="color: #b36b00" title="This element was not defined prior to R5">// src.censusTract as v -&gt;tgt.line as line, line.extension as ext1 then CensusTract(v, ext1) &quot;line&quot;;</span>
     item.streetName<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.line = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
     item.houseNumber<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.line = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
   <span style="color: navy">}</span><span style="color: navy">;</span>
@@ -200,7 +200,7 @@
   <name value="CdaToFHIRTypes"/>
   <title value="Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)"/>
   <status value="draft"/>
-  <date value="2026-05-13T07:14:42+00:00"/>
+  <date value="2026-06-10T08:49:37+00:00"/>
   <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
   <contact>
     <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
