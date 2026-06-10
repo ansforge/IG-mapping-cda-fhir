@@ -47,7 +47,11 @@ Cette catégorie regroupe les solutions permettant de définir des mappings CDA 
 
 TermX est une solution open source développée par la société estonienne Kodality, dédiée à la modélisation, à la gestion des terminologies et à la transformation de données autour de FHIR. Elle intègre un éditeur visuel du FHIR Mapping Language (FML), conçu pour permettre à des analystes métier ou experts fonctionnels de définir graphiquement les règles de correspondance entre un modèle source et un modèle cible, tout en masquant la complexité syntaxique du langage FML.
 
-![TermX](../images/termX.png)
+
+<div class="figure" style="width:65%;">
+    <img style="height: auto; width: 100%;" src="termX.png" alt="termX" title="termX">
+</div>
+
 
 #### Avantages des outils visuels de mapping 
 
