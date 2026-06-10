@@ -125,9 +125,19 @@ Les transformations couvertes dans cette couche incluent notamment :
 
 * la création du `Bundle` ;
 * la création de la `Composition` ;
-* le mapping du `Patient` ;
-* le mapping du contexte de prise en charge (`Encounter`, `Location`) ;
-* le mapping des acteurs et des structures (`Practitioner`, `PractitionerRole`, `Organization`) ;
+* le mapping de `documentIdentity`, c’est-à-dire les identifiants permettant de reconnaître le document et sa version ;
+* le mapping de `documentDescription`, notamment son type, son titre, sa date, sa langue ou encore ses métadonnées principales ;
+* le mapping de `recordTarget`, qui correspond au patient concerné par le document ;
+* le mapping de `custodian`, c’est-à-dire l’organisation responsable de la conservation et de la mise à disposition du document ;
+* le mapping de `author`, qui peut correspondre au professionnel ou à l’acteur ayant produit le document ;
+* le mapping de `legalAuthenticator`, c’est-à-dire la personne qui valide officiellement le document ;
+* le mapping de `encounterContext`, notamment l’épisode de soin, le lieu de prise en charge ou l’établissement concerné, à travers les ressources `Encounter` et `Location` ;
+* le mapping de `documentationOf`, qui permet de relier le document à l’acte, au séjour ou à l’événement clinique documenté ;
+* le mapping de `emergencyContact`, qui correspond aux contacts d’urgence du patient ;
+* le mapping de `trustedPerson`, qui correspond aux personnes de confiance ;
+* le mapping de `guardian`, qui correspond aux représentants légaux ;
+* le mapping de `relatedDocument`, par exemple un document remplacé, complété ou associé ;
+* le mapping des acteurs et des structures impliqués dans le document, notamment `Practitioner`, `PractitionerRole` et `Organization` ;
 * la gestion des identifiants techniques et des références internes au `Bundle` ;
 * la reprise de la structure des sections du document dans `Composition.section`.
 
@@ -137,36 +147,37 @@ Cette couche implémente donc le socle commun de transformation CDA → FHIR, in
 
 Le fichier principal de cette couche est `CdaFrToBundle.fml`.
 
-Cette couche applique les spécifications françaises au mapping générique CDA vers FHIR. Elle permet d’enrichir les ressources FHIR produites avec les profils, identifiants, terminologies et extensions attendus dans le cadre d’implémentation français.
+Cette couche reprend le mapping documentaire générique produit par `CdaToBundle.fml` afin d’y intégrer les spécifications européennes et françaises applicables au `Patient Summary`.
 
-Les adaptations portées par cette couche concernent notamment :
-* l’application de profils français, par exemple `FR-Core` et `Annuaire Santé` ;
-*la gestion des identifiants nationaux, tels que `INS-NIR` pour le patient, `IDNPS` pour les professionnels de santé et `FINESS` pour les organisations ;
-*l’utilisation de terminologies nationales;
-*l’ajout d’extensions ou de spécialisations propres au contexte français.
+Les spécifications européennes concernent principalement les ressources documentaires structurantes, à savoir le `Bundle` et la `Composition`. L’objectif est de rapprocher la structure FHIR produite des exigences du profil européen `HL7 Europe Patient Summary (EPS)`, actuellement en cours de concertation . 
 
-Cette couche s’applique aux ressources génériques déjà produites à partir de l’en-tête du document CDA. Elle ne redéfinit pas le mapping générique, mais complète les groupes existants lorsque cela est nécessaire afin d’isoler clairement les spécificités françaises.
+Les spécifications françaises s’appliquent aux ressources génériques déjà produites à partir de l’en-tête CDA et référencées par le `Bundle` ou la `Composition`. Elles s’appuient principalement sur les guides d’implémentation français `FR Core` et `Annuaire Santé`, afin d’ajouter les profils, identifiants, terminologies et extensions requis dans le contexte français.
 
-Elle ne traite pas le corps du document CDA. Les sections cliniques, organizers, observations et autres contenus métier restent pris en charge dans la couche de mappings spécifiques métier.
+Cette couche complète donc le socle commun CDA vers FHIR sans redéfinir le mapping générique réalisé dans la couche précédente. Elle ne traite pas le corps du document CDA. Les sections cliniques seront prises en charge dans la couche de mappings spécifiques métier.
 
-##### Mappings spécifiques métier
+Cette couche constitue une étape d’enrichissement du socle commun CDA vers FHIR. Elle complète le mapping générique établi à l’étape 2 en y intégrant les spécifications françaises et européennes. Le mapping des sections cliniques sera, quant à lui, abordé lors de l’étape 4.
 
-Cette couche regroupe plusieurs fichiers de mapping, chacun correspondant à un type de document CDA ou à un contexte métier particulier. Le fichier `CdaFrMDEToBundle` constitue l’un de ces mappings et est utilisé dans ce guide comme exemple de mapping métier.
 
-Contrairement aux couches précédentes, cette couche traite le corps du document CDA. Elle implémente la navigation dans les sections cliniques et transforme les structures métier du document en ressources FHIR adaptées.
+##### Mappings spécifiques métier : Patient Summary
 
-Les traitements réalisés à ce niveau concernent notamment :
-*la navigation dans les `section` ;
-*l’accès aux `entry`, `organizer` et `observation` ;
-*l’extraction des données cliniques propres au document traité ;
-*la création des ressources FHIR métier correspondantes, par exemple `Observation`.
+Le fichier principal de cette couche est `CdaPatientSummaryToBundle.fml`.
 
-Cette couche réutilise les mappings génériques et nationaux déjà définis pour l’en-tête du document, puis ajoute les règles spécifiques nécessaires au contenu clinique du document concerné.
+Cette couche correspond au mapping spécifique métier du `Patient Summary`. Elle réutilise le socle documentaire générique déjà enrichi par les spécifications françaises et européennes, notamment pour l’en-tête CDA, puis ajoute les règles nécessaires au mapping du contenu clinique porté par le corps du document.
 
-Chaque fichier de cette couche correspond donc à une implémentation ciblée, construite à partir du même socle commun mais adaptée à un besoin métier précis.
+Pour le corps CDA, cette couche s’appuie sur la structure documentaire initialisée dans les couches précédentes, en particulier la reprise des sections dans `Composition.section`. Elle complète ce premier niveau descriptif par le mapping des contenus cliniques présents dans les sections du `Patient Summary`.
+
+Le mapping réalisé à ce niveau concerne notamment :
+
+* l’identification des sections propres au `Patient Summary`, comme les problèmes de santé, les allergies et intolérances, les traitements, les antécédents familiaux, les vaccinations, les actes, les effets indésirables, les signes vitaux, le mode de vie, les risques professionnels et les résultats ;
+* l’accès aux `entry` présentes dans ces sections ;
+* le mapping des éléments cliniques contenus dans ces `entry` ;
+* l’extraction des données cliniques portées par ces éléments ;
+* le mapping de ces données vers les ressources FHIR métier adaptées, par exemple `Condition`, `AllergyIntolerance`, `MedicationStatement`, `Procedure`, `Immunization` ou `Observation` ;
+* le rattachement des ressources métier aux sections correspondantes de la `Composition`, afin de conserver l’organisation documentaire du `Patient Summary` ;
+
+Cette couche complète ainsi le mapping du corps du document CDA en ajoutant les règles nécessaires à la représentation FHIR des données cliniques propres au `Patient Summary`.
 
 > Remarque : Pour les couches — mappings CDA génériques, spécifications françaises et mappings spécifiques métier — les correspondances détaillées CDA et FHIR sont à consulter dans le guide d’implémentation Document Core : `https://ansforge.github.io/interop-IG-document-core/main/ig/`. Ce guide présente de manière structurée les correspondances entre modèle logique, CDA et FHIR
-
 
 #### Réutilisation entre les couches
 
