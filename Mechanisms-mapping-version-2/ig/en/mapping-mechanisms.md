@@ -396,30 +396,6 @@ obs.value as value where(value.is(ST))
 
 ### Limitations et contraintes
 
-#### 1. Navigation XML et état du parser
-
-Le parcours du document CDA peut entraîner des conflits lorsque plusieurs groupes de mapping tentent d’accéder aux mêmes éléments XML. Cette situation peut provoquer des erreurs de parsing, notamment lorsque le moteur de transformation perd le contexte attendu lors de la navigation dans la structure source.
-
-**Erreur typique** :
-
-```
-HAPI-0389: Failed to call access method: org.hl7.fhir.exceptions.FHIRFormatError:
-The QName 'urn:hl7-org:v3::ClinicalDocument' does not match the expected QName
-
-```
-
-**Conséquences** :
-
-* échec de la transformation sur certains documents CDA ;
-* comportement instable lors de la réutilisation de groupes parcourant les mêmes nœuds ;
-* difficulté à isoler l’origine exacte de l’erreur.
-
-**Recommandations** :
-
-* éviter de parcourir les mêmes éléments XML depuis plusieurs groupes de mapping ;
-* privilégier la réutilisation de fonctions de conversion de types plutôt que de multiplier les navigations ;
-* créer une navigation personnalisée pour les structures non couvertes par les mappings de base.
-
 #### 2. Support de translate()
 
 La fonction `translate()`, utilisée pour exploiter des `ConceptMap`, peut ne pas être disponible ou pleinement supportée selon la version du moteur de transformation utilisée. Cette dépendance peut limiter la portabilité de certains mappings.
@@ -596,54 +572,6 @@ L’utilisation d’identifiants techniques tels que des UUID facilite la gestio
 * réserver les UUID aux références internes lorsque cela est nécessaire ;
 * réutiliser les identifiants métier dès qu’ils sont disponibles ;
 * documenter la stratégie de génération et de réutilisation des identifiants dans les ressources produites.
-
-### Exemple complet : CdaPatientSummaryToBundle
-
-Le mapping `CdaPatientSummaryToBundle.fml` illustre l'application de ces mécanismes pour transformer un document patient summary français en Bundle FHIR.
-
-#### Architecture
-
-```
-map "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrMDEToBundle"
-  = "CdaFrMDEToBundle"
-
-uses "http://hl7.org/fhir/cda/StructureDefinition/ClinicalDocument" alias ClinicalDocument as source
-uses "http://hl7.org/fhir/StructureDefinition/Bundle" alias Bundle as target
-
-imports "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes"
-imports "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle"
-imports "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrToBundle"
-
-```
-
-#### Stratégie de transformation
-
-1. **Réutilisation des mappings de base**:
-* `ClinicalDocumentComposition` : Crée la Composition et les ressources contextuelles
-* `ClinicalDocumentPatientRole` : Transforme le Patient avec identifiant INS-NIR
-
-1. **Navigation personnalisée**:
-* Parcours de `component > structuredBody > component > section > entry > organizer > component > observation`
-* Extraction des observations de mesures (poids, taille, périmètre crânien)
-
-1. **Conversion de types**:
-* Utilisation de `CDCodeableConcept` pour les codes LOINC
-* Utilisation de `PQQuantity` pour les valeurs avec unités
-
-#### Résultat
-
-Pour un document CSE-MDE avec 3 observations, le mapping génère :
-
-* 1 Bundle de type document
-* 1 Composition (métadonnées)
-* 1 Patient (avec INS-NIR)
-* 1 Encounter (contexte)
-* 1 Location
-* 2 Practitioner
-* 2 Organization
-* 3 Observation (Poids, Taille, Périmètre crânien)
-
-Total : **11 ressources FHIR**
 
 ### Ressources complémentaires
 
