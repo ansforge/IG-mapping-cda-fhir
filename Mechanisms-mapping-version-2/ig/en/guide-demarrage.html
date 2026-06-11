@@ -206,8 +206,6 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
 <div class="markdown-toc">
 <ul id="markdown-toc">
   <li><a href="#guide-de-démarrage-rapide-quick-start" id="markdown-toc-guide-de-démarrage-rapide-quick-start">Guide de démarrage rapide (Quick Start)</a>    <ul>
-      <li><a href="#résultats-des-transformations" id="markdown-toc-résultats-des-transformations">Résultats des transformations</a></li>
-      <li><a href="#architecture-du-mapping-cdafrmdetobundle" id="markdown-toc-architecture-du-mapping-cdafrmdetobundle">Architecture du mapping CdaFrMDEToBundle</a></li>
       <li><a href="#arrêter-et-redémarrer" id="markdown-toc-arrêter-et-redémarrer">Arrêter et redémarrer</a></li>
       <li><a href="#configuration-avancée" id="markdown-toc-configuration-avancée">Configuration avancée</a></li>
     </ul>
@@ -217,7 +215,7 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
 </div>
 
 <h2 id="guide-de-démarrage-rapide-quick-start">Guide de démarrage rapide (Quick Start)</h2>
-<p>Ce guide vous permet de tester rapidement la transformation de documents CDA vers FHIR en utilisant matchbox et les exemples fournis.</p>
+<p>Ce guide vous permet de tester rapidement la transformation de documents CDA de type Patient Summary vers FHIR en utilisant Matchbox, à partir d’un exemple fourni.</p>
 
 <h4 id="prérequis">Prérequis</h4>
 <ul>
@@ -298,59 +296,31 @@ curl <span class="nt">-X</span> POST http://localhost:8080/matchbox/fhir/Structu
 curl <span class="nt">-X</span> POST http://localhost:8080/matchbox/fhir/StructureMap <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Accept: application/fhir+xml;fhirVersion=4.0"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Content-Type: text/fhir-mapping"</span> <span class="se">\</span>
-  <span class="nt">--data-binary</span> @input/fml/CDAFrMDEToBundle.fml
+  <span class="nt">--data-binary</span> @input/fml/CdaPatientSummaryToBundle.fml
 
-<span class="c"># 3. Transformer un document CDA</span>
-curl <span class="nt">-X</span> POST <span class="s2">"http://localhost:8080/matchbox/fhir/StructureMap/</span><span class="se">\$</span><span class="s2">transform?source=https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrMDEToBundle"</span> <span class="se">\</span>
+
+<span class="c"># 3. lancer les transformations</span>
+<span class="c">#3.1 : transformations génériques</span>
+curl <span class="nt">-X</span> POST <span class="s2">"http://localhost:8080/matchbox/fhir/StructureMap/</span><span class="se">\$</span><span class="s2">transform?source=https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Accept: application/fhir+json;fhirVersion=4.0"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Content-Type: application/fhir+xml;fhirVersion=4.0"</span> <span class="se">\</span>
-  <span class="nt">--data-binary</span> @input/attachments/CSE-MDE_2023.01.xml
+  <span class="nt">--data-binary</span> @input/attachments/patient-summary.xml
+
+<span class="c">#3.2 : transformations génériques enrichies</span>
+curl <span class="nt">-X</span> POST <span class="s2">"http://localhost:8080/matchbox/fhir/StructureMap/</span><span class="se">\$</span><span class="s2">transform?source=https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrToBundle"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Accept: application/fhir+json;fhirVersion=4.0"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: application/fhir+xml;fhirVersion=4.0"</span> <span class="se">\</span>
+  <span class="nt">--data-binary</span> @input/attachments/patient-summary.xml
+
+<span class="c">#3.3 : transformation complète du document Patient Summary</span>
+curl <span class="nt">-X</span> POST <span class="s2">"http://localhost:8080/matchbox/fhir/StructureMap/</span><span class="se">\$</span><span class="s2">transform?source=https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaPatientSummaryToBundle"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Accept: application/fhir+json;fhirVersion=4.0"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: application/fhir+xml;fhirVersion=4.0"</span> <span class="se">\</span>
+  <span class="nt">--data-binary</span> @input/attachments/patient-summary.xml
+
 </code></pre></div></div>
 
-<h4 id="exemple-cda-disponible">Exemple CDA disponible</h4>
-
-<p>Le dossier <code class="language-plaintext highlighter-rouge">input/attachments/</code> contient un exemple de document CDA français :</p>
-
-<ul>
-  <li><strong>CSE-MDE_2023.01.xml</strong> : Carnet de santé de l'enfant - Mesures (3 observations : Poids, Taille, Périmètre crânien)</li>
-</ul>
-
-<h4 id="résultat-attendu">Résultat attendu</h4>
-
-<p>Si la transformation réussit, vous obtiendrez un Bundle FHIR contenant les ressources converties depuis le document CDA.</p>
-
-<p><strong>Note importante</strong> : Il peut y avoir des erreurs dans les fichiers FML lors de la transformation. L'objectif de ce POC est de valider le processus de transformation. Les erreurs dans les mappings seront traitées ultérieurement.</p>
-
-<h3 id="résultats-des-transformations">Résultats des transformations</h3>
-
-<p>Les transformations CDA-FHIR ont été exécutées avec les résultats suivants :</p>
-
-<h4 id="transformation-réussie">Transformation réussie</h4>
-
-<table>
-  <thead>
-    <tr>
-      <th>Fichier source</th>
-      <th>StructureMap utilisé</th>
-      <th>Fichier résultat</th>
-      <th>Ressources FHIR</th>
-      <th>Observations</th>
-      <th>Statut</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>CSE-MDE_2023.01.xml</td>
-      <td><a href="StructureMap-CdaFrMDEToBundle.html">CdaFrMDEToBundle</a></td>
-      <td><a href="Bundle-fe569e1f-32d4-4ba4-b5ad-88082bf5470a.html">Bundle-fe569e1f-32d4-4ba4-b5ad-88082bf5470a.json</a></td>
-      <td>11</td>
-      <td>3</td>
-      <td>✅ Succès complet</td>
-    </tr>
-  </tbody>
-</table>
-
-<p><strong>Détails de la transformation :</strong></p>
+<p><strong>Détails des transformations :</strong></p>
 
 <p><strong>Document CSE-MDE (Carnet de Santé de l'Enfant - Mesures)</strong> :</p>
 
@@ -374,18 +344,6 @@ curl <span class="nt">-X</span> POST <span class="s2">"http://localhost:8080/mat
       </li>
     </ul>
   </li>
-</ul>
-
-<h3 id="architecture-du-mapping-cdafrmdetobundle">Architecture du mapping CdaFrMDEToBundle</h3>
-
-<p>Le mapping <code class="language-plaintext highlighter-rouge">CdaFrMDEToBundle.fml</code> est un mapping spécialisé pour les documents CSE-MDE français qui combine :</p>
-
-<p><strong>Architecture du mapping :</strong></p>
-<ul>
-  <li><strong>Imports</strong> : Utilise les mappings de base (<code class="language-plaintext highlighter-rouge">CdaToFHIRTypes</code>, <code class="language-plaintext highlighter-rouge">CdaToBundle</code>, <code class="language-plaintext highlighter-rouge">CdaFrToBundle</code>)</li>
-  <li><strong>Réutilisation</strong> : Exploite les fonctions existantes pour Patient, Composition, Encounter, Location, etc.</li>
-  <li><strong>Navigation personnalisée</strong> : Implémente une navigation spécifique pour extraire les observations imbriquées dans les organizers</li>
-  <li><strong>Traitement complet</strong> : Gère toutes les ressources nécessaires pour un document CSE-MDE</li>
 </ul>
 
 <p><strong>Résultats obtenus :</strong></p>
@@ -510,7 +468,7 @@ https://github.com/hl7ch/cda-fhir-maps</p>
           IG © 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d&#39;Oradour-sur-Glane, 75015 Paris</a>.  
           Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>.
           Generated 
-  <span title="2026-06-11 08:46:00 +0000">
+  <span title="2026-06-11 09:21:00 +0000">
     2026-06-11
   </span>
 
