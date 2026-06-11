@@ -44,14 +44,18 @@ Les fichiers HTTP de test se trouvent dans le dossier `http-test/`. Utilisez le 
 **Avec VS Code et l'extension REST Client** :
 
 1. Ouvrez le fichier `http-test/fr_cdatofhir_mde.http`
-2. Exécutez séquentiellement les requêtes HTTP dans l'ordre suivant :
+   
+3. Exécutez séquentiellement les requêtes HTTP dans l'ordre suivant :
    * **Requête 0** : Charger ConceptMap-cm-v3-administrative-gender.json
    * **Requête 1** : Charger CDAtoFHIRTypes.fml
    * **Requête 2** : Charger CdaToBundle.fml
    * **Requête 3** : Charger CDAFrToBundle.fml
-   * **Requête 4** : Charger CDAFrMDEToBundle.fml
-   * **Requête 5** : Transformer CSE-MDE_2023.01.xml (sortie JSON)
-3. Cliquez sur "Send Request" au-dessus de chaque requête
+   * **Requête 4** : Charger CdaPatientSummaryToBundle.fml
+   * **Requête 5** : Transformer patient-summary.xml avec le mapping générique (sortie JSON)
+   * **Requête 6** : Transformer patient-summary.xml avec le mapping générique enrichi (sortie JSON)
+   * **Requête 7** : Transformer patient-summary.xml avec le mapping complet du document Patient Summary (sortie JSON)
+  
+4. Cliquez sur "Send Request" au-dessus de chaque requête
 
 **Avec curl** (exemple complet) :
 
@@ -103,61 +107,121 @@ curl -X POST "http://localhost:8080/matchbox/fhir/StructureMap/\$transform?sourc
   --data-binary @input/attachments/patient-summary.xml
 
 ```
+**Remarque :** Les requêtes doivent être adaptées au niveau de transformation souhaité. Pour une transformation générique, seules les ressources nécessaires au mapping générique doivent être chargées, et les étapes d’enrichissement français et de mapping Patient Summary ne sont pas requises. Pour une transformation générique enrichie, la StructureMap spécifique au Patient Summary, correspondant à la requête 4, n’a pas besoin d’être chargée.
 
-**Détails des transformations :**
+**Résultats obtenus de la transformation complète :**
+* génération d’un Bundle FHIR documentaire contenant 97 ressources dans `Bundle.entry`, soit 98 ressources au total en incluant le Bundle lui-même ;
+* organisation de la sortie autour d’une `Composition`, qui structure le document Patient Summary et référence les ressources FHIR générées ;
+* production des principales ressources administratives et contextuelles ;
+* production de ressources cliniques couvrant plusieurs sections du Patient Summary ;
+* prise en compte des profils européens et français mobilisés dans la preuve de concept ;
+* structuration des ressources générées à l’aide d’identifiants techniques de type UUID et de références internes au Bundle.
 
-**Document CSE-MDE (Carnet de Santé de l'Enfant - Mesures)** :
+****Exemple de ressource générée : Patient**:**
 
-- **StructureMap utilisé** : `CdaFrMDEToBundle` - Mapping spécifique pour le contexte français
-- **Imports** : Utilise `CdaToFHIRTypes`, `CdaToBundle` et `CdaFrToBundle`
-- **Ressources générées** (11 au total) :
-  * 1 Composition (métadonnées du document)
-  * 1 Patient (avec identifiant INS-NIR, nom, genre, date de naissance)
-  * 1 Encounter (contexte de la rencontre)
-  * 1 Location (lieu de la consultation)
-  * 2 Practitioner (praticiens impliqués)
-  * 2 Organization (organisations de santé)
-  * 3 Observations :
-    - Poids (29463-7) = 3900 g
-    - Taille (8302-2) = 52 cm
-    - Périmètre crânien (8287-5) = 35 cm
+```json
 
-**Résultats obtenus :**
-* ✅ Génération du Bundle FHIR avec structure document complète
-* ✅ Transformation du Patient avec identifiant INS-NIR, nom, genre, date de naissance
-* ✅ Création de la Composition avec métadonnées et sections
-* ✅ Génération automatique des ressources contextuelles (Encounter, Location, Practitioner, Organization)
-* ✅ **Extraction des Observations** depuis `organizer > component > observation`
-* ✅ Transformation des codes LOINC et valeurs quantitatives avec unités
-
-**Exemple d'Observation générée :**
+   **Ressource Patient générée :**
 
 ```json
 {
-  "resourceType": "Observation",
-  "status": "final",
-  "category": [{
-    "coding": [{
-      "system": "http://terminology.hl7.org/CodeSystem/observation-category",
-      "code": "vital-signs"
-    }]
-  }],
-  "code": {
-    "coding": [{
-      "system": "http://loinc.org",
-      "code": "29463-7",
-      "display": "Poids"
-    }]
-  },
-  "subject": {
-    "reference": "urn:uuid:..."
-  },
-  "effectiveDateTime": "2023-01-06",
-  "valueQuantity": {
-    "value": 3900,
-    "unit": "g",
-    "system": "http://unitsofmeasure.org",
-    "code": "g"
+  "fullUrl": "urn:uuid:4b3f518b-cf54-4508-8a30-d600cbbf528a",
+  "resource": {
+    "resourceType": "Patient",
+    "id": "4b3f518b-cf54-4508-8a30-d600cbbf528a",
+    "meta": {
+      "profile": [
+        "https://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-patient-ins"
+      ]
+    },
+    "extension": [
+      {
+        "url": "http://hl7.org/fhir/StructureDefinition/patient-birthPlace",
+        "valueAddress": {
+          "extension": [
+            {
+              "url": "https://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-address-insee-code",
+              "valueCoding": {
+                "code": "51215"
+              }
+            }
+          ],
+          "city": "DOMPREMY",
+          "district": "51215"
+        }
+      },
+      {
+        "extension": [
+          {
+            "url": "identityStatus",
+            "valueCoding": {
+              "system": "https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-v2-0445",
+              "code": "VALI"
+            }
+          }
+        ],
+        "url": "https://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-identity-reliability"
+      }
+    ],
+    "identifier": [
+      {
+        "use": "official",
+        "type": {
+          "coding": [
+            {
+              "system": "https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203",
+              "code": "INS-NIR-TEST"
+            }
+          ]
+        },
+        "system": "urn:oid:1.2.250.1.213.1.4.10",
+        "value": "279035121518989"
+      }
+    ],
+    "name": [
+      {
+        "extension": [
+          {
+            "url": "https://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-patient-birth-list-given-name",
+            "valueString": "DOMINIQUE MARIE-LOUISE"
+          }
+        ],
+        "use": "official",
+        "family": "PAT-TROIS",
+        "given": [
+          "DOMINIQUE"
+        ]
+      }
+    ],
+    "telecom": [
+      {
+        "system": "phone",
+        "value": "0144534551",
+        "use": "home"
+      },
+      {
+        "system": "phone",
+        "value": "0647151010",
+        "use": "mobile"
+      },
+      {
+        "system": "email",
+        "value": "279035121518989@patient.mssante.fr"
+      }
+    ],
+    "gender": "female",
+    "birthDate": "1979-03-28",
+    "address": [
+      {
+        "line": [
+          "28",
+          "Avenue de Breteuil"
+        ],
+        "city": "PARIS",
+        "postalCode": "75007",
+        "country": "FRANCE"
+      }
+    ]
   }
 }
 ```
