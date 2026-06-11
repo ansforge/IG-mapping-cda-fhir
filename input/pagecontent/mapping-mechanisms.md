@@ -143,7 +143,7 @@ Les transformations couvertes dans cette couche incluent notamment :
 
 Cette couche implémente donc le socle commun de transformation CDA → FHIR, indépendant des contraintes nationales et des règles métier spécifiques.
 
-##### Spécifications françaises
+##### Spécifications européennes et françaises
 
 Le fichier principal de cette couche est `CdaFrToBundle.fml`.
 
