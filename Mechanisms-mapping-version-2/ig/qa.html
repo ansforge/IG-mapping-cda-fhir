@@ -47,7 +47,7 @@
 </head>
 <body style="margin: 20px; background-color: #ffffff">
  <h1>Validation Results for CDA2FHIRMAP</h1>
- <p>Generated Thu Jun 11 09:23:57 UTC 2026, FHIR version 4.0.1 for ans.fhir.fr.mappingcdafhir#0.1.0 (canonical = <a href="https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir">https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir</a> (<a href="https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/history.html">history</a>)). See <a href="qa.min.html">Errors Only</a> &amp; <a href="qa-ipreview.html">IP</a></p>
+ <p>Generated Thu Jun 11 09:57:55 UTC 2026, FHIR version 4.0.1 for ans.fhir.fr.mappingcdafhir#0.1.0 (canonical = <a href="https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir">https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir</a> (<a href="https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/history.html">history</a>)). See <a href="qa.min.html">Errors Only</a> &amp; <a href="qa-ipreview.html">IP</a></p>
 <table class="grid"> <tr><td colspan=2><b>Quality Checks</b></td></tr>
  <tr><td>Publisher Version:</td><td><span>IG Publisher Version: v2.2.8</span></td></tr>
  <tr><td>Publication Code:</td><td>n/a<span style="color: maroon; font-weight: bold"> </span>. PackageId = ans.fhir.fr.mappingcdafhir, Canonical = https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir</td></tr>
@@ -86,7 +86,7 @@
  <tr><td>Related IGs:</td><td>n/a</td></tr>
  <tr><td>Dependent IGs:</td><td><a href="qa-dep.html">no references</a></td></tr>
  <tr><td>Global Profiles:</td><td>(none declared)</td></tr>
- <tr><td>Terminology Server(s):</td><td><a href="http://tx.fhir.org/r4">http://tx.fhir.org/r4</a>, <a href="https://smt.esante.gouv.fr/fhir">https://smt.esante.gouv.fr/fhir</a>, <a href="https://tx.fhir.org/r4">https://tx.fhir.org/r4</a> (<a href="qa-txservers.html">details</a>)</td></tr>
+ <tr><td>Terminology Server(s):</td><td><a href="http://tx.fhir.org/r4">http://tx.fhir.org/r4</a>, <a href="https://tx.fhir.org/r4">https://tx.fhir.org/r4</a> (<a href="qa-txservers.html">details</a>)</td></tr>
  <tr><td>HTA Analysis:</td><td><i>Non-HL7 Igs are exempt from terminology dependency analysis</i></td></tr>
  <tr><td>R5 Dependencies:</td><td><span style="color: grey">(none)</span></td></tr>
  <tr><td>Draft Dependencies:</td><td><ul>
@@ -320,21 +320,21 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
      <td><b>ConceptMap&#8203;.where(url = 'https:&#8203;/&#8203;/interop&#8203;.esante&#8203;.gouv&#8203;.fr&#8203;/ig&#8203;/fhir&#8203;/mappingcdafhir&#8203;/ConceptMap&#8203;/DataTypes&#8203;/CdaAddressToFHIR')</b></td><td><b>error</b></td><td><b>Conformance resource /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaADToAddressConceptMap.json - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaADToAddressConceptMap) does not match the URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaAddressToFHIR). Use the special-url parameter if you really mean for it not to match</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">RESOURCE_CANONICAL_MISMATCH</span></td><td>--</td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>ConceptMap&#8203;.jurisdiction[0]&#8203;.coding[0]&#8203;.display (l1&#8203;/c6041)</b></td><td><b>error</b></td><td><b>Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>, see <a href="qa-tx.html#l13">log</a>, or see <a href="#vmi19" onClick="document.getElementById('vmi19').style.display='block'">the servers logic</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">Display_Name_for__should_be_one_of__instead_of</span><div id="vmi19" style="display:none"><br/><pre>0ms tx-op
+     <td><b>ConceptMap&#8203;.jurisdiction[0]&#8203;.coding[0]&#8203;.display (l1&#8203;/c6041)</b></td><td><b>error</b></td><td><b>Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>, see <a href="qa-tx.html#l11">log</a>, or see <a href="#vmi19" onClick="document.getElementById('vmi19').style.display='block'">the servers logic</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">Display_Name_for__should_be_one_of__instead_of</span><div id="vmi19" style="display:none"><br/><pre>0ms tx-op
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Analysing http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1 for validation purposes
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Parameters: disp-lang=fr, generate-narrative, default-to-latest
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Version Rules: default:http://snomed.info/sct#http://snomed.info/sct/11000315107
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[0]: "(urn:iso:std:iso:3166)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166|2018"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[1]: "(urn:iso:std:iso:3166:-2)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166:-2|2021"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[2]: "(http://unstats.un.org/unsd/methods/m49/m49.htm)(class=region)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "http://unstats.un.org/unsd/methods/m49/m49.htm|null"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Validate "[urn:iso:std:iso:3166#FR ("FRANCE")]"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Check "urn:iso:std:iso:3166#FR"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: urn:iso:std:iso:3166|2018 for urn:iso:std:iso:3166
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: check code in (urn:iso:std:iso:3166) at CodeableConcept.coding[0]
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Code "FR" found in urn:iso:std:iso:3166|2018</pre></div></td><td><a href="http://hl7.org/fhir/R4/conceptmap.html">ConceptMap</a></td>
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[0]: "(urn:iso:std:iso:3166)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166|2018"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[1]: "(urn:iso:std:iso:3166:-2)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166:-2|2021"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[2]: "(http://unstats.un.org/unsd/methods/m49/m49.htm)(class=region)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "http://unstats.un.org/unsd/methods/m49/m49.htm|null"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Validate "[urn:iso:std:iso:3166#FR ("FRANCE")]"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Check "urn:iso:std:iso:3166#FR"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: urn:iso:std:iso:3166|2018 for urn:iso:std:iso:3166
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: check code in (urn:iso:std:iso:3166) at CodeableConcept.coding[0]
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Code "FR" found in urn:iso:std:iso:3166|2018</pre></div></td><td><a href="http://hl7.org/fhir/R4/conceptmap.html">ConceptMap</a></td>
    </tr>
    <tr style="background-color: #ffebcc">
      <td><b>ConceptMap&#8203;.group[0]&#8203;.element[0]&#8203;.code (l1&#8203;/c6211)</b></td><td><b>warning</b></td><td><b>The source display 'AD.item.country' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/AD|2.0.0-sd#AD.item.country' is not valid. Possible displays: </b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">CONCEPTMAP_GROUP_SOURCE_DISPLAY_INVALID</span></td><td>--</td>
@@ -413,21 +413,21 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
      <td><b>ConceptMap&#8203;.where(url = 'https:&#8203;/&#8203;/interop&#8203;.esante&#8203;.gouv&#8203;.fr&#8203;/ig&#8203;/fhir&#8203;/mappingcdafhir&#8203;/ConceptMap&#8203;/DataTypes&#8203;/CdaBLToFHIR')</b></td><td><b>error</b></td><td><b>Conformance resource /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaBLToBooleanConceptMap.json - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaBLToBooleanConceptMap) does not match the URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaBLToFHIR). Use the special-url parameter if you really mean for it not to match</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">RESOURCE_CANONICAL_MISMATCH</span></td><td>--</td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>ConceptMap&#8203;.jurisdiction[0]&#8203;.coding[0]&#8203;.display (l1&#8203;/c2007)</b></td><td><b>error</b></td><td><b>Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>, see <a href="qa-tx.html#l13">log</a>, or see <a href="#vmi42" onClick="document.getElementById('vmi42').style.display='block'">the servers logic</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">Display_Name_for__should_be_one_of__instead_of</span><div id="vmi42" style="display:none"><br/><pre>0ms tx-op
+     <td><b>ConceptMap&#8203;.jurisdiction[0]&#8203;.coding[0]&#8203;.display (l1&#8203;/c2007)</b></td><td><b>error</b></td><td><b>Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>, see <a href="qa-tx.html#l11">log</a>, or see <a href="#vmi42" onClick="document.getElementById('vmi42').style.display='block'">the servers logic</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">Display_Name_for__should_be_one_of__instead_of</span><div id="vmi42" style="display:none"><br/><pre>0ms tx-op
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Analysing http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1 for validation purposes
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Parameters: disp-lang=fr, generate-narrative, default-to-latest
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Version Rules: default:http://snomed.info/sct#http://snomed.info/sct/11000315107
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[0]: "(urn:iso:std:iso:3166)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166|2018"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[1]: "(urn:iso:std:iso:3166:-2)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166:-2|2021"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[2]: "(http://unstats.un.org/unsd/methods/m49/m49.htm)(class=region)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "http://unstats.un.org/unsd/methods/m49/m49.htm|null"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Validate "[urn:iso:std:iso:3166#FR ("FRANCE")]"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Check "urn:iso:std:iso:3166#FR"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: urn:iso:std:iso:3166|2018 for urn:iso:std:iso:3166
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: check code in (urn:iso:std:iso:3166) at CodeableConcept.coding[0]
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Code "FR" found in urn:iso:std:iso:3166|2018</pre></div></td><td><a href="http://hl7.org/fhir/R4/conceptmap.html">ConceptMap</a></td>
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[0]: "(urn:iso:std:iso:3166)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166|2018"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[1]: "(urn:iso:std:iso:3166:-2)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166:-2|2021"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[2]: "(http://unstats.un.org/unsd/methods/m49/m49.htm)(class=region)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "http://unstats.un.org/unsd/methods/m49/m49.htm|null"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Validate "[urn:iso:std:iso:3166#FR ("FRANCE")]"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Check "urn:iso:std:iso:3166#FR"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: urn:iso:std:iso:3166|2018 for urn:iso:std:iso:3166
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: check code in (urn:iso:std:iso:3166) at CodeableConcept.coding[0]
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Code "FR" found in urn:iso:std:iso:3166|2018</pre></div></td><td><a href="http://hl7.org/fhir/R4/conceptmap.html">ConceptMap</a></td>
    </tr>
    <tr style="background-color: #ffebcc">
      <td><b>ConceptMap&#8203;.group[0]&#8203;.element[0]&#8203;.code (l1&#8203;/c2170)</b></td><td><b>warning</b></td><td><b>The source display 'BL.value' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/BL|2.0.0-sd#BL.value' is not valid. Possible displays: </b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">CONCEPTMAP_GROUP_SOURCE_DISPLAY_INVALID</span></td><td>--</td>
@@ -458,21 +458,21 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
      <td><b>ConceptMap&#8203;.where(url = 'https:&#8203;/&#8203;/interop&#8203;.esante&#8203;.gouv&#8203;.fr&#8203;/ig&#8203;/fhir&#8203;/mappingcdafhir&#8203;/ConceptMap&#8203;/DataTypes&#8203;/CdaConceptCodesToFHIR')</b></td><td><b>error</b></td><td><b>Conformance resource /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaCECSCDToCodeConceptMap.json - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaCECSCDToCodeConceptMap) does not match the URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaConceptCodesToFHIR). Use the special-url parameter if you really mean for it not to match</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">RESOURCE_CANONICAL_MISMATCH</span></td><td>--</td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>ConceptMap&#8203;.jurisdiction[0]&#8203;.coding[0]&#8203;.display (l1&#8203;/c10299)</b></td><td><b>error</b></td><td><b>Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>, see <a href="qa-tx.html#l13">log</a>, or see <a href="#vmi49" onClick="document.getElementById('vmi49').style.display='block'">the servers logic</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">Display_Name_for__should_be_one_of__instead_of</span><div id="vmi49" style="display:none"><br/><pre>0ms tx-op
+     <td><b>ConceptMap&#8203;.jurisdiction[0]&#8203;.coding[0]&#8203;.display (l1&#8203;/c10299)</b></td><td><b>error</b></td><td><b>Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>, see <a href="qa-tx.html#l11">log</a>, or see <a href="#vmi49" onClick="document.getElementById('vmi49').style.display='block'">the servers logic</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">Display_Name_for__should_be_one_of__instead_of</span><div id="vmi49" style="display:none"><br/><pre>0ms tx-op
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Analysing http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1 for validation purposes
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Parameters: disp-lang=fr, generate-narrative, default-to-latest
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Version Rules: default:http://snomed.info/sct#http://snomed.info/sct/11000315107
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[0]: "(urn:iso:std:iso:3166)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166|2018"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[1]: "(urn:iso:std:iso:3166:-2)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166:-2|2021"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[2]: "(http://unstats.un.org/unsd/methods/m49/m49.htm)(class=region)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "http://unstats.un.org/unsd/methods/m49/m49.htm|null"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Validate "[urn:iso:std:iso:3166#FR ("FRANCE")]"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Check "urn:iso:std:iso:3166#FR"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: urn:iso:std:iso:3166|2018 for urn:iso:std:iso:3166
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: check code in (urn:iso:std:iso:3166) at CodeableConcept.coding[0]
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Code "FR" found in urn:iso:std:iso:3166|2018</pre></div></td><td><a href="http://hl7.org/fhir/R4/conceptmap.html">ConceptMap</a></td>
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[0]: "(urn:iso:std:iso:3166)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166|2018"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[1]: "(urn:iso:std:iso:3166:-2)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166:-2|2021"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[2]: "(http://unstats.un.org/unsd/methods/m49/m49.htm)(class=region)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "http://unstats.un.org/unsd/methods/m49/m49.htm|null"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Validate "[urn:iso:std:iso:3166#FR ("FRANCE")]"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Check "urn:iso:std:iso:3166#FR"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: urn:iso:std:iso:3166|2018 for urn:iso:std:iso:3166
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: check code in (urn:iso:std:iso:3166) at CodeableConcept.coding[0]
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Code "FR" found in urn:iso:std:iso:3166|2018</pre></div></td><td><a href="http://hl7.org/fhir/R4/conceptmap.html">ConceptMap</a></td>
    </tr>
    <tr style="background-color: #ffebcc">
      <td><b>ConceptMap&#8203;.group[0]&#8203;.element[0]&#8203;.code (l1&#8203;/c10458)</b></td><td><b>warning</b></td><td><b>The source display 'CE.code' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/CE|2.0.0-sd#CE.code' is not valid. Possible displays: 'Code'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">CONCEPTMAP_GROUP_SOURCE_DISPLAY_INVALID</span></td><td>--</td>
@@ -581,21 +581,21 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
      <td><b>ConceptMap&#8203;.where(url = 'https:&#8203;/&#8203;/interop&#8203;.esante&#8203;.gouv&#8203;.fr&#8203;/ig&#8203;/fhir&#8203;/mappingcdafhir&#8203;/ConceptMap&#8203;/DataTypes&#8203;/CdaNamesToFHIR')</b></td><td><b>error</b></td><td><b>Conformance resource /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaENPNToHumanNameConceptMap.json - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaENPNToHumanNameConceptMap) does not match the URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaNamesToFHIR). Use the special-url parameter if you really mean for it not to match</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">RESOURCE_CANONICAL_MISMATCH</span></td><td>--</td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>ConceptMap&#8203;.jurisdiction[0]&#8203;.coding[0]&#8203;.display (l1&#8203;/c7036)</b></td><td><b>error</b></td><td><b>Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>, see <a href="qa-tx.html#l13">log</a>, or see <a href="#vmi82" onClick="document.getElementById('vmi82').style.display='block'">the servers logic</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">Display_Name_for__should_be_one_of__instead_of</span><div id="vmi82" style="display:none"><br/><pre>0ms tx-op
+     <td><b>ConceptMap&#8203;.jurisdiction[0]&#8203;.coding[0]&#8203;.display (l1&#8203;/c7036)</b></td><td><b>error</b></td><td><b>Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>, see <a href="qa-tx.html#l11">log</a>, or see <a href="#vmi82" onClick="document.getElementById('vmi82').style.display='block'">the servers logic</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">Display_Name_for__should_be_one_of__instead_of</span><div id="vmi82" style="display:none"><br/><pre>0ms tx-op
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Analysing http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1 for validation purposes
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Parameters: disp-lang=fr, generate-narrative, default-to-latest
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Version Rules: default:http://snomed.info/sct#http://snomed.info/sct/11000315107
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[0]: "(urn:iso:std:iso:3166)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166|2018"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[1]: "(urn:iso:std:iso:3166:-2)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166:-2|2021"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[2]: "(http://unstats.un.org/unsd/methods/m49/m49.htm)(class=region)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "http://unstats.un.org/unsd/methods/m49/m49.htm|null"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Validate "[urn:iso:std:iso:3166#FR ("FRANCE")]"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Check "urn:iso:std:iso:3166#FR"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: urn:iso:std:iso:3166|2018 for urn:iso:std:iso:3166
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: check code in (urn:iso:std:iso:3166) at CodeableConcept.coding[0]
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Code "FR" found in urn:iso:std:iso:3166|2018</pre></div></td><td><a href="http://hl7.org/fhir/R4/conceptmap.html">ConceptMap</a></td>
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[0]: "(urn:iso:std:iso:3166)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166|2018"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[1]: "(urn:iso:std:iso:3166:-2)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166:-2|2021"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[2]: "(http://unstats.un.org/unsd/methods/m49/m49.htm)(class=region)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "http://unstats.un.org/unsd/methods/m49/m49.htm|null"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Validate "[urn:iso:std:iso:3166#FR ("FRANCE")]"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Check "urn:iso:std:iso:3166#FR"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: urn:iso:std:iso:3166|2018 for urn:iso:std:iso:3166
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: check code in (urn:iso:std:iso:3166) at CodeableConcept.coding[0]
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Code "FR" found in urn:iso:std:iso:3166|2018</pre></div></td><td><a href="http://hl7.org/fhir/R4/conceptmap.html">ConceptMap</a></td>
    </tr>
    <tr style="background-color: #ffcccc">
      <td><b>ConceptMap&#8203;.group[0]&#8203;.element[0]&#8203;.code (l1&#8203;/c7202)</b></td><td><b>error</b></td><td><b>The source code 'EN.family' is not valid in the code system http://hl7.org/cda/stds/core/StructureDefinition/EN|2.0.0-sd</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">CONCEPTMAP_GROUP_SOURCE_CODE_INVALID</span></td><td>--</td>
@@ -692,21 +692,21 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
      <td><b>ConceptMap&#8203;.where(url = 'https:&#8203;/&#8203;/interop&#8203;.esante&#8203;.gouv&#8203;.fr&#8203;/ig&#8203;/fhir&#8203;/mappingcdafhir&#8203;/ConceptMap&#8203;/DataTypes&#8203;/CdaIIToIdentifier')</b></td><td><b>error</b></td><td><b>Conformance resource /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaIIToIdentifierConceptMap.json - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaIIToIdentifierConceptMap) does not match the URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaIIToIdentifier). Use the special-url parameter if you really mean for it not to match</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">RESOURCE_CANONICAL_MISMATCH</span></td><td>--</td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>ConceptMap&#8203;.jurisdiction[0]&#8203;.coding[0]&#8203;.display (l1&#8203;/c3956)</b></td><td><b>error</b></td><td><b>Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>, see <a href="qa-tx.html#l13">log</a>, or see <a href="#vmi111" onClick="document.getElementById('vmi111').style.display='block'">the servers logic</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">Display_Name_for__should_be_one_of__instead_of</span><div id="vmi111" style="display:none"><br/><pre>0ms tx-op
+     <td><b>ConceptMap&#8203;.jurisdiction[0]&#8203;.coding[0]&#8203;.display (l1&#8203;/c3956)</b></td><td><b>error</b></td><td><b>Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>, see <a href="qa-tx.html#l11">log</a>, or see <a href="#vmi111" onClick="document.getElementById('vmi111').style.display='block'">the servers logic</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">Display_Name_for__should_be_one_of__instead_of</span><div id="vmi111" style="display:none"><br/><pre>0ms tx-op
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Analysing http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1 for validation purposes
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Parameters: disp-lang=fr, generate-narrative, default-to-latest
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Version Rules: default:http://snomed.info/sct#http://snomed.info/sct/11000315107
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[0]: "(urn:iso:std:iso:3166)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166|2018"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[1]: "(urn:iso:std:iso:3166:-2)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166:-2|2021"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[2]: "(http://unstats.un.org/unsd/methods/m49/m49.htm)(class=region)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "http://unstats.un.org/unsd/methods/m49/m49.htm|null"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Validate "[urn:iso:std:iso:3166#FR ("FRANCE")]"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Check "urn:iso:std:iso:3166#FR"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: urn:iso:std:iso:3166|2018 for urn:iso:std:iso:3166
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: check code in (urn:iso:std:iso:3166) at CodeableConcept.coding[0]
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Code "FR" found in urn:iso:std:iso:3166|2018</pre></div></td><td><a href="http://hl7.org/fhir/R4/conceptmap.html">ConceptMap</a></td>
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[0]: "(urn:iso:std:iso:3166)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166|2018"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[1]: "(urn:iso:std:iso:3166:-2)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166:-2|2021"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[2]: "(http://unstats.un.org/unsd/methods/m49/m49.htm)(class=region)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "http://unstats.un.org/unsd/methods/m49/m49.htm|null"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Validate "[urn:iso:std:iso:3166#FR ("FRANCE")]"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Check "urn:iso:std:iso:3166#FR"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: urn:iso:std:iso:3166|2018 for urn:iso:std:iso:3166
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: check code in (urn:iso:std:iso:3166) at CodeableConcept.coding[0]
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Code "FR" found in urn:iso:std:iso:3166|2018</pre></div></td><td><a href="http://hl7.org/fhir/R4/conceptmap.html">ConceptMap</a></td>
    </tr>
    <tr style="background-color: #ffebcc">
      <td><b>ConceptMap&#8203;.group[0]&#8203;.element[0]&#8203;.code (l1&#8203;/c4126)</b></td><td><b>warning</b></td><td><b>The source display 'II.extension' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/II|2.0.0-sd#II.extension' is not valid. Possible displays: 'Extension'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">CONCEPTMAP_GROUP_SOURCE_DISPLAY_INVALID</span></td><td>--</td>
@@ -758,21 +758,21 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
      <td><b>ConceptMap&#8203;.where(url = 'https:&#8203;/&#8203;/interop&#8203;.esante&#8203;.gouv&#8203;.fr&#8203;/ig&#8203;/fhir&#8203;/mappingcdafhir&#8203;/ConceptMap&#8203;/DataTypes&#8203;/CdaINTToInteger')</b></td><td><b>error</b></td><td><b>Conformance resource /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaINTToIntegerConceptMap.json - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaINTToIntegerConceptMap) does not match the URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaINTToInteger). Use the special-url parameter if you really mean for it not to match</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">RESOURCE_CANONICAL_MISMATCH</span></td><td>--</td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>ConceptMap&#8203;.jurisdiction[0]&#8203;.coding[0]&#8203;.display (l1&#8203;/c2009)</b></td><td><b>error</b></td><td><b>Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>, see <a href="qa-tx.html#l13">log</a>, or see <a href="#vmi125" onClick="document.getElementById('vmi125').style.display='block'">the servers logic</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">Display_Name_for__should_be_one_of__instead_of</span><div id="vmi125" style="display:none"><br/><pre>0ms tx-op
+     <td><b>ConceptMap&#8203;.jurisdiction[0]&#8203;.coding[0]&#8203;.display (l1&#8203;/c2009)</b></td><td><b>error</b></td><td><b>Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>, see <a href="qa-tx.html#l11">log</a>, or see <a href="#vmi125" onClick="document.getElementById('vmi125').style.display='block'">the servers logic</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">Display_Name_for__should_be_one_of__instead_of</span><div id="vmi125" style="display:none"><br/><pre>0ms tx-op
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Analysing http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1 for validation purposes
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Parameters: disp-lang=fr, generate-narrative, default-to-latest
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Version Rules: default:http://snomed.info/sct#http://snomed.info/sct/11000315107
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[0]: "(urn:iso:std:iso:3166)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166|2018"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[1]: "(urn:iso:std:iso:3166:-2)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166:-2|2021"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[2]: "(http://unstats.un.org/unsd/methods/m49/m49.htm)(class=region)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "http://unstats.un.org/unsd/methods/m49/m49.htm|null"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Validate "[urn:iso:std:iso:3166#FR ("FRANCE")]"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Check "urn:iso:std:iso:3166#FR"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: urn:iso:std:iso:3166|2018 for urn:iso:std:iso:3166
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: check code in (urn:iso:std:iso:3166) at CodeableConcept.coding[0]
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Code "FR" found in urn:iso:std:iso:3166|2018</pre></div></td><td><a href="http://hl7.org/fhir/R4/conceptmap.html">ConceptMap</a></td>
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[0]: "(urn:iso:std:iso:3166)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166|2018"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[1]: "(urn:iso:std:iso:3166:-2)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166:-2|2021"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[2]: "(http://unstats.un.org/unsd/methods/m49/m49.htm)(class=region)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "http://unstats.un.org/unsd/methods/m49/m49.htm|null"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Validate "[urn:iso:std:iso:3166#FR ("FRANCE")]"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Check "urn:iso:std:iso:3166#FR"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: urn:iso:std:iso:3166|2018 for urn:iso:std:iso:3166
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: check code in (urn:iso:std:iso:3166) at CodeableConcept.coding[0]
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Code "FR" found in urn:iso:std:iso:3166|2018</pre></div></td><td><a href="http://hl7.org/fhir/R4/conceptmap.html">ConceptMap</a></td>
    </tr>
    <tr style="background-color: #ffebcc">
      <td><b>ConceptMap&#8203;.group[0]&#8203;.element[0]&#8203;.code (l1&#8203;/c2174)</b></td><td><b>warning</b></td><td><b>The source display 'INT.value' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/INT|2.0.0-sd#INT.value' is not valid. Possible displays: </b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">CONCEPTMAP_GROUP_SOURCE_DISPLAY_INVALID</span></td><td>--</td>
@@ -803,21 +803,21 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
      <td><b>ConceptMap&#8203;.where(url = 'https:&#8203;/&#8203;/interop&#8203;.esante&#8203;.gouv&#8203;.fr&#8203;/ig&#8203;/fhir&#8203;/mappingcdafhir&#8203;/ConceptMap&#8203;/DataTypes&#8203;/CdaIVL_TSToFHIR')</b></td><td><b>error</b></td><td><b>Conformance resource /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaIVL-TSToPeriodConceptMap.json - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaIVL-TSToPeriodConceptMap) does not match the URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaIVL_TSToFHIR). Use the special-url parameter if you really mean for it not to match</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">RESOURCE_CANONICAL_MISMATCH</span></td><td>--</td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>ConceptMap&#8203;.jurisdiction[0]&#8203;.coding[0]&#8203;.display (l1&#8203;/c3253)</b></td><td><b>error</b></td><td><b>Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>, see <a href="qa-tx.html#l13">log</a>, or see <a href="#vmi132" onClick="document.getElementById('vmi132').style.display='block'">the servers logic</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">Display_Name_for__should_be_one_of__instead_of</span><div id="vmi132" style="display:none"><br/><pre>0ms tx-op
+     <td><b>ConceptMap&#8203;.jurisdiction[0]&#8203;.coding[0]&#8203;.display (l1&#8203;/c3253)</b></td><td><b>error</b></td><td><b>Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>, see <a href="qa-tx.html#l11">log</a>, or see <a href="#vmi132" onClick="document.getElementById('vmi132').style.display='block'">the servers logic</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">Display_Name_for__should_be_one_of__instead_of</span><div id="vmi132" style="display:none"><br/><pre>0ms tx-op
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Analysing http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1 for validation purposes
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Parameters: disp-lang=fr, generate-narrative, default-to-latest
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Version Rules: default:http://snomed.info/sct#http://snomed.info/sct/11000315107
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[0]: "(urn:iso:std:iso:3166)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166|2018"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[1]: "(urn:iso:std:iso:3166:-2)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166:-2|2021"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[2]: "(http://unstats.un.org/unsd/methods/m49/m49.htm)(class=region)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "http://unstats.un.org/unsd/methods/m49/m49.htm|null"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Validate "[urn:iso:std:iso:3166#FR ("FRANCE")]"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Check "urn:iso:std:iso:3166#FR"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: urn:iso:std:iso:3166|2018 for urn:iso:std:iso:3166
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: check code in (urn:iso:std:iso:3166) at CodeableConcept.coding[0]
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Code "FR" found in urn:iso:std:iso:3166|2018</pre></div></td><td><a href="http://hl7.org/fhir/R4/conceptmap.html">ConceptMap</a></td>
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[0]: "(urn:iso:std:iso:3166)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166|2018"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[1]: "(urn:iso:std:iso:3166:-2)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166:-2|2021"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[2]: "(http://unstats.un.org/unsd/methods/m49/m49.htm)(class=region)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "http://unstats.un.org/unsd/methods/m49/m49.htm|null"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Validate "[urn:iso:std:iso:3166#FR ("FRANCE")]"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Check "urn:iso:std:iso:3166#FR"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: urn:iso:std:iso:3166|2018 for urn:iso:std:iso:3166
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: check code in (urn:iso:std:iso:3166) at CodeableConcept.coding[0]
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Code "FR" found in urn:iso:std:iso:3166|2018</pre></div></td><td><a href="http://hl7.org/fhir/R4/conceptmap.html">ConceptMap</a></td>
    </tr>
    <tr style="background-color: #ffcccc">
      <td><b>ConceptMap&#8203;.group[0]&#8203;.element[0]&#8203;.code (l1&#8203;/c3427)</b></td><td><b>error</b></td><td><b>The source code 'IVL_TS.low.value' is not valid in the code system http://hl7.org/cda/stds/core/StructureDefinition/IVL-TS|2.0.0-sd</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">CONCEPTMAP_GROUP_SOURCE_CODE_INVALID</span></td><td>--</td>
@@ -860,21 +860,21 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
      <td><b>ConceptMap&#8203;.where(url = 'https:&#8203;/&#8203;/interop&#8203;.esante&#8203;.gouv&#8203;.fr&#8203;/ig&#8203;/fhir&#8203;/mappingcdafhir&#8203;/ConceptMap&#8203;/DataTypes&#8203;/CdaPQToFHIR')</b></td><td><b>error</b></td><td><b>Conformance resource /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaPQToQuantityConceptMap.json - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaPQToQuantityConceptMap) does not match the URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaPQToFHIR). Use the special-url parameter if you really mean for it not to match</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">RESOURCE_CANONICAL_MISMATCH</span></td><td>--</td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>ConceptMap&#8203;.jurisdiction[0]&#8203;.coding[0]&#8203;.display (l1&#8203;/c3296)</b></td><td><b>error</b></td><td><b>Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>, see <a href="qa-tx.html#l13">log</a>, or see <a href="#vmi143" onClick="document.getElementById('vmi143').style.display='block'">the servers logic</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">Display_Name_for__should_be_one_of__instead_of</span><div id="vmi143" style="display:none"><br/><pre>0ms tx-op
+     <td><b>ConceptMap&#8203;.jurisdiction[0]&#8203;.coding[0]&#8203;.display (l1&#8203;/c3296)</b></td><td><b>error</b></td><td><b>Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>, see <a href="qa-tx.html#l11">log</a>, or see <a href="#vmi143" onClick="document.getElementById('vmi143').style.display='block'">the servers logic</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">Display_Name_for__should_be_one_of__instead_of</span><div id="vmi143" style="display:none"><br/><pre>0ms tx-op
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Analysing http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1 for validation purposes
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Parameters: disp-lang=fr, generate-narrative, default-to-latest
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Version Rules: default:http://snomed.info/sct#http://snomed.info/sct/11000315107
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[0]: "(urn:iso:std:iso:3166)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166|2018"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[1]: "(urn:iso:std:iso:3166:-2)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166:-2|2021"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[2]: "(http://unstats.un.org/unsd/methods/m49/m49.htm)(class=region)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "http://unstats.un.org/unsd/methods/m49/m49.htm|null"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Validate "[urn:iso:std:iso:3166#FR ("FRANCE")]"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Check "urn:iso:std:iso:3166#FR"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: urn:iso:std:iso:3166|2018 for urn:iso:std:iso:3166
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: check code in (urn:iso:std:iso:3166) at CodeableConcept.coding[0]
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Code "FR" found in urn:iso:std:iso:3166|2018</pre></div></td><td><a href="http://hl7.org/fhir/R4/conceptmap.html">ConceptMap</a></td>
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[0]: "(urn:iso:std:iso:3166)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166|2018"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[1]: "(urn:iso:std:iso:3166:-2)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166:-2|2021"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[2]: "(http://unstats.un.org/unsd/methods/m49/m49.htm)(class=region)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "http://unstats.un.org/unsd/methods/m49/m49.htm|null"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Validate "[urn:iso:std:iso:3166#FR ("FRANCE")]"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Check "urn:iso:std:iso:3166#FR"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: urn:iso:std:iso:3166|2018 for urn:iso:std:iso:3166
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: check code in (urn:iso:std:iso:3166) at CodeableConcept.coding[0]
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Code "FR" found in urn:iso:std:iso:3166|2018</pre></div></td><td><a href="http://hl7.org/fhir/R4/conceptmap.html">ConceptMap</a></td>
    </tr>
    <tr style="background-color: #ffebcc">
      <td><b>ConceptMap&#8203;.group[0]&#8203;.element[0]&#8203;.code (l1&#8203;/c3460)</b></td><td><b>warning</b></td><td><b>The source display 'PQ.value' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/PQ|2.0.0-sd#PQ.value' is not valid. Possible displays: 'Maginitude Value'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">CONCEPTMAP_GROUP_SOURCE_DISPLAY_INVALID</span></td><td>--</td>
@@ -917,21 +917,21 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
      <td><b>ConceptMap&#8203;.where(url = 'https:&#8203;/&#8203;/interop&#8203;.esante&#8203;.gouv&#8203;.fr&#8203;/ig&#8203;/fhir&#8203;/mappingcdafhir&#8203;/ConceptMap&#8203;/DataTypes&#8203;/CdaRTOPQPQToFHIR')</b></td><td><b>error</b></td><td><b>Conformance resource /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaRTO-PQ-PQToRatioConceptMap.json - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaRTO-PQ-PQToRatioConceptMap) does not match the URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaRTOPQPQToFHIR). Use the special-url parameter if you really mean for it not to match</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">RESOURCE_CANONICAL_MISMATCH</span></td><td>--</td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>ConceptMap&#8203;.jurisdiction[0]&#8203;.coding[0]&#8203;.display (l1&#8203;/c2081)</b></td><td><b>error</b></td><td><b>Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>, see <a href="qa-tx.html#l13">log</a>, or see <a href="#vmi154" onClick="document.getElementById('vmi154').style.display='block'">the servers logic</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">Display_Name_for__should_be_one_of__instead_of</span><div id="vmi154" style="display:none"><br/><pre>0ms tx-op
+     <td><b>ConceptMap&#8203;.jurisdiction[0]&#8203;.coding[0]&#8203;.display (l1&#8203;/c2081)</b></td><td><b>error</b></td><td><b>Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>, see <a href="qa-tx.html#l11">log</a>, or see <a href="#vmi154" onClick="document.getElementById('vmi154').style.display='block'">the servers logic</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">Display_Name_for__should_be_one_of__instead_of</span><div id="vmi154" style="display:none"><br/><pre>0ms tx-op
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Analysing http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1 for validation purposes
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Parameters: disp-lang=fr, generate-narrative, default-to-latest
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Version Rules: default:http://snomed.info/sct#http://snomed.info/sct/11000315107
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[0]: "(urn:iso:std:iso:3166)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166|2018"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[1]: "(urn:iso:std:iso:3166:-2)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166:-2|2021"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[2]: "(http://unstats.un.org/unsd/methods/m49/m49.htm)(class=region)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "http://unstats.un.org/unsd/methods/m49/m49.htm|null"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Validate "[urn:iso:std:iso:3166#FR ("FRANCE")]"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Check "urn:iso:std:iso:3166#FR"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: urn:iso:std:iso:3166|2018 for urn:iso:std:iso:3166
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: check code in (urn:iso:std:iso:3166) at CodeableConcept.coding[0]
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Code "FR" found in urn:iso:std:iso:3166|2018</pre></div></td><td><a href="http://hl7.org/fhir/R4/conceptmap.html">ConceptMap</a></td>
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[0]: "(urn:iso:std:iso:3166)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166|2018"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[1]: "(urn:iso:std:iso:3166:-2)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166:-2|2021"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[2]: "(http://unstats.un.org/unsd/methods/m49/m49.htm)(class=region)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "http://unstats.un.org/unsd/methods/m49/m49.htm|null"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Validate "[urn:iso:std:iso:3166#FR ("FRANCE")]"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Check "urn:iso:std:iso:3166#FR"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: urn:iso:std:iso:3166|2018 for urn:iso:std:iso:3166
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: check code in (urn:iso:std:iso:3166) at CodeableConcept.coding[0]
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Code "FR" found in urn:iso:std:iso:3166|2018</pre></div></td><td><a href="http://hl7.org/fhir/R4/conceptmap.html">ConceptMap</a></td>
    </tr>
    <tr style="background-color: #ffebcc">
      <td><b>ConceptMap.group[0].source (l1/c2162)</b></td><td><b>warning</b></td><td><b>No definition could be found for URL value 'http://hl7.org/cda/stds/core/StructureDefinition/RTO_PQ_PQ'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Type_Specific_Checks_DT_URL_Resolve</span></td><td><a href="http://hl7.org/fhir/R4/conceptmap.html">ConceptMap</a></td>
@@ -968,21 +968,21 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
      <td><b>ConceptMap&#8203;.where(url = 'https:&#8203;/&#8203;/interop&#8203;.esante&#8203;.gouv&#8203;.fr&#8203;/ig&#8203;/fhir&#8203;/mappingcdafhir&#8203;/ConceptMap&#8203;/DataTypes&#8203;/CdaStringTypesToFHIR')</b></td><td><b>error</b></td><td><b>Conformance resource /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaSTEDONToStringConceptMap.json - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaSTEDONToStringConceptMap) does not match the URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaStringTypesToFHIR). Use the special-url parameter if you really mean for it not to match</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">RESOURCE_CANONICAL_MISMATCH</span></td><td>--</td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>ConceptMap&#8203;.jurisdiction[0]&#8203;.coding[0]&#8203;.display (l1&#8203;/c3826)</b></td><td><b>error</b></td><td><b>Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>, see <a href="qa-tx.html#l13">log</a>, or see <a href="#vmi163" onClick="document.getElementById('vmi163').style.display='block'">the servers logic</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">Display_Name_for__should_be_one_of__instead_of</span><div id="vmi163" style="display:none"><br/><pre>0ms tx-op
+     <td><b>ConceptMap&#8203;.jurisdiction[0]&#8203;.coding[0]&#8203;.display (l1&#8203;/c3826)</b></td><td><b>error</b></td><td><b>Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>, see <a href="qa-tx.html#l11">log</a>, or see <a href="#vmi163" onClick="document.getElementById('vmi163').style.display='block'">the servers logic</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">Display_Name_for__should_be_one_of__instead_of</span><div id="vmi163" style="display:none"><br/><pre>0ms tx-op
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Analysing http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1 for validation purposes
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Parameters: disp-lang=fr, generate-narrative, default-to-latest
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Version Rules: default:http://snomed.info/sct#http://snomed.info/sct/11000315107
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[0]: "(urn:iso:std:iso:3166)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166|2018"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[1]: "(urn:iso:std:iso:3166:-2)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166:-2|2021"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[2]: "(http://unstats.un.org/unsd/methods/m49/m49.htm)(class=region)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "http://unstats.un.org/unsd/methods/m49/m49.htm|null"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Validate "[urn:iso:std:iso:3166#FR ("FRANCE")]"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Check "urn:iso:std:iso:3166#FR"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: urn:iso:std:iso:3166|2018 for urn:iso:std:iso:3166
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: check code in (urn:iso:std:iso:3166) at CodeableConcept.coding[0]
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Code "FR" found in urn:iso:std:iso:3166|2018</pre></div></td><td><a href="http://hl7.org/fhir/R4/conceptmap.html">ConceptMap</a></td>
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[0]: "(urn:iso:std:iso:3166)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166|2018"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[1]: "(urn:iso:std:iso:3166:-2)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166:-2|2021"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[2]: "(http://unstats.un.org/unsd/methods/m49/m49.htm)(class=region)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "http://unstats.un.org/unsd/methods/m49/m49.htm|null"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Validate "[urn:iso:std:iso:3166#FR ("FRANCE")]"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Check "urn:iso:std:iso:3166#FR"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: urn:iso:std:iso:3166|2018 for urn:iso:std:iso:3166
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: check code in (urn:iso:std:iso:3166) at CodeableConcept.coding[0]
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Code "FR" found in urn:iso:std:iso:3166|2018</pre></div></td><td><a href="http://hl7.org/fhir/R4/conceptmap.html">ConceptMap</a></td>
    </tr>
    <tr style="background-color: #ffebcc">
      <td><b>ConceptMap&#8203;.group[0]&#8203;.element[0]&#8203;.code (l1&#8203;/c3990)</b></td><td><b>warning</b></td><td><b>The source display 'ST.xmlText' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/ST|2.0.0-sd#ST.xmlText' is not valid. Possible displays: 'Allows for mixed text content'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">CONCEPTMAP_GROUP_SOURCE_DISPLAY_INVALID</span></td><td>--</td>
@@ -1025,21 +1025,21 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
      <td><b>ConceptMap&#8203;.where(url = 'https:&#8203;/&#8203;/interop&#8203;.esante&#8203;.gouv&#8203;.fr&#8203;/ig&#8203;/fhir&#8203;/mappingcdafhir&#8203;/ConceptMap&#8203;/DataTypes&#8203;/CdaTELToFHIR')</b></td><td><b>error</b></td><td><b>Conformance resource /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaTELToContactPointConceptMap.json - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaTELToContactPointConceptMap) does not match the URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaTELToFHIR). Use the special-url parameter if you really mean for it not to match</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">RESOURCE_CANONICAL_MISMATCH</span></td><td>--</td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>ConceptMap&#8203;.jurisdiction[0]&#8203;.coding[0]&#8203;.display (l1&#8203;/c3732)</b></td><td><b>error</b></td><td><b>Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>, see <a href="qa-tx.html#l13">log</a>, or see <a href="#vmi174" onClick="document.getElementById('vmi174').style.display='block'">the servers logic</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">Display_Name_for__should_be_one_of__instead_of</span><div id="vmi174" style="display:none"><br/><pre>0ms tx-op
+     <td><b>ConceptMap&#8203;.jurisdiction[0]&#8203;.coding[0]&#8203;.display (l1&#8203;/c3732)</b></td><td><b>error</b></td><td><b>Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>, see <a href="qa-tx.html#l11">log</a>, or see <a href="#vmi174" onClick="document.getElementById('vmi174').style.display='block'">the servers logic</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">Display_Name_for__should_be_one_of__instead_of</span><div id="vmi174" style="display:none"><br/><pre>0ms tx-op
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Analysing http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1 for validation purposes
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Parameters: disp-lang=fr, generate-narrative, default-to-latest
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Version Rules: default:http://snomed.info/sct#http://snomed.info/sct/11000315107
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[0]: "(urn:iso:std:iso:3166)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166|2018"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[1]: "(urn:iso:std:iso:3166:-2)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166:-2|2021"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[2]: "(http://unstats.un.org/unsd/methods/m49/m49.htm)(class=region)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "http://unstats.un.org/unsd/methods/m49/m49.htm|null"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Validate "[urn:iso:std:iso:3166#FR ("FRANCE")]"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Check "urn:iso:std:iso:3166#FR"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: urn:iso:std:iso:3166|2018 for urn:iso:std:iso:3166
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: check code in (urn:iso:std:iso:3166) at CodeableConcept.coding[0]
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Code "FR" found in urn:iso:std:iso:3166|2018</pre></div></td><td><a href="http://hl7.org/fhir/R4/conceptmap.html">ConceptMap</a></td>
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[0]: "(urn:iso:std:iso:3166)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166|2018"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[1]: "(urn:iso:std:iso:3166:-2)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166:-2|2021"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[2]: "(http://unstats.un.org/unsd/methods/m49/m49.htm)(class=region)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "http://unstats.un.org/unsd/methods/m49/m49.htm|null"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Validate "[urn:iso:std:iso:3166#FR ("FRANCE")]"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Check "urn:iso:std:iso:3166#FR"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: urn:iso:std:iso:3166|2018 for urn:iso:std:iso:3166
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: check code in (urn:iso:std:iso:3166) at CodeableConcept.coding[0]
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Code "FR" found in urn:iso:std:iso:3166|2018</pre></div></td><td><a href="http://hl7.org/fhir/R4/conceptmap.html">ConceptMap</a></td>
    </tr>
    <tr style="background-color: #ffebcc">
      <td><b>ConceptMap&#8203;.group[0]&#8203;.element[0]&#8203;.code (l1&#8203;/c3902)</b></td><td><b>warning</b></td><td><b>The source display 'TEL.value' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/TEL|2.0.0-sd#TEL.value' is not valid. Possible displays: </b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">CONCEPTMAP_GROUP_SOURCE_DISPLAY_INVALID</span></td><td>--</td>
@@ -1085,21 +1085,21 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
      <td><b>ConceptMap&#8203;.where(url = 'https:&#8203;/&#8203;/interop&#8203;.esante&#8203;.gouv&#8203;.fr&#8203;/ig&#8203;/fhir&#8203;/mappingcdafhir&#8203;/ConceptMap&#8203;/DataTypes&#8203;/CdaTSToFHIR')</b></td><td><b>error</b></td><td><b>Conformance resource /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaTSToDateTimeConceptMap.json - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaTSToDateTimeConceptMap) does not match the URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaTSToFHIR). Use the special-url parameter if you really mean for it not to match</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">RESOURCE_CANONICAL_MISMATCH</span></td><td>--</td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>ConceptMap&#8203;.jurisdiction[0]&#8203;.coding[0]&#8203;.display (l1&#8203;/c3976)</b></td><td><b>error</b></td><td><b>Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>, see <a href="qa-tx.html#l13">log</a>, or see <a href="#vmi186" onClick="document.getElementById('vmi186').style.display='block'">the servers logic</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">Display_Name_for__should_be_one_of__instead_of</span><div id="vmi186" style="display:none"><br/><pre>0ms tx-op
+     <td><b>ConceptMap&#8203;.jurisdiction[0]&#8203;.coding[0]&#8203;.display (l1&#8203;/c3976)</b></td><td><b>error</b></td><td><b>Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>, see <a href="qa-tx.html#l11">log</a>, or see <a href="#vmi186" onClick="document.getElementById('vmi186').style.display='block'">the servers logic</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">Display_Name_for__should_be_one_of__instead_of</span><div id="vmi186" style="display:none"><br/><pre>0ms tx-op
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Analysing http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1 for validation purposes
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Parameters: disp-lang=fr, generate-narrative, default-to-latest
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Version Rules: default:http://snomed.info/sct#http://snomed.info/sct/11000315107
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[0]: "(urn:iso:std:iso:3166)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166|2018"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[1]: "(urn:iso:std:iso:3166:-2)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166:-2|2021"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[2]: "(http://unstats.un.org/unsd/methods/m49/m49.htm)(class=region)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "http://unstats.un.org/unsd/methods/m49/m49.htm|null"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Validate "[urn:iso:std:iso:3166#FR ("FRANCE")]"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Check "urn:iso:std:iso:3166#FR"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: urn:iso:std:iso:3166|2018 for urn:iso:std:iso:3166
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: check code in (urn:iso:std:iso:3166) at CodeableConcept.coding[0]
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Code "FR" found in urn:iso:std:iso:3166|2018</pre></div></td><td><a href="http://hl7.org/fhir/R4/conceptmap.html">ConceptMap</a></td>
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[0]: "(urn:iso:std:iso:3166)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166|2018"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[1]: "(urn:iso:std:iso:3166:-2)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166:-2|2021"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[2]: "(http://unstats.un.org/unsd/methods/m49/m49.htm)(class=region)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "http://unstats.un.org/unsd/methods/m49/m49.htm|null"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Validate "[urn:iso:std:iso:3166#FR ("FRANCE")]"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Check "urn:iso:std:iso:3166#FR"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: urn:iso:std:iso:3166|2018 for urn:iso:std:iso:3166
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: check code in (urn:iso:std:iso:3166) at CodeableConcept.coding[0]
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Code "FR" found in urn:iso:std:iso:3166|2018</pre></div></td><td><a href="http://hl7.org/fhir/R4/conceptmap.html">ConceptMap</a></td>
    </tr>
    <tr style="background-color: #ffebcc">
      <td><b>ConceptMap&#8203;.group[0]&#8203;.element[0]&#8203;.code (l1&#8203;/c4139)</b></td><td><b>warning</b></td><td><b>The source display 'TS.value' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/TS|2.0.0-sd#TS.value' is not valid. Possible displays: </b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">CONCEPTMAP_GROUP_SOURCE_DISPLAY_INVALID</span></td><td>--</td>
@@ -1133,21 +1133,21 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
      <td><b>Path</b></td><td><b>Severity</b></td><td><b>Message</b></td><td><b>Validating</b></td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>ImplementationGuide&#8203;.jurisdiction[0]&#8203;.coding[0]&#8203;.display (l1&#8203;/c1386)</b></td><td><b>error</b></td><td><b>Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>, see <a href="qa-tx.html#l15">log</a>, or see <a href="#vmi194" onClick="document.getElementById('vmi194').style.display='block'">the servers logic</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">Display_Name_for__should_be_one_of__instead_of</span><div id="vmi194" style="display:none"><br/><pre>0ms tx-op
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Analysing http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1 for validation purposes
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Parameters: disp-lang=fr, generate-narrative, default-to-latest
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Version Rules: default:http://snomed.info/sct#http://snomed.info/sct/11000315107
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[0]: "(urn:iso:std:iso:3166)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166|2018"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[1]: "(urn:iso:std:iso:3166:-2)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166:-2|2021"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[2]: "(http://unstats.un.org/unsd/methods/m49/m49.htm)(class=region)"
-1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "http://unstats.un.org/unsd/methods/m49/m49.htm|null"
-1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Validate "[urn:iso:std:iso:3166#FR ("FRANCE")]"
-1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Check "urn:iso:std:iso:3166#FR"
-1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: urn:iso:std:iso:3166|2018 for urn:iso:std:iso:3166
-1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: check code in (urn:iso:std:iso:3166) at CodeableConcept.coding[0]
-1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Code "FR" found in urn:iso:std:iso:3166|2018</pre></div></td><td><a href="http://hl7.org/fhir/R4/implementationguide.html">ImplementationGuide</a></td>
+     <td><b>ImplementationGuide&#8203;.jurisdiction[0]&#8203;.coding[0]&#8203;.display (l1&#8203;/c1386)</b></td><td><b>error</b></td><td><b>Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>, see <a href="qa-tx.html#l13">log</a>, or see <a href="#vmi194" onClick="document.getElementById('vmi194').style.display='block'">the servers logic</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">Display_Name_for__should_be_one_of__instead_of</span><div id="vmi194" style="display:none"><br/><pre>0ms tx-op
+3ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Analysing http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1 for validation purposes
+3ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Parameters: disp-lang=fr, generate-narrative, default-to-latest
+3ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Version Rules: default:http://snomed.info/sct#http://snomed.info/sct/11000315107
+3ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[0]: "(urn:iso:std:iso:3166)"
+3ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166|2018"
+3ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[1]: "(urn:iso:std:iso:3166:-2)"
+4ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166:-2|2021"
+4ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[2]: "(http://unstats.un.org/unsd/methods/m49/m49.htm)(class=region)"
+4ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "http://unstats.un.org/unsd/methods/m49/m49.htm|null"
+4ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Validate "[urn:iso:std:iso:3166#FR ("FRANCE")]"
+5ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Check "urn:iso:std:iso:3166#FR"
+5ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: urn:iso:std:iso:3166|2018 for urn:iso:std:iso:3166
+5ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: check code in (urn:iso:std:iso:3166) at CodeableConcept.coding[0]
+5ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Code "FR" found in urn:iso:std:iso:3166|2018</pre></div></td><td><a href="http://hl7.org/fhir/R4/implementationguide.html">ImplementationGuide</a></td>
    </tr>
    <tr style="background-color: #ffcccc">
      <td><b>ImplementationGuide&#8203;.definition&#8203;.resource[16]&#8203;.reference (l1&#8203;/c18891)</b></td><td><b>error</b></td><td><b>Unable to resolve resource with reference 'Binary/CSE-MDE2023.01'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Reference_REF_CantResolve</span></td><td><a href="http://hl7.org/fhir/R4/implementationguide.html">ImplementationGuide</a></td>
@@ -1302,21 +1302,21 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
      <td><b>Path</b></td><td><b>Severity</b></td><td><b>Message</b></td><td><b>Validating</b></td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>StructureMap&#8203;.jurisdiction[0]&#8203;.coding[0]&#8203;.display (l1&#8203;/c27500)</b></td><td><b>error</b></td><td><b>Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>, see <a href="qa-tx.html#l13">log</a>, or see <a href="#vmi236" onClick="document.getElementById('vmi236').style.display='block'">the servers logic</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">Display_Name_for__should_be_one_of__instead_of</span><div id="vmi236" style="display:none"><br/><pre>0ms tx-op
+     <td><b>StructureMap&#8203;.jurisdiction[0]&#8203;.coding[0]&#8203;.display (l1&#8203;/c27500)</b></td><td><b>error</b></td><td><b>Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>, see <a href="qa-tx.html#l11">log</a>, or see <a href="#vmi236" onClick="document.getElementById('vmi236').style.display='block'">the servers logic</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">Display_Name_for__should_be_one_of__instead_of</span><div id="vmi236" style="display:none"><br/><pre>0ms tx-op
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Analysing http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1 for validation purposes
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Parameters: disp-lang=fr, generate-narrative, default-to-latest
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Version Rules: default:http://snomed.info/sct#http://snomed.info/sct/11000315107
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[0]: "(urn:iso:std:iso:3166)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166|2018"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[1]: "(urn:iso:std:iso:3166:-2)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166:-2|2021"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[2]: "(http://unstats.un.org/unsd/methods/m49/m49.htm)(class=region)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "http://unstats.un.org/unsd/methods/m49/m49.htm|null"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Validate "[urn:iso:std:iso:3166#FR ("FRANCE")]"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Check "urn:iso:std:iso:3166#FR"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: urn:iso:std:iso:3166|2018 for urn:iso:std:iso:3166
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: check code in (urn:iso:std:iso:3166) at CodeableConcept.coding[0]
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Code "FR" found in urn:iso:std:iso:3166|2018</pre></div></td><td><a href="http://hl7.org/fhir/R4/structuremap.html">StructureMap</a></td>
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[0]: "(urn:iso:std:iso:3166)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166|2018"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[1]: "(urn:iso:std:iso:3166:-2)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166:-2|2021"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[2]: "(http://unstats.un.org/unsd/methods/m49/m49.htm)(class=region)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "http://unstats.un.org/unsd/methods/m49/m49.htm|null"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Validate "[urn:iso:std:iso:3166#FR ("FRANCE")]"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Check "urn:iso:std:iso:3166#FR"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: urn:iso:std:iso:3166|2018 for urn:iso:std:iso:3166
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: check code in (urn:iso:std:iso:3166) at CodeableConcept.coding[0]
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Code "FR" found in urn:iso:std:iso:3166|2018</pre></div></td><td><a href="http://hl7.org/fhir/R4/structuremap.html">StructureMap</a></td>
    </tr>
    <tr style="background-color: #ffffe6">
      <td><b>StructureMap&#8203;.group[0]&#8203;.rule[0]&#8203;.source[0] (l1&#8203;/c28527)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td><td>--</td>
@@ -1401,21 +1401,21 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
      <td><b>Path</b></td><td><b>Severity</b></td><td><b>Message</b></td><td><b>Validating</b></td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>StructureMap&#8203;.jurisdiction[0]&#8203;.coding[0]&#8203;.display (l1&#8203;/c36273)</b></td><td><b>error</b></td><td><b>Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>, see <a href="qa-tx.html#l13">log</a>, or see <a href="#vmi261" onClick="document.getElementById('vmi261').style.display='block'">the servers logic</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">Display_Name_for__should_be_one_of__instead_of</span><div id="vmi261" style="display:none"><br/><pre>0ms tx-op
+     <td><b>StructureMap&#8203;.jurisdiction[0]&#8203;.coding[0]&#8203;.display (l1&#8203;/c36273)</b></td><td><b>error</b></td><td><b>Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>, see <a href="qa-tx.html#l11">log</a>, or see <a href="#vmi261" onClick="document.getElementById('vmi261').style.display='block'">the servers logic</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">Display_Name_for__should_be_one_of__instead_of</span><div id="vmi261" style="display:none"><br/><pre>0ms tx-op
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Analysing http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1 for validation purposes
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Parameters: disp-lang=fr, generate-narrative, default-to-latest
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Version Rules: default:http://snomed.info/sct#http://snomed.info/sct/11000315107
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[0]: "(urn:iso:std:iso:3166)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166|2018"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[1]: "(urn:iso:std:iso:3166:-2)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166:-2|2021"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[2]: "(http://unstats.un.org/unsd/methods/m49/m49.htm)(class=region)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "http://unstats.un.org/unsd/methods/m49/m49.htm|null"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Validate "[urn:iso:std:iso:3166#FR ("FRANCE")]"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Check "urn:iso:std:iso:3166#FR"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: urn:iso:std:iso:3166|2018 for urn:iso:std:iso:3166
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: check code in (urn:iso:std:iso:3166) at CodeableConcept.coding[0]
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Code "FR" found in urn:iso:std:iso:3166|2018</pre></div></td><td><a href="http://hl7.org/fhir/R4/structuremap.html">StructureMap</a></td>
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[0]: "(urn:iso:std:iso:3166)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166|2018"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[1]: "(urn:iso:std:iso:3166:-2)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166:-2|2021"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[2]: "(http://unstats.un.org/unsd/methods/m49/m49.htm)(class=region)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "http://unstats.un.org/unsd/methods/m49/m49.htm|null"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Validate "[urn:iso:std:iso:3166#FR ("FRANCE")]"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Check "urn:iso:std:iso:3166#FR"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: urn:iso:std:iso:3166|2018 for urn:iso:std:iso:3166
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: check code in (urn:iso:std:iso:3166) at CodeableConcept.coding[0]
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Code "FR" found in urn:iso:std:iso:3166|2018</pre></div></td><td><a href="http://hl7.org/fhir/R4/structuremap.html">StructureMap</a></td>
    </tr>
    <tr style="background-color: #ffffe6">
      <td><b>StructureMap&#8203;.group[0]&#8203;.rule[0]&#8203;.source[0] (l1&#8203;/c38127)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td><td>--</td>
@@ -1509,21 +1509,21 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
      <td><b>Path</b></td><td><b>Severity</b></td><td><b>Message</b></td><td><b>Validating</b></td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>StructureMap&#8203;.jurisdiction[0]&#8203;.coding[0]&#8203;.display (l1&#8203;/c40533)</b></td><td><b>error</b></td><td><b>Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>, see <a href="qa-tx.html#l13">log</a>, or see <a href="#vmi289" onClick="document.getElementById('vmi289').style.display='block'">the servers logic</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">Display_Name_for__should_be_one_of__instead_of</span><div id="vmi289" style="display:none"><br/><pre>0ms tx-op
+     <td><b>StructureMap&#8203;.jurisdiction[0]&#8203;.coding[0]&#8203;.display (l1&#8203;/c40533)</b></td><td><b>error</b></td><td><b>Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>, see <a href="qa-tx.html#l11">log</a>, or see <a href="#vmi289" onClick="document.getElementById('vmi289').style.display='block'">the servers logic</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">Display_Name_for__should_be_one_of__instead_of</span><div id="vmi289" style="display:none"><br/><pre>0ms tx-op
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Analysing http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1 for validation purposes
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Parameters: disp-lang=fr, generate-narrative, default-to-latest
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Version Rules: default:http://snomed.info/sct#http://snomed.info/sct/11000315107
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[0]: "(urn:iso:std:iso:3166)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166|2018"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[1]: "(urn:iso:std:iso:3166:-2)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166:-2|2021"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[2]: "(http://unstats.un.org/unsd/methods/m49/m49.htm)(class=region)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "http://unstats.un.org/unsd/methods/m49/m49.htm|null"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Validate "[urn:iso:std:iso:3166#FR ("FRANCE")]"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Check "urn:iso:std:iso:3166#FR"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: urn:iso:std:iso:3166|2018 for urn:iso:std:iso:3166
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: check code in (urn:iso:std:iso:3166) at CodeableConcept.coding[0]
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Code "FR" found in urn:iso:std:iso:3166|2018</pre></div></td><td><a href="http://hl7.org/fhir/R4/structuremap.html">StructureMap</a></td>
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[0]: "(urn:iso:std:iso:3166)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166|2018"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[1]: "(urn:iso:std:iso:3166:-2)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166:-2|2021"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[2]: "(http://unstats.un.org/unsd/methods/m49/m49.htm)(class=region)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "http://unstats.un.org/unsd/methods/m49/m49.htm|null"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Validate "[urn:iso:std:iso:3166#FR ("FRANCE")]"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Check "urn:iso:std:iso:3166#FR"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: urn:iso:std:iso:3166|2018 for urn:iso:std:iso:3166
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: check code in (urn:iso:std:iso:3166) at CodeableConcept.coding[0]
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Code "FR" found in urn:iso:std:iso:3166|2018</pre></div></td><td><a href="http://hl7.org/fhir/R4/structuremap.html">StructureMap</a></td>
    </tr>
    <tr style="background-color: #ffcccc">
      <td><b>StructureMap&#8203;.group[1]&#8203;.rule[1]&#8203;.target[1] (l1&#8203;/c43739)</b></td><td><b>error</b></td><td><b>The FHIRPath expression passed as the evaluate parameter is invalid: Error evaluating FHIRPath expression: The name 'r' is not valid for any of the possible types: [http://hl7.org/fhir/StructureDefinition/Identifier] (@char 15)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_TARGET_TRANSFORM_EXPRESSION_ERROR</span></td><td>--</td>
@@ -1737,21 +1737,21 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
      <td><b>Path</b></td><td><b>Severity</b></td><td><b>Message</b></td><td><b>Validating</b></td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>StructureMap&#8203;.jurisdiction[0]&#8203;.coding[0]&#8203;.display (l1&#8203;/c96746)</b></td><td><b>error</b></td><td><b>Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>, see <a href="qa-tx.html#l13">log</a>, or see <a href="#vmi357" onClick="document.getElementById('vmi357').style.display='block'">the servers logic</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">Display_Name_for__should_be_one_of__instead_of</span><div id="vmi357" style="display:none"><br/><pre>0ms tx-op
+     <td><b>StructureMap&#8203;.jurisdiction[0]&#8203;.coding[0]&#8203;.display (l1&#8203;/c96746)</b></td><td><b>error</b></td><td><b>Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>, see <a href="qa-tx.html#l11">log</a>, or see <a href="#vmi357" onClick="document.getElementById('vmi357').style.display='block'">the servers logic</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">Display_Name_for__should_be_one_of__instead_of</span><div id="vmi357" style="display:none"><br/><pre>0ms tx-op
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Analysing http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1 for validation purposes
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Parameters: disp-lang=fr, generate-narrative, default-to-latest
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Version Rules: default:http://snomed.info/sct#http://snomed.info/sct/11000315107
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[0]: "(urn:iso:std:iso:3166)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166|2018"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[1]: "(urn:iso:std:iso:3166:-2)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166:-2|2021"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[2]: "(http://unstats.un.org/unsd/methods/m49/m49.htm)(class=region)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "http://unstats.un.org/unsd/methods/m49/m49.htm|null"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Validate "[urn:iso:std:iso:3166#FR ("FRANCE")]"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Check "urn:iso:std:iso:3166#FR"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: urn:iso:std:iso:3166|2018 for urn:iso:std:iso:3166
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: check code in (urn:iso:std:iso:3166) at CodeableConcept.coding[0]
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Code "FR" found in urn:iso:std:iso:3166|2018</pre></div></td><td><a href="http://hl7.org/fhir/R4/structuremap.html">StructureMap</a></td>
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[0]: "(urn:iso:std:iso:3166)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166|2018"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[1]: "(urn:iso:std:iso:3166:-2)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166:-2|2021"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[2]: "(http://unstats.un.org/unsd/methods/m49/m49.htm)(class=region)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "http://unstats.un.org/unsd/methods/m49/m49.htm|null"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Validate "[urn:iso:std:iso:3166#FR ("FRANCE")]"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Check "urn:iso:std:iso:3166#FR"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: urn:iso:std:iso:3166|2018 for urn:iso:std:iso:3166
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: check code in (urn:iso:std:iso:3166) at CodeableConcept.coding[0]
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Code "FR" found in urn:iso:std:iso:3166|2018</pre></div></td><td><a href="http://hl7.org/fhir/R4/structuremap.html">StructureMap</a></td>
    </tr>
    <tr style="background-color: #ffffe6">
      <td><b>StructureMap&#8203;.group[0]&#8203;.rule[0]&#8203;.source[0] (l1&#8203;/c98450)</b></td><td><b>information</b></td><td><b>The source statement doesn't assign a variable to the source - check that this is what is intended</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">SM_RULE_SOURCE_UNASSIGNED</span></td><td>--</td>
@@ -2326,21 +2326,21 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
      <td><b>Path</b></td><td><b>Severity</b></td><td><b>Message</b></td><td><b>Validating</b></td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>ConceptMap&#8203;.jurisdiction[0]&#8203;.coding[0]&#8203;.display (l1&#8203;/c1995)</b></td><td><b>error</b></td><td><b>Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>, see <a href="qa-tx.html#l13">log</a>, or see <a href="#vmi512" onClick="document.getElementById('vmi512').style.display='block'">the servers logic</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">Display_Name_for__should_be_one_of__instead_of</span><div id="vmi512" style="display:none"><br/><pre>0ms tx-op
+     <td><b>ConceptMap&#8203;.jurisdiction[0]&#8203;.coding[0]&#8203;.display (l1&#8203;/c1995)</b></td><td><b>error</b></td><td><b>Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>, see <a href="qa-tx.html#l11">log</a>, or see <a href="#vmi512" onClick="document.getElementById('vmi512').style.display='block'">the servers logic</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">Display_Name_for__should_be_one_of__instead_of</span><div id="vmi512" style="display:none"><br/><pre>0ms tx-op
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Analysing http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1 for validation purposes
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Parameters: disp-lang=fr, generate-narrative, default-to-latest
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Version Rules: default:http://snomed.info/sct#http://snomed.info/sct/11000315107
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[0]: "(urn:iso:std:iso:3166)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166|2018"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[1]: "(urn:iso:std:iso:3166:-2)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166:-2|2021"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[2]: "(http://unstats.un.org/unsd/methods/m49/m49.htm)(class=region)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "http://unstats.un.org/unsd/methods/m49/m49.htm|null"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Validate "[urn:iso:std:iso:3166#FR ("FRANCE")]"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Check "urn:iso:std:iso:3166#FR"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: urn:iso:std:iso:3166|2018 for urn:iso:std:iso:3166
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: check code in (urn:iso:std:iso:3166) at CodeableConcept.coding[0]
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Code "FR" found in urn:iso:std:iso:3166|2018</pre></div></td><td><a href="http://hl7.org/fhir/R4/conceptmap.html">ConceptMap</a></td>
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[0]: "(urn:iso:std:iso:3166)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166|2018"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[1]: "(urn:iso:std:iso:3166:-2)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166:-2|2021"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[2]: "(http://unstats.un.org/unsd/methods/m49/m49.htm)(class=region)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "http://unstats.un.org/unsd/methods/m49/m49.htm|null"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Validate "[urn:iso:std:iso:3166#FR ("FRANCE")]"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Check "urn:iso:std:iso:3166#FR"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: urn:iso:std:iso:3166|2018 for urn:iso:std:iso:3166
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: check code in (urn:iso:std:iso:3166) at CodeableConcept.coding[0]
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Code "FR" found in urn:iso:std:iso:3166|2018</pre></div></td><td><a href="http://hl7.org/fhir/R4/conceptmap.html">ConceptMap</a></td>
    </tr>
    <tr style="background-color: #ffebcc">
      <td><b>ConceptMap&#8203;.source&#8203;.ofType(uri) (l1&#8203;/c2040)</b></td><td><b>warning</b></td><td><b>No definition could be found for URL value 'urn:oid:1.2.250.1.213.1.1.4.5'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Type_Specific_Checks_DT_URL_Resolve</span></td><td><a href="http://hl7.org/fhir/R4/conceptmap.html">ConceptMap</a></td>
@@ -2368,21 +2368,21 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
      <td><b>Path</b></td><td><b>Severity</b></td><td><b>Message</b></td><td><b>Validating</b></td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>ConceptMap&#8203;.jurisdiction[0]&#8203;.coding[0]&#8203;.display (l1&#8203;/c2494)</b></td><td><b>error</b></td><td><b>Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>, see <a href="qa-tx.html#l13">log</a>, or see <a href="#vmi518" onClick="document.getElementById('vmi518').style.display='block'">the servers logic</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">Display_Name_for__should_be_one_of__instead_of</span><div id="vmi518" style="display:none"><br/><pre>0ms tx-op
+     <td><b>ConceptMap&#8203;.jurisdiction[0]&#8203;.coding[0]&#8203;.display (l1&#8203;/c2494)</b></td><td><b>error</b></td><td><b>Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>, see <a href="qa-tx.html#l11">log</a>, or see <a href="#vmi518" onClick="document.getElementById('vmi518').style.display='block'">the servers logic</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">Display_Name_for__should_be_one_of__instead_of</span><div id="vmi518" style="display:none"><br/><pre>0ms tx-op
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Analysing http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1 for validation purposes
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Parameters: disp-lang=fr, generate-narrative, default-to-latest
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Version Rules: default:http://snomed.info/sct#http://snomed.info/sct/11000315107
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[0]: "(urn:iso:std:iso:3166)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166|2018"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[1]: "(urn:iso:std:iso:3166:-2)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166:-2|2021"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[2]: "(http://unstats.un.org/unsd/methods/m49/m49.htm)(class=region)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "http://unstats.un.org/unsd/methods/m49/m49.htm|null"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Validate "[urn:iso:std:iso:3166#FR ("FRANCE")]"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Check "urn:iso:std:iso:3166#FR"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: urn:iso:std:iso:3166|2018 for urn:iso:std:iso:3166
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: check code in (urn:iso:std:iso:3166) at CodeableConcept.coding[0]
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Code "FR" found in urn:iso:std:iso:3166|2018</pre></div></td><td><a href="http://hl7.org/fhir/R4/conceptmap.html">ConceptMap</a></td>
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[0]: "(urn:iso:std:iso:3166)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166|2018"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[1]: "(urn:iso:std:iso:3166:-2)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166:-2|2021"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[2]: "(http://unstats.un.org/unsd/methods/m49/m49.htm)(class=region)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "http://unstats.un.org/unsd/methods/m49/m49.htm|null"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Validate "[urn:iso:std:iso:3166#FR ("FRANCE")]"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Check "urn:iso:std:iso:3166#FR"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: urn:iso:std:iso:3166|2018 for urn:iso:std:iso:3166
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: check code in (urn:iso:std:iso:3166) at CodeableConcept.coding[0]
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Code "FR" found in urn:iso:std:iso:3166|2018</pre></div></td><td><a href="http://hl7.org/fhir/R4/conceptmap.html">ConceptMap</a></td>
    </tr>
    <tr style="background-color: #ffebcc">
      <td><b>ConceptMap&#8203;.source&#8203;.ofType(canonical) (l1&#8203;/c2643)</b></td><td><b>warning</b></td><td><b>There are multiple different potential matches for the url 'http://terminology.hl7.org/ValueSet/v3-AdministrativeGender'. It might be a good idea to fix to the correct version to reduce the likelihood of a wrong version being selected by an implementation/implementer, or use the [IG Parameter `pin-canonicals`](https://hl7.org/fhir/tools/CodeSystem-ig-parameters.html). Using version '2018-08-12', found versions: 2.0.0 (from hl7.terminology#5.2.0), 3.0.0 (from hl7.terminology.r4#7.1.0). Suggested fix: change the canonical reference from 'http://terminology.hl7.org/ValueSet/v3-AdministrativeGender' to 'http://terminology.hl7.org/ValueSet/v3-AdministrativeGender|2018-08-12'</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">TYPE_SPECIFIC_CHECKS_DT_CANONICAL_MULTIPLE_POSSIBLE_VERSIONS</span></td><td><a href="http://hl7.org/fhir/R4/conceptmap.html">ConceptMap</a></td>
@@ -2410,21 +2410,21 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
      <td><b>ConceptMap&#8203;.where(url = 'http:&#8203;/&#8203;/hl7&#8203;.org&#8203;/fhir&#8203;/ConceptMap&#8203;/special-oid2uri')</b></td><td><b>error</b></td><td><b>Conformance resource /home/runner/work/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/input/resources/ConceptMap-oid2uri-ans.json - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/oid2uri-ans) does not match the URL (http://hl7.org/fhir/ConceptMap/special-oid2uri). Use the special-url parameter if you really mean for it not to match</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">RESOURCE_CANONICAL_MISMATCH</span></td><td>--</td>
    </tr>
    <tr style="background-color: #ffcccc">
-     <td><b>ConceptMap&#8203;.jurisdiction[0]&#8203;.coding[0]&#8203;.display (l1&#8203;/c1479)</b></td><td><b>error</b></td><td><b>Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>, see <a href="qa-tx.html#l13">log</a>, or see <a href="#vmi524" onClick="document.getElementById('vmi524').style.display='block'">the servers logic</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">Display_Name_for__should_be_one_of__instead_of</span><div id="vmi524" style="display:none"><br/><pre>0ms tx-op
+     <td><b>ConceptMap&#8203;.jurisdiction[0]&#8203;.coding[0]&#8203;.display (l1&#8203;/c1479)</b></td><td><b>error</b></td><td><b>Wrong Display Name 'FRANCE' for urn:iso:std:iso:3166#FR. Valid display is 'France (la)' (fr) (for the language(s) 'fr')</b> (from <a href="qa-txservers.html#https://tx.fhir.org/r4">https://tx.fhir.org/r4</a>, see <a href="qa-tx.html#l11">log</a>, or see <a href="#vmi524" onClick="document.getElementById('vmi524').style.display='block'">the servers logic</a>) <span class="code-value code-hidden" style="font-size: 8px; color: navy">Display_Name_for__should_be_one_of__instead_of</span><div id="vmi524" style="display:none"><br/><pre>0ms tx-op
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Analysing http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1 for validation purposes
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Parameters: disp-lang=fr, generate-narrative, default-to-latest
 0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Version Rules: default:http://snomed.info/sct#http://snomed.info/sct/11000315107
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[0]: "(urn:iso:std:iso:3166)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166|2018"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[1]: "(urn:iso:std:iso:3166:-2)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166:-2|2021"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[2]: "(http://unstats.un.org/unsd/methods/m49/m49.htm)(class=region)"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "http://unstats.un.org/unsd/methods/m49/m49.htm|null"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Validate "[urn:iso:std:iso:3166#FR ("FRANCE")]"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Check "urn:iso:std:iso:3166#FR"
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: urn:iso:std:iso:3166|2018 for urn:iso:std:iso:3166
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: check code in (urn:iso:std:iso:3166) at CodeableConcept.coding[0]
-0ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Code "FR" found in urn:iso:std:iso:3166|2018</pre></div></td><td><a href="http://hl7.org/fhir/R4/conceptmap.html">ConceptMap</a></td>
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[0]: "(urn:iso:std:iso:3166)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166|2018"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[1]: "(urn:iso:std:iso:3166:-2)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "urn:iso:std:iso:3166:-2|2021"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Prepare include[2]: "(http://unstats.un.org/unsd/methods/m49/m49.htm)(class=region)"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: "http://unstats.un.org/unsd/methods/m49/m49.htm|null"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Validate "[urn:iso:std:iso:3166#FR ("FRANCE")]"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Check "urn:iso:std:iso:3166#FR"
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: CodeSystem found: urn:iso:std:iso:3166|2018 for urn:iso:std:iso:3166
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: check code in (urn:iso:std:iso:3166) at CodeableConcept.coding[0]
+1ms http://hl7.org/fhir/ValueSet/jurisdiction|4.0.1: Code "FR" found in urn:iso:std:iso:3166|2018</pre></div></td><td><a href="http://hl7.org/fhir/R4/conceptmap.html">ConceptMap</a></td>
    </tr>
    <tr style="background-color: #ffcccc">
      <td><b>ConceptMap.group[0].source (l1/c1510)</b></td><td><b>error</b></td><td><b>OIDs must be valid ()</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">Type_Specific_Checks_DT_OID_Valid</span></td><td><a href="http://hl7.org/fhir/R4/conceptmap.html">ConceptMap</a></td>
