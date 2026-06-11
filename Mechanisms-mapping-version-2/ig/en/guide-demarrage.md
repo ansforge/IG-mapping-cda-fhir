@@ -133,10 +133,6 @@ curl -X POST "http://localhost:8080/matchbox/fhir/StructureMap/\$transform?sourc
 ****Exemple de ressource générée : Patient**:**
 
 ```
-
-   **Ressource Patient générée :**
-
-```json
 {
   "fullUrl": "urn:uuid:4b3f518b-cf54-4508-8a30-d600cbbf528a",
   "resource": {
