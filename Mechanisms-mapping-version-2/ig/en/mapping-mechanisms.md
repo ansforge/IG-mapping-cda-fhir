@@ -23,10 +23,10 @@ Les mappings CDA vers FHIR sont organisés en couches afin de séparer les respo
 
 ```
 ┌──────────────────────────────────────────────────┐
-│   Mappings métier spécifiques                    │
-│   (ex. CdaFrMDEToBundle, …)                      │
-│   ← Traitement du corps du document CDA          │
-│     selon le type de document                    │
+│   CdaPatientSummaryToBundle.fml                  │
+│   ← Mapping du corps structuré du document       │
+│      Patient Summary                             │
+│                                                  │
 └──────────────────────────────────────────────────┘
                     ↓ imports
 ┌──────────────────────────────────────────────────┐
@@ -597,9 +597,9 @@ L’utilisation d’identifiants techniques tels que des UUID facilite la gestio
 * réutiliser les identifiants métier dès qu’ils sont disponibles ;
 * documenter la stratégie de génération et de réutilisation des identifiants dans les ressources produites.
 
-### Exemple complet : CdaFrMDEToBundle
+### Exemple complet : CdaPatientSummaryToBundle
 
-Le mapping `CdaFrMDEToBundle.fml` illustre l'application de ces mécanismes pour transformer un document CSE-MDE (Carnet de Santé de l'Enfant - Mesures) français en Bundle FHIR.
+Le mapping `CdaPatientSummaryToBundle.fml` illustre l'application de ces mécanismes pour transformer un document patient summary français en Bundle FHIR.
 
 #### Architecture
 

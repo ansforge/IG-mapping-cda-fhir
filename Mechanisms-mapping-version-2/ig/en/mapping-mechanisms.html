@@ -212,7 +212,7 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
   <li><a href="#pattern-4--mapping-conditionnel-selon-le-type" id="markdown-toc-pattern-4--mapping-conditionnel-selon-le-type">Pattern 4 : Mapping conditionnel selon le type</a></li>
   <li><a href="#limitations-et-contraintes" id="markdown-toc-limitations-et-contraintes">Limitations et contraintes</a></li>
   <li><a href="#bonnes-pratiques" id="markdown-toc-bonnes-pratiques">Bonnes pratiques</a></li>
-  <li><a href="#exemple-complet--cdafrmdetobundle" id="markdown-toc-exemple-complet--cdafrmdetobundle">Exemple complet : CdaFrMDEToBundle</a></li>
+  <li><a href="#exemple-complet--cdapatientsummarytobundle" id="markdown-toc-exemple-complet--cdapatientsummarytobundle">Exemple complet : CdaPatientSummaryToBundle</a></li>
   <li><a href="#ressources-complémentaires" id="markdown-toc-ressources-complémentaires">Ressources complémentaires</a></li>
   <li><a href="#conclusion" id="markdown-toc-conclusion">Conclusion</a></li>
 </ul>
@@ -241,10 +241,10 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
 <p>Les mappings CDA vers FHIR sont organisés en couches afin de séparer les responsabilités et de faciliter la réutilisation des transformations.
 Chaque couche couvre un niveau précis du mapping et s’appuie sur les couches inférieure.</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──────────────────────────────────────────────────┐
-│   Mappings métier spécifiques                    │
-│   (ex. CdaFrMDEToBundle, …)                      │
-│   ← Traitement du corps du document CDA          │
-│     selon le type de document                    │
+│   CdaPatientSummaryToBundle.fml                  │
+│   ← Mapping du corps structuré du document       │
+│      Patient Summary                             │
+│                                                  │
 └──────────────────────────────────────────────────┘
                     ↓ imports
 ┌──────────────────────────────────────────────────┐
@@ -817,9 +817,9 @@ La transformation doit respecter les profils cibles utilisés dans le projet. El
   <li>documenter la stratégie de génération et de réutilisation des identifiants dans les ressources produites.</li>
 </ul>
 
-<h3 id="exemple-complet--cdafrmdetobundle">Exemple complet : CdaFrMDEToBundle</h3>
+<h3 id="exemple-complet--cdapatientsummarytobundle">Exemple complet : CdaPatientSummaryToBundle</h3>
 
-<p>Le mapping <code class="language-plaintext highlighter-rouge">CdaFrMDEToBundle.fml</code> illustre l'application de ces mécanismes pour transformer un document CSE-MDE (Carnet de Santé de l'Enfant - Mesures) français en Bundle FHIR.</p>
+<p>Le mapping <code class="language-plaintext highlighter-rouge">CdaPatientSummaryToBundle.fml</code> illustre l'application de ces mécanismes pour transformer un document patient summary français en Bundle FHIR.</p>
 
 <h4 id="architecture">Architecture</h4>
 
@@ -945,7 +945,7 @@ imports "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaF
           IG &copy; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris</a>.  
           Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>.
           Generated 
-  <span title="2026-06-11 08:11:00 +0000">
+  <span title="2026-06-11 08:38:00 +0000">
     2026-06-11
   </span>
 
