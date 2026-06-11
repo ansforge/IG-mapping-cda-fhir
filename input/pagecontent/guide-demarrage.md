@@ -1,6 +1,6 @@
 
 ## Guide de démarrage rapide (Quick Start)
-Ce guide vous permet de tester rapidement la transformation de documents CDA vers FHIR en utilisant matchbox et les exemples fournis.
+Ce guide vous permet de tester rapidement la transformation de documents CDA de type Patient Summary vers FHIR en utilisant Matchbox, à partir d’un exemple fourni.
 
 #### Prérequis
 * Docker installé sur votre machine
@@ -80,38 +80,31 @@ curl -X POST http://localhost:8080/matchbox/fhir/StructureMap \
 curl -X POST http://localhost:8080/matchbox/fhir/StructureMap \
   -H "Accept: application/fhir+xml;fhirVersion=4.0" \
   -H "Content-Type: text/fhir-mapping" \
-  --data-binary @input/fml/CDAFrMDEToBundle.fml
+  --data-binary @input/fml/CdaPatientSummaryToBundle.fml
 
-# 3. Transformer un document CDA
-curl -X POST "http://localhost:8080/matchbox/fhir/StructureMap/\$transform?source=https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrMDEToBundle" \
+
+# 3. lancer les transformations
+#3.1 : transformations génériques
+curl -X POST "http://localhost:8080/matchbox/fhir/StructureMap/\$transform?source=https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle" \
   -H "Accept: application/fhir+json;fhirVersion=4.0" \
   -H "Content-Type: application/fhir+xml;fhirVersion=4.0" \
-  --data-binary @input/attachments/CSE-MDE_2023.01.xml
+  --data-binary @input/attachments/patient-summary.xml
+
+#3.2 : transformations génériques enrichies
+curl -X POST "http://localhost:8080/matchbox/fhir/StructureMap/\$transform?source=https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrToBundle" \
+  -H "Accept: application/fhir+json;fhirVersion=4.0" \
+  -H "Content-Type: application/fhir+xml;fhirVersion=4.0" \
+  --data-binary @input/attachments/patient-summary.xml
+
+#3.3 : transformation complète du document Patient Summary
+curl -X POST "http://localhost:8080/matchbox/fhir/StructureMap/\$transform?source=https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaPatientSummaryToBundle" \
+  -H "Accept: application/fhir+json;fhirVersion=4.0" \
+  -H "Content-Type: application/fhir+xml;fhirVersion=4.0" \
+  --data-binary @input/attachments/patient-summary.xml
+
 ```
 
-#### Exemple CDA disponible
-
-Le dossier `input/attachments/` contient un exemple de document CDA français :
-
-* **CSE-MDE_2023.01.xml** : Carnet de santé de l'enfant - Mesures (3 observations : Poids, Taille, Périmètre crânien)
-
-#### Résultat attendu
-
-Si la transformation réussit, vous obtiendrez un Bundle FHIR contenant les ressources converties depuis le document CDA.
-
-**Note importante** : Il peut y avoir des erreurs dans les fichiers FML lors de la transformation. L'objectif de ce POC est de valider le processus de transformation. Les erreurs dans les mappings seront traitées ultérieurement.
-
-### Résultats des transformations
-
-Les transformations CDA-FHIR ont été exécutées avec les résultats suivants :
-
-#### Transformation réussie
-
-| Fichier source | StructureMap utilisé | Fichier résultat | Ressources FHIR | Observations | Statut |
-|---------------|---------------------|------------------|----------------|-------------|--------|
-| CSE-MDE_2023.01.xml | [CdaFrMDEToBundle](StructureMap-CdaFrMDEToBundle.html) | [Bundle-fe569e1f-32d4-4ba4-b5ad-88082bf5470a.json](Bundle-fe569e1f-32d4-4ba4-b5ad-88082bf5470a.html) | 11 | 3 | ✅ Succès complet |
-
-**Détails de la transformation :**
+**Détails des transformations :**
 
 **Document CSE-MDE (Carnet de Santé de l'Enfant - Mesures)** :
 
@@ -128,16 +121,6 @@ Les transformations CDA-FHIR ont été exécutées avec les résultats suivants 
     - Poids (29463-7) = 3900 g
     - Taille (8302-2) = 52 cm
     - Périmètre crânien (8287-5) = 35 cm
-
-### Architecture du mapping CdaFrMDEToBundle
-
-Le mapping `CdaFrMDEToBundle.fml` est un mapping spécialisé pour les documents CSE-MDE français qui combine :
-
-**Architecture du mapping :**
-* **Imports** : Utilise les mappings de base (`CdaToFHIRTypes`, `CdaToBundle`, `CdaFrToBundle`)
-* **Réutilisation** : Exploite les fonctions existantes pour Patient, Composition, Encounter, Location, etc.
-* **Navigation personnalisée** : Implémente une navigation spécifique pour extraire les observations imbriquées dans les organizers
-* **Traitement complet** : Gère toutes les ressources nécessaires pour un document CSE-MDE
 
 **Résultats obtenus :**
 * ✅ Génération du Bundle FHIR avec structure document complète
