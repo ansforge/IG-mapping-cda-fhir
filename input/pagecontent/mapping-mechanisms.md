@@ -131,7 +131,7 @@ Les transformations couvertes dans cette couche incluent notamment :
 * le mapping de `custodian`, c’est-à-dire l’organisation responsable de la conservation et de la mise à disposition du document ;
 * le mapping de `author`, qui peut correspondre au professionnel ou à l’acteur ayant produit le document ;
 * le mapping de `legalAuthenticator`, c’est-à-dire la personne qui valide officiellement le document ;
-* le mapping de `encounterContext`, notamment l’épisode de soin, le lieu de prise en charge ou l’établissement concerné, à travers les ressources `Encounter` et `Location` ;
+* le mapping de `encounterContext`, notamment le contexte de soin, à travers les ressources `Encounter` et `Location` ;
 * le mapping de `documentationOf`, qui permet de relier le document à l’acte, au séjour ou à l’événement clinique documenté ;
 * le mapping de `emergencyContact`, qui correspond aux contacts d’urgence du patient ;
 * le mapping de `trustedPerson`, qui correspond aux personnes de confiance ;
@@ -156,7 +156,7 @@ Les spécifications françaises s’appliquent aux ressources génériques déj�
 Cette couche complète donc le socle commun CDA vers FHIR sans redéfinir le mapping générique réalisé dans la couche précédente. Elle ne traite pas le corps du document CDA. Les sections cliniques seront prises en charge dans la couche de mappings spécifiques métier.
 
 Cette couche constitue une étape d’enrichissement du socle commun CDA vers FHIR. Elle complète le mapping générique établi à l’étape 2 en y intégrant les spécifications françaises et européennes. Le mapping des sections cliniques sera, quant à lui, abordé lors de l’étape 4.
-{% include schema-etape3.svg %}
+
 
 ##### Mappings spécifiques métier : Patient Summary
 
@@ -178,7 +178,7 @@ Le mapping réalisé à ce niveau concerne notamment :
 Cette couche complète ainsi le mapping du corps du document CDA en ajoutant les règles nécessaires à la représentation FHIR des données cliniques propres au `Patient Summary`.
 
 > Remarque : Pour les couches — mappings CDA génériques, spécifications françaises et mappings spécifiques métier — les correspondances détaillées CDA et FHIR sont à consulter dans le guide d’implémentation Document Core : `https://ansforge.github.io/interop-IG-document-core/main/ig/`. Ce guide présente de manière structurée les correspondances entre modèle logique, CDA et FHIR
-{% include schema-etape4.svg %}
+
 #### Réutilisation entre les couches
 
 Les couches de mapping sont construites de manière progressive. Chaque couche réutilise les mappings définis dans les couches inférieures à l’aide du mécanisme `imports`, puis ajoute les transformations correspondant à son propre niveau de spécialisation.
