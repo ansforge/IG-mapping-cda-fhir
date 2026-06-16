@@ -12,7 +12,7 @@ version: 0.1.0 # shall conforms to Semantic Versioning https://fr.wiktionary.org
 fhirVersion: 4.0.1
 copyrightYear: 2020+
 releaseLabel: ci-build # le release label doit être conforme au cycle de vie de la doctrine du ci-sis
-jurisdiction: urn:iso:std:iso:3166#FR "FRANCE"
+jurisdiction: urn:iso:std:iso:3166#FR "France (la)"
 
 parameters: #Parameters list - https://build.fhir.org/ig/FHIR/fhir-tools-ig/CodeSystem-ig-parameters.html
   shownav: 'true'
@@ -20,8 +20,21 @@ parameters: #Parameters list - https://build.fhir.org/ig/FHIR/fhir-tools-ig/Code
   path-resource:
   - input/fml
   - input/resources
-  - input/attachments
   path-expansion-params: '../../expansion-params.json' # for using French SNOMED CT Extension
+  pin-canonicals: pin-all
+  apply-contact: true
+  logging:
+    - tx
+    - html
+    - generate
+    - init
+    - progress
+  i18n-default-lang: fr
+  apply-jurisdiction: true
+  i18n-lang:
+    - en
+  translation-sources:
+    - input/translations/en
 
 
 dependencies:
@@ -45,6 +58,8 @@ pages:
 
   change-log.md:
     title: Historique des versions
+  translationinfo.md:
+    title: Informations sur la traduction
 
 menu:
   Accueil: index.html
