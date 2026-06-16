@@ -106,10 +106,10 @@ WHERE ConceptMapId IN (
 )
 ORDER BY ConceptMapName, group_index, elem_index, target_index
 ",
-   "class": "lines",
+  "class": "lines",
   "columns": [
-    { "name": "CDA", "type": "markdown", "source": "CDA" },
-    { "name": "FHIR", "type": "markdown", "source": "FHIR" }
+    { \"name\": \"CDA\", \"type\": \"markdown\", \"source\": \"CDA\" },
+    { \"name\": \"FHIR\", \"type\": \"markdown\", \"source\": \"FHIR\" }
   ]
 } %}
 
