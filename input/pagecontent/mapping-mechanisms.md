@@ -142,6 +142,7 @@ Les transformations couvertes dans cette couche incluent notamment :
 * la reprise de la structure des sections du document dans `Composition.section`.
 
 Cette couche implémente donc le socle commun de transformation CDA → FHIR, indépendant des contraintes nationales et des règles métier spécifiques.
+
 <div style="text-align:center; margin: 2rem auto 2.5rem auto; max-width:950px;">
 {% include schema-etape2.svg %}
 </div>
@@ -160,6 +161,7 @@ Les spécifications françaises s’appliquent aux ressources génériques déj�
 Cette couche complète donc le socle commun CDA vers FHIR sans redéfinir le mapping générique réalisé dans la couche précédente. Elle ne traite pas le corps du document CDA. Les sections cliniques seront prises en charge dans la couche de mappings spécifiques métier.
 
 Cette couche constitue une étape d’enrichissement du socle commun CDA vers FHIR. Elle complète le mapping générique établi à l’étape 2 en y intégrant les spécifications françaises et européennes. Le mapping des sections cliniques sera, quant à lui, abordé lors de l’étape 4.
+
 <div style="text-align:center; margin: 2rem auto 2.5rem auto; max-width:950px;">
 {% include schema-etape3.svg %}
 </div>
@@ -183,6 +185,7 @@ Le mapping réalisé à ce niveau concerne notamment :
 * le rattachement des ressources métier aux sections correspondantes de la `Composition`, afin de conserver l’organisation documentaire du `Patient Summary` ;
 
 Cette couche complète ainsi le mapping du corps du document CDA en ajoutant les règles nécessaires à la représentation FHIR des données cliniques propres au `Patient Summary`.
+
 <div style="text-align:center; margin: 2rem auto 2.5rem auto; max-width:1050px;">
 {% include schema-etape4.svg %}
 </div>
