@@ -50,8 +50,8 @@
 	  <script src="assets/js/prism.js"></script>
     <script type="text/javascript" src="assets/js/mermaid.js"></script>
     <script type="text/javascript" src="assets/js/mermaid-init.js"></script>
-    <style type="text/css">h2{--heading-prefix:"6.13"}
-    h3,h4,h5,h6{--heading-prefix:"6.13"}</style>
+    <style type="text/css">h2{--heading-prefix:"7.13"}
+    h3,h4,h5,h6{--heading-prefix:"7.13"}</style>
     <div id="segment-header" class="segment">  <!-- segment-header -->
       <div class="container">  <!-- container -->
 
@@ -77,7 +77,7 @@
 
 
 
-  FRANCE
+  <img alt="France (la) flag" src="../assets/images/fra.svg" height="16" title="France (la)"/>
 
 
             </span>
@@ -150,6 +150,21 @@
             </div>  <!-- /.nav-collapse -->
 
               
+
+
+<div style="float: var(--ig-right);padding: 8px 0px;" id="language">
+  <div id="select_flg" class="flaglist" style="background-image: url(assets/images/icon_arrow_down.png);background-position: 133px 3px;">
+    <div><img class="flag" alt="flag en" src="assets/images/lang-en.png"/>English</div>
+  </div>
+  <div style="float: var(--ig-right); margin: 2px 0px; padding: 1px 0;color: var(--btn-text-color);font-size:12px">Language:</div>
+ 	<div id="flaglist" class="flaglist" style="display: none;position: absolute;right: 0;z-index: 100;background-image: url(assets/images/icon_arrow_up.png);background-position: 133px 3px;">
+    <div><img class="flag" alt="flag en" src="assets/images/lang-en.png"/>English</div>
+
+    <div><a href="../fr/ConceptMap-CdaIVL-TSToPeriodConceptMap.json.html"><img class="flag" src="assets/images/lang-fr.png" alt="flag fr"/>Français</a></div>
+
+  </div>
+</div>
+
 
           </div>  <!-- /.container -->
         </nav>  <!-- /.navbar -->
@@ -244,7 +259,7 @@
           
 
             as of 
-2026-06-10
+2026-06-16
 
           
         
@@ -267,7 +282,7 @@
   "<a href="http://hl7.org/fhir/R4/resource.html#ConceptMap.language">language</a>" : "en",
   "<a href="http://hl7.org/fhir/R4/domainresource.html#ConceptMap.text">text</a>" : {
     "<a href="http://hl7.org/fhir/R4/datatypes.html#Narrative#Narrative.status">status</a>" : "generated",
-    "<a href="http://hl7.org/fhir/R4/datatypes.html#Narrative#Narrative.div">div</a>" : "&lt;div xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot;&gt;&lt;p class=\&quot;res-header-id\&quot;&gt;&lt;b&gt;Generated Narrative: ConceptMap CdaIVL-TSToPeriodConceptMap&lt;/b&gt;&lt;/p&gt;&lt;a name=\&quot;CdaIVL-TSToPeriodConceptMap\&quot;&gt; &lt;/a&gt;&lt;a name=\&quot;hcCdaIVL-TSToPeriodConceptMap\&quot;&gt; &lt;/a&gt;&lt;p&gt;Mapping from (not specified) to (not specified)&lt;/p&gt;&lt;br/&gt;&lt;p&gt;&lt;b&gt;Group 1 &lt;/b&gt;Mapping from &lt;a href=\&quot;http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-IVL-TS.html\&quot;&gt;IVL_TS: Interval (V3 Data Type)&lt;/a&gt; to &lt;a href=\&quot;http://hl7.org/fhir/R4/datatypes.html#Period\&quot;&gt;Period&lt;/a&gt;&lt;/p&gt;&lt;table class=\&quot;grid\&quot;&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Source Code&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Card.&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Type&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Relationship&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Target Code&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Card.&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Type&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Comment&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan=\&quot;3\&quot;&gt;IVL_TS.low.value&lt;/td&gt;&lt;td&gt;&lt;a href=\&quot;http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto\&quot; title=\&quot;relatedto\&quot;&gt;is related to&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a href=\&quot;http://hl7.org/fhir/R4/datatypes.html#Period#Period.start\&quot;&gt;Period.start&lt;/a&gt;&lt;/td&gt;&lt;td&gt;0..1&lt;/td&gt;&lt;td&gt;todo&lt;/td&gt;&lt;td&gt;La valeur de la borne low (IVXB_TS.value) est convertie en dateTime puis affectée à Period.start.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan=\&quot;3\&quot;&gt;IVL_TS.high.value&lt;/td&gt;&lt;td&gt;&lt;a href=\&quot;http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto\&quot; title=\&quot;relatedto\&quot;&gt;is related to&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a href=\&quot;http://hl7.org/fhir/R4/datatypes.html#Period#Period.end\&quot;&gt;Period.end&lt;/a&gt;&lt;/td&gt;&lt;td&gt;0..1&lt;/td&gt;&lt;td&gt;todo&lt;/td&gt;&lt;td&gt;La valeur de la borne high (IVXB_TS.value) est convertie en dateTime puis affectée à Period.end.&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;hr/&gt;&lt;p&gt;&lt;b&gt;Group 2 &lt;/b&gt;Mapping from &lt;a href=\&quot;http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-IVL-TS.html\&quot;&gt;IVL_TS: Interval (V3 Data Type)&lt;/a&gt; to &lt;a href=\&quot;http://hl7.org/fhir/R4/datatypes.html#dateTime\&quot;&gt;dateTime&lt;/a&gt;&lt;/p&gt;&lt;table class=\&quot;grid\&quot;&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Source Code&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Card.&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Type&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Relationship&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Target Code&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Card.&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Type&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Comment&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan=\&quot;3\&quot;&gt;IVL_TS.low.value&lt;/td&gt;&lt;td&gt;&lt;a href=\&quot;http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto\&quot; title=\&quot;relatedto\&quot;&gt;is related to&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a href=\&quot;http://hl7.org/fhir/R4/datatypes.html#dateTime#dateTime\&quot;&gt;dateTime&lt;/a&gt;&lt;/td&gt;&lt;td&gt;0..*&lt;/td&gt;&lt;td&gt;todo&lt;/td&gt;&lt;td&gt;La valeur de la borne low est utilisée comme date représentative et convertie en dateTime.&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;"
+    "<a href="http://hl7.org/fhir/R4/datatypes.html#Narrative#Narrative.div">div</a>" : "&lt;div xml:lang=\&quot;en\&quot; lang=\&quot;en\&quot;&gt;&lt;hr/&gt;&lt;p&gt;&lt;b&gt;English&lt;/b&gt;&lt;/p&gt;&lt;hr/&gt;&lt;p class=\&quot;res-header-id\&quot;&gt;&lt;b&gt;Generated Narrative: ConceptMap CdaIVL-TSToPeriodConceptMap&lt;/b&gt;&lt;/p&gt;&lt;a name=\&quot;en-CdaIVL-TSToPeriodConceptMap\&quot;&gt; &lt;/a&gt;&lt;a name=\&quot;en-hcCdaIVL-TSToPeriodConceptMap\&quot;&gt; &lt;/a&gt;&lt;p&gt;This mapping does not specify any particular context of use.&lt;/p&gt;&lt;br/&gt;&lt;p&gt;&lt;b&gt;Group 1 &lt;/b&gt;Mapping from &lt;a href=\&quot;http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-IVL-TS.html\&quot;&gt;IVL_TS: Interval (V3 Data Type)&lt;/a&gt; to &lt;a href=\&quot;http://hl7.org/fhir/R4/datatypes.html#Period\&quot;&gt;Period&lt;/a&gt;&lt;/p&gt;&lt;table class=\&quot;grid\&quot;&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Source Code&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Card.&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Type&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Relationship&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Target Code&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Card.&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Type&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Comment&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan=\&quot;3\&quot;&gt;IVL_TS.low.value&lt;/td&gt;&lt;td&gt;&lt;a href=\&quot;http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto\&quot; title=\&quot;relatedto\&quot;&gt;is related to&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a href=\&quot;http://hl7.org/fhir/R4/datatypes.html#Period#s-Period.start\&quot;&gt;Period.start&lt;/a&gt;&lt;/td&gt;&lt;td&gt;0..1&lt;/td&gt;&lt;td&gt;todo&lt;/td&gt;&lt;td&gt;La valeur de la borne low (IVXB_TS.value) est convertie en dateTime puis affectée à Period.start.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan=\&quot;3\&quot;&gt;IVL_TS.high.value&lt;/td&gt;&lt;td&gt;&lt;a href=\&quot;http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto\&quot; title=\&quot;relatedto\&quot;&gt;is related to&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a href=\&quot;http://hl7.org/fhir/R4/datatypes.html#Period#s-Period.end\&quot;&gt;Period.end&lt;/a&gt;&lt;/td&gt;&lt;td&gt;0..1&lt;/td&gt;&lt;td&gt;todo&lt;/td&gt;&lt;td&gt;La valeur de la borne high (IVXB_TS.value) est convertie en dateTime puis affectée à Period.end.&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;hr/&gt;&lt;p&gt;&lt;b&gt;Group 2 &lt;/b&gt;Mapping from &lt;a href=\&quot;http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-IVL-TS.html\&quot;&gt;IVL_TS: Interval (V3 Data Type)&lt;/a&gt; to &lt;a href=\&quot;http://hl7.org/fhir/R4/datatypes.html#dateTime\&quot;&gt;dateTime&lt;/a&gt;&lt;/p&gt;&lt;table class=\&quot;grid\&quot;&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Source Code&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Card.&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Type&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Relationship&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Target Code&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Card.&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Type&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Comment&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan=\&quot;3\&quot;&gt;IVL_TS.low.value&lt;/td&gt;&lt;td&gt;&lt;a href=\&quot;http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto\&quot; title=\&quot;relatedto\&quot;&gt;is related to&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a href=\&quot;http://hl7.org/fhir/R4/datatypes.html#dateTime#s-dateTime\&quot;&gt;dateTime&lt;/a&gt;&lt;/td&gt;&lt;td&gt;0..*&lt;/td&gt;&lt;td&gt;todo&lt;/td&gt;&lt;td&gt;La valeur de la borne low est utilisée comme date représentative et convertie en dateTime.&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;"
   },
   "<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.url">url</a>" : "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaIVL_TSToFHIR",
   "<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.version">version</a>" : "0.1.0",
@@ -275,7 +290,7 @@
   "<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.title">title</a>" : "ConceptMap — CDA IVL_TS vers FHIR Period et dateTime",
   "<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.status">status</a>" : "draft",
   "<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.experimental">experimental</a>" : true,
-  "<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.date">date</a>" : "2026-06-10T08:52:37+00:00",
+  "<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.date">date</a>" : "2026-06-16T12:17:05+00:00",
   "<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.publisher">publisher</a>" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.contact">contact</a>" : [
     {
@@ -295,7 +310,7 @@
         {
           "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "urn:iso:std:iso:3166",
           "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "FR",
-          "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "FRANCE"
+          "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "France (la)"
         }
       ]
     }
@@ -303,7 +318,9 @@
   "<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.group">group</a>" : [
     {
       "<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.group.source">source</a>" : "http://hl7.org/cda/stds/core/StructureDefinition/IVL-TS",
+      "<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.group.sourceVersion">sourceVersion</a>" : "2.0.0-sd",
       "<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.group.target">target</a>" : "http://hl7.org/fhir/StructureDefinition/Period",
+      "<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.group.targetVersion">targetVersion</a>" : "4.0.1",
       "<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.group.element">element</a>" : [
         {
           "<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.group.element.code">code</a>" : "IVL_TS.low.value",
@@ -333,7 +350,9 @@
     },
     {
       "<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.group.source">source</a>" : "http://hl7.org/cda/stds/core/StructureDefinition/IVL-TS",
+      "<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.group.sourceVersion">sourceVersion</a>" : "2.0.0-sd",
       "<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.group.target">target</a>" : "http://hl7.org/fhir/StructureDefinition/dateTime",
+      "<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.group.targetVersion">targetVersion</a>" : "4.0.1",
       "<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.group.element">element</a>" : [
         {
           "<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.group.element.code">code</a>" : "IVL_TS.low.value",
@@ -404,8 +423,8 @@
           IG © 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d&#39;Oradour-sur-Glane, 75015 Paris</a>.  
           Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>.
           Generated 
-  <span title="2026-06-10 08:52:00 +0000">
-    2026-06-10
+  <span title="2026-06-16 12:17:00 +0000">
+    2026-06-16
   </span>
 
           <br/>

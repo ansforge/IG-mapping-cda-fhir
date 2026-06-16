@@ -2,6 +2,9 @@
 
 ## Guide de démarrage
 
+ 
+There is no translation page available for the current page, so it has been rendered in the default language 
+
 ## Guide de démarrage rapide (Quick Start)
 
 Ce guide vous permet de tester rapidement la transformation de documents CDA vers FHIR en utilisant matchbox et les exemples fournis.

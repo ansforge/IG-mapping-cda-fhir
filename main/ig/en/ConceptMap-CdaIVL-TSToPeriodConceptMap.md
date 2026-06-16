@@ -19,7 +19,7 @@ Correspondances documentaires entre le datatype CDA IVL_TS et les types FHIR Per
   "title" : "ConceptMap — CDA IVL_TS vers FHIR Period et dateTime",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-06-10T08:52:37+00:00",
+  "date" : "2026-06-16T12:17:05+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -33,12 +33,14 @@ Correspondances documentaires entre le datatype CDA IVL_TS et les types FHIR Per
     "coding" : [{
       "system" : "urn:iso:std:iso:3166",
       "code" : "FR",
-      "display" : "FRANCE"
+      "display" : "France (la)"
     }]
   }],
   "group" : [{
     "source" : "http://hl7.org/cda/stds/core/StructureDefinition/IVL-TS",
+    "sourceVersion" : "2.0.0-sd",
     "target" : "http://hl7.org/fhir/StructureDefinition/Period",
+    "targetVersion" : "4.0.1",
     "element" : [{
       "code" : "IVL_TS.low.value",
       "display" : "IVL_TS.low.value",
@@ -62,7 +64,9 @@ Correspondances documentaires entre le datatype CDA IVL_TS et les types FHIR Per
   },
   {
     "source" : "http://hl7.org/cda/stds/core/StructureDefinition/IVL-TS",
+    "sourceVersion" : "2.0.0-sd",
     "target" : "http://hl7.org/fhir/StructureDefinition/dateTime",
+    "targetVersion" : "4.0.1",
     "element" : [{
       "code" : "IVL_TS.low.value",
       "display" : "IVL_TS.low.value",

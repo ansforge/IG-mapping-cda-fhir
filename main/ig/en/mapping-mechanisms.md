@@ -2,6 +2,9 @@
 
 ## Mécanisme du Mapping
 
+ 
+There is no translation page available for the current page, so it has been rendered in the default language 
+
 Cette page explique les différents mécanismes utilisés pour transformer des documents CDA (Clinical Document Architecture) en ressources FHIR à l'aide du FHIR Mapping Language (FML).
 
 ### Vue d'ensemble du FHIR Mapping Language

@@ -4,33 +4,33 @@
   <id value="CdaToFHIRTypes"/>
   <language value="en"/>
   <text>
-    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: StructureMap CdaToFHIRTypes</b></p><a name="CdaToFHIRTypes"> </a><a name="hcCdaToFHIRTypes"> </a><pre class="fml">
+    <status value="generated"/><div xml:lang="en" lang="en"><hr/><p><b>English</b></p><hr/><p class="res-header-id"><b>Generated Narrative: StructureMap CdaToFHIRTypes</b></p><a name="en-CdaToFHIRTypes"> </a><a name="en-hcCdaToFHIRTypes"> </a><pre class="fml">
 <b>map</b><span style="color: navy"> &quot;</span>https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes<span style="color: navy">&quot; = &quot;</span>CdaToFHIRTypes<span style="color: navy">&quot;
 
 </span><span style="color: navy">// </span><span style="color: green">Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)</span>
 
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ED.html" title="ED: EncapsulatedData (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/ED</a><span style="color: navy">&quot; </span><b>alias </b>ED <b>as </b><b>source</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-PN.html" title="PN: PersonName (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/PN</a><span style="color: navy">&quot; </span><b>alias </b>PN <b>as </b><b>source</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html" title="II: InstanceIdentifier (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/II</a><span style="color: navy">&quot; </span><b>alias </b>II <b>as </b><b>source</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#Identifier" title="Identifier">http://hl7.org/fhir/StructureDefinition/Identifier</a><span style="color: navy">&quot; </span><b>alias </b>Identifier <b>as </b><b>target</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TS.html" title="TS: PointInTime (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/TS</a><span style="color: navy">&quot; </span><b>alias </b>TS <b>as </b><b>source</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#instant" title="instant">http://hl7.org/fhir/StructureDefinition/instant</a><span style="color: navy">&quot; </span><b>alias </b>instant <b>as </b><b>target</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CS.html" title="CS: CodedSimpleValue (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/CS</a><span style="color: navy">&quot; </span><b>alias </b>CS <b>as </b><b>source</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#code" title="code">http://hl7.org/fhir/StructureDefinition/code</a><span style="color: navy">&quot; </span><b>alias </b>code <b>as </b><b>target</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CE.html" title="CE: CodedWithEquivalents (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/CE</a><span style="color: navy">&quot; </span><b>alias </b>CE <b>as </b><b>source</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#CodeableConcept" title="CodeableConcept">http://hl7.org/fhir/StructureDefinition/CodeableConcept</a><span style="color: navy">&quot; </span><b>alias </b>CodeableConcept <b>as </b><b>target</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html" title="ST: CharacterString (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/ST</a><span style="color: navy">&quot; </span><b>alias </b>ST <b>as </b><b>source</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#string" title="string">http://hl7.org/fhir/StructureDefinition/string</a><span style="color: navy">&quot; </span><b>alias </b>string <b>as </b><b>target</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html" title="EN: EntityName (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/EN</a><span style="color: navy">&quot; </span><b>alias </b>EN <b>as </b><b>source</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#HumanName" title="HumanName">http://hl7.org/fhir/StructureDefinition/HumanName</a><span style="color: navy">&quot; </span><b>alias </b>HumanName <b>as </b><b>target</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html" title="AD: PostalAddress (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/AD</a><span style="color: navy">&quot; </span><b>alias </b>AD <b>as </b><b>source</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#Address" title="Address">http://hl7.org/fhir/StructureDefinition/Address</a><span style="color: navy">&quot; </span><b>alias </b>Address <b>as </b><b>target</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html" title="TEL: TelecommunicationAddress (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/TEL</a><span style="color: navy">&quot; </span><b>alias </b>TEL <b>as </b><b>source</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#ContactPoint" title="ContactPoint">http://hl7.org/fhir/StructureDefinition/ContactPoint</a><span style="color: navy">&quot; </span><b>alias </b>ContactPoint <b>as </b><b>target</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-BL.html" title="BL: Boolean (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/BL</a><span style="color: navy">&quot; </span><b>alias </b>BL <b>as </b><b>source</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#boolean" title="boolean">http://hl7.org/fhir/StructureDefinition/boolean</a><span style="color: navy">&quot; </span><b>alias </b>boolean <b>as </b><b>target</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-IVL-TS.html" title="IVL_TS: Interval (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/IVL-TS</a><span style="color: navy">&quot; </span><b>alias </b>IVL_TS <b>as </b><b>source</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#Period" title="Period">http://hl7.org/fhir/StructureDefinition/Period</a><span style="color: navy">&quot; </span><b>alias </b>Period <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ED.html" title="ED: EncapsulatedData (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/ED|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>ED <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-PN.html" title="PN: PersonName (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/PN|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>PN <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html" title="II: InstanceIdentifier (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/II|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>II <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#Identifier" title="Identifier">http://hl7.org/fhir/StructureDefinition/Identifier|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>Identifier <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TS.html" title="TS: PointInTime (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/TS|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>TS <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#instant" title="instant">http://hl7.org/fhir/StructureDefinition/instant|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>instant <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CS.html" title="CS: CodedSimpleValue (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/CS|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>CS <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#code" title="code">http://hl7.org/fhir/StructureDefinition/code|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>code <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CE.html" title="CE: CodedWithEquivalents (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/CE|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>CE <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#CodeableConcept" title="CodeableConcept">http://hl7.org/fhir/StructureDefinition/CodeableConcept|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>CodeableConcept <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html" title="ST: CharacterString (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/ST|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>ST <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#string" title="string">http://hl7.org/fhir/StructureDefinition/string|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>string <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html" title="EN: EntityName (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/EN|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>EN <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#HumanName" title="HumanName">http://hl7.org/fhir/StructureDefinition/HumanName|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>HumanName <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html" title="AD: PostalAddress (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/AD|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>AD <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#Address" title="Address">http://hl7.org/fhir/StructureDefinition/Address|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>Address <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html" title="TEL: TelecommunicationAddress (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/TEL|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>TEL <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#ContactPoint" title="ContactPoint">http://hl7.org/fhir/StructureDefinition/ContactPoint|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>ContactPoint <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-BL.html" title="BL: Boolean (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/BL|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>BL <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#boolean" title="boolean">http://hl7.org/fhir/StructureDefinition/boolean|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>boolean <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-IVL-TS.html" title="IVL_TS: Interval (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/IVL-TS|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>IVL_TS <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#Period" title="Period">http://hl7.org/fhir/StructureDefinition/Period|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>Period <b>as </b><b>target</b>
 
 <b>group </b>Any<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy">)</span><span style="color: navy"> {
 </span>  src<span style="color: navy"><b> -&gt; </b></span>tgt <i>&quot;base&quot;</i><span style="color: navy">;</span>
@@ -201,7 +201,7 @@
   <name value="CdaToFHIRTypes"/>
   <title value="Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)"/>
   <status value="draft"/>
-  <date value="2026-06-10T08:52:37+00:00"/>
+  <date value="2026-06-16T12:17:05+00:00"/>
   <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
   <contact>
     <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
@@ -215,116 +215,116 @@
     <coding>
       <system value="urn:iso:std:iso:3166"/>
       <code value="FR"/>
-      <display value="FRANCE"/>
+      <display value="France (la)"/>
     </coding>
   </jurisdiction>
   <structure>
-    <url value="http://hl7.org/cda/stds/core/StructureDefinition/ED"/>
+    <url value="http://hl7.org/cda/stds/core/StructureDefinition/ED|2.0.0-sd"/>
     <mode value="source"/>
     <alias value="ED"/>
   </structure>
   <structure>
-    <url value="http://hl7.org/cda/stds/core/StructureDefinition/PN"/>
+    <url value="http://hl7.org/cda/stds/core/StructureDefinition/PN|2.0.0-sd"/>
     <mode value="source"/>
     <alias value="PN"/>
   </structure>
   <structure>
-    <url value="http://hl7.org/cda/stds/core/StructureDefinition/II"/>
+    <url value="http://hl7.org/cda/stds/core/StructureDefinition/II|2.0.0-sd"/>
     <mode value="source"/>
     <alias value="II"/>
   </structure>
   <structure>
-    <url value="http://hl7.org/fhir/StructureDefinition/Identifier"/>
+    <url value="http://hl7.org/fhir/StructureDefinition/Identifier|4.0.1"/>
     <mode value="target"/>
     <alias value="Identifier"/>
   </structure>
   <structure>
-    <url value="http://hl7.org/cda/stds/core/StructureDefinition/TS"/>
+    <url value="http://hl7.org/cda/stds/core/StructureDefinition/TS|2.0.0-sd"/>
     <mode value="source"/>
     <alias value="TS"/>
   </structure>
   <structure>
-    <url value="http://hl7.org/fhir/StructureDefinition/instant"/>
+    <url value="http://hl7.org/fhir/StructureDefinition/instant|4.0.1"/>
     <mode value="target"/>
     <alias value="instant"/>
   </structure>
   <structure>
-    <url value="http://hl7.org/cda/stds/core/StructureDefinition/CS"/>
+    <url value="http://hl7.org/cda/stds/core/StructureDefinition/CS|2.0.0-sd"/>
     <mode value="source"/>
     <alias value="CS"/>
   </structure>
   <structure>
-    <url value="http://hl7.org/fhir/StructureDefinition/code"/>
+    <url value="http://hl7.org/fhir/StructureDefinition/code|4.0.1"/>
     <mode value="target"/>
     <alias value="code"/>
   </structure>
   <structure>
-    <url value="http://hl7.org/cda/stds/core/StructureDefinition/CE"/>
+    <url value="http://hl7.org/cda/stds/core/StructureDefinition/CE|2.0.0-sd"/>
     <mode value="source"/>
     <alias value="CE"/>
   </structure>
   <structure>
-    <url value="http://hl7.org/fhir/StructureDefinition/CodeableConcept"/>
+    <url value="http://hl7.org/fhir/StructureDefinition/CodeableConcept|4.0.1"/>
     <mode value="target"/>
     <alias value="CodeableConcept"/>
   </structure>
   <structure>
-    <url value="http://hl7.org/cda/stds/core/StructureDefinition/ST"/>
+    <url value="http://hl7.org/cda/stds/core/StructureDefinition/ST|2.0.0-sd"/>
     <mode value="source"/>
     <alias value="ST"/>
   </structure>
   <structure>
-    <url value="http://hl7.org/fhir/StructureDefinition/string"/>
+    <url value="http://hl7.org/fhir/StructureDefinition/string|4.0.1"/>
     <mode value="target"/>
     <alias value="string"/>
   </structure>
   <structure>
-    <url value="http://hl7.org/cda/stds/core/StructureDefinition/EN"/>
+    <url value="http://hl7.org/cda/stds/core/StructureDefinition/EN|2.0.0-sd"/>
     <mode value="source"/>
     <alias value="EN"/>
   </structure>
   <structure>
-    <url value="http://hl7.org/fhir/StructureDefinition/HumanName"/>
+    <url value="http://hl7.org/fhir/StructureDefinition/HumanName|4.0.1"/>
     <mode value="target"/>
     <alias value="HumanName"/>
   </structure>
   <structure>
-    <url value="http://hl7.org/cda/stds/core/StructureDefinition/AD"/>
+    <url value="http://hl7.org/cda/stds/core/StructureDefinition/AD|2.0.0-sd"/>
     <mode value="source"/>
     <alias value="AD"/>
   </structure>
   <structure>
-    <url value="http://hl7.org/fhir/StructureDefinition/Address"/>
+    <url value="http://hl7.org/fhir/StructureDefinition/Address|4.0.1"/>
     <mode value="target"/>
     <alias value="Address"/>
   </structure>
   <structure>
-    <url value="http://hl7.org/cda/stds/core/StructureDefinition/TEL"/>
+    <url value="http://hl7.org/cda/stds/core/StructureDefinition/TEL|2.0.0-sd"/>
     <mode value="source"/>
     <alias value="TEL"/>
   </structure>
   <structure>
-    <url value="http://hl7.org/fhir/StructureDefinition/ContactPoint"/>
+    <url value="http://hl7.org/fhir/StructureDefinition/ContactPoint|4.0.1"/>
     <mode value="target"/>
     <alias value="ContactPoint"/>
   </structure>
   <structure>
-    <url value="http://hl7.org/cda/stds/core/StructureDefinition/BL"/>
+    <url value="http://hl7.org/cda/stds/core/StructureDefinition/BL|2.0.0-sd"/>
     <mode value="source"/>
     <alias value="BL"/>
   </structure>
   <structure>
-    <url value="http://hl7.org/fhir/StructureDefinition/boolean"/>
+    <url value="http://hl7.org/fhir/StructureDefinition/boolean|4.0.1"/>
     <mode value="target"/>
     <alias value="boolean"/>
   </structure>
   <structure>
-    <url value="http://hl7.org/cda/stds/core/StructureDefinition/IVL-TS"/>
+    <url value="http://hl7.org/cda/stds/core/StructureDefinition/IVL-TS|2.0.0-sd"/>
     <mode value="source"/>
     <alias value="IVL_TS"/>
   </structure>
   <structure>
-    <url value="http://hl7.org/fhir/StructureDefinition/Period"/>
+    <url value="http://hl7.org/fhir/StructureDefinition/Period|4.0.1"/>
     <mode value="target"/>
     <alias value="Period"/>
   </structure>

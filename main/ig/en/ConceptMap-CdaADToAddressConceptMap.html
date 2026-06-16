@@ -48,8 +48,8 @@
 	  <script src="assets/js/prism.js"></script>
     <script type="text/javascript" src="assets/js/mermaid.js"></script>
     <script type="text/javascript" src="assets/js/mermaid-init.js"></script>
-    <style type="text/css">h2{--heading-prefix:"6.7"}
-    h3,h4,h5,h6{--heading-prefix:"6.7"}</style>
+    <style type="text/css">h2{--heading-prefix:"7.7"}
+    h3,h4,h5,h6{--heading-prefix:"7.7"}</style>
     <div id="segment-header" class="segment">  <!-- segment-header -->
       <div class="container">  <!-- container -->
 
@@ -75,7 +75,7 @@
 
 
 
-  FRANCE
+  <img alt="France (la) flag" src="../assets/images/fra.svg" height="16" title="France (la)"/>
 
 
             </span>
@@ -148,6 +148,21 @@
             </div>  <!-- /.nav-collapse -->
 
               
+
+
+<div style="float: var(--ig-right);padding: 8px 0px;" id="language">
+  <div id="select_flg" class="flaglist" style="background-image: url(assets/images/icon_arrow_down.png);background-position: 133px 3px;">
+    <div><img class="flag" alt="flag en" src="assets/images/lang-en.png"/>English</div>
+  </div>
+  <div style="float: var(--ig-right); margin: 2px 0px; padding: 1px 0;color: var(--btn-text-color);font-size:12px">Language:</div>
+ 	<div id="flaglist" class="flaglist" style="display: none;position: absolute;right: 0;z-index: 100;background-image: url(assets/images/icon_arrow_up.png);background-position: 133px 3px;">
+    <div><img class="flag" alt="flag en" src="assets/images/lang-en.png"/>English</div>
+
+    <div><a href="../fr/ConceptMap-CdaADToAddressConceptMap.html"><img class="flag" src="assets/images/lang-fr.png" alt="flag fr"/>Français</a></div>
+
+  </div>
+</div>
+
 
           </div>  <!-- /.container -->
         </nav>  <!-- /.navbar -->
@@ -264,7 +279,7 @@
           
 
             as of 
-2026-06-10
+2026-06-16
 
           
         
@@ -299,7 +314,7 @@
   
 
 
-  <div data-fhir="generated"><p class="res-header-id"/><a name="CdaADToAddressConceptMap"> </a><a name="hcCdaADToAddressConceptMap"> </a><div style="display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%"><p style="margin-bottom: 0px">Language: en</p></div><p>Mapping from (not specified) to (not specified)</p><br/><p><b>Group 1 </b>Mapping from <a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html">AD: PostalAddress (V3 Data Type)</a> to <a href="http://hl7.org/fhir/R4/datatypes.html#Address">Address</a></p><table class="grid"><tr><td><b>Source Code</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Relationship</b></td><td><b>Target Code</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Comment</b></td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.country">AD.item.country</a></td><td>0..1</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Address#Address.country">Address.country</a></td><td>0..1</td><td>todo</td><td>Le composant country de l’adresse CDA alimente directement Address.country.</td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.state">AD.item.state</a></td><td>0..1</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Address#Address.state">Address.state</a></td><td>0..1</td><td>todo</td><td>Le composant state de l’adresse CDA alimente directement Address.state.</td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.county">AD.item.county</a></td><td>0..1</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto" title="relatedto">is related to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Address#Address.district">Address.district</a></td><td>0..1</td><td>todo</td><td>Le composant county de CDA est rapproché de Address.district dans FHIR.</td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.city">AD.item.city</a></td><td>0..1</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Address#Address.city">Address.city</a></td><td>0..1</td><td>todo</td><td>Le composant city de l’adresse CDA alimente directement Address.city.</td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.postalCode">AD.item.postalCode</a></td><td>0..1</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Address#Address.postalCode">Address.postalCode</a></td><td>0..1</td><td>todo</td><td>Le code postal CDA alimente directement Address.postalCode.</td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.streetAddressLine">AD.item.streetAddressLine</a></td><td>0..1</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Address#Address.line">Address.line</a></td><td>0..*</td><td>todo</td><td>Chaque streetAddressLine CDA alimente une ligne d’adresse FHIR.</td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.streetName">AD.item.streetName</a></td><td>0..1</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td colspan="3">Address.line.extension[iso21090-ADXP-streetName].valueString</td><td>Le nom de rue CDA alimente la valeur de l’extension officielle HL7 iso21090-ADXP-streetName portée par Address.line.</td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.item.houseNumber">AD.item.houseNumber</a></td><td>0..1</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td colspan="3">Address.line.extension[iso21090-ADXP-houseNumber].valueString</td><td>Le numéro de voie CDA alimente la valeur de l’extension officielle HL7 iso21090-ADXP-houseNumber portée par Address.line.</td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#AD.useablePeriod">AD.useablePeriod</a></td><td>0..*</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto" title="relatedto">is related to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Address#Address.period">Address.period</a></td><td>0..1</td><td>todo</td><td>La période d’utilisation de l’adresse CDA alimente Address.period.</td></tr></table></div>
+  <div data-fhir="generated"><p class="res-header-id"/><a name="CdaADToAddressConceptMap"> </a><a name="hcCdaADToAddressConceptMap"> </a><div style="display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%"><p style="margin-bottom: 0px">Language: en</p></div><p>This mapping does not specify any particular context of use.</p><br/><p>Mapping from <a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html">AD: PostalAddress (V3 Data Type)</a> to <a href="http://hl7.org/fhir/R4/datatypes.html#Address">Address</a></p><table class="grid"><tr><td><b>Source Code</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Relationship</b></td><td><b>Target Code</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Comment</b></td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#s-AD.item.country">AD.item.country</a></td><td>0..1</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Address#s-Address.country">Address.country</a></td><td>0..1</td><td>todo</td><td>Le composant country de l’adresse CDA alimente directement Address.country.</td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#s-AD.item.state">AD.item.state</a></td><td>0..1</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Address#s-Address.state">Address.state</a></td><td>0..1</td><td>todo</td><td>Le composant state de l’adresse CDA alimente directement Address.state.</td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#s-AD.item.county">AD.item.county</a></td><td>0..1</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto" title="relatedto">is related to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Address#s-Address.district">Address.district</a></td><td>0..1</td><td>todo</td><td>Le composant county de CDA est rapproché de Address.district dans FHIR.</td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#s-AD.item.city">AD.item.city</a></td><td>0..1</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Address#s-Address.city">Address.city</a></td><td>0..1</td><td>todo</td><td>Le composant city de l’adresse CDA alimente directement Address.city.</td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#s-AD.item.postalCode">AD.item.postalCode</a></td><td>0..1</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Address#s-Address.postalCode">Address.postalCode</a></td><td>0..1</td><td>todo</td><td>Le code postal CDA alimente directement Address.postalCode.</td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#s-AD.item.streetAddressLine">AD.item.streetAddressLine</a></td><td>0..1</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Address#s-Address.line">Address.line</a></td><td>0..*</td><td>todo</td><td>Chaque streetAddressLine CDA alimente une ligne d’adresse FHIR.</td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#s-AD.item.streetName">AD.item.streetName</a></td><td>0..1</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td colspan="3">Address.line.extension[iso21090-ADXP-streetName].valueString</td><td>Le nom de rue CDA alimente la valeur de l’extension officielle HL7 iso21090-ADXP-streetName portée par Address.line.</td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#s-AD.item.houseNumber">AD.item.houseNumber</a></td><td>0..1</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td colspan="3">Address.line.extension[iso21090-ADXP-houseNumber].valueString</td><td>Le numéro de voie CDA alimente la valeur de l’extension officielle HL7 iso21090-ADXP-houseNumber portée par Address.line.</td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html#s-AD.useablePeriod">AD.useablePeriod</a></td><td>0..*</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto" title="relatedto">is related to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Address#s-Address.period">Address.period</a></td><td>0..1</td><td>todo</td><td>La période d’utilisation de l’adresse CDA alimente Address.period.</td></tr></table></div>
 
   <!-- insert notes if present -->
   
@@ -354,8 +369,8 @@
           IG © 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d&#39;Oradour-sur-Glane, 75015 Paris</a>.  
           Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>.
           Generated 
-  <span title="2026-06-10 08:52:00 +0000">
-    2026-06-10
+  <span title="2026-06-16 12:17:00 +0000">
+    2026-06-16
   </span>
 
           <br/>

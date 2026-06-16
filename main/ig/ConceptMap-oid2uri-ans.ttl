@@ -11,12 +11,9 @@
   fhir:id [ fhir:v "oid2uri-ans"] ; # 
   fhir:text [
      fhir:status [ fhir:v "generated" ] ;
-     fhir:div [ fhir:v "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: ConceptMap oid2uri-ans</b></p><a name=\"oid2uri-ans\"> </a><a name=\"hcoid2uri-ans\"> </a><p>Mapping from (not specified) to (not specified)</p><br/><p><b>Group 1 </b>Mapping from <code>urn:oid:</code> to <a href=\"http://hl7.org/fhir/R4/datatypes.html#uri\">uri</a></p><table class=\"grid\"><tr><td><b>Source Code</b></td><td><b>Relationship</b></td><td><b>Target Code</b></td></tr><tr><td>1.2.250.1.213.1.1.4.5</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td>https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale</td></tr></table></div>"^^rdf:XMLLiteral ]
+     fhir:div [ fhir:v "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div xml:lang=\"fr\" lang=\"fr\"><hr/><p><b>French</b></p><hr/><p class=\"res-header-id\"><b>Narratif généré : CarteDeConcepts oid2uri-ans</b></p><a name=\"oid2uri-ans\"> </a><a name=\"hcoid2uri-ans\"> </a><p>This mapping does not specify any particular context of use.</p><br/><p>Mapping de <code>urn:oid:</code> to <code>uri|4.0.1</code></p><table class=\"grid\"><tr><td><b>Code source</b></td><td><b>relation</b></td><td><b>Code cible</b></td></tr><tr><td>1.2.250.1.213.1.1.4.5</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td>https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale</td></tr></table></div><div xml:lang=\"en\" lang=\"en\"><hr/><p><b>English</b></p><hr/><p class=\"res-header-id\"><b>Generated Narrative: ConceptMap oid2uri-ans</b></p><a name=\"en-oid2uri-ans\"> </a><a name=\"en-hcoid2uri-ans\"> </a><p>This mapping does not specify any particular context of use.</p><br/><p>Mapping from <code>urn:oid:</code> to <code>uri|4.0.1</code></p><table class=\"grid\"><tr><td><b>Source Code</b></td><td><b>Relationship</b></td><td><b>Target Code</b></td></tr><tr><td>1.2.250.1.213.1.1.4.5</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td>https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale</td></tr></table></div></div>"^^rdf:XMLLiteral ]
   ] ; # 
-  fhir:url [
-     fhir:v "http://hl7.org/fhir/ConceptMap/special-oid2uri"^^xsd:anyURI ;
-     fhir:l <http://hl7.org/fhir/ConceptMap/special-oid2uri>
-  ] ; # 
+  fhir:url [ fhir:v "http://hl7.org/fhir/ConceptMap/special-oid2uri"^^xsd:anyURI] ; # 
   fhir:version [ fhir:v "0.1.0"] ; # 
   fhir:name [ fhir:v "OID2URIConceptMapANS"] ; # 
   fhir:title [ fhir:v "OID to URI Mapping for ANS terminologies"] ; # 
@@ -34,23 +31,15 @@
   fhir:description [ fhir:v "Mapping from OID to URI for ANS terminologies"] ; # 
   fhir:jurisdiction ( [
      fhir:coding ( [
-       fhir:system [
-         fhir:v "urn:iso:std:iso:3166"^^xsd:anyURI ;
-         fhir:l <urn:iso:std:iso:3166>
-       ] ;
+       fhir:system [ fhir:v "urn:iso:std:iso:3166"^^xsd:anyURI ] ;
        fhir:code [ fhir:v "FR" ] ;
-       fhir:display [ fhir:v "FRANCE" ]
+       fhir:display [ fhir:v "France (la)" ]
      ] )
   ] ) ; # 
   fhir:group ( [
-     fhir:source [
-       fhir:v "urn:oid:"^^xsd:anyURI ;
-       fhir:l <urn:oid:>
-     ] ;
-     fhir:target [
-       fhir:v "uri"^^xsd:anyURI ;
-       fhir:l fhir:uri
-     ] ;
+     fhir:source [ fhir:v "urn:oid:"^^xsd:anyURI ] ;
+     fhir:target [ fhir:v "uri"^^xsd:anyURI ] ;
+     fhir:targetVersion [ fhir:v "4.0.1" ] ;
      fhir:element ( [
        fhir:code [ fhir:v "1.2.250.1.213.1.1.4.5" ] ;
        fhir:target ( [

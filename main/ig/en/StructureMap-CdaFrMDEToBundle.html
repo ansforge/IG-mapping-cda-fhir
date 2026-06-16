@@ -48,8 +48,8 @@
 	  <script src="assets/js/prism.js"></script>
     <script type="text/javascript" src="assets/js/mermaid.js"></script>
     <script type="text/javascript" src="assets/js/mermaid-init.js"></script>
-    <style type="text/css">h2{--heading-prefix:"6.1"}
-    h3,h4,h5,h6{--heading-prefix:"6.1"}</style>
+    <style type="text/css">h2{--heading-prefix:"7.1"}
+    h3,h4,h5,h6{--heading-prefix:"7.1"}</style>
     <div id="segment-header" class="segment">  <!-- segment-header -->
       <div class="container">  <!-- container -->
 
@@ -75,7 +75,7 @@
 
 
 
-  FRANCE
+  <img alt="France (la) flag" src="../assets/images/fra.svg" height="16" title="France (la)"/>
 
 
             </span>
@@ -148,6 +148,21 @@
             </div>  <!-- /.nav-collapse -->
 
               
+
+
+<div style="float: var(--ig-right);padding: 8px 0px;" id="language">
+  <div id="select_flg" class="flaglist" style="background-image: url(assets/images/icon_arrow_down.png);background-position: 133px 3px;">
+    <div><img class="flag" alt="flag en" src="assets/images/lang-en.png"/>English</div>
+  </div>
+  <div style="float: var(--ig-right); margin: 2px 0px; padding: 1px 0;color: var(--btn-text-color);font-size:12px">Language:</div>
+ 	<div id="flaglist" class="flaglist" style="display: none;position: absolute;right: 0;z-index: 100;background-image: url(assets/images/icon_arrow_up.png);background-position: 133px 3px;">
+    <div><img class="flag" alt="flag en" src="assets/images/lang-en.png"/>English</div>
+
+    <div><a href="../fr/StructureMap-CdaFrMDEToBundle.html"><img class="flag" src="assets/images/lang-fr.png" alt="flag fr"/>Français</a></div>
+
+  </div>
+</div>
+
 
           </div>  <!-- /.container -->
         </nav>  <!-- /.navbar -->
@@ -264,7 +279,7 @@
           
 
             as of 
-2026-06-10
+2026-06-16
 
           
         
@@ -304,11 +319,11 @@
 
 </span><span style="color: navy">// </span><span style="color: green">Mapping CSE-MDE vers FHIR Bundle - Contexte Français</span>
 
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ClinicalDocument.html" title="ClinicalDocument (CDA Class)">http://hl7.org/cda/stds/core/StructureDefinition/ClinicalDocument</a><span style="color: navy">&quot; </span><b>alias </b>ClinicalDocument <b>as </b><b>source</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/bundle.html" title="Bundle">http://hl7.org/fhir/StructureDefinition/Bundle</a><span style="color: navy">&quot; </span><b>alias </b>Bundle <b>as </b><b>target</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/composition.html" title="Composition">http://hl7.org/fhir/StructureDefinition/Composition</a><span style="color: navy">&quot; </span><b>alias </b>Composition <b>as </b><b>target</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/patient.html" title="Patient">http://hl7.org/fhir/StructureDefinition/Patient</a><span style="color: navy">&quot; </span><b>alias </b>Patient <b>as </b><b>target</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/observation.html" title="Observation">http://hl7.org/fhir/StructureDefinition/Observation</a><span style="color: navy">&quot; </span><b>alias </b>Observation <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ClinicalDocument.html" title="ClinicalDocument (CDA Class)">http://hl7.org/cda/stds/core/StructureDefinition/ClinicalDocument|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>ClinicalDocument <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/bundle.html" title="Bundle">http://hl7.org/fhir/StructureDefinition/Bundle|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>Bundle <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/composition.html" title="Composition">http://hl7.org/fhir/StructureDefinition/Composition|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>Composition <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/patient.html" title="Patient">http://hl7.org/fhir/StructureDefinition/Patient|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>Patient <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/observation.html" title="Observation">http://hl7.org/fhir/StructureDefinition/Observation|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>Observation <b>as </b><b>target</b>
 
 <b>imports</b><span style="color: navy"> &quot;</span><a href="StructureMap-CdaToFHIRTypes.html" title="Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)">https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes</a><span style="color: navy">&quot;
 </span><b>imports</b><span style="color: navy"> &quot;</span><a href="StructureMap-CdaToBundle.html" title="Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)">https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle</a><span style="color: navy">&quot;
@@ -450,8 +465,8 @@
           IG © 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d&#39;Oradour-sur-Glane, 75015 Paris</a>.  
           Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>.
           Generated 
-  <span title="2026-06-10 08:52:00 +0000">
-    2026-06-10
+  <span title="2026-06-16 12:17:00 +0000">
+    2026-06-16
   </span>
 
           <br/>

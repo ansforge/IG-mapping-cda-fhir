@@ -2,6 +2,9 @@
 
 ## Historique des versions
 
+ 
+There is no translation page available for the current page, so it has been rendered in the default language 
+
 ### version xxx
 
 **Release xxx de l'Implementation Guide FHIR xxx.**

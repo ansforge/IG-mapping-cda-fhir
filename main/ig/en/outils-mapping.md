@@ -2,6 +2,9 @@
 
 ## Outils de Mapping
 
+ 
+There is no translation page available for the current page, so it has been rendered in the default language 
+
 **Note :** Les méthodes et outils de mapping présentés ci‑dessous sont fournis à titre informatif. Ils illustrent différentes approches identifiées sans pour autant avoir été toutes testées dans le cadre de ce guide d'implémentation.
 
 La transformation de documents CDA vers des ressources FHIR peut s’appuyer sur différentes méthodes. Les exemples présentés ci‑après illustrent quelques‑unes des solutions existantes : ils ne couvrent pas l’ensemble des possibilités, mais montrent la diversité des approches disponibles.

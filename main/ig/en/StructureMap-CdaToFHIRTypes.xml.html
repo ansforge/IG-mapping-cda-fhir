@@ -50,8 +50,8 @@
 	  <script src="assets/js/prism.js"></script>
     <script type="text/javascript" src="assets/js/mermaid.js"></script>
     <script type="text/javascript" src="assets/js/mermaid-init.js"></script>
-    <style type="text/css">h2{--heading-prefix:"6.3"}
-    h3,h4,h5,h6{--heading-prefix:"6.3"}</style>
+    <style type="text/css">h2{--heading-prefix:"7.3"}
+    h3,h4,h5,h6{--heading-prefix:"7.3"}</style>
     <div id="segment-header" class="segment">  <!-- segment-header -->
       <div class="container">  <!-- container -->
 
@@ -77,7 +77,7 @@
 
 
 
-  FRANCE
+  <img alt="France (la) flag" src="../assets/images/fra.svg" height="16" title="France (la)"/>
 
 
             </span>
@@ -150,6 +150,21 @@
             </div>  <!-- /.nav-collapse -->
 
               
+
+
+<div style="float: var(--ig-right);padding: 8px 0px;" id="language">
+  <div id="select_flg" class="flaglist" style="background-image: url(assets/images/icon_arrow_down.png);background-position: 133px 3px;">
+    <div><img class="flag" alt="flag en" src="assets/images/lang-en.png"/>English</div>
+  </div>
+  <div style="float: var(--ig-right); margin: 2px 0px; padding: 1px 0;color: var(--btn-text-color);font-size:12px">Language:</div>
+ 	<div id="flaglist" class="flaglist" style="display: none;position: absolute;right: 0;z-index: 100;background-image: url(assets/images/icon_arrow_up.png);background-position: 133px 3px;">
+    <div><img class="flag" alt="flag en" src="assets/images/lang-en.png"/>English</div>
+
+    <div><a href="../fr/StructureMap-CdaToFHIRTypes.xml.html"><img class="flag" src="assets/images/lang-fr.png" alt="flag fr"/>Français</a></div>
+
+  </div>
+</div>
+
 
           </div>  <!-- /.container -->
         </nav>  <!-- /.navbar -->
@@ -244,7 +259,7 @@
           
 
             as of 
-2026-06-10
+2026-06-16
 
           
         
@@ -267,33 +282,33 @@
   &lt;<a href="http://hl7.org/fhir/R4/resource.html#StructureMap.language">language</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;en&quot;/&gt;
   &lt;<a href="http://hl7.org/fhir/R4/domainresource.html#StructureMap.text">text</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#Narrative#Narrative.status">status</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;generated&quot;/&gt;
-    &lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;p class=&quot;res-header-id&quot;&gt;&lt;b&gt;Generated Narrative: StructureMap CdaToFHIRTypes&lt;/b&gt;&lt;/p&gt;&lt;a name=&quot;CdaToFHIRTypes&quot;&gt; &lt;/a&gt;&lt;a name=&quot;hcCdaToFHIRTypes&quot;&gt; &lt;/a&gt;&lt;pre class=&quot;fml&quot;&gt;
+    &lt;div xml:lang=&quot;en&quot; lang=&quot;en&quot;&gt;&lt;hr/&gt;&lt;p&gt;&lt;b&gt;English&lt;/b&gt;&lt;/p&gt;&lt;hr/&gt;&lt;p class=&quot;res-header-id&quot;&gt;&lt;b&gt;Generated Narrative: StructureMap CdaToFHIRTypes&lt;/b&gt;&lt;/p&gt;&lt;a name=&quot;en-CdaToFHIRTypes&quot;&gt; &lt;/a&gt;&lt;a name=&quot;en-hcCdaToFHIRTypes&quot;&gt; &lt;/a&gt;&lt;pre class=&quot;fml&quot;&gt;
 &lt;b&gt;map&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; = &amp;quot;&lt;/span&gt;CdaToFHIRTypes&lt;span style=&quot;color: navy&quot;&gt;&amp;quot;
 
 &lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)&lt;/span&gt;
 
-&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ED.html&quot; title=&quot;ED: EncapsulatedData (V3 Data Type)&quot;&gt;http://hl7.org/cda/stds/core/StructureDefinition/ED&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;ED &lt;b&gt;as &lt;/b&gt;&lt;b&gt;source&lt;/b&gt;
-&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-PN.html&quot; title=&quot;PN: PersonName (V3 Data Type)&quot;&gt;http://hl7.org/cda/stds/core/StructureDefinition/PN&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;PN &lt;b&gt;as &lt;/b&gt;&lt;b&gt;source&lt;/b&gt;
-&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html&quot; title=&quot;II: InstanceIdentifier (V3 Data Type)&quot;&gt;http://hl7.org/cda/stds/core/StructureDefinition/II&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;II &lt;b&gt;as &lt;/b&gt;&lt;b&gt;source&lt;/b&gt;
-&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/fhir/R4/datatypes.html#Identifier&quot; title=&quot;Identifier&quot;&gt;http://hl7.org/fhir/StructureDefinition/Identifier&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;Identifier &lt;b&gt;as &lt;/b&gt;&lt;b&gt;target&lt;/b&gt;
-&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TS.html&quot; title=&quot;TS: PointInTime (V3 Data Type)&quot;&gt;http://hl7.org/cda/stds/core/StructureDefinition/TS&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;TS &lt;b&gt;as &lt;/b&gt;&lt;b&gt;source&lt;/b&gt;
-&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/fhir/R4/datatypes.html#instant&quot; title=&quot;instant&quot;&gt;http://hl7.org/fhir/StructureDefinition/instant&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;instant &lt;b&gt;as &lt;/b&gt;&lt;b&gt;target&lt;/b&gt;
-&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CS.html&quot; title=&quot;CS: CodedSimpleValue (V3 Data Type)&quot;&gt;http://hl7.org/cda/stds/core/StructureDefinition/CS&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;CS &lt;b&gt;as &lt;/b&gt;&lt;b&gt;source&lt;/b&gt;
-&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/fhir/R4/datatypes.html#code&quot; title=&quot;code&quot;&gt;http://hl7.org/fhir/StructureDefinition/code&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;code &lt;b&gt;as &lt;/b&gt;&lt;b&gt;target&lt;/b&gt;
-&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CE.html&quot; title=&quot;CE: CodedWithEquivalents (V3 Data Type)&quot;&gt;http://hl7.org/cda/stds/core/StructureDefinition/CE&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;CE &lt;b&gt;as &lt;/b&gt;&lt;b&gt;source&lt;/b&gt;
-&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/fhir/R4/datatypes.html#CodeableConcept&quot; title=&quot;CodeableConcept&quot;&gt;http://hl7.org/fhir/StructureDefinition/CodeableConcept&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;CodeableConcept &lt;b&gt;as &lt;/b&gt;&lt;b&gt;target&lt;/b&gt;
-&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html&quot; title=&quot;ST: CharacterString (V3 Data Type)&quot;&gt;http://hl7.org/cda/stds/core/StructureDefinition/ST&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;ST &lt;b&gt;as &lt;/b&gt;&lt;b&gt;source&lt;/b&gt;
-&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/fhir/R4/datatypes.html#string&quot; title=&quot;string&quot;&gt;http://hl7.org/fhir/StructureDefinition/string&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;string &lt;b&gt;as &lt;/b&gt;&lt;b&gt;target&lt;/b&gt;
-&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html&quot; title=&quot;EN: EntityName (V3 Data Type)&quot;&gt;http://hl7.org/cda/stds/core/StructureDefinition/EN&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;EN &lt;b&gt;as &lt;/b&gt;&lt;b&gt;source&lt;/b&gt;
-&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/fhir/R4/datatypes.html#HumanName&quot; title=&quot;HumanName&quot;&gt;http://hl7.org/fhir/StructureDefinition/HumanName&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;HumanName &lt;b&gt;as &lt;/b&gt;&lt;b&gt;target&lt;/b&gt;
-&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html&quot; title=&quot;AD: PostalAddress (V3 Data Type)&quot;&gt;http://hl7.org/cda/stds/core/StructureDefinition/AD&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;AD &lt;b&gt;as &lt;/b&gt;&lt;b&gt;source&lt;/b&gt;
-&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/fhir/R4/datatypes.html#Address&quot; title=&quot;Address&quot;&gt;http://hl7.org/fhir/StructureDefinition/Address&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;Address &lt;b&gt;as &lt;/b&gt;&lt;b&gt;target&lt;/b&gt;
-&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html&quot; title=&quot;TEL: TelecommunicationAddress (V3 Data Type)&quot;&gt;http://hl7.org/cda/stds/core/StructureDefinition/TEL&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;TEL &lt;b&gt;as &lt;/b&gt;&lt;b&gt;source&lt;/b&gt;
-&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/fhir/R4/datatypes.html#ContactPoint&quot; title=&quot;ContactPoint&quot;&gt;http://hl7.org/fhir/StructureDefinition/ContactPoint&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;ContactPoint &lt;b&gt;as &lt;/b&gt;&lt;b&gt;target&lt;/b&gt;
-&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-BL.html&quot; title=&quot;BL: Boolean (V3 Data Type)&quot;&gt;http://hl7.org/cda/stds/core/StructureDefinition/BL&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;BL &lt;b&gt;as &lt;/b&gt;&lt;b&gt;source&lt;/b&gt;
-&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/fhir/R4/datatypes.html#boolean&quot; title=&quot;boolean&quot;&gt;http://hl7.org/fhir/StructureDefinition/boolean&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;boolean &lt;b&gt;as &lt;/b&gt;&lt;b&gt;target&lt;/b&gt;
-&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-IVL-TS.html&quot; title=&quot;IVL_TS: Interval (V3 Data Type)&quot;&gt;http://hl7.org/cda/stds/core/StructureDefinition/IVL-TS&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;IVL_TS &lt;b&gt;as &lt;/b&gt;&lt;b&gt;source&lt;/b&gt;
-&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/fhir/R4/datatypes.html#Period&quot; title=&quot;Period&quot;&gt;http://hl7.org/fhir/StructureDefinition/Period&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;Period &lt;b&gt;as &lt;/b&gt;&lt;b&gt;target&lt;/b&gt;
+&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ED.html&quot; title=&quot;ED: EncapsulatedData (V3 Data Type)&quot;&gt;http://hl7.org/cda/stds/core/StructureDefinition/ED|2.0.0-sd&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;ED &lt;b&gt;as &lt;/b&gt;&lt;b&gt;source&lt;/b&gt;
+&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-PN.html&quot; title=&quot;PN: PersonName (V3 Data Type)&quot;&gt;http://hl7.org/cda/stds/core/StructureDefinition/PN|2.0.0-sd&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;PN &lt;b&gt;as &lt;/b&gt;&lt;b&gt;source&lt;/b&gt;
+&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html&quot; title=&quot;II: InstanceIdentifier (V3 Data Type)&quot;&gt;http://hl7.org/cda/stds/core/StructureDefinition/II|2.0.0-sd&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;II &lt;b&gt;as &lt;/b&gt;&lt;b&gt;source&lt;/b&gt;
+&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/fhir/R4/datatypes.html#Identifier&quot; title=&quot;Identifier&quot;&gt;http://hl7.org/fhir/StructureDefinition/Identifier|4.0.1&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;Identifier &lt;b&gt;as &lt;/b&gt;&lt;b&gt;target&lt;/b&gt;
+&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TS.html&quot; title=&quot;TS: PointInTime (V3 Data Type)&quot;&gt;http://hl7.org/cda/stds/core/StructureDefinition/TS|2.0.0-sd&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;TS &lt;b&gt;as &lt;/b&gt;&lt;b&gt;source&lt;/b&gt;
+&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/fhir/R4/datatypes.html#instant&quot; title=&quot;instant&quot;&gt;http://hl7.org/fhir/StructureDefinition/instant|4.0.1&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;instant &lt;b&gt;as &lt;/b&gt;&lt;b&gt;target&lt;/b&gt;
+&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CS.html&quot; title=&quot;CS: CodedSimpleValue (V3 Data Type)&quot;&gt;http://hl7.org/cda/stds/core/StructureDefinition/CS|2.0.0-sd&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;CS &lt;b&gt;as &lt;/b&gt;&lt;b&gt;source&lt;/b&gt;
+&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/fhir/R4/datatypes.html#code&quot; title=&quot;code&quot;&gt;http://hl7.org/fhir/StructureDefinition/code|4.0.1&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;code &lt;b&gt;as &lt;/b&gt;&lt;b&gt;target&lt;/b&gt;
+&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CE.html&quot; title=&quot;CE: CodedWithEquivalents (V3 Data Type)&quot;&gt;http://hl7.org/cda/stds/core/StructureDefinition/CE|2.0.0-sd&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;CE &lt;b&gt;as &lt;/b&gt;&lt;b&gt;source&lt;/b&gt;
+&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/fhir/R4/datatypes.html#CodeableConcept&quot; title=&quot;CodeableConcept&quot;&gt;http://hl7.org/fhir/StructureDefinition/CodeableConcept|4.0.1&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;CodeableConcept &lt;b&gt;as &lt;/b&gt;&lt;b&gt;target&lt;/b&gt;
+&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html&quot; title=&quot;ST: CharacterString (V3 Data Type)&quot;&gt;http://hl7.org/cda/stds/core/StructureDefinition/ST|2.0.0-sd&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;ST &lt;b&gt;as &lt;/b&gt;&lt;b&gt;source&lt;/b&gt;
+&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/fhir/R4/datatypes.html#string&quot; title=&quot;string&quot;&gt;http://hl7.org/fhir/StructureDefinition/string|4.0.1&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;string &lt;b&gt;as &lt;/b&gt;&lt;b&gt;target&lt;/b&gt;
+&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html&quot; title=&quot;EN: EntityName (V3 Data Type)&quot;&gt;http://hl7.org/cda/stds/core/StructureDefinition/EN|2.0.0-sd&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;EN &lt;b&gt;as &lt;/b&gt;&lt;b&gt;source&lt;/b&gt;
+&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/fhir/R4/datatypes.html#HumanName&quot; title=&quot;HumanName&quot;&gt;http://hl7.org/fhir/StructureDefinition/HumanName|4.0.1&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;HumanName &lt;b&gt;as &lt;/b&gt;&lt;b&gt;target&lt;/b&gt;
+&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html&quot; title=&quot;AD: PostalAddress (V3 Data Type)&quot;&gt;http://hl7.org/cda/stds/core/StructureDefinition/AD|2.0.0-sd&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;AD &lt;b&gt;as &lt;/b&gt;&lt;b&gt;source&lt;/b&gt;
+&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/fhir/R4/datatypes.html#Address&quot; title=&quot;Address&quot;&gt;http://hl7.org/fhir/StructureDefinition/Address|4.0.1&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;Address &lt;b&gt;as &lt;/b&gt;&lt;b&gt;target&lt;/b&gt;
+&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html&quot; title=&quot;TEL: TelecommunicationAddress (V3 Data Type)&quot;&gt;http://hl7.org/cda/stds/core/StructureDefinition/TEL|2.0.0-sd&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;TEL &lt;b&gt;as &lt;/b&gt;&lt;b&gt;source&lt;/b&gt;
+&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/fhir/R4/datatypes.html#ContactPoint&quot; title=&quot;ContactPoint&quot;&gt;http://hl7.org/fhir/StructureDefinition/ContactPoint|4.0.1&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;ContactPoint &lt;b&gt;as &lt;/b&gt;&lt;b&gt;target&lt;/b&gt;
+&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-BL.html&quot; title=&quot;BL: Boolean (V3 Data Type)&quot;&gt;http://hl7.org/cda/stds/core/StructureDefinition/BL|2.0.0-sd&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;BL &lt;b&gt;as &lt;/b&gt;&lt;b&gt;source&lt;/b&gt;
+&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/fhir/R4/datatypes.html#boolean&quot; title=&quot;boolean&quot;&gt;http://hl7.org/fhir/StructureDefinition/boolean|4.0.1&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;boolean &lt;b&gt;as &lt;/b&gt;&lt;b&gt;target&lt;/b&gt;
+&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-IVL-TS.html&quot; title=&quot;IVL_TS: Interval (V3 Data Type)&quot;&gt;http://hl7.org/cda/stds/core/StructureDefinition/IVL-TS|2.0.0-sd&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;IVL_TS &lt;b&gt;as &lt;/b&gt;&lt;b&gt;source&lt;/b&gt;
+&lt;b&gt;uses&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; &amp;quot;&lt;/span&gt;&lt;a href=&quot;http://hl7.org/fhir/R4/datatypes.html#Period&quot; title=&quot;Period&quot;&gt;http://hl7.org/fhir/StructureDefinition/Period|4.0.1&lt;/a&gt;&lt;span style=&quot;color: navy&quot;&gt;&amp;quot; &lt;/span&gt;&lt;b&gt;alias &lt;/b&gt;Period &lt;b&gt;as &lt;/b&gt;&lt;b&gt;target&lt;/b&gt;
 
 &lt;b&gt;group &lt;/b&gt;Any&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;src&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;tgt&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;  src&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt;tgt &lt;i&gt;&amp;quot;base&amp;quot;&lt;/i&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
@@ -466,7 +481,7 @@
   &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.title">title</a>
          <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)&quot;/&gt;
   &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.status">status</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;draft&quot;/&gt;
-  &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.date">date</a> <a href="http://hl7.org/fhir/R4/datatypes.html#dateTime">value</a>=&quot;2026-06-10T08:52:37+00:00&quot;/&gt;
+  &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.date">date</a> <a href="http://hl7.org/fhir/R4/datatypes.html#dateTime">value</a>=&quot;2026-06-16T12:17:05+00:00&quot;/&gt;
   &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.publisher">publisher</a>
              <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris&quot;/&gt;
   &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.contact">contact</a>&gt;
@@ -483,116 +498,129 @@
     &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#CodeableConcept#CodeableConcept.coding">coding</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a> <a href="http://hl7.org/fhir/R4/datatypes.html#uri">value</a>=&quot;urn:iso:std:iso:3166&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;FR&quot;/&gt;
-      &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;FRANCE&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;France (la)&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/datatypes.html#CodeableConcept#CodeableConcept.coding">coding</a>&gt;
   &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.jurisdiction">jurisdiction</a>&gt;
   &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
-    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a> <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/cda/stds/core/StructureDefinition/ED&quot;/&gt;
+    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a>
+         <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/cda/stds/core/StructureDefinition/ED|2.0.0-sd&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;source&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.alias">alias</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;ED&quot;/&gt;
   &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
   &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
-    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a> <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/cda/stds/core/StructureDefinition/PN&quot;/&gt;
+    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a>
+         <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/cda/stds/core/StructureDefinition/PN|2.0.0-sd&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;source&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.alias">alias</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;PN&quot;/&gt;
   &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
   &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
-    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a> <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/cda/stds/core/StructureDefinition/II&quot;/&gt;
+    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a>
+         <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/cda/stds/core/StructureDefinition/II|2.0.0-sd&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;source&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.alias">alias</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;II&quot;/&gt;
   &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
   &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
-    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a> <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/fhir/StructureDefinition/Identifier&quot;/&gt;
+    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a> <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/fhir/StructureDefinition/Identifier|4.0.1&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.alias">alias</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Identifier&quot;/&gt;
   &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
   &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
-    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a> <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/cda/stds/core/StructureDefinition/TS&quot;/&gt;
+    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a>
+         <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/cda/stds/core/StructureDefinition/TS|2.0.0-sd&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;source&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.alias">alias</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;TS&quot;/&gt;
   &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
   &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
-    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a> <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/fhir/StructureDefinition/instant&quot;/&gt;
+    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a> <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/fhir/StructureDefinition/instant|4.0.1&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.alias">alias</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;instant&quot;/&gt;
   &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
   &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
-    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a> <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/cda/stds/core/StructureDefinition/CS&quot;/&gt;
+    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a>
+         <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/cda/stds/core/StructureDefinition/CS|2.0.0-sd&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;source&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.alias">alias</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;CS&quot;/&gt;
   &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
   &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
-    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a> <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/fhir/StructureDefinition/code&quot;/&gt;
+    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a> <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/fhir/StructureDefinition/code|4.0.1&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.alias">alias</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;code&quot;/&gt;
   &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
   &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
-    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a> <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/cda/stds/core/StructureDefinition/CE&quot;/&gt;
+    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a>
+         <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/cda/stds/core/StructureDefinition/CE|2.0.0-sd&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;source&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.alias">alias</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;CE&quot;/&gt;
   &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
   &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
-    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a> <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/fhir/StructureDefinition/CodeableConcept&quot;/&gt;
+    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a>
+         <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/fhir/StructureDefinition/CodeableConcept|4.0.1&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.alias">alias</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;CodeableConcept&quot;/&gt;
   &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
   &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
-    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a> <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/cda/stds/core/StructureDefinition/ST&quot;/&gt;
+    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a>
+         <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/cda/stds/core/StructureDefinition/ST|2.0.0-sd&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;source&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.alias">alias</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;ST&quot;/&gt;
   &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
   &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
-    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a> <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/fhir/StructureDefinition/string&quot;/&gt;
+    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a> <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/fhir/StructureDefinition/string|4.0.1&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.alias">alias</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;string&quot;/&gt;
   &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
   &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
-    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a> <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/cda/stds/core/StructureDefinition/EN&quot;/&gt;
+    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a>
+         <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/cda/stds/core/StructureDefinition/EN|2.0.0-sd&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;source&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.alias">alias</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;EN&quot;/&gt;
   &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
   &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
-    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a> <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/fhir/StructureDefinition/HumanName&quot;/&gt;
+    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a> <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/fhir/StructureDefinition/HumanName|4.0.1&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.alias">alias</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;HumanName&quot;/&gt;
   &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
   &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
-    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a> <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/cda/stds/core/StructureDefinition/AD&quot;/&gt;
+    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a>
+         <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/cda/stds/core/StructureDefinition/AD|2.0.0-sd&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;source&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.alias">alias</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;AD&quot;/&gt;
   &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
   &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
-    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a> <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/fhir/StructureDefinition/Address&quot;/&gt;
+    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a> <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/fhir/StructureDefinition/Address|4.0.1&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.alias">alias</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Address&quot;/&gt;
   &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
   &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
-    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a> <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/cda/stds/core/StructureDefinition/TEL&quot;/&gt;
+    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a>
+         <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/cda/stds/core/StructureDefinition/TEL|2.0.0-sd&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;source&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.alias">alias</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;TEL&quot;/&gt;
   &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
   &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
-    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a> <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/fhir/StructureDefinition/ContactPoint&quot;/&gt;
+    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a> <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/fhir/StructureDefinition/ContactPoint|4.0.1&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.alias">alias</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;ContactPoint&quot;/&gt;
   &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
   &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
-    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a> <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/cda/stds/core/StructureDefinition/BL&quot;/&gt;
+    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a>
+         <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/cda/stds/core/StructureDefinition/BL|2.0.0-sd&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;source&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.alias">alias</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;BL&quot;/&gt;
   &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
   &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
-    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a> <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/fhir/StructureDefinition/boolean&quot;/&gt;
+    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a> <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/fhir/StructureDefinition/boolean|4.0.1&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.alias">alias</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;boolean&quot;/&gt;
   &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
   &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
-    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a> <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/cda/stds/core/StructureDefinition/IVL-TS&quot;/&gt;
+    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a>
+         <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/cda/stds/core/StructureDefinition/IVL-TS|2.0.0-sd&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;source&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.alias">alias</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;IVL_TS&quot;/&gt;
   &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
   &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
-    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a> <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/fhir/StructureDefinition/Period&quot;/&gt;
+    &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.url">url</a> <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/fhir/StructureDefinition/Period|4.0.1&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure.alias">alias</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Period&quot;/&gt;
   &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.structure">structure</a>&gt;
@@ -2292,8 +2320,8 @@
           IG © 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d&#39;Oradour-sur-Glane, 75015 Paris</a>.  
           Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>.
           Generated 
-  <span title="2026-06-10 08:52:00 +0000">
-    2026-06-10
+  <span title="2026-06-16 12:17:00 +0000">
+    2026-06-16
   </span>
 
           <br/>

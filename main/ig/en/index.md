@@ -2,6 +2,9 @@
 
 ## Accueil
 
+ 
+There is no translation page available for the current page, so it has been rendered in the default language 
+
  **FHIR Mapping Language for CDA to FHIR transformation**
  Proof of concept for CDA to FHIR transformation 
 
@@ -95,7 +98,7 @@ Le site officiel FHIR inclut, sur de nombreuses ressources et types de données,
 
 ### Propriété intellectuelle
 
-This publication includes IP covered under the following statements.
+Certaines ressources sémantiques de ce guide sont protégées par des droits de propriété intellectuelle couverte par les déclarations ci-dessous. L’utilisation de ces ressources est soumise à l’acceptation et au respect des conditions précisées dans la licence d’utilisation de chacune d’entre elle.
 
 * ISO maintains the copyright on the country codes, and controls its use carefully. For further details see the ISO 3166 web page: [https://www.iso.org/iso-3166-country-codes.html](https://www.iso.org/iso-3166-country-codes.html)
 
@@ -105,5 +108,12 @@ This publication includes IP covered under the following statements.
 * The UCUM codes, UCUM table (regardless of format), and UCUM Specification are copyright 1999-2009, Regenstrief Institute, Inc. and the Unified Codes for Units of Measures (UCUM) Organization. All rights reserved. [https://ucum.org/trac/wiki/TermsOfUse](https://ucum.org/trac/wiki/TermsOfUse)
 
 * [Unified Code for Units of Measure (UCUM)](http://terminology.hl7.org/6.2.0/CodeSystem-v3-ucum.html): [Bundle/fe569e1f-32d4-4ba4-b5ad-88082bf5470a](Bundle-fe569e1f-32d4-4ba4-b5ad-88082bf5470a.md)
+
+
+* This material derives from the HL7 Terminology (THO). THO is copyright ©1989+ Health Level Seven International and is made available under the CC0 designation. For more licensing information see: [https://terminology.hl7.org/license.html](https://terminology.hl7.org/license.html)
+
+* [Observation Category Codes](http://terminology.hl7.org/7.2.0/CodeSystem-observation-category.html): [Bundle/fe569e1f-32d4-4ba4-b5ad-88082bf5470a](Bundle-fe569e1f-32d4-4ba4-b5ad-88082bf5470a.md)
+* [identifierType](http://terminology.hl7.org/7.2.0/CodeSystem-v2-0203.html): [Bundle/fe569e1f-32d4-4ba4-b5ad-88082bf5470a](Bundle-fe569e1f-32d4-4ba4-b5ad-88082bf5470a.md)
+* [ActCode](http://terminology.hl7.org/7.2.0/CodeSystem-v3-ActCode.html): [Bundle/fe569e1f-32d4-4ba4-b5ad-88082bf5470a](Bundle-fe569e1f-32d4-4ba4-b5ad-88082bf5470a.md)
 
 

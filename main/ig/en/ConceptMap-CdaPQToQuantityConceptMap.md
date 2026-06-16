@@ -19,7 +19,7 @@ Correspondances documentaires entre le datatype CDA PQ et le datatype FHIR Quant
   "title" : "ConceptMap — CDA PQ vers FHIR Quantity",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-06-10T08:52:37+00:00",
+  "date" : "2026-06-16T12:17:05+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -33,12 +33,14 @@ Correspondances documentaires entre le datatype CDA PQ et le datatype FHIR Quant
     "coding" : [{
       "system" : "urn:iso:std:iso:3166",
       "code" : "FR",
-      "display" : "FRANCE"
+      "display" : "France (la)"
     }]
   }],
   "group" : [{
     "source" : "http://hl7.org/cda/stds/core/StructureDefinition/PQ",
+    "sourceVersion" : "2.0.0-sd",
     "target" : "http://hl7.org/fhir/StructureDefinition/Quantity",
+    "targetVersion" : "4.0.1",
     "element" : [{
       "code" : "PQ.value",
       "display" : "PQ.value",

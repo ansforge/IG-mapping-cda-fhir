@@ -19,7 +19,7 @@ Correspondances documentaires entre le datatype CDA RTO_PQ_PQ et le datatype FHI
   "title" : "ConceptMap — CDA RTO_PQ_PQ vers FHIR Ratio",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-06-10T08:52:37+00:00",
+  "date" : "2026-06-16T12:17:05+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -33,12 +33,13 @@ Correspondances documentaires entre le datatype CDA RTO_PQ_PQ et le datatype FHI
     "coding" : [{
       "system" : "urn:iso:std:iso:3166",
       "code" : "FR",
-      "display" : "FRANCE"
+      "display" : "France (la)"
     }]
   }],
   "group" : [{
     "source" : "http://hl7.org/cda/stds/core/StructureDefinition/RTO_PQ_PQ",
     "target" : "http://hl7.org/fhir/StructureDefinition/Ratio",
+    "targetVersion" : "4.0.1",
     "element" : [{
       "code" : "RTO_PQ_PQ.numerator",
       "display" : "RTO_PQ_PQ.numerator",

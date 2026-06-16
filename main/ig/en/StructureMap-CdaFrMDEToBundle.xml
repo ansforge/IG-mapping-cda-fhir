@@ -4,16 +4,16 @@
   <id value="CdaFrMDEToBundle"/>
   <language value="en"/>
   <text>
-    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: StructureMap CdaFrMDEToBundle</b></p><a name="CdaFrMDEToBundle"> </a><a name="hcCdaFrMDEToBundle"> </a><pre class="fml">
+    <status value="generated"/><div xml:lang="en" lang="en"><hr/><p><b>English</b></p><hr/><p class="res-header-id"><b>Generated Narrative: StructureMap CdaFrMDEToBundle</b></p><a name="en-CdaFrMDEToBundle"> </a><a name="en-hcCdaFrMDEToBundle"> </a><pre class="fml">
 <b>map</b><span style="color: navy"> &quot;</span>https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrMDEToBundle<span style="color: navy">&quot; = &quot;</span>CdaFrMDEToBundle<span style="color: navy">&quot;
 
 </span><span style="color: navy">// </span><span style="color: green">Mapping CSE-MDE vers FHIR Bundle - Contexte Français</span>
 
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ClinicalDocument.html" title="ClinicalDocument (CDA Class)">http://hl7.org/cda/stds/core/StructureDefinition/ClinicalDocument</a><span style="color: navy">&quot; </span><b>alias </b>ClinicalDocument <b>as </b><b>source</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/bundle.html" title="Bundle">http://hl7.org/fhir/StructureDefinition/Bundle</a><span style="color: navy">&quot; </span><b>alias </b>Bundle <b>as </b><b>target</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/composition.html" title="Composition">http://hl7.org/fhir/StructureDefinition/Composition</a><span style="color: navy">&quot; </span><b>alias </b>Composition <b>as </b><b>target</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/patient.html" title="Patient">http://hl7.org/fhir/StructureDefinition/Patient</a><span style="color: navy">&quot; </span><b>alias </b>Patient <b>as </b><b>target</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/observation.html" title="Observation">http://hl7.org/fhir/StructureDefinition/Observation</a><span style="color: navy">&quot; </span><b>alias </b>Observation <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ClinicalDocument.html" title="ClinicalDocument (CDA Class)">http://hl7.org/cda/stds/core/StructureDefinition/ClinicalDocument|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>ClinicalDocument <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/bundle.html" title="Bundle">http://hl7.org/fhir/StructureDefinition/Bundle|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>Bundle <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/composition.html" title="Composition">http://hl7.org/fhir/StructureDefinition/Composition|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>Composition <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/patient.html" title="Patient">http://hl7.org/fhir/StructureDefinition/Patient|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>Patient <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/observation.html" title="Observation">http://hl7.org/fhir/StructureDefinition/Observation|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>Observation <b>as </b><b>target</b>
 
 <b>imports</b><span style="color: navy"> &quot;</span><a href="StructureMap-CdaToFHIRTypes.html" title="Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)">https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes</a><span style="color: navy">&quot;
 </span><b>imports</b><span style="color: navy"> &quot;</span><a href="StructureMap-CdaToBundle.html" title="Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)">https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle</a><span style="color: navy">&quot;
@@ -120,7 +120,7 @@
   <name value="CdaFrMDEToBundle"/>
   <title value="Mapping CSE-MDE vers FHIR Bundle - Contexte Français"/>
   <status value="draft"/>
-  <date value="2026-06-10T08:52:37+00:00"/>
+  <date value="2026-06-16T12:17:05+00:00"/>
   <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
   <contact>
     <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
@@ -134,31 +134,31 @@
     <coding>
       <system value="urn:iso:std:iso:3166"/>
       <code value="FR"/>
-      <display value="FRANCE"/>
+      <display value="France (la)"/>
     </coding>
   </jurisdiction>
   <structure>
-    <url value="http://hl7.org/cda/stds/core/StructureDefinition/ClinicalDocument"/>
+    <url value="http://hl7.org/cda/stds/core/StructureDefinition/ClinicalDocument|2.0.0-sd"/>
     <mode value="source"/>
     <alias value="ClinicalDocument"/>
   </structure>
   <structure>
-    <url value="http://hl7.org/fhir/StructureDefinition/Bundle"/>
+    <url value="http://hl7.org/fhir/StructureDefinition/Bundle|4.0.1"/>
     <mode value="target"/>
     <alias value="Bundle"/>
   </structure>
   <structure>
-    <url value="http://hl7.org/fhir/StructureDefinition/Composition"/>
+    <url value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
     <mode value="target"/>
     <alias value="Composition"/>
   </structure>
   <structure>
-    <url value="http://hl7.org/fhir/StructureDefinition/Patient"/>
+    <url value="http://hl7.org/fhir/StructureDefinition/Patient|4.0.1"/>
     <mode value="target"/>
     <alias value="Patient"/>
   </structure>
   <structure>
-    <url value="http://hl7.org/fhir/StructureDefinition/Observation"/>
+    <url value="http://hl7.org/fhir/StructureDefinition/Observation|4.0.1"/>
     <mode value="target"/>
     <alias value="Observation"/>
   </structure>

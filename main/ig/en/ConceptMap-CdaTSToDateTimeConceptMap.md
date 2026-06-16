@@ -19,7 +19,7 @@ Correspondances documentaires entre le datatype CDA TS et les types FHIR instant
   "title" : "ConceptMap — CDA TS vers FHIR instant, dateTime et date",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-06-10T08:52:37+00:00",
+  "date" : "2026-06-16T12:17:05+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -33,12 +33,14 @@ Correspondances documentaires entre le datatype CDA TS et les types FHIR instant
     "coding" : [{
       "system" : "urn:iso:std:iso:3166",
       "code" : "FR",
-      "display" : "FRANCE"
+      "display" : "France (la)"
     }]
   }],
   "group" : [{
     "source" : "http://hl7.org/cda/stds/core/StructureDefinition/TS",
+    "sourceVersion" : "2.0.0-sd",
     "target" : "http://hl7.org/fhir/StructureDefinition/instant",
+    "targetVersion" : "4.0.1",
     "element" : [{
       "code" : "TS.value",
       "display" : "TS.value",
@@ -52,7 +54,9 @@ Correspondances documentaires entre le datatype CDA TS et les types FHIR instant
   },
   {
     "source" : "http://hl7.org/cda/stds/core/StructureDefinition/TS",
+    "sourceVersion" : "2.0.0-sd",
     "target" : "http://hl7.org/fhir/StructureDefinition/dateTime",
+    "targetVersion" : "4.0.1",
     "element" : [{
       "code" : "TS.value",
       "display" : "TS.value",
@@ -66,7 +70,9 @@ Correspondances documentaires entre le datatype CDA TS et les types FHIR instant
   },
   {
     "source" : "http://hl7.org/cda/stds/core/StructureDefinition/TS",
+    "sourceVersion" : "2.0.0-sd",
     "target" : "http://hl7.org/fhir/StructureDefinition/date",
+    "targetVersion" : "4.0.1",
     "element" : [{
       "code" : "TS.value",
       "display" : "TS.value",

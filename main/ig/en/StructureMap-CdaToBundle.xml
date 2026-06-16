@@ -4,25 +4,25 @@
   <id value="CdaToBundle"/>
   <language value="en"/>
   <text>
-    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: StructureMap CdaToBundle</b></p><a name="CdaToBundle"> </a><a name="hcCdaToBundle"> </a><pre class="fml">
+    <status value="generated"/><div xml:lang="en" lang="en"><hr/><p><b>English</b></p><hr/><p class="res-header-id"><b>Generated Narrative: StructureMap CdaToBundle</b></p><a name="en-CdaToBundle"> </a><a name="en-hcCdaToBundle"> </a><pre class="fml">
 <b>map</b><span style="color: navy"> &quot;</span>https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle<span style="color: navy">&quot; = &quot;</span>CdaToBundle<span style="color: navy">&quot;
 
 </span><span style="color: navy">// </span><span style="color: green">Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)</span>
 
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ClinicalDocument.html" title="ClinicalDocument (CDA Class)">http://hl7.org/cda/stds/core/StructureDefinition/ClinicalDocument</a><span style="color: navy">&quot; </span><b>alias </b>ClinicalDocument <b>as </b><b>source</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AssignedAuthor.html" title="AssignedAuthor (CDA Class)">http://hl7.org/cda/stds/core/StructureDefinition/AssignedAuthor</a><span style="color: navy">&quot; </span><b>alias </b>AssignedAuthor <b>as </b><b>source</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AssignedEntity.html" title="AssignedEntity (CDA Class)">http://hl7.org/cda/stds/core/StructureDefinition/AssignedEntity</a><span style="color: navy">&quot; </span><b>alias </b>AssignedEntity <b>as </b><b>source</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CustodianOrganization.html" title="CustodianOrganization (CDA Class)">http://hl7.org/cda/stds/core/StructureDefinition/CustodianOrganization</a><span style="color: navy">&quot; </span><b>alias </b>CustodianOrganization <b>as </b><b>source</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Section.html" title="Section (CDA Class)">http://hl7.org/cda/stds/core/StructureDefinition/Section</a><span style="color: navy">&quot; </span><b>alias </b>Section <b>as </b><b>source</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-PatientRole.html" title="PatientRole (CDA Class)">http://hl7.org/cda/stds/core/StructureDefinition/PatientRole</a><span style="color: navy">&quot; </span><b>alias </b>PatientRole <b>as </b><b>source</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/bundle.html" title="Bundle">http://hl7.org/fhir/StructureDefinition/Bundle</a><span style="color: navy">&quot; </span><b>alias </b>Bundle <b>as </b><b>target</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/composition.html" title="Composition">http://hl7.org/fhir/StructureDefinition/Composition</a><span style="color: navy">&quot; </span><b>alias </b>Composition <b>as </b><b>target</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/patient.html" title="Patient">http://hl7.org/fhir/StructureDefinition/Patient</a><span style="color: navy">&quot; </span><b>alias </b>Patient <b>as </b><b>target</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/person.html" title="Person">http://hl7.org/fhir/StructureDefinition/Person</a><span style="color: navy">&quot; </span><b>alias </b>Person <b>as </b><b>target</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/practitioner.html" title="Practitioner">http://hl7.org/fhir/StructureDefinition/Practitioner</a><span style="color: navy">&quot; </span><b>alias </b>Practitioner <b>as </b><b>target</b>
-<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/organization.html" title="Organization">http://hl7.org/fhir/StructureDefinition/Organization</a><span style="color: navy">&quot; </span><b>alias </b>Organization <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ClinicalDocument.html" title="ClinicalDocument (CDA Class)">http://hl7.org/cda/stds/core/StructureDefinition/ClinicalDocument|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>ClinicalDocument <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AssignedAuthor.html" title="AssignedAuthor (CDA Class)">http://hl7.org/cda/stds/core/StructureDefinition/AssignedAuthor|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>AssignedAuthor <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AssignedEntity.html" title="AssignedEntity (CDA Class)">http://hl7.org/cda/stds/core/StructureDefinition/AssignedEntity|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>AssignedEntity <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CustodianOrganization.html" title="CustodianOrganization (CDA Class)">http://hl7.org/cda/stds/core/StructureDefinition/CustodianOrganization|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>CustodianOrganization <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-Section.html" title="Section (CDA Class)">http://hl7.org/cda/stds/core/StructureDefinition/Section|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>Section <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-PatientRole.html" title="PatientRole (CDA Class)">http://hl7.org/cda/stds/core/StructureDefinition/PatientRole|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>PatientRole <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/bundle.html" title="Bundle">http://hl7.org/fhir/StructureDefinition/Bundle|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>Bundle <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/composition.html" title="Composition">http://hl7.org/fhir/StructureDefinition/Composition|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>Composition <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/patient.html" title="Patient">http://hl7.org/fhir/StructureDefinition/Patient|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>Patient <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/person.html" title="Person">http://hl7.org/fhir/StructureDefinition/Person|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>Person <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/practitioner.html" title="Practitioner">http://hl7.org/fhir/StructureDefinition/Practitioner|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>Practitioner <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/organization.html" title="Organization">http://hl7.org/fhir/StructureDefinition/Organization|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>Organization <b>as </b><b>target</b>
 
-<b>imports</b><span style="color: navy"> &quot;</span><a href="StructureMap-CdaToFHIRTypes.html" title="Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)">https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes</a><span style="color: navy">&quot;
+<b>imports</b><span style="color: navy"> &quot;</span><a href="StructureMap-CdaToFHIRTypes.html" title="Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)">https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes|0.1.0</a><span style="color: navy">&quot;
 </span>
 <span style="color: navy">// </span><span style="color: green">_________________________ Document Level Template  _________________________</span>
 <b>group </b>CdaToBundle<span style="color: navy">(</span><b>source</b> <span style="color: maroon">cda</span><span style="color: navy"> : </span>ClinicalDocument, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle<span style="color: navy">)</span><span style="color: navy"> {
@@ -311,7 +311,7 @@
   <name value="CdaToBundle"/>
   <title value="Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)"/>
   <status value="draft"/>
-  <date value="2026-06-10T08:52:37+00:00"/>
+  <date value="2026-06-16T12:17:05+00:00"/>
   <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
   <contact>
     <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
@@ -325,70 +325,70 @@
     <coding>
       <system value="urn:iso:std:iso:3166"/>
       <code value="FR"/>
-      <display value="FRANCE"/>
+      <display value="France (la)"/>
     </coding>
   </jurisdiction>
   <structure>
-    <url value="http://hl7.org/cda/stds/core/StructureDefinition/ClinicalDocument"/>
+    <url value="http://hl7.org/cda/stds/core/StructureDefinition/ClinicalDocument|2.0.0-sd"/>
     <mode value="source"/>
     <alias value="ClinicalDocument"/>
   </structure>
   <structure>
-    <url value="http://hl7.org/cda/stds/core/StructureDefinition/AssignedAuthor"/>
+    <url value="http://hl7.org/cda/stds/core/StructureDefinition/AssignedAuthor|2.0.0-sd"/>
     <mode value="source"/>
     <alias value="AssignedAuthor"/>
   </structure>
   <structure>
-    <url value="http://hl7.org/cda/stds/core/StructureDefinition/AssignedEntity"/>
+    <url value="http://hl7.org/cda/stds/core/StructureDefinition/AssignedEntity|2.0.0-sd"/>
     <mode value="source"/>
     <alias value="AssignedEntity"/>
   </structure>
   <structure>
-    <url value="http://hl7.org/cda/stds/core/StructureDefinition/CustodianOrganization"/>
+    <url value="http://hl7.org/cda/stds/core/StructureDefinition/CustodianOrganization|2.0.0-sd"/>
     <mode value="source"/>
     <alias value="CustodianOrganization"/>
   </structure>
   <structure>
-    <url value="http://hl7.org/cda/stds/core/StructureDefinition/Section"/>
+    <url value="http://hl7.org/cda/stds/core/StructureDefinition/Section|2.0.0-sd"/>
     <mode value="source"/>
     <alias value="Section"/>
   </structure>
   <structure>
-    <url value="http://hl7.org/cda/stds/core/StructureDefinition/PatientRole"/>
+    <url value="http://hl7.org/cda/stds/core/StructureDefinition/PatientRole|2.0.0-sd"/>
     <mode value="source"/>
     <alias value="PatientRole"/>
   </structure>
   <structure>
-    <url value="http://hl7.org/fhir/StructureDefinition/Bundle"/>
+    <url value="http://hl7.org/fhir/StructureDefinition/Bundle|4.0.1"/>
     <mode value="target"/>
     <alias value="Bundle"/>
   </structure>
   <structure>
-    <url value="http://hl7.org/fhir/StructureDefinition/Composition"/>
+    <url value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
     <mode value="target"/>
     <alias value="Composition"/>
   </structure>
   <structure>
-    <url value="http://hl7.org/fhir/StructureDefinition/Patient"/>
+    <url value="http://hl7.org/fhir/StructureDefinition/Patient|4.0.1"/>
     <mode value="target"/>
     <alias value="Patient"/>
   </structure>
   <structure>
-    <url value="http://hl7.org/fhir/StructureDefinition/Person"/>
+    <url value="http://hl7.org/fhir/StructureDefinition/Person|4.0.1"/>
     <mode value="target"/>
     <alias value="Person"/>
   </structure>
   <structure>
-    <url value="http://hl7.org/fhir/StructureDefinition/Practitioner"/>
+    <url value="http://hl7.org/fhir/StructureDefinition/Practitioner|4.0.1"/>
     <mode value="target"/>
     <alias value="Practitioner"/>
   </structure>
   <structure>
-    <url value="http://hl7.org/fhir/StructureDefinition/Organization"/>
+    <url value="http://hl7.org/fhir/StructureDefinition/Organization|4.0.1"/>
     <mode value="target"/>
     <alias value="Organization"/>
   </structure>
-  <import value="https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes"/>
+  <import value="https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes|0.1.0"/>
   <group>
     <name value="CdaToBundle"/>
     <typeMode value="none"/>

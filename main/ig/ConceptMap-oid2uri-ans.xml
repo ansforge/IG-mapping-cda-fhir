@@ -3,7 +3,7 @@
 <ConceptMap xmlns="http://hl7.org/fhir">
   <id value="oid2uri-ans"/>
   <text>
-    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: ConceptMap oid2uri-ans</b></p><a name="oid2uri-ans"> </a><a name="hcoid2uri-ans"> </a><p>Mapping from (not specified) to (not specified)</p><br/><p><b>Group 1 </b>Mapping from <code>urn:oid:</code> to <a href="http://hl7.org/fhir/R4/datatypes.html#uri">uri</a></p><table class="grid"><tr><td><b>Source Code</b></td><td><b>Relationship</b></td><td><b>Target Code</b></td></tr><tr><td>1.2.250.1.213.1.1.4.5</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td>https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale</td></tr></table></div>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><div xml:lang="fr" lang="fr"><hr/><p><b>French</b></p><hr/><p class="res-header-id"><b>Narratif généré : CarteDeConcepts oid2uri-ans</b></p><a name="oid2uri-ans"> </a><a name="hcoid2uri-ans"> </a><p>This mapping does not specify any particular context of use.</p><br/><p>Mapping de <code>urn:oid:</code> to <code>uri|4.0.1</code></p><table class="grid"><tr><td><b>Code source</b></td><td><b>relation</b></td><td><b>Code cible</b></td></tr><tr><td>1.2.250.1.213.1.1.4.5</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td>https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale</td></tr></table></div><div xml:lang="en" lang="en"><hr/><p><b>English</b></p><hr/><p class="res-header-id"><b>Generated Narrative: ConceptMap oid2uri-ans</b></p><a name="en-oid2uri-ans"> </a><a name="en-hcoid2uri-ans"> </a><p>This mapping does not specify any particular context of use.</p><br/><p>Mapping from <code>urn:oid:</code> to <code>uri|4.0.1</code></p><table class="grid"><tr><td><b>Source Code</b></td><td><b>Relationship</b></td><td><b>Target Code</b></td></tr><tr><td>1.2.250.1.213.1.1.4.5</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td>https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale</td></tr></table></div></div>
   </text>
   <url value="http://hl7.org/fhir/ConceptMap/special-oid2uri"/>
   <version value="0.1.0"/>
@@ -25,12 +25,13 @@
     <coding>
       <system value="urn:iso:std:iso:3166"/>
       <code value="FR"/>
-      <display value="FRANCE"/>
+      <display value="France (la)"/>
     </coding>
   </jurisdiction>
   <group>
     <source value="urn:oid:"/>
     <target value="uri"/>
+    <targetVersion value="4.0.1"/>
     <element>
       <code value="1.2.250.1.213.1.1.4.5"/>
       <target>

@@ -19,7 +19,7 @@ Correspondances documentaires entre les datatypes CDA CE, CS et CD et les types 
   "title" : "ConceptMap — CDA CE/CS/CD vers FHIR code et CodeableConcept",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-06-10T08:52:37+00:00",
+  "date" : "2026-06-16T12:17:05+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -33,12 +33,14 @@ Correspondances documentaires entre les datatypes CDA CE, CS et CD et les types 
     "coding" : [{
       "system" : "urn:iso:std:iso:3166",
       "code" : "FR",
-      "display" : "FRANCE"
+      "display" : "France (la)"
     }]
   }],
   "group" : [{
     "source" : "http://hl7.org/cda/stds/core/StructureDefinition/CE",
+    "sourceVersion" : "2.0.0-sd",
     "target" : "http://hl7.org/fhir/StructureDefinition/code",
+    "targetVersion" : "4.0.1",
     "element" : [{
       "code" : "CE.code",
       "display" : "CE.code",
@@ -52,7 +54,9 @@ Correspondances documentaires entre les datatypes CDA CE, CS et CD et les types 
   },
   {
     "source" : "http://hl7.org/cda/stds/core/StructureDefinition/CE",
+    "sourceVersion" : "2.0.0-sd",
     "target" : "http://hl7.org/fhir/StructureDefinition/CodeableConcept",
+    "targetVersion" : "4.0.1",
     "element" : [{
       "code" : "CE.originalText",
       "display" : "CE.originalText",
@@ -106,7 +110,9 @@ Correspondances documentaires entre les datatypes CDA CE, CS et CD et les types 
   },
   {
     "source" : "http://hl7.org/cda/stds/core/StructureDefinition/CS",
+    "sourceVersion" : "2.0.0-sd",
     "target" : "http://hl7.org/fhir/StructureDefinition/code",
+    "targetVersion" : "4.0.1",
     "element" : [{
       "code" : "CS.code",
       "display" : "CS.code",
@@ -120,7 +126,9 @@ Correspondances documentaires entre les datatypes CDA CE, CS et CD et les types 
   },
   {
     "source" : "http://hl7.org/cda/stds/core/StructureDefinition/CS",
+    "sourceVersion" : "2.0.0-sd",
     "target" : "http://hl7.org/fhir/StructureDefinition/CodeableConcept",
+    "targetVersion" : "4.0.1",
     "element" : [{
       "code" : "CS.code",
       "display" : "CS.code",
@@ -134,7 +142,9 @@ Correspondances documentaires entre les datatypes CDA CE, CS et CD et les types 
   },
   {
     "source" : "http://hl7.org/cda/stds/core/StructureDefinition/CD",
+    "sourceVersion" : "2.0.0-sd",
     "target" : "http://hl7.org/fhir/StructureDefinition/code",
+    "targetVersion" : "4.0.1",
     "element" : [{
       "code" : "CD.code",
       "display" : "CD.code",
@@ -148,7 +158,9 @@ Correspondances documentaires entre les datatypes CDA CE, CS et CD et les types 
   },
   {
     "source" : "http://hl7.org/cda/stds/core/StructureDefinition/CD",
+    "sourceVersion" : "2.0.0-sd",
     "target" : "http://hl7.org/fhir/StructureDefinition/CodeableConcept",
+    "targetVersion" : "4.0.1",
     "element" : [{
       "code" : "CD.originalText",
       "display" : "CD.originalText",
