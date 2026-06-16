@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ConceptMap xmlns="http://hl7.org/fhir">
+  <id value="CdaIVL-TSToPeriodConceptMap"/>
+  <language value="en"/>
+  <text>
+    <status value="generated"/><div xml:lang="en" lang="en"><hr/><p><b>English</b></p><hr/><p class="res-header-id"><b>Generated Narrative: ConceptMap CdaIVL-TSToPeriodConceptMap</b></p><a name="en-CdaIVL-TSToPeriodConceptMap"> </a><a name="en-hcCdaIVL-TSToPeriodConceptMap"> </a><p>This mapping does not specify any particular context of use.</p><br/><p><b>Group 1 </b>Mapping from <a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-IVL-TS.html">IVL_TS: Interval (V3 Data Type)</a> to <a href="http://hl7.org/fhir/R4/datatypes.html#Period">Period</a></p><table class="grid"><tr><td><b>Source Code</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Relationship</b></td><td><b>Target Code</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Comment</b></td></tr><tr><td colspan="3">IVL_TS.low.value</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto" title="relatedto">is related to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Period#s-Period.start">Period.start</a></td><td>0..1</td><td>todo</td><td>La valeur de la borne low (IVXB_TS.value) est convertie en dateTime puis affectée à Period.start.</td></tr><tr><td colspan="3">IVL_TS.high.value</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto" title="relatedto">is related to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Period#s-Period.end">Period.end</a></td><td>0..1</td><td>todo</td><td>La valeur de la borne high (IVXB_TS.value) est convertie en dateTime puis affectée à Period.end.</td></tr></table><hr/><p><b>Group 2 </b>Mapping from <a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-IVL-TS.html">IVL_TS: Interval (V3 Data Type)</a> to <a href="http://hl7.org/fhir/R4/datatypes.html#dateTime">dateTime</a></p><table class="grid"><tr><td><b>Source Code</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Relationship</b></td><td><b>Target Code</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Comment</b></td></tr><tr><td colspan="3">IVL_TS.low.value</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto" title="relatedto">is related to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#dateTime#s-dateTime">dateTime</a></td><td>0..*</td><td>todo</td><td>La valeur de la borne low est utilisée comme date représentative et convertie en dateTime.</td></tr></table></div>
+  </text>
+  <url value="https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaIVL_TSToFHIR"/>
+  <version value="0.1.0"/>
+  <name value="CdaIVL_TSToFHIR"/>
+  <title value="ConceptMap — CDA IVL_TS vers FHIR Period et dateTime"/>
+  <status value="draft"/>
+  <experimental value="true"/>
+  <date value="2026-06-16T12:46:17+00:00"/>
+  <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
+  <contact>
+    <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
+    <telecom>
+      <system value="url"/>
+      <value value="https://esante.gouv.fr"/>
+    </telecom>
+  </contact>
+  <description value="Correspondances documentaires entre le datatype CDA IVL_TS et les types FHIR Period et dateTime."/>
+  <jurisdiction>
+    <coding>
+      <system value="urn:iso:std:iso:3166"/>
+      <code value="FR"/>
+      <display value="France (la)"/>
+    </coding>
+  </jurisdiction>
+  <group>
+    <source value="http://hl7.org/cda/stds/core/StructureDefinition/IVL-TS"/>
+    <sourceVersion value="2.0.0-sd"/>
+    <target value="http://hl7.org/fhir/StructureDefinition/Period"/>
+    <targetVersion value="4.0.1"/>
+    <element>
+      <code value="IVL_TS.low.value"/>
+      <display value="IVL_TS.low.value"/>
+      <target>
+        <code value="Period.start"/>
+        <display value="Period.start"/>
+        <equivalence value="relatedto"/>
+        <comment value="La valeur de la borne low (IVXB_TS.value) est convertie en dateTime puis affectée à Period.start."/>
+      </target>
+    </element>
+    <element>
+      <code value="IVL_TS.high.value"/>
+      <display value="IVL_TS.high.value"/>
+      <target>
+        <code value="Period.end"/>
+        <display value="Period.end"/>
+        <equivalence value="relatedto"/>
+        <comment value="La valeur de la borne high (IVXB_TS.value) est convertie en dateTime puis affectée à Period.end."/>
+      </target>
+    </element>
+  </group>
+  <group>
+    <source value="http://hl7.org/cda/stds/core/StructureDefinition/IVL-TS"/>
+    <sourceVersion value="2.0.0-sd"/>
+    <target value="http://hl7.org/fhir/StructureDefinition/dateTime"/>
+    <targetVersion value="4.0.1"/>
+    <element>
+      <code value="IVL_TS.low.value"/>
+      <display value="IVL_TS.low.value"/>
+      <target>
+        <code value="dateTime"/>
+        <display value="dateTime"/>
+        <equivalence value="relatedto"/>
+        <comment value="La valeur de la borne low est utilisée comme date représentative et convertie en dateTime."/>
+      </target>
+    </element>
+  </group>
+</ConceptMap>
