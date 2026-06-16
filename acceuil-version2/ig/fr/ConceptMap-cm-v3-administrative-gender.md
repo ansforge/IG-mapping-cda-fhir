@@ -19,7 +19,7 @@ Mapping between CDA v3 Administrative Gender codes and FHIR Administrative Gende
   "title" : "CDA to FHIR Administrative Gender Mapping",
   "status" : "active",
   "experimental" : false,
-  "date" : "2026-06-16T12:27:53+00:00",
+  "date" : "2026-06-16T12:31:45+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
