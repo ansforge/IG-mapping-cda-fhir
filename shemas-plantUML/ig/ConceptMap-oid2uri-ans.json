@@ -1,0 +1,43 @@
+{
+  "resourceType" : "ConceptMap",
+  "id" : "oid2uri-ans",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div xml:lang=\"fr\" lang=\"fr\"><hr/><p><b>French</b></p><hr/><p class=\"res-header-id\"><b>Narratif généré : CarteDeConcepts oid2uri-ans</b></p><a name=\"oid2uri-ans\"> </a><a name=\"hcoid2uri-ans\"> </a><p>This mapping does not specify any particular context of use.</p><br/><p>Mapping de <code>urn:oid:</code> to <code>uri|4.0.1</code></p><table class=\"grid\"><tr><td><b>Code source</b></td><td><b>relation</b></td><td><b>Code cible</b></td></tr><tr><td>1.2.250.1.213.1.1.4.5</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td>https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale</td></tr></table></div><div xml:lang=\"en\" lang=\"en\"><hr/><p><b>English</b></p><hr/><p class=\"res-header-id\"><b>Generated Narrative: ConceptMap oid2uri-ans</b></p><a name=\"en-oid2uri-ans\"> </a><a name=\"en-hcoid2uri-ans\"> </a><p>This mapping does not specify any particular context of use.</p><br/><p>Mapping from <code>urn:oid:</code> to <code>uri|4.0.1</code></p><table class=\"grid\"><tr><td><b>Source Code</b></td><td><b>Relationship</b></td><td><b>Target Code</b></td></tr><tr><td>1.2.250.1.213.1.1.4.5</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td>https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale</td></tr></table></div></div>"
+  },
+  "url" : "http://hl7.org/fhir/ConceptMap/special-oid2uri",
+  "version" : "0.1.0",
+  "name" : "OID2URIConceptMapANS",
+  "title" : "OID to URI Mapping for ANS terminologies",
+  "status" : "active",
+  "experimental" : false,
+  "date" : "2025-10-31",
+  "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
+  "contact" : [{
+    "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
+    "telecom" : [{
+      "system" : "url",
+      "value" : "https://esante.gouv.fr"
+    }]
+  }],
+  "description" : "Mapping from OID to URI for ANS terminologies",
+  "jurisdiction" : [{
+    "coding" : [{
+      "system" : "urn:iso:std:iso:3166",
+      "code" : "FR",
+      "display" : "France (la)"
+    }]
+  }],
+  "group" : [{
+    "source" : "urn:oid:",
+    "target" : "uri",
+    "targetVersion" : "4.0.1",
+    "element" : [{
+      "code" : "1.2.250.1.213.1.1.4.5",
+      "target" : [{
+        "code" : "https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale",
+        "equivalence" : "equivalent"
+      }]
+    }]
+  }]
+}
