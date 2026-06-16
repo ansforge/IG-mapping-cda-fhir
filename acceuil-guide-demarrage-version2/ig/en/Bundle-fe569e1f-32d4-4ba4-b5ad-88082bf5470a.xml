@@ -1,0 +1,638 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Bundle xmlns="http://hl7.org/fhir">
+  <id value="fe569e1f-32d4-4ba4-b5ad-88082bf5470a"/>
+  <language value="en"/>
+  <identifier>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:1.2.250.1.213.1.1.1.5.2023.1.1"/>
+  </identifier>
+  <type value="document"/>
+  <timestamp value="2023-01-06T11:36:23+01:00"/>
+  <entry>
+    <fullUrl value="urn:uuid:d6781fbf-2239-4fe3-a844-a68691b935ca"/>
+    <resource>
+      <Composition>
+        <id value="d6781fbf-2239-4fe3-a844-a68691b935ca"/>
+        <language value="en"/>
+        <text>
+          <status value="generated"/>
+        </text>
+        <identifier>
+          <system value="urn:ietf:rfc:3986"/>
+          <value value="urn:oid:1.2.250.1.213.1.1.1.5.4.2023.1"/>
+        </identifier>
+        <status value="final"/>
+        <type>
+          <coding>
+            <system value="urn:oid:2.16.840.1.113883.6.1"/>
+            <code value="29274-8"/>
+            <display value="Mesures de signes vitaux"/>
+          </coding>
+        </type>
+        <subject>
+          <reference value="urn:uuid:3d5bd271-871e-4d7c-9568-82f855ddd253"/>
+        </subject>
+        <encounter>
+          <reference value="urn:uuid:4991297a-89fc-45e6-9a96-b71d559f6fa7"/>
+        </encounter>
+        <date value="2023-01-06T11:36:23+01:00"/>
+        <author>
+          <reference value="urn:uuid:a77eef6e-2c20-4a99-9adf-2838eabe8f9d"/>
+        </author>
+        <title value="Carnet de santé de l'enfant - Mesures de l'enfant"/>
+        <confidentiality value="N"/>
+        <attester>
+          <mode value="legal"/>
+          <time value="2023-01-06T11:36:23+01:00"/>
+          <party>
+            <reference value="urn:uuid:e0012379-b82f-4e18-adb8-0d1d6344845d"/>
+          </party>
+        </attester>
+        <custodian>
+          <reference value="urn:uuid:526bea40-0250-4bd4-9794-169912187c53"/>
+        </custodian>
+        <event>
+          <code>
+            <coding>
+              <system value="urn:oid:2.16.840.1.113883.6.96"/>
+              <code value="11429006"/>
+              <display value="consultation"/>
+            </coding>
+          </code>
+          <period>
+            <start value="2023-01-06T11:36:23+01:00"/>
+          </period>
+        </event>
+        <section>
+          <title value="Signes vitaux"/>
+          <code>
+            <coding>
+              <system value="urn:oid:2.16.840.1.113883.6.1"/>
+              <code value="8716-3"/>
+              <display value="Signes vitaux"/>
+            </coding>
+          </code>
+          <entry>
+            <reference value="urn:uuid:a4a27d00-4fbe-4c44-8d5f-6a10db7caffa"/>
+          </entry>
+          <entry>
+            <reference value="urn:uuid:3e8fff48-3537-4087-9030-5df3556d4472"/>
+          </entry>
+          <entry>
+            <reference value="urn:uuid:5a0887f7-bc29-42fd-88a8-4cd2b635baef"/>
+          </entry>
+        </section>
+      </Composition>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:3d5bd271-871e-4d7c-9568-82f855ddd253"/>
+    <resource>
+      <Patient>
+        <id value="3d5bd271-871e-4d7c-9568-82f855ddd253"/>
+        <language value="en"/>
+        <text>
+          <status value="generated"/>
+        </text>
+        <identifier>
+          <type>
+            <coding>
+              <system value="https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203"/>
+              <code value="INS-NIR"/>
+            </coding>
+          </type>
+          <system value="urn:oid:1.2.250.1.213.1.4.8"/>
+          <value value="222127505611201"/>
+        </identifier>
+        <identifier>
+          <type>
+            <coding>
+              <system value="http://terminology.hl7.org/CodeSystem/v2-0203"/>
+              <code value="PI"/>
+            </coding>
+          </type>
+          <system value="urn:oid:1.2.3.4.5.6.7.8.9.10"/>
+          <value value="1234567890121"/>
+        </identifier>
+        <name>
+          <family value="DECOURCY"/>
+          <given value="Ruth Isabelle"/>
+          <given value="Ruth"/>
+          <given value="Ruth"/>
+        </name>
+        <telecom>
+          <system value="phone"/>
+          <value value="0147150000"/>
+          <use value="home"/>
+        </telecom>
+        <gender value="female"/>
+        <birthDate value="2022-12-25"/>
+        <address>
+          <line value="24"/>
+          <line value="Avenue de Breteuil"/>
+          <city value="PARIS"/>
+          <postalCode value="75007"/>
+          <country value="FRANCE"/>
+        </address>
+      </Patient>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:4991297a-89fc-45e6-9a96-b71d559f6fa7"/>
+    <resource>
+      <Encounter>
+        <id value="4991297a-89fc-45e6-9a96-b71d559f6fa7"/>
+        <language value="en"/>
+        <text>
+          <status value="generated"/>
+        </text>
+        <status value="finished"/>
+        <class>
+          <system value="http://terminology.hl7.org/CodeSystem/v3-ActCode"/>
+          <code value="AMB"/>
+          <display value="Ambulatoire (hors établissement)"/>
+        </class>
+        <type>
+          <coding>
+            <system value="urn:oid:2.16.840.1.113883.5.4"/>
+            <code value="AMB"/>
+            <display value="Ambulatoire (hors établissement)"/>
+          </coding>
+        </type>
+        <period>
+          <start value="2023-01-06T11:15:10+01:00"/>
+          <end value="2023-01-06T11:36:23+01:00"/>
+        </period>
+        <location>
+          <location>
+            <reference value="urn:uuid:a446f211-c5b4-4318-a9fb-c07308416083"/>
+          </location>
+        </location>
+      </Encounter>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:a446f211-c5b4-4318-a9fb-c07308416083"/>
+    <resource>
+      <Location>
+        <id value="a446f211-c5b4-4318-a9fb-c07308416083"/>
+        <language value="en"/>
+        <text>
+          <status value="generated"/>
+        </text>
+        <type>
+          <coding>
+            <system value="https://mos.esante.gouv.fr/NOS/TRE_R02-SecteurActivite/FHIR/TRE-R02-SecteurActivite"/>
+            <code value="SA05"/>
+            <display value="Centre de santé"/>
+          </coding>
+        </type>
+        <address>
+          <line value="3"/>
+          <line value="Rue Petit Pont"/>
+          <city value="PARIS"/>
+          <postalCode value="75005"/>
+        </address>
+      </Location>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:e88fedc3-a912-459d-a6c2-524e07a2882b"/>
+    <resource>
+      <Practitioner>
+        <id value="e88fedc3-a912-459d-a6c2-524e07a2882b"/>
+        <meta>
+          <profile value="https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-practitioner"/>
+        </meta>
+        <language value="en"/>
+        <text>
+          <status value="generated"/>
+        </text>
+        <identifier>
+          <type>
+            <coding>
+              <system value="https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203"/>
+              <code value="IDNPS"/>
+            </coding>
+          </type>
+          <system value="urn:oid:1.2.250.1.71.4.2.1"/>
+          <value value="801234567897"/>
+        </identifier>
+        <name>
+          <family value="MULLER"/>
+          <given value="Charles"/>
+          <prefix value="M"/>
+          <suffix value="DR"/>
+        </name>
+        <telecom>
+          <system value="phone"/>
+          <value value="0140404022"/>
+          <use value="work"/>
+        </telecom>
+        <address>
+          <line value="3"/>
+          <line value="Rue Petit Pont"/>
+          <city value="PARIS"/>
+          <postalCode value="75005"/>
+        </address>
+        <qualification>
+          <code>
+            <coding>
+              <system value="https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale"/>
+              <code value="SM40"/>
+              <display value="Médecin - Pédiatrie (SM)"/>
+            </coding>
+          </code>
+        </qualification>
+        <qualification>
+          <code>
+            <coding>
+              <system value="https://mos.esante.gouv.fr/NOS/TRE_G15-ProfessionSante/FHIR/TRE-G15-ProfessionSante"/>
+              <code value="10"/>
+              <display value="Médecin"/>
+            </coding>
+          </code>
+        </qualification>
+      </Practitioner>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:a77eef6e-2c20-4a99-9adf-2838eabe8f9d"/>
+    <resource>
+      <PractitionerRole>
+        <id value="a77eef6e-2c20-4a99-9adf-2838eabe8f9d"/>
+        <meta>
+          <profile value="https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-practitionerrole"/>
+        </meta>
+        <language value="en"/>
+        <text>
+          <status value="generated"/>
+        </text>
+        <practitioner>
+          <reference value="urn:uuid:e88fedc3-a912-459d-a6c2-524e07a2882b"/>
+        </practitioner>
+        <organization>
+          <reference value="urn:uuid:1604fd95-f5e7-4b16-978e-43f9762da252"/>
+        </organization>
+        <code>
+          <coding>
+            <system value="urn:oid:1.2.250.1.213.1.1.4.5"/>
+            <code value="G15_10/SM40"/>
+            <display value="Médecin - Pédiatrie (SM)"/>
+          </coding>
+        </code>
+      </PractitionerRole>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:1604fd95-f5e7-4b16-978e-43f9762da252"/>
+    <resource>
+      <Organization>
+        <id value="1604fd95-f5e7-4b16-978e-43f9762da252"/>
+        <meta>
+          <profile value="https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-organization"/>
+        </meta>
+        <language value="en"/>
+        <text>
+          <status value="generated"/>
+        </text>
+        <identifier>
+          <system value="urn:oid:1.2.250.1.71.4.2.2"/>
+          <value value="2801234567"/>
+        </identifier>
+        <telecom>
+          <system value="phone"/>
+          <value value="0140404022"/>
+          <use value="work"/>
+        </telecom>
+        <address>
+          <line value="3"/>
+          <line value="Rue Petit Pont"/>
+          <city value="PARIS"/>
+          <postalCode value="75005"/>
+        </address>
+      </Organization>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:bc0a8ab8-7744-4ab8-9374-73a721dd58ec"/>
+    <resource>
+      <RelatedPerson>
+        <id value="bc0a8ab8-7744-4ab8-9374-73a721dd58ec"/>
+        <language value="en"/>
+        <text>
+          <status value="generated"/>
+        </text>
+        <patient>
+          <reference value="urn:uuid:3d5bd271-871e-4d7c-9568-82f855ddd253"/>
+        </patient>
+        <relationship>
+          <coding>
+            <system value="urn:oid:2.16.840.1.113883.5.111"/>
+            <code value="MTH"/>
+            <display value="Mère"/>
+          </coding>
+        </relationship>
+        <name>
+          <family value="DECOURCY"/>
+          <given value="Marie"/>
+          <prefix value="MME"/>
+        </name>
+        <telecom>
+          <system value="phone"/>
+          <value value="0147150000"/>
+          <use value="home"/>
+        </telecom>
+        <address>
+          <line value="24 Avenue de Breteuil"/>
+          <line value="75007 PARIS"/>
+        </address>
+      </RelatedPerson>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:343fe32f-19b1-4125-8e03-a816e57be701"/>
+    <resource>
+      <RelatedPerson>
+        <id value="343fe32f-19b1-4125-8e03-a816e57be701"/>
+        <language value="en"/>
+        <text>
+          <status value="generated"/>
+        </text>
+        <patient>
+          <reference value="urn:uuid:3d5bd271-871e-4d7c-9568-82f855ddd253"/>
+        </patient>
+        <relationship>
+          <coding>
+            <system value="urn:oid:2.16.840.1.113883.5.111"/>
+            <code value="FTH"/>
+            <display value="Père"/>
+          </coding>
+        </relationship>
+        <name>
+          <family value="DECOURCY"/>
+          <given value="Guillaume"/>
+          <prefix value="M"/>
+        </name>
+        <telecom>
+          <system value="phone"/>
+          <value value="0147150000"/>
+          <use value="home"/>
+        </telecom>
+        <address>
+          <line value="24 Avenue de Breteuil"/>
+          <line value="75007 PARIS"/>
+        </address>
+      </RelatedPerson>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:3023f9cf-9020-47b0-85e0-a8aceb5bf104"/>
+    <resource>
+      <RelatedPerson>
+        <id value="3023f9cf-9020-47b0-85e0-a8aceb5bf104"/>
+        <language value="en"/>
+        <text>
+          <status value="generated"/>
+        </text>
+        <patient>
+          <reference value="urn:uuid:3d5bd271-871e-4d7c-9568-82f855ddd253"/>
+        </patient>
+        <relationship>
+          <coding>
+            <system value="urn:oid:2.16.840.1.113883.5.111"/>
+            <code value="SIS"/>
+            <display value="Soeur"/>
+          </coding>
+        </relationship>
+        <name>
+          <family value="DECOURCY"/>
+          <given value="Sophie"/>
+        </name>
+        <telecom>
+          <system value="phone"/>
+          <value value="0647150100"/>
+          <use value="mobile"/>
+        </telecom>
+      </RelatedPerson>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:ad566fca-ffe0-47aa-a39a-c8a22d7bf11f"/>
+    <resource>
+      <RelatedPerson>
+        <id value="ad566fca-ffe0-47aa-a39a-c8a22d7bf11f"/>
+        <language value="en"/>
+        <text>
+          <status value="generated"/>
+        </text>
+        <patient>
+          <reference value="urn:uuid:3d5bd271-871e-4d7c-9568-82f855ddd253"/>
+        </patient>
+        <relationship>
+          <coding>
+            <system value="urn:oid:2.16.840.1.113883.5.111"/>
+            <code value="SIS"/>
+            <display value="Soeur"/>
+          </coding>
+        </relationship>
+        <name>
+          <family value="DECOURCY"/>
+          <given value="Sophie"/>
+        </name>
+        <telecom>
+          <system value="phone"/>
+          <value value="0647150100"/>
+          <use value="mobile"/>
+        </telecom>
+      </RelatedPerson>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:e0012379-b82f-4e18-adb8-0d1d6344845d"/>
+    <resource>
+      <Practitioner>
+        <id value="e0012379-b82f-4e18-adb8-0d1d6344845d"/>
+        <meta>
+          <profile value="https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-practitioner"/>
+        </meta>
+        <language value="en"/>
+        <text>
+          <status value="generated"/>
+        </text>
+        <identifier>
+          <type>
+            <coding>
+              <system value="https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203"/>
+              <code value="IDNPS"/>
+            </coding>
+          </type>
+          <system value="urn:oid:1.2.250.1.71.4.2.1"/>
+          <value value="801234567897"/>
+        </identifier>
+        <name>
+          <family value="MULLER"/>
+          <given value="Charles"/>
+          <prefix value="M"/>
+          <suffix value="DR"/>
+        </name>
+        <telecom>
+          <system value="phone"/>
+          <value value="0140404022"/>
+          <use value="work"/>
+        </telecom>
+        <address>
+          <line value="3"/>
+          <line value="Rue Petit Pont"/>
+          <city value="PARIS"/>
+          <postalCode value="75005"/>
+        </address>
+      </Practitioner>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:526bea40-0250-4bd4-9794-169912187c53"/>
+    <resource>
+      <Organization>
+        <id value="526bea40-0250-4bd4-9794-169912187c53"/>
+        <meta>
+          <profile value="https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-organization"/>
+        </meta>
+        <language value="en"/>
+        <text>
+          <status value="generated"/>
+        </text>
+        <identifier>
+          <system value="urn:oid:1.2.250.1.71.4.2.2"/>
+          <value value="2801234567"/>
+        </identifier>
+        <telecom>
+          <system value="phone"/>
+          <value value="0140404022"/>
+          <use value="work"/>
+        </telecom>
+        <address>
+          <line value="3"/>
+          <line value="Rue Petit Pont"/>
+          <city value="PARIS"/>
+          <postalCode value="75005"/>
+        </address>
+      </Organization>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:a4a27d00-4fbe-4c44-8d5f-6a10db7caffa"/>
+    <resource>
+      <Observation>
+        <id value="a4a27d00-4fbe-4c44-8d5f-6a10db7caffa"/>
+        <meta>
+          <profile value="https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-fr-observation-body-weight"/>
+        </meta>
+        <language value="en"/>
+        <text>
+          <status value="generated"/>
+        </text>
+        <status value="final"/>
+        <category>
+          <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+            <code value="vital-signs"/>
+          </coding>
+        </category>
+        <code>
+          <coding>
+            <system value="urn:oid:2.16.840.1.113883.6.1"/>
+            <code value="29463-7"/>
+            <display value="Poids"/>
+          </coding>
+        </code>
+        <subject>
+          <reference value="urn:uuid:3d5bd271-871e-4d7c-9568-82f855ddd253"/>
+        </subject>
+        <valueQuantity>
+          <value value="3900"/>
+          <unit value="g"/>
+          <system value="http://unitsofmeasure.org"/>
+          <code value="g"/>
+        </valueQuantity>
+      </Observation>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:3e8fff48-3537-4087-9030-5df3556d4472"/>
+    <resource>
+      <Observation>
+        <id value="3e8fff48-3537-4087-9030-5df3556d4472"/>
+        <meta>
+          <profile value="https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-fr-observation-bodyheight"/>
+        </meta>
+        <language value="en"/>
+        <text>
+          <status value="generated"/>
+        </text>
+        <status value="final"/>
+        <category>
+          <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+            <code value="vital-signs"/>
+          </coding>
+        </category>
+        <code>
+          <coding>
+            <system value="urn:oid:2.16.840.1.113883.6.1"/>
+            <code value="8302-2"/>
+            <display value="Taille"/>
+          </coding>
+        </code>
+        <subject>
+          <reference value="urn:uuid:3d5bd271-871e-4d7c-9568-82f855ddd253"/>
+        </subject>
+        <valueQuantity>
+          <value value="52"/>
+          <unit value="cm"/>
+          <system value="http://unitsofmeasure.org"/>
+          <code value="cm"/>
+        </valueQuantity>
+      </Observation>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:5a0887f7-bc29-42fd-88a8-4cd2b635baef"/>
+    <resource>
+      <Observation>
+        <id value="5a0887f7-bc29-42fd-88a8-4cd2b635baef"/>
+        <meta>
+          <profile value="https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-observation-head-circumference"/>
+        </meta>
+        <language value="en"/>
+        <text>
+          <status value="generated"/>
+        </text>
+        <status value="final"/>
+        <category>
+          <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+            <code value="vital-signs"/>
+          </coding>
+        </category>
+        <code>
+          <coding>
+            <system value="urn:oid:2.16.840.1.113883.6.1"/>
+            <code value="8287-5"/>
+            <display value="Périmètre crânien"/>
+          </coding>
+        </code>
+        <subject>
+          <reference value="urn:uuid:3d5bd271-871e-4d7c-9568-82f855ddd253"/>
+        </subject>
+        <valueQuantity>
+          <value value="35"/>
+          <unit value="cm"/>
+          <system value="http://unitsofmeasure.org"/>
+          <code value="cm"/>
+        </valueQuantity>
+      </Observation>
+    </resource>
+  </entry>
+</Bundle>

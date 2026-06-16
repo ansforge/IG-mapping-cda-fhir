@@ -1,0 +1,77 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaPQToQuantityConceptMap> a fhir:ConceptMap ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "CdaPQToQuantityConceptMap"] ; # 
+  fhir:language [ fhir:v "en"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div [ fhir:v "<div xml:lang=\"en\" lang=\"en\"><hr/><p><b>English</b></p><hr/><p class=\"res-header-id\"><b>Generated Narrative: ConceptMap CdaPQToQuantityConceptMap</b></p><a name=\"en-CdaPQToQuantityConceptMap\"> </a><a name=\"en-hcCdaPQToQuantityConceptMap\"> </a><p>This mapping does not specify any particular context of use.</p><br/><p>Mapping from <a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-PQ.html\">PQ: PhysicalQuantity (V3 Data Type)</a> to <a href=\"http://hl7.org/fhir/R4/datatypes.html#Quantity\">Quantity</a></p><table class=\"grid\"><tr><td><b>Source Code</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Relationship</b></td><td><b>Target Code</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Comment</b></td></tr><tr><td><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-PQ.html#s-PQ.value\">PQ.value</a></td><td>0..1</td><td>todo</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#Quantity#s-Quantity.value\">Quantity.value</a></td><td>0..1</td><td>todo</td><td>PQ.value alimente directement Quantity.value.</td></tr><tr><td><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-PQ.html#s-PQ.unit\">PQ.unit</a></td><td>0..1</td><td>todo</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#Quantity#s-Quantity.code\">Quantity.code</a></td><td>0..1</td><td>todo</td><td>PQ.unit (UCUM) alimente Quantity.code.</td></tr><tr><td colspan=\"3\" style=\"opacity: 0.5\">\"</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto\" title=\"relatedto\">is related to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#Quantity#s-Quantity.unit\">Quantity.unit</a></td><td>0..1</td><td>todo</td><td>PQ.unit peut être réutilisé comme libellé d’unité dans Quantity.unit selon la stratégie d’affichage.</td></tr><tr><td colspan=\"3\" style=\"opacity: 0.5\">\"</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto\" title=\"relatedto\">is related to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#Quantity#s-Quantity.system\">Quantity.system</a></td><td>0..1</td><td>todo</td><td>Si PQ.unit est UCUM, Quantity.system est fixé à http://unitsofmeasure.org.</td></tr></table></div>"^^rdf:XMLLiteral ]
+  ] ; # 
+  fhir:url [ fhir:v "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaPQToFHIR"^^xsd:anyURI] ; # 
+  fhir:version [ fhir:v "0.1.0"] ; # 
+  fhir:name [ fhir:v "CdaPQToFHIR"] ; # 
+  fhir:title [ fhir:v "ConceptMap — CDA PQ vers FHIR Quantity"] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:experimental [ fhir:v true] ; # 
+  fhir:date [ fhir:v "2026-06-16T12:32:20+00:00"^^xsd:dateTime] ; # 
+  fhir:publisher [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"] ; # 
+  fhir:contact ( [
+     fhir:name [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris" ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "https://esante.gouv.fr" ]
+     ] )
+  ] ) ; # 
+  fhir:description [ fhir:v "Correspondances documentaires entre le datatype CDA PQ et le datatype FHIR Quantity."] ; # 
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "urn:iso:std:iso:3166"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "FR" ] ;
+       fhir:display [ fhir:v "France (la)" ]
+     ] )
+  ] ) ; # 
+  fhir:group ( [
+     fhir:source [ fhir:v "http://hl7.org/cda/stds/core/StructureDefinition/PQ"^^xsd:anyURI ] ;
+     fhir:sourceVersion [ fhir:v "2.0.0-sd" ] ;
+     fhir:target [ fhir:v "http://hl7.org/fhir/StructureDefinition/Quantity"^^xsd:anyURI ] ;
+     fhir:targetVersion [ fhir:v "4.0.1" ] ;
+     fhir:element ( [
+       fhir:code [ fhir:v "PQ.value" ] ;
+       fhir:display [ fhir:v "PQ.value" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "Quantity.value" ] ;
+         fhir:display [ fhir:v "Quantity.value" ] ;
+         fhir:equivalence [ fhir:v "equivalent" ] ;
+         fhir:comment [ fhir:v "PQ.value alimente directement Quantity.value." ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "PQ.unit" ] ;
+       fhir:display [ fhir:v "PQ.unit" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "Quantity.code" ] ;
+         fhir:display [ fhir:v "Quantity.code" ] ;
+         fhir:equivalence [ fhir:v "equivalent" ] ;
+         fhir:comment [ fhir:v "PQ.unit (UCUM) alimente Quantity.code." ]
+       ] [
+         fhir:code [ fhir:v "Quantity.unit" ] ;
+         fhir:display [ fhir:v "Quantity.unit" ] ;
+         fhir:equivalence [ fhir:v "relatedto" ] ;
+         fhir:comment [ fhir:v "PQ.unit peut être réutilisé comme libellé d’unité dans Quantity.unit selon la stratégie d’affichage." ]
+       ] [
+         fhir:code [ fhir:v "Quantity.system" ] ;
+         fhir:display [ fhir:v "Quantity.system" ] ;
+         fhir:equivalence [ fhir:v "relatedto" ] ;
+         fhir:comment [ fhir:v "Si PQ.unit est UCUM, Quantity.system est fixé à http://unitsofmeasure.org." ]
+       ] )
+     ] )
+  ] ) . # 
+
+# -------------------------------------------------------------------------------------
+
