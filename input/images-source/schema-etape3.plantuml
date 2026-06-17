@@ -71,7 +71,7 @@ rectangle "Appels génériques de l’étape 2\n\n• identité du document\n•
 rectangle "Enrichissements français\n\n• profils français\n• identifiants INS\n• extensions françaises\n• codages français\n• contraintes par ressource" as FrenchRules <<french>>
 }
 
-folder "Bundle FHIR enrichi français généré\n\nRésultat obtenu :\n• Bundle générique de l’étape 2\n• enrichi par les spécifications\n  françaises de l’en-tête\n• application des profils européens\n  du Bundle et de la Composition\n" as Output <<output>>
+folder "Bundle FHIR français généré\n\nRésultat obtenu :\n• Bundle générique de l’étape 2\n• enrichi par les spécifications\n  françaises de l’en-tête\n• application des profils européens\n  du Bundle et de la Composition\n" as Output <<output>>
 Start--> Orchestrate : Paramètres transmis\nClinicalDocument\nPatient\nComposition\nBundle
 
 Orchestrate--> Header 
