@@ -1,0 +1,90 @@
+@startuml
+!pragma layout smetana
+
+title Vue synthétique de l’architecture du fichier CdaPatientSummaryToBundle.fml
+
+hide stereotype
+
+skinparam backgroundColor #FAFCFB
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam ArrowColor #6F9C8A
+skinparam ArrowThickness 1.5
+skinparam roundcorner 18
+skinparam nodesep 70
+skinparam ranksep 60
+skinparam linetype polyline
+
+skinparam rectangle {
+BorderColor #8DB9A6
+BackgroundColor #E8F6EF
+FontColor #21483C
+FontStyle bold
+}
+
+skinparam rectangle<<step2>> {
+BorderColor #5A8FB0
+BackgroundColor #DFF1FA
+FontColor #16384C
+FontStyle bold
+}
+
+skinparam rectangle<<step3>> {
+BorderColor #B89BCB
+BackgroundColor #F4ECFA
+FontColor #4B355E
+FontStyle bold
+}
+
+skinparam rectangle<<step4>> {
+BorderColor #8DB9A6
+BackgroundColor #E8F6EF
+FontColor #21483C
+FontStyle bold
+}
+
+skinparam folder<<output>> {
+BorderColor #A8A8A8
+BackgroundColor #F2F2F2
+FontColor #333333
+FontStyle bold
+}
+
+top to bottom direction
+
+rectangle "Groupe TransformPatientSummaryClinicalDocumentToFHIRDocument\n\nParamètres d’entrée\n• ClinicalDocument source\n• Bundle cible\n\nCréation interne\n• Composition FHIR\n• Patient FHIR" as Start <<step4>>
+
+rectangle "Groupe OrchestrateClinicalDocumentFinalTransformation\n\nRôle\n• recevoir les paramètres transmis\n• coordonner le mapping final en appelant :\n  - MapClinicalDocumentHeaderWithFrenchRules\n  - MapPatientSummaryBody" as Orchestrate <<step4>>
+
+together {
+rectangle "Groupe MapClinicalDocumentHeaderWithFrenchRules\n\nAppel du groupe français\nde l’étape 3" as HeaderFR <<step3>>
+
+rectangle "Groupe MapPatientSummaryBody\n\nTraitement du corps Patient Summary\nen appelant deux groupes :\n• MapCDASectionToCompositionSection\n• MapPatientSummarySectionEntries" as BodyPS <<step4>>
+}
+
+together {
+rectangle "Groupe MapCDASectionToCompositionSection\n\nAppel du groupe générique\nde l’étape 2\n\nMapping commun de chaque section CDA\nvers Composition.section" as SectionBase <<step2>>
+
+rectangle "Groupe MapPatientSummarySectionEntries\n\nTraitement des entries métier\ndes sections Patient Summary\n\nOrientation vers les groupes métier\ncorrespondants" as EntriesDispatch <<step4>>
+}
+
+rectangle "Groupes métier Patient Summary\n\nAppel de plusieurs groupes spécialisés\nselon le type de section CDA" as BusinessGroups <<step4>>
+
+folder "Bundle FHIR final Patient Summary généré\n\nRésultat obtenu :\n• Bundle FHIR de type document\n• en-tête enrichi par le socle français\n  et les profils européens\n• Composition structurée en sections\n  Patient Summary\n• ressources métier référencées\n  depuis les sections correspondantes\n\nRessources identifiées par uuid\net reliées par références internes" as Output <<output>>
+
+Start --> Orchestrate : Paramètres transmis\nClinicalDocument\nPatient\nComposition\nBundle
+
+Orchestrate --> HeaderFR 
+Orchestrate --> BodyPS 
+
+BodyPS --> SectionBase 
+BodyPS --> EntriesDispatch 
+
+EntriesDispatch --> BusinessGroups : appel
+
+HeaderFR--> Output
+SectionBase--> Output
+BusinessGroups--> Output
+
+@enduml

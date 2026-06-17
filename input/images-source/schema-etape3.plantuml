@@ -1,0 +1,89 @@
+@startuml
+!pragma layout smetana
+
+title Vue synthétique de l’architecture du fichier CdaFrToBundle.fml
+
+hide stereotype
+
+skinparam backgroundColor #FCFBFE
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam ArrowColor #8B6F9C
+skinparam ArrowThickness 1.5
+skinparam roundcorner 18
+skinparam nodesep 70
+skinparam ranksep 60
+skinparam linetype polyline
+
+skinparam rectangle {
+BorderColor #B89BCB
+BackgroundColor #F4ECFA
+FontColor #4B355E
+FontStyle bold
+}
+
+skinparam rectangle<<step2>> {
+BorderColor #5A8FB0
+BackgroundColor #DFF1FA
+FontColor #16384C
+FontStyle bold
+}
+
+skinparam rectangle<<french>> {
+BorderColor #B89BCB
+BackgroundColor #F4ECFA
+FontColor #4B355E
+FontStyle bold
+}
+
+skinparam rectangle<<europe>> {
+BorderColor #A67BCB
+BackgroundColor #F1E6FA
+FontColor #4B355E
+FontStyle bold
+}
+
+skinparam folder<<output>> {
+BorderColor #A8A8A8
+BackgroundColor #F2F2F2
+FontColor #333333
+FontStyle bold
+}
+
+top to bottom direction
+
+rectangle "Groupe TransformClinicalDocumentToFrenchFHIRDocument\n\nParamètres d’entrée\n• ClinicalDocument source\n• Bundle cible\n\nCréation interne\n• Composition FHIR\n• Patient FHIR" as Start <<french>>
+
+rectangle "Groupe OrchestrateClinicalDocumentFrenchTransformation\n\nRôle\n• recevoir les paramètres transmis\n• coordonner le mapping en appelant :\n  - MapClinicalDocumentHeaderWithFrenchRules\n  - MapClinicalDocumentBody" as Orchestrate <<french>>
+
+together {
+rectangle "Groupe MapClinicalDocumentHeaderWithFrenchRules\n\nMapping de l’en-tête CDA enrichi\n\nRôle\n• porter les profils du document\n• réutiliser les groupes génériques\n• appliquer les enrichissements français" as Header <<french>>
+
+rectangle "Groupe MapClinicalDocumentBody\n\nAppel du groupe générique\nde l’étape 2" as Body <<step2>>
+}
+
+together {
+rectangle "Profils européens du document\n\n• Bundle EU EPS\n• Composition EU EPS" as EUProfiles <<europe>>
+
+rectangle "Appels génériques de l’étape 2\n\n• identité du document\n• description documentaire\n• patient / sujet du document\n• auteur, custodian, signataire\n• contexte de rencontre\n• personnes liées\n• documents liés" as GenericBase <<step2>>
+
+rectangle "Enrichissements français\n\n• profils français\n• identifiants INS\n• extensions françaises\n• codages français\n• contraintes par ressource" as FrenchRules <<french>>
+}
+
+folder "Bundle FHIR enrichi français généré\n\nRésultat obtenu :\n• Bundle générique de l’étape 2\n• enrichi par les spécifications\n  françaises de l’en-tête\n• application des profils européens\n  du Bundle et de la Composition\n" as Output <<output>>
+Start--> Orchestrate : Paramètres transmis\nClinicalDocument\nPatient\nComposition\nBundle
+
+Orchestrate--> Header 
+Orchestrate--> Body 
+
+Header--> EUProfiles : applique
+Header--> GenericBase : appel
+Header--> FrenchRules : appel
+
+EUProfiles--> Output
+GenericBase--> Output
+FrenchRules--> Output
+Body--> Output
+
+@enduml
