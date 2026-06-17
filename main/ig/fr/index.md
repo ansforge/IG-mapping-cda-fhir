@@ -26,13 +26,11 @@ L’ANS s’inscrit dans cette dynamique afin d’assurer une transition cohére
 
 Ce guide a pour objectifs de :
 
-* présenter la démarche ANS d’anticipation du passage CDA → FHIR ;
-* documenter de manière structurée les correspondances CDA ↔ FHIR ;
-* garantir la cohérence avec les référentiels et modèles français (CI-SIS, CDA Fr) ;
-* expérimenter cette transformation à l’aide du FHIR Mapping Language ;
-* permettre l’exécution et la validation du mapping via Matchbox ;
+* proposer une preuve de concept de mapping CDA → FHIR appliquée à un document de type Patient Summary, à l’aide du FHIR Mapping Language ;
+* produire un Bundle FHIR conforme à la structure attendue en Europe ;
+* intégrer les spécifications françaises ;
+* permettre l’exécution du mapping via Matchbox ;
 * fournir les artefacts FHIR nécessaires (StructureMap et ConceptMap) ;
-* faciliter l’alignement futur avec les exigences EEDS.
 
 Ce guide constitue un travail exploratoire, servant de base aux travaux de convergence FHIR futurs.
 
