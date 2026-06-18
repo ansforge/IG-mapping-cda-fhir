@@ -75,8 +75,8 @@ WITH Mappings AS (
   SELECT
     json_extract(r.json, '$.id')   AS ConceptMapId,
     json_extract(r.json, '$.name') AS ConceptMapName,
-    COALESCE(json_extract(e.value, '$.display'), json_extract(e.value, '$.code')) AS CDA,
-    COALESCE(json_extract(t.value, '$.display'), json_extract(t.value, '$.code')) AS FHIR,
+    COALESCE(json_extract(e.value, '$.display'), json_extract(e.value, '$.code'), '') AS CDA,
+    COALESCE(json_extract(t.value, '$.display'), json_extract(t.value, '$.code'), '') AS FHIR,
     g.key AS group_index,
     e.key AS elem_index,
     t.key AS target_index
@@ -90,19 +90,19 @@ SELECT
   CDA,
   FHIR
 FROM Mappings
-WHERE ConceptMapId IN (
-  'CdaIIToIdentifierConceptMap',
-  'CdaADToAddressConceptMap',
-  'CdaCECSCDToCodeConceptMap',
-  'CdaBLToBooleanConceptMap',
-  'CdaTELToContactPointConceptMap',
-  'CdaTSToDateTimeConceptMap',
-  'CdaENPNToHumanNameConceptMap',
-  'CdaINTToIntegerConceptMap',
-  'CdaIVL-TSToPeriodConceptMap',
-  'CdaPQToQuantityConceptMap',
-  'CdaRTO-PQ-PQToRatioConceptMap',
-  'CdaSTEDONToStringConceptMap'
+WHERE ConceptMapName IN (
+  'CdaAddressToFHIR',
+  'CdaBLToFHIR',
+  'CdaConceptCodesToFHIR',
+  'CdaNamesToFHIR',
+  'CdaIIToIdentifier',
+  'CdaINTToInteger',
+  'CdaIVL_TSToFHIR',
+  'CdaPQToFHIR',
+  'CdaRTOPQPQToFHIR',
+  'CdaStringTypesToFHIR',
+  'CdaTELToFHIR',
+  'CdaTSToFHIR'
 )
 ORDER BY ConceptMapName, group_index, elem_index, target_index
 ",
