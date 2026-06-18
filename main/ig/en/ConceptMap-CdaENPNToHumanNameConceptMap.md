@@ -19,7 +19,7 @@ Correspondances documentaires des composants CDA EN et PN vers FHIR HumanName.
   "title" : "ConceptMap — CDA EN/PN vers FHIR HumanName",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-06-18T09:44:31+00:00",
+  "date" : "2026-06-18T10:42:22+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",

@@ -294,18 +294,132 @@ Chaque couche couvre un niveau précis du mapping et s’appuie sur les couches 
 <p>Le fichier principal de cette couche est CdaToFHIRTypes.fml.
 Cette couche regroupe les mappings de conversion des types de données CDA v3 vers les types de données FHIR.
 Dans le contexte CDA, les datatypes représentent les structures élémentaires utilisées pour porter l’information dans le document : identifiants, noms, adresses, codes, dates, quantités, coordonnées de contact, etc. Avant de transformer un document CDA en ressources FHIR, il est donc nécessaire de convertir correctement ces types sources vers leurs équivalents FHIR.
-Cette couche contient ainsi les transformations de bas niveau permettant, par exemple, de convertir :
-II vers Identifier
-EN / PN vers HumanName
-AD vers Address
-TEL vers ContactPoint
-CD / CE / CS vers CodeableConcept ou code
-PQ vers Quantity
-TS / IVL_TS vers date, dateTime ou Period
 Elle constitue le socle commun de l’ensemble des autres mappings.
 Elle ne contient ni logique métier, ni logique nationale, ni navigation dans la structure du document CDA : son objectif est uniquement d’assurer la correspondance entre les types techniques manipulés dans les mappings.</p>
 
-<p><span style="color: maroon">Error processing SQL: Error parsing JSON source: Unexpected content '' in json format at Line 40 (path=[//columns[]columns])</span></p>
+<table class="lines"><tr><td style="background-color: #eeeeee">CDA</td><td style="background-color: #eeeeee">FHIR</td></tr><tr><td><div><p>AD.item.country</p>
+</div></td><td><div><p>Address.country</p>
+</div></td></tr><tr><td><div><p>AD.item.state</p>
+</div></td><td><div><p>Address.state</p>
+</div></td></tr><tr><td><div><p>AD.item.county</p>
+</div></td><td><div><p>Address.district</p>
+</div></td></tr><tr><td><div><p>AD.item.city</p>
+</div></td><td><div><p>Address.city</p>
+</div></td></tr><tr><td><div><p>AD.item.postalCode</p>
+</div></td><td><div><p>Address.postalCode</p>
+</div></td></tr><tr><td><div><p>AD.item.streetAddressLine</p>
+</div></td><td><div><p>Address.line</p>
+</div></td></tr><tr><td><div><p>AD.item.streetName</p>
+</div></td><td><div><p>Address.line.extension[http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName].valueString</p>
+</div></td></tr><tr><td><div><p>AD.item.houseNumber</p>
+</div></td><td><div><p>Address.line.extension[http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber].valueString</p>
+</div></td></tr><tr><td><div><p>AD.useablePeriod</p>
+</div></td><td><div><p>Address.period</p>
+</div></td></tr><tr><td><div><p>BL.value</p>
+</div></td><td><div><p>boolean</p>
+</div></td></tr><tr><td><div><p>CE.code</p>
+</div></td><td><div><p>code</p>
+</div></td></tr><tr><td><div><p>CE.originalText</p>
+</div></td><td><div><p>CodeableConcept.text</p>
+</div></td></tr><tr><td><div><p>CE.code</p>
+</div></td><td><div><p>CodeableConcept.coding.code</p>
+</div></td></tr><tr><td><div><p>CE.codeSystem</p>
+</div></td><td><div><p>CodeableConcept.coding.system</p>
+</div></td></tr><tr><td><div><p>CE.displayName</p>
+</div></td><td><div><p>CodeableConcept.coding.display</p>
+</div></td></tr><tr><td><div><p>CE.translation</p>
+</div></td><td><div><p>CodeableConcept.coding (translation)</p>
+</div></td></tr><tr><td><div><p>CS.code</p>
+</div></td><td><div><p>code</p>
+</div></td></tr><tr><td><div><p>CS.code</p>
+</div></td><td><div><p>CodeableConcept.coding.code</p>
+</div></td></tr><tr><td><div><p>CD.code</p>
+</div></td><td><div><p>code</p>
+</div></td></tr><tr><td><div><p>CD.originalText</p>
+</div></td><td><div><p>CodeableConcept.text</p>
+</div></td></tr><tr><td><div><p>CD.code</p>
+</div></td><td><div><p>CodeableConcept.coding.code</p>
+</div></td></tr><tr><td><div><p>CD.codeSystem</p>
+</div></td><td><div><p>CodeableConcept.coding.system</p>
+</div></td></tr><tr><td><div><p>CD.displayName</p>
+</div></td><td><div><p>CodeableConcept.coding.display</p>
+</div></td></tr><tr><td><div><p>CD.translation</p>
+</div></td><td><div><p>CodeableConcept.coding (translation)</p>
+</div></td></tr><tr><td><div><p>II.extension</p>
+</div></td><td><div><p>Identifier.value</p>
+</div></td></tr><tr><td><div><p>II.root</p>
+</div></td><td><div><p>Identifier.system</p>
+</div></td></tr><tr><td><div><p>II.root</p>
+</div></td><td><div><p>Identifier.value</p>
+</div></td></tr><tr><td><div><p>II.assigningAuthorityName</p>
+</div></td><td><div><p>Identifier.assigner.display</p>
+</div></td></tr><tr><td><div><p>II.displayable</p>
+</div></td><td><div><p>Identifier.extension(displayable)</p>
+</div></td></tr><tr><td><div><p>INT.value</p>
+</div></td><td><div><p>integer</p>
+</div></td></tr><tr><td><div><p>IVL_TS.low.value</p>
+</div></td><td><div><p>Period.start</p>
+</div></td></tr><tr><td><div><p>IVL_TS.high.value</p>
+</div></td><td><div><p>Period.end</p>
+</div></td></tr><tr><td><div><p>IVL_TS.low.value</p>
+</div></td><td><div><p>dateTime</p>
+</div></td></tr><tr><td><div><p>EN.family</p>
+</div></td><td><div><p>HumanName.family</p>
+</div></td></tr><tr><td><div><p>EN.given</p>
+</div></td><td><div><p>HumanName.given</p>
+</div></td></tr><tr><td><div><p>EN.prefix</p>
+</div></td><td><div><p>HumanName.prefix</p>
+</div></td></tr><tr><td><div><p>EN.suffix</p>
+</div></td><td><div><p>HumanName.suffix</p>
+</div></td></tr><tr><td><div><p>EN.xmlText</p>
+</div></td><td><div><p>HumanName.text</p>
+</div></td></tr><tr><td><div><p>EN.validTime</p>
+</div></td><td><div><p>HumanName.period</p>
+</div></td></tr><tr><td><div><p>PN.family</p>
+</div></td><td><div><p>HumanName.family</p>
+</div></td></tr><tr><td><div><p>PN.given</p>
+</div></td><td><div><p>HumanName.given</p>
+</div></td></tr><tr><td><div><p>PN.prefix</p>
+</div></td><td><div><p>HumanName.prefix</p>
+</div></td></tr><tr><td><div><p>PN.suffix</p>
+</div></td><td><div><p>HumanName.suffix</p>
+</div></td></tr><tr><td><div><p>PN.xmlText</p>
+</div></td><td><div><p>HumanName.text</p>
+</div></td></tr><tr><td><div><p>PN.validTime</p>
+</div></td><td><div><p>HumanName.period</p>
+</div></td></tr><tr><td><div><p>PQ.value</p>
+</div></td><td><div><p>Quantity.value</p>
+</div></td></tr><tr><td><div><p>PQ.unit</p>
+</div></td><td><div><p>Quantity.code</p>
+</div></td></tr><tr><td><div><p>PQ.unit</p>
+</div></td><td><div><p>Quantity.unit</p>
+</div></td></tr><tr><td><div><p>PQ.unit</p>
+</div></td><td><div><p>Quantity.system</p>
+</div></td></tr><tr><td><div><p>RTO_PQ_PQ.numerator</p>
+</div></td><td><div><p>Ratio.numerator</p>
+</div></td></tr><tr><td><div><p>RTO_PQ_PQ.denominator</p>
+</div></td><td><div><p>Ratio.denominator</p>
+</div></td></tr><tr><td><div><p>ST.xmlText</p>
+</div></td><td><div><p>string</p>
+</div></td></tr><tr><td><div><p>ED.xmlText</p>
+</div></td><td><div><p>string</p>
+</div></td></tr><tr><td><div><p>ON.xmlText</p>
+</div></td><td><div><p>string</p>
+</div></td></tr><tr><td><div><p>TEL.value</p>
+</div></td><td><div><p>ContactPoint.value</p>
+</div></td></tr><tr><td><div><p>TEL.value</p>
+</div></td><td><div><p>ContactPoint.system</p>
+</div></td></tr><tr><td><div><p>TEL.use</p>
+</div></td><td><div><p>ContactPoint.use</p>
+</div></td></tr><tr><td><div><p>TEL.useablePeriod</p>
+</div></td><td><div><p>ContactPoint.period</p>
+</div></td></tr><tr><td><div><p>TS.value</p>
+</div></td><td><div><p>instant</p>
+</div></td></tr><tr><td><div><p>TS.value</p>
+</div></td><td><div><p>dateTime</p>
+</div></td></tr><tr><td><div><p>TS.value</p>
+</div></td><td><div><p>date</p>
+</div></td></tr></table>
 
 <h5 id="mappings-cda-génériques">Mappings CDA génériques</h5>
 
@@ -837,7 +951,7 @@ La transformation doit respecter les profils cibles utilisés dans le projet. El
   <li><a href="https://www.hl7.org/fhir/structuremap.html">FHIR StructureMap Resource</a></li>
   <li><a href="https://github.com/ahdis/matchbox">Matchbox Documentation</a></li>
   <li><a href="https://github.com/hl7ch/cda-fhir-maps">CDA to FHIR Maps (HL7 Suisse)</a></li>
-  <li><a name="l1934">​</a><a href="claude.html">Notes techniques de développement</a></li>
+  <li><a name="l2608">​</a><a href="claude.html">Notes techniques de développement</a></li>
 </ul>
 
 <h3 id="conclusion">Conclusion</h3>
@@ -902,7 +1016,7 @@ La transformation doit respecter les profils cibles utilisés dans le projet. El
           IG &copy; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris</a>.  
           Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>.
           Generated 
-  <span title="2026-06-18 09:44:00 +0000">
+  <span title="2026-06-18 10:42:00 +0000">
     2026-06-18
   </span>
 
