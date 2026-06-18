@@ -1,0 +1,88 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaTSToDateTimeConceptMap> a fhir:ConceptMap ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "CdaTSToDateTimeConceptMap"] ; # 
+  fhir:language [ fhir:v "fr"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div [ fhir:v "<div xml:lang=\"fr\" lang=\"fr\"><hr/><p><b>French</b></p><hr/><p class=\"res-header-id\"><b>Narratif généré : CarteDeConcepts CdaTSToDateTimeConceptMap</b></p><a name=\"CdaTSToDateTimeConceptMap\"> </a><a name=\"hcCdaTSToDateTimeConceptMap\"> </a><p>This mapping does not specify any particular context of use.</p><br/><p><b>Groupe 1 </b>Mapping de <a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TS.html\">TS: PointInTime (V3 Data Type)</a> to <a href=\"http://hl7.org/fhir/R4/datatypes.html#instant\">instant</a></p><table class=\"grid\"><tr><td><b>Code source</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>relation</b></td><td><b>Code cible</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Commentaire</b></td></tr><tr><td><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TS.html#s-TS.value\">TS.value</a></td><td>0..1</td><td>todo</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto\" title=\"relatedto\">is related to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#instant#s-instant\">instant</a></td><td>0..*</td><td>todo</td><td>TS.value est converti en valeur FHIR instant (précision jour ou partielle : AAAA, AAAA-MM ou AAAA-MM-JJ).</td></tr></table><hr/><p><b>Groupe 2 </b>Mapping de <a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TS.html\">TS: PointInTime (V3 Data Type)</a> to <a href=\"http://hl7.org/fhir/R4/datatypes.html#dateTime\">dateTime</a></p><table class=\"grid\"><tr><td><b>Code source</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>relation</b></td><td><b>Code cible</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Commentaire</b></td></tr><tr><td><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TS.html#s-TS.value\">TS.value</a></td><td>0..1</td><td>todo</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto\" title=\"relatedto\">is related to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#dateTime#s-dateTime\">dateTime</a></td><td>0..*</td><td>todo</td><td>TS.value est converti en valeur FHIR dateTime (précision variable autorisée : année/mois/jour ou date-heure).</td></tr></table><hr/><p><b>Groupe 3 </b>Mapping de <a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TS.html\">TS: PointInTime (V3 Data Type)</a> to <a href=\"http://hl7.org/fhir/R4/datatypes.html#date\">date</a></p><table class=\"grid\"><tr><td><b>Code source</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>relation</b></td><td><b>Code cible</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Commentaire</b></td></tr><tr><td><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TS.html#s-TS.value\">TS.value</a></td><td>0..1</td><td>todo</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto\" title=\"relatedto\">is related to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#date#s-date\">date</a></td><td>0..*</td><td>todo</td><td>TS.value est converti en valeur FHIR date (précision jour ou partielle : AAAA ou AAAA-MM ou AAAA-MM-JJ).</td></tr></table></div>"^^rdf:XMLLiteral ]
+  ] ; # 
+  fhir:url [ fhir:v "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaTSToFHIR"^^xsd:anyURI] ; # 
+  fhir:version [ fhir:v "0.1.0"] ; # 
+  fhir:name [ fhir:v "CdaTSToFHIR"] ; # 
+  fhir:title [ fhir:v "ConceptMap — CDA TS vers FHIR instant, dateTime et date"] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:experimental [ fhir:v true] ; # 
+  fhir:date [ fhir:v "2026-06-18T08:28:29+00:00"^^xsd:dateTime] ; # 
+  fhir:publisher [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"] ; # 
+  fhir:contact ( [
+     fhir:name [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris" ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "https://esante.gouv.fr" ]
+     ] )
+  ] ) ; # 
+  fhir:description [ fhir:v "Correspondances documentaires entre le datatype CDA TS et les types FHIR instant, dateTime et date."] ; # 
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "urn:iso:std:iso:3166"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "FR" ] ;
+       fhir:display [ fhir:v "France (la)" ]
+     ] )
+  ] ) ; # 
+  fhir:group ( [
+     fhir:source [ fhir:v "http://hl7.org/cda/stds/core/StructureDefinition/TS"^^xsd:anyURI ] ;
+     fhir:sourceVersion [ fhir:v "2.0.0-sd" ] ;
+     fhir:target [ fhir:v "http://hl7.org/fhir/StructureDefinition/instant"^^xsd:anyURI ] ;
+     fhir:targetVersion [ fhir:v "4.0.1" ] ;
+     fhir:element ( [
+       fhir:code [ fhir:v "TS.value" ] ;
+       fhir:display [ fhir:v "TS.value" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "instant" ] ;
+         fhir:display [ fhir:v "instant" ] ;
+         fhir:equivalence [ fhir:v "relatedto" ] ;
+         fhir:comment [ fhir:v "TS.value est converti en valeur FHIR instant (précision jour ou partielle : AAAA, AAAA-MM ou AAAA-MM-JJ)." ]
+       ] )
+     ] )
+  ] [
+     fhir:source [ fhir:v "http://hl7.org/cda/stds/core/StructureDefinition/TS"^^xsd:anyURI ] ;
+     fhir:sourceVersion [ fhir:v "2.0.0-sd" ] ;
+     fhir:target [ fhir:v "http://hl7.org/fhir/StructureDefinition/dateTime"^^xsd:anyURI ] ;
+     fhir:targetVersion [ fhir:v "4.0.1" ] ;
+     fhir:element ( [
+       fhir:code [ fhir:v "TS.value" ] ;
+       fhir:display [ fhir:v "TS.value" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "dateTime" ] ;
+         fhir:display [ fhir:v "dateTime" ] ;
+         fhir:equivalence [ fhir:v "relatedto" ] ;
+         fhir:comment [ fhir:v "TS.value est converti en valeur FHIR dateTime (précision variable autorisée : année/mois/jour ou date-heure)." ]
+       ] )
+     ] )
+  ] [
+     fhir:source [ fhir:v "http://hl7.org/cda/stds/core/StructureDefinition/TS"^^xsd:anyURI ] ;
+     fhir:sourceVersion [ fhir:v "2.0.0-sd" ] ;
+     fhir:target [ fhir:v "http://hl7.org/fhir/StructureDefinition/date"^^xsd:anyURI ] ;
+     fhir:targetVersion [ fhir:v "4.0.1" ] ;
+     fhir:element ( [
+       fhir:code [ fhir:v "TS.value" ] ;
+       fhir:display [ fhir:v "TS.value" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "date" ] ;
+         fhir:display [ fhir:v "date" ] ;
+         fhir:equivalence [ fhir:v "relatedto" ] ;
+         fhir:comment [ fhir:v "TS.value est converti en valeur FHIR date (précision jour ou partielle : AAAA ou AAAA-MM ou AAAA-MM-JJ)." ]
+       ] )
+     ] )
+  ] ) . # 
+
+# -------------------------------------------------------------------------------------
+
