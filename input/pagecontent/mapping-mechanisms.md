@@ -58,14 +58,6 @@ Chaque couche couvre un niveau précis du mapping et s’appuie sur les couches 
 Le fichier principal de cette couche est CdaToFHIRTypes.fml.
 Cette couche regroupe les mappings de conversion des types de données CDA v3 vers les types de données FHIR.
 Dans le contexte CDA, les datatypes représentent les structures élémentaires utilisées pour porter l’information dans le document : identifiants, noms, adresses, codes, dates, quantités, coordonnées de contact, etc. Avant de transformer un document CDA en ressources FHIR, il est donc nécessaire de convertir correctement ces types sources vers leurs équivalents FHIR.
-Cette couche contient ainsi les transformations de bas niveau permettant, par exemple, de convertir :
-II vers Identifier
-EN / PN vers HumanName
-AD vers Address
-TEL vers ContactPoint
-CD / CE / CS vers CodeableConcept ou code
-PQ vers Quantity
-TS / IVL_TS vers date, dateTime ou Period
 Elle constitue le socle commun de l’ensemble des autres mappings.
 Elle ne contient ni logique métier, ni logique nationale, ni navigation dans la structure du document CDA : son objectif est uniquement d’assurer la correspondance entre les types techniques manipulés dans les mappings.
 
@@ -108,8 +100,8 @@ ORDER BY ConceptMapName, group_index, elem_index, target_index
 ",
   "class": "lines",
   "columns": [
-    { \"name\": \"CDA\", \"type\": \"markdown\", \"source\": \"CDA\" },
-    { \"name\": \"FHIR\", \"type\": \"markdown\", \"source\": \"FHIR\" }
+    { "name": "CDA", "type": "markdown", "source": "CDA" },
+    { "name": "FHIR", "type": "markdown", "source": "FHIR" }
   ]
 } %}
 
