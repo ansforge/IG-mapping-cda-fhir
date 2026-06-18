@@ -69,39 +69,21 @@ TS / IVL_TS vers date, dateTime ou Period
 Elle constitue le socle commun de l’ensemble des autres mappings.
 Elle ne contient ni logique métier, ni logique nationale, ni navigation dans la structure du document CDA : son objectif est uniquement d’assurer la correspondance entre les types techniques manipulés dans les mappings.
 
+## Vérification des ConceptMap générés
+
 {% sql {
   "query": "
-WITH Mappings AS (
-  SELECT
-    json_extract(r.json, '$.id')   AS ConceptMapId,
-    json_extract(r.json, '$.name') AS ConceptMapName,
-    COALESCE(json_extract(e.value, '$.display'), json_extract(e.value, '$.code')) AS CDA,
-    COALESCE(json_extract(t.value, '$.display'), json_extract(t.value, '$.code')) AS FHIR,
-    g.key AS group_index,
-    e.key AS elem_index,
-    t.key AS target_index
-  FROM Resources r
-  JOIN json_each(r.json, '$.group') g
-  JOIN json_each(g.value, '$.element') e
-  JOIN json_each(e.value, '$.target') t
-  WHERE r.Type = 'ConceptMap'
-)
 SELECT
-  CDA,
-  FHIR
-FROM Mappings
-WHERE ConceptMapId IN (
-  'CdaIIToIdentifierConceptMap',
-  'CdaADToAddressConceptMap',
-  'CdaCECSCDToCodeConceptMap',
-  'CdaBLToBooleanConceptMap'
-  )
-ORDER BY ConceptMapName, group_index, elem_index, target_index
+  json_extract(r.json, '$.id') AS id,
+  json_extract(r.json, '$.name') AS name
+FROM Resources r
+WHERE r.Type = 'ConceptMap'
+ORDER BY id
 ",
-  "class": "lines",
+  "class": "grid",
   "columns": [
-    { \"name\": \"CDA\", \"type\": \"markdown\", \"source\": \"CDA\" },
-    { \"name\": \"FHIR\", \"type\": \"markdown\", \"source\": \"FHIR\" }
+    { "name": "ID", "source": "id" },
+    { "name": "Name", "source": "name" }
   ]
 } %}
 
