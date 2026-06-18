@@ -94,16 +94,8 @@ WHERE ConceptMapId IN (
   'CdaIIToIdentifierConceptMap',
   'CdaADToAddressConceptMap',
   'CdaCECSCDToCodeConceptMap',
-  'CdaBLToBooleanConceptMap',
-  'CdaTELToContactPointConceptMap',
-  'CdaTSToDateTimeConceptMap',
-  'CdaENPNToHumanNameConceptMap',
-  'CdaINTToIntegerConceptMap',
-  'CdaIVL-TSToPeriodConceptMap',
-  'CdaPQToQuantityConceptMap',
-  'CdaRTO-PQ-PQToRatioConceptMap',
-  'CdaSTEDONToStringConceptMap'
-)
+  'CdaBLToBooleanConceptMap'
+  )
 ORDER BY ConceptMapName, group_index, elem_index, target_index
 ",
   "class": "lines",
