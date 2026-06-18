@@ -58,32 +58,50 @@ Chaque couche couvre un niveau précis du mapping et s’appuie sur les couches 
 Le fichier principal de cette couche est CdaToFHIRTypes.fml.
 Cette couche regroupe les mappings de conversion des types de données CDA v3 vers les types de données FHIR.
 Dans le contexte CDA, les datatypes représentent les structures élémentaires utilisées pour porter l’information dans le document : identifiants, noms, adresses, codes, dates, quantités, coordonnées de contact, etc. Avant de transformer un document CDA en ressources FHIR, il est donc nécessaire de convertir correctement ces types sources vers leurs équivalents FHIR.
-Cette couche contient ainsi les transformations de bas niveau permettant, par exemple, de convertir :
-II vers Identifier
-EN / PN vers HumanName
-AD vers Address
-TEL vers ContactPoint
-CD / CE / CS vers CodeableConcept ou code
-PQ vers Quantity
-TS / IVL_TS vers date, dateTime ou Period
 Elle constitue le socle commun de l’ensemble des autres mappings.
 Elle ne contient ni logique métier, ni logique nationale, ni navigation dans la structure du document CDA : son objectif est uniquement d’assurer la correspondance entre les types techniques manipulés dans les mappings.
 
-## Vérification des ConceptMap générés
-
 {% sql {
   "query": "
+WITH Mappings AS (
+  SELECT
+    json_extract(r.json, '$.id')   AS ConceptMapId,
+    json_extract(r.json, '$.name') AS ConceptMapName,
+    COALESCE(json_extract(e.value, '$.display'), json_extract(e.value, '$.code'), '') AS CDA,
+    COALESCE(json_extract(t.value, '$.display'), json_extract(t.value, '$.code'), '') AS FHIR,
+    g.key AS group_index,
+    e.key AS elem_index,
+    t.key AS target_index
+  FROM Resources r
+  JOIN json_each(r.json, '$.group') g
+  JOIN json_each(g.value, '$.element') e
+  JOIN json_each(e.value, '$.target') t
+  WHERE r.Type = 'ConceptMap'
+)
 SELECT
-  json_extract(r.json, '$.id') AS id,
-  json_extract(r.json, '$.name') AS name
-FROM Resources r
-WHERE r.Type = 'ConceptMap'
-ORDER BY id
+  CDA,
+  FHIR
+FROM Mappings
+WHERE ConceptMapName IN (
+  'CdaAddressToFHIR',
+  'CdaBLToFHIR',
+  'CdaConceptCodesToFHIR',
+  'CdaNamesToFHIR',
+  'CdaIIToIdentifier',
+  'CdaINTToInteger',
+  'CdaIVL_TSToFHIR',
+  'CdaPQToFHIR',
+  'CdaRTOPQPQToFHIR',
+  'CdaStringTypesToFHIR',
+  'CdaTELToFHIR',
+  'CdaTSToFHIR'
+)
+ORDER BY ConceptMapName, group_index, elem_index, target_index
 ",
-  "class": "grid",
+  "class": "lines",
   "columns": [
-    { "name": "ID", "source": "id" },
-    { "name": "Name", "source": "name" }
+    { \"name\": \"CDA\", \"type\": \"markdown\", \"source\": \"CDA\" },
+    { \"name\": \"FHIR\", \"type\": \"markdown\", \"source\": \"FHIR\" }
   ]
 } %}
 
