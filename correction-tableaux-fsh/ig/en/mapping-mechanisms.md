@@ -57,28 +57,9 @@ Les mappings CDA vers FHIR sont organisés en couches afin de séparer les respo
 
 ##### Mappings de conversion des types
 
-Le fichier principal de cette couche est CdaToFHIRTypes.fml. Cette couche regroupe les mappings de conversion des types de données CDA v3 vers les types de données FHIR. Dans le contexte CDA, les datatypes représentent les structures élémentaires utilisées pour porter l’information dans le document : identifiants, noms, adresses, codes, dates, quantités, coordonnées de contact, etc. Avant de transformer un document CDA en ressources FHIR, il est donc nécessaire de convertir correctement ces types sources vers leurs équivalents FHIR. Cette couche contient ainsi les transformations de bas niveau permettant, par exemple, de convertir : II vers Identifier EN / PN vers HumanName AD vers Address TEL vers ContactPoint CD / CE / CS vers CodeableConcept ou code PQ vers Quantity TS / IVL_TS vers date, dateTime ou Period Elle constitue le socle commun de l’ensemble des autres mappings. Elle ne contient ni logique métier, ni logique nationale, ni navigation dans la structure du document CDA : son objectif est uniquement d’assurer la correspondance entre les types techniques manipulés dans les mappings.
+Le fichier principal de cette couche est CdaToFHIRTypes.fml. Cette couche regroupe les mappings de conversion des types de données CDA v3 vers les types de données FHIR. Dans le contexte CDA, les datatypes représentent les structures élémentaires utilisées pour porter l’information dans le document : identifiants, noms, adresses, codes, dates, quantités, coordonnées de contact, etc. Avant de transformer un document CDA en ressources FHIR, il est donc nécessaire de convertir correctement ces types sources vers leurs équivalents FHIR. Elle constitue le socle commun de l’ensemble des autres mappings. Elle ne contient ni logique métier, ni logique nationale, ni navigation dans la structure du document CDA : son objectif est uniquement d’assurer la correspondance entre les types techniques manipulés dans les mappings.
 
-## Vérification des ConceptMap générés
-
-| | |
-| :--- | :--- |
-| id | name |
-| [ConceptMap — CDA AD vers FHIR Address](CdaADToAddressConceptMap) | CdaAddressToFHIR |
-| [ConceptMap — CDA BL vers FHIR boolean](CdaBLToBooleanConceptMap) | CdaBLToFHIR |
-| [ConceptMap — CDA CE/CS/CD vers FHIR code et CodeableConcept](CdaCECSCDToCodeConceptMap) | CdaConceptCodesToFHIR |
-| [ConceptMap — CDA EN/PN vers FHIR HumanName](CdaENPNToHumanNameConceptMap) | CdaNamesToFHIR |
-| [ConceptMap — CDA II vers FHIR Identifier](CdaIIToIdentifierConceptMap) | CdaIIToIdentifier |
-| [ConceptMap — CDA INT vers FHIR integer](CdaINTToIntegerConceptMap) | CdaINTToInteger |
-| [ConceptMap — CDA IVL_TS vers FHIR Period et dateTime](CdaIVL-TSToPeriodConceptMap) | CdaIVL_TSToFHIR |
-| [ConceptMap — CDA PQ vers FHIR Quantity](CdaPQToQuantityConceptMap) | CdaPQToFHIR |
-| [ConceptMap — CDA RTO_PQ_PQ vers FHIR Ratio](CdaRTO-PQ-PQToRatioConceptMap) | CdaRTOPQPQToFHIR |
-| [ConceptMap — CDA ST/ED/ON vers FHIR string](CdaSTEDONToStringConceptMap) | CdaStringTypesToFHIR |
-| [ConceptMap — CDA TEL vers FHIR ContactPoint](CdaTELToContactPointConceptMap) | CdaTELToFHIR |
-| [ConceptMap — CDA TS vers FHIR instant, dateTime et date](CdaTSToDateTimeConceptMap) | CdaTSToFHIR |
-| [ConceptMap - OID to URL for TRE_R38-SpecialiteOrdinale](cm-oid-specialite-ordinale) | ConceptMapOidSpecialiteOrdinale |
-| [CDA to FHIR Administrative Gender Mapping](cm-v3-administrative-gender) | CdaToFhirAdministrativeGender |
-| [OID to URI Mapping for ANS terminologies](oid2uri-ans) | OID2URIConceptMapANS |
+Error processing SQL: Error parsing JSON source: Unexpected content '' in json format at Line 40 (path=[//columns[]columns])
 
 ##### Mappings CDA génériques
 
