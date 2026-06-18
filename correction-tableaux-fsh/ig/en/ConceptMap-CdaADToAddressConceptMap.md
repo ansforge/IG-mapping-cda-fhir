@@ -19,7 +19,7 @@ Correspondances documentaires des composants AD vers Address.
   "title" : "ConceptMap — CDA AD vers FHIR Address",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-06-18T09:28:53+00:00",
+  "date" : "2026-06-18T09:52:42+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
