@@ -1,0 +1,88 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaSTEDONToStringConceptMap> a fhir:ConceptMap ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "CdaSTEDONToStringConceptMap"] ; # 
+  fhir:language [ fhir:v "fr"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div [ fhir:v "<div xml:lang=\"fr\" lang=\"fr\"><hr/><p><b>French</b></p><hr/><p class=\"res-header-id\"><b>Narratif généré : CarteDeConcepts CdaSTEDONToStringConceptMap</b></p><a name=\"CdaSTEDONToStringConceptMap\"> </a><a name=\"hcCdaSTEDONToStringConceptMap\"> </a><p>This mapping does not specify any particular context of use.</p><br/><p><b>Groupe 1 </b>Mapping de <a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html\">ST: CharacterString (V3 Data Type)</a> to <a href=\"http://hl7.org/fhir/R4/datatypes.html#string\">string</a></p><table class=\"grid\"><tr><td><b>Code source</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>relation</b></td><td><b>Code cible</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Commentaire</b></td></tr><tr><td><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#s-ST.xmlText\">ST.xmlText</a></td><td>0..1</td><td>todo</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#string#s-string\">string</a></td><td>0..*</td><td>todo</td><td>Le texte CDA ST (xmlText) alimente directement un string FHIR.</td></tr></table><hr/><p><b>Groupe 2 </b>Mapping de <a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ED.html\">ED: EncapsulatedData (V3 Data Type)</a> to <a href=\"http://hl7.org/fhir/R4/datatypes.html#string\">string</a></p><table class=\"grid\"><tr><td><b>Code source</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>relation</b></td><td><b>Code cible</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Commentaire</b></td></tr><tr><td><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ED.html#s-ED.xmlText\">ED.xmlText</a></td><td>0..1</td><td>todo</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto\" title=\"relatedto\">is related to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#string#s-string\">string</a></td><td>0..*</td><td>todo</td><td>Le contenu textuel CDA ED (xmlText) peut être converti en string FHIR selon le contexte (texte, base64, etc.).</td></tr></table><hr/><p><b>Groupe 3 </b>Mapping de <a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ON.html\">ON: OrganizationName (V3 Data Type)</a> to <a href=\"http://hl7.org/fhir/R4/datatypes.html#string\">string</a></p><table class=\"grid\"><tr><td><b>Code source</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>relation</b></td><td><b>Code cible</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Commentaire</b></td></tr><tr><td colspan=\"3\">ON.xmlText</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#string#s-string\">string</a></td><td>0..*</td><td>todo</td><td>Le texte CDA ON (xmlText) alimente directement un string FHIR.</td></tr></table></div>"^^rdf:XMLLiteral ]
+  ] ; # 
+  fhir:url [ fhir:v "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaStringTypesToFHIR"^^xsd:anyURI] ; # 
+  fhir:version [ fhir:v "0.1.0"] ; # 
+  fhir:name [ fhir:v "CdaStringTypesToFHIR"] ; # 
+  fhir:title [ fhir:v "ConceptMap — CDA ST/ED/ON vers FHIR string"] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:experimental [ fhir:v true] ; # 
+  fhir:date [ fhir:v "2026-06-18T08:25:21+00:00"^^xsd:dateTime] ; # 
+  fhir:publisher [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"] ; # 
+  fhir:contact ( [
+     fhir:name [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris" ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "https://esante.gouv.fr" ]
+     ] )
+  ] ) ; # 
+  fhir:description [ fhir:v "Correspondances documentaires entre les datatypes CDA ST, ED et ON et le datatype FHIR string."] ; # 
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "urn:iso:std:iso:3166"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "FR" ] ;
+       fhir:display [ fhir:v "France (la)" ]
+     ] )
+  ] ) ; # 
+  fhir:group ( [
+     fhir:source [ fhir:v "http://hl7.org/cda/stds/core/StructureDefinition/ST"^^xsd:anyURI ] ;
+     fhir:sourceVersion [ fhir:v "2.0.0-sd" ] ;
+     fhir:target [ fhir:v "http://hl7.org/fhir/StructureDefinition/string"^^xsd:anyURI ] ;
+     fhir:targetVersion [ fhir:v "4.0.1" ] ;
+     fhir:element ( [
+       fhir:code [ fhir:v "ST.xmlText" ] ;
+       fhir:display [ fhir:v "ST.xmlText" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "string" ] ;
+         fhir:display [ fhir:v "string" ] ;
+         fhir:equivalence [ fhir:v "equivalent" ] ;
+         fhir:comment [ fhir:v "Le texte CDA ST (xmlText) alimente directement un string FHIR." ]
+       ] )
+     ] )
+  ] [
+     fhir:source [ fhir:v "http://hl7.org/cda/stds/core/StructureDefinition/ED"^^xsd:anyURI ] ;
+     fhir:sourceVersion [ fhir:v "2.0.0-sd" ] ;
+     fhir:target [ fhir:v "http://hl7.org/fhir/StructureDefinition/string"^^xsd:anyURI ] ;
+     fhir:targetVersion [ fhir:v "4.0.1" ] ;
+     fhir:element ( [
+       fhir:code [ fhir:v "ED.xmlText" ] ;
+       fhir:display [ fhir:v "ED.xmlText" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "string" ] ;
+         fhir:display [ fhir:v "string" ] ;
+         fhir:equivalence [ fhir:v "relatedto" ] ;
+         fhir:comment [ fhir:v "Le contenu textuel CDA ED (xmlText) peut être converti en string FHIR selon le contexte (texte, base64, etc.)." ]
+       ] )
+     ] )
+  ] [
+     fhir:source [ fhir:v "http://hl7.org/cda/stds/core/StructureDefinition/ON"^^xsd:anyURI ] ;
+     fhir:sourceVersion [ fhir:v "2.0.0-sd" ] ;
+     fhir:target [ fhir:v "http://hl7.org/fhir/StructureDefinition/string"^^xsd:anyURI ] ;
+     fhir:targetVersion [ fhir:v "4.0.1" ] ;
+     fhir:element ( [
+       fhir:code [ fhir:v "ON.xmlText" ] ;
+       fhir:display [ fhir:v "ON.xmlText" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "string" ] ;
+         fhir:display [ fhir:v "string" ] ;
+         fhir:equivalence [ fhir:v "equivalent" ] ;
+         fhir:comment [ fhir:v "Le texte CDA ON (xmlText) alimente directement un string FHIR." ]
+       ] )
+     ] )
+  ] ) . # 
+
+# -------------------------------------------------------------------------------------
+

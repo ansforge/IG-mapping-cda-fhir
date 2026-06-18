@@ -1,0 +1,1079 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrMDEToBundle> a fhir:StructureMap ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "CdaFrMDEToBundle"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div [ fhir:v "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div xml:lang=\"fr\" lang=\"fr\"><hr/><p><b>French</b></p><hr/><p class=\"res-header-id\"><b>Narratif généré : StructureMap CdaFrMDEToBundle</b></p><a name=\"CdaFrMDEToBundle\"> </a><a name=\"hcCdaFrMDEToBundle\"> </a><pre class=\"fml\">#xD;\n<b>map</b><span style=\"color: navy\"> \"</span>https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrMDEToBundle<span style=\"color: navy\">\" = \"</span>CdaFrMDEToBundle<span style=\"color: navy\">\"#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">Mapping CSE-MDE vers FHIR Bundle - Contexte Français</span>#xD;\n#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ClinicalDocument.html\" title=\"ClinicalDocument (CDA Class)\">http://hl7.org/cda/stds/core/StructureDefinition/ClinicalDocument|2.0.0-sd</a><span style=\"color: navy\">\" </span><b>alias </b>ClinicalDocument <b>as </b><b>source</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/fhir/R4/bundle.html\" title=\"Bundle\">http://hl7.org/fhir/StructureDefinition/Bundle|4.0.1</a><span style=\"color: navy\">\" </span><b>alias </b>Bundle <b>as </b><b>target</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/fhir/R4/composition.html\" title=\"Composition\">http://hl7.org/fhir/StructureDefinition/Composition|4.0.1</a><span style=\"color: navy\">\" </span><b>alias </b>Composition <b>as </b><b>target</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/fhir/R4/patient.html\" title=\"Patient\">http://hl7.org/fhir/StructureDefinition/Patient|4.0.1</a><span style=\"color: navy\">\" </span><b>alias </b>Patient <b>as </b><b>target</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/fhir/R4/observation.html\" title=\"Observation\">http://hl7.org/fhir/StructureDefinition/Observation|4.0.1</a><span style=\"color: navy\">\" </span><b>alias </b>Observation <b>as </b><b>target</b>#xD;\n#xD;\n<b>imports</b><span style=\"color: navy\"> \"</span><a href=\"StructureMap-CdaToFHIRTypes.html\" title=\"Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)\">https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes</a><span style=\"color: navy\">\"#xD;\n</span><b>imports</b><span style=\"color: navy\"> \"</span><a href=\"StructureMap-CdaToBundle.html\" title=\"Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)\">https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle</a><span style=\"color: navy\">\"#xD;\n</span><b>imports</b><span style=\"color: navy\"> \"</span><a href=\"StructureMap-CdaFrToBundle.html\" title=\"Mapping de CDAFr vers FHIR Bundle (A partir des sources de Oliver Egger)\">https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrToBundle</a><span style=\"color: navy\">\"#xD;\n</span>#xD;\n<span style=\"color: navy\">// </span><span style=\"color: green\">Entry point</span>#xD;\n<b>group </b>CdaFrMDEToBundle<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">cda</span><span style=\"color: navy\"> : </span>ClinicalDocument, <b>target</b> <span style=\"color: maroon\">bundle</span><span style=\"color: navy\"> : </span>Bundle<span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  cda<span style=\"color: navy\"><b> -&gt; </b></span> bundle.entry<b> as </b><span style=\"color: maroon\">e</span><span style=\"color: navy\">, </span> e.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Composition'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">composition</span><span style=\"color: navy\">, </span> composition.id = <b>uuid</b><span style=\"color: navy\">(</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">uuid</span><span style=\"color: navy\">, </span> e.fullUrl = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:uuid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">uuid</span><span style=\"color: navy\">)</span><span style=\"color: navy\">, </span> bundle.entry<b> as </b><span style=\"color: maroon\">e2</span><span style=\"color: navy\">, </span> e2.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Patient'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">patient</span><span style=\"color: navy\">, </span> patient.id = <b>uuid</b><span style=\"color: navy\">(</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">uuid2</span><span style=\"color: navy\">, </span> e2.fullUrl = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:uuid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">uuid2</span><span style=\"color: navy\">)</span><b> then </b>CdaFrMDEMapping<span style=\"color: navy\">(</span><span style=\"color: maroon\">cda</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">patient</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">composition</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">bundle</span><span style=\"color: navy\">)</span> <i>\"main\"</i><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">Main mapping group</span>#xD;\n<b>group </b>CdaFrMDEMapping<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">cda</span><span style=\"color: navy\"> : </span>ClinicalDocument, <b>target</b> <span style=\"color: maroon\">patient</span><span style=\"color: navy\"> : </span>Patient, <b>target</b> <span style=\"color: maroon\">composition</span><span style=\"color: navy\"> : </span>Composition, <b>target</b> <span style=\"color: maroon\">bundle</span><span style=\"color: navy\"> : </span>Bundle<span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  <span style=\"color: navy\">// </span><span style=\"color: green\">Bundle metadata</span>#xD;\n  cda<span style=\"color: navy\"><b> -&gt; </b></span>bundle.id = <b>uuid</b><span style=\"color: navy\">(</span><span style=\"color: navy\">)</span> <i>\"bundleId\"</i><span style=\"color: navy\">;</span>#xD;\n  cda.id<b> as </b><span style=\"color: maroon\">cdaId</span><span style=\"color: navy\"><b> -&gt; </b></span>bundle.identifier<b> as </b><span style=\"color: maroon\">identifier</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    cdaId.root<b> as </b><span style=\"color: maroon\">root</span><b> where </b>cdaId.extension.exists()<span style=\"color: navy\"><b> -&gt; </b></span>identifier.system = <b>translate</b><span style=\"color: navy\">(</span><span style=\"color: maroon\">root</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'#oid2uri'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'uri'</span><span style=\"color: navy\">)</span> <i>\"system\"</i><span style=\"color: navy\">;</span>#xD;\n    cdaId.extension<b> as </b><span style=\"color: maroon\">extension</span><span style=\"color: navy\"><b> -&gt; </b></span>identifier.value = <span style=\"color: maroon\">extension</span> <i>\"value\"</i><span style=\"color: navy\">;</span>#xD;\n    cdaId.root<b> as </b><span style=\"color: maroon\">root</span><b> where </b>cdaId.extension.empty()<span style=\"color: navy\"><b> -&gt; </b></span>identifier.system = <span style=\"color: blue\">'urn:ietf:rfc:3986'</span> <i>\"systemOid\"</i><span style=\"color: navy\">;</span>#xD;\n    cdaId.root<b> as </b><span style=\"color: maroon\">root</span><b> where </b>cdaId.extension.empty()<span style=\"color: navy\"><b> -&gt; </b></span>identifier.value = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:oid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">root</span><span style=\"color: navy\">)</span> <i>\"valueOid\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"bundleIdentifier\"</i><span style=\"color: navy\">;</span>#xD;\n  cda<span style=\"color: navy\"><b> -&gt; </b></span>bundle.type = <span style=\"color: blue\">'document'</span> <i>\"bundleType\"</i><span style=\"color: navy\">;</span>#xD;\n  cda.effectiveTime<b> as </b><span style=\"color: maroon\">effectiveTime</span><span style=\"color: navy\"><b> -&gt; </b></span>bundle.timestamp = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'instant'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">timestamp</span><b> then </b>TSInstant<span style=\"color: navy\">(</span><span style=\"color: maroon\">effectiveTime</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">timestamp</span><span style=\"color: navy\">)</span> <i>\"bundleTimestamp\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">Composition using CdaToBundle function (includes patient mapping)</span>#xD;\n  cda<span style=\"color: navy\"><b> -&gt; </b></span>composition<b> then </b>ClinicalDocumentComposition<span style=\"color: navy\">(</span><span style=\"color: maroon\">cda</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">composition</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">patient</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">bundle</span><span style=\"color: navy\">)</span> <i>\"composition\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">Add gender mapping after ClinicalDocumentComposition (which calls ClinicalDocumentPatientRole)</span>#xD;\n  cda.recordTarget<b> as </b><span style=\"color: maroon\">recordTarget</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    recordTarget.patientRole<b> as </b><span style=\"color: maroon\">patientRole</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>      patientRole.patient<b> as </b><span style=\"color: maroon\">cdaPatient</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>        cdaPatient.administrativeGenderCode<b> as </b><span style=\"color: maroon\">gender</span><b> then </b>MapGender<span style=\"color: navy\">(</span><span style=\"color: maroon\">gender</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">patient</span><span style=\"color: navy\">)</span> <i>\"patientGender\"</i><span style=\"color: navy\">;</span>#xD;\n      <span style=\"color: navy\">}</span> <i>\"cdaPatient\"</i><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">}</span><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"recordTargetGender\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">Process sections with observations</span>#xD;\n  cda.component<b> as </b><span style=\"color: maroon\">cdaComp</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    cdaComp.structuredBody<b> as </b><span style=\"color: maroon\">body</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>      body.component<b> as </b><span style=\"color: maroon\">bodyComp</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>        bodyComp.section<b> as </b><span style=\"color: maroon\">section</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>          <span style=\"color: navy\">// </span><span style=\"color: green\">Create composition section</span>#xD;\n          section<span style=\"color: navy\"><b> -&gt; </b></span>composition.section<b> as </b><span style=\"color: maroon\">compSection</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>            section.title<b> as </b><span style=\"color: maroon\">sectionTitle</span><span style=\"color: navy\"><b> -&gt; </b></span>compSection.title = <span style=\"color: navy\">(</span>sectionTitle.xmlText<span style=\"color: navy\">)</span> <i>\"sectionTitle\"</i><span style=\"color: navy\">;</span>#xD;\n            section.code<b> as </b><span style=\"color: maroon\">sectionCode</span><span style=\"color: navy\"><b> -&gt; </b></span>compSection.code = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'CodeableConcept'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">cc</span><b> then </b>CDCodeableConcept<span style=\"color: navy\">(</span><span style=\"color: maroon\">sectionCode</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">cc</span><span style=\"color: navy\">)</span> <i>\"sectionCode\"</i><span style=\"color: navy\">;</span>#xD;\n            section.text<b> as </b><span style=\"color: maroon\">sectionText</span><span style=\"color: navy\"><b> -&gt; </b></span>compSection.text = <span style=\"color: maroon\">sectionText</span> <i>\"sectionText\"</i><span style=\"color: navy\">;</span>#xD;\n            <span style=\"color: navy\">// </span><span style=\"color: green\">Process observations in organizers</span>#xD;\n            section.entry<b> as </b><span style=\"color: maroon\">entry</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>              entry.organizer<b> as </b><span style=\"color: maroon\">organizer</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>                organizer.component<b> as </b><span style=\"color: maroon\">orgComp</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>                  orgComp.observation<b> as </b><span style=\"color: maroon\">obs</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>                    obs<span style=\"color: navy\"><b> -&gt; </b></span> bundle.entry<b> as </b><span style=\"color: maroon\">obsEntry</span><span style=\"color: navy\">, </span> obsEntry.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Observation'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">observation</span><span style=\"color: navy\">, </span> observation.id = <b>uuid</b><span style=\"color: navy\">(</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">obsUuid</span><span style=\"color: navy\">, </span> obsEntry.fullUrl = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:uuid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">obsUuid</span><span style=\"color: navy\">)</span><span style=\"color: navy\">, </span> compSection.entry = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Reference'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">obsRef</span><span style=\"color: navy\">, </span> obsRef.reference = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:uuid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">obsUuid</span><span style=\"color: navy\">)</span><b> then </b>ProcessObservation<span style=\"color: navy\">(</span><span style=\"color: maroon\">cda</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">obs</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">observation</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">patient</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">composition</span><span style=\"color: navy\">)</span> <i>\"processObs\"</i><span style=\"color: navy\">;</span>#xD;\n                  <span style=\"color: navy\">}</span><span style=\"color: navy\">;</span>#xD;\n                <span style=\"color: navy\">}</span> <i>\"orgComponent\"</i><span style=\"color: navy\">;</span>#xD;\n              <span style=\"color: navy\">}</span><span style=\"color: navy\">;</span>#xD;\n            <span style=\"color: navy\">}</span><span style=\"color: navy\">;</span>#xD;\n          <span style=\"color: navy\">}</span> <i>\"compSection\"</i><span style=\"color: navy\">;</span>#xD;\n        <span style=\"color: navy\">}</span><span style=\"color: navy\">;</span>#xD;\n      <span style=\"color: navy\">}</span> <i>\"bodyComponent\"</i><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">}</span><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"cdaComponent\"</i><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">Process individual observation using CdaToFHIRTypes functions</span>#xD;\n<b>group </b>ProcessObservation<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">cda</span><span style=\"color: navy\"> : </span>ClinicalDocument, <b>source</b> <span style=\"color: maroon\">obs</span>, <b>target</b> <span style=\"color: maroon\">observation</span><span style=\"color: navy\"> : </span>Observation, <b>target</b> <span style=\"color: maroon\">patient</span><span style=\"color: navy\"> : </span>Patient, <b>target</b> <span style=\"color: maroon\">composition</span><span style=\"color: navy\"> : </span>Composition<span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  <span style=\"color: navy\">// </span><span style=\"color: green\">Meta profile - ANS profiles based on LOINC code</span>#xD;\n  obs.code<b> as </b><span style=\"color: maroon\">obsCode</span><b> where </b>code = '29463-7'<span style=\"color: navy\"><b> -&gt; </b></span>observation.meta = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Meta'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">meta</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    obsCode<span style=\"color: navy\"><b> -&gt; </b></span>meta.profile = <span style=\"color: blue\">'https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-fr-observation-body-weight'</span> <i>\"profileWeight\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"metaWeight\"</i><span style=\"color: navy\">;</span>#xD;\n  obs.code<b> as </b><span style=\"color: maroon\">obsCode</span><b> where </b>code = '8302-2'<span style=\"color: navy\"><b> -&gt; </b></span>observation.meta = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Meta'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">meta</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    obsCode<span style=\"color: navy\"><b> -&gt; </b></span>meta.profile = <span style=\"color: blue\">'https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-fr-observation-bodyheight'</span> <i>\"profileHeight\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"metaHeight\"</i><span style=\"color: navy\">;</span>#xD;\n  obs.code<b> as </b><span style=\"color: maroon\">obsCode</span><b> where </b>code = '8287-5'<span style=\"color: navy\"><b> -&gt; </b></span>observation.meta = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Meta'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">meta</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    obsCode<span style=\"color: navy\"><b> -&gt; </b></span>meta.profile = <span style=\"color: blue\">'https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-observation-head-circumference'</span> <i>\"profileHeadCirc\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"metaHeadCirc\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">Status - map CDA \"completed\" to FHIR \"final\"</span>#xD;\n  obs.statusCode<b> as </b><span style=\"color: maroon\">statusCode</span><b> where </b>code = 'completed'<span style=\"color: navy\"><b> -&gt; </b></span>observation.status = <span style=\"color: blue\">'final'</span> <i>\"statusCompleted\"</i><span style=\"color: navy\">;</span>#xD;\n  obs.statusCode<b> as </b><span style=\"color: maroon\">statusCode</span><b> where </b>code != 'completed'<span style=\"color: navy\"><b> -&gt; </b></span>observation.status = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'code'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">status</span><b> then </b>CSCode<span style=\"color: navy\">(</span><span style=\"color: maroon\">statusCode</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">status</span><span style=\"color: navy\">)</span> <i>\"statusOther\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">Category - vital-signs for all observations in CSE-MDE</span>#xD;\n  obs<span style=\"color: navy\"><b> -&gt; </b></span>observation.category = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'CodeableConcept'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">category</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    obs<span style=\"color: navy\"><b> -&gt; </b></span>category.coding = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Coding'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">coding</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>      obs<span style=\"color: navy\"><b> -&gt; </b></span>coding.system = <span style=\"color: blue\">'http://terminology.hl7.org/CodeSystem/observation-category'</span> <i>\"system\"</i><span style=\"color: navy\">;</span>#xD;\n      obs<span style=\"color: navy\"><b> -&gt; </b></span>coding.code = <span style=\"color: blue\">'vital-signs'</span> <i>\"code\"</i><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">}</span> <i>\"coding\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"category\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">Code using CDCodeableConcept from CdaToFHIRTypes</span>#xD;\n  obs.code<b> as </b><span style=\"color: maroon\">code</span><span style=\"color: navy\"><b> -&gt; </b></span>observation.code = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'CodeableConcept'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">cc</span><b> then </b>CDCodeableConcept<span style=\"color: navy\">(</span><span style=\"color: maroon\">code</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">cc</span><span style=\"color: navy\">)</span> <i>\"obsCode\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">EffectiveDateTime - use effectiveTime from observation</span>#xD;\n  obs.effectiveTime<b> as </b><span style=\"color: maroon\">effectiveTime</span><span style=\"color: navy\"><b> -&gt; </b></span>observation.effective = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'dateTime'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">dt</span><b> then </b>TSDateTime<span style=\"color: navy\">(</span><span style=\"color: maroon\">effectiveTime</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">dt</span><span style=\"color: navy\">)</span> <i>\"effectiveDateTime\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">Value as Quantity using PQQuantity from CdaToFHIRTypes</span>#xD;\n  obs.value<b> as </b><span style=\"color: maroon\">value</span><span style=\"color: navy\"><b> -&gt; </b></span>observation.value = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Quantity'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">qty</span><b> then </b>PQQuantity<span style=\"color: navy\">(</span><span style=\"color: maroon\">value</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">qty</span><span style=\"color: navy\">)</span> <i>\"obsValue\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">Subject reference</span>#xD;\n  obs<span style=\"color: navy\"><b> -&gt; </b></span> observation.subject = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Reference'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">ref</span><span style=\"color: navy\">, </span> ref.reference = <span style=\"color: navy\">(</span>'urn:uuid:' + %patient.id<span style=\"color: navy\">)</span> <i>\"obsSubject\"</i><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">Map CDA v3 administrative gender to FHIR gender</span>#xD;\n<b>group </b>MapGender<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span>, <b>target</b> <span style=\"color: maroon\">patient</span><span style=\"color: navy\"> : </span>Patient<span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  src<b> where </b>code = 'M'<span style=\"color: navy\"><b> -&gt; </b></span>patient.gender = <span style=\"color: blue\">'male'</span> <i>\"genderMale\"</i><span style=\"color: navy\">;</span>#xD;\n  src<b> where </b>code = 'F'<span style=\"color: navy\"><b> -&gt; </b></span>patient.gender = <span style=\"color: blue\">'female'</span> <i>\"genderFemale\"</i><span style=\"color: navy\">;</span>#xD;\n  src<b> where </b>code = 'UN'<span style=\"color: navy\"><b> -&gt; </b></span>patient.gender = <span style=\"color: blue\">'other'</span> <i>\"genderOther\"</i><span style=\"color: navy\">;</span>#xD;\n  src<b> where </b>code = 'UNK'<span style=\"color: navy\"><b> -&gt; </b></span>patient.gender = <span style=\"color: blue\">'unknown'</span> <i>\"genderUnknown\"</i><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span></pre></div><div xml:lang=\"en\" lang=\"en\"><hr/><p><b>English</b></p><hr/><p class=\"res-header-id\"><b>Generated Narrative: StructureMap CdaFrMDEToBundle</b></p><a name=\"en-CdaFrMDEToBundle\"> </a><a name=\"en-hcCdaFrMDEToBundle\"> </a><pre class=\"fml\">#xD;\n<b>map</b><span style=\"color: navy\"> \"</span>https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrMDEToBundle<span style=\"color: navy\">\" = \"</span>CdaFrMDEToBundle<span style=\"color: navy\">\"#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">Mapping CSE-MDE vers FHIR Bundle - Contexte Français</span>#xD;\n#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ClinicalDocument.html\" title=\"ClinicalDocument (CDA Class)\">http://hl7.org/cda/stds/core/StructureDefinition/ClinicalDocument|2.0.0-sd</a><span style=\"color: navy\">\" </span><b>alias </b>ClinicalDocument <b>as </b><b>source</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/fhir/R4/bundle.html\" title=\"Bundle\">http://hl7.org/fhir/StructureDefinition/Bundle|4.0.1</a><span style=\"color: navy\">\" </span><b>alias </b>Bundle <b>as </b><b>target</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/fhir/R4/composition.html\" title=\"Composition\">http://hl7.org/fhir/StructureDefinition/Composition|4.0.1</a><span style=\"color: navy\">\" </span><b>alias </b>Composition <b>as </b><b>target</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/fhir/R4/patient.html\" title=\"Patient\">http://hl7.org/fhir/StructureDefinition/Patient|4.0.1</a><span style=\"color: navy\">\" </span><b>alias </b>Patient <b>as </b><b>target</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/fhir/R4/observation.html\" title=\"Observation\">http://hl7.org/fhir/StructureDefinition/Observation|4.0.1</a><span style=\"color: navy\">\" </span><b>alias </b>Observation <b>as </b><b>target</b>#xD;\n#xD;\n<b>imports</b><span style=\"color: navy\"> \"</span><a href=\"StructureMap-CdaToFHIRTypes.html\" title=\"Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)\">https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes</a><span style=\"color: navy\">\"#xD;\n</span><b>imports</b><span style=\"color: navy\"> \"</span><a href=\"StructureMap-CdaToBundle.html\" title=\"Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)\">https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle</a><span style=\"color: navy\">\"#xD;\n</span><b>imports</b><span style=\"color: navy\"> \"</span><a href=\"StructureMap-CdaFrToBundle.html\" title=\"Mapping de CDAFr vers FHIR Bundle (A partir des sources de Oliver Egger)\">https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrToBundle</a><span style=\"color: navy\">\"#xD;\n</span>#xD;\n<span style=\"color: navy\">// </span><span style=\"color: green\">Entry point</span>#xD;\n<b>group </b>CdaFrMDEToBundle<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">cda</span><span style=\"color: navy\"> : </span>ClinicalDocument, <b>target</b> <span style=\"color: maroon\">bundle</span><span style=\"color: navy\"> : </span>Bundle<span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  cda<span style=\"color: navy\"><b> -&gt; </b></span> bundle.entry<b> as </b><span style=\"color: maroon\">e</span><span style=\"color: navy\">, </span> e.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Composition'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">composition</span><span style=\"color: navy\">, </span> composition.id = <b>uuid</b><span style=\"color: navy\">(</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">uuid</span><span style=\"color: navy\">, </span> e.fullUrl = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:uuid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">uuid</span><span style=\"color: navy\">)</span><span style=\"color: navy\">, </span> bundle.entry<b> as </b><span style=\"color: maroon\">e2</span><span style=\"color: navy\">, </span> e2.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Patient'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">patient</span><span style=\"color: navy\">, </span> patient.id = <b>uuid</b><span style=\"color: navy\">(</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">uuid2</span><span style=\"color: navy\">, </span> e2.fullUrl = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:uuid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">uuid2</span><span style=\"color: navy\">)</span><b> then </b>CdaFrMDEMapping<span style=\"color: navy\">(</span><span style=\"color: maroon\">cda</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">patient</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">composition</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">bundle</span><span style=\"color: navy\">)</span> <i>\"main\"</i><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">Main mapping group</span>#xD;\n<b>group </b>CdaFrMDEMapping<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">cda</span><span style=\"color: navy\"> : </span>ClinicalDocument, <b>target</b> <span style=\"color: maroon\">patient</span><span style=\"color: navy\"> : </span>Patient, <b>target</b> <span style=\"color: maroon\">composition</span><span style=\"color: navy\"> : </span>Composition, <b>target</b> <span style=\"color: maroon\">bundle</span><span style=\"color: navy\"> : </span>Bundle<span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  <span style=\"color: navy\">// </span><span style=\"color: green\">Bundle metadata</span>#xD;\n  cda<span style=\"color: navy\"><b> -&gt; </b></span>bundle.id = <b>uuid</b><span style=\"color: navy\">(</span><span style=\"color: navy\">)</span> <i>\"bundleId\"</i><span style=\"color: navy\">;</span>#xD;\n  cda.id<b> as </b><span style=\"color: maroon\">cdaId</span><span style=\"color: navy\"><b> -&gt; </b></span>bundle.identifier<b> as </b><span style=\"color: maroon\">identifier</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    cdaId.root<b> as </b><span style=\"color: maroon\">root</span><b> where </b>cdaId.extension.exists()<span style=\"color: navy\"><b> -&gt; </b></span>identifier.system = <b>translate</b><span style=\"color: navy\">(</span><span style=\"color: maroon\">root</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'#oid2uri'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'uri'</span><span style=\"color: navy\">)</span> <i>\"system\"</i><span style=\"color: navy\">;</span>#xD;\n    cdaId.extension<b> as </b><span style=\"color: maroon\">extension</span><span style=\"color: navy\"><b> -&gt; </b></span>identifier.value = <span style=\"color: maroon\">extension</span> <i>\"value\"</i><span style=\"color: navy\">;</span>#xD;\n    cdaId.root<b> as </b><span style=\"color: maroon\">root</span><b> where </b>cdaId.extension.empty()<span style=\"color: navy\"><b> -&gt; </b></span>identifier.system = <span style=\"color: blue\">'urn:ietf:rfc:3986'</span> <i>\"systemOid\"</i><span style=\"color: navy\">;</span>#xD;\n    cdaId.root<b> as </b><span style=\"color: maroon\">root</span><b> where </b>cdaId.extension.empty()<span style=\"color: navy\"><b> -&gt; </b></span>identifier.value = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:oid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">root</span><span style=\"color: navy\">)</span> <i>\"valueOid\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"bundleIdentifier\"</i><span style=\"color: navy\">;</span>#xD;\n  cda<span style=\"color: navy\"><b> -&gt; </b></span>bundle.type = <span style=\"color: blue\">'document'</span> <i>\"bundleType\"</i><span style=\"color: navy\">;</span>#xD;\n  cda.effectiveTime<b> as </b><span style=\"color: maroon\">effectiveTime</span><span style=\"color: navy\"><b> -&gt; </b></span>bundle.timestamp = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'instant'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">timestamp</span><b> then </b>TSInstant<span style=\"color: navy\">(</span><span style=\"color: maroon\">effectiveTime</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">timestamp</span><span style=\"color: navy\">)</span> <i>\"bundleTimestamp\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">Composition using CdaToBundle function (includes patient mapping)</span>#xD;\n  cda<span style=\"color: navy\"><b> -&gt; </b></span>composition<b> then </b>ClinicalDocumentComposition<span style=\"color: navy\">(</span><span style=\"color: maroon\">cda</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">composition</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">patient</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">bundle</span><span style=\"color: navy\">)</span> <i>\"composition\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">Add gender mapping after ClinicalDocumentComposition (which calls ClinicalDocumentPatientRole)</span>#xD;\n  cda.recordTarget<b> as </b><span style=\"color: maroon\">recordTarget</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    recordTarget.patientRole<b> as </b><span style=\"color: maroon\">patientRole</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>      patientRole.patient<b> as </b><span style=\"color: maroon\">cdaPatient</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>        cdaPatient.administrativeGenderCode<b> as </b><span style=\"color: maroon\">gender</span><b> then </b>MapGender<span style=\"color: navy\">(</span><span style=\"color: maroon\">gender</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">patient</span><span style=\"color: navy\">)</span> <i>\"patientGender\"</i><span style=\"color: navy\">;</span>#xD;\n      <span style=\"color: navy\">}</span> <i>\"cdaPatient\"</i><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">}</span><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"recordTargetGender\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">Process sections with observations</span>#xD;\n  cda.component<b> as </b><span style=\"color: maroon\">cdaComp</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    cdaComp.structuredBody<b> as </b><span style=\"color: maroon\">body</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>      body.component<b> as </b><span style=\"color: maroon\">bodyComp</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>        bodyComp.section<b> as </b><span style=\"color: maroon\">section</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>          <span style=\"color: navy\">// </span><span style=\"color: green\">Create composition section</span>#xD;\n          section<span style=\"color: navy\"><b> -&gt; </b></span>composition.section<b> as </b><span style=\"color: maroon\">compSection</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>            section.title<b> as </b><span style=\"color: maroon\">sectionTitle</span><span style=\"color: navy\"><b> -&gt; </b></span>compSection.title = <span style=\"color: navy\">(</span>sectionTitle.xmlText<span style=\"color: navy\">)</span> <i>\"sectionTitle\"</i><span style=\"color: navy\">;</span>#xD;\n            section.code<b> as </b><span style=\"color: maroon\">sectionCode</span><span style=\"color: navy\"><b> -&gt; </b></span>compSection.code = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'CodeableConcept'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">cc</span><b> then </b>CDCodeableConcept<span style=\"color: navy\">(</span><span style=\"color: maroon\">sectionCode</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">cc</span><span style=\"color: navy\">)</span> <i>\"sectionCode\"</i><span style=\"color: navy\">;</span>#xD;\n            section.text<b> as </b><span style=\"color: maroon\">sectionText</span><span style=\"color: navy\"><b> -&gt; </b></span>compSection.text = <span style=\"color: maroon\">sectionText</span> <i>\"sectionText\"</i><span style=\"color: navy\">;</span>#xD;\n            <span style=\"color: navy\">// </span><span style=\"color: green\">Process observations in organizers</span>#xD;\n            section.entry<b> as </b><span style=\"color: maroon\">entry</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>              entry.organizer<b> as </b><span style=\"color: maroon\">organizer</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>                organizer.component<b> as </b><span style=\"color: maroon\">orgComp</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>                  orgComp.observation<b> as </b><span style=\"color: maroon\">obs</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>                    obs<span style=\"color: navy\"><b> -&gt; </b></span> bundle.entry<b> as </b><span style=\"color: maroon\">obsEntry</span><span style=\"color: navy\">, </span> obsEntry.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Observation'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">observation</span><span style=\"color: navy\">, </span> observation.id = <b>uuid</b><span style=\"color: navy\">(</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">obsUuid</span><span style=\"color: navy\">, </span> obsEntry.fullUrl = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:uuid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">obsUuid</span><span style=\"color: navy\">)</span><span style=\"color: navy\">, </span> compSection.entry = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Reference'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">obsRef</span><span style=\"color: navy\">, </span> obsRef.reference = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:uuid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">obsUuid</span><span style=\"color: navy\">)</span><b> then </b>ProcessObservation<span style=\"color: navy\">(</span><span style=\"color: maroon\">cda</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">obs</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">observation</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">patient</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">composition</span><span style=\"color: navy\">)</span> <i>\"processObs\"</i><span style=\"color: navy\">;</span>#xD;\n                  <span style=\"color: navy\">}</span><span style=\"color: navy\">;</span>#xD;\n                <span style=\"color: navy\">}</span> <i>\"orgComponent\"</i><span style=\"color: navy\">;</span>#xD;\n              <span style=\"color: navy\">}</span><span style=\"color: navy\">;</span>#xD;\n            <span style=\"color: navy\">}</span><span style=\"color: navy\">;</span>#xD;\n          <span style=\"color: navy\">}</span> <i>\"compSection\"</i><span style=\"color: navy\">;</span>#xD;\n        <span style=\"color: navy\">}</span><span style=\"color: navy\">;</span>#xD;\n      <span style=\"color: navy\">}</span> <i>\"bodyComponent\"</i><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">}</span><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"cdaComponent\"</i><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">Process individual observation using CdaToFHIRTypes functions</span>#xD;\n<b>group </b>ProcessObservation<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">cda</span><span style=\"color: navy\"> : </span>ClinicalDocument, <b>source</b> <span style=\"color: maroon\">obs</span>, <b>target</b> <span style=\"color: maroon\">observation</span><span style=\"color: navy\"> : </span>Observation, <b>target</b> <span style=\"color: maroon\">patient</span><span style=\"color: navy\"> : </span>Patient, <b>target</b> <span style=\"color: maroon\">composition</span><span style=\"color: navy\"> : </span>Composition<span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  <span style=\"color: navy\">// </span><span style=\"color: green\">Meta profile - ANS profiles based on LOINC code</span>#xD;\n  obs.code<b> as </b><span style=\"color: maroon\">obsCode</span><b> where </b>code = '29463-7'<span style=\"color: navy\"><b> -&gt; </b></span>observation.meta = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Meta'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">meta</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    obsCode<span style=\"color: navy\"><b> -&gt; </b></span>meta.profile = <span style=\"color: blue\">'https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-fr-observation-body-weight'</span> <i>\"profileWeight\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"metaWeight\"</i><span style=\"color: navy\">;</span>#xD;\n  obs.code<b> as </b><span style=\"color: maroon\">obsCode</span><b> where </b>code = '8302-2'<span style=\"color: navy\"><b> -&gt; </b></span>observation.meta = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Meta'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">meta</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    obsCode<span style=\"color: navy\"><b> -&gt; </b></span>meta.profile = <span style=\"color: blue\">'https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-fr-observation-bodyheight'</span> <i>\"profileHeight\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"metaHeight\"</i><span style=\"color: navy\">;</span>#xD;\n  obs.code<b> as </b><span style=\"color: maroon\">obsCode</span><b> where </b>code = '8287-5'<span style=\"color: navy\"><b> -&gt; </b></span>observation.meta = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Meta'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">meta</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    obsCode<span style=\"color: navy\"><b> -&gt; </b></span>meta.profile = <span style=\"color: blue\">'https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-observation-head-circumference'</span> <i>\"profileHeadCirc\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"metaHeadCirc\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">Status - map CDA \"completed\" to FHIR \"final\"</span>#xD;\n  obs.statusCode<b> as </b><span style=\"color: maroon\">statusCode</span><b> where </b>code = 'completed'<span style=\"color: navy\"><b> -&gt; </b></span>observation.status = <span style=\"color: blue\">'final'</span> <i>\"statusCompleted\"</i><span style=\"color: navy\">;</span>#xD;\n  obs.statusCode<b> as </b><span style=\"color: maroon\">statusCode</span><b> where </b>code != 'completed'<span style=\"color: navy\"><b> -&gt; </b></span>observation.status = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'code'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">status</span><b> then </b>CSCode<span style=\"color: navy\">(</span><span style=\"color: maroon\">statusCode</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">status</span><span style=\"color: navy\">)</span> <i>\"statusOther\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">Category - vital-signs for all observations in CSE-MDE</span>#xD;\n  obs<span style=\"color: navy\"><b> -&gt; </b></span>observation.category = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'CodeableConcept'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">category</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    obs<span style=\"color: navy\"><b> -&gt; </b></span>category.coding = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Coding'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">coding</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>      obs<span style=\"color: navy\"><b> -&gt; </b></span>coding.system = <span style=\"color: blue\">'http://terminology.hl7.org/CodeSystem/observation-category'</span> <i>\"system\"</i><span style=\"color: navy\">;</span>#xD;\n      obs<span style=\"color: navy\"><b> -&gt; </b></span>coding.code = <span style=\"color: blue\">'vital-signs'</span> <i>\"code\"</i><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">}</span> <i>\"coding\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"category\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">Code using CDCodeableConcept from CdaToFHIRTypes</span>#xD;\n  obs.code<b> as </b><span style=\"color: maroon\">code</span><span style=\"color: navy\"><b> -&gt; </b></span>observation.code = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'CodeableConcept'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">cc</span><b> then </b>CDCodeableConcept<span style=\"color: navy\">(</span><span style=\"color: maroon\">code</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">cc</span><span style=\"color: navy\">)</span> <i>\"obsCode\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">EffectiveDateTime - use effectiveTime from observation</span>#xD;\n  obs.effectiveTime<b> as </b><span style=\"color: maroon\">effectiveTime</span><span style=\"color: navy\"><b> -&gt; </b></span>observation.effective = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'dateTime'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">dt</span><b> then </b>TSDateTime<span style=\"color: navy\">(</span><span style=\"color: maroon\">effectiveTime</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">dt</span><span style=\"color: navy\">)</span> <i>\"effectiveDateTime\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">Value as Quantity using PQQuantity from CdaToFHIRTypes</span>#xD;\n  obs.value<b> as </b><span style=\"color: maroon\">value</span><span style=\"color: navy\"><b> -&gt; </b></span>observation.value = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Quantity'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">qty</span><b> then </b>PQQuantity<span style=\"color: navy\">(</span><span style=\"color: maroon\">value</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">qty</span><span style=\"color: navy\">)</span> <i>\"obsValue\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">Subject reference</span>#xD;\n  obs<span style=\"color: navy\"><b> -&gt; </b></span> observation.subject = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Reference'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">ref</span><span style=\"color: navy\">, </span> ref.reference = <span style=\"color: navy\">(</span>'urn:uuid:' + %patient.id<span style=\"color: navy\">)</span> <i>\"obsSubject\"</i><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">Map CDA v3 administrative gender to FHIR gender</span>#xD;\n<b>group </b>MapGender<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span>, <b>target</b> <span style=\"color: maroon\">patient</span><span style=\"color: navy\"> : </span>Patient<span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  src<b> where </b>code = 'M'<span style=\"color: navy\"><b> -&gt; </b></span>patient.gender = <span style=\"color: blue\">'male'</span> <i>\"genderMale\"</i><span style=\"color: navy\">;</span>#xD;\n  src<b> where </b>code = 'F'<span style=\"color: navy\"><b> -&gt; </b></span>patient.gender = <span style=\"color: blue\">'female'</span> <i>\"genderFemale\"</i><span style=\"color: navy\">;</span>#xD;\n  src<b> where </b>code = 'UN'<span style=\"color: navy\"><b> -&gt; </b></span>patient.gender = <span style=\"color: blue\">'other'</span> <i>\"genderOther\"</i><span style=\"color: navy\">;</span>#xD;\n  src<b> where </b>code = 'UNK'<span style=\"color: navy\"><b> -&gt; </b></span>patient.gender = <span style=\"color: blue\">'unknown'</span> <i>\"genderUnknown\"</i><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span></pre></div></div>"^^rdf:XMLLiteral ]
+  ] ; # 
+  fhir:url [ fhir:v "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrMDEToBundle"^^xsd:anyURI] ; # 
+  fhir:version [ fhir:v "0.1.0"] ; # 
+  fhir:name [ fhir:v "CdaFrMDEToBundle"] ; # 
+  fhir:title [ fhir:v "Mapping CSE-MDE vers FHIR Bundle - Contexte Français"] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:date [ fhir:v "2026-06-18T08:25:21+00:00"^^xsd:dateTime] ; # 
+  fhir:publisher [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"] ; # 
+  fhir:contact ( [
+     fhir:name [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris" ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "https://esante.gouv.fr" ]
+     ] )
+  ] ) ; # 
+  fhir:description [ fhir:v "Mapping CSE-MDE vers FHIR Bundle - Contexte Français"] ; # 
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "urn:iso:std:iso:3166"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "FR" ] ;
+       fhir:display [ fhir:v "France (la)" ]
+     ] )
+  ] ) ; # 
+  fhir:structure ( [
+     fhir:url [
+       fhir:v "http://hl7.org/cda/stds/core/StructureDefinition/ClinicalDocument|2.0.0-sd"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/cda/stds/core/StructureDefinition/ClinicalDocument|2.0.0-sd>
+     ] ;
+     fhir:mode [ fhir:v "source" ] ;
+     fhir:alias [ fhir:v "ClinicalDocument" ]
+  ] [
+     fhir:url [
+       fhir:v "http://hl7.org/fhir/StructureDefinition/Bundle|4.0.1"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/StructureDefinition/Bundle|4.0.1>
+     ] ;
+     fhir:mode [ fhir:v "target" ] ;
+     fhir:alias [ fhir:v "Bundle" ]
+  ] [
+     fhir:url [
+       fhir:v "http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/StructureDefinition/Composition|4.0.1>
+     ] ;
+     fhir:mode [ fhir:v "target" ] ;
+     fhir:alias [ fhir:v "Composition" ]
+  ] [
+     fhir:url [
+       fhir:v "http://hl7.org/fhir/StructureDefinition/Patient|4.0.1"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/StructureDefinition/Patient|4.0.1>
+     ] ;
+     fhir:mode [ fhir:v "target" ] ;
+     fhir:alias [ fhir:v "Patient" ]
+  ] [
+     fhir:url [
+       fhir:v "http://hl7.org/fhir/StructureDefinition/Observation|4.0.1"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/StructureDefinition/Observation|4.0.1>
+     ] ;
+     fhir:mode [ fhir:v "target" ] ;
+     fhir:alias [ fhir:v "Observation" ]
+  ] ) ; # 
+  fhir:import ( [
+     fhir:v "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes"^^xsd:anyURI ;
+     fhir:link <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes>
+  ] [
+     fhir:v "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle"^^xsd:anyURI ;
+     fhir:link <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle>
+  ] [
+     fhir:v "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrToBundle"^^xsd:anyURI ;
+     fhir:link <https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrToBundle>
+  ] ) ; # 
+  fhir:group ( [
+     fhir:name [ fhir:v "CdaFrMDEToBundle" ] ;
+     fhir:typeMode [ fhir:v "none" ] ;
+     fhir:documentation [ fhir:v "Entry point" ] ;
+     fhir:input ( [
+       fhir:name [ fhir:v "cda" ] ;
+       fhir:type [ fhir:v "ClinicalDocument" ] ;
+       fhir:mode [ fhir:v "source" ]
+     ] [
+       fhir:name [ fhir:v "bundle" ] ;
+       fhir:type [ fhir:v "Bundle" ] ;
+       fhir:mode [ fhir:v "target" ]
+     ] ) ;
+     fhir:rule ( [
+       fhir:name [ fhir:v "main" ] ;
+       fhir:source ( [
+         fhir:context [ fhir:v "cda" ]
+       ] ) ;
+       fhir:target ( [
+         fhir:context [ fhir:v "bundle" ] ;
+         fhir:contextType [ fhir:v "variable" ] ;
+         fhir:element [ fhir:v "entry" ] ;
+         fhir:variable [ fhir:v "e" ]
+       ] [
+         fhir:context [ fhir:v "e" ] ;
+         fhir:contextType [ fhir:v "variable" ] ;
+         fhir:element [ fhir:v "resource" ] ;
+         fhir:variable [ fhir:v "composition" ] ;
+         fhir:transform [ fhir:v "create" ] ;
+         fhir:parameter ( [
+           fhir:value [
+             a fhir:string ;
+             fhir:v "Composition"
+           ]
+         ] )
+       ] [
+         fhir:context [ fhir:v "composition" ] ;
+         fhir:contextType [ fhir:v "variable" ] ;
+         fhir:element [ fhir:v "id" ] ;
+         fhir:variable [ fhir:v "uuid" ] ;
+         fhir:transform [ fhir:v "uuid" ]
+       ] [
+         fhir:context [ fhir:v "e" ] ;
+         fhir:contextType [ fhir:v "variable" ] ;
+         fhir:element [ fhir:v "fullUrl" ] ;
+         fhir:transform [ fhir:v "append" ] ;
+         fhir:parameter ( [
+           fhir:value [
+             a fhir:string ;
+             fhir:v "urn:uuid:"
+           ]
+         ] [
+           fhir:value [
+             a fhir:id ;
+             fhir:v "uuid"
+           ]
+         ] )
+       ] [
+         fhir:context [ fhir:v "bundle" ] ;
+         fhir:contextType [ fhir:v "variable" ] ;
+         fhir:element [ fhir:v "entry" ] ;
+         fhir:variable [ fhir:v "e2" ]
+       ] [
+         fhir:context [ fhir:v "e2" ] ;
+         fhir:contextType [ fhir:v "variable" ] ;
+         fhir:element [ fhir:v "resource" ] ;
+         fhir:variable [ fhir:v "patient" ] ;
+         fhir:transform [ fhir:v "create" ] ;
+         fhir:parameter ( [
+           fhir:value [
+             a fhir:string ;
+             fhir:v "Patient"
+           ]
+         ] )
+       ] [
+         fhir:context [ fhir:v "patient" ] ;
+         fhir:contextType [ fhir:v "variable" ] ;
+         fhir:element [ fhir:v "id" ] ;
+         fhir:variable [ fhir:v "uuid2" ] ;
+         fhir:transform [ fhir:v "uuid" ]
+       ] [
+         fhir:context [ fhir:v "e2" ] ;
+         fhir:contextType [ fhir:v "variable" ] ;
+         fhir:element [ fhir:v "fullUrl" ] ;
+         fhir:transform [ fhir:v "append" ] ;
+         fhir:parameter ( [
+           fhir:value [
+             a fhir:string ;
+             fhir:v "urn:uuid:"
+           ]
+         ] [
+           fhir:value [
+             a fhir:id ;
+             fhir:v "uuid2"
+           ]
+         ] )
+       ] ) ;
+       fhir:dependent ( [
+         fhir:name [ fhir:v "CdaFrMDEMapping" ] ;
+         fhir:variable ( [ fhir:v "cda" ] [ fhir:v "patient" ] [ fhir:v "composition" ] [ fhir:v "bundle" ] )
+       ] )
+     ] )
+  ] [
+     fhir:name [ fhir:v "CdaFrMDEMapping" ] ;
+     fhir:typeMode [ fhir:v "none" ] ;
+     fhir:documentation [ fhir:v "Main mapping group" ] ;
+     fhir:input ( [
+       fhir:name [ fhir:v "cda" ] ;
+       fhir:type [ fhir:v "ClinicalDocument" ] ;
+       fhir:mode [ fhir:v "source" ]
+     ] [
+       fhir:name [ fhir:v "patient" ] ;
+       fhir:type [ fhir:v "Patient" ] ;
+       fhir:mode [ fhir:v "target" ]
+     ] [
+       fhir:name [ fhir:v "composition" ] ;
+       fhir:type [ fhir:v "Composition" ] ;
+       fhir:mode [ fhir:v "target" ]
+     ] [
+       fhir:name [ fhir:v "bundle" ] ;
+       fhir:type [ fhir:v "Bundle" ] ;
+       fhir:mode [ fhir:v "target" ]
+     ] ) ;
+     fhir:rule ( [
+       fhir:name [ fhir:v "bundleId" ] ;
+       fhir:source ( [
+         fhir:context [ fhir:v "cda" ]
+       ] ) ;
+       fhir:target ( [
+         fhir:context [ fhir:v "bundle" ] ;
+         fhir:contextType [ fhir:v "variable" ] ;
+         fhir:element [ fhir:v "id" ] ;
+         fhir:transform [ fhir:v "uuid" ]
+       ] )
+     ] [
+       fhir:name [ fhir:v "bundleIdentifier" ] ;
+       fhir:source ( [
+         fhir:context [ fhir:v "cda" ] ;
+         fhir:element [ fhir:v "id" ] ;
+         fhir:variable [ fhir:v "cdaId" ]
+       ] ) ;
+       fhir:target ( [
+         fhir:context [ fhir:v "bundle" ] ;
+         fhir:contextType [ fhir:v "variable" ] ;
+         fhir:element [ fhir:v "identifier" ] ;
+         fhir:variable [ fhir:v "identifier" ]
+       ] ) ;
+       fhir:rule ( [
+         fhir:name [ fhir:v "system" ] ;
+         fhir:source ( [
+           fhir:context [ fhir:v "cdaId" ] ;
+           fhir:element [ fhir:v "root" ] ;
+           fhir:variable [ fhir:v "root" ] ;
+           fhir:condition [ fhir:v "cdaId.extension.exists()" ]
+         ] ) ;
+         fhir:target ( [
+           fhir:context [ fhir:v "identifier" ] ;
+           fhir:contextType [ fhir:v "variable" ] ;
+           fhir:element [ fhir:v "system" ] ;
+           fhir:transform [ fhir:v "translate" ] ;
+           fhir:parameter ( [
+             fhir:value [
+               a fhir:id ;
+               fhir:v "root"
+             ]
+           ] [
+             fhir:value [
+               a fhir:string ;
+               fhir:v "#oid2uri"
+             ]
+           ] [
+             fhir:value [
+               a fhir:string ;
+               fhir:v "uri"
+             ]
+           ] )
+         ] )
+       ] [
+         fhir:name [ fhir:v "value" ] ;
+         fhir:source ( [
+           fhir:context [ fhir:v "cdaId" ] ;
+           fhir:element [ fhir:v "extension" ] ;
+           fhir:variable [ fhir:v "extension" ]
+         ] ) ;
+         fhir:target ( [
+           fhir:context [ fhir:v "identifier" ] ;
+           fhir:contextType [ fhir:v "variable" ] ;
+           fhir:element [ fhir:v "value" ] ;
+           fhir:transform [ fhir:v "copy" ] ;
+           fhir:parameter ( [
+             fhir:value [
+               a fhir:id ;
+               fhir:v "extension"
+             ]
+           ] )
+         ] )
+       ] [
+         fhir:name [ fhir:v "systemOid" ] ;
+         fhir:source ( [
+           fhir:context [ fhir:v "cdaId" ] ;
+           fhir:element [ fhir:v "root" ] ;
+           fhir:variable [ fhir:v "root" ] ;
+           fhir:condition [ fhir:v "cdaId.extension.empty()" ]
+         ] ) ;
+         fhir:target ( [
+           fhir:context [ fhir:v "identifier" ] ;
+           fhir:contextType [ fhir:v "variable" ] ;
+           fhir:element [ fhir:v "system" ] ;
+           fhir:transform [ fhir:v "copy" ] ;
+           fhir:parameter ( [
+             fhir:value [
+               a fhir:string ;
+               fhir:v "urn:ietf:rfc:3986"
+             ]
+           ] )
+         ] )
+       ] [
+         fhir:name [ fhir:v "valueOid" ] ;
+         fhir:source ( [
+           fhir:context [ fhir:v "cdaId" ] ;
+           fhir:element [ fhir:v "root" ] ;
+           fhir:variable [ fhir:v "root" ] ;
+           fhir:condition [ fhir:v "cdaId.extension.empty()" ]
+         ] ) ;
+         fhir:target ( [
+           fhir:context [ fhir:v "identifier" ] ;
+           fhir:contextType [ fhir:v "variable" ] ;
+           fhir:element [ fhir:v "value" ] ;
+           fhir:transform [ fhir:v "append" ] ;
+           fhir:parameter ( [
+             fhir:value [
+               a fhir:string ;
+               fhir:v "urn:oid:"
+             ]
+           ] [
+             fhir:value [
+               a fhir:id ;
+               fhir:v "root"
+             ]
+           ] )
+         ] )
+       ] )
+     ] [
+       fhir:name [ fhir:v "bundleType" ] ;
+       fhir:source ( [
+         fhir:context [ fhir:v "cda" ]
+       ] ) ;
+       fhir:target ( [
+         fhir:context [ fhir:v "bundle" ] ;
+         fhir:contextType [ fhir:v "variable" ] ;
+         fhir:element [ fhir:v "type" ] ;
+         fhir:transform [ fhir:v "copy" ] ;
+         fhir:parameter ( [
+           fhir:value [
+             a fhir:string ;
+             fhir:v "document"
+           ]
+         ] )
+       ] )
+     ] [
+       fhir:name [ fhir:v "bundleTimestamp" ] ;
+       fhir:source ( [
+         fhir:context [ fhir:v "cda" ] ;
+         fhir:element [ fhir:v "effectiveTime" ] ;
+         fhir:variable [ fhir:v "effectiveTime" ]
+       ] ) ;
+       fhir:target ( [
+         fhir:context [ fhir:v "bundle" ] ;
+         fhir:contextType [ fhir:v "variable" ] ;
+         fhir:element [ fhir:v "timestamp" ] ;
+         fhir:variable [ fhir:v "timestamp" ] ;
+         fhir:transform [ fhir:v "create" ] ;
+         fhir:parameter ( [
+           fhir:value [
+             a fhir:string ;
+             fhir:v "instant"
+           ]
+         ] )
+       ] ) ;
+       fhir:dependent ( [
+         fhir:name [ fhir:v "TSInstant" ] ;
+         fhir:variable ( [ fhir:v "effectiveTime" ] [ fhir:v "timestamp" ] )
+       ] )
+     ] [
+       fhir:name [ fhir:v "composition" ] ;
+       fhir:source ( [
+         fhir:context [ fhir:v "cda" ]
+       ] ) ;
+       fhir:target ( [
+         fhir:context [ fhir:v "composition" ] ;
+         fhir:contextType [ fhir:v "variable" ]
+       ] ) ;
+       fhir:dependent ( [
+         fhir:name [ fhir:v "ClinicalDocumentComposition" ] ;
+         fhir:variable ( [ fhir:v "cda" ] [ fhir:v "composition" ] [ fhir:v "patient" ] [ fhir:v "bundle" ] )
+       ] )
+     ] [
+       fhir:name [ fhir:v "recordTargetGender" ] ;
+       fhir:source ( [
+         fhir:context [ fhir:v "cda" ] ;
+         fhir:element [ fhir:v "recordTarget" ] ;
+         fhir:variable [ fhir:v "recordTarget" ]
+       ] ) ;
+       fhir:rule ( [
+         fhir:name [ fhir:v "patientRole" ] ;
+         fhir:source ( [
+           fhir:context [ fhir:v "recordTarget" ] ;
+           fhir:element [ fhir:v "patientRole" ] ;
+           fhir:variable [ fhir:v "patientRole" ]
+         ] ) ;
+         fhir:rule ( [
+           fhir:name [ fhir:v "cdaPatient" ] ;
+           fhir:source ( [
+             fhir:context [ fhir:v "patientRole" ] ;
+             fhir:element [ fhir:v "patient" ] ;
+             fhir:variable [ fhir:v "cdaPatient" ]
+           ] ) ;
+           fhir:rule ( [
+             fhir:name [ fhir:v "patientGender" ] ;
+             fhir:source ( [
+               fhir:context [ fhir:v "cdaPatient" ] ;
+               fhir:element [ fhir:v "administrativeGenderCode" ] ;
+               fhir:variable [ fhir:v "gender" ]
+             ] ) ;
+             fhir:dependent ( [
+               fhir:name [ fhir:v "MapGender" ] ;
+               fhir:variable ( [ fhir:v "gender" ] [ fhir:v "patient" ] )
+             ] )
+           ] )
+         ] )
+       ] )
+     ] [
+       fhir:name [ fhir:v "cdaComponent" ] ;
+       fhir:source ( [
+         fhir:context [ fhir:v "cda" ] ;
+         fhir:element [ fhir:v "component" ] ;
+         fhir:variable [ fhir:v "cdaComp" ]
+       ] ) ;
+       fhir:rule ( [
+         fhir:name [ fhir:v "structuredBody" ] ;
+         fhir:source ( [
+           fhir:context [ fhir:v "cdaComp" ] ;
+           fhir:element [ fhir:v "structuredBody" ] ;
+           fhir:variable [ fhir:v "body" ]
+         ] ) ;
+         fhir:rule ( [
+           fhir:name [ fhir:v "bodyComponent" ] ;
+           fhir:source ( [
+             fhir:context [ fhir:v "body" ] ;
+             fhir:element [ fhir:v "component" ] ;
+             fhir:variable [ fhir:v "bodyComp" ]
+           ] ) ;
+           fhir:rule ( [
+             fhir:name [ fhir:v "section" ] ;
+             fhir:source ( [
+               fhir:context [ fhir:v "bodyComp" ] ;
+               fhir:element [ fhir:v "section" ] ;
+               fhir:variable [ fhir:v "section" ]
+             ] ) ;
+             fhir:rule ( [
+               fhir:name [ fhir:v "compSection" ] ;
+               fhir:source ( [
+                 fhir:context [ fhir:v "section" ]
+               ] ) ;
+               fhir:target ( [
+                 fhir:context [ fhir:v "composition" ] ;
+                 fhir:contextType [ fhir:v "variable" ] ;
+                 fhir:element [ fhir:v "section" ] ;
+                 fhir:variable [ fhir:v "compSection" ]
+               ] ) ;
+               fhir:rule ( [
+                 fhir:name [ fhir:v "sectionTitle" ] ;
+                 fhir:source ( [
+                   fhir:context [ fhir:v "section" ] ;
+                   fhir:element [ fhir:v "title" ] ;
+                   fhir:variable [ fhir:v "sectionTitle" ]
+                 ] ) ;
+                 fhir:target ( [
+                   fhir:context [ fhir:v "compSection" ] ;
+                   fhir:contextType [ fhir:v "variable" ] ;
+                   fhir:element [ fhir:v "title" ] ;
+                   fhir:transform [ fhir:v "evaluate" ] ;
+                   fhir:parameter ( [
+                     fhir:value [
+                       a fhir:string ;
+                       fhir:v "sectionTitle.xmlText"
+                     ]
+                   ] )
+                 ] )
+               ] [
+                 fhir:name [ fhir:v "sectionCode" ] ;
+                 fhir:source ( [
+                   fhir:context [ fhir:v "section" ] ;
+                   fhir:element [ fhir:v "code" ] ;
+                   fhir:variable [ fhir:v "sectionCode" ]
+                 ] ) ;
+                 fhir:target ( [
+                   fhir:context [ fhir:v "compSection" ] ;
+                   fhir:contextType [ fhir:v "variable" ] ;
+                   fhir:element [ fhir:v "code" ] ;
+                   fhir:variable [ fhir:v "cc" ] ;
+                   fhir:transform [ fhir:v "create" ] ;
+                   fhir:parameter ( [
+                     fhir:value [
+                       a fhir:string ;
+                       fhir:v "CodeableConcept"
+                     ]
+                   ] )
+                 ] ) ;
+                 fhir:dependent ( [
+                   fhir:name [ fhir:v "CDCodeableConcept" ] ;
+                   fhir:variable ( [ fhir:v "sectionCode" ] [ fhir:v "cc" ] )
+                 ] )
+               ] [
+                 fhir:name [ fhir:v "sectionText" ] ;
+                 fhir:source ( [
+                   fhir:context [ fhir:v "section" ] ;
+                   fhir:element [ fhir:v "text" ] ;
+                   fhir:variable [ fhir:v "sectionText" ]
+                 ] ) ;
+                 fhir:target ( [
+                   fhir:context [ fhir:v "compSection" ] ;
+                   fhir:contextType [ fhir:v "variable" ] ;
+                   fhir:element [ fhir:v "text" ] ;
+                   fhir:transform [ fhir:v "copy" ] ;
+                   fhir:parameter ( [
+                     fhir:value [
+                       a fhir:id ;
+                       fhir:v "sectionText"
+                     ]
+                   ] )
+                 ] )
+               ] [
+                 fhir:name [ fhir:v "entry" ] ;
+                 fhir:source ( [
+                   fhir:context [ fhir:v "section" ] ;
+                   fhir:element [ fhir:v "entry" ] ;
+                   fhir:variable [ fhir:v "entry" ]
+                 ] ) ;
+                 fhir:rule ( [
+                   fhir:name [ fhir:v "organizer" ] ;
+                   fhir:source ( [
+                     fhir:context [ fhir:v "entry" ] ;
+                     fhir:element [ fhir:v "organizer" ] ;
+                     fhir:variable [ fhir:v "organizer" ]
+                   ] ) ;
+                   fhir:rule ( [
+                     fhir:name [ fhir:v "orgComponent" ] ;
+                     fhir:source ( [
+                       fhir:context [ fhir:v "organizer" ] ;
+                       fhir:element [ fhir:v "component" ] ;
+                       fhir:variable [ fhir:v "orgComp" ]
+                     ] ) ;
+                     fhir:rule ( [
+                       fhir:name [ fhir:v "observation" ] ;
+                       fhir:source ( [
+                         fhir:context [ fhir:v "orgComp" ] ;
+                         fhir:element [ fhir:v "observation" ] ;
+                         fhir:variable [ fhir:v "obs" ]
+                       ] ) ;
+                       fhir:rule ( [
+                         fhir:name [ fhir:v "processObs" ] ;
+                         fhir:source ( [
+                           fhir:context [ fhir:v "obs" ]
+                         ] ) ;
+                         fhir:target ( [
+                           fhir:context [ fhir:v "bundle" ] ;
+                           fhir:contextType [ fhir:v "variable" ] ;
+                           fhir:element [ fhir:v "entry" ] ;
+                           fhir:variable [ fhir:v "obsEntry" ]
+                         ] [
+                           fhir:context [ fhir:v "obsEntry" ] ;
+                           fhir:contextType [ fhir:v "variable" ] ;
+                           fhir:element [ fhir:v "resource" ] ;
+                           fhir:variable [ fhir:v "observation" ] ;
+                           fhir:transform [ fhir:v "create" ] ;
+                           fhir:parameter ( [
+                             fhir:value [
+                               a fhir:string ;
+                               fhir:v "Observation"
+                             ]
+                           ] )
+                         ] [
+                           fhir:context [ fhir:v "observation" ] ;
+                           fhir:contextType [ fhir:v "variable" ] ;
+                           fhir:element [ fhir:v "id" ] ;
+                           fhir:variable [ fhir:v "obsUuid" ] ;
+                           fhir:transform [ fhir:v "uuid" ]
+                         ] [
+                           fhir:context [ fhir:v "obsEntry" ] ;
+                           fhir:contextType [ fhir:v "variable" ] ;
+                           fhir:element [ fhir:v "fullUrl" ] ;
+                           fhir:transform [ fhir:v "append" ] ;
+                           fhir:parameter ( [
+                             fhir:value [
+                               a fhir:string ;
+                               fhir:v "urn:uuid:"
+                             ]
+                           ] [
+                             fhir:value [
+                               a fhir:id ;
+                               fhir:v "obsUuid"
+                             ]
+                           ] )
+                         ] [
+                           fhir:context [ fhir:v "compSection" ] ;
+                           fhir:contextType [ fhir:v "variable" ] ;
+                           fhir:element [ fhir:v "entry" ] ;
+                           fhir:variable [ fhir:v "obsRef" ] ;
+                           fhir:transform [ fhir:v "create" ] ;
+                           fhir:parameter ( [
+                             fhir:value [
+                               a fhir:string ;
+                               fhir:v "Reference"
+                             ]
+                           ] )
+                         ] [
+                           fhir:context [ fhir:v "obsRef" ] ;
+                           fhir:contextType [ fhir:v "variable" ] ;
+                           fhir:element [ fhir:v "reference" ] ;
+                           fhir:transform [ fhir:v "append" ] ;
+                           fhir:parameter ( [
+                             fhir:value [
+                               a fhir:string ;
+                               fhir:v "urn:uuid:"
+                             ]
+                           ] [
+                             fhir:value [
+                               a fhir:id ;
+                               fhir:v "obsUuid"
+                             ]
+                           ] )
+                         ] ) ;
+                         fhir:dependent ( [
+                           fhir:name [ fhir:v "ProcessObservation" ] ;
+                           fhir:variable ( [ fhir:v "cda" ] [ fhir:v "obs" ] [ fhir:v "observation" ] [ fhir:v "patient" ] [ fhir:v "composition" ] )
+                         ] )
+                       ] )
+                     ] )
+                   ] )
+                 ] )
+               ] )
+             ] )
+           ] )
+         ] )
+       ] )
+     ] )
+  ] [
+     fhir:name [ fhir:v "ProcessObservation" ] ;
+     fhir:typeMode [ fhir:v "none" ] ;
+     fhir:documentation [ fhir:v "Process individual observation using CdaToFHIRTypes functions" ] ;
+     fhir:input ( [
+       fhir:name [ fhir:v "cda" ] ;
+       fhir:type [ fhir:v "ClinicalDocument" ] ;
+       fhir:mode [ fhir:v "source" ]
+     ] [
+       fhir:name [ fhir:v "obs" ] ;
+       fhir:mode [ fhir:v "source" ]
+     ] [
+       fhir:name [ fhir:v "observation" ] ;
+       fhir:type [ fhir:v "Observation" ] ;
+       fhir:mode [ fhir:v "target" ]
+     ] [
+       fhir:name [ fhir:v "patient" ] ;
+       fhir:type [ fhir:v "Patient" ] ;
+       fhir:mode [ fhir:v "target" ]
+     ] [
+       fhir:name [ fhir:v "composition" ] ;
+       fhir:type [ fhir:v "Composition" ] ;
+       fhir:mode [ fhir:v "target" ]
+     ] ) ;
+     fhir:rule ( [
+       fhir:name [ fhir:v "metaWeight" ] ;
+       fhir:source ( [
+         fhir:context [ fhir:v "obs" ] ;
+         fhir:element [ fhir:v "code" ] ;
+         fhir:variable [ fhir:v "obsCode" ] ;
+         fhir:condition [ fhir:v "code = '29463-7'" ]
+       ] ) ;
+       fhir:target ( [
+         fhir:context [ fhir:v "observation" ] ;
+         fhir:contextType [ fhir:v "variable" ] ;
+         fhir:element [ fhir:v "meta" ] ;
+         fhir:variable [ fhir:v "meta" ] ;
+         fhir:transform [ fhir:v "create" ] ;
+         fhir:parameter ( [
+           fhir:value [
+             a fhir:string ;
+             fhir:v "Meta"
+           ]
+         ] )
+       ] ) ;
+       fhir:rule ( [
+         fhir:name [ fhir:v "profileWeight" ] ;
+         fhir:source ( [
+           fhir:context [ fhir:v "obsCode" ]
+         ] ) ;
+         fhir:target ( [
+           fhir:context [ fhir:v "meta" ] ;
+           fhir:contextType [ fhir:v "variable" ] ;
+           fhir:element [ fhir:v "profile" ] ;
+           fhir:transform [ fhir:v "copy" ] ;
+           fhir:parameter ( [
+             fhir:value [
+               a fhir:string ;
+               fhir:v "https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-fr-observation-body-weight"
+             ]
+           ] )
+         ] )
+       ] )
+     ] [
+       fhir:name [ fhir:v "metaHeight" ] ;
+       fhir:source ( [
+         fhir:context [ fhir:v "obs" ] ;
+         fhir:element [ fhir:v "code" ] ;
+         fhir:variable [ fhir:v "obsCode" ] ;
+         fhir:condition [ fhir:v "code = '8302-2'" ]
+       ] ) ;
+       fhir:target ( [
+         fhir:context [ fhir:v "observation" ] ;
+         fhir:contextType [ fhir:v "variable" ] ;
+         fhir:element [ fhir:v "meta" ] ;
+         fhir:variable [ fhir:v "meta" ] ;
+         fhir:transform [ fhir:v "create" ] ;
+         fhir:parameter ( [
+           fhir:value [
+             a fhir:string ;
+             fhir:v "Meta"
+           ]
+         ] )
+       ] ) ;
+       fhir:rule ( [
+         fhir:name [ fhir:v "profileHeight" ] ;
+         fhir:source ( [
+           fhir:context [ fhir:v "obsCode" ]
+         ] ) ;
+         fhir:target ( [
+           fhir:context [ fhir:v "meta" ] ;
+           fhir:contextType [ fhir:v "variable" ] ;
+           fhir:element [ fhir:v "profile" ] ;
+           fhir:transform [ fhir:v "copy" ] ;
+           fhir:parameter ( [
+             fhir:value [
+               a fhir:string ;
+               fhir:v "https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-fr-observation-bodyheight"
+             ]
+           ] )
+         ] )
+       ] )
+     ] [
+       fhir:name [ fhir:v "metaHeadCirc" ] ;
+       fhir:source ( [
+         fhir:context [ fhir:v "obs" ] ;
+         fhir:element [ fhir:v "code" ] ;
+         fhir:variable [ fhir:v "obsCode" ] ;
+         fhir:condition [ fhir:v "code = '8287-5'" ]
+       ] ) ;
+       fhir:target ( [
+         fhir:context [ fhir:v "observation" ] ;
+         fhir:contextType [ fhir:v "variable" ] ;
+         fhir:element [ fhir:v "meta" ] ;
+         fhir:variable [ fhir:v "meta" ] ;
+         fhir:transform [ fhir:v "create" ] ;
+         fhir:parameter ( [
+           fhir:value [
+             a fhir:string ;
+             fhir:v "Meta"
+           ]
+         ] )
+       ] ) ;
+       fhir:rule ( [
+         fhir:name [ fhir:v "profileHeadCirc" ] ;
+         fhir:source ( [
+           fhir:context [ fhir:v "obsCode" ]
+         ] ) ;
+         fhir:target ( [
+           fhir:context [ fhir:v "meta" ] ;
+           fhir:contextType [ fhir:v "variable" ] ;
+           fhir:element [ fhir:v "profile" ] ;
+           fhir:transform [ fhir:v "copy" ] ;
+           fhir:parameter ( [
+             fhir:value [
+               a fhir:string ;
+               fhir:v "https://interop.esante.gouv.fr/ig/fhir/mesures/StructureDefinition/mesures-observation-head-circumference"
+             ]
+           ] )
+         ] )
+       ] )
+     ] [
+       fhir:name [ fhir:v "statusCompleted" ] ;
+       fhir:source ( [
+         fhir:context [ fhir:v "obs" ] ;
+         fhir:element [ fhir:v "statusCode" ] ;
+         fhir:variable [ fhir:v "statusCode" ] ;
+         fhir:condition [ fhir:v "code = 'completed'" ]
+       ] ) ;
+       fhir:target ( [
+         fhir:context [ fhir:v "observation" ] ;
+         fhir:contextType [ fhir:v "variable" ] ;
+         fhir:element [ fhir:v "status" ] ;
+         fhir:transform [ fhir:v "copy" ] ;
+         fhir:parameter ( [
+           fhir:value [
+             a fhir:string ;
+             fhir:v "final"
+           ]
+         ] )
+       ] )
+     ] [
+       fhir:name [ fhir:v "statusOther" ] ;
+       fhir:source ( [
+         fhir:context [ fhir:v "obs" ] ;
+         fhir:element [ fhir:v "statusCode" ] ;
+         fhir:variable [ fhir:v "statusCode" ] ;
+         fhir:condition [ fhir:v "code != 'completed'" ]
+       ] ) ;
+       fhir:target ( [
+         fhir:context [ fhir:v "observation" ] ;
+         fhir:contextType [ fhir:v "variable" ] ;
+         fhir:element [ fhir:v "status" ] ;
+         fhir:variable [ fhir:v "status" ] ;
+         fhir:transform [ fhir:v "create" ] ;
+         fhir:parameter ( [
+           fhir:value [
+             a fhir:string ;
+             fhir:v "code"
+           ]
+         ] )
+       ] ) ;
+       fhir:dependent ( [
+         fhir:name [ fhir:v "CSCode" ] ;
+         fhir:variable ( [ fhir:v "statusCode" ] [ fhir:v "status" ] )
+       ] )
+     ] [
+       fhir:name [ fhir:v "category" ] ;
+       fhir:source ( [
+         fhir:context [ fhir:v "obs" ]
+       ] ) ;
+       fhir:target ( [
+         fhir:context [ fhir:v "observation" ] ;
+         fhir:contextType [ fhir:v "variable" ] ;
+         fhir:element [ fhir:v "category" ] ;
+         fhir:variable [ fhir:v "category" ] ;
+         fhir:transform [ fhir:v "create" ] ;
+         fhir:parameter ( [
+           fhir:value [
+             a fhir:string ;
+             fhir:v "CodeableConcept"
+           ]
+         ] )
+       ] ) ;
+       fhir:rule ( [
+         fhir:name [ fhir:v "coding" ] ;
+         fhir:source ( [
+           fhir:context [ fhir:v "obs" ]
+         ] ) ;
+         fhir:target ( [
+           fhir:context [ fhir:v "category" ] ;
+           fhir:contextType [ fhir:v "variable" ] ;
+           fhir:element [ fhir:v "coding" ] ;
+           fhir:variable [ fhir:v "coding" ] ;
+           fhir:transform [ fhir:v "create" ] ;
+           fhir:parameter ( [
+             fhir:value [
+               a fhir:string ;
+               fhir:v "Coding"
+             ]
+           ] )
+         ] ) ;
+         fhir:rule ( [
+           fhir:name [ fhir:v "system" ] ;
+           fhir:source ( [
+             fhir:context [ fhir:v "obs" ]
+           ] ) ;
+           fhir:target ( [
+             fhir:context [ fhir:v "coding" ] ;
+             fhir:contextType [ fhir:v "variable" ] ;
+             fhir:element [ fhir:v "system" ] ;
+             fhir:transform [ fhir:v "copy" ] ;
+             fhir:parameter ( [
+               fhir:value [
+                 a fhir:string ;
+                 fhir:v "http://terminology.hl7.org/CodeSystem/observation-category"
+               ]
+             ] )
+           ] )
+         ] [
+           fhir:name [ fhir:v "code" ] ;
+           fhir:source ( [
+             fhir:context [ fhir:v "obs" ]
+           ] ) ;
+           fhir:target ( [
+             fhir:context [ fhir:v "coding" ] ;
+             fhir:contextType [ fhir:v "variable" ] ;
+             fhir:element [ fhir:v "code" ] ;
+             fhir:transform [ fhir:v "copy" ] ;
+             fhir:parameter ( [
+               fhir:value [
+                 a fhir:string ;
+                 fhir:v "vital-signs"
+               ]
+             ] )
+           ] )
+         ] )
+       ] )
+     ] [
+       fhir:name [ fhir:v "obsCode" ] ;
+       fhir:source ( [
+         fhir:context [ fhir:v "obs" ] ;
+         fhir:element [ fhir:v "code" ] ;
+         fhir:variable [ fhir:v "code" ]
+       ] ) ;
+       fhir:target ( [
+         fhir:context [ fhir:v "observation" ] ;
+         fhir:contextType [ fhir:v "variable" ] ;
+         fhir:element [ fhir:v "code" ] ;
+         fhir:variable [ fhir:v "cc" ] ;
+         fhir:transform [ fhir:v "create" ] ;
+         fhir:parameter ( [
+           fhir:value [
+             a fhir:string ;
+             fhir:v "CodeableConcept"
+           ]
+         ] )
+       ] ) ;
+       fhir:dependent ( [
+         fhir:name [ fhir:v "CDCodeableConcept" ] ;
+         fhir:variable ( [ fhir:v "code" ] [ fhir:v "cc" ] )
+       ] )
+     ] [
+       fhir:name [ fhir:v "effectiveDateTime" ] ;
+       fhir:source ( [
+         fhir:context [ fhir:v "obs" ] ;
+         fhir:element [ fhir:v "effectiveTime" ] ;
+         fhir:variable [ fhir:v "effectiveTime" ]
+       ] ) ;
+       fhir:target ( [
+         fhir:context [ fhir:v "observation" ] ;
+         fhir:contextType [ fhir:v "variable" ] ;
+         fhir:element [ fhir:v "effective" ] ;
+         fhir:variable [ fhir:v "dt" ] ;
+         fhir:transform [ fhir:v "create" ] ;
+         fhir:parameter ( [
+           fhir:value [
+             a fhir:string ;
+             fhir:v "dateTime"
+           ]
+         ] )
+       ] ) ;
+       fhir:dependent ( [
+         fhir:name [ fhir:v "TSDateTime" ] ;
+         fhir:variable ( [ fhir:v "effectiveTime" ] [ fhir:v "dt" ] )
+       ] )
+     ] [
+       fhir:name [ fhir:v "obsValue" ] ;
+       fhir:source ( [
+         fhir:context [ fhir:v "obs" ] ;
+         fhir:element [ fhir:v "value" ] ;
+         fhir:variable [ fhir:v "value" ]
+       ] ) ;
+       fhir:target ( [
+         fhir:context [ fhir:v "observation" ] ;
+         fhir:contextType [ fhir:v "variable" ] ;
+         fhir:element [ fhir:v "value" ] ;
+         fhir:variable [ fhir:v "qty" ] ;
+         fhir:transform [ fhir:v "create" ] ;
+         fhir:parameter ( [
+           fhir:value [
+             a fhir:string ;
+             fhir:v "Quantity"
+           ]
+         ] )
+       ] ) ;
+       fhir:dependent ( [
+         fhir:name [ fhir:v "PQQuantity" ] ;
+         fhir:variable ( [ fhir:v "value" ] [ fhir:v "qty" ] )
+       ] )
+     ] [
+       fhir:name [ fhir:v "obsSubject" ] ;
+       fhir:source ( [
+         fhir:context [ fhir:v "obs" ]
+       ] ) ;
+       fhir:target ( [
+         fhir:context [ fhir:v "observation" ] ;
+         fhir:contextType [ fhir:v "variable" ] ;
+         fhir:element [ fhir:v "subject" ] ;
+         fhir:variable [ fhir:v "ref" ] ;
+         fhir:transform [ fhir:v "create" ] ;
+         fhir:parameter ( [
+           fhir:value [
+             a fhir:string ;
+             fhir:v "Reference"
+           ]
+         ] )
+       ] [
+         fhir:context [ fhir:v "ref" ] ;
+         fhir:contextType [ fhir:v "variable" ] ;
+         fhir:element [ fhir:v "reference" ] ;
+         fhir:transform [ fhir:v "evaluate" ] ;
+         fhir:parameter ( [
+           fhir:value [
+             a fhir:string ;
+             fhir:v "'urn:uuid:' + %patient.id"
+           ]
+         ] )
+       ] )
+     ] )
+  ] [
+     fhir:name [ fhir:v "MapGender" ] ;
+     fhir:typeMode [ fhir:v "none" ] ;
+     fhir:documentation [ fhir:v "Map CDA v3 administrative gender to FHIR gender" ] ;
+     fhir:input ( [
+       fhir:name [ fhir:v "src" ] ;
+       fhir:mode [ fhir:v "source" ]
+     ] [
+       fhir:name [ fhir:v "patient" ] ;
+       fhir:type [ fhir:v "Patient" ] ;
+       fhir:mode [ fhir:v "target" ]
+     ] ) ;
+     fhir:rule ( [
+       fhir:name [ fhir:v "genderMale" ] ;
+       fhir:source ( [
+         fhir:context [ fhir:v "src" ] ;
+         fhir:condition [ fhir:v "code = 'M'" ]
+       ] ) ;
+       fhir:target ( [
+         fhir:context [ fhir:v "patient" ] ;
+         fhir:contextType [ fhir:v "variable" ] ;
+         fhir:element [ fhir:v "gender" ] ;
+         fhir:transform [ fhir:v "copy" ] ;
+         fhir:parameter ( [
+           fhir:value [
+             a fhir:string ;
+             fhir:v "male"
+           ]
+         ] )
+       ] )
+     ] [
+       fhir:name [ fhir:v "genderFemale" ] ;
+       fhir:source ( [
+         fhir:context [ fhir:v "src" ] ;
+         fhir:condition [ fhir:v "code = 'F'" ]
+       ] ) ;
+       fhir:target ( [
+         fhir:context [ fhir:v "patient" ] ;
+         fhir:contextType [ fhir:v "variable" ] ;
+         fhir:element [ fhir:v "gender" ] ;
+         fhir:transform [ fhir:v "copy" ] ;
+         fhir:parameter ( [
+           fhir:value [
+             a fhir:string ;
+             fhir:v "female"
+           ]
+         ] )
+       ] )
+     ] [
+       fhir:name [ fhir:v "genderOther" ] ;
+       fhir:source ( [
+         fhir:context [ fhir:v "src" ] ;
+         fhir:condition [ fhir:v "code = 'UN'" ]
+       ] ) ;
+       fhir:target ( [
+         fhir:context [ fhir:v "patient" ] ;
+         fhir:contextType [ fhir:v "variable" ] ;
+         fhir:element [ fhir:v "gender" ] ;
+         fhir:transform [ fhir:v "copy" ] ;
+         fhir:parameter ( [
+           fhir:value [
+             a fhir:string ;
+             fhir:v "other"
+           ]
+         ] )
+       ] )
+     ] [
+       fhir:name [ fhir:v "genderUnknown" ] ;
+       fhir:source ( [
+         fhir:context [ fhir:v "src" ] ;
+         fhir:condition [ fhir:v "code = 'UNK'" ]
+       ] ) ;
+       fhir:target ( [
+         fhir:context [ fhir:v "patient" ] ;
+         fhir:contextType [ fhir:v "variable" ] ;
+         fhir:element [ fhir:v "gender" ] ;
+         fhir:transform [ fhir:v "copy" ] ;
+         fhir:parameter ( [
+           fhir:value [
+             a fhir:string ;
+             fhir:v "unknown"
+           ]
+         ] )
+       ] )
+     ] )
+  ] ) . # 
+
+# -------------------------------------------------------------------------------------
+
