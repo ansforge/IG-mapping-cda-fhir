@@ -350,6 +350,51 @@ src.component as component then {
 
 ```
 
+#### Conservation du document CDA source
+
+Afin de garantir la traçabilité de la transformation, le document CDA original peut être conservé directement dans le `Bundle` FHIR généré.
+
+Pour cela, le contenu XML du CDA est encodé en Base64 à l’aide d’un traitement externe (par exemple en Python ou en Java), puis intégré dans une ressource FHIR `Binary`. Cette ressource est conçue pour transporter des contenus bruts (comme un fichier XML) sans les modifier.
+
+Ce traitement d’encodage n’est pas réalisé en FML, mais en amont ou en aval du mapping.
+
+```
+{
+  "resourceType": "Binary",
+  "id": "cda-source",
+  "contentType": "application/xml",
+  "data": "Base64(CDA)"
+}
+
+```
+
+Une ressource Provenance est ensuite utilisée pour relier les ressources FHIR produites au document CDA source :
+
+```
+{
+  "resourceType": "Provenance",
+  "target": [
+    { "reference": "urn:uuid:composition-id" },
+    { "reference": "urn:uuid:patient-id" }
+  ],
+  "entity": [
+    {
+      "role": "source",
+      "what": {
+        "reference": "urn:uuid:cda-source"
+      }
+    }
+  ]
+}
+
+```
+
+Dans cette approche :
+
+* la ressource `Binary` contient le CDA original encodé en Base64 ;
+* La ressource `Provenance` établit le lien entre les ressources FHIR générées et leur source ;
+* L’encodage Base64 est réalisé en dehors du mapping FML
+
 ### Patterns de mapping courants
 
 #### Pattern 1 : Document CDA → Bundle FHIR
@@ -441,84 +486,86 @@ Le CDA et FHIR reposent sur des logiques de représentation différentes. Le CDA
 
 **NB** : Le guide suivant illustre comment dédoublonner deux éléments CDA décrivant un même établissement afin d’alimenter une seule ressource FHIR Organization : https://nriss.github.io/test-2-to-1-object/main/ig/en/. Il constitue un exemple utile pour la mise en œuvre de règles FML de fusion multi-sources.
 
-**Recommandation** La décision de dédoublonnage doit s’appuyer sur plusieurs critères, et non sur un seul élément isolé. Elle peut notamment prendre en compte l’identifiant métier, le nom de l’entité, l’adresse et les coordonnées de contact. Cette analyse multicritère permet de limiter le risque de générer plusieurs ressources FHIR pour une même entité, tout en évitant de fusionner à tort des entités qui devraient rester distinctes.
+**Recommandation**
+
+La décision de dédoublonnage doit s’appuyer sur plusieurs critères, et non sur un seul élément isolé. Elle peut notamment prendre en compte l’identifiant métier, le nom de l’entité, l’adresse et les coordonnées de contact. Cette analyse multicritère permet de limiter le risque de générer plusieurs ressources FHIR pour une même entité, tout en évitant de fusionner à tort des entités qui devraient rester distinctes.
+
+#### Éléments CDA non définis dans la StructureDefinition
+
+Une limite rencontrée lors du mapping concerne certains éléments présents dans le document CDA source, mais non définis dans la StructureDefinition utilisée par le moteur de transformation. Dans ce cas, même si l’information existe dans le XML CDA, elle n’est pas accessible aux règles FML, ce qui empêche son mapping vers les éléments FHIR attendus. Cette limite concerne notamment les éléments pharmaceutiques portés par le namespace pharm. Ces éléments décrivent des informations détaillées sur le médicament, comme la forme galénique avec pharm:formCode, l’équivalent générique ou la classe médicamenteuse avec pharm:asSpecializedKind, ainsi que les substances actives et leur dosage avec pharm:ingredient.
+
+```
+<manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+  <code code="63107752"
+        displayName="PARACETAMOL VIATRIS 500 mg, comprimé"
+        codeSystem="1.2.250.1.213.2.3.1"
+        codeSystemName="CIS"/>
+
+  <pharm:formCode code="10219000"
+                  displayName="Comprimé"
+                  codeSystem="0.4.0.127.0.16.1.1.2.1"
+                  codeSystemName="StandardTermsEDQM"/>
+
+  <pharm:asSpecializedKind classCode="GRIC">
+    <pharm:generalizedMedicineClass classCode="MMAT">
+      <pharm:code code="N02BE01"
+                  displayName="paracetamol"
+                  codeSystem="2.16.840.1.113883.6.73"
+                  codeSystemName="ATC"/>
+    </pharm:generalizedMedicineClass>
+  </pharm:asSpecializedKind>
+
+  <pharm:ingredient classCode="ACTI">
+    <pharm:quantity>
+      <numerator xsi:type="PQ" value="500" unit="mg"/>
+      <denominator xsi:type="PQ" value="1"/>
+    </pharm:quantity>
+  </pharm:ingredient>
+</manufacturedMaterial>
+
+```
+
+**Recommandation**
+
+Il est recommandé d’enrichir la StructureDefinition CDA utilisée comme source afin d’y déclarer explicitement les éléments concernés, leur namespace et leur structure. Cet enrichissement permet de rendre ces éléments accessibles aux règles FML et de les mapper vers les éléments FHIR attendus, par exemple Medication.form, Medication.ingredient ou Medication.ingredient.strength.
+
+#### Sections CDA locales ou non documentées
+
+Le mapping des sections du corps du document CDA requiert une vigilance particulière. Dans le FML, la reconnaissance d’une section, principalement à partir de son code ou de son templateId, permet de l’orienter vers un groupe de règles spécifique. Ce mécanisme assure le mapping des sections incluses dans le périmètre du Patient Summary et la génération des ressources FHIR correspondantes. En revanche, pour les sections locales ou non documentées, l’absence de spécification explicite empêche de déterminer la ressource FHIR cible ainsi que le niveau de structuration attendu. Leur mapping structuré ne peut donc pas être garanti à ce stade.
+
+**Recommandation**
+
+Il est recommandé de documenter explicitement les sections locales ou non documentées avant leur intégration au mapping. Cette documentation devrait préciser le rôle de la section, son contenu attendu, les codes ou templateId associés, la ressource FHIR cible envisagée et le niveau de structuration souhaité. Ces sections pourront également faire l’objet de travaux complémentaires ultérieurs, intégrant notamment une réflexion sur l’apport de l’intelligence artificielle générative pour analyser et interpréter les sections non documentées.
+
+#### Compatibilité des codes CDA avec les codes attendus en FHIR
+
+Une limite rencontrée lors du mapping concerne la compatibilité entre les codes présents dans le CDA source et les codes attendus par les éléments FHIR cibles. Un code ne peut pas toujours être repris tel quel : il doit être compatible avec l’élément FHIR à alimenter, le système de codes attendu et le ValueSet imposé par le profil cible. Un cas simple est celui du sexe administratif. Dans le CDA, cette information peut être portée par administrativeGenderCode, avec des codes comme M pour masculin ou F pour féminin. En FHIR, l’élément Patient.gender n’attend pas directement ces codes CDA, mais des valeurs telles que male ou female. Il est donc nécessaire de définir une correspondance explicite entre les codes CDA et les codes FHIR attendus, par exemple M vers male et F vers female. Ce type de mapping reste maîtrisable, car le nombre de codes est limité et les correspondances sont clairement identifiables. La difficulté apparaît lorsque les codes à mapper sont plus nombreux, plus spécialisés, ou lorsqu’ils ne disposent pas d’une correspondance stricte dans la terminologie attendue par FHIR. Par exemple, un code CDA peut porter une information clinique compréhensible, mais ne pas appartenir au ValueSet requis par l’élément FHIR cible. Dans ce cas, la reprise directe du code peut produire une ressource non conforme.
+
+**Recommandations**
+
+Il est recommandé de documenter les règles de correspondance terminologique en précisant, pour chaque cas, le code source CDA, son système de codes, l’élément FHIR cible, le code attendu ou conservé, ainsi que le ValueSet associé lorsqu’il existe. Les situations doivent être distinguées selon leur nature : correspondance directe, conservation du codage source, absence d’équivalence stricte ou incompatibilité avec un ValueSet requis. Lorsqu’aucun code cible strictement compatible n’est disponible, le cas doit être documenté comme une limite du mapping. Le choix retenu doit être justifié, notamment lorsqu’une correspondance plus générale ou approximative est utilisée.
 
 ### Bonnes pratiques
 
-#### 1. Modularité
+#### Structurer une architecture de mapping modulaire
 
-Une implémentation modulaire facilite la maintenance, la réutilisation et l’évolution des mappings. Il est recommandé de découper la transformation en groupes spécialisés, chacun étant responsable d’une fonction bien identifiée.
+L’organisation du mapping CDA vers FHIR en couches permet de séparer les différents niveaux de transformation et de rendre l’architecture plus évolutive. Une première couche peut être consacrée aux types de données, une deuxième au squelette générique du document, puis des couches complémentaires peuvent porter sur les spécificités européennes, nationales et les cas métier. Cette structuration rend les règles FML plus lisibles, plus faciles à tester et plus simples à maintenir. Elle facilite également l’intégration progressive des évolutions des profils français et européens, en permettant d’adapter uniquement les couches concernées sans remettre en cause l’ensemble du mapping.
 
-**Recommandations** :
+#### Définir une stratégie d’identification et de gestion des références
 
-* créer des groupes réutilisables pour chaque type de transformation ;
-* séparer les conversions de types des transformations métier ;
-* documenter les dépendances entre mappings ;
-* utiliser les `imports` pour mutualiser les règles déjà définies dans d’autres fichiers FML.
+La définition d’une stratégie d’identification permet de générer des ressources FHIR avec des identifiants cohérents et des références internes fiables. Dans un Bundle, les ressources comme Composition, Patient, Organization, Practitioner ou Encounter doivent pouvoir être reliées correctement afin de préserver les liens issus du document CDA source. Cette stratégie contribue à limiter les références cassées, les doublons inutiles et les incohérences entre ressources.
 
-#### 2. Nommage
+#### Configurer et utiliser correctement l’environnement de validation
 
-Un nommage clair améliore la lisibilité du mapping et facilite le débogage. Les groupes, variables et paramètres doivent refléter le rôle qu’ils jouent dans la transformation.
+La validation des ressources FHIR produites repose sur un environnement configuré avec les profils, les extensions, les ValueSet et les systèmes de codes nécessaires. Elle permet de vérifier que le résultat du mapping respecte les contraintes structurelles et terminologiques attendues par les profils cibles. Cette étape aide à distinguer les erreurs liées aux règles de mapping, les erreurs liées aux contraintes des profils et les problèmes liés à la configuration de l’environnement de validation. Elle permet également d’identifier les écarts à corriger avant toute réutilisation ou généralisation du mapping.
 
-**Recommandations** :
+#### Tester les groupes de mapping de manière progressive
 
-* utiliser des noms explicites pour les groupes (`ClinicalDocumentComposition` plutôt que `Transform1`) ;
-* conserver des conventions homogènes pour les paramètres (`src` pour la source, `tgt` pour la cible) ;
-* suivre les conventions de nommage FHIR pour les ressources et leurs éléments.
+Le test progressif des groupes de mapping permet de vérifier chaque niveau de transformation avant l’exécution complète du mapping. Cette approche facilite l’identification de l’origine des erreurs et limite le risque qu’un problème soit masqué par l’exécution globale de la transformation. Elle permet également de sécuriser progressivement chaque partie du processus avant de tester la génération complète du Bundle FHIR.
 
-#### 3. Gestion des erreurs
+#### Documenter les choix de mapping, les hypothèses et les cas non couverts
 
-La robustesse d’un mapping dépend en grande partie de sa capacité à filtrer les cas non conformes ou incomplets avant transformation. Il est donc important d’anticiper les erreurs de structure ou de contenu dans le document source.
-
-**Recommandations** :
-
-* utiliser `where()` pour filtrer les valeurs avant transformation ;
-* vérifier l’existence des éléments avec `.exists()` ;
-* documenter les cas non gérés ;
-* prévoir une stratégie explicite pour les données absentes ou ambiguës.
-
-#### 4. Performance
-
-La performance d’un mapping FML dépend fortement du nombre de parcours effectués sur le document source et du niveau de duplication de certaines règles. Une implémentation trop fragmentée ou redondante peut dégrader les temps de traitement.
-
-**Recommandations** :
-
-* minimiser les parcours multiples du document source ;
-* regrouper les transformations liées dans un même groupe lorsque cela est pertinent ;
-* réutiliser les conversions existantes au lieu de réimplémenter des logiques équivalentes ;
-* limiter les dépendances inutiles entre fichiers.
-
-#### 5. Testabilité
-
-La qualité d’une transformation repose sur la capacité à la tester sur des cas représentatifs et à valider les sorties produites. Une stratégie de test explicite facilite également l’identification des régressions.
-
-**Recommandations** :
-
-* créer des exemples CDA représentatifs des cas attendus ;
-* tester chaque couche de mapping indépendamment ;
-* vérifier les cas limites et les structures incomplètes ;
-* valider les `Bundle` FHIR générés à l’aide d’un validateur.
-
-#### 6. Traçabilité et débogage
-
-Lorsque la transformation mobilise plusieurs groupes répartis dans différents fichiers, il peut devenir difficile d’identifier la règle à l’origine d’un comportement inattendu. Une bonne lisibilité des groupes et des règles facilite alors l’analyse des erreurs et le débogage du mapping.
-
-**Recommandations** :
-
-* structurer les groupes de manière lisible ;
-* conserver des noms explicites pour les groupes et les variables ;
-* isoler les cas de test permettant d’identifier rapidement un comportement erroné ;
-* documenter les hypothèses de transformation et les choix d’implémentation.
-
-#### 7. Stabilité des identifiants générés
-
-L’utilisation d’identifiants techniques tels que des UUID facilite la gestion des références internes, mais peut rendre les sorties moins stables d’une exécution à l’autre. Cette instabilité peut compliquer la comparaison de résultats ou certains scénarios de test.
-
-**Recommandations** :
-
-* réserver les UUID aux références internes lorsque cela est nécessaire ;
-* réutiliser les identifiants métier dès qu’ils sont disponibles ;
-* documenter la stratégie de génération et de réutilisation des identifiants dans les ressources produites.
+La documentation des choix de mapping permet de rendre explicites les décisions prises pendant la transformation. Elle peut préciser les correspondances retenues, les hypothèses appliquées, les cas particuliers ainsi que les éléments non pris en charge. Cette traçabilité facilite la compréhension du comportement du mapping, la justification des choix effectués et la reprise du travail par d’autres personnes. Elle contribue également à éviter les interprétations implicites et à préparer les évolutions futures.
 
 ### Ressources complémentaires
 

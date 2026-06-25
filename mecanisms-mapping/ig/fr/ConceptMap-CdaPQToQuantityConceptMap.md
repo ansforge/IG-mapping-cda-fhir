@@ -19,7 +19,7 @@ Correspondances documentaires entre le datatype CDA PQ et le datatype FHIR Quant
   "title" : "ConceptMap — CDA PQ vers FHIR Quantity",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-06-25T14:42:41+00:00",
+  "date" : "2026-06-25T14:50:38+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
