@@ -476,7 +476,7 @@ Sur le plan technique, il est possible en FML de limiter la création de doublon
 
 **Exemple illustrative**
 <div style="text-align:center; margin: 2rem auto 2.5rem auto; max-width:950px;">
-{% include dedoublonnage.svg %}
+{% include dedoublonnage.svg %} 
 </div>
 <br clear="all"/>
 
