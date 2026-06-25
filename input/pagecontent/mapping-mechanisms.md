@@ -25,6 +25,8 @@ Le FHIR Mapping Language (FML) est un langage déclaratif développé par HL7 po
 Les mappings CDA vers FHIR sont organisés en couches afin de séparer les responsabilités et de faciliter la réutilisation des transformations.
 Chaque couche couvre un niveau précis du mapping et s’appuie sur les couches inférieure.
 
+{% include etapes-mapping.svg %}
+
 #### Description des couches de mapping
 
 ##### Mappings de conversion des types
@@ -470,6 +472,8 @@ Lorsqu’une même entité est décrite dans plusieurs parties du document CDA, 
 Sur le plan technique, il est possible en FML de limiter la création de doublons en définissant des critères permettant de déterminer si plusieurs éléments CDA doivent être représentés par une seule et même ressource. Toutefois, la difficulté réside dans la définition de ces critères. Par exemple, le partage d’un même identifiant métier peut constituer un indice fort en faveur de l’identité des entités, sans pour autant garantir avec certitude qu’il s’agit bien de la même entité.
 
 **Exemple illustrative**
+
+{% include dedoublonnage.svg %}
 
 **NB** : Le guide suivant illustre comment dédoublonner deux éléments CDA décrivant un même établissement afin d’alimenter une seule ressource FHIR Organization : https://nriss.github.io/test-2-to-1-object/main/ig/en/. Il constitue un exemple utile pour la mise en œuvre de règles FML de fusion multi-sources.
 
