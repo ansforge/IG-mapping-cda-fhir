@@ -21,35 +21,6 @@ Le FHIR Mapping Language (FML) est un langage déclaratif développé par HL7 po
 
 Les mappings CDA vers FHIR sont organisés en couches afin de séparer les responsabilités et de faciliter la réutilisation des transformations. Chaque couche couvre un niveau précis du mapping et s’appuie sur les couches inférieure.
 
-```
-┌──────────────────────────────────────────────────┐
-│   CdaPatientSummaryToBundle.fml                  │
-│   ← Mapping du corps structuré du document       │
-│      Patient Summary                             │
-│                                                  │
-└──────────────────────────────────────────────────┘
-                    ↓ imports
-┌──────────────────────────────────────────────────┐
-│   CdaFrToBundle.fml                              │
-│   ← Spécifications françaises                    │
-│     (INS, IDNPS, profils AS, MOS, FINESS, etc.)  │
-└──────────────────────────────────────────────────┘
-                    ↓ imports
-┌──────────────────────────────────────────────────┐
-│   CdaToBundle.fml                                │
-│   ← Mapping générique CDA → Bundle FHIR          │
-│     (en‑tête CDA : Composition, Patient,         │
-│      Encounter, Organization, Location…)         │        
-└──────────────────────────────────────────────────┘
-                    ↓ imports
-┌──────────────────────────────────────────────────┐
-│   CdaToFHIRTypes.fml                             │
-│   ← Conversions des types de données CDA v3      │
-│     (II, EN, AD, CD, PQ, TS, … → types FHIR)     │
-└──────────────────────────────────────────────────┘
-
-```
-
 #### Description des couches de mapping
 
 ##### Mappings de conversion des types
@@ -459,105 +430,15 @@ obs.value as value where(value.is(ST))
 
 ### Limitations et contraintes
 
-#### 2. Support de translate()
+#### Dédoublonnage et fusion conditionnelle des ressources
 
-La fonction `translate()`, utilisée pour exploiter des `ConceptMap`, peut ne pas être disponible ou pleinement supportée selon la version du moteur de transformation utilisée. Cette dépendance peut limiter la portabilité de certains mappings.
+Le CDA et FHIR reposent sur des logiques de représentation différentes. Le CDA est un modèle documentaire hiérarchique, dans lequel une même entité métier peut apparaître dans plusieurs blocs selon son rôle dans le document. À l’inverse, FHIR s’appuie sur des ressources référençables, destinées à représenter des entités distinctes et réutilisables au sein d’un Bundle. Lorsqu’une même entité est décrite dans plusieurs parties du document CDA, la transformation peut conduire à la génération de plusieurs ressources FHIR distinctes. Cette situation peut concerner des organisations, des professionnels de santé, des rôles professionnels, des lieux de prise en charge ou d’autres entités référencées à plusieurs endroits du document. Sur le plan technique, il est possible en FML de limiter la création de doublons en définissant des critères permettant de déterminer si plusieurs éléments CDA doivent être représentés par une seule et même ressource. Toutefois, la difficulté réside dans la définition de ces critères. Par exemple, le partage d’un même identifiant métier peut constituer un indice fort en faveur de l’identité des entités, sans pour autant garantir avec certitude qu’il s’agit bien de la même entité.
 
-**Conséquence** :
+**Exemple illustrative**
 
-* certaines conversions terminologiques échouent ou nécessitent une solution alternative.
+**NB** : Le guide suivant illustre comment dédoublonner deux éléments CDA décrivant un même établissement afin d’alimenter une seule ressource FHIR Organization : https://nriss.github.io/test-2-to-1-object/main/ig/en/. Il constitue un exemple utile pour la mise en œuvre de règles FML de fusion multi-sources.
 
-**Recommandation** : pour les correspondances simples et stables, il est souvent préférable d’utiliser des groupes de mapping personnalisés :
-
-```
-group MapGender(source src : CS, target tgt : code)
-  src where(value = 'M') -> tgt.value = 'male'
-  src where(value = 'F') -> tgt.value = 'female'
-  src where(value = 'UN') -> tgt.value = 'other'
-  src where(value = 'UNK') -> tgt.value = 'unknown'
-
-```
-
-#### 3. Absence d’équivalence terminologique dans la cible
-
-La conversion terminologique repose sur l’existence d’une correspondance exploitable entre le code source CDA et la terminologie cible attendue en FHIR. Or, dans certains cas, aucun code strictement équivalent n’existe dans le système cible, ou bien la correspondance disponible reste partielle, ambiguë ou dépendante du contexte métier.
-
-**Conséquences** :
-
-* impossibilité de produire un codage cible strictement équivalent ;
-* risque de perte sémantique lors de la transformation ;
-* nécessité de conserver uniquement le code source, un libellé textuel, ou une représentation partiellement structurée ;
-* hétérogénéité possible dans les ressources FHIR produites selon les cas de mapping retenus.
-
-**Recommandations** :
-
-* documenter explicitement les cas dans lesquels aucune équivalence terminologique n’est disponible ;
-* définir une stratégie de repli, par exemple en conservant le codage source, en renseignant uniquement `CodeableConcept.text`, ou en utilisant une correspondance plus large lorsque cela est acceptable ;
-
-#### 4. Ordre de chargement des ressources
-
-Le chargement des ressources nécessaires à l’exécution des mappings doit respecter un ordre précis afin que les dépendances soient correctement résolues lors de l’initialisation dans le moteur de transformation.
-
-**Ordre recommandé** :
-
-1. `ConceptMap`(si utilisés) ;
-1. `StructureMap`de base (par exemple`CdaToFHIRTypes`) ;
-1. `StructureMap`intermédiaires (par exemple`CdaToBundle`) ;
-1. `StructureMap`spécifiques (par exemple`CdaFrToBundle`,`CdaFrMDEToBundle`).
-
-**Conséquence** :
-
-* un ordre de chargement incorrect peut empêcher la résolution des dépendances entre mappings et bloquer l’exécution.
-
-#### 5. Gestion des extensions
-
-Les extensions FHIR ne sont pas générées automatiquement au cours de la transformation. Lorsqu’une information CDA doit être portée dans une extension, celle-ci doit être créée explicitement dans les règles FML.
-
-**Conséquence** :
-
-* l’absence de création explicite d’une extension peut entraîner une perte d’information dans la ressource FHIR cible.
-
-**Exemple** :
-
-```
-// Ajout d'une extension personnalisée
-patient -> patient.extension as ext then {
-  ext -> ext.url = 'http://example.org/fhir/Extension/customField'
-  src.customValue as val -> ext.value = create('string') as v, v.value = val
-}
-
-```
-
-#### 6. Gestion des valeurs absentes et des nullFlavor
-
-Les documents CDA peuvent contenir des éléments présents dans la structure XML mais dépourvus de valeur exploitable, notamment lorsque l’attribut `nullFlavor` est utilisé. Cette situation complique la transformation, car l’élément existe, mais ne peut pas toujours être converti directement vers un élément FHIR pertinent.
-
-**Conséquences** :
-
-* création de ressources ou de champs incomplets ;
-* ambiguïté sur la manière de représenter l’absence d’information ;
-* risque de produire des sorties FHIR peu cohérentes si ces cas ne sont pas filtrés.
-
-**Recommandations** :
-
-* filtrer les éléments non exploitables avant transformation ;
-* documenter la stratégie retenue pour le traitement des `nullFlavor` ;
-* éviter de produire des ressources partielles lorsque l’information source est insuffisante.
-
-#### 7. Conformité aux profils FHIR cibles
-
-La validation par rapport aux ressources FHIR internationale n'est pas suffisante pour garantir l'interopérabilité. La transformation doit respecter les profils cibles utilisés dans le projet. Elle doit notamment se conformer aux profils nationaux définis dans le cadre d'interopérabilité et dont l'usage est rendu obligatoire par le code de la santé publique imposent des contraintes supplémentaires sur les cardinalités, les terminologies ou les extensions.
-
-**Conséquences** :
-
-* une ressource techniquement conforme aux ressources génériques internationales FHIR peut rester non conforme au profil cible ;
-* des règles complémentaires peuvent être nécessaires pour satisfaire certaines obligations métier ou nationales.
-
-**Recommandations** :
-
-* vérifier dès la conception du mapping les contraintes des profils cibles ;
-* valider systématiquement les ressources générées contre les profils attendus ;
-* documenter les écarts éventuels entre les données CDA disponibles et les exigences du profil FHIR.
+**Recommandation** La décision de dédoublonnage doit s’appuyer sur plusieurs critères, et non sur un seul élément isolé. Elle peut notamment prendre en compte l’identifiant métier, le nom de l’entité, l’adresse et les coordonnées de contact. Cette analyse multicritère permet de limiter le risque de générer plusieurs ressources FHIR pour une même entité, tout en évitant de fusionner à tort des entités qui devraient rester distinctes.
 
 ### Bonnes pratiques
 

@@ -264,32 +264,11 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
 
 <p>Les mappings CDA vers FHIR sont organisés en couches afin de séparer les responsabilités et de faciliter la réutilisation des transformations.
 Chaque couche couvre un niveau précis du mapping et s’appuie sur les couches inférieure.</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──────────────────────────────────────────────────┐
-│   CdaPatientSummaryToBundle.fml                  │
-│   ← Mapping du corps structuré du document       │
-│      Patient Summary                             │
-│                                                  │
-└──────────────────────────────────────────────────┘
-                    ↓ imports
-┌──────────────────────────────────────────────────┐
-│   CdaFrToBundle.fml                              │
-│   ← Spécifications françaises                    │
-│     (INS, IDNPS, profils AS, MOS, FINESS, etc.)  │
-└──────────────────────────────────────────────────┘
-                    ↓ imports
-┌──────────────────────────────────────────────────┐
-│   CdaToBundle.fml                                │
-│   ← Mapping générique CDA → Bundle FHIR          │
-│     (en‑tête CDA : Composition, Patient,         │
-│      Encounter, Organization, Location…)         │        
-└──────────────────────────────────────────────────┘
-                    ↓ imports
-┌──────────────────────────────────────────────────┐
-│   CdaToFHIRTypes.fml                             │
-│   ← Conversions des types de données CDA v3      │
-│     (II, EN, AD, CD, PQ, TS, … → types FHIR)     │
-└──────────────────────────────────────────────────┘
-</code></pre></div></div>
+<div style="text-align:center; margin: 2rem auto 2.5rem auto; max-width:950px;">
+  <!-- ?xml version="1.0" encoding="us-ascii" standalone="no"? --><svg xmlns="http://www.w3.org/2000/svg" contentStyleType="text/css" viewBox="0 0 1391 244" zoomAndPan="magnify" preserveAspectRatio="none" width="1391px" xmlns:xlink="http://www.w3.org/1999/xlink" style="width:1391px;height:244px;background:#FFFFFF;" version="1.1" height="244px"><defs><filter width="300%" x="-1" y="-1" id="fgeq7ijdcj7k3" height="300%"><feGaussianBlur result="blurOut" stdDeviation="2.0"></feGaussianBlur><feColorMatrix result="blurOut2" in="blurOut" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0" type="matrix"></feColorMatrix><feOffset result="blurOut3" dx="4.0" dy="4.0" in="blurOut2"></feOffset><feBlend mode="normal" in="SourceGraphic" in2="blurOut3"></feBlend></filter></defs><g><text font-weight="bold" lengthAdjust="spacing" x="475" font-size="14" textLength="428" y="22.9951" font-family="Arial" fill="#000000">Architecture en couches des mappings CDA vers FHIR</text>  <!-- entity C1 --><g id="elem_C1"><rect filter="url(#fgeq7ijdcj7k3)" rx="11" ry="11" width="296" x="6" y="49.2969" style="stroke:#F59E0B;stroke-width:2.0;" fill="#FFF3E6" height="182.9688"></rect><text font-weight="bold" lengthAdjust="spacing" x="16" font-size="14" textLength="75" y="72.292" font-family="Arial" fill="#1F2937">Couche 1</text><text font-weight="bold" lengthAdjust="spacing" x="16" font-size="14" textLength="276" y="88.5889" font-family="Arial" fill="#1F2937">Mappings de conversion des types</text><text lengthAdjust="spacing" x="16" font-size="14" textLength="4" y="104.8857" font-family="Arial" fill="#1F2937">&nbsp;</text><text font-weight="bold" lengthAdjust="spacing" x="16" font-size="14" textLength="161" y="121.1826" font-family="Arial" fill="#1F2937">CdaToFHIRTypes.fml</text><text lengthAdjust="spacing" x="16" font-size="14" textLength="4" y="137.4795" font-family="Arial" fill="#1F2937">&nbsp;</text><text lengthAdjust="spacing" x="16" font-size="14" textLength="196" y="153.7764" font-family="Arial" fill="#1F2937">← Conversions des types de</text><text lengthAdjust="spacing" x="16" font-size="14" textLength="116" y="170.0732" font-family="Arial" fill="#1F2937">données CDA v3</text><text lengthAdjust="spacing" x="16" font-size="14" textLength="263" y="186.3701" font-family="Arial" fill="#1F2937">(II, EN, AD, CD, PQ, TS, ...→ types FHIR)</text><text lengthAdjust="spacing" x="16" font-size="14" textLength="4" y="202.667" font-family="Arial" fill="#1F2937">&nbsp;</text><text lengthAdjust="spacing" x="16" font-size="14" textLength="4" y="218.9639" font-family="Arial" fill="#1F2937">&nbsp;</text></g>  <!-- entity C2 --><g id="elem_C2"><rect filter="url(#fgeq7ijdcj7k3)" rx="11" ry="11" width="228" x="419" y="49.2969" style="stroke:#60A5FA;stroke-width:2.0;" fill="#EAF3FF" height="182.9688"></rect><text font-weight="bold" lengthAdjust="spacing" x="429" font-size="14" textLength="75" y="72.292" font-family="Arial" fill="#1F2937">Couche 2</text><text font-weight="bold" lengthAdjust="spacing" x="429" font-size="14" textLength="208" y="88.5889" font-family="Arial" fill="#1F2937">Mappings CDA génériques</text><text lengthAdjust="spacing" x="429" font-size="14" textLength="4" y="104.8857" font-family="Arial" fill="#1F2937">&nbsp;</text><text font-weight="bold" lengthAdjust="spacing" x="429" font-size="14" textLength="133" y="121.1826" font-family="Arial" fill="#1F2937">CdaToBundle.fml</text><text lengthAdjust="spacing" x="429" font-size="14" textLength="4" y="137.4795" font-family="Arial" fill="#1F2937">&nbsp;</text><text lengthAdjust="spacing" x="429" font-size="14" textLength="200" y="153.7764" font-family="Arial" fill="#1F2937">← Mapping générique CDA →</text><text lengthAdjust="spacing" x="429" font-size="14" textLength="84" y="170.0732" font-family="Arial" fill="#1F2937">Bundle FHIR</text><text lengthAdjust="spacing" x="429" font-size="14" textLength="194" y="186.3701" font-family="Arial" fill="#1F2937">(en-tête CDA : Composition,</text><text lengthAdjust="spacing" x="429" font-size="14" textLength="132" y="202.667" font-family="Arial" fill="#1F2937">Patient, Encounter,</text><text lengthAdjust="spacing" x="429" font-size="14" textLength="170" y="218.9639" font-family="Arial" fill="#1F2937">Organization, Location...)</text></g>  <!-- entity C3 --><g id="elem_C3"><rect filter="url(#fgeq7ijdcj7k3)" rx="11" ry="11" width="217" x="764" y="49.2969" style="stroke:#A855F7;stroke-width:2.0;" fill="#F5ECFF" height="182.9688"></rect><text font-weight="bold" lengthAdjust="spacing" x="774" font-size="14" textLength="75" y="72.292" font-family="Arial" fill="#1F2937">Couche 3</text><text font-weight="bold" lengthAdjust="spacing" x="774" font-size="14" textLength="197" y="88.5889" font-family="Arial" fill="#1F2937">Spécifications françaises</text><text lengthAdjust="spacing" x="774" font-size="14" textLength="4" y="104.8857" font-family="Arial" fill="#1F2937">&nbsp;</text><text font-weight="bold" lengthAdjust="spacing" x="774" font-size="14" textLength="149" y="121.1826" font-family="Arial" fill="#1F2937">CdaFrToBundle.fml</text><text lengthAdjust="spacing" x="774" font-size="14" textLength="4" y="137.4795" font-family="Arial" fill="#1F2937">&nbsp;</text><text lengthAdjust="spacing" x="774" font-size="14" textLength="185" y="153.7764" font-family="Arial" fill="#1F2937">← Spécifications françaises</text><text lengthAdjust="spacing" x="774" font-size="14" textLength="152" y="170.0732" font-family="Arial" fill="#1F2937">(INS, IDNPS, profils AS,</text><text lengthAdjust="spacing" x="774" font-size="14" textLength="127" y="186.3701" font-family="Arial" fill="#1F2937">MOS, FINESS, etc.)</text><text lengthAdjust="spacing" x="774" font-size="14" textLength="4" y="202.667" font-family="Arial" fill="#1F2937">&nbsp;</text><text lengthAdjust="spacing" x="774" font-size="14" textLength="4" y="218.9639" font-family="Arial" fill="#1F2937">&nbsp;</text></g>  <!-- entity C4 --><g id="elem_C4"><rect filter="url(#fgeq7ijdcj7k3)" rx="11" ry="11" width="281" x="1098" y="49.2969" style="stroke:#22C55E;stroke-width:2.0;" fill="#ECFDF3" height="182.9688"></rect><text font-weight="bold" lengthAdjust="spacing" x="1108" font-size="14" textLength="75" y="72.292" font-family="Arial" fill="#1F2937">Couche 4</text><text font-weight="bold" lengthAdjust="spacing" x="1108" font-size="14" textLength="171" y="88.5889" font-family="Arial" fill="#1F2937">Mappings spécifiques</text><text lengthAdjust="spacing" x="1108" font-size="14" textLength="82" y="104.8857" font-family="Arial" fill="#1F2937">métier&lt;/b&gt;</text><text lengthAdjust="spacing" x="1108" font-size="14" textLength="4" y="121.1826" font-family="Arial" fill="#1F2937">&nbsp;</text><text font-weight="bold" lengthAdjust="spacing" x="1108" font-size="14" textLength="261" y="137.4795" font-family="Arial" fill="#1F2937">CdaPatientSummaryToBundle.fml</text><text lengthAdjust="spacing" x="1108" font-size="14" textLength="4" y="153.7764" font-family="Arial" fill="#1F2937">&nbsp;</text><text lengthAdjust="spacing" x="1108" font-size="14" textLength="207" y="170.0732" font-family="Arial" fill="#1F2937">← Mapping du corps structuré</text><text lengthAdjust="spacing" x="1108" font-size="14" textLength="93" y="186.3701" font-family="Arial" fill="#1F2937">du document</text><text lengthAdjust="spacing" x="1108" font-size="14" textLength="116" y="202.667" font-family="Arial" fill="#1F2937">Patient Summary</text><text lengthAdjust="spacing" x="1108" font-size="14" textLength="4" y="218.9639" font-family="Arial" fill="#1F2937">&nbsp;</text></g><path d="M302.2999,159.3478 C334.8035,161.4394 369.0634,162.1008 401,159.7969 C406.845,159.3752 412.8253,158.849 418.856,158.2433 " style="stroke:#374151;stroke-width:1.5;stroke-dasharray:7.0,7.0;" fill="none"></path><polygon style="stroke:#374151;stroke-width:1.0;" fill="#374151" points="418.856,158.2433,409.5014,155.1627,413.8811,158.743,410.3008,163.1227,418.856,158.2433"></polygon><text lengthAdjust="spacing" x="321" font-size="14" textLength="79" y="155.792" font-family="Arial" fill="#000000">importé par</text><path d="M647.144,158.2433 C653.1747,158.849 659.155,159.3752 665,159.7969 C700.9067,162.3872 710.1015,162.4989 746,159.7969 C751.8232,159.3586 757.7856,158.8074 763.796,158.1715 " style="stroke:#374151;stroke-width:1.5;stroke-dasharray:7.0,7.0;" fill="none"></path><polygon style="stroke:#374151;stroke-width:1.0;" fill="#374151" points="763.796,158.1715,754.4251,155.1407,758.8237,158.6976,755.2668,163.0963,763.796,158.1715"></polygon><text lengthAdjust="spacing" x="666" font-size="14" textLength="79" y="155.792" font-family="Arial" fill="#000000">importé par</text><path d="M981.204,158.1715 C987.2144,158.8074 993.1768,159.3586 999,159.7969 C1030.9972,162.2052 1065.4008,161.43 1097.845,159.1733 " style="stroke:#374151;stroke-width:1.5;stroke-dasharray:7.0,7.0;" fill="none"></path><polygon style="stroke:#374151;stroke-width:1.0;" fill="#374151" points="1097.845,159.1733,1088.5891,155.8074,1092.8571,159.5202,1089.1443,163.7881,1097.845,159.1733"></polygon><text lengthAdjust="spacing" x="1000" font-size="14" textLength="79" y="155.792" font-family="Arial" fill="#000000">importé par</text></g></svg>
+</div>
+<p><br clear="all"/></p>
+
 <h4 id="description-des-couches-de-mapping">Description des couches de mapping</h4>
 
 <h5 id="mappings-de-conversion-des-types">Mappings de conversion des types</h5>
@@ -756,112 +735,17 @@ obs.value as value where(value.is(ST))
 
 <h3 id="limitations-et-contraintes">Limitations et contraintes</h3>
 
-<h4 id="2-support-de-translate">2. Support de <code class="language-plaintext highlighter-rouge">translate()</code></h4>
+<h4 id="dédoublonnage-et-fusion-conditionnelle-des-ressources">Dédoublonnage et fusion conditionnelle des ressources</h4>
+<p>Le CDA et FHIR reposent sur des logiques de représentation différentes. Le CDA est un modèle documentaire hiérarchique, dans lequel une même entité métier peut apparaître dans plusieurs blocs selon son rôle dans le document. À l’inverse, FHIR s’appuie sur des ressources référençables, destinées à représenter des entités distinctes et réutilisables au sein d’un Bundle.
+Lorsqu’une même entité est décrite dans plusieurs parties du document CDA, la transformation peut conduire à la génération de plusieurs ressources FHIR distinctes. Cette situation peut concerner des organisations, des professionnels de santé, des rôles professionnels, des lieux de prise en charge ou d’autres entités référencées à plusieurs endroits du document.
+Sur le plan technique, il est possible en FML de limiter la création de doublons en définissant des critères permettant de déterminer si plusieurs éléments CDA doivent être représentés par une seule et même ressource. Toutefois, la difficulté réside dans la définition de ces critères. Par exemple, le partage d’un même identifiant métier peut constituer un indice fort en faveur de l’identité des entités, sans pour autant garantir avec certitude qu’il s’agit bien de la même entité.</p>
 
-<p>La fonction <code class="language-plaintext highlighter-rouge">translate()</code>, utilisée pour exploiter des <code class="language-plaintext highlighter-rouge">ConceptMap</code>, peut ne pas être disponible ou pleinement supportée selon la version du moteur de transformation utilisée. Cette dépendance peut limiter la portabilité de certains mappings.</p>
+<p><strong>Exemple illustrative</strong></p>
 
-<p><strong>Conséquence</strong> :</p>
-<ul>
-  <li>certaines conversions terminologiques échouent ou nécessitent une solution alternative.</li>
-</ul>
+<p><strong>NB</strong> : Le guide suivant illustre comment dédoublonner deux éléments CDA décrivant un même établissement afin d’alimenter une seule ressource FHIR Organization : https://nriss.github.io/test-2-to-1-object/main/ig/en/. Il constitue un exemple utile pour la mise en œuvre de règles FML de fusion multi-sources.</p>
 
-<p><strong>Recommandation</strong> :
-pour les correspondances simples et stables, il est souvent préférable d’utiliser des groupes de mapping personnalisés :</p>
-
-<pre><code class="language-fml">group MapGender(source src : CS, target tgt : code)
-  src where(value = 'M') -&gt; tgt.value = 'male'
-  src where(value = 'F') -&gt; tgt.value = 'female'
-  src where(value = 'UN') -&gt; tgt.value = 'other'
-  src where(value = 'UNK') -&gt; tgt.value = 'unknown'
-</code></pre>
-
-<h4 id="3-absence-déquivalence-terminologique-dans-la-cible">3. Absence d’équivalence terminologique dans la cible</h4>
-
-<p>La conversion terminologique repose sur l’existence d’une correspondance exploitable entre le code source CDA et la terminologie cible attendue en FHIR. Or, dans certains cas, aucun code strictement équivalent n’existe dans le système cible, ou bien la correspondance disponible reste partielle, ambiguë ou dépendante du contexte métier.</p>
-
-<p><strong>Conséquences</strong> :</p>
-<ul>
-  <li>impossibilité de produire un codage cible strictement équivalent ;</li>
-  <li>risque de perte sémantique lors de la transformation ;</li>
-  <li>nécessité de conserver uniquement le code source, un libellé textuel, ou une représentation partiellement structurée ;</li>
-  <li>hétérogénéité possible dans les ressources FHIR produites selon les cas de mapping retenus.</li>
-</ul>
-
-<p><strong>Recommandations</strong> :</p>
-<ul>
-  <li>documenter explicitement les cas dans lesquels aucune équivalence terminologique n’est disponible ;</li>
-  <li>définir une stratégie de repli, par exemple en conservant le codage source, en renseignant uniquement <code class="language-plaintext highlighter-rouge">CodeableConcept.text</code>, ou en utilisant une correspondance plus large lorsque cela est acceptable ;</li>
-</ul>
-
-<h4 id="4-ordre-de-chargement-des-ressources">4. Ordre de chargement des ressources</h4>
-
-<p>Le chargement des ressources nécessaires à l’exécution des mappings doit respecter un ordre précis afin que les dépendances soient correctement résolues lors de l’initialisation dans le moteur de transformation.</p>
-
-<p><strong>Ordre recommandé</strong> :</p>
-<ol>
-  <li><code class="language-plaintext highlighter-rouge">ConceptMap</code> (si utilisés) ;</li>
-  <li><code class="language-plaintext highlighter-rouge">StructureMap</code> de base (par exemple <code class="language-plaintext highlighter-rouge">CdaToFHIRTypes</code>) ;</li>
-  <li><code class="language-plaintext highlighter-rouge">StructureMap</code> intermédiaires (par exemple <code class="language-plaintext highlighter-rouge">CdaToBundle</code>) ;</li>
-  <li><code class="language-plaintext highlighter-rouge">StructureMap</code> spécifiques (par exemple <code class="language-plaintext highlighter-rouge">CdaFrToBundle</code>, <code class="language-plaintext highlighter-rouge">CdaFrMDEToBundle</code>).</li>
-</ol>
-
-<p><strong>Conséquence</strong> :</p>
-<ul>
-  <li>un ordre de chargement incorrect peut empêcher la résolution des dépendances entre mappings et bloquer l’exécution.</li>
-</ul>
-
-<h4 id="5-gestion-des-extensions">5. Gestion des extensions</h4>
-
-<p>Les extensions FHIR ne sont pas générées automatiquement au cours de la transformation. Lorsqu’une information CDA doit être portée dans une extension, celle-ci doit être créée explicitement dans les règles FML.</p>
-
-<p><strong>Conséquence</strong> :</p>
-<ul>
-  <li>l’absence de création explicite d’une extension peut entraîner une perte d’information dans la ressource FHIR cible.</li>
-</ul>
-
-<p><strong>Exemple</strong> :</p>
-<pre><code class="language-fml">// Ajout d'une extension personnalisée
-patient -&gt; patient.extension as ext then {
-  ext -&gt; ext.url = 'http://example.org/fhir/Extension/customField'
-  src.customValue as val -&gt; ext.value = create('string') as v, v.value = val
-}
-</code></pre>
-
-<h4 id="6-gestion-des-valeurs-absentes-et-des-nullflavor">6. Gestion des valeurs absentes et des <code class="language-plaintext highlighter-rouge">nullFlavor</code></h4>
-
-<p>Les documents CDA peuvent contenir des éléments présents dans la structure XML mais dépourvus de valeur exploitable, notamment lorsque l’attribut <code class="language-plaintext highlighter-rouge">nullFlavor</code> est utilisé. Cette situation complique la transformation, car l’élément existe, mais ne peut pas toujours être converti directement vers un élément FHIR pertinent.</p>
-
-<p><strong>Conséquences</strong> :</p>
-<ul>
-  <li>création de ressources ou de champs incomplets ;</li>
-  <li>ambiguïté sur la manière de représenter l’absence d’information ;</li>
-  <li>risque de produire des sorties FHIR peu cohérentes si ces cas ne sont pas filtrés.</li>
-</ul>
-
-<p><strong>Recommandations</strong> :</p>
-<ul>
-  <li>filtrer les éléments non exploitables avant transformation ;</li>
-  <li>documenter la stratégie retenue pour le traitement des <code class="language-plaintext highlighter-rouge">nullFlavor</code> ;</li>
-  <li>éviter de produire des ressources partielles lorsque l’information source est insuffisante.</li>
-</ul>
-
-<h4 id="7-conformité-aux-profils-fhir-cibles">7. Conformité aux profils FHIR cibles</h4>
-
-<p>La validation par rapport aux ressources FHIR internationale n'est pas suffisante pour garantir l'interopérabilité.
-La transformation doit respecter les profils cibles utilisés dans le projet. Elle doit notamment se conformer aux profils nationaux définis dans le cadre d'interopérabilité et dont l'usage est rendu obligatoire par le code de la santé publique imposent des contraintes supplémentaires sur les cardinalités, les terminologies ou les extensions.</p>
-
-<p><strong>Conséquences</strong> :</p>
-<ul>
-  <li>une ressource techniquement conforme aux ressources génériques internationales FHIR peut rester non conforme au profil cible ;</li>
-  <li>des règles complémentaires peuvent être nécessaires pour satisfaire certaines obligations métier ou nationales.</li>
-</ul>
-
-<p><strong>Recommandations</strong> :</p>
-<ul>
-  <li>vérifier dès la conception du mapping les contraintes des profils cibles ;</li>
-  <li>valider systématiquement les ressources générées contre les profils attendus ;</li>
-  <li>documenter les écarts éventuels entre les données CDA disponibles et les exigences du profil FHIR.</li>
-</ul>
+<p><strong>Recommandation</strong>
+La décision de dédoublonnage doit s’appuyer sur plusieurs critères, et non sur un seul élément isolé. Elle peut notamment prendre en compte l’identifiant métier, le nom de l’entité, l’adresse et les coordonnées de contact. Cette analyse multicritère permet de limiter le risque de générer plusieurs ressources FHIR pour une même entité, tout en évitant de fusionner à tort des entités qui devraient rester distinctes.</p>
 
 <h3 id="bonnes-pratiques">Bonnes pratiques</h3>
 
@@ -954,7 +838,7 @@ La transformation doit respecter les profils cibles utilisés dans le projet. El
   <li><a href="https://www.hl7.org/fhir/structuremap.html">FHIR StructureMap Resource</a></li>
   <li><a href="https://github.com/ahdis/matchbox">Matchbox Documentation</a></li>
   <li><a href="https://github.com/hl7ch/cda-fhir-maps">CDA to FHIR Maps (HL7 Suisse)</a></li>
-  <li><a name="l2612">​</a><a href="claude.html">Notes techniques de développement</a></li>
+  <li><a name="l2503">​</a><a href="claude.html">Notes techniques de développement</a></li>
 </ul>
 
 <h3 id="conclusion">Conclusion</h3>
@@ -1019,7 +903,7 @@ La transformation doit respecter les profils cibles utilisés dans le projet. El
           IG &copy; 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris</a>.  
           Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>.
           Generated 
-  <span title="2026-06-25 14:37:00 +0000">
+  <span title="2026-06-25 14:41:00 +0000">
     2026-06-25
   </span>
 
