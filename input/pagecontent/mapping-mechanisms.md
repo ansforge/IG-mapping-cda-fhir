@@ -25,7 +25,10 @@ Le FHIR Mapping Language (FML) est un langage déclaratif développé par HL7 po
 Les mappings CDA vers FHIR sont organisés en couches afin de séparer les responsabilités et de faciliter la réutilisation des transformations.
 Chaque couche couvre un niveau précis du mapping et s’appuie sur les couches inférieure.
 
+<div style="text-align:center; margin: 2rem auto 2.5rem auto; max-width:950px;">
 {% include etapes-mapping.svg %}
+</div>
+<br clear="all"/>
 
 #### Description des couches de mapping
 
@@ -473,7 +476,10 @@ Sur le plan technique, il est possible en FML de limiter la création de doublon
 
 **Exemple illustrative**
 
+<div style="text-align:center; margin: 2rem auto 2.5rem auto; max-width:950px;">
 {% include dedoublonnage.svg %}
+</div>
+<br clear="all"/>
 
 **NB** : Le guide suivant illustre comment dédoublonner deux éléments CDA décrivant un même établissement afin d’alimenter une seule ressource FHIR Organization : https://nriss.github.io/test-2-to-1-object/main/ig/en/. Il constitue un exemple utile pour la mise en œuvre de règles FML de fusion multi-sources.
 
