@@ -24,11 +24,6 @@ Le FHIR Mapping Language (FML) est un langage déclaratif développé par HL7 po
 
 Les mappings CDA vers FHIR sont organisés en couches afin de séparer les responsabilités et de faciliter la réutilisation des transformations.
 Chaque couche couvre un niveau précis du mapping et s’appuie sur les couches inférieure.
-<div style="text-align:center; margin: 2rem auto 2.5rem auto; max-width:950px;">
-
-<div class="figure" style="width:65%;">
-    <img style="height: auto; width: 100%;" src="etapes_de_mapping.png" alt="etapes_de_mapping" title="etapes_de_mapping">
-</div>
 
 #### Description des couches de mapping
 
@@ -545,8 +540,6 @@ La difficulté apparaît lorsque les codes à mapper sont plus nombreux, plus sp
 
 Il est recommandé de documenter les règles de correspondance terminologique en précisant, pour chaque cas, le code source CDA, son système de codes, l’élément FHIR cible, le code attendu ou conservé, ainsi que le ValueSet associé lorsqu’il existe.
 Les situations doivent être distinguées selon leur nature : correspondance directe, conservation du codage source, absence d’équivalence stricte ou incompatibilité avec un ValueSet requis. Lorsqu’aucun code cible strictement compatible n’est disponible, le cas doit être documenté comme une limite du mapping. Le choix retenu doit être justifié, notamment lorsqu’une correspondance plus générale ou approximative est utilisée.
-
-
 
 
 ### Bonnes pratiques
