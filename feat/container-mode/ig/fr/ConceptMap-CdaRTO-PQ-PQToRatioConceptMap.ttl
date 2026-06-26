@@ -1,0 +1,66 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaRTO-PQ-PQToRatioConceptMap> a fhir:ConceptMap ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "CdaRTO-PQ-PQToRatioConceptMap"] ; # 
+  fhir:language [ fhir:v "fr"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div [ fhir:v "<div xml:lang=\"fr\" lang=\"fr\"><hr/><p><b>French</b></p><hr/><p class=\"res-header-id\"><b>Narratif généré : CarteDeConcepts CdaRTO-PQ-PQToRatioConceptMap</b></p><a name=\"CdaRTO-PQ-PQToRatioConceptMap\"> </a><a name=\"hcCdaRTO-PQ-PQToRatioConceptMap\"> </a><p>This mapping does not specify any particular context of use.</p><br/><p>Mapping de <code>http://hl7.org/cda/stds/core/StructureDefinition/RTO_PQ_PQ</code> to <a href=\"http://hl7.org/fhir/R4/datatypes.html#Ratio\">Ratioversion : 4.0.1)</a></p><table class=\"grid\"><tr><td><b>Code source</b></td><td><b>relation</b></td><td><b>Code cible</b></td><td><b>Commentaire</b></td></tr><tr><td>RTO_PQ_PQ.numerator</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto\" title=\"relatedto\">is related to</a></td><td>Ratio.numerator</td><td>Le numérateur CDA est converti en Quantity via le mapping PQ -&gt; Quantity, puis affecté à Ratio.numerator.</td></tr><tr><td>RTO_PQ_PQ.denominator</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto\" title=\"relatedto\">is related to</a></td><td>Ratio.denominator</td><td>Le dénominateur CDA est converti en Quantity via le mapping PQ -&gt; Quantity, puis affecté à Ratio.denominator.</td></tr></table></div>"^^rdf:XMLLiteral ]
+  ] ; # 
+  fhir:url [ fhir:v "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaRTOPQPQToFHIR"^^xsd:anyURI] ; # 
+  fhir:version [ fhir:v "0.1.0"] ; # 
+  fhir:name [ fhir:v "CdaRTOPQPQToFHIR"] ; # 
+  fhir:title [ fhir:v "ConceptMap — CDA RTO_PQ_PQ vers FHIR Ratio"] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:experimental [ fhir:v true] ; # 
+  fhir:date [ fhir:v "2026-06-26T10:31:36+00:00"^^xsd:dateTime] ; # 
+  fhir:publisher [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"] ; # 
+  fhir:contact ( [
+     fhir:name [ fhir:v "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris" ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "https://esante.gouv.fr" ]
+     ] )
+  ] ) ; # 
+  fhir:description [ fhir:v "Correspondances documentaires entre le datatype CDA RTO_PQ_PQ et le datatype FHIR Ratio."] ; # 
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "urn:iso:std:iso:3166"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "FR" ] ;
+       fhir:display [ fhir:v "France (la)" ]
+     ] )
+  ] ) ; # 
+  fhir:group ( [
+     fhir:source [ fhir:v "http://hl7.org/cda/stds/core/StructureDefinition/RTO_PQ_PQ"^^xsd:anyURI ] ;
+     fhir:target [ fhir:v "http://hl7.org/fhir/StructureDefinition/Ratio"^^xsd:anyURI ] ;
+     fhir:targetVersion [ fhir:v "4.0.1" ] ;
+     fhir:element ( [
+       fhir:code [ fhir:v "RTO_PQ_PQ.numerator" ] ;
+       fhir:display [ fhir:v "RTO_PQ_PQ.numerator" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "Ratio.numerator" ] ;
+         fhir:display [ fhir:v "Ratio.numerator" ] ;
+         fhir:equivalence [ fhir:v "relatedto" ] ;
+         fhir:comment [ fhir:v "Le numérateur CDA est converti en Quantity via le mapping PQ -> Quantity, puis affecté à Ratio.numerator." ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "RTO_PQ_PQ.denominator" ] ;
+       fhir:display [ fhir:v "RTO_PQ_PQ.denominator" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "Ratio.denominator" ] ;
+         fhir:display [ fhir:v "Ratio.denominator" ] ;
+         fhir:equivalence [ fhir:v "relatedto" ] ;
+         fhir:comment [ fhir:v "Le dénominateur CDA est converti en Quantity via le mapping PQ -> Quantity, puis affecté à Ratio.denominator." ]
+       ] )
+     ] )
+  ] ) . # 
+
+# -------------------------------------------------------------------------------------
+

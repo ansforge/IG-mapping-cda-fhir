@@ -1,0 +1,1776 @@
+{
+  "resourceType" : "StructureMap",
+  "id" : "CdaToFHIRTypes",
+  "language" : "fr",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xml:lang=\"fr\" lang=\"fr\"><hr/><p><b>French</b></p><hr/><p class=\"res-header-id\"><b>Narratif généré : StructureMap CdaToFHIRTypes</b></p><a name=\"CdaToFHIRTypes\"> </a><a name=\"hcCdaToFHIRTypes\"> </a><pre class=\"fml\">\r\n<b>map</b><span style=\"color: navy\"> &quot;</span>https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes<span style=\"color: navy\">&quot; = &quot;</span>CdaToFHIRTypes<span style=\"color: navy\">&quot;\r\n\r\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)</span>\r\n\r\n<b>uses</b><span style=\"color: navy\"> &quot;</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ED.html\" title=\"ED: EncapsulatedData (V3 Data Type)\">http://hl7.org/cda/stds/core/StructureDefinition/ED|2.0.0-sd</a><span style=\"color: navy\">&quot; </span><b>alias </b>ED <b>as </b><b>source</b>\r\n<b>uses</b><span style=\"color: navy\"> &quot;</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-PN.html\" title=\"PN: PersonName (V3 Data Type)\">http://hl7.org/cda/stds/core/StructureDefinition/PN|2.0.0-sd</a><span style=\"color: navy\">&quot; </span><b>alias </b>PN <b>as </b><b>source</b>\r\n<b>uses</b><span style=\"color: navy\"> &quot;</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html\" title=\"II: InstanceIdentifier (V3 Data Type)\">http://hl7.org/cda/stds/core/StructureDefinition/II|2.0.0-sd</a><span style=\"color: navy\">&quot; </span><b>alias </b>II <b>as </b><b>source</b>\r\n<b>uses</b><span style=\"color: navy\"> &quot;</span><a href=\"http://hl7.org/fhir/R4/datatypes.html#Identifier\" title=\"Identifier\">http://hl7.org/fhir/StructureDefinition/Identifier|4.0.1</a><span style=\"color: navy\">&quot; </span><b>alias </b>Identifier <b>as </b><b>target</b>\r\n<b>uses</b><span style=\"color: navy\"> &quot;</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TS.html\" title=\"TS: PointInTime (V3 Data Type)\">http://hl7.org/cda/stds/core/StructureDefinition/TS|2.0.0-sd</a><span style=\"color: navy\">&quot; </span><b>alias </b>TS <b>as </b><b>source</b>\r\n<b>uses</b><span style=\"color: navy\"> &quot;</span><a href=\"http://hl7.org/fhir/R4/datatypes.html#instant\" title=\"instant\">http://hl7.org/fhir/StructureDefinition/instant|4.0.1</a><span style=\"color: navy\">&quot; </span><b>alias </b>instant <b>as </b><b>target</b>\r\n<b>uses</b><span style=\"color: navy\"> &quot;</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CS.html\" title=\"CS: CodedSimpleValue (V3 Data Type)\">http://hl7.org/cda/stds/core/StructureDefinition/CS|2.0.0-sd</a><span style=\"color: navy\">&quot; </span><b>alias </b>CS <b>as </b><b>source</b>\r\n<b>uses</b><span style=\"color: navy\"> &quot;</span><a href=\"http://hl7.org/fhir/R4/datatypes.html#code\" title=\"code\">http://hl7.org/fhir/StructureDefinition/code|4.0.1</a><span style=\"color: navy\">&quot; </span><b>alias </b>code <b>as </b><b>target</b>\r\n<b>uses</b><span style=\"color: navy\"> &quot;</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CE.html\" title=\"CE: CodedWithEquivalents (V3 Data Type)\">http://hl7.org/cda/stds/core/StructureDefinition/CE|2.0.0-sd</a><span style=\"color: navy\">&quot; </span><b>alias </b>CE <b>as </b><b>source</b>\r\n<b>uses</b><span style=\"color: navy\"> &quot;</span><a href=\"http://hl7.org/fhir/R4/datatypes.html#CodeableConcept\" title=\"CodeableConcept\">http://hl7.org/fhir/StructureDefinition/CodeableConcept|4.0.1</a><span style=\"color: navy\">&quot; </span><b>alias </b>CodeableConcept <b>as </b><b>target</b>\r\n<b>uses</b><span style=\"color: navy\"> &quot;</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html\" title=\"ST: CharacterString (V3 Data Type)\">http://hl7.org/cda/stds/core/StructureDefinition/ST|2.0.0-sd</a><span style=\"color: navy\">&quot; </span><b>alias </b>ST <b>as </b><b>source</b>\r\n<b>uses</b><span style=\"color: navy\"> &quot;</span><a href=\"http://hl7.org/fhir/R4/datatypes.html#string\" title=\"string\">http://hl7.org/fhir/StructureDefinition/string|4.0.1</a><span style=\"color: navy\">&quot; </span><b>alias </b>string <b>as </b><b>target</b>\r\n<b>uses</b><span style=\"color: navy\"> &quot;</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html\" title=\"EN: EntityName (V3 Data Type)\">http://hl7.org/cda/stds/core/StructureDefinition/EN|2.0.0-sd</a><span style=\"color: navy\">&quot; </span><b>alias </b>EN <b>as </b><b>source</b>\r\n<b>uses</b><span style=\"color: navy\"> &quot;</span><a href=\"http://hl7.org/fhir/R4/datatypes.html#HumanName\" title=\"HumanName\">http://hl7.org/fhir/StructureDefinition/HumanName|4.0.1</a><span style=\"color: navy\">&quot; </span><b>alias </b>HumanName <b>as </b><b>target</b>\r\n<b>uses</b><span style=\"color: navy\"> &quot;</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html\" title=\"AD: PostalAddress (V3 Data Type)\">http://hl7.org/cda/stds/core/StructureDefinition/AD|2.0.0-sd</a><span style=\"color: navy\">&quot; </span><b>alias </b>AD <b>as </b><b>source</b>\r\n<b>uses</b><span style=\"color: navy\"> &quot;</span><a href=\"http://hl7.org/fhir/R4/datatypes.html#Address\" title=\"Address\">http://hl7.org/fhir/StructureDefinition/Address|4.0.1</a><span style=\"color: navy\">&quot; </span><b>alias </b>Address <b>as </b><b>target</b>\r\n<b>uses</b><span style=\"color: navy\"> &quot;</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html\" title=\"TEL: TelecommunicationAddress (V3 Data Type)\">http://hl7.org/cda/stds/core/StructureDefinition/TEL|2.0.0-sd</a><span style=\"color: navy\">&quot; </span><b>alias </b>TEL <b>as </b><b>source</b>\r\n<b>uses</b><span style=\"color: navy\"> &quot;</span><a href=\"http://hl7.org/fhir/R4/datatypes.html#ContactPoint\" title=\"ContactPoint\">http://hl7.org/fhir/StructureDefinition/ContactPoint|4.0.1</a><span style=\"color: navy\">&quot; </span><b>alias </b>ContactPoint <b>as </b><b>target</b>\r\n<b>uses</b><span style=\"color: navy\"> &quot;</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-BL.html\" title=\"BL: Boolean (V3 Data Type)\">http://hl7.org/cda/stds/core/StructureDefinition/BL|2.0.0-sd</a><span style=\"color: navy\">&quot; </span><b>alias </b>BL <b>as </b><b>source</b>\r\n<b>uses</b><span style=\"color: navy\"> &quot;</span><a href=\"http://hl7.org/fhir/R4/datatypes.html#boolean\" title=\"boolean\">http://hl7.org/fhir/StructureDefinition/boolean|4.0.1</a><span style=\"color: navy\">&quot; </span><b>alias </b>boolean <b>as </b><b>target</b>\r\n<b>uses</b><span style=\"color: navy\"> &quot;</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-IVL-TS.html\" title=\"IVL_TS: Interval (V3 Data Type)\">http://hl7.org/cda/stds/core/StructureDefinition/IVL-TS|2.0.0-sd</a><span style=\"color: navy\">&quot; </span><b>alias </b>IVL_TS <b>as </b><b>source</b>\r\n<b>uses</b><span style=\"color: navy\"> &quot;</span><a href=\"http://hl7.org/fhir/R4/datatypes.html#Period\" title=\"Period\">http://hl7.org/fhir/StructureDefinition/Period|4.0.1</a><span style=\"color: navy\">&quot; </span><b>alias </b>Period <b>as </b><b>target</b>\r\n\r\n<b>group </b>Any<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span>, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\">)</span><span style=\"color: navy\"> {\r\n</span>  src<span style=\"color: navy\"><b> -&gt; </b></span>tgt <i>&quot;base&quot;</i><span style=\"color: navy\">;</span>\r\n<span style=\"color: navy\">}\r\n\r\n</span><b>group </b>II<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>II, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>Identifier<span style=\"color: navy\">)</span><b> extends </b>Any<b> &lt;&lt;types&gt;&gt;</b><span style=\"color: navy\"> {\r\n</span>  src.root<b> as </b><span style=\"color: maroon\">r</span><b> where </b>src.extension.exists()<span style=\"color: navy\"><b> -&gt; </b></span>tgt.system = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:oid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">r</span><span style=\"color: navy\">)</span> <i>&quot;root1&quot;</i><span style=\"color: navy\">;</span>\r\n  src.root<b> as </b><span style=\"color: maroon\">r</span><b> where </b>src.extension.empty() and src.root.matches('[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}')<span style=\"color: navy\"><b> -&gt; </b></span> tgt.system = <span style=\"color: blue\">'urn:ietf:rfc:3986'</span><span style=\"color: navy\">, </span> tgt.value = <span style=\"color: navy\">(</span>'urn:uuid:' + r.lower()<span style=\"color: navy\">)</span> <i>&quot;rootuuid&quot;</i><span style=\"color: navy\">;</span>\r\n  src.root<b> as </b><span style=\"color: maroon\">r</span><b> where </b>src.extension.empty() and src.root.contains('.')<span style=\"color: navy\"><b> -&gt; </b></span> tgt.system = <span style=\"color: blue\">'urn:ietf:rfc:3986'</span><span style=\"color: navy\">, </span> tgt.value = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:oid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">r</span><span style=\"color: navy\">)</span> <i>&quot;rootoid&quot;</i><span style=\"color: navy\">;</span>\r\n  src.extension<b> as </b><span style=\"color: maroon\">e</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.value = <span style=\"color: maroon\">e</span><span style=\"color: navy\">;</span>\r\n  src.assigningAuthorityName<b> as </b><span style=\"color: maroon\">s</span><span style=\"color: navy\"><b> -&gt; </b></span> tgt.assigner<b> as </b><span style=\"color: maroon\">a</span><span style=\"color: navy\">, </span> a.display = <span style=\"color: maroon\">s</span><span style=\"color: navy\">;</span> <span style=\"color: navy\">// </span><span style=\"color: green\">there's no equivalent for displayable in FHIR - and it probably will never matter, but if it does, it might map to Identifier.use.</span>\r\n  src.displayable<b> as </b><span style=\"color: maroon\">displayable</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.extension<b> as </b><span style=\"color: maroon\">ext</span><b> then</b><span style=\"color: navy\"> {\r\n</span>    displayable<span style=\"color: navy\"><b> -&gt; </b></span>ext.url = <span style=\"color: blue\">'http://hl7.org/fhir/cdaStructureDefinition/extension-displayable'</span> <i>&quot;url&quot;</i><span style=\"color: navy\">;</span>\r\n    displayable.value<b> as </b><span style=\"color: maroon\">v</span><span style=\"color: navy\"><b> -&gt; </b></span>ext.value = <b>cast</b><span style=\"color: navy\">(</span><span style=\"color: maroon\">v</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'string'</span><span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>\r\n  <span style=\"color: navy\">}</span> <i>&quot;extension&quot;</i><span style=\"color: navy\">;</span>\r\n<span style=\"color: navy\">}\r\n\r\n</span><b>group </b>INT<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>INT, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>integer<span style=\"color: navy\">)</span><b> extends </b>Any<b> &lt;&lt;types&gt;&gt;</b><span style=\"color: navy\"> {\r\n</span>  src.value<b> as </b><span style=\"color: maroon\">v</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.value = <span style=\"color: maroon\">v</span> <i>&quot;integer&quot;</i><span style=\"color: navy\">;</span>\r\n<span style=\"color: navy\">}\r\n\r\n</span><b>group </b>TemplateID<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">template</span><span style=\"color: navy\"> : </span>II, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\">)</span><span style=\"color: navy\"> {\r\n</span>  template<span style=\"color: navy\"><b> -&gt; </b></span>tgt.extension<b> as </b><span style=\"color: maroon\">ext</span><b> then</b><span style=\"color: navy\"> {\r\n</span>    template<span style=\"color: navy\"><b> -&gt; </b></span>ext.url = <span style=\"color: blue\">'http://hl7.org/cda/stds/core/StructureDefinition/templateID'</span> <i>&quot;url&quot;</i><span style=\"color: navy\">;</span>\r\n    template<span style=\"color: navy\"><b> -&gt; </b></span>ext.value = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Identifier'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">value</span><b> then </b>II<span style=\"color: navy\">(</span><span style=\"color: maroon\">template</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">value</span><span style=\"color: navy\">)</span> <i>&quot;value&quot;</i><span style=\"color: navy\">;</span>\r\n  <span style=\"color: navy\">}</span> <i>&quot;templateId&quot;</i><span style=\"color: navy\">;</span>\r\n<span style=\"color: navy\">}\r\n\r\n</span><b>group </b>Negation<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">negation</span><span style=\"color: navy\"> : </span>BL, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\">)</span><span style=\"color: navy\"> {\r\n</span>  negation<span style=\"color: navy\"><b> -&gt; </b></span>tgt.modifierExtension<b> as </b><span style=\"color: maroon\">ext</span><b> then</b><span style=\"color: navy\"> {\r\n</span>    negation<span style=\"color: navy\"><b> -&gt; </b></span>ext.url = <span style=\"color: blue\">'http://hl7.org/cda/stds/core/StructureDefinition/negationIndicator'</span> <i>&quot;url&quot;</i><span style=\"color: navy\">;</span>\r\n    negation<b> as </b><span style=\"color: maroon\">neg</span><span style=\"color: navy\"><b> -&gt; </b></span> ext.value = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'boolean'</span><span style=\"color: navy\">)</span><span style=\"color: navy\">, </span> ext.value = <span style=\"color: maroon\">neg</span> <i>&quot;value&quot;</i><span style=\"color: navy\">;</span>\r\n  <span style=\"color: navy\">}</span> <i>&quot;negation&quot;</i><span style=\"color: navy\">;</span>\r\n<span style=\"color: navy\">}\r\n\r\n</span><b>group </b>TSInstant<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>TS, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>instant<span style=\"color: navy\">)</span><b> extends </b>Any<b> &lt;&lt;types&gt;&gt;</b><span style=\"color: navy\"> {\r\n</span>  src.value<b> as </b><span style=\"color: maroon\">v</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.value = <b>cast</b><span style=\"color: navy\">(</span><span style=\"color: maroon\">v</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'string'</span><span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>\r\n<span style=\"color: navy\">}\r\n\r\n</span><b>group </b>TSDateTime<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>TS, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>dateTime<span style=\"color: navy\">)</span><b> extends </b>TSInstant<b> &lt;&lt;types&gt;&gt;</b><span style=\"color: navy\"> {\r\n</span>  src<span style=\"color: navy\"><b> -&gt; </b></span>tgt <i>&quot;inherit&quot;</i><span style=\"color: navy\">;</span>\r\n<span style=\"color: navy\">}\r\n\r\n</span><b>group </b>TSDate<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>TS, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>date<span style=\"color: navy\">)</span><b> extends </b>TSInstant<b> &lt;&lt;types&gt;&gt;</b><span style=\"color: navy\"> {\r\n</span>  src<span style=\"color: navy\"><b> -&gt; </b></span>tgt <i>&quot;inherit&quot;</i><span style=\"color: navy\">;</span>\r\n<span style=\"color: navy\">}\r\n\r\n</span><b>group </b>IVLTSPeriod<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>IVL_TS, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>Period<span style=\"color: navy\">)</span><b> extends </b>Any<b> &lt;&lt;types&gt;&gt;</b><span style=\"color: navy\"> {\r\n</span>  src.low<b> as </b><span style=\"color: maroon\">low</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.start = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'dateTime'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">start</span><b> then </b>TSDateTime<span style=\"color: navy\">(</span><span style=\"color: maroon\">low</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">start</span><span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>\r\n  src.high<b> as </b><span style=\"color: maroon\">high</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.end = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'dateTime'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">end</span><b> then </b>TSDateTime<span style=\"color: navy\">(</span><span style=\"color: maroon\">high</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">end</span><span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>\r\n<span style=\"color: navy\">}\r\n\r\n</span><b>group </b>IVLTSDateTime<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>IVL_TS, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>dateTime<span style=\"color: navy\">)</span><b> extends </b>Any<b> &lt;&lt;types&gt;&gt;</b><span style=\"color: navy\"> {\r\n</span>  src.low<b> as </b><span style=\"color: maroon\">s</span><b> then </b>TSDateTime<span style=\"color: navy\">(</span><span style=\"color: maroon\">s</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">tgt</span><span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>\r\n<span style=\"color: navy\">}\r\n\r\n</span><b>group </b>STstring<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>ST, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>string<span style=\"color: navy\">)</span><span style=\"color: navy\"> {\r\n</span>  src<b> as </b><span style=\"color: maroon\">v</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.value = <b>cast</b><span style=\"color: navy\">(</span><span style=\"color: maroon\">v</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'string'</span><span style=\"color: navy\">)</span> <i>&quot;value&quot;</i><span style=\"color: navy\">;</span>\r\n<span style=\"color: navy\">}\r\n\r\n</span><b>group </b>EDstring<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>ED, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>string<span style=\"color: navy\">)</span><b> extends </b>STstring<b> &lt;&lt;types&gt;&gt;</b><span style=\"color: navy\"> {\r\n</span>  src<span style=\"color: navy\"><b> -&gt; </b></span>tgt <i>&quot;inherit&quot;</i><span style=\"color: navy\">;</span>\r\n<span style=\"color: navy\">}\r\n\r\n</span><b>group </b>ONstring<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>ON, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>string<span style=\"color: navy\">)</span><b> extends </b>STstring<b> &lt;&lt;types&gt;&gt;</b><span style=\"color: navy\"> {\r\n</span>  src<span style=\"color: navy\"><b> -&gt; </b></span>tgt <i>&quot;inherit&quot;</i><span style=\"color: navy\">;</span>\r\n<span style=\"color: navy\">}\r\n\r\n</span><b>group </b>CSCode<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>CS, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>code<span style=\"color: navy\">)</span><span style=\"color: navy\"> {\r\n</span>  src.code<b> as </b><span style=\"color: maroon\">c</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.value = <b>cast</b><span style=\"color: navy\">(</span><span style=\"color: maroon\">c</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'string'</span><span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>\r\n<span style=\"color: navy\">}\r\n\r\n</span><b>group </b>CECode<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>CE, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>code<span style=\"color: navy\">)</span><b> extends </b>CSCode<b> &lt;&lt;types&gt;&gt;</b><span style=\"color: navy\"> {\r\n</span>  src<span style=\"color: navy\"><b> -&gt; </b></span>tgt <i>&quot;inherit&quot;</i><span style=\"color: navy\">;</span>\r\n<span style=\"color: navy\">}\r\n\r\n</span><b>group </b>CDCode<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>CD, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>code<span style=\"color: navy\">)</span><b> extends </b>CSCode<b> &lt;&lt;types&gt;&gt;</b><span style=\"color: navy\"> {\r\n</span>  src<span style=\"color: navy\"><b> -&gt; </b></span>tgt <i>&quot;inherit&quot;</i><span style=\"color: navy\">;</span>\r\n<span style=\"color: navy\">}\r\n\r\n</span><b>group </b>CECodeableConcept<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>CE, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>CodeableConcept<span style=\"color: navy\">)</span><span style=\"color: navy\"> {\r\n</span>  src.originalText<b> as </b><span style=\"color: maroon\">originalText</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.text = <span style=\"color: maroon\">originalText</span> <i>&quot;setOriginalText&quot;</i><span style=\"color: navy\">;</span>\r\n  src<span style=\"color: navy\"><b> -&gt; </b></span>tgt.coding<b> as </b><span style=\"color: maroon\">coding</span><b> then</b><span style=\"color: navy\"> {\r\n</span>    src.code<b> as </b><span style=\"color: maroon\">code</span><span style=\"color: navy\"><b> -&gt; </b></span>coding.code = <b>cast</b><span style=\"color: navy\">(</span><span style=\"color: maroon\">code</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'string'</span><span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>\r\n    src.codeSystem<b> as </b><span style=\"color: maroon\">system</span><span style=\"color: navy\"><b> -&gt; </b></span>coding.system = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:oid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">system</span><span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>\r\n    src.displayName<b> as </b><span style=\"color: maroon\">display</span><span style=\"color: navy\"><b> -&gt; </b></span>coding.display = <b>cast</b><span style=\"color: navy\">(</span><span style=\"color: maroon\">display</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'string'</span><span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>\r\n  <span style=\"color: navy\">}</span> <i>&quot;code&quot;</i><span style=\"color: navy\">;</span>\r\n  src.translation<b> as </b><span style=\"color: maroon\">translation</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.coding<b> as </b><span style=\"color: maroon\">coding</span><b> then</b><span style=\"color: navy\"> {\r\n</span>    translation.code<b> as </b><span style=\"color: maroon\">code</span><span style=\"color: navy\"><b> -&gt; </b></span>coding.code = <b>cast</b><span style=\"color: navy\">(</span><span style=\"color: maroon\">code</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'string'</span><span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>\r\n    translation.codeSystem<b> as </b><span style=\"color: maroon\">system</span><span style=\"color: navy\"><b> -&gt; </b></span>coding.system = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:oid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">system</span><span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>\r\n    translation.displayName<b> as </b><span style=\"color: maroon\">display</span><span style=\"color: navy\"><b> -&gt; </b></span>coding.display = <b>cast</b><span style=\"color: navy\">(</span><span style=\"color: maroon\">display</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'string'</span><span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>\r\n  <span style=\"color: navy\">}</span><span style=\"color: navy\">;</span>\r\n<span style=\"color: navy\">}\r\n\r\n</span><b>group </b>CSCodeableConcept<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>CS, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>CodeableConcept<span style=\"color: navy\">)</span><b> extends </b>CECodeableConcept<b> &lt;&lt;types&gt;&gt;</b><span style=\"color: navy\"> {\r\n</span>  src<span style=\"color: navy\"><b> -&gt; </b></span>tgt <i>&quot;inherit&quot;</i><span style=\"color: navy\">;</span>\r\n<span style=\"color: navy\">}\r\n\r\n</span><b>group </b>CDCodeableConcept<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>CD, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>CodeableConcept<span style=\"color: navy\">)</span><b> extends </b>CECodeableConcept<b> &lt;&lt;types&gt;&gt;</b><span style=\"color: navy\"> {\r\n</span>  src<span style=\"color: navy\"><b> -&gt; </b></span>tgt <i>&quot;inherit&quot;</i><span style=\"color: navy\">;</span>\r\n<span style=\"color: navy\">}\r\n\r\n</span><b>group </b>ENHumanName<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>EN, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>HumanName<span style=\"color: navy\">)</span><span style=\"color: navy\"> {\r\n</span>  src.item<b> as </b><span style=\"color: maroon\">item</span><b> then</b><span style=\"color: navy\"> {\r\n</span>    item.family<b> as </b><span style=\"color: maroon\">v</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.family = <span style=\"color: navy\">(</span>v.xmlText<span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>\r\n    item.given<b> as </b><span style=\"color: maroon\">v</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.given = <span style=\"color: navy\">(</span>v.xmlText<span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>\r\n    item.prefix<b> as </b><span style=\"color: maroon\">v</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.prefix = <span style=\"color: navy\">(</span>v.xmlText<span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>\r\n    item.suffix<b> as </b><span style=\"color: maroon\">v</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.suffix = <span style=\"color: navy\">(</span>v.xmlText<span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>\r\n  <span style=\"color: navy\">}</span><span style=\"color: navy\">;</span>\r\n  src.validTime<b> as </b><span style=\"color: maroon\">validTime</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.period = <span style=\"color: maroon\">validTime</span><span style=\"color: navy\">;</span>\r\n<span style=\"color: navy\">}\r\n\r\n</span><b>group </b>PNHumanName<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>PN, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>HumanName<span style=\"color: navy\">)</span><b> extends </b>ENHumanName<b> &lt;&lt;types&gt;&gt;</b><span style=\"color: navy\"> {\r\n</span>  src<span style=\"color: navy\"><b> -&gt; </b></span>tgt <i>&quot;inherit&quot;</i><span style=\"color: navy\">;</span>\r\n<span style=\"color: navy\">}\r\n\r\n</span><b>group </b>ADAddress<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>AD, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>Address<span style=\"color: navy\">)</span><span style=\"color: navy\"> {\r\n</span>  src.item<b> as </b><span style=\"color: maroon\">item</span><b> then</b><span style=\"color: navy\"> {\r\n</span>    item.country<b> as </b><span style=\"color: maroon\">v</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.country = <span style=\"color: navy\">(</span>v.xmlText<span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>\r\n    item.state<b> as </b><span style=\"color: maroon\">v</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.state = <span style=\"color: navy\">(</span>v.xmlText<span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>\r\n    item.county<b> as </b><span style=\"color: maroon\">v</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.district = <span style=\"color: navy\">(</span>v.xmlText<span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>\r\n    item.city<b> as </b><span style=\"color: maroon\">v</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.city = <span style=\"color: navy\">(</span>v.xmlText<span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>\r\n    item.postalCode<b> as </b><span style=\"color: maroon\">v</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.postalCode = <span style=\"color: navy\">(</span>v.xmlText<span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>\r\n    item.streetAddressLine<b> as </b><span style=\"color: maroon\">v</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.line = <span style=\"color: navy\">(</span>v.xmlText<span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>\r\n    item<span style=\"color: navy\"><b> -&gt; </b></span>tgt.line<b> as </b><span style=\"color: maroon\">line</span><b> then</b><span style=\"color: navy\"> {\r\n</span>      item<b> where </b>src.censusTract.exists()<b> then</b><span style=\"color: navy\"> {\r\n</span>        item.censusTract<b> as </b><span style=\"color: maroon\">v</span><span style=\"color: navy\"><b> -&gt; </b></span>line.extension<b> as </b><span style=\"color: maroon\">ext1</span><b> then </b>CensusTract<span style=\"color: navy\">(</span><span style=\"color: maroon\">v</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">ext1</span><span style=\"color: navy\">)</span> <i>&quot;line&quot;</i><span style=\"color: navy\">;</span>\r\n      <span style=\"color: navy\">}</span> <i>&quot;sfgfdsg&quot;</i><span style=\"color: navy\">;</span>\r\n    <span style=\"color: navy\">}</span> <i>&quot;CensusTract&quot;</i><span style=\"color: navy\">;</span>\r\n    <span style=\"color: navy\">// </span><span style=\"color: green\">as streetAddress then{</span>\r\n    <span style=\"color: #b36b00\" title=\"Cet élément n'était pas défini avant R5\">// src.censusTract as v-&gt;tgt.line as line, line.extension as ext1 then CensusTract(v, ext1) &quot;line&quot;;</span>\r\n    <span style=\"color: #b36b00\" title=\"Cet élément n'était pas défini avant R5\">// src.censusTract as v -&gt;tgt.line as line, line.extension as ext1 then CensusTract(v, ext1) &quot;line&quot;;</span>\r\n    item.streetName<b> as </b><span style=\"color: maroon\">v</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.line = <span style=\"color: navy\">(</span>v.xmlText<span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>\r\n    item.houseNumber<b> as </b><span style=\"color: maroon\">v</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.line = <span style=\"color: navy\">(</span>v.xmlText<span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>\r\n  <span style=\"color: navy\">}</span><span style=\"color: navy\">;</span>\r\n  src.useablePeriod<b> as </b><span style=\"color: maroon\">useablePeriod</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.period = <span style=\"color: maroon\">useablePeriod</span><span style=\"color: navy\">;</span>\r\n<span style=\"color: navy\">}\r\n\r\n</span><b>group </b>TELContactPoint<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>TEL, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>ContactPoint<span style=\"color: navy\">)</span><span style=\"color: navy\"> {\r\n</span>  src.value<b> as </b><span style=\"color: maroon\">v</span><b> where </b>(src.value.startsWith('tel:'))<span style=\"color: navy\"><b> -&gt; </b></span> tgt.value = <span style=\"color: navy\">(</span>v.substring(4)<span style=\"color: navy\">)</span><span style=\"color: navy\">, </span> tgt.system = <span style=\"color: blue\">'phone'</span> <i>&quot;valuetel&quot;</i><span style=\"color: navy\">;</span>\r\n  src.value<b> as </b><span style=\"color: maroon\">v</span><b> where </b>(src.value.startsWith('fax:'))<span style=\"color: navy\"><b> -&gt; </b></span> tgt.value = <span style=\"color: navy\">(</span>v.substring(4)<span style=\"color: navy\">)</span><span style=\"color: navy\">, </span> tgt.system = <span style=\"color: blue\">'fax'</span> <i>&quot;valuefax&quot;</i><span style=\"color: navy\">;</span>\r\n  src.value<b> as </b><span style=\"color: maroon\">v</span><b> where </b>(src.value.startsWith('mailto:'))<span style=\"color: navy\"><b> -&gt; </b></span> tgt.value = <span style=\"color: navy\">(</span>v.substring(7)<span style=\"color: navy\">)</span><span style=\"color: navy\">, </span> tgt.system = <span style=\"color: blue\">'email'</span> <i>&quot;valuemail&quot;</i><span style=\"color: navy\">;</span>\r\n  src.value<b> as </b><span style=\"color: maroon\">v</span><b> where </b>(src.value.startsWith('http:'))<span style=\"color: navy\"><b> -&gt; </b></span> tgt.value = <span style=\"color: navy\">(</span>v.substring(5)<span style=\"color: navy\">)</span><span style=\"color: navy\">, </span> tgt.system = <span style=\"color: blue\">'url'</span> <i>&quot;valuehttp&quot;</i><span style=\"color: navy\">;</span>\r\n  src.use<b> where </b>(src.use.startsWith('H'))<span style=\"color: navy\"><b> -&gt; </b></span>tgt.use = <span style=\"color: blue\">'home'</span> <i>&quot;usehome&quot;</i><span style=\"color: navy\">;</span>\r\n  src.use<b> where </b>((src.use = 'WP') or (src.use = 'DIR') or (src.use = 'PUB'))<span style=\"color: navy\"><b> -&gt; </b></span>tgt.use = <span style=\"color: blue\">'work'</span> <i>&quot;usework&quot;</i><span style=\"color: navy\">;</span>\r\n  src.use<b> where </b>(src.use = 'BAD')<span style=\"color: navy\"><b> -&gt; </b></span>tgt.use = <span style=\"color: blue\">'old'</span> <i>&quot;usebad&quot;</i><span style=\"color: navy\">;</span>\r\n  src.use<b> where </b>(src.use = 'TMP')<span style=\"color: navy\"><b> -&gt; </b></span>tgt.use = <span style=\"color: blue\">'temp'</span> <i>&quot;usetmp&quot;</i><span style=\"color: navy\">;</span>\r\n  src.use<b> where </b>(src.use = 'MC')<span style=\"color: navy\"><b> -&gt; </b></span>tgt.use = <span style=\"color: blue\">'mobile'</span> <i>&quot;usemobile&quot;</i><span style=\"color: navy\">;</span>\r\n  src.useablePeriod<b> as </b><span style=\"color: maroon\">useablePeriod</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.period = <span style=\"color: maroon\">useablePeriod</span><span style=\"color: navy\">;</span> <span style=\"color: navy\">// </span><span style=\"color: green\">use: for src.use as c make tgt.use = translate(c, 'http://hl7.org/fhir/ConceptMap/cm-telecom-use-v3', 'code')</span>\r\n<span style=\"color: navy\">}\r\n\r\n</span><b>group </b>PQQuantity<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>PQ, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>Quantity<span style=\"color: navy\">)</span><span style=\"color: navy\"> {\r\n</span>  src.unit<b> as </b><span style=\"color: maroon\">unit</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.unit = <span style=\"color: maroon\">unit</span><span style=\"color: navy\">;</span>\r\n  src.unit<b> as </b><span style=\"color: maroon\">unit</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.code = <span style=\"color: maroon\">unit</span><span style=\"color: navy\">;</span>\r\n  src.unit<b> as </b><span style=\"color: maroon\">unit</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.system = <span style=\"color: blue\">'http://unitsofmeasure.org'</span><span style=\"color: navy\">;</span>\r\n  src.value<b> as </b><span style=\"color: maroon\">value</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.value = <span style=\"color: maroon\">value</span><span style=\"color: navy\">;</span>\r\n<span style=\"color: navy\">}\r\n\r\n</span><b>group </b>RTOPQPQRatio<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>RTO_PQ_PQ, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>Ratio<span style=\"color: navy\">)</span><span style=\"color: navy\"> {\r\n</span>  src.numerator<b> as </b><span style=\"color: maroon\">numerator</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.numerator<b> as </b><span style=\"color: maroon\">targetNumerator</span><b> then </b>PQQuantity<span style=\"color: navy\">(</span><span style=\"color: maroon\">numerator</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">targetNumerator</span><span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>\r\n  src.denominator<b> as </b><span style=\"color: maroon\">denominator</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.denominator<b> as </b><span style=\"color: maroon\">targetDenominator</span><b> then </b>PQQuantity<span style=\"color: navy\">(</span><span style=\"color: maroon\">denominator</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">targetDenominator</span><span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>\r\n<span style=\"color: navy\">}\r\n\r\n</span></pre></div>"
+  },
+  "url" : "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes",
+  "version" : "0.1.0",
+  "name" : "CdaToFHIRTypes",
+  "title" : "Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)",
+  "status" : "draft",
+  "date" : "2026-06-26T10:31:36+00:00",
+  "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
+  "contact" : [{
+    "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
+    "telecom" : [{
+      "system" : "url",
+      "value" : "https://esante.gouv.fr"
+    }]
+  }],
+  "description" : "Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)",
+  "jurisdiction" : [{
+    "coding" : [{
+      "system" : "urn:iso:std:iso:3166",
+      "code" : "FR",
+      "display" : "France (la)"
+    }]
+  }],
+  "structure" : [{
+    "url" : "http://hl7.org/cda/stds/core/StructureDefinition/ED|2.0.0-sd",
+    "mode" : "source",
+    "alias" : "ED"
+  },
+  {
+    "url" : "http://hl7.org/cda/stds/core/StructureDefinition/PN|2.0.0-sd",
+    "mode" : "source",
+    "alias" : "PN"
+  },
+  {
+    "url" : "http://hl7.org/cda/stds/core/StructureDefinition/II|2.0.0-sd",
+    "mode" : "source",
+    "alias" : "II"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Identifier|4.0.1",
+    "mode" : "target",
+    "alias" : "Identifier"
+  },
+  {
+    "url" : "http://hl7.org/cda/stds/core/StructureDefinition/TS|2.0.0-sd",
+    "mode" : "source",
+    "alias" : "TS"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/instant|4.0.1",
+    "mode" : "target",
+    "alias" : "instant"
+  },
+  {
+    "url" : "http://hl7.org/cda/stds/core/StructureDefinition/CS|2.0.0-sd",
+    "mode" : "source",
+    "alias" : "CS"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/code|4.0.1",
+    "mode" : "target",
+    "alias" : "code"
+  },
+  {
+    "url" : "http://hl7.org/cda/stds/core/StructureDefinition/CE|2.0.0-sd",
+    "mode" : "source",
+    "alias" : "CE"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/CodeableConcept|4.0.1",
+    "mode" : "target",
+    "alias" : "CodeableConcept"
+  },
+  {
+    "url" : "http://hl7.org/cda/stds/core/StructureDefinition/ST|2.0.0-sd",
+    "mode" : "source",
+    "alias" : "ST"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/string|4.0.1",
+    "mode" : "target",
+    "alias" : "string"
+  },
+  {
+    "url" : "http://hl7.org/cda/stds/core/StructureDefinition/EN|2.0.0-sd",
+    "mode" : "source",
+    "alias" : "EN"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/HumanName|4.0.1",
+    "mode" : "target",
+    "alias" : "HumanName"
+  },
+  {
+    "url" : "http://hl7.org/cda/stds/core/StructureDefinition/AD|2.0.0-sd",
+    "mode" : "source",
+    "alias" : "AD"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Address|4.0.1",
+    "mode" : "target",
+    "alias" : "Address"
+  },
+  {
+    "url" : "http://hl7.org/cda/stds/core/StructureDefinition/TEL|2.0.0-sd",
+    "mode" : "source",
+    "alias" : "TEL"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/ContactPoint|4.0.1",
+    "mode" : "target",
+    "alias" : "ContactPoint"
+  },
+  {
+    "url" : "http://hl7.org/cda/stds/core/StructureDefinition/BL|2.0.0-sd",
+    "mode" : "source",
+    "alias" : "BL"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/boolean|4.0.1",
+    "mode" : "target",
+    "alias" : "boolean"
+  },
+  {
+    "url" : "http://hl7.org/cda/stds/core/StructureDefinition/IVL-TS|2.0.0-sd",
+    "mode" : "source",
+    "alias" : "IVL_TS"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Period|4.0.1",
+    "mode" : "target",
+    "alias" : "Period"
+  }],
+  "group" : [{
+    "name" : "Any",
+    "typeMode" : "none",
+    "input" : [{
+      "name" : "src",
+      "mode" : "source"
+    },
+    {
+      "name" : "tgt",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "base",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable"
+      }]
+    }]
+  },
+  {
+    "name" : "II",
+    "extends" : "Any",
+    "typeMode" : "types",
+    "input" : [{
+      "name" : "src",
+      "type" : "II",
+      "mode" : "source"
+    },
+    {
+      "name" : "tgt",
+      "type" : "Identifier",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "root1",
+      "source" : [{
+        "context" : "src",
+        "element" : "root",
+        "variable" : "r",
+        "condition" : "src.extension.exists()"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "system",
+        "transform" : "append",
+        "parameter" : [{
+          "valueString" : "urn:oid:"
+        },
+        {
+          "valueId" : "r"
+        }]
+      }]
+    },
+    {
+      "name" : "rootuuid",
+      "source" : [{
+        "context" : "src",
+        "element" : "root",
+        "variable" : "r",
+        "condition" : "src.extension.empty() and src.root.matches('[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}')"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "system",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "urn:ietf:rfc:3986"
+        }]
+      },
+      {
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "value",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + r.lower()"
+        }]
+      }]
+    },
+    {
+      "name" : "rootoid",
+      "source" : [{
+        "context" : "src",
+        "element" : "root",
+        "variable" : "r",
+        "condition" : "src.extension.empty() and src.root.contains('.')"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "system",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "urn:ietf:rfc:3986"
+        }]
+      },
+      {
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "value",
+        "transform" : "append",
+        "parameter" : [{
+          "valueString" : "urn:oid:"
+        },
+        {
+          "valueId" : "r"
+        }]
+      }]
+    },
+    {
+      "name" : "extension",
+      "source" : [{
+        "context" : "src",
+        "element" : "extension",
+        "variable" : "e"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "value",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueId" : "e"
+        }]
+      }]
+    },
+    {
+      "name" : "assigningAuthorityName",
+      "source" : [{
+        "context" : "src",
+        "element" : "assigningAuthorityName",
+        "variable" : "s"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "assigner",
+        "variable" : "a"
+      },
+      {
+        "context" : "a",
+        "contextType" : "variable",
+        "element" : "display",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueId" : "s"
+        }]
+      }],
+      "documentation" : "there's no equivalent for displayable in FHIR - and it probably will never matter, but if it does, it might map to Identifier.use."
+    },
+    {
+      "name" : "extension",
+      "source" : [{
+        "context" : "src",
+        "element" : "displayable",
+        "variable" : "displayable"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "extension",
+        "variable" : "ext"
+      }],
+      "rule" : [{
+        "name" : "url",
+        "source" : [{
+          "context" : "displayable"
+        }],
+        "target" : [{
+          "context" : "ext",
+          "contextType" : "variable",
+          "element" : "url",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueString" : "http://hl7.org/fhir/cdaStructureDefinition/extension-displayable"
+          }]
+        }]
+      },
+      {
+        "name" : "value",
+        "source" : [{
+          "context" : "displayable",
+          "element" : "value",
+          "variable" : "v"
+        }],
+        "target" : [{
+          "context" : "ext",
+          "contextType" : "variable",
+          "element" : "value",
+          "transform" : "cast",
+          "parameter" : [{
+            "valueId" : "v"
+          },
+          {
+            "valueString" : "string"
+          }]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "INT",
+    "extends" : "Any",
+    "typeMode" : "types",
+    "input" : [{
+      "name" : "src",
+      "type" : "INT",
+      "mode" : "source"
+    },
+    {
+      "name" : "tgt",
+      "type" : "integer",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "integer",
+      "source" : [{
+        "context" : "src",
+        "element" : "value",
+        "variable" : "v"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "value",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueId" : "v"
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "TemplateID",
+    "typeMode" : "none",
+    "input" : [{
+      "name" : "template",
+      "type" : "II",
+      "mode" : "source"
+    },
+    {
+      "name" : "tgt",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "templateId",
+      "source" : [{
+        "context" : "template"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "extension",
+        "variable" : "ext"
+      }],
+      "rule" : [{
+        "name" : "url",
+        "source" : [{
+          "context" : "template"
+        }],
+        "target" : [{
+          "context" : "ext",
+          "contextType" : "variable",
+          "element" : "url",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueString" : "http://hl7.org/cda/stds/core/StructureDefinition/templateID"
+          }]
+        }]
+      },
+      {
+        "name" : "value",
+        "source" : [{
+          "context" : "template"
+        }],
+        "target" : [{
+          "context" : "ext",
+          "contextType" : "variable",
+          "element" : "value",
+          "variable" : "value",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "Identifier"
+          }]
+        }],
+        "dependent" : [{
+          "name" : "II",
+          "variable" : ["template",
+          "value"]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "Negation",
+    "typeMode" : "none",
+    "input" : [{
+      "name" : "negation",
+      "type" : "BL",
+      "mode" : "source"
+    },
+    {
+      "name" : "tgt",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "negation",
+      "source" : [{
+        "context" : "negation"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "modifierExtension",
+        "variable" : "ext"
+      }],
+      "rule" : [{
+        "name" : "url",
+        "source" : [{
+          "context" : "negation"
+        }],
+        "target" : [{
+          "context" : "ext",
+          "contextType" : "variable",
+          "element" : "url",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueString" : "http://hl7.org/cda/stds/core/StructureDefinition/negationIndicator"
+          }]
+        }]
+      },
+      {
+        "name" : "value",
+        "source" : [{
+          "context" : "negation",
+          "variable" : "neg"
+        }],
+        "target" : [{
+          "context" : "ext",
+          "contextType" : "variable",
+          "element" : "value",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "boolean"
+          }]
+        },
+        {
+          "context" : "ext",
+          "contextType" : "variable",
+          "element" : "value",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueId" : "neg"
+          }]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "TSInstant",
+    "extends" : "Any",
+    "typeMode" : "types",
+    "input" : [{
+      "name" : "src",
+      "type" : "TS",
+      "mode" : "source"
+    },
+    {
+      "name" : "tgt",
+      "type" : "instant",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "value",
+      "source" : [{
+        "context" : "src",
+        "element" : "value",
+        "variable" : "v"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "value",
+        "transform" : "cast",
+        "parameter" : [{
+          "valueId" : "v"
+        },
+        {
+          "valueString" : "string"
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "TSDateTime",
+    "extends" : "TSInstant",
+    "typeMode" : "types",
+    "input" : [{
+      "name" : "src",
+      "type" : "TS",
+      "mode" : "source"
+    },
+    {
+      "name" : "tgt",
+      "type" : "dateTime",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "inherit",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable"
+      }]
+    }]
+  },
+  {
+    "name" : "TSDate",
+    "extends" : "TSInstant",
+    "typeMode" : "types",
+    "input" : [{
+      "name" : "src",
+      "type" : "TS",
+      "mode" : "source"
+    },
+    {
+      "name" : "tgt",
+      "type" : "date",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "inherit",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable"
+      }]
+    }]
+  },
+  {
+    "name" : "IVLTSPeriod",
+    "extends" : "Any",
+    "typeMode" : "types",
+    "input" : [{
+      "name" : "src",
+      "type" : "IVL_TS",
+      "mode" : "source"
+    },
+    {
+      "name" : "tgt",
+      "type" : "Period",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "low",
+      "source" : [{
+        "context" : "src",
+        "element" : "low",
+        "variable" : "low"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "start",
+        "variable" : "start",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "dateTime"
+        }]
+      }],
+      "dependent" : [{
+        "name" : "TSDateTime",
+        "variable" : ["low",
+        "start"]
+      }]
+    },
+    {
+      "name" : "high",
+      "source" : [{
+        "context" : "src",
+        "element" : "high",
+        "variable" : "high"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "end",
+        "variable" : "end",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "dateTime"
+        }]
+      }],
+      "dependent" : [{
+        "name" : "TSDateTime",
+        "variable" : ["high",
+        "end"]
+      }]
+    }]
+  },
+  {
+    "name" : "IVLTSDateTime",
+    "extends" : "Any",
+    "typeMode" : "types",
+    "input" : [{
+      "name" : "src",
+      "type" : "IVL_TS",
+      "mode" : "source"
+    },
+    {
+      "name" : "tgt",
+      "type" : "dateTime",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "low",
+      "source" : [{
+        "context" : "src",
+        "element" : "low",
+        "variable" : "s"
+      }],
+      "dependent" : [{
+        "name" : "TSDateTime",
+        "variable" : ["s",
+        "tgt"]
+      }]
+    }]
+  },
+  {
+    "name" : "STstring",
+    "typeMode" : "none",
+    "input" : [{
+      "name" : "src",
+      "type" : "ST",
+      "mode" : "source"
+    },
+    {
+      "name" : "tgt",
+      "type" : "string",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "value",
+      "source" : [{
+        "context" : "src",
+        "variable" : "v"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "value",
+        "transform" : "cast",
+        "parameter" : [{
+          "valueId" : "v"
+        },
+        {
+          "valueString" : "string"
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "EDstring",
+    "extends" : "STstring",
+    "typeMode" : "types",
+    "input" : [{
+      "name" : "src",
+      "type" : "ED",
+      "mode" : "source"
+    },
+    {
+      "name" : "tgt",
+      "type" : "string",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "inherit",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable"
+      }]
+    }]
+  },
+  {
+    "name" : "ONstring",
+    "extends" : "STstring",
+    "typeMode" : "types",
+    "input" : [{
+      "name" : "src",
+      "type" : "ON",
+      "mode" : "source"
+    },
+    {
+      "name" : "tgt",
+      "type" : "string",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "inherit",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable"
+      }]
+    }]
+  },
+  {
+    "name" : "CSCode",
+    "typeMode" : "none",
+    "input" : [{
+      "name" : "src",
+      "type" : "CS",
+      "mode" : "source"
+    },
+    {
+      "name" : "tgt",
+      "type" : "code",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "code",
+      "source" : [{
+        "context" : "src",
+        "element" : "code",
+        "variable" : "c"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "value",
+        "transform" : "cast",
+        "parameter" : [{
+          "valueId" : "c"
+        },
+        {
+          "valueString" : "string"
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "CECode",
+    "extends" : "CSCode",
+    "typeMode" : "types",
+    "input" : [{
+      "name" : "src",
+      "type" : "CE",
+      "mode" : "source"
+    },
+    {
+      "name" : "tgt",
+      "type" : "code",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "inherit",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable"
+      }]
+    }]
+  },
+  {
+    "name" : "CDCode",
+    "extends" : "CSCode",
+    "typeMode" : "types",
+    "input" : [{
+      "name" : "src",
+      "type" : "CD",
+      "mode" : "source"
+    },
+    {
+      "name" : "tgt",
+      "type" : "code",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "inherit",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable"
+      }]
+    }]
+  },
+  {
+    "name" : "CECodeableConcept",
+    "typeMode" : "none",
+    "input" : [{
+      "name" : "src",
+      "type" : "CE",
+      "mode" : "source"
+    },
+    {
+      "name" : "tgt",
+      "type" : "CodeableConcept",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "setOriginalText",
+      "source" : [{
+        "context" : "src",
+        "element" : "originalText",
+        "variable" : "originalText"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "text",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueId" : "originalText"
+        }]
+      }]
+    },
+    {
+      "name" : "code",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "coding",
+        "variable" : "coding"
+      }],
+      "rule" : [{
+        "name" : "code",
+        "source" : [{
+          "context" : "src",
+          "element" : "code",
+          "variable" : "code"
+        }],
+        "target" : [{
+          "context" : "coding",
+          "contextType" : "variable",
+          "element" : "code",
+          "transform" : "cast",
+          "parameter" : [{
+            "valueId" : "code"
+          },
+          {
+            "valueString" : "string"
+          }]
+        }]
+      },
+      {
+        "name" : "codeSystem",
+        "source" : [{
+          "context" : "src",
+          "element" : "codeSystem",
+          "variable" : "system"
+        }],
+        "target" : [{
+          "context" : "coding",
+          "contextType" : "variable",
+          "element" : "system",
+          "transform" : "append",
+          "parameter" : [{
+            "valueString" : "urn:oid:"
+          },
+          {
+            "valueId" : "system"
+          }]
+        }]
+      },
+      {
+        "name" : "displayName",
+        "source" : [{
+          "context" : "src",
+          "element" : "displayName",
+          "variable" : "display"
+        }],
+        "target" : [{
+          "context" : "coding",
+          "contextType" : "variable",
+          "element" : "display",
+          "transform" : "cast",
+          "parameter" : [{
+            "valueId" : "display"
+          },
+          {
+            "valueString" : "string"
+          }]
+        }]
+      }]
+    },
+    {
+      "name" : "translation",
+      "source" : [{
+        "context" : "src",
+        "element" : "translation",
+        "variable" : "translation"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "coding",
+        "variable" : "coding"
+      }],
+      "rule" : [{
+        "name" : "code",
+        "source" : [{
+          "context" : "translation",
+          "element" : "code",
+          "variable" : "code"
+        }],
+        "target" : [{
+          "context" : "coding",
+          "contextType" : "variable",
+          "element" : "code",
+          "transform" : "cast",
+          "parameter" : [{
+            "valueId" : "code"
+          },
+          {
+            "valueString" : "string"
+          }]
+        }]
+      },
+      {
+        "name" : "codeSystem",
+        "source" : [{
+          "context" : "translation",
+          "element" : "codeSystem",
+          "variable" : "system"
+        }],
+        "target" : [{
+          "context" : "coding",
+          "contextType" : "variable",
+          "element" : "system",
+          "transform" : "append",
+          "parameter" : [{
+            "valueString" : "urn:oid:"
+          },
+          {
+            "valueId" : "system"
+          }]
+        }]
+      },
+      {
+        "name" : "displayName",
+        "source" : [{
+          "context" : "translation",
+          "element" : "displayName",
+          "variable" : "display"
+        }],
+        "target" : [{
+          "context" : "coding",
+          "contextType" : "variable",
+          "element" : "display",
+          "transform" : "cast",
+          "parameter" : [{
+            "valueId" : "display"
+          },
+          {
+            "valueString" : "string"
+          }]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "CSCodeableConcept",
+    "extends" : "CECodeableConcept",
+    "typeMode" : "types",
+    "input" : [{
+      "name" : "src",
+      "type" : "CS",
+      "mode" : "source"
+    },
+    {
+      "name" : "tgt",
+      "type" : "CodeableConcept",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "inherit",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable"
+      }]
+    }]
+  },
+  {
+    "name" : "CDCodeableConcept",
+    "extends" : "CECodeableConcept",
+    "typeMode" : "types",
+    "input" : [{
+      "name" : "src",
+      "type" : "CD",
+      "mode" : "source"
+    },
+    {
+      "name" : "tgt",
+      "type" : "CodeableConcept",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "inherit",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable"
+      }]
+    }]
+  },
+  {
+    "name" : "ENHumanName",
+    "typeMode" : "none",
+    "input" : [{
+      "name" : "src",
+      "type" : "EN",
+      "mode" : "source"
+    },
+    {
+      "name" : "tgt",
+      "type" : "HumanName",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "item",
+      "source" : [{
+        "context" : "src",
+        "element" : "item",
+        "variable" : "item"
+      }],
+      "rule" : [{
+        "name" : "family",
+        "source" : [{
+          "context" : "item",
+          "element" : "family",
+          "variable" : "v"
+        }],
+        "target" : [{
+          "context" : "tgt",
+          "contextType" : "variable",
+          "element" : "family",
+          "transform" : "evaluate",
+          "parameter" : [{
+            "valueString" : "v.xmlText"
+          }]
+        }]
+      },
+      {
+        "name" : "given",
+        "source" : [{
+          "context" : "item",
+          "element" : "given",
+          "variable" : "v"
+        }],
+        "target" : [{
+          "context" : "tgt",
+          "contextType" : "variable",
+          "element" : "given",
+          "transform" : "evaluate",
+          "parameter" : [{
+            "valueString" : "v.xmlText"
+          }]
+        }]
+      },
+      {
+        "name" : "prefix",
+        "source" : [{
+          "context" : "item",
+          "element" : "prefix",
+          "variable" : "v"
+        }],
+        "target" : [{
+          "context" : "tgt",
+          "contextType" : "variable",
+          "element" : "prefix",
+          "transform" : "evaluate",
+          "parameter" : [{
+            "valueString" : "v.xmlText"
+          }]
+        }]
+      },
+      {
+        "name" : "suffix",
+        "source" : [{
+          "context" : "item",
+          "element" : "suffix",
+          "variable" : "v"
+        }],
+        "target" : [{
+          "context" : "tgt",
+          "contextType" : "variable",
+          "element" : "suffix",
+          "transform" : "evaluate",
+          "parameter" : [{
+            "valueString" : "v.xmlText"
+          }]
+        }]
+      }]
+    },
+    {
+      "name" : "validTime",
+      "source" : [{
+        "context" : "src",
+        "element" : "validTime",
+        "variable" : "validTime"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "period",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueId" : "validTime"
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "PNHumanName",
+    "extends" : "ENHumanName",
+    "typeMode" : "types",
+    "input" : [{
+      "name" : "src",
+      "type" : "PN",
+      "mode" : "source"
+    },
+    {
+      "name" : "tgt",
+      "type" : "HumanName",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "inherit",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable"
+      }]
+    }]
+  },
+  {
+    "name" : "ADAddress",
+    "typeMode" : "none",
+    "input" : [{
+      "name" : "src",
+      "type" : "AD",
+      "mode" : "source"
+    },
+    {
+      "name" : "tgt",
+      "type" : "Address",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "item",
+      "source" : [{
+        "context" : "src",
+        "element" : "item",
+        "variable" : "item"
+      }],
+      "rule" : [{
+        "name" : "country",
+        "source" : [{
+          "context" : "item",
+          "element" : "country",
+          "variable" : "v"
+        }],
+        "target" : [{
+          "context" : "tgt",
+          "contextType" : "variable",
+          "element" : "country",
+          "transform" : "evaluate",
+          "parameter" : [{
+            "valueString" : "v.xmlText"
+          }]
+        }]
+      },
+      {
+        "name" : "state",
+        "source" : [{
+          "context" : "item",
+          "element" : "state",
+          "variable" : "v"
+        }],
+        "target" : [{
+          "context" : "tgt",
+          "contextType" : "variable",
+          "element" : "state",
+          "transform" : "evaluate",
+          "parameter" : [{
+            "valueString" : "v.xmlText"
+          }]
+        }]
+      },
+      {
+        "name" : "county",
+        "source" : [{
+          "context" : "item",
+          "element" : "county",
+          "variable" : "v"
+        }],
+        "target" : [{
+          "context" : "tgt",
+          "contextType" : "variable",
+          "element" : "district",
+          "transform" : "evaluate",
+          "parameter" : [{
+            "valueString" : "v.xmlText"
+          }]
+        }]
+      },
+      {
+        "name" : "city",
+        "source" : [{
+          "context" : "item",
+          "element" : "city",
+          "variable" : "v"
+        }],
+        "target" : [{
+          "context" : "tgt",
+          "contextType" : "variable",
+          "element" : "city",
+          "transform" : "evaluate",
+          "parameter" : [{
+            "valueString" : "v.xmlText"
+          }]
+        }]
+      },
+      {
+        "name" : "postalCode",
+        "source" : [{
+          "context" : "item",
+          "element" : "postalCode",
+          "variable" : "v"
+        }],
+        "target" : [{
+          "context" : "tgt",
+          "contextType" : "variable",
+          "element" : "postalCode",
+          "transform" : "evaluate",
+          "parameter" : [{
+            "valueString" : "v.xmlText"
+          }]
+        }]
+      },
+      {
+        "name" : "streetAddressLine",
+        "source" : [{
+          "context" : "item",
+          "element" : "streetAddressLine",
+          "variable" : "v"
+        }],
+        "target" : [{
+          "context" : "tgt",
+          "contextType" : "variable",
+          "element" : "line",
+          "transform" : "evaluate",
+          "parameter" : [{
+            "valueString" : "v.xmlText"
+          }]
+        }]
+      },
+      {
+        "name" : "CensusTract",
+        "source" : [{
+          "context" : "item"
+        }],
+        "target" : [{
+          "context" : "tgt",
+          "contextType" : "variable",
+          "element" : "line",
+          "variable" : "line"
+        }],
+        "rule" : [{
+          "name" : "sfgfdsg",
+          "source" : [{
+            "context" : "item",
+            "condition" : "src.censusTract.exists()"
+          }],
+          "rule" : [{
+            "name" : "line",
+            "source" : [{
+              "context" : "item",
+              "element" : "censusTract",
+              "variable" : "v"
+            }],
+            "target" : [{
+              "context" : "line",
+              "contextType" : "variable",
+              "element" : "extension",
+              "variable" : "ext1"
+            }],
+            "dependent" : [{
+              "name" : "CensusTract",
+              "variable" : ["v",
+              "ext1"]
+            }]
+          }]
+        }]
+      },
+      {
+        "name" : "streetName",
+        "source" : [{
+          "context" : "item",
+          "element" : "streetName",
+          "variable" : "v"
+        }],
+        "target" : [{
+          "context" : "tgt",
+          "contextType" : "variable",
+          "element" : "line",
+          "transform" : "evaluate",
+          "parameter" : [{
+            "valueString" : "v.xmlText"
+          }]
+        }]
+      },
+      {
+        "name" : "houseNumber",
+        "source" : [{
+          "context" : "item",
+          "element" : "houseNumber",
+          "variable" : "v"
+        }],
+        "target" : [{
+          "context" : "tgt",
+          "contextType" : "variable",
+          "element" : "line",
+          "transform" : "evaluate",
+          "parameter" : [{
+            "valueString" : "v.xmlText"
+          }]
+        }]
+      }]
+    },
+    {
+      "name" : "useablePeriod",
+      "source" : [{
+        "context" : "src",
+        "element" : "useablePeriod",
+        "variable" : "useablePeriod"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "period",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueId" : "useablePeriod"
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "TELContactPoint",
+    "typeMode" : "none",
+    "input" : [{
+      "name" : "src",
+      "type" : "TEL",
+      "mode" : "source"
+    },
+    {
+      "name" : "tgt",
+      "type" : "ContactPoint",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "valuetel",
+      "source" : [{
+        "context" : "src",
+        "element" : "value",
+        "variable" : "v",
+        "condition" : "(src.value.startsWith('tel:'))"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "value",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "v.substring(4)"
+        }]
+      },
+      {
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "system",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "phone"
+        }]
+      }]
+    },
+    {
+      "name" : "valuefax",
+      "source" : [{
+        "context" : "src",
+        "element" : "value",
+        "variable" : "v",
+        "condition" : "(src.value.startsWith('fax:'))"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "value",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "v.substring(4)"
+        }]
+      },
+      {
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "system",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "fax"
+        }]
+      }]
+    },
+    {
+      "name" : "valuemail",
+      "source" : [{
+        "context" : "src",
+        "element" : "value",
+        "variable" : "v",
+        "condition" : "(src.value.startsWith('mailto:'))"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "value",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "v.substring(7)"
+        }]
+      },
+      {
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "system",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "email"
+        }]
+      }]
+    },
+    {
+      "name" : "valuehttp",
+      "source" : [{
+        "context" : "src",
+        "element" : "value",
+        "variable" : "v",
+        "condition" : "(src.value.startsWith('http:'))"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "value",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "v.substring(5)"
+        }]
+      },
+      {
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "system",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "url"
+        }]
+      }]
+    },
+    {
+      "name" : "usehome",
+      "source" : [{
+        "context" : "src",
+        "element" : "use",
+        "condition" : "(src.use.startsWith('H'))"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "use",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "home"
+        }]
+      }]
+    },
+    {
+      "name" : "usework",
+      "source" : [{
+        "context" : "src",
+        "element" : "use",
+        "condition" : "((src.use = 'WP') or (src.use = 'DIR') or (src.use = 'PUB'))"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "use",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "work"
+        }]
+      }]
+    },
+    {
+      "name" : "usebad",
+      "source" : [{
+        "context" : "src",
+        "element" : "use",
+        "condition" : "(src.use = 'BAD')"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "use",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "old"
+        }]
+      }]
+    },
+    {
+      "name" : "usetmp",
+      "source" : [{
+        "context" : "src",
+        "element" : "use",
+        "condition" : "(src.use = 'TMP')"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "use",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "temp"
+        }]
+      }]
+    },
+    {
+      "name" : "usemobile",
+      "source" : [{
+        "context" : "src",
+        "element" : "use",
+        "condition" : "(src.use = 'MC')"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "use",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "mobile"
+        }]
+      }]
+    },
+    {
+      "name" : "useablePeriod",
+      "source" : [{
+        "context" : "src",
+        "element" : "useablePeriod",
+        "variable" : "useablePeriod"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "period",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueId" : "useablePeriod"
+        }]
+      }],
+      "documentation" : "use: for src.use as c make tgt.use = translate(c, 'http://hl7.org/fhir/ConceptMap/cm-telecom-use-v3', 'code')"
+    }]
+  },
+  {
+    "name" : "PQQuantity",
+    "typeMode" : "none",
+    "input" : [{
+      "name" : "src",
+      "type" : "PQ",
+      "mode" : "source"
+    },
+    {
+      "name" : "tgt",
+      "type" : "Quantity",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "unit",
+      "source" : [{
+        "context" : "src",
+        "element" : "unit",
+        "variable" : "unit"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "unit",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueId" : "unit"
+        }]
+      }]
+    },
+    {
+      "name" : "unit",
+      "source" : [{
+        "context" : "src",
+        "element" : "unit",
+        "variable" : "unit"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "code",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueId" : "unit"
+        }]
+      }]
+    },
+    {
+      "name" : "unit",
+      "source" : [{
+        "context" : "src",
+        "element" : "unit",
+        "variable" : "unit"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "system",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "http://unitsofmeasure.org"
+        }]
+      }]
+    },
+    {
+      "name" : "value",
+      "source" : [{
+        "context" : "src",
+        "element" : "value",
+        "variable" : "value"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "value",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueId" : "value"
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "RTOPQPQRatio",
+    "typeMode" : "none",
+    "input" : [{
+      "name" : "src",
+      "type" : "RTO_PQ_PQ",
+      "mode" : "source"
+    },
+    {
+      "name" : "tgt",
+      "type" : "Ratio",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "numerator",
+      "source" : [{
+        "context" : "src",
+        "element" : "numerator",
+        "variable" : "numerator"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "numerator",
+        "variable" : "targetNumerator"
+      }],
+      "dependent" : [{
+        "name" : "PQQuantity",
+        "variable" : ["numerator",
+        "targetNumerator"]
+      }]
+    },
+    {
+      "name" : "denominator",
+      "source" : [{
+        "context" : "src",
+        "element" : "denominator",
+        "variable" : "denominator"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "denominator",
+        "variable" : "targetDenominator"
+      }],
+      "dependent" : [{
+        "name" : "PQQuantity",
+        "variable" : ["denominator",
+        "targetDenominator"]
+      }]
+    }]
+  }]
+}
