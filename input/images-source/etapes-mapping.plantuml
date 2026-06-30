@@ -1,0 +1,58 @@
+@startuml
+!pragma layout smetana
+
+title Architecture en couches des mappings CDA vers FHIR
+
+hide stereotype
+
+skinparam backgroundColor #FFFFFF
+skinparam shadowing true
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam ArrowColor #4B5563
+skinparam ArrowThickness 1.3
+skinparam roundcorner 18
+skinparam nodesep 50
+skinparam ranksep 55
+skinparam linetype polyline
+
+top to bottom direction
+
+skinparam rectangle {
+  FontColor #1F2937
+  FontStyle bold
+}
+
+skinparam rectangle<<layer1>> {
+  BackgroundColor #FFF4E6
+  BorderColor #F59E0B
+}
+
+skinparam rectangle<<layer2>> {
+  BackgroundColor #EAF3FF
+  BorderColor #60A5FA
+}
+
+skinparam rectangle<<layer3>> {
+  BackgroundColor #F5E8FF
+  BorderColor #A855F7
+}
+
+skinparam rectangle<<layer4>> {
+  BackgroundColor #EAFBF1
+  BorderColor #22C55E
+}
+
+rectangle "Couche 1\nMappings de conversion des types\n\nCdaToFHIRTypes.fml\n\n← Conversions des types de données CDA v3\n(II, EN, AD, CD, PQ, TS, ... → types FHIR)" <<layer1>> as L1
+
+rectangle "Couche 2\nMappings CDA génériques\n\nCdaToBundle.fml\n\n← Mapping générique CDA → Bundle FHIR\n(en-tête CDA : Composition, Patient,\nEncounter, Organization, Location...)" <<layer2>> as L2
+
+rectangle "Couche 3\nSpécifications françaises\n\nCdaFrToBundle.fml\n\n← Spécifications françaises\n(INS, IDNPS, profils AS,\nMOS, FINESS, etc.)\n<color:#F5E8FF>________________________________________</color>" <<layer3>> as L3
+
+rectangle "Couche 4\nMappings spécifiques métier\n\nCdaPatientSummaryToBundle.fml\n\n← Mapping du corps structuré du document\nPatient Summary" <<layer4>> as L4
+
+L1 -[#4B5563,dashed]-> L2 : importé par
+L2 -[#4B5563,dashed]-> L3 : importé par
+L3 -[#4B5563,dashed]-> L4 : importé par
+
+@enduml

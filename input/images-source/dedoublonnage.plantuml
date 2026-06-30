@@ -1,0 +1,64 @@
+@startuml
+!pragma layout smetana
+left to right direction
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam roundcorner 18
+skinparam ArrowColor #4B5563
+skinparam ArrowThickness 1.3
+
+skinparam rectangle {
+  FontColor #1F2937
+  BorderColor #94A3B8
+}
+
+skinparam package {
+  BackgroundColor #FFFFFF
+  BorderColor #CBD5E1
+  FontColor #1F2937
+}
+
+skinparam rectangle<<cda>> {
+  BackgroundColor #EAF3FA
+  BorderColor #7FA6C9
+}
+
+skinparam rectangle<<fhir>> {
+  BackgroundColor #ECF7EF
+  BorderColor #8CBF9A
+}
+
+skinparam rectangle<<question>> {
+  BackgroundColor #FFF7E6
+  BorderColor #D6A94A
+  FontColor #1F2937
+}
+
+package "CDA source" {
+  rectangle "author.representedOrganization\n\nid = 1750803447\nname = EHPAD DE BOULOGNE-BILLANCOURT" <<cda>> as CDA_AUTHOR
+
+  rectangle "custodian.representedCustodianOrganization\n\nid = 1750803447\nname = EHPAD DE BOULOGNE-BILLANCOURT" <<cda>> as CDA_CUSTODIAN
+
+  rectangle "legalAuthenticator.representedOrganization\n\nid = 1750803447\nname = EHPAD DE BOULOGNE-BILLANCOURT" <<cda>> as CDA_LEGAL
+}
+
+package "Bundle FHIR généré" {
+  rectangle "Organization A\n\nid technique = uuid-A\nidentifier = 1750803447" <<fhir>> as ORG_A
+
+  rectangle "Organization B\n\nid technique = uuid-B\nidentifier = 1750803447" <<fhir>> as ORG_B
+
+  rectangle "Organization C\n\nid technique = uuid-C\nidentifier = 1750803447" <<fhir>> as ORG_C
+}
+
+rectangle "S'agit-il réellement\nde la même organisation ?\n\nQuels critères permettent de conclure\nqu'une fusion est justifiée ?"as QUESTION
+CDA_AUTHOR --> ORG_A : Transformation
+CDA_CUSTODIAN --> ORG_B : Transformation
+CDA_LEGAL --> ORG_C : Transformation
+
+ORG_A --> QUESTION
+ORG_B --> QUESTION
+ORG_C --> QUESTION
+
+@enduml
