@@ -535,7 +535,7 @@ Le mapping des sections du corps du document CDA requiert une vigilance particul
 
 **Recommandation**
 
-Il est recommandé de documenter explicitement les sections locales ou non documentées avant leur intégration au mapping. Cette documentation devrait préciser le rôle de la section, son contenu attendu, les codes ou templateId associés, la ressource FHIR cible envisagée et le niveau de structuration souhaité. Ces sections pourront également faire l’objet de travaux complémentaires ultérieurs, intégrant notamment une réflexion sur l’apport de l’intelligence artificielle générative pour analyser et interpréter les sections non documentées.
+Il est recommandé de documenter explicitement les sections locales ou non documentées par les implémenteurs, avant leur intégration au mapping. Cette documentation devrait préciser le rôle de la section, son contenu attendu, les codes ou templateId associés, la ressource FHIR cible envisagée et le niveau de structuration souhaité. Ces sections pourront également faire l’objet de travaux complémentaires ultérieurs, intégrant notamment une réflexion sur l’apport de l’intelligence artificielle générative pour analyser et interpréter les sections non documentées.
 
 #### Compatibilité des codes CDA avec les codes attendus en FHIR
 
