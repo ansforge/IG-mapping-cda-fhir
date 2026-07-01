@@ -14,7 +14,7 @@
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2026-07-01T12:47:01+00:00",
+  "date" : "2026-07-01T12:54:09+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -1151,10 +1151,19 @@
       {
         "extension" : [{
           "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
-          "valueUrl" : "mapping-mechanisms.html"
+          "valueUrl" : "Architecture-de-mapping.html"
         }],
-        "nameUrl" : "mapping-mechanisms.html",
-        "title" : "Mécanisme du Mapping",
+        "nameUrl" : "Architecture-de-mapping.html",
+        "title" : "Architecture de mapping",
+        "generation" : "markdown"
+      },
+      {
+        "extension" : [{
+          "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
+          "valueUrl" : "Transformation-FML.html"
+        }],
+        "nameUrl" : "Transformation-FML.html",
+        "title" : "Transformation FML",
         "generation" : "markdown"
       },
       {
@@ -1163,7 +1172,7 @@
           "valueUrl" : "guide-demarrage.html"
         }],
         "nameUrl" : "guide-demarrage.html",
-        "title" : "Guide de démarrage",
+        "title" : "Guide de démarrage via matchbox",
         "generation" : "markdown"
       },
       {
@@ -1172,7 +1181,7 @@
           "valueUrl" : "outils-mapping.html"
         }],
         "nameUrl" : "outils-mapping.html",
-        "title" : "Outils de Mapping",
+        "title" : "Autres outils de mapping",
         "generation" : "markdown"
       },
       {

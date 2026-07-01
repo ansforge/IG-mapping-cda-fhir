@@ -1,10 +1,14 @@
-# Guide de démarrage - POC - Mapping CDA to FHIR v0.1.0
+# Guide de démarrage via matchbox - POC - Mapping CDA to FHIR v0.1.0
 
-## Guide de démarrage
+## Guide de démarrage via matchbox
 
-## Guide de démarrage rapide (Quick Start)
+Ce guide décrit les étapes permettant de lancer rapidement un environnement local de transformation CDA vers FHIR et de tester l’exécution du mapping sur un document d’exemple de type Patient Summary.
 
-Ce guide vous permet de tester rapidement la transformation de documents CDA de type Patient Summary vers FHIR en utilisant Matchbox, à partir d’un exemple fourni.
+### Qu’est-ce que Matchbox ?
+
+Matchbox est un serveur FHIR basé sur HAPI FHIR, utilisé pour charger, gérer et exécuter des artefacts FHIR dans un environnement local. Il permet notamment de manipuler des ressources telles que les StructureMap, les ConceptMap, les profils et les packages d’implémentation nécessaires à l’exécution et à la validation des transformations. Dans le cadre de cette preuve de concept, Matchbox est utilisé comme moteur d’exécution du mapping CDA vers FHIR. Les règles définies en FHIR Mapping Language sont chargées sous forme de StructureMap, puis appliquées à un document CDA source à l’aide de l’opération $transform, afin de générer une sortie FHIR.
+
+### Exécution des transformations
 
 #### Prérequis
 
@@ -270,4 +274,9 @@ Le fichier `input/with-all/application.yaml` configure matchbox avec :
 Pour modifier la configuration, éditez `application.yaml` puis supprimez et recréez le conteneur Docker.
 
 Merci à Oliver Egger (Ahdis, HL7 Suisse) qui a travaillé sur la première brique sur laquelle repose ces travaux et sur l'outil matchbox permettant d'effectuer la transformation. https://github.com/hl7ch/cda-fhir-maps
+
+### Ressources complémentaires
+
+* [FHIR StructureMap Resource](https://www.hl7.org/fhir/structuremap.html)
+* [Matchbox Documentation](https://github.com/ahdis/matchbox)
 

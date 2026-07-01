@@ -5,7 +5,7 @@
 <html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en" dir="ltr">
   <head>
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
-    <title>Guide de démarrage - POC - Mapping CDA to FHIR v0.1.0</title>
+    <title>Guide de démarrage via matchbox - POC - Mapping CDA to FHIR v0.1.0</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="author" content="http://hl7.org/fhir"/>
@@ -48,8 +48,8 @@
 	  <script type="text/javascript" src="assets/js/prism-cql.js"></script>
     <script type="text/javascript" src="assets/js/mermaid.js"></script>
     <script type="text/javascript" src="assets/js/mermaid-init.js"></script>
-    <style type="text/css">h2{--heading-prefix:"3"}
-    h3,h4,h5,h6{--heading-prefix:"3"}</style>
+    <style type="text/css">h2{--heading-prefix:"4"}
+    h3,h4,h5,h6{--heading-prefix:"4"}</style>
     <div id="segment-header" class="segment">  <!-- segment-header -->
       <div class="container">  <!-- container -->
 
@@ -106,21 +106,14 @@
   <li>
     <a href="index.html">Accueil</a>
   </li>
-  <li class="dropdown">
-    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Mapping CDA vers FHIR
-      <b class="caret"></b>
-    </a>
-    <ul class="dropdown-menu">
-      <li>
-        <a href="mapping-mechanisms.html">Mécanisme du Mapping</a>
-      </li>
-      <li>
-        <a href="guide-demarrage.html">Guide de démarrage</a>
-      </li>
-      <li>
-        <a href="outils-mapping.html">Outils de Mapping</a>
-      </li>
-    </ul>
+  <li>
+    <a href="Transformation-FML.md">Transformation FML</a>
+  </li>
+  <li>
+    <a href="guide-demarrage.md">Guide de démarrage via matchbox</a>
+  </li>
+  <li>
+    <a href="outils-mapping.md">Autres outils de mapping</a>
   </li>
   <li>
     <a href="artifacts.html">Ressources de conformité</a>
@@ -174,11 +167,11 @@
     <div id="segment-breadcrumb" class="segment" data-fhir="generated">  <!-- segment-breadcrumb -->
       <div class="container">  <!-- container -->
         <ul class="breadcrumb">
-          <li><a href='toc.html'><b>Table of Contents</b></a></li><li><b>Guide de démarrage</b></li>
+          <li><a href='toc.html'><b>Table of Contents</b></a></li><li><b>Guide de démarrage via matchbox</b></li>
 
           <span style="float: var(--ig-right);">
 
-            <a href="mapping-mechanisms.html">&lt; prev</a> | 
+            <a href="Transformation-FML.html">&lt; prev</a> | 
 
             <a href="#bottom">bottom</a>
 
@@ -205,7 +198,7 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
 </style>
 <div class="col-12">
   <!--ReleaseHeader--><p id="publish-box">POC - Mapping CDA to FHIR - Local Development build (v0.1.0) built by the FHIR (HL7® FHIR® Standard) Build Tools. See the <a href='https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/history.html'>Directory of published versions</a></p><!--EndReleaseHeader-->
-  <h2>Guide de démarrage</h2>
+  <h2>Guide de démarrage via matchbox</h2>
   
 
 
@@ -230,17 +223,23 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
     <p><!-- white space is critical inside of capture --></p>
 <div class="markdown-toc">
 <ul id="markdown-toc">
-  <li><a href="#guide-de-démarrage-rapide-quick-start" id="markdown-toc-guide-de-démarrage-rapide-quick-start">Guide de démarrage rapide (Quick Start)</a>    <ul>
-      <li><a href="#arrêter-et-redémarrer" id="markdown-toc-arrêter-et-redémarrer">Arrêter et redémarrer</a></li>
-      <li><a href="#configuration-avancée" id="markdown-toc-configuration-avancée">Configuration avancée</a></li>
-    </ul>
-  </li>
+  <li><a href="#quest-ce-que-matchbox-" id="markdown-toc-quest-ce-que-matchbox-">Qu’est-ce que Matchbox ?</a></li>
+  <li><a href="#exécution-des-transformations" id="markdown-toc-exécution-des-transformations">Exécution des transformations</a></li>
+  <li><a href="#arrêter-et-redémarrer" id="markdown-toc-arrêter-et-redémarrer">Arrêter et redémarrer</a></li>
+  <li><a href="#configuration-avancée" id="markdown-toc-configuration-avancée">Configuration avancée</a></li>
+  <li><a href="#ressources-complémentaires" id="markdown-toc-ressources-complémentaires">Ressources complémentaires</a></li>
 </ul>
 
 </div>
 
-<h2 id="guide-de-démarrage-rapide-quick-start">Guide de démarrage rapide (Quick Start)</h2>
-<p>Ce guide vous permet de tester rapidement la transformation de documents CDA de type Patient Summary vers FHIR en utilisant Matchbox, à partir d’un exemple fourni.</p>
+<p>Ce guide décrit les étapes permettant de lancer rapidement un environnement local de transformation CDA vers FHIR et de tester l’exécution du mapping sur un document d’exemple de type Patient Summary.</p>
+
+<h3 id="quest-ce-que-matchbox-">Qu’est-ce que Matchbox ?</h3>
+
+<p>Matchbox est un serveur FHIR basé sur HAPI FHIR, utilisé pour charger, gérer et exécuter des artefacts FHIR dans un environnement local. Il permet notamment de manipuler des ressources telles que les StructureMap, les ConceptMap, les profils et les packages d’implémentation nécessaires à l’exécution et à la validation des transformations.
+Dans le cadre de cette preuve de concept, Matchbox est utilisé comme moteur d’exécution du mapping CDA vers FHIR. Les règles définies en FHIR Mapping Language sont chargées sous forme de StructureMap, puis appliquées à un document CDA source à l’aide de l’opération $transform, afin de générer une sortie FHIR.</p>
+
+<h3 id="exécution-des-transformations">Exécution des transformations</h3>
 
 <h4 id="prérequis">Prérequis</h4>
 <ul>
@@ -496,6 +495,13 @@ curl <span class="nt">-X</span> POST <span class="s2">"http://localhost:8080/mat
 <p>Merci à Oliver Egger (Ahdis, HL7 Suisse) qui a travaillé sur la première brique sur laquelle repose ces travaux et sur l'outil matchbox permettant d'effectuer la transformation.
 https://github.com/hl7ch/cda-fhir-maps</p>
 
+<h3 id="ressources-complémentaires">Ressources complémentaires</h3>
+
+<ul>
+  <li><a href="https://www.hl7.org/fhir/structuremap.html">FHIR StructureMap Resource</a></li>
+  <li><a href="https://github.com/ahdis/matchbox">Matchbox Documentation</a></li>
+</ul>
+
 
 
 
@@ -521,7 +527,7 @@ https://github.com/hl7ch/cda-fhir-maps</p>
             <tr>
               <td style="text-align:var(--ig-left);">&#xA0;
 
-                <a href="mapping-mechanisms.html">&lt; prev</a>
+                <a href="Transformation-FML.html">&lt; prev</a>
 
               </td>
               <td style="text-align:center">
@@ -545,7 +551,7 @@ https://github.com/hl7ch/cda-fhir-maps</p>
           IG © 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d&#39;Oradour-sur-Glane, 75015 Paris</a>.  
           Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>.
           Generated 
-  <span title="2026-07-01 12:47:00 +0000">
+  <span title="2026-07-01 12:54:00 +0000">
     2026-07-01
   </span>
 
