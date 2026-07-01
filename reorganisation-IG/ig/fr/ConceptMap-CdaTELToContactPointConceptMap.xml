@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ConceptMap xmlns="http://hl7.org/fhir">
+  <id value="CdaTELToContactPointConceptMap"/>
+  <language value="fr"/>
+  <text>
+    <status value="generated"/><div xml:lang="fr" lang="fr"><hr/><p><b>French</b></p><hr/><p class="res-header-id"><b>Narratif généré : CarteDeConcepts CdaTELToContactPointConceptMap</b></p><a name="CdaTELToContactPointConceptMap"> </a><a name="hcCdaTELToContactPointConceptMap"> </a><p>This mapping does not specify any particular context of use.</p><br/><p>Mapping de <a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html">TEL: TelecommunicationAddress (V3 Data Type)</a> to <a href="http://hl7.org/fhir/R4/datatypes.html#ContactPoint">ContactPoint</a></p><table class="grid"><tr><td><b>Code source</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>relation</b></td><td><b>Code cible</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Commentaire</b></td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html#s-TEL.value">TEL.value</a></td><td>0..1</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto" title="relatedto">is related to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#ContactPoint#s-ContactPoint.value">ContactPoint.value</a></td><td>0..1</td><td>todo</td><td>La valeur TEL alimente ContactPoint.value après suppression du préfixe technique tel:, fax:, mailto:, http: ou https:.</td></tr><tr><td colspan="3" style="opacity: 0.5">&quot;</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto" title="relatedto">is related to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#ContactPoint#s-ContactPoint.system">ContactPoint.system</a></td><td>0..1</td><td>todo</td><td>Le système cible est déterminé à partir du préfixe de TEL.value : tel -&gt; phone, fax -&gt; fax, mailto -&gt; email, http/https -&gt; url.</td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html#s-TEL.use">TEL.use</a></td><td>0..*</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto" title="relatedto">is related to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#ContactPoint#s-ContactPoint.use">ContactPoint.use</a></td><td>0..1</td><td>todo</td><td>Les usages CDA sont convertis vers les usages FHIR : H -&gt; home ; WP, DIR ou PUB -&gt; work ; BAD -&gt; old ; TMP -&gt; temp ; MC -&gt; mobile.</td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html#s-TEL.useablePeriod">TEL.useablePeriod</a></td><td>0..*</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#ContactPoint#s-ContactPoint.period">ContactPoint.period</a></td><td>0..1</td><td>todo</td><td>La période d’utilisation du point de contact CDA alimente directement ContactPoint.period.</td></tr></table></div>
+  </text>
+  <url value="https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaTELToFHIR"/>
+  <version value="0.1.0"/>
+  <name value="CdaTELToFHIR"/>
+  <title value="ConceptMap — CDA TEL vers FHIR ContactPoint"/>
+  <status value="draft"/>
+  <experimental value="true"/>
+  <date value="2026-07-01T12:45:19+00:00"/>
+  <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
+  <contact>
+    <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
+    <telecom>
+      <system value="url"/>
+      <value value="https://esante.gouv.fr"/>
+    </telecom>
+  </contact>
+  <description value="Correspondances documentaires entre le datatype CDA TEL et les éléments FHIR ContactPoint."/>
+  <jurisdiction>
+    <coding>
+      <system value="urn:iso:std:iso:3166"/>
+      <code value="FR"/>
+      <display value="France (la)"/>
+    </coding>
+  </jurisdiction>
+  <group>
+    <source value="http://hl7.org/cda/stds/core/StructureDefinition/TEL"/>
+    <sourceVersion value="2.0.0-sd"/>
+    <target value="http://hl7.org/fhir/StructureDefinition/ContactPoint"/>
+    <targetVersion value="4.0.1"/>
+    <element>
+      <code value="TEL.value"/>
+      <display value="TEL.value"/>
+      <target>
+        <code value="ContactPoint.value"/>
+        <display value="ContactPoint.value"/>
+        <equivalence value="relatedto"/>
+        <comment value="La valeur TEL alimente ContactPoint.value après suppression du préfixe technique tel:, fax:, mailto:, http: ou https:."/>
+      </target>
+      <target>
+        <code value="ContactPoint.system"/>
+        <display value="ContactPoint.system"/>
+        <equivalence value="relatedto"/>
+        <comment value="Le système cible est déterminé à partir du préfixe de TEL.value : tel -&gt; phone, fax -&gt; fax, mailto -&gt; email, http/https -&gt; url."/>
+      </target>
+    </element>
+    <element>
+      <code value="TEL.use"/>
+      <display value="TEL.use"/>
+      <target>
+        <code value="ContactPoint.use"/>
+        <display value="ContactPoint.use"/>
+        <equivalence value="relatedto"/>
+        <comment value="Les usages CDA sont convertis vers les usages FHIR : H -&gt; home ; WP, DIR ou PUB -&gt; work ; BAD -&gt; old ; TMP -&gt; temp ; MC -&gt; mobile."/>
+      </target>
+    </element>
+    <element>
+      <code value="TEL.useablePeriod"/>
+      <display value="TEL.useablePeriod"/>
+      <target>
+        <code value="ContactPoint.period"/>
+        <display value="ContactPoint.period"/>
+        <equivalence value="equivalent"/>
+        <comment value="La période d’utilisation du point de contact CDA alimente directement ContactPoint.period."/>
+      </target>
+    </element>
+  </group>
+</ConceptMap>
