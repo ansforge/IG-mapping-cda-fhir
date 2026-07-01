@@ -1,6 +1,6 @@
-# Guide de démarrage via Matchbox - POC - Mapping CDA to FHIR v0.1.0
+# Démarrage Matchbox - POC - Mapping CDA to FHIR v0.1.0
 
-## Guide de démarrage via Matchbox
+## Démarrage Matchbox
 
 Ce guide décrit les étapes permettant de lancer rapidement un environnement local de transformation CDA vers FHIR et de tester l’exécution du mapping sur un document d’exemple de type Patient Summary.
 

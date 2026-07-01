@@ -1,6 +1,6 @@
-# Autres outils de mapping - POC - Mapping CDA to FHIR v0.1.0
+# Méthodes de mapping - POC - Mapping CDA to FHIR v0.1.0
 
-## Autres outils de mapping
+## Méthodes de mapping
 
 **Note :** Les méthodes et outils de mapping présentés ci‑dessous sont fournis à titre informatif. Ils illustrent différentes approches identifiées sans pour autant avoir été toutes testées dans le cadre de ce guide d'implémentation.
 
