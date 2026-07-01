@@ -49,24 +49,29 @@ pages:
   index.md:
     title: Accueil
     
-  mapping-mechanisms.md:
-    title: Mécanisme du Mapping
+  Architecture-de-mapping.md:
+    title: Architecture de mapping
+  
+  Transformation-FML.md:
+    title: Transformation FML 
+
   guide-demarrage.md:
-    title: Guide de démarrage
+    title: Guide de démarrage via matchbox 
+
   outils-mapping.md:
-    title: Outils de Mapping
+    title: Autres outils de mapping
 
   change-log.md:
     title: Historique des versions
+
   translationinfo.md:
     title: Informations sur la traduction
 
 menu:
   Accueil: index.html
-  Mapping CDA vers FHIR:
-    Mécanisme du Mapping: mapping-mechanisms.html
-    Guide de démarrage: guide-demarrage.html
-    Outils de Mapping: outils-mapping.html
+  Transformation FML: Transformation-FML.md
+  Guide de démarrage via matchbox: guide-demarrage.md
+  Autres outils de mapping: outils-mapping.md
   Ressources de conformité: artifacts.html
   Autres ressources:
     Spécification FHIR: new-tab {{site.data.fhir.path}}index.html
