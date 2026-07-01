@@ -48,6 +48,9 @@ pages:
   index.md:
     title: Accueil
 
+  mecanismes-mapping.md:
+    title: Mécanismes de mapping
+
   Architecture-de-mapping.md:
     title: Architecture de mapping
 
@@ -58,7 +61,7 @@ pages:
     title: Démarrage Matchbox
 
   outils-mapping.md:
-    title: Méthodes de mapping
+    title: Autres méthodes de mapping
 
   change-log.md:
     title: Historique des versions
@@ -68,13 +71,19 @@ pages:
 
 menu:
   Accueil: index.html
-  Architecture de mapping: Architecture-de-mapping.html
-  Transformation FML: Transformation-FML.html
-  Démarrage Matchbox: guide-demarrage.html
-  Méthodes de mapping: outils-mapping.html
+
+  Mécanismes de mapping:
+    Architecture de mapping: Architecture-de-mapping.html
+    Transformation FML: Transformation-FML.html
+    Démarrage Matchbox: guide-demarrage.html
+
+  Autres méthodes de mapping: outils-mapping.html
+
   Ressources de conformité: artifacts.html
+
   Autres ressources:
     Spécification FHIR: new-tab {{site.data.fhir.path}}index.html
     Site de l’ANS: new-tab https://esante.gouv.fr/
     Documentation: new-tab https://interop.esante.gouv.fr/ig/documentation/
+
   Historique des versions: change-log.html
