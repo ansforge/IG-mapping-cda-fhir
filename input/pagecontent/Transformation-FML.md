@@ -1,10 +1,13 @@
 ---
-title: Mécanismes de mapping
+title: Transformation FML 
 layout: default
-active: mapping-mechanisms
+active: Transformation-FML
 ---
 
-Cette page explique les mécanismes de transformation d'un document CDA de type Patient Summary vers des ressources FHIR à l'aide du FHIR Mapping Language (FML).
+### Introduction
+
+La transformation CDA vers FHIR avec le FHIR Mapping Language repose sur un ensemble de règles permettant de parcourir le document source, d’en extraire les informations utiles et de les convertir vers les ressources FHIR attendues.
+Les principes de construction de ces règles, ainsi que les principaux patterns, limites et bonnes pratiques identifiés lors de leur implémentation, sont présentés ci-dessous.
 
 ### Vue d'ensemble du FHIR Mapping Language
 
@@ -16,165 +19,6 @@ Le FHIR Mapping Language (FML) est un langage déclaratif développé par HL7 po
 * **Modulaire** : Possibilité d'importer et de réutiliser des mappings existants
 * **Type-safe** : Vérification des types nécessaires pour permettre la transformation
 * **Navigation XML/JSON** : Support natif pour parcourir des structures hiérarchiques
-
-
-### Organisation des mappings en couches
-
-#### Structure générale
-
-Les mappings CDA vers FHIR sont organisés en couches afin de séparer les responsabilités et de faciliter la réutilisation des transformations.
-Chaque couche couvre un niveau précis du mapping et s’appuie sur les couches inférieure.
-
-<div style="text-align:center; margin: 2rem auto 2.5rem auto; max-width:950px;">
-{% include etapes-mapping.svg %}
-</div>
-<br clear="all"/>
-
-#### Description des couches de mapping
-
-##### Mappings de conversion des types
-
-Le fichier principal de cette couche est CdaToFHIRTypes.fml.
-Cette couche regroupe les mappings de conversion des types de données CDA v3 vers les types de données FHIR.
-Dans le contexte CDA, les datatypes représentent les structures élémentaires utilisées pour porter l’information dans le document : identifiants, noms, adresses, codes, dates, quantités, coordonnées de contact, etc. Avant de transformer un document CDA en ressources FHIR, il est donc nécessaire de convertir correctement ces types sources vers leurs équivalents FHIR.
-Elle constitue le socle commun de l’ensemble des autres mappings.
-Elle ne contient ni logique métier, ni logique nationale, ni navigation dans la structure du document CDA : son objectif est uniquement d’assurer la correspondance entre les types techniques manipulés dans les mappings.
-
-{% sql {
-  "query": "
-WITH Mappings AS (
-  SELECT
-    json_extract(r.json, '$.id')   AS ConceptMapId,
-    json_extract(r.json, '$.name') AS ConceptMapName,
-    COALESCE(json_extract(e.value, '$.display'), json_extract(e.value, '$.code'), '') AS CDA,
-    COALESCE(json_extract(t.value, '$.display'), json_extract(t.value, '$.code'), '') AS FHIR,
-    g.key AS group_index,
-    e.key AS elem_index,
-    t.key AS target_index
-  FROM Resources r
-  JOIN json_each(r.json, '$.group') g
-  JOIN json_each(g.value, '$.element') e
-  JOIN json_each(e.value, '$.target') t
-  WHERE r.Type = 'ConceptMap'
-)
-SELECT
-  CDA,
-  FHIR
-FROM Mappings
-WHERE ConceptMapName IN (
-  'CdaAddressToFHIR',
-  'CdaBLToFHIR',
-  'CdaConceptCodesToFHIR',
-  'CdaNamesToFHIR',
-  'CdaIIToIdentifier',
-  'CdaINTToInteger',
-  'CdaIVL_TSToFHIR',
-  'CdaPQToFHIR',
-  'CdaRTOPQPQToFHIR',
-  'CdaStringTypesToFHIR',
-  'CdaTELToFHIR',
-  'CdaTSToFHIR'
-)
-ORDER BY ConceptMapName, group_index, elem_index, target_index
-",
-  "class": "lines",
-  "columns": [
-    { "name": "CDA", "type": "markdown", "source": "CDA" },
-    { "name": "FHIR", "type": "markdown", "source": "FHIR" }
-  ]
-} %}
-
-##### Mappings CDA génériques
-
-Le fichier principal de cette couche est `CdaToBundle.fml`.
-
-Cette couche porte le mapping générique de la structure commune d’un document CDA vers un Bundle FHIR, en s’appuyant sur les transformations de types définies dans la couche inférieure (`CdaToFHIRTypes`).
-
-Elle traite principalement les éléments transverses du document, en particulier l’en-tête CDA, ainsi qu’une structure de base du corps du document.
-
-Les transformations couvertes dans cette couche incluent notamment :
-
-* la création du `Bundle` ;
-* la création de la `Composition` ;
-* le mapping de `documentIdentity`, c’est-à-dire les identifiants permettant de reconnaître le document et sa version ;
-* le mapping de `documentDescription`, notamment son type, son titre, sa date, sa langue ou encore ses métadonnées principales ;
-* le mapping de `recordTarget`, qui correspond au patient concerné par le document ;
-* le mapping de `custodian`, c’est-à-dire l’organisation responsable de la conservation et de la mise à disposition du document ;
-* le mapping de `author`, qui peut correspondre au professionnel ou à l’acteur ayant produit le document ;
-* le mapping de `legalAuthenticator`, c’est-à-dire la personne qui valide officiellement le document ;
-* le mapping de `encounterContext`, notamment le contexte de soin, à travers les ressources `Encounter` et `Location` ;
-* le mapping de `documentationOf`, qui permet de relier le document à l’acte, au séjour ou à l’événement clinique documenté ;
-* le mapping de `emergencyContact`, qui correspond aux contacts d’urgence du patient ;
-* le mapping de `trustedPerson`, qui correspond aux personnes de confiance ;
-* le mapping de `guardian`, qui correspond aux représentants légaux ;
-* le mapping de `relatedDocument`, par exemple un document remplacé, complété ou associé ;
-* le mapping des acteurs et des structures impliqués dans le document, notamment `Practitioner`, `PractitionerRole` et `Organization` ;
-* la gestion des identifiants techniques et des références internes au `Bundle` ;
-* la reprise de la structure des sections du document dans `Composition.section`.
-
-Cette couche implémente donc le socle commun de transformation CDA → FHIR, indépendant des contraintes nationales et des règles métier spécifiques.
-
-<div style="text-align:center; margin: 2rem auto 2.5rem auto; max-width:950px;">
-{% include schema-etape2.svg %}
-</div>
-<br clear="all"/>
-
-##### Spécifications européennes et françaises
-
-Le fichier principal de cette couche est `CdaFrToBundle.fml`.
-
-Cette couche reprend le mapping documentaire générique produit par `CdaToBundle.fml` afin d’y intégrer les spécifications européennes et françaises applicables au `Patient Summary`.
-
-Les spécifications européennes concernent principalement les ressources documentaires structurantes, à savoir le `Bundle` et la `Composition`. L’objectif est de rapprocher la structure FHIR produite des exigences du profil européen `HL7 Europe Patient Summary (EPS)`, actuellement en cours de concertation . 
-
-Les spécifications françaises s’appliquent aux ressources génériques déjà produites à partir de l’en-tête CDA et référencées par le `Bundle` ou la `Composition`. Elles s’appuient principalement sur les guides d’implémentation français `FR Core` et `Annuaire Santé`, afin d’ajouter les profils, identifiants, terminologies et extensions requis dans le contexte français.
-
-Cette couche complète donc le socle commun CDA vers FHIR sans redéfinir le mapping générique réalisé dans la couche précédente. Elle ne traite pas le corps du document CDA. Les sections cliniques seront prises en charge dans la couche de mappings spécifiques métier.
-
-Cette couche constitue une étape d’enrichissement du socle commun CDA vers FHIR. Elle complète le mapping générique établi à l’étape 2 en y intégrant les spécifications françaises et européennes. Le mapping des sections cliniques sera, quant à lui, abordé lors de l’étape 4.
-
-<div style="text-align:center; margin: 2rem auto 2.5rem auto; max-width:950px;">
-{% include schema-etape3.svg %}
-</div>
-<br clear="all"/>
-
-##### Mappings spécifiques métier : Patient Summary
-
-Le fichier principal de cette couche est `CdaPatientSummaryToBundle.fml`.
-
-Cette couche correspond au mapping spécifique métier du `Patient Summary`. Elle réutilise le socle documentaire générique déjà enrichi par les spécifications françaises et européennes, notamment pour l’en-tête CDA, puis ajoute les règles nécessaires au mapping du contenu clinique porté par le corps du document.
-
-Pour le corps CDA, cette couche s’appuie sur la structure documentaire initialisée dans les couches précédentes, en particulier la reprise des sections dans `Composition.section`. Elle complète ce premier niveau descriptif par le mapping des contenus cliniques présents dans les sections du `Patient Summary`.
-
-Le mapping réalisé à ce niveau concerne notamment :
-
-* l’identification des sections propres au `Patient Summary`, comme les problèmes de santé, les allergies et intolérances, les traitements, les antécédents familiaux, les vaccinations, les actes, les effets indésirables, les signes vitaux, le mode de vie, les risques professionnels et les résultats ;
-* l’accès aux `entry` présentes dans ces sections ;
-* le mapping des éléments cliniques contenus dans ces `entry` ;
-* l’extraction des données cliniques portées par ces éléments ;
-* le mapping de ces données vers les ressources FHIR métier adaptées, par exemple `Condition`, `AllergyIntolerance`, `MedicationStatement`, `Procedure`, `Immunization` ou `Observation` ;
-* le rattachement des ressources métier aux sections correspondantes de la `Composition`, afin de conserver l’organisation documentaire du `Patient Summary` ;
-
-Cette couche complète ainsi le mapping du corps du document CDA en ajoutant les règles nécessaires à la représentation FHIR des données cliniques propres au `Patient Summary`.
-
-<div style="text-align:center; margin: 2rem auto 2.5rem auto; max-width:1050px;">
-{% include schema-etape4.svg %}
-</div>
-<br clear="all"/>
-
-> Remarque : Pour les couches — mappings CDA génériques, spécifications françaises et mappings spécifiques métier — les correspondances détaillées CDA et FHIR sont à consulter dans le guide d’implémentation Document Core : `https://ansforge.github.io/interop-IG-document-core/main/ig/`. Ce guide présente de manière structurée les correspondances entre modèle logique, CDA et FHIR
-
-#### Réutilisation entre les couches
-
-Les couches de mapping sont construites de manière progressive. Chaque couche réutilise les mappings définis dans les couches inférieures à l’aide du mécanisme `imports`, puis ajoute les transformations correspondant à son propre niveau de spécialisation.
-
-Cette organisation permet :
-*de mutualiser les transformations communes ;
-*d’éviter la duplication des règles ;
-*d’isoler les spécificités génériques, nationales et métier dans des couches distinctes.
-
-
-
 
 ### Implémentation des transformations CDA vers FHIR en FHIR Mapping Language
 
@@ -575,21 +419,10 @@ Cette approche facilite l’identification de l’origine des erreurs et limite 
 La documentation des choix de mapping permet de rendre explicites les décisions prises pendant la transformation. Elle peut préciser les correspondances retenues, les hypothèses appliquées, les cas particuliers ainsi que les éléments non pris en charge.
 Cette traçabilité facilite la compréhension du comportement du mapping, la justification des choix effectués et la reprise du travail par d’autres personnes. Elle contribue également à éviter les interprétations implicites et à préparer les évolutions futures.
 
+### Synthèse
+
+Le FHIR Mapping Language présente un intérêt important pour formaliser une transformation CDA vers FHIR de manière explicite, structurée et réutilisable. Il permet d’organiser les règles de mapping, de produire les ressources FHIR attendues et de conserver la cohérence des liens entre les ressources générées.
+
 ### Ressources complémentaires
 
 * [FHIR Mapping Language Specification](https://www.hl7.org/fhir/mapping-language.html)
-* [FHIR StructureMap Resource](https://www.hl7.org/fhir/structuremap.html)
-* [Matchbox Documentation](https://github.com/ahdis/matchbox)
-* [CDA to FHIR Maps (HL7 Suisse)](https://github.com/hl7ch/cda-fhir-maps)
-* [Notes techniques de développement](claude.html)
-
-### Conclusion
-
-Le FHIR Mapping Language offre un mécanisme puissant et déclaratif pour transformer des documents CDA en ressources FHIR. La clé du succès réside dans :
-
-* Une architecture modulaire en couches
-* La réutilisation intelligente des mappings existants
-* Une navigation ciblée pour les structures spécifiques
-* La gestion appropriée des limitations du parser XML
-
-Cette approche permet de créer des mappings maintenables, testables et évolutifs pour supporter la transition CDA vers FHIR dans le contexte de l'Espace Européen des Données de Santé.
