@@ -52,8 +52,8 @@
 	  <script type="text/javascript" src="assets/js/prism-cql.js"></script>
     <script type="text/javascript" src="assets/js/mermaid.js"></script>
     <script type="text/javascript" src="assets/js/mermaid-init.js"></script>
-    <style type="text/css">h2{--heading-prefix:"8.16"}
-    h3,h4,h5,h6{--heading-prefix:"8.16"}</style>
+    <style type="text/css">h2{--heading-prefix:"9.16"}
+    h3,h4,h5,h6{--heading-prefix:"9.16"}</style>
     <div id="segment-header" class="segment">  <!-- segment-header -->
       <div class="container">  <!-- container -->
 
@@ -110,17 +110,24 @@
   <li>
     <a href="index.html">Accueil</a>
   </li>
-  <li>
-    <a href="Architecture-de-mapping.html">Architecture de mapping</a>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Mécanismes de mapping
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="Architecture-de-mapping.html">Architecture de mapping</a>
+      </li>
+      <li>
+        <a href="Transformation-FML.html">Transformation FML</a>
+      </li>
+      <li>
+        <a href="guide-demarrage.html">Démarrage Matchbox</a>
+      </li>
+    </ul>
   </li>
   <li>
-    <a href="Transformation-FML.html">Transformation FML</a>
-  </li>
-  <li>
-    <a href="guide-demarrage.html">Démarrage Matchbox</a>
-  </li>
-  <li>
-    <a href="outils-mapping.html">Méthodes de mapping</a>
+    <a href="outils-mapping.html">Autres méthodes de mapping</a>
   </li>
   <li>
     <a href="artifacts.html">Ressources de conformité</a>
@@ -290,7 +297,7 @@
   &lt;<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.title">title</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;ConceptMap — CDA ST/ED/ON vers FHIR string&quot;/&gt;
   &lt;<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.status">status</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;draft&quot;/&gt;
   &lt;<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.experimental">experimental</a> <a href="http://hl7.org/fhir/R4/datatypes.html#boolean">value</a>=&quot;true&quot;/&gt;
-  &lt;<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.date">date</a> <a href="http://hl7.org/fhir/R4/datatypes.html#dateTime">value</a>=&quot;2026-07-01T14:40:37+00:00&quot;/&gt;
+  &lt;<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.date">date</a> <a href="http://hl7.org/fhir/R4/datatypes.html#dateTime">value</a>=&quot;2026-07-01T14:56:52+00:00&quot;/&gt;
   &lt;<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.publisher">publisher</a>
              <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris&quot;/&gt;
   &lt;<a href="http://hl7.org/fhir/R4/conceptmap.html#ConceptMap.contact">contact</a>&gt;
@@ -415,7 +422,7 @@
           IG © 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d&#39;Oradour-sur-Glane, 75015 Paris</a>.  
           Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>.
           Generated 
-  <span title="2026-07-01 14:40:00 +0000">
+  <span title="2026-07-01 14:56:00 +0000">
     2026-07-01
   </span>
 
