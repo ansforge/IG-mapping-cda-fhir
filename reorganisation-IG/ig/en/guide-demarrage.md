@@ -1,6 +1,6 @@
-# Guide de démarrage via matchbox - POC - Mapping CDA to FHIR v0.1.0
+# Guide de démarrage via Matchbox - POC - Mapping CDA to FHIR v0.1.0
 
-## Guide de démarrage via matchbox
+## Guide de démarrage via Matchbox
 
  
 There is no translation page available for the current page, so it has been rendered in the default language 

@@ -14,7 +14,7 @@
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2026-07-01T12:54:09+00:00",
+  "date" : "2026-07-01T13:22:24+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -1172,7 +1172,7 @@
           "valueUrl" : "guide-demarrage.html"
         }],
         "nameUrl" : "guide-demarrage.html",
-        "title" : "Guide de démarrage via matchbox",
+        "title" : "Guide de démarrage via Matchbox",
         "generation" : "markdown"
       },
       {
