@@ -1,4 +1,8 @@
-### Limites et recommandations
+---
+title: Limites de mapping
+layout: default
+active: Limites-mapping
+---
 
 Le mapping d’un document CDA vers des ressources FHIR ne repose pas uniquement sur une correspondance directe entre les éléments des deux standards. Il doit également prendre en compte d’autres éléments, tels que les différences entre les modèles CDA et FHIR et les exigences de conformité applicables aux ressources FHIR produites.
 
