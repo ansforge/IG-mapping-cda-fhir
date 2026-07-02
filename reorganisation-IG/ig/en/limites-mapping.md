@@ -5,9 +5,7 @@
  
 There is no translation page available for the current page, so it has been rendered in the default language 
 
-### Limitations et contraintes
-
-#### Dédoublonnage et fusion conditionnelle des ressources
+### Dédoublonnage et fusion conditionnelle des ressources
 
 Le CDA et FHIR reposent sur des logiques de représentation différentes. Le CDA est un modèle documentaire hiérarchique, dans lequel une même entité métier peut apparaître dans plusieurs blocs selon son rôle dans le document. À l’inverse, FHIR s’appuie sur des ressources référençables, destinées à représenter des entités distinctes et réutilisables au sein d’un Bundle. Lorsqu’une même entité est décrite dans plusieurs parties du document CDA, la transformation peut conduire à la génération de plusieurs ressources FHIR distinctes. Cette situation peut concerner des organisations, des professionnels de santé, des rôles professionnels, des lieux de prise en charge ou d’autres entités référencées à plusieurs endroits du document. Sur le plan technique, il est possible en FML de limiter la création de doublons en définissant des critères permettant de déterminer si plusieurs éléments CDA doivent être représentés par une seule et même ressource. Toutefois, la difficulté réside dans la définition de ces critères. Par exemple, le partage d’un même identifiant métier peut constituer un indice fort en faveur de l’identité des entités, sans pour autant garantir avec certitude qu’il s’agit bien de la même entité.
 
@@ -19,7 +17,7 @@ Le CDA et FHIR reposent sur des logiques de représentation différentes. Le CDA
 
 La décision de dédoublonnage doit s’appuyer sur plusieurs critères, et non sur un seul élément isolé. Elle peut notamment prendre en compte l’identifiant métier, le nom de l’entité, l’adresse et les coordonnées de contact. Cette analyse multicritère permet de limiter le risque de générer plusieurs ressources FHIR pour une même entité, tout en évitant de fusionner à tort des entités qui devraient rester distinctes.
 
-#### Éléments CDA non définis dans la StructureDefinition
+### Éléments CDA non définis dans la StructureDefinition
 
 Une limite rencontrée lors du mapping concerne certains éléments présents dans le document CDA source, mais non définis dans la StructureDefinition utilisée par le moteur de transformation. Dans ce cas, même si l’information existe dans le XML CDA, elle n’est pas accessible aux règles FML, ce qui empêche son mapping vers les éléments FHIR attendus. Cette limite concerne notamment les éléments pharmaceutiques portés par le namespace pharm. Ces éléments décrivent des informations détaillées sur le médicament, comme la forme galénique avec pharm:formCode, l’équivalent générique ou la classe médicamenteuse avec pharm:asSpecializedKind, ainsi que les substances actives et leur dosage avec pharm:ingredient.
 
@@ -58,7 +56,7 @@ Une limite rencontrée lors du mapping concerne certains éléments présents da
 
 Il est recommandé d’enrichir la StructureDefinition CDA utilisée comme source afin d’y déclarer explicitement les éléments concernés, leur namespace et leur structure. Cet enrichissement permet de rendre ces éléments accessibles aux règles FML et de les mapper vers les éléments FHIR attendus, par exemple Medication.form, Medication.ingredient ou Medication.ingredient.strength.
 
-#### Sections CDA locales ou non documentées
+### Sections CDA locales ou non documentées
 
 Le mapping des sections du corps du document CDA requiert une vigilance particulière. Dans le FML, la reconnaissance d’une section, principalement à partir de son code ou de son templateId, permet de l’orienter vers un groupe de règles spécifique. Ce mécanisme assure le mapping des sections incluses dans le périmètre du Patient Summary et la génération des ressources FHIR correspondantes. En revanche, pour les sections locales ou non documentées, l’absence de spécification explicite empêche de déterminer la ressource FHIR cible ainsi que le niveau de structuration attendu. Leur mapping structuré ne peut donc pas être garanti à ce stade.
 
@@ -66,7 +64,7 @@ Le mapping des sections du corps du document CDA requiert une vigilance particul
 
 Il est recommandé de documenter explicitement les sections locales ou non documentées par les implémenteurs, avant leur intégration au mapping. Cette documentation devrait préciser le rôle de la section, son contenu attendu, les codes ou templateId associés, la ressource FHIR cible envisagée et le niveau de structuration souhaité. Ces sections pourront également faire l’objet de travaux complémentaires ultérieurs, intégrant notamment une réflexion sur l’apport de l’intelligence artificielle générative pour analyser et interpréter les sections non documentées.
 
-#### Compatibilité des codes CDA avec les codes attendus en FHIR
+### Compatibilité des codes CDA avec les codes attendus en FHIR
 
 Une limite rencontrée lors du mapping concerne la compatibilité entre les codes présents dans le CDA source et les codes attendus par les éléments FHIR cibles. Un code ne peut pas toujours être repris tel quel : il doit être compatible avec l’élément FHIR à alimenter, le système de codes attendu et le ValueSet imposé par le profil cible. Un cas simple est celui du sexe administratif. Dans le CDA, cette information peut être portée par administrativeGenderCode, avec des codes comme M pour masculin ou F pour féminin. En FHIR, l’élément Patient.gender n’attend pas directement ces codes CDA, mais des valeurs telles que male ou female. Il est donc nécessaire de définir une correspondance explicite entre les codes CDA et les codes FHIR attendus, par exemple M vers male et F vers female. Ce type de mapping reste maîtrisable, car le nombre de codes est limité et les correspondances sont clairement identifiables. La difficulté apparaît lorsque les codes à mapper sont plus nombreux, plus spécialisés, ou lorsqu’ils ne disposent pas d’une correspondance stricte dans la terminologie attendue par FHIR. Par exemple, un code CDA peut porter une information clinique compréhensible, mais ne pas appartenir au ValueSet requis par l’élément FHIR cible. Dans ce cas, la reprise directe du code peut produire une ressource non conforme.
 
