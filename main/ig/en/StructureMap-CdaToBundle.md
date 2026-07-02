@@ -1,9 +1,9 @@
-# Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger) - POC - Mapping CDA to FHIR v0.1.0
+# Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA - POC - Mapping CDA to FHIR v0.1.0
 
-## StructureMap: Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger) 
+## StructureMap: Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA 
 
  
-Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger) 
+Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA 
 
 
 
@@ -16,9 +16,9 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
   "url" : "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle",
   "version" : "0.1.0",
   "name" : "CdaToBundle",
-  "title" : "Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)",
+  "title" : "Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA",
   "status" : "draft",
-  "date" : "2026-06-30T14:53:19+00:00",
+  "date" : "2026-07-02T14:54:00+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -27,7 +27,7 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
       "value" : "https://esante.gouv.fr"
     }]
   }],
-  "description" : "Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)",
+  "description" : "Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA",
   "jurisdiction" : [{
     "coding" : [{
       "system" : "urn:iso:std:iso:3166",
@@ -41,29 +41,24 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
     "alias" : "ClinicalDocument"
   },
   {
-    "url" : "http://hl7.org/cda/stds/core/StructureDefinition/AssignedAuthor|2.0.0-sd",
-    "mode" : "source",
-    "alias" : "AssignedAuthor"
-  },
-  {
-    "url" : "http://hl7.org/cda/stds/core/StructureDefinition/AssignedEntity|2.0.0-sd",
-    "mode" : "source",
-    "alias" : "AssignedEntity"
-  },
-  {
-    "url" : "http://hl7.org/cda/stds/core/StructureDefinition/CustodianOrganization|2.0.0-sd",
-    "mode" : "source",
-    "alias" : "CustodianOrganization"
-  },
-  {
-    "url" : "http://hl7.org/cda/stds/core/StructureDefinition/Section|2.0.0-sd",
-    "mode" : "source",
-    "alias" : "Section"
-  },
-  {
     "url" : "http://hl7.org/cda/stds/core/StructureDefinition/PatientRole|2.0.0-sd",
     "mode" : "source",
     "alias" : "PatientRole"
+  },
+  {
+    "url" : "http://hl7.org/cda/stds/core/StructureDefinition/RelatedEntity|2.0.0-sd",
+    "mode" : "source",
+    "alias" : "RelatedEntity"
+  },
+  {
+    "url" : "http://hl7.org/cda/stds/core/StructureDefinition/EncompassingEncounter|2.0.0-sd",
+    "mode" : "source",
+    "alias" : "EncompassingEncounter"
+  },
+  {
+    "url" : "http://hl7.org/cda/stds/core/StructureDefinition/HealthCareFacility|2.0.0-sd",
+    "mode" : "source",
+    "alias" : "HealthCareFacility"
   },
   {
     "url" : "http://hl7.org/fhir/StructureDefinition/Bundle|4.0.1",
@@ -81,25 +76,125 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
     "alias" : "Patient"
   },
   {
-    "url" : "http://hl7.org/fhir/StructureDefinition/Person|4.0.1",
-    "mode" : "target",
-    "alias" : "Person"
-  },
-  {
     "url" : "http://hl7.org/fhir/StructureDefinition/Practitioner|4.0.1",
     "mode" : "target",
     "alias" : "Practitioner"
   },
   {
+    "url" : "http://hl7.org/fhir/StructureDefinition/PractitionerRole|4.0.1",
+    "mode" : "target",
+    "alias" : "PractitionerRole"
+  },
+  {
     "url" : "http://hl7.org/fhir/StructureDefinition/Organization|4.0.1",
     "mode" : "target",
     "alias" : "Organization"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/RelatedPerson|4.0.1",
+    "mode" : "target",
+    "alias" : "RelatedPerson"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Encounter|4.0.1",
+    "mode" : "target",
+    "alias" : "Encounter"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Location|4.0.1",
+    "mode" : "target",
+    "alias" : "Location"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Identifier|4.0.1",
+    "mode" : "target",
+    "alias" : "Identifier"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/CodeableConcept|4.0.1",
+    "mode" : "target",
+    "alias" : "CodeableConcept"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Coding|4.0.1",
+    "mode" : "target",
+    "alias" : "Coding"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Reference|4.0.1",
+    "mode" : "target",
+    "alias" : "Reference"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/HumanName|4.0.1",
+    "mode" : "target",
+    "alias" : "HumanName"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Address|4.0.1",
+    "mode" : "target",
+    "alias" : "Address"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/ContactPoint|4.0.1",
+    "mode" : "target",
+    "alias" : "ContactPoint"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Period|4.0.1",
+    "mode" : "target",
+    "alias" : "Period"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Extension|4.0.1",
+    "mode" : "target",
+    "alias" : "Extension"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Narrative|4.0.1",
+    "mode" : "target",
+    "alias" : "Narrative"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/code|4.0.1",
+    "mode" : "target",
+    "alias" : "code"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/date|4.0.1",
+    "mode" : "target",
+    "alias" : "date"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/dateTime|4.0.1",
+    "mode" : "target",
+    "alias" : "dateTime"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/instant|4.0.1",
+    "mode" : "target",
+    "alias" : "instant"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/boolean|4.0.1",
+    "mode" : "target",
+    "alias" : "boolean"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/uri|4.0.1",
+    "mode" : "target",
+    "alias" : "uri"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/string|4.0.1",
+    "mode" : "target",
+    "alias" : "string"
   }],
   "import" : ["https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes|0.1.0"],
   "group" : [{
-    "name" : "CdaToBundle",
+    "name" : "TransformClinicalDocumentToFHIRDocument",
     "typeMode" : "none",
-    "documentation" : "_________________________ Document Level Template  _________________________",
+    "documentation" : "GROUPE D’ENTRÉE — INITIALISATION DU DOCUMENT FHIR À PARTIR DU CDA\n\n   À partir de l’analyse du ClinicalDocument CDA, ce groupe initialise les\n   ressources FHIR nécessaires pour représenter les éléments CDA principaux :\n   Composition et Patient.\n\n   Ces ressources sont créées vides avec un uuid(), ajoutées au Bundle, puis\n   transmises au groupe d’orchestration.\n\n   Les autres ressources seront créées ultérieurement, dans les groupes\n   correspondant aux blocs CDA traités.",
     "input" : [{
       "name" : "cda",
       "type" : "ClinicalDocument",
@@ -111,7 +206,7 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
       "mode" : "target"
     }],
     "rule" : [{
-      "name" : "ClinicalDocumentToBody",
+      "name" : "main",
       "source" : [{
         "context" : "cda"
       }],
@@ -119,10 +214,10 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
         "context" : "bundle",
         "contextType" : "variable",
         "element" : "entry",
-        "variable" : "e"
+        "variable" : "compositionEntry"
       },
       {
-        "context" : "e",
+        "context" : "compositionEntry",
         "contextType" : "variable",
         "element" : "resource",
         "variable" : "composition",
@@ -135,29 +230,25 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
         "context" : "composition",
         "contextType" : "variable",
         "element" : "id",
-        "variable" : "uuid",
         "transform" : "uuid"
       },
       {
-        "context" : "e",
+        "context" : "compositionEntry",
         "contextType" : "variable",
         "element" : "fullUrl",
-        "transform" : "append",
+        "transform" : "evaluate",
         "parameter" : [{
-          "valueString" : "urn:uuid:"
-        },
-        {
-          "valueId" : "uuid"
+          "valueString" : "'urn:uuid:' + %composition.id"
         }]
       },
       {
         "context" : "bundle",
         "contextType" : "variable",
         "element" : "entry",
-        "variable" : "e2"
+        "variable" : "patientEntry"
       },
       {
-        "context" : "e2",
+        "context" : "patientEntry",
         "contextType" : "variable",
         "element" : "resource",
         "variable" : "patient",
@@ -170,36 +261,27 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
         "context" : "patient",
         "contextType" : "variable",
         "element" : "id",
-        "variable" : "uuid2",
         "transform" : "uuid"
       },
       {
-        "context" : "e2",
+        "context" : "patientEntry",
         "contextType" : "variable",
         "element" : "fullUrl",
-        "transform" : "append",
+        "transform" : "evaluate",
         "parameter" : [{
-          "valueString" : "urn:uuid:"
-        },
-        {
-          "valueId" : "uuid2"
+          "valueString" : "'urn:uuid:' + %patient.id"
         }]
       }],
-      "rule" : [{
-        "name" : "cdatobundle",
-        "source" : [{
-          "context" : "cda"
-        }],
-        "dependent" : [{
-          "name" : "ClinicalDocumentToBundle",
-          "variable" : ["cda", "patient", "composition", "bundle"]
-        }]
+      "dependent" : [{
+        "name" : "OrchestrateClinicalDocumentTransformation",
+        "variable" : ["cda", "patient", "composition", "bundle"]
       }]
     }]
   },
   {
-    "name" : "ClinicalDocumentToBundle",
+    "name" : "OrchestrateClinicalDocumentTransformation",
     "typeMode" : "none",
+    "documentation" : "GROUPE D’ORCHESTRATION — TRAITEMENT DU CLINICALDOCUMENT CDA\n\n   Ce groupe permet de traiter le ClinicalDocument CDA en deux parties :\n   - l’en-tête CDA via l'appel du groupe MapClinicalDocumentHeader ;\n   - le corps CDA via l'appelle du groupe MapClinicalDocumentBody.\n\n   Les ressources initialisées dans le groupe d’entrée, Bundle, Composition et\n   Patient, servent de support de sortie pour le traitement CDA",
     "input" : [{
       "name" : "cda",
       "type" : "ClinicalDocument",
@@ -221,9 +303,194 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
       "mode" : "target"
     }],
     "rule" : [{
-      "name" : "id",
+      "name" : "header",
       "source" : [{
         "context" : "cda"
+      }],
+      "dependent" : [{
+        "name" : "MapClinicalDocumentHeader",
+        "variable" : ["cda", "bundle", "composition", "patient"]
+      }]
+    },
+    {
+      "name" : "body",
+      "source" : [{
+        "context" : "cda"
+      }],
+      "dependent" : [{
+        "name" : "MapClinicalDocumentBody",
+        "variable" : ["cda", "composition", "bundle", "patient"]
+      }]
+    }]
+  },
+  {
+    "name" : "MapClinicalDocumentHeader",
+    "typeMode" : "none",
+    "documentation" : "GROUPE — TRAITEMENT DE L’EN-TÊTE DU CLINICALDOCUMENT CDA\n\n   Ce groupe traite l’en-tête du ClinicalDocument CDA bloc par bloc.\n\n   Pour chaque élément de l’en-tête CDA, il appelle le groupe spécialisé\n   correspondant :\n   - id, setId, versionNumber et effectiveTime sont transmis à\n     MapHeaderDocumentIdentity pour alimenter les métadonnées du Bundle et de\n     la Composition ;\n   - languageCode, code, title, effectiveTime et confidentialityCode sont transmis\n     à MapHeaderDocumentDescription pour alimenter la description documentaire ;\n   - recordTarget.patientRole est transmis à MapHeaderRecordTarget pour alimenter\n     le Patient et la référence Composition.subject ;\n   - custodian est transmis à MapHeaderCustodian pour créer et alimenter\n     l’Organization responsable de la conservation du document ;\n   - author est transmis à MapHeaderAuthor pour créer et alimenter le Practitioner,\n     l’Organization et le PractitionerRole de l’auteur ;\n   - legalAuthenticator est transmis à MapHeaderLegalAuthenticator pour créer et\n     alimenter le signataire légal ;\n   - documentationOf.serviceEvent est transmis à MapHeaderDocumentationOf pour\n     alimenter Composition.event ;\n   - componentOf.encompassingEncounter est transmis à MapHeaderEncounterContext\n     pour créer et alimenter Encounter, Location et Organization si le bloc CDA\n     est présent ;\n   - informant.relatedEntity classCode=ECON est transmis à MapHeaderEmergencyContact\n     pour créer la RelatedPerson correspondant à la personne à prévenir ;\n   - informant.relatedEntity classCode=NOK est transmis à MapHeaderTrustedPerson\n     pour créer la RelatedPerson correspondant à la personne de confiance ;\n   - recordTarget.patientRole.patient.guardian est transmis à MapHeaderGuardian\n     pour créer la RelatedPerson correspondant au guardian ;\n   - relatedDocument est transmis à MapHeaderRelatedDocument pour alimenter\n     Composition.relatesTo.\n\n   Les ressources optionnelles sont créées dans le groupe qui traite le bloc CDA\n   correspondant. Ainsi, une ressource FHIR n’est créée que lorsqu’un élément CDA\n   justifie son existence",
+    "input" : [{
+      "name" : "cda",
+      "type" : "ClinicalDocument",
+      "mode" : "source"
+    },
+    {
+      "name" : "bundle",
+      "type" : "Bundle",
+      "mode" : "target"
+    },
+    {
+      "name" : "composition",
+      "type" : "Composition",
+      "mode" : "target"
+    },
+    {
+      "name" : "patient",
+      "type" : "Patient",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "documentIdentity",
+      "source" : [{
+        "context" : "cda"
+      }],
+      "dependent" : [{
+        "name" : "MapHeaderDocumentIdentity",
+        "variable" : ["cda", "bundle", "composition"]
+      }]
+    },
+    {
+      "name" : "documentDescription",
+      "source" : [{
+        "context" : "cda"
+      }],
+      "dependent" : [{
+        "name" : "MapHeaderDocumentDescription",
+        "variable" : ["cda", "composition", "patient"]
+      }]
+    },
+    {
+      "name" : "recordTarget",
+      "source" : [{
+        "context" : "cda"
+      }],
+      "dependent" : [{
+        "name" : "MapHeaderRecordTarget",
+        "variable" : ["cda", "patient", "composition"]
+      }]
+    },
+    {
+      "name" : "custodian",
+      "source" : [{
+        "context" : "cda"
+      }],
+      "dependent" : [{
+        "name" : "MapHeaderCustodian",
+        "variable" : ["cda", "composition", "bundle"]
+      }]
+    },
+    {
+      "name" : "author",
+      "source" : [{
+        "context" : "cda"
+      }],
+      "dependent" : [{
+        "name" : "MapHeaderAuthor",
+        "variable" : ["cda", "composition", "bundle"]
+      }]
+    },
+    {
+      "name" : "legalAuthenticator",
+      "source" : [{
+        "context" : "cda"
+      }],
+      "dependent" : [{
+        "name" : "MapHeaderLegalAuthenticator",
+        "variable" : ["cda", "composition", "bundle"]
+      }]
+    },
+    {
+      "name" : "documentationOf",
+      "source" : [{
+        "context" : "cda"
+      }],
+      "dependent" : [{
+        "name" : "MapHeaderDocumentationOf",
+        "variable" : ["cda", "composition"]
+      }]
+    },
+    {
+      "name" : "encounterContext",
+      "source" : [{
+        "context" : "cda"
+      }],
+      "dependent" : [{
+        "name" : "MapHeaderEncounterContext",
+        "variable" : ["cda", "composition", "bundle", "patient"]
+      }]
+    },
+    {
+      "name" : "emergencyContact",
+      "source" : [{
+        "context" : "cda"
+      }],
+      "dependent" : [{
+        "name" : "MapHeaderEmergencyContact",
+        "variable" : ["cda", "bundle", "patient"]
+      }]
+    },
+    {
+      "name" : "trustedPerson",
+      "source" : [{
+        "context" : "cda"
+      }],
+      "dependent" : [{
+        "name" : "MapHeaderTrustedPerson",
+        "variable" : ["cda", "bundle", "patient"]
+      }]
+    },
+    {
+      "name" : "guardian",
+      "source" : [{
+        "context" : "cda"
+      }],
+      "dependent" : [{
+        "name" : "MapHeaderGuardian",
+        "variable" : ["cda", "bundle", "patient"]
+      }]
+    },
+    {
+      "name" : "relatedDocument",
+      "source" : [{
+        "context" : "cda"
+      }],
+      "dependent" : [{
+        "name" : "MapHeaderRelatedDocument",
+        "variable" : ["cda", "composition"]
+      }]
+    }]
+  },
+  {
+    "name" : "MapHeaderDocumentIdentity",
+    "typeMode" : "none",
+    "documentation" : "groupe qui traite l'identité du document CDA -> métadonnées Bundle / Composition FHIR",
+    "input" : [{
+      "name" : "src",
+      "type" : "ClinicalDocument",
+      "mode" : "source"
+    },
+    {
+      "name" : "bundle",
+      "type" : "Bundle",
+      "mode" : "target"
+    },
+    {
+      "name" : "composition",
+      "type" : "Composition",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "bundleId",
+      "source" : [{
+        "context" : "src"
       }],
       "target" : [{
         "context" : "bundle",
@@ -233,9 +500,86 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
       }]
     },
     {
-      "name" : "identifier",
+      "name" : "bundleType",
       "source" : [{
-        "context" : "cda",
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "bundle",
+        "contextType" : "variable",
+        "element" : "type",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "document"
+        }]
+      }]
+    },
+    {
+      "name" : "bundleMeta",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "bundle",
+        "contextType" : "variable",
+        "element" : "meta",
+        "variable" : "bundleMeta"
+      }],
+      "rule" : [{
+        "name" : "bundleVersionNumber",
+        "source" : [{
+          "context" : "src",
+          "element" : "versionNumber",
+          "variable" : "versionNumber"
+        }],
+        "rule" : [{
+          "name" : "bundleMetaVersionId",
+          "source" : [{
+            "context" : "versionNumber",
+            "element" : "value",
+            "variable" : "version"
+          }],
+          "target" : [{
+            "context" : "bundleMeta",
+            "contextType" : "variable",
+            "element" : "versionId",
+            "transform" : "cast",
+            "parameter" : [{
+              "valueId" : "version"
+            },
+            {
+              "valueString" : "string"
+            }]
+          }]
+        }]
+      },
+      {
+        "name" : "bundleMetaLastUpdated",
+        "source" : [{
+          "context" : "src",
+          "element" : "effectiveTime",
+          "variable" : "effectiveTime"
+        }],
+        "target" : [{
+          "context" : "bundleMeta",
+          "contextType" : "variable",
+          "element" : "lastUpdated",
+          "variable" : "lastUpdated",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "instant"
+          }]
+        }],
+        "dependent" : [{
+          "name" : "TSInstant",
+          "variable" : ["effectiveTime", "lastUpdated"]
+        }]
+      }]
+    },
+    {
+      "name" : "bundleIdentifier",
+      "source" : [{
+        "context" : "src",
         "element" : "id",
         "variable" : "cdaId"
       }],
@@ -243,10 +587,14 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
         "context" : "bundle",
         "contextType" : "variable",
         "element" : "identifier",
-        "variable" : "identifier"
+        "variable" : "identifier",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Identifier"
+        }]
       }],
       "rule" : [{
-        "name" : "system",
+        "name" : "bundleIdentifierSystemWithExtension",
         "source" : [{
           "context" : "cdaId",
           "element" : "root",
@@ -257,20 +605,17 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
           "context" : "identifier",
           "contextType" : "variable",
           "element" : "system",
-          "transform" : "translate",
+          "transform" : "append",
           "parameter" : [{
+            "valueString" : "urn:oid:"
+          },
+          {
             "valueId" : "root"
-          },
-          {
-            "valueString" : "#oid2uri"
-          },
-          {
-            "valueString" : "uri"
           }]
         }]
       },
       {
-        "name" : "value",
+        "name" : "bundleIdentifierValueWithExtension",
         "source" : [{
           "context" : "cdaId",
           "element" : "extension",
@@ -287,7 +632,7 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
         }]
       },
       {
-        "name" : "systemOid",
+        "name" : "bundleIdentifierSystemOid",
         "source" : [{
           "context" : "cdaId",
           "element" : "root",
@@ -305,7 +650,7 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
         }]
       },
       {
-        "name" : "valueOid",
+        "name" : "bundleIdentifierValueOid",
         "source" : [{
           "context" : "cdaId",
           "element" : "root",
@@ -327,24 +672,9 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
       }]
     },
     {
-      "name" : "type",
+      "name" : "bundleTimestamp",
       "source" : [{
-        "context" : "cda"
-      }],
-      "target" : [{
-        "context" : "bundle",
-        "contextType" : "variable",
-        "element" : "type",
-        "transform" : "copy",
-        "parameter" : [{
-          "valueString" : "document"
-        }]
-      }]
-    },
-    {
-      "name" : "timestamp",
-      "source" : [{
-        "context" : "cda",
+        "context" : "src",
         "element" : "effectiveTime",
         "variable" : "effectiveTime"
       }],
@@ -364,263 +694,14 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
       }]
     },
     {
-      "name" : "composition",
-      "source" : [{
-        "context" : "cda"
-      }],
-      "dependent" : [{
-        "name" : "ClinicalDocumentComposition",
-        "variable" : ["cda", "composition", "patient", "bundle"]
-      }]
-    },
-    {
-      "name" : "cdaComponent",
-      "source" : [{
-        "context" : "cda",
-        "element" : "component",
-        "variable" : "cdaComponent"
-      }],
-      "rule" : [{
-        "name" : "body",
-        "source" : [{
-          "context" : "cdaComponent",
-          "element" : "structuredBody",
-          "variable" : "body"
-        }],
-        "rule" : [{
-          "name" : "bodyComponent",
-          "source" : [{
-            "context" : "body",
-            "element" : "component",
-            "variable" : "bodyComponent"
-          }],
-          "rule" : [{
-            "name" : "section",
-            "source" : [{
-              "context" : "bodyComponent",
-              "element" : "section",
-              "variable" : "srcSection",
-              "condition" : "$this.code.empty()"
-            }],
-            "target" : [{
-              "context" : "composition",
-              "contextType" : "variable",
-              "element" : "section",
-              "variable" : "tgtSection"
-            }],
-            "dependent" : [{
-              "name" : "ClinicalDocumentSection",
-              "variable" : ["cda", "srcSection", "patient", "tgtSection", "bundle"]
-            }]
-          }]
-        }]
-      }]
-    }]
-  },
-  {
-    "name" : "ClinicalDocumentSection",
-    "typeMode" : "none",
-    "documentation" : "// _________________________ Section Level Templates _________________________",
-    "input" : [{
-      "name" : "cda",
-      "type" : "ClinicalDocument",
-      "mode" : "source"
-    },
-    {
-      "name" : "src",
-      "type" : "Section",
-      "mode" : "source"
-    },
-    {
-      "name" : "patient",
-      "type" : "Patient",
-      "mode" : "source"
-    },
-    {
-      "name" : "tgt",
-      "mode" : "target"
-    },
-    {
-      "name" : "bundle",
-      "type" : "Bundle",
-      "mode" : "target"
-    }],
-    "rule" : [{
-      "name" : "title",
-      "source" : [{
-        "context" : "src",
-        "element" : "title",
-        "variable" : "t"
-      }],
-      "target" : [{
-        "context" : "tgt",
-        "contextType" : "variable",
-        "element" : "title",
-        "transform" : "evaluate",
-        "parameter" : [{
-          "valueString" : "t.xmlText"
-        }]
-      }]
-    },
-    {
-      "name" : "code",
-      "source" : [{
-        "context" : "src",
-        "element" : "code",
-        "variable" : "srcCode"
-      }],
-      "target" : [{
-        "context" : "tgt",
-        "contextType" : "variable",
-        "element" : "code",
-        "transform" : "copy",
-        "parameter" : [{
-          "valueId" : "srcCode"
-        }]
-      }]
-    },
-    {
-      "name" : "cdaText",
-      "source" : [{
-        "context" : "src",
-        "element" : "text",
-        "variable" : "cdaText"
-      }],
-      "target" : [{
-        "context" : "tgt",
-        "contextType" : "variable",
-        "element" : "text",
-        "variable" : "fhirText"
-      }],
-      "rule" : [{
-        "name" : "narrativeStatus",
-        "source" : [{
-          "context" : "cdaText"
-        }],
-        "target" : [{
-          "context" : "fhirText",
-          "contextType" : "variable",
-          "element" : "status",
-          "transform" : "copy",
-          "parameter" : [{
-            "valueString" : "generated"
-          }]
-        }]
-      },
-      {
-        "name" : "narrativeText",
-        "source" : [{
-          "context" : "cdaText",
-          "variable" : "t"
-        }],
-        "target" : [{
-          "context" : "fhirText",
-          "contextType" : "variable",
-          "element" : "div",
-          "transform" : "copy",
-          "parameter" : [{
-            "valueId" : "t"
-          }]
-        }]
-      }]
-    },
-    {
-      "name" : "section",
-      "source" : [{
-        "context" : "src",
-        "element" : "section",
-        "variable" : "srcSection"
-      }],
-      "target" : [{
-        "context" : "tgt",
-        "contextType" : "variable",
-        "element" : "section",
-        "variable" : "tgtSection"
-      }],
-      "dependent" : [{
-        "name" : "ClinicalDocumentSection",
-        "variable" : ["cda", "srcSection", "patient", "tgtSection", "bundle"]
-      }]
-    }]
-  },
-  {
-    "name" : "ClinicalDocumentComposition",
-    "typeMode" : "none",
-    "documentation" : "_________________________ Entry Level Templates   ________________________\r\n_________________________ Header Level Templates _________________________",
-    "input" : [{
-      "name" : "src",
-      "type" : "ClinicalDocument",
-      "mode" : "source"
-    },
-    {
-      "name" : "tgt",
-      "type" : "Composition",
-      "mode" : "target"
-    },
-    {
-      "name" : "patientResource",
-      "type" : "Patient",
-      "mode" : "target"
-    },
-    {
-      "name" : "bundle",
-      "type" : "Bundle",
-      "mode" : "target"
-    }],
-    "rule" : [{
-      "name" : "languageCode",
-      "source" : [{
-        "context" : "src",
-        "element" : "languageCode",
-        "variable" : "languageCode"
-      }],
-      "target" : [{
-        "context" : "tgt",
-        "contextType" : "variable",
-        "element" : "language",
-        "variable" : "code",
-        "transform" : "create",
-        "parameter" : [{
-          "valueString" : "code"
-        }]
-      }],
-      "dependent" : [{
-        "name" : "CSCode",
-        "variable" : ["languageCode", "code"]
-      }]
-    },
-    {
-      "name" : "identifier",
-      "source" : [{
-        "context" : "src",
-        "element" : "id",
-        "variable" : "id",
-        "condition" : "src.setId.exists().not()"
-      }],
-      "target" : [{
-        "context" : "tgt",
-        "contextType" : "variable",
-        "element" : "identifier",
-        "variable" : "identifier",
-        "transform" : "create",
-        "parameter" : [{
-          "valueString" : "Identifier"
-        }]
-      }],
-      "dependent" : [{
-        "name" : "II",
-        "variable" : ["id", "identifier"]
-      }]
-    },
-    {
-      "name" : "setIdentifier",
+      "name" : "compositionSetIdentifier",
       "source" : [{
         "context" : "src",
         "element" : "setId",
         "variable" : "setId"
       }],
       "target" : [{
-        "context" : "tgt",
+        "context" : "composition",
         "contextType" : "variable",
         "element" : "identifier",
         "variable" : "identifier",
@@ -635,12 +716,35 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
       }]
     },
     {
-      "name" : "status",
+      "name" : "compositionIdentifier",
+      "source" : [{
+        "context" : "src",
+        "element" : "id",
+        "variable" : "id",
+        "condition" : "src.setId.empty()"
+      }],
+      "target" : [{
+        "context" : "composition",
+        "contextType" : "variable",
+        "element" : "identifier",
+        "variable" : "identifier",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Identifier"
+        }]
+      }],
+      "dependent" : [{
+        "name" : "II",
+        "variable" : ["id", "identifier"]
+      }]
+    },
+    {
+      "name" : "compositionStatus",
       "source" : [{
         "context" : "src"
       }],
       "target" : [{
-        "context" : "tgt",
+        "context" : "composition",
         "contextType" : "variable",
         "element" : "status",
         "transform" : "copy",
@@ -650,14 +754,118 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
       }]
     },
     {
-      "name" : "code",
+      "name" : "compositionMeta",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "composition",
+        "contextType" : "variable",
+        "element" : "meta",
+        "variable" : "compositionMeta"
+      }],
+      "rule" : [{
+        "name" : "compositionVersionNumber",
+        "source" : [{
+          "context" : "src",
+          "element" : "versionNumber",
+          "variable" : "versionNumber"
+        }],
+        "rule" : [{
+          "name" : "compositionMetaVersionId",
+          "source" : [{
+            "context" : "versionNumber",
+            "element" : "value",
+            "variable" : "version"
+          }],
+          "target" : [{
+            "context" : "compositionMeta",
+            "contextType" : "variable",
+            "element" : "versionId",
+            "transform" : "cast",
+            "parameter" : [{
+              "valueId" : "version"
+            },
+            {
+              "valueString" : "string"
+            }]
+          }]
+        }]
+      },
+      {
+        "name" : "compositionMetaLastUpdated",
+        "source" : [{
+          "context" : "src",
+          "element" : "effectiveTime",
+          "variable" : "effectiveTime"
+        }],
+        "target" : [{
+          "context" : "compositionMeta",
+          "contextType" : "variable",
+          "element" : "lastUpdated",
+          "variable" : "lastUpdated",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "instant"
+          }]
+        }],
+        "dependent" : [{
+          "name" : "TSInstant",
+          "variable" : ["effectiveTime", "lastUpdated"]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "MapHeaderDocumentDescription",
+    "typeMode" : "none",
+    "documentation" : "groupe qui traite la description du document CDA -> FHIR Composition",
+    "input" : [{
+      "name" : "src",
+      "type" : "ClinicalDocument",
+      "mode" : "source"
+    },
+    {
+      "name" : "composition",
+      "type" : "Composition",
+      "mode" : "target"
+    },
+    {
+      "name" : "patient",
+      "type" : "Patient",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "language",
+      "source" : [{
+        "context" : "src",
+        "element" : "languageCode",
+        "variable" : "languageCode"
+      }],
+      "target" : [{
+        "context" : "composition",
+        "contextType" : "variable",
+        "element" : "language",
+        "variable" : "code",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "code"
+        }]
+      }],
+      "dependent" : [{
+        "name" : "CSCode",
+        "variable" : ["languageCode", "code"]
+      }]
+    },
+    {
+      "name" : "type",
       "source" : [{
         "context" : "src",
         "element" : "code",
         "variable" : "srcCode"
       }],
       "target" : [{
-        "context" : "tgt",
+        "context" : "composition",
         "contextType" : "variable",
         "element" : "type",
         "variable" : "cc",
@@ -676,140 +884,52 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
       "source" : [{
         "context" : "src",
         "element" : "title",
-        "variable" : "t"
+        "variable" : "title"
       }],
       "target" : [{
-        "context" : "tgt",
+        "context" : "composition",
         "contextType" : "variable",
         "element" : "title",
         "transform" : "evaluate",
         "parameter" : [{
-          "valueString" : "t.xmlText"
+          "valueString" : "title.xmlText"
         }]
       }]
     },
     {
-      "name" : "patientRole",
+      "name" : "subject",
       "source" : [{
-        "context" : "src",
-        "element" : "recordTarget",
-        "variable" : "recordTarget"
-      }],
-      "rule" : [{
-        "name" : "subject",
-        "source" : [{
-          "context" : "recordTarget",
-          "element" : "patientRole",
-          "variable" : "patient"
-        }],
-        "target" : [{
-          "context" : "tgt",
-          "contextType" : "variable",
-          "element" : "subject",
-          "variable" : "reference",
-          "transform" : "create",
-          "parameter" : [{
-            "valueString" : "Reference"
-          }]
-        },
-        {
-          "context" : "reference",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %patientResource.id"
-          }]
-        }],
-        "dependent" : [{
-          "name" : "ClinicalDocumentPatientRole",
-          "variable" : ["patient", "patientResource", "bundle"]
-        }]
-      }]
-    },
-    {
-      "name" : "encompassingEncounter",
-      "source" : [{
-        "context" : "src",
-        "element" : "componentOf",
-        "variable" : "comp"
+        "context" : "src"
       }],
       "target" : [{
-        "context" : "bundle",
+        "context" : "composition",
         "contextType" : "variable",
-        "element" : "entry",
-        "variable" : "e"
-      },
-      {
-        "context" : "e",
-        "contextType" : "variable",
-        "element" : "resource",
-        "variable" : "encounter",
+        "element" : "subject",
+        "variable" : "subjectRef",
         "transform" : "create",
         "parameter" : [{
-          "valueString" : "Encounter"
+          "valueString" : "Reference"
         }]
       },
       {
-        "context" : "encounter",
+        "context" : "subjectRef",
         "contextType" : "variable",
-        "element" : "id",
-        "variable" : "uuid",
-        "transform" : "uuid"
-      },
-      {
-        "context" : "e",
-        "contextType" : "variable",
-        "element" : "fullUrl",
-        "transform" : "append",
+        "element" : "reference",
+        "transform" : "evaluate",
         "parameter" : [{
-          "valueString" : "urn:uuid:"
-        },
-        {
-          "valueId" : "uuid"
-        }]
-      }],
-      "rule" : [{
-        "name" : "srcEncounter",
-        "source" : [{
-          "context" : "comp",
-          "element" : "encompassingEncounter",
-          "variable" : "srcEnc"
-        }],
-        "target" : [{
-          "context" : "tgt",
-          "contextType" : "variable",
-          "element" : "encounter",
-          "variable" : "reference",
-          "transform" : "create",
-          "parameter" : [{
-            "valueString" : "Reference"
-          }]
-        },
-        {
-          "context" : "reference",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %encounter.id"
-          }]
-        }],
-        "dependent" : [{
-          "name" : "ClinicalDocumentEncounter",
-          "variable" : ["srcEnc", "bundle", "encounter"]
+          "valueString" : "'urn:uuid:' + %patient.id"
         }]
       }]
     },
     {
-      "name" : "compositionDate",
+      "name" : "date",
       "source" : [{
         "context" : "src",
         "element" : "effectiveTime",
         "variable" : "effectiveTime"
       }],
       "target" : [{
-        "context" : "tgt",
+        "context" : "composition",
         "contextType" : "variable",
         "element" : "date",
         "variable" : "date",
@@ -824,826 +944,14 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
       }]
     },
     {
-      "name" : "srcAuthor",
-      "source" : [{
-        "context" : "src",
-        "element" : "author",
-        "variable" : "srcAuthor"
-      }],
-      "target" : [{
-        "context" : "bundle",
-        "contextType" : "variable",
-        "element" : "entry",
-        "variable" : "e"
-      },
-      {
-        "context" : "e",
-        "contextType" : "variable",
-        "element" : "resource",
-        "variable" : "practitioner",
-        "transform" : "create",
-        "parameter" : [{
-          "valueString" : "Practitioner"
-        }]
-      },
-      {
-        "context" : "practitioner",
-        "contextType" : "variable",
-        "element" : "id",
-        "variable" : "uuid2",
-        "transform" : "uuid"
-      },
-      {
-        "context" : "e",
-        "contextType" : "variable",
-        "element" : "fullUrl",
-        "transform" : "append",
-        "parameter" : [{
-          "valueString" : "urn:uuid:"
-        },
-        {
-          "valueId" : "uuid2"
-        }]
-      },
-      {
-        "context" : "bundle",
-        "contextType" : "variable",
-        "element" : "entry",
-        "variable" : "eRole"
-      },
-      {
-        "context" : "eRole",
-        "contextType" : "variable",
-        "element" : "resource",
-        "variable" : "practitionerRole",
-        "transform" : "create",
-        "parameter" : [{
-          "valueString" : "PractitionerRole"
-        }]
-      },
-      {
-        "context" : "practitionerRole",
-        "contextType" : "variable",
-        "element" : "id",
-        "variable" : "uuidRole",
-        "transform" : "uuid"
-      },
-      {
-        "context" : "eRole",
-        "contextType" : "variable",
-        "element" : "fullUrl",
-        "transform" : "append",
-        "parameter" : [{
-          "valueString" : "urn:uuid:"
-        },
-        {
-          "valueId" : "uuidRole"
-        }]
-      },
-      {
-        "context" : "tgt",
-        "contextType" : "variable",
-        "element" : "author",
-        "variable" : "reference",
-        "transform" : "create",
-        "parameter" : [{
-          "valueString" : "Reference"
-        }]
-      },
-      {
-        "context" : "reference",
-        "contextType" : "variable",
-        "element" : "reference",
-        "transform" : "evaluate",
-        "parameter" : [{
-          "valueString" : "'urn:uuid:' + %practitionerRole.id"
-        }]
-      }],
-      "rule" : [{
-        "name" : "practitionerMeta",
-        "source" : [{
-          "context" : "srcAuthor"
-        }],
-        "target" : [{
-          "context" : "practitioner",
-          "contextType" : "variable",
-          "element" : "meta",
-          "variable" : "meta",
-          "transform" : "create",
-          "parameter" : [{
-            "valueString" : "Meta"
-          }]
-        }],
-        "rule" : [{
-          "name" : "practitionerProfile",
-          "source" : [{
-            "context" : "srcAuthor"
-          }],
-          "target" : [{
-            "context" : "meta",
-            "contextType" : "variable",
-            "element" : "profile",
-            "transform" : "copy",
-            "parameter" : [{
-              "valueString" : "https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-practitioner"
-            }]
-          }]
-        }]
-      },
-      {
-        "name" : "practitionerRoleMeta",
-        "source" : [{
-          "context" : "srcAuthor"
-        }],
-        "target" : [{
-          "context" : "practitionerRole",
-          "contextType" : "variable",
-          "element" : "meta",
-          "variable" : "metaRole",
-          "transform" : "create",
-          "parameter" : [{
-            "valueString" : "Meta"
-          }]
-        }],
-        "rule" : [{
-          "name" : "practitionerRoleProfile",
-          "source" : [{
-            "context" : "srcAuthor"
-          }],
-          "target" : [{
-            "context" : "metaRole",
-            "contextType" : "variable",
-            "element" : "profile",
-            "transform" : "copy",
-            "parameter" : [{
-              "valueString" : "https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-practitionerrole"
-            }]
-          }]
-        }]
-      },
-      {
-        "name" : "practitionerRef",
-        "source" : [{
-          "context" : "srcAuthor"
-        }],
-        "target" : [{
-          "context" : "practitionerRole",
-          "contextType" : "variable",
-          "element" : "practitioner",
-          "variable" : "refPract",
-          "transform" : "create",
-          "parameter" : [{
-            "valueString" : "Reference"
-          }]
-        },
-        {
-          "context" : "refPract",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %practitioner.id"
-          }]
-        }]
-      },
-      {
-        "name" : "author",
-        "source" : [{
-          "context" : "srcAuthor",
-          "element" : "assignedAuthor",
-          "variable" : "assignedAuthor"
-        }],
-        "rule" : [{
-          "name" : "identifier",
-          "source" : [{
-            "context" : "assignedAuthor",
-            "element" : "id",
-            "variable" : "id"
-          }],
-          "target" : [{
-            "context" : "practitioner",
-            "contextType" : "variable",
-            "element" : "identifier",
-            "variable" : "identifier",
-            "transform" : "create",
-            "parameter" : [{
-              "valueString" : "Identifier"
-            }]
-          }],
-          "rule" : [{
-            "name" : "baseIdentifier",
-            "source" : [{
-              "context" : "id"
-            }],
-            "target" : [{
-              "context" : "identifier",
-              "contextType" : "variable"
-            }],
-            "dependent" : [{
-              "name" : "II",
-              "variable" : ["id", "identifier"]
-            }]
-          },
-          {
-            "name" : "idNatPs",
-            "source" : [{
-              "context" : "id",
-              "condition" : "root = '1.2.250.1.71.4.2.1'"
-            }],
-            "target" : [{
-              "context" : "identifier",
-              "contextType" : "variable",
-              "element" : "type",
-              "variable" : "type",
-              "transform" : "create",
-              "parameter" : [{
-                "valueString" : "CodeableConcept"
-              }]
-            }],
-            "rule" : [{
-              "name" : "coding",
-              "source" : [{
-                "context" : "id"
-              }],
-              "target" : [{
-                "context" : "type",
-                "contextType" : "variable",
-                "element" : "coding",
-                "variable" : "coding",
-                "transform" : "create",
-                "parameter" : [{
-                  "valueString" : "Coding"
-                }]
-              }],
-              "rule" : [{
-                "name" : "system",
-                "source" : [{
-                  "context" : "id"
-                }],
-                "target" : [{
-                  "context" : "coding",
-                  "contextType" : "variable",
-                  "element" : "system",
-                  "transform" : "copy",
-                  "parameter" : [{
-                    "valueString" : "https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203"
-                  }]
-                }]
-              },
-              {
-                "name" : "code",
-                "source" : [{
-                  "context" : "id"
-                }],
-                "target" : [{
-                  "context" : "coding",
-                  "contextType" : "variable",
-                  "element" : "code",
-                  "transform" : "copy",
-                  "parameter" : [{
-                    "valueString" : "IDNPS"
-                  }]
-                }]
-              }]
-            }]
-          }]
-        },
-        {
-          "name" : "addr",
-          "source" : [{
-            "context" : "assignedAuthor",
-            "element" : "addr",
-            "variable" : "addr"
-          }],
-          "target" : [{
-            "context" : "practitioner",
-            "contextType" : "variable",
-            "element" : "address",
-            "variable" : "address",
-            "transform" : "create",
-            "parameter" : [{
-              "valueString" : "Address"
-            }]
-          }],
-          "dependent" : [{
-            "name" : "ADAddress",
-            "variable" : ["addr", "address"]
-          }]
-        },
-        {
-          "name" : "telecom",
-          "source" : [{
-            "context" : "assignedAuthor",
-            "element" : "telecom",
-            "variable" : "tlc"
-          }],
-          "target" : [{
-            "context" : "practitioner",
-            "contextType" : "variable",
-            "element" : "telecom",
-            "variable" : "contactPoint",
-            "transform" : "create",
-            "parameter" : [{
-              "valueString" : "ContactPoint"
-            }]
-          }],
-          "dependent" : [{
-            "name" : "TELContactPoint",
-            "variable" : ["tlc", "contactPoint"]
-          }]
-        },
-        {
-          "name" : "name",
-          "source" : [{
-            "context" : "assignedAuthor",
-            "element" : "assignedPerson",
-            "variable" : "assPerson"
-          }],
-          "rule" : [{
-            "name" : "name",
-            "source" : [{
-              "context" : "assPerson",
-              "element" : "name",
-              "variable" : "pName"
-            }],
-            "target" : [{
-              "context" : "practitioner",
-              "contextType" : "variable",
-              "element" : "name",
-              "variable" : "humanName",
-              "transform" : "create",
-              "parameter" : [{
-                "valueString" : "HumanName"
-              }]
-            }],
-            "dependent" : [{
-              "name" : "ENHumanName",
-              "variable" : ["pName", "humanName"]
-            }]
-          }]
-        },
-        {
-          "name" : "roleCode",
-          "source" : [{
-            "context" : "assignedAuthor",
-            "element" : "code",
-            "variable" : "roleCode"
-          }],
-          "target" : [{
-            "context" : "practitionerRole",
-            "contextType" : "variable",
-            "element" : "code",
-            "variable" : "cc",
-            "transform" : "create",
-            "parameter" : [{
-              "valueString" : "CodeableConcept"
-            }]
-          }],
-          "dependent" : [{
-            "name" : "CDCodeableConcept",
-            "variable" : ["roleCode", "cc"]
-          }]
-        },
-        {
-          "name" : "savoirFaire",
-          "source" : [{
-            "context" : "assignedAuthor",
-            "element" : "code",
-            "variable" : "roleCode",
-            "condition" : "code.contains('/')"
-          }],
-          "target" : [{
-            "context" : "practitioner",
-            "contextType" : "variable",
-            "element" : "qualification",
-            "variable" : "qualification"
-          }],
-          "rule" : [{
-            "name" : "qualCode",
-            "source" : [{
-              "context" : "roleCode"
-            }],
-            "target" : [{
-              "context" : "qualification",
-              "contextType" : "variable",
-              "element" : "code",
-              "variable" : "qualCode",
-              "transform" : "create",
-              "parameter" : [{
-                "valueString" : "CodeableConcept"
-              }]
-            }],
-            "rule" : [{
-              "name" : "coding",
-              "source" : [{
-                "context" : "roleCode",
-                "element" : "code",
-                "variable" : "fullCode"
-              }],
-              "target" : [{
-                "context" : "qualCode",
-                "contextType" : "variable",
-                "element" : "coding",
-                "variable" : "coding",
-                "transform" : "create",
-                "parameter" : [{
-                  "valueString" : "Coding"
-                }]
-              }],
-              "rule" : [{
-                "name" : "savoirFaireCode",
-                "source" : [{
-                  "context" : "fullCode"
-                }],
-                "target" : [{
-                  "context" : "coding",
-                  "contextType" : "variable",
-                  "element" : "code",
-                  "transform" : "evaluate",
-                  "parameter" : [{
-                    "valueString" : "%fullCode.substring(%fullCode.indexOf('/') + 1)"
-                  }]
-                }]
-              },
-              {
-                "name" : "systemSavoirFaire",
-                "source" : [{
-                  "context" : "fullCode"
-                }],
-                "target" : [{
-                  "context" : "coding",
-                  "contextType" : "variable",
-                  "element" : "system",
-                  "transform" : "copy",
-                  "parameter" : [{
-                    "valueString" : "https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale"
-                  }]
-                }]
-              },
-              {
-                "name" : "display",
-                "source" : [{
-                  "context" : "roleCode",
-                  "element" : "displayName",
-                  "variable" : "display"
-                }],
-                "target" : [{
-                  "context" : "coding",
-                  "contextType" : "variable",
-                  "element" : "display",
-                  "transform" : "copy",
-                  "parameter" : [{
-                    "valueId" : "display"
-                  }]
-                }]
-              }]
-            }]
-          }]
-        },
-        {
-          "name" : "profession",
-          "source" : [{
-            "context" : "assignedAuthor",
-            "element" : "code",
-            "variable" : "roleCode",
-            "condition" : "code.contains('/') and code.contains('_')"
-          }],
-          "target" : [{
-            "context" : "practitioner",
-            "contextType" : "variable",
-            "element" : "qualification",
-            "variable" : "qualification"
-          }],
-          "rule" : [{
-            "name" : "qualCode",
-            "source" : [{
-              "context" : "roleCode"
-            }],
-            "target" : [{
-              "context" : "qualification",
-              "contextType" : "variable",
-              "element" : "code",
-              "variable" : "qualCode",
-              "transform" : "create",
-              "parameter" : [{
-                "valueString" : "CodeableConcept"
-              }]
-            }],
-            "rule" : [{
-              "name" : "coding",
-              "source" : [{
-                "context" : "roleCode",
-                "element" : "code",
-                "variable" : "fullCode"
-              }],
-              "target" : [{
-                "context" : "qualCode",
-                "contextType" : "variable",
-                "element" : "coding",
-                "variable" : "coding",
-                "transform" : "create",
-                "parameter" : [{
-                  "valueString" : "Coding"
-                }]
-              }],
-              "rule" : [{
-                "name" : "professionCode",
-                "source" : [{
-                  "context" : "fullCode"
-                }],
-                "target" : [{
-                  "context" : "coding",
-                  "contextType" : "variable",
-                  "element" : "code",
-                  "transform" : "evaluate",
-                  "parameter" : [{
-                    "valueString" : "%fullCode.substring(%fullCode.indexOf('_') + 1).substring(0, %fullCode.substring(%fullCode.indexOf('_') + 1).indexOf('/'))"
-                  }]
-                }]
-              },
-              {
-                "name" : "systemProfession",
-                "source" : [{
-                  "context" : "fullCode"
-                }],
-                "target" : [{
-                  "context" : "coding",
-                  "contextType" : "variable",
-                  "element" : "system",
-                  "transform" : "copy",
-                  "parameter" : [{
-                    "valueString" : "https://mos.esante.gouv.fr/NOS/TRE_G15-ProfessionSante/FHIR/TRE-G15-ProfessionSante"
-                  }]
-                }]
-              },
-              {
-                "name" : "displayMedecin",
-                "source" : [{
-                  "context" : "fullCode",
-                  "condition" : "%fullCode.substring(%fullCode.indexOf('_') + 1).substring(0, %fullCode.substring(%fullCode.indexOf('_') + 1).indexOf('/')) = '10'"
-                }],
-                "target" : [{
-                  "context" : "coding",
-                  "contextType" : "variable",
-                  "element" : "display",
-                  "transform" : "copy",
-                  "parameter" : [{
-                    "valueString" : "Médecin"
-                  }]
-                }]
-              }]
-            }]
-          }]
-        },
-        {
-          "name" : "representedOrganization",
-          "source" : [{
-            "context" : "assignedAuthor",
-            "element" : "representedOrganization",
-            "variable" : "srcOrg"
-          }],
-          "target" : [{
-            "context" : "bundle",
-            "contextType" : "variable",
-            "element" : "entry",
-            "variable" : "e2"
-          },
-          {
-            "context" : "e2",
-            "contextType" : "variable",
-            "element" : "resource",
-            "variable" : "organization",
-            "transform" : "create",
-            "parameter" : [{
-              "valueString" : "Organization"
-            }]
-          },
-          {
-            "context" : "organization",
-            "contextType" : "variable",
-            "element" : "id",
-            "variable" : "uuid3",
-            "transform" : "uuid"
-          },
-          {
-            "context" : "e2",
-            "contextType" : "variable",
-            "element" : "fullUrl",
-            "transform" : "append",
-            "parameter" : [{
-              "valueString" : "urn:uuid:"
-            },
-            {
-              "valueId" : "uuid3"
-            }]
-          },
-          {
-            "context" : "practitionerRole",
-            "contextType" : "variable",
-            "element" : "organization",
-            "variable" : "refOrg",
-            "transform" : "create",
-            "parameter" : [{
-              "valueString" : "Reference"
-            }]
-          },
-          {
-            "context" : "refOrg",
-            "contextType" : "variable",
-            "element" : "reference",
-            "transform" : "evaluate",
-            "parameter" : [{
-              "valueString" : "'urn:uuid:' + %organization.id"
-            }]
-          }],
-          "dependent" : [{
-            "name" : "ClinicalDocumentOrganization",
-            "variable" : ["srcOrg", "organization"]
-          }]
-        }]
-      }]
-    },
-    {
-      "name" : "informant",
-      "source" : [{
-        "context" : "src",
-        "element" : "informant",
-        "variable" : "srcInformant"
-      }],
-      "target" : [{
-        "context" : "bundle",
-        "contextType" : "variable",
-        "element" : "entry",
-        "variable" : "e"
-      },
-      {
-        "context" : "e",
-        "contextType" : "variable",
-        "element" : "resource",
-        "variable" : "relatedPerson",
-        "transform" : "create",
-        "parameter" : [{
-          "valueString" : "RelatedPerson"
-        }]
-      },
-      {
-        "context" : "relatedPerson",
-        "contextType" : "variable",
-        "element" : "id",
-        "variable" : "uuidRelated",
-        "transform" : "uuid"
-      },
-      {
-        "context" : "e",
-        "contextType" : "variable",
-        "element" : "fullUrl",
-        "transform" : "append",
-        "parameter" : [{
-          "valueString" : "urn:uuid:"
-        },
-        {
-          "valueId" : "uuidRelated"
-        }]
-      }],
-      "rule" : [{
-        "name" : "relatedEntity",
-        "source" : [{
-          "context" : "srcInformant",
-          "element" : "relatedEntity",
-          "variable" : "relatedEntity"
-        }],
-        "rule" : [{
-          "name" : "patientRef",
-          "source" : [{
-            "context" : "relatedEntity"
-          }],
-          "target" : [{
-            "context" : "relatedPerson",
-            "contextType" : "variable",
-            "element" : "patient",
-            "variable" : "patientRef",
-            "transform" : "create",
-            "parameter" : [{
-              "valueString" : "Reference"
-            }]
-          },
-          {
-            "context" : "patientRef",
-            "contextType" : "variable",
-            "element" : "reference",
-            "transform" : "evaluate",
-            "parameter" : [{
-              "valueString" : "'urn:uuid:' + %patientResource.id"
-            }]
-          }]
-        },
-        {
-          "name" : "relationship",
-          "source" : [{
-            "context" : "relatedEntity",
-            "element" : "code",
-            "variable" : "relationCode"
-          }],
-          "target" : [{
-            "context" : "relatedPerson",
-            "contextType" : "variable",
-            "element" : "relationship",
-            "variable" : "cc",
-            "transform" : "create",
-            "parameter" : [{
-              "valueString" : "CodeableConcept"
-            }]
-          }],
-          "dependent" : [{
-            "name" : "CDCodeableConcept",
-            "variable" : ["relationCode", "cc"]
-          }]
-        },
-        {
-          "name" : "address",
-          "source" : [{
-            "context" : "relatedEntity",
-            "element" : "addr",
-            "variable" : "addr"
-          }],
-          "target" : [{
-            "context" : "relatedPerson",
-            "contextType" : "variable",
-            "element" : "address",
-            "variable" : "address",
-            "transform" : "create",
-            "parameter" : [{
-              "valueString" : "Address"
-            }]
-          }],
-          "dependent" : [{
-            "name" : "ADAddress",
-            "variable" : ["addr", "address"]
-          }]
-        },
-        {
-          "name" : "telecom",
-          "source" : [{
-            "context" : "relatedEntity",
-            "element" : "telecom",
-            "variable" : "tlc"
-          }],
-          "target" : [{
-            "context" : "relatedPerson",
-            "contextType" : "variable",
-            "element" : "telecom",
-            "variable" : "contactPoint",
-            "transform" : "create",
-            "parameter" : [{
-              "valueString" : "ContactPoint"
-            }]
-          }],
-          "dependent" : [{
-            "name" : "TELContactPoint",
-            "variable" : ["tlc", "contactPoint"]
-          }]
-        },
-        {
-          "name" : "relatedPersonName",
-          "source" : [{
-            "context" : "relatedEntity",
-            "element" : "relatedPerson",
-            "variable" : "relPerson"
-          }],
-          "rule" : [{
-            "name" : "name",
-            "source" : [{
-              "context" : "relPerson",
-              "element" : "name",
-              "variable" : "pName"
-            }],
-            "target" : [{
-              "context" : "relatedPerson",
-              "contextType" : "variable",
-              "element" : "name",
-              "variable" : "humanName",
-              "transform" : "create",
-              "parameter" : [{
-                "valueString" : "HumanName"
-              }]
-            }],
-            "dependent" : [{
-              "name" : "ENHumanName",
-              "variable" : ["pName", "humanName"]
-            }]
-          }]
-        }]
-      }]
-    },
-    {
-      "name" : "confidentialityCode",
+      "name" : "confidentiality",
       "source" : [{
         "context" : "src",
         "element" : "confidentialityCode",
         "variable" : "confCode"
       }],
       "target" : [{
-        "context" : "tgt",
+        "context" : "composition",
         "contextType" : "variable",
         "element" : "confidentiality",
         "variable" : "code",
@@ -1656,351 +964,830 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
         "name" : "CSCode",
         "variable" : ["confCode", "code"]
       }]
+    }]
+  },
+  {
+    "name" : "MapHeaderRecordTarget",
+    "typeMode" : "none",
+    "documentation" : "groupe qui traite: CDA recordTarget.patientRole -> FHIR Patient",
+    "input" : [{
+      "name" : "src",
+      "type" : "ClinicalDocument",
+      "mode" : "source"
     },
     {
-      "name" : "legalAuth",
+      "name" : "patient",
+      "type" : "Patient",
+      "mode" : "target"
+    },
+    {
+      "name" : "composition",
+      "type" : "Composition",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "recordTarget",
       "source" : [{
         "context" : "src",
-        "element" : "legalAuthenticator",
-        "variable" : "legalAuth"
-      }],
-      "target" : [{
-        "context" : "bundle",
-        "contextType" : "variable",
-        "element" : "entry",
-        "variable" : "e"
-      },
-      {
-        "context" : "e",
-        "contextType" : "variable",
-        "element" : "resource",
-        "variable" : "practitioner",
-        "transform" : "create",
-        "parameter" : [{
-          "valueString" : "Practitioner"
-        }]
-      },
-      {
-        "context" : "practitioner",
-        "contextType" : "variable",
-        "element" : "id",
-        "variable" : "uuid2",
-        "transform" : "uuid"
-      },
-      {
-        "context" : "e",
-        "contextType" : "variable",
-        "element" : "fullUrl",
-        "transform" : "append",
-        "parameter" : [{
-          "valueString" : "urn:uuid:"
-        },
-        {
-          "valueId" : "uuid2"
-        }]
+        "element" : "recordTarget",
+        "variable" : "recordTarget"
       }],
       "rule" : [{
-        "name" : "attester",
+        "name" : "patientRole",
         "source" : [{
-          "context" : "legalAuth"
-        }],
-        "target" : [{
-          "context" : "tgt",
-          "contextType" : "variable",
-          "element" : "attester",
-          "variable" : "attester"
+          "context" : "recordTarget",
+          "element" : "patientRole",
+          "variable" : "patientRole"
         }],
         "rule" : [{
-          "name" : "mode",
+          "name" : "address",
           "source" : [{
-            "context" : "legalAuth"
+            "context" : "patientRole",
+            "element" : "addr",
+            "variable" : "srcAddr"
           }],
           "target" : [{
-            "context" : "attester",
+            "context" : "patient",
             "contextType" : "variable",
-            "element" : "mode",
-            "transform" : "copy",
-            "parameter" : [{
-              "valueString" : "legal"
-            }]
-          }]
-        },
-        {
-          "name" : "time",
-          "source" : [{
-            "context" : "legalAuth",
-            "element" : "time",
-            "variable" : "time"
-          }],
-          "target" : [{
-            "context" : "attester",
-            "contextType" : "variable",
-            "element" : "time",
-            "variable" : "dt",
+            "element" : "address",
+            "variable" : "address",
             "transform" : "create",
             "parameter" : [{
-              "valueString" : "dateTime"
+              "valueString" : "Address"
             }]
           }],
           "dependent" : [{
-            "name" : "TSDateTime",
-            "variable" : ["time", "dt"]
+            "name" : "ADAddress",
+            "variable" : ["srcAddr", "address"]
           }]
         },
         {
-          "name" : "entity",
+          "name" : "telecom",
           "source" : [{
-            "context" : "legalAuth",
-            "element" : "assignedEntity",
-            "variable" : "entity"
+            "context" : "patientRole",
+            "element" : "telecom",
+            "variable" : "srcTelecom"
           }],
           "target" : [{
-            "context" : "attester",
+            "context" : "patient",
             "contextType" : "variable",
-            "element" : "party",
-            "variable" : "reference",
+            "element" : "telecom",
+            "variable" : "contactPoint",
             "transform" : "create",
             "parameter" : [{
-              "valueString" : "Reference"
+              "valueString" : "ContactPoint"
+            }]
+          }],
+          "dependent" : [{
+            "name" : "TELContactPoint",
+            "variable" : ["srcTelecom", "contactPoint"]
+          }]
+        },
+        {
+          "name" : "patientData",
+          "source" : [{
+            "context" : "patientRole",
+            "element" : "patient",
+            "variable" : "patientCda"
+          }],
+          "rule" : [{
+            "name" : "gender",
+            "source" : [{
+              "context" : "patientCda",
+              "element" : "administrativeGenderCode",
+              "variable" : "gender"
+            }],
+            "rule" : [{
+              "name" : "gender",
+              "source" : [{
+                "context" : "gender",
+                "element" : "code",
+                "variable" : "v"
+              }],
+              "target" : [{
+                "context" : "patient",
+                "contextType" : "variable",
+                "element" : "gender",
+                "transform" : "translate",
+                "parameter" : [{
+                  "valueId" : "v"
+                },
+                {
+                  "valueString" : "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/cm-v3-administrative-gender"
+                },
+                {
+                  "valueString" : "code"
+                }]
+              }]
             }]
           },
           {
-            "context" : "reference",
-            "contextType" : "variable",
-            "element" : "reference",
-            "transform" : "evaluate",
-            "parameter" : [{
-              "valueString" : "'urn:uuid:' + %practitioner.id"
-            }]
-          }],
-          "dependent" : [{
-            "name" : "ClinicalDocumentEntityPractitioner",
-            "variable" : ["entity", "practitioner"]
-          }]
-        }]
-      }]
-    },
-    {
-      "name" : "auth",
-      "source" : [{
-        "context" : "src",
-        "element" : "authenticator",
-        "variable" : "auth"
-      }],
-      "target" : [{
-        "context" : "bundle",
-        "contextType" : "variable",
-        "element" : "entry",
-        "variable" : "e"
-      },
-      {
-        "context" : "e",
-        "contextType" : "variable",
-        "element" : "resource",
-        "variable" : "practitioner",
-        "transform" : "create",
-        "parameter" : [{
-          "valueString" : "Practitioner"
-        }]
-      },
-      {
-        "context" : "practitioner",
-        "contextType" : "variable",
-        "element" : "id",
-        "variable" : "uuid2",
-        "transform" : "uuid"
-      },
-      {
-        "context" : "e",
-        "contextType" : "variable",
-        "element" : "fullUrl",
-        "transform" : "append",
-        "parameter" : [{
-          "valueString" : "urn:uuid:"
-        },
-        {
-          "valueId" : "uuid2"
-        }]
-      }],
-      "rule" : [{
-        "name" : "attester",
-        "source" : [{
-          "context" : "auth"
-        }],
-        "target" : [{
-          "context" : "tgt",
-          "contextType" : "variable",
-          "element" : "attester",
-          "variable" : "attester"
-        }],
-        "rule" : [{
-          "name" : "mode",
-          "source" : [{
-            "context" : "auth"
-          }],
-          "target" : [{
-            "context" : "attester",
-            "contextType" : "variable",
-            "element" : "mode",
-            "transform" : "copy",
-            "parameter" : [{
-              "valueString" : "official"
-            }]
-          }]
-        },
-        {
-          "name" : "time",
-          "source" : [{
-            "context" : "auth",
-            "element" : "time",
-            "variable" : "time"
-          }],
-          "target" : [{
-            "context" : "attester",
-            "contextType" : "variable",
-            "element" : "time",
-            "variable" : "dt",
-            "transform" : "create",
-            "parameter" : [{
-              "valueString" : "dateTime"
-            }]
-          }],
-          "dependent" : [{
-            "name" : "TSDateTime",
-            "variable" : ["time", "dt"]
-          }]
-        },
-        {
-          "name" : "entity",
-          "source" : [{
-            "context" : "auth",
-            "element" : "assignedEntity",
-            "variable" : "entity"
-          }],
-          "target" : [{
-            "context" : "attester",
-            "contextType" : "variable",
-            "element" : "party",
-            "variable" : "reference",
-            "transform" : "create",
-            "parameter" : [{
-              "valueString" : "Reference"
+            "name" : "birthDate",
+            "source" : [{
+              "context" : "patientCda",
+              "element" : "birthTime",
+              "variable" : "birthTime"
+            }],
+            "target" : [{
+              "context" : "patient",
+              "contextType" : "variable",
+              "element" : "birthDate",
+              "variable" : "date",
+              "transform" : "create",
+              "parameter" : [{
+                "valueString" : "date"
+              }]
+            }],
+            "dependent" : [{
+              "name" : "TSDate",
+              "variable" : ["birthTime", "date"]
             }]
           },
           {
-            "context" : "reference",
-            "contextType" : "variable",
-            "element" : "reference",
-            "transform" : "evaluate",
-            "parameter" : [{
-              "valueString" : "'urn:uuid:' + %practitioner.id"
+            "name" : "deceasedBoolean",
+            "source" : [{
+              "context" : "patientCda",
+              "element" : "deceasedInd",
+              "variable" : "indicator",
+              "condition" : "patientCda.deceasedTime.empty()"
+            }],
+            "target" : [{
+              "context" : "patient",
+              "contextType" : "variable",
+              "element" : "deceased",
+              "variable" : "bool",
+              "transform" : "create",
+              "parameter" : [{
+                "valueString" : "boolean"
+              }]
+            }],
+            "rule" : [{
+              "name" : "value",
+              "source" : [{
+                "context" : "indicator",
+                "element" : "value",
+                "variable" : "v"
+              }],
+              "target" : [{
+                "context" : "bool",
+                "contextType" : "variable",
+                "element" : "value",
+                "transform" : "copy",
+                "parameter" : [{
+                  "valueId" : "v"
+                }]
+              }]
             }]
-          }],
-          "dependent" : [{
-            "name" : "ClinicalDocumentEntityPractitioner",
-            "variable" : ["entity", "practitioner"]
+          },
+          {
+            "name" : "deceasedDateTime",
+            "source" : [{
+              "context" : "patientCda",
+              "element" : "deceasedTime",
+              "variable" : "dTime"
+            }],
+            "target" : [{
+              "context" : "patient",
+              "contextType" : "variable",
+              "element" : "deceased",
+              "variable" : "dt",
+              "transform" : "create",
+              "parameter" : [{
+                "valueString" : "dateTime"
+              }]
+            }],
+            "dependent" : [{
+              "name" : "TSDateTime",
+              "variable" : ["dTime", "dt"]
+            }]
           }]
         }]
       }]
+    }]
+  },
+  {
+    "name" : "MapHeaderCustodian",
+    "typeMode" : "none",
+    "documentation" : "groupe qui traite custodian  (l'organisation)\nL’Organization est créée uniquement si le bloc custodian existe dans le CDA.",
+    "input" : [{
+      "name" : "src",
+      "type" : "ClinicalDocument",
+      "mode" : "source"
     },
     {
-      "name" : "cust",
+      "name" : "composition",
+      "type" : "Composition",
+      "mode" : "target"
+    },
+    {
+      "name" : "bundle",
+      "type" : "Bundle",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "custodian",
       "source" : [{
         "context" : "src",
         "element" : "custodian",
         "variable" : "custodian"
       }],
-      "target" : [{
-        "context" : "bundle",
-        "contextType" : "variable",
-        "element" : "entry",
-        "variable" : "e"
-      }],
       "rule" : [{
-        "name" : "custodian",
+        "name" : "assignedCustodian",
         "source" : [{
           "context" : "custodian",
           "element" : "assignedCustodian",
           "variable" : "assignedCustodian"
         }],
-        "target" : [{
-          "context" : "e",
-          "contextType" : "variable",
-          "element" : "resource",
-          "variable" : "organization",
-          "transform" : "create",
-          "parameter" : [{
-            "valueString" : "Organization"
-          }]
-        },
-        {
-          "context" : "organization",
-          "contextType" : "variable",
-          "element" : "id",
-          "variable" : "uuid3",
-          "transform" : "uuid"
-        },
-        {
-          "context" : "e",
-          "contextType" : "variable",
-          "element" : "fullUrl",
-          "transform" : "append",
-          "parameter" : [{
-            "valueString" : "urn:uuid:"
-          },
-          {
-            "valueId" : "uuid3"
-          }]
-        }],
         "rule" : [{
-          "name" : "assignedCustodian",
+          "name" : "custodianOrganizationResource",
           "source" : [{
             "context" : "assignedCustodian",
             "element" : "representedCustodianOrganization",
-            "variable" : "srcOrg"
+            "variable" : "representedOrg"
           }],
           "target" : [{
-            "context" : "tgt",
+            "context" : "bundle",
             "contextType" : "variable",
-            "element" : "custodian",
-            "variable" : "reference",
+            "element" : "entry",
+            "variable" : "custodianOrgEntry"
+          },
+          {
+            "context" : "custodianOrgEntry",
+            "contextType" : "variable",
+            "element" : "resource",
+            "variable" : "custodianOrganization",
             "transform" : "create",
             "parameter" : [{
-              "valueString" : "Reference"
+              "valueString" : "Organization"
             }]
           },
           {
-            "context" : "reference",
+            "context" : "custodianOrganization",
+            "contextType" : "variable",
+            "element" : "id",
+            "transform" : "uuid"
+          },
+          {
+            "context" : "custodianOrgEntry",
+            "contextType" : "variable",
+            "element" : "fullUrl",
+            "transform" : "evaluate",
+            "parameter" : [{
+              "valueString" : "'urn:uuid:' + %custodianOrganization.id"
+            }]
+          }],
+          "rule" : [{
+            "name" : "custodianOrganization",
+            "source" : [{
+              "context" : "representedOrg"
+            }],
+            "dependent" : [{
+              "name" : "MapCDAOrganizationToOrganization",
+              "variable" : ["representedOrg", "custodianOrganization"]
+            }]
+          },
+          {
+            "name" : "custodianRef",
+            "source" : [{
+              "context" : "representedOrg"
+            }],
+            "target" : [{
+              "context" : "composition",
+              "contextType" : "variable",
+              "element" : "custodian",
+              "variable" : "custodianRef",
+              "transform" : "create",
+              "parameter" : [{
+                "valueString" : "Reference"
+              }]
+            },
+            {
+              "context" : "custodianRef",
+              "contextType" : "variable",
+              "element" : "reference",
+              "transform" : "evaluate",
+              "parameter" : [{
+                "valueString" : "'urn:uuid:' + %custodianOrganization.id"
+              }]
+            }]
+          }]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "MapHeaderAuthor",
+    "typeMode" : "none",
+    "documentation" : "GROUPE — TRAITEMENT DE L’AUTEUR DU DOCUMENT CDA\n\n   Ce groupe traite le bloc author de l’en-tête CDA.\n\n   Si le bloc author existe, il crée un Practitioner pour représenter l’auteur.\n   Si author.assignedAuthor.representedOrganization est présent, il crée aussi\n   une Organization et un PractitionerRole afin de représenter l’auteur dans son\n   organisation.\n\n   La Composition référence ensuite le PractitionerRole si l’organisation existe,\n   sinon elle référence directement le Practitioner.",
+    "input" : [{
+      "name" : "src",
+      "type" : "ClinicalDocument",
+      "mode" : "source"
+    },
+    {
+      "name" : "composition",
+      "type" : "Composition",
+      "mode" : "target"
+    },
+    {
+      "name" : "bundle",
+      "type" : "Bundle",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "author",
+      "source" : [{
+        "context" : "src",
+        "element" : "author",
+        "variable" : "author"
+      }],
+      "rule" : [{
+        "name" : "authorPractitionerResource",
+        "source" : [{
+          "context" : "author",
+          "element" : "assignedAuthor",
+          "variable" : "assignedAuthor"
+        }],
+        "target" : [{
+          "context" : "bundle",
+          "contextType" : "variable",
+          "element" : "entry",
+          "variable" : "practitionerEntry"
+        },
+        {
+          "context" : "practitionerEntry",
+          "contextType" : "variable",
+          "element" : "resource",
+          "variable" : "authorPractitioner",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "Practitioner"
+          }]
+        },
+        {
+          "context" : "authorPractitioner",
+          "contextType" : "variable",
+          "element" : "id",
+          "transform" : "uuid"
+        },
+        {
+          "context" : "practitionerEntry",
+          "contextType" : "variable",
+          "element" : "fullUrl",
+          "transform" : "evaluate",
+          "parameter" : [{
+            "valueString" : "'urn:uuid:' + %authorPractitioner.id"
+          }]
+        }],
+        "rule" : [{
+          "name" : "authorPractitioner",
+          "source" : [{
+            "context" : "assignedAuthor"
+          }],
+          "dependent" : [{
+            "name" : "MapCDAAssignedEntityToPractitioner",
+            "variable" : ["assignedAuthor", "authorPractitioner"]
+          }]
+        },
+        {
+          "name" : "authorWithOrganization",
+          "source" : [{
+            "context" : "assignedAuthor",
+            "element" : "representedOrganization",
+            "variable" : "representedOrganization"
+          }],
+          "target" : [{
+            "context" : "bundle",
+            "contextType" : "variable",
+            "element" : "entry",
+            "variable" : "organizationEntry"
+          },
+          {
+            "context" : "organizationEntry",
+            "contextType" : "variable",
+            "element" : "resource",
+            "variable" : "authorOrganization",
+            "transform" : "create",
+            "parameter" : [{
+              "valueString" : "Organization"
+            }]
+          },
+          {
+            "context" : "authorOrganization",
+            "contextType" : "variable",
+            "element" : "id",
+            "transform" : "uuid"
+          },
+          {
+            "context" : "organizationEntry",
+            "contextType" : "variable",
+            "element" : "fullUrl",
+            "transform" : "evaluate",
+            "parameter" : [{
+              "valueString" : "'urn:uuid:' + %authorOrganization.id"
+            }]
+          },
+          {
+            "context" : "bundle",
+            "contextType" : "variable",
+            "element" : "entry",
+            "variable" : "roleEntry"
+          },
+          {
+            "context" : "roleEntry",
+            "contextType" : "variable",
+            "element" : "resource",
+            "variable" : "authorRole",
+            "transform" : "create",
+            "parameter" : [{
+              "valueString" : "PractitionerRole"
+            }]
+          },
+          {
+            "context" : "authorRole",
+            "contextType" : "variable",
+            "element" : "id",
+            "transform" : "uuid"
+          },
+          {
+            "context" : "roleEntry",
+            "contextType" : "variable",
+            "element" : "fullUrl",
+            "transform" : "evaluate",
+            "parameter" : [{
+              "valueString" : "'urn:uuid:' + %authorRole.id"
+            }]
+          }],
+          "rule" : [{
+            "name" : "authorOrganization",
+            "source" : [{
+              "context" : "representedOrganization"
+            }],
+            "dependent" : [{
+              "name" : "MapCDAOrganizationToOrganization",
+              "variable" : ["representedOrganization", "authorOrganization"]
+            }]
+          },
+          {
+            "name" : "authorRole",
+            "source" : [{
+              "context" : "assignedAuthor"
+            }],
+            "dependent" : [{
+              "name" : "MapCDAAssignedEntityToPractitionerRole",
+              "variable" : ["assignedAuthor",
+              "authorRole",
+              "authorPractitioner",
+              "authorOrganization"]
+            }]
+          },
+          {
+            "name" : "compositionAuthorRoleRef",
+            "source" : [{
+              "context" : "assignedAuthor"
+            }],
+            "target" : [{
+              "context" : "composition",
+              "contextType" : "variable",
+              "element" : "author",
+              "variable" : "authorRef"
+            },
+            {
+              "context" : "authorRef",
+              "contextType" : "variable",
+              "element" : "reference",
+              "transform" : "evaluate",
+              "parameter" : [{
+                "valueString" : "'urn:uuid:' + %authorRole.id"
+              }]
+            }]
+          }]
+        },
+        {
+          "name" : "compositionAuthorPractitionerRef",
+          "source" : [{
+            "context" : "assignedAuthor",
+            "condition" : "assignedAuthor.representedOrganization.empty()"
+          }],
+          "target" : [{
+            "context" : "composition",
+            "contextType" : "variable",
+            "element" : "author",
+            "variable" : "authorRef"
+          },
+          {
+            "context" : "authorRef",
             "contextType" : "variable",
             "element" : "reference",
             "transform" : "evaluate",
             "parameter" : [{
-              "valueString" : "'urn:uuid:' + %organization.id"
+              "valueString" : "'urn:uuid:' + %authorPractitioner.id"
             }]
-          }],
-          "dependent" : [{
-            "name" : "ClinicalDocumentOrganization",
-            "variable" : ["srcOrg", "organization"]
           }]
         }]
       }]
+    }]
+  },
+  {
+    "name" : "MapHeaderLegalAuthenticator",
+    "typeMode" : "none",
+    "documentation" : "GROUPE — TRAITEMENT DU SIGNATAIRE LÉGAL CDA\n   Ce groupe traite le bloc legalAuthenticator de l’en-tête CDA\n\n   Si le bloc legalAuthenticator existe, il crée un Practitioner pour représenter\n   le signataire légal. Si legalAuthenticator.assignedEntity.representedOrganization\n   est présent, il crée aussi une Organization et un PractitionerRole.\n\n   La Composition est alimentée via Composition.attester. La partie attester.party\n   référence le PractitionerRole si l’organisation existe, sinon elle référence\n   directement le Practitioner.",
+    "input" : [{
+      "name" : "src",
+      "type" : "ClinicalDocument",
+      "mode" : "source"
     },
     {
+      "name" : "composition",
+      "type" : "Composition",
+      "mode" : "target"
+    },
+    {
+      "name" : "bundle",
+      "type" : "Bundle",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "legalAuthenticator",
+      "source" : [{
+        "context" : "src",
+        "element" : "legalAuthenticator",
+        "variable" : "legalAuthenticator"
+      }],
+      "rule" : [{
+        "name" : "legalPractitionerResource",
+        "source" : [{
+          "context" : "legalAuthenticator",
+          "element" : "assignedEntity",
+          "variable" : "assignedEntity"
+        }],
+        "target" : [{
+          "context" : "bundle",
+          "contextType" : "variable",
+          "element" : "entry",
+          "variable" : "practitionerEntry"
+        },
+        {
+          "context" : "practitionerEntry",
+          "contextType" : "variable",
+          "element" : "resource",
+          "variable" : "legalPractitioner",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "Practitioner"
+          }]
+        },
+        {
+          "context" : "legalPractitioner",
+          "contextType" : "variable",
+          "element" : "id",
+          "transform" : "uuid"
+        },
+        {
+          "context" : "practitionerEntry",
+          "contextType" : "variable",
+          "element" : "fullUrl",
+          "transform" : "evaluate",
+          "parameter" : [{
+            "valueString" : "'urn:uuid:' + %legalPractitioner.id"
+          }]
+        }],
+        "rule" : [{
+          "name" : "legalPractitioner",
+          "source" : [{
+            "context" : "assignedEntity"
+          }],
+          "dependent" : [{
+            "name" : "MapCDAAssignedEntityToPractitioner",
+            "variable" : ["assignedEntity", "legalPractitioner"]
+          }]
+        },
+        {
+          "name" : "attester",
+          "source" : [{
+            "context" : "legalAuthenticator"
+          }],
+          "target" : [{
+            "context" : "composition",
+            "contextType" : "variable",
+            "element" : "attester",
+            "variable" : "attester"
+          }],
+          "rule" : [{
+            "name" : "mode",
+            "source" : [{
+              "context" : "legalAuthenticator"
+            }],
+            "target" : [{
+              "context" : "attester",
+              "contextType" : "variable",
+              "element" : "mode",
+              "transform" : "copy",
+              "parameter" : [{
+                "valueString" : "legal"
+              }]
+            }]
+          },
+          {
+            "name" : "time",
+            "source" : [{
+              "context" : "legalAuthenticator",
+              "element" : "time",
+              "variable" : "time"
+            }],
+            "target" : [{
+              "context" : "attester",
+              "contextType" : "variable",
+              "element" : "time",
+              "variable" : "dt",
+              "transform" : "create",
+              "parameter" : [{
+                "valueString" : "dateTime"
+              }]
+            }],
+            "dependent" : [{
+              "name" : "TSDateTime",
+              "variable" : ["time", "dt"]
+            }]
+          },
+          {
+            "name" : "legalWithOrganization",
+            "source" : [{
+              "context" : "assignedEntity",
+              "element" : "representedOrganization",
+              "variable" : "representedOrganization"
+            }],
+            "target" : [{
+              "context" : "bundle",
+              "contextType" : "variable",
+              "element" : "entry",
+              "variable" : "organizationEntry"
+            },
+            {
+              "context" : "organizationEntry",
+              "contextType" : "variable",
+              "element" : "resource",
+              "variable" : "legalOrganization",
+              "transform" : "create",
+              "parameter" : [{
+                "valueString" : "Organization"
+              }]
+            },
+            {
+              "context" : "legalOrganization",
+              "contextType" : "variable",
+              "element" : "id",
+              "transform" : "uuid"
+            },
+            {
+              "context" : "organizationEntry",
+              "contextType" : "variable",
+              "element" : "fullUrl",
+              "transform" : "evaluate",
+              "parameter" : [{
+                "valueString" : "'urn:uuid:' + %legalOrganization.id"
+              }]
+            },
+            {
+              "context" : "bundle",
+              "contextType" : "variable",
+              "element" : "entry",
+              "variable" : "roleEntry"
+            },
+            {
+              "context" : "roleEntry",
+              "contextType" : "variable",
+              "element" : "resource",
+              "variable" : "legalRole",
+              "transform" : "create",
+              "parameter" : [{
+                "valueString" : "PractitionerRole"
+              }]
+            },
+            {
+              "context" : "legalRole",
+              "contextType" : "variable",
+              "element" : "id",
+              "transform" : "uuid"
+            },
+            {
+              "context" : "roleEntry",
+              "contextType" : "variable",
+              "element" : "fullUrl",
+              "transform" : "evaluate",
+              "parameter" : [{
+                "valueString" : "'urn:uuid:' + %legalRole.id"
+              }]
+            }],
+            "rule" : [{
+              "name" : "legalOrganization",
+              "source" : [{
+                "context" : "representedOrganization"
+              }],
+              "dependent" : [{
+                "name" : "MapCDAOrganizationToOrganization",
+                "variable" : ["representedOrganization", "legalOrganization"]
+              }]
+            },
+            {
+              "name" : "legalRole",
+              "source" : [{
+                "context" : "assignedEntity"
+              }],
+              "dependent" : [{
+                "name" : "MapCDAAssignedEntityToPractitionerRole",
+                "variable" : ["assignedEntity",
+                "legalRole",
+                "legalPractitioner",
+                "legalOrganization"]
+              }]
+            },
+            {
+              "name" : "partyRole",
+              "source" : [{
+                "context" : "assignedEntity"
+              }],
+              "target" : [{
+                "context" : "attester",
+                "contextType" : "variable",
+                "element" : "party",
+                "variable" : "partyRef",
+                "transform" : "create",
+                "parameter" : [{
+                  "valueString" : "Reference"
+                }]
+              },
+              {
+                "context" : "partyRef",
+                "contextType" : "variable",
+                "element" : "reference",
+                "transform" : "evaluate",
+                "parameter" : [{
+                  "valueString" : "'urn:uuid:' + %legalRole.id"
+                }]
+              }]
+            }]
+          },
+          {
+            "name" : "partyPractitioner",
+            "source" : [{
+              "context" : "assignedEntity",
+              "condition" : "assignedEntity.representedOrganization.empty()"
+            }],
+            "target" : [{
+              "context" : "attester",
+              "contextType" : "variable",
+              "element" : "party",
+              "variable" : "partyRef",
+              "transform" : "create",
+              "parameter" : [{
+                "valueString" : "Reference"
+              }]
+            },
+            {
+              "context" : "partyRef",
+              "contextType" : "variable",
+              "element" : "reference",
+              "transform" : "evaluate",
+              "parameter" : [{
+                "valueString" : "'urn:uuid:' + %legalPractitioner.id"
+              }]
+            }]
+          }]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "MapHeaderDocumentationOf",
+    "typeMode" : "none",
+    "documentation" : "GROUPE — TRAITEMENT DE L’ÉVÉNEMENT DOCUMENTÉ CDA",
+    "input" : [{
+      "name" : "src",
+      "type" : "ClinicalDocument",
+      "mode" : "source"
+    },
+    {
+      "name" : "composition",
+      "type" : "Composition",
+      "mode" : "target"
+    }],
+    "rule" : [{
       "name" : "documentationOf",
       "source" : [{
         "context" : "src",
         "element" : "documentationOf",
-        "variable" : "docOf"
+        "variable" : "documentationOf"
       }],
       "rule" : [{
-        "name" : "docOf",
+        "name" : "event",
         "source" : [{
-          "context" : "docOf",
+          "context" : "documentationOf",
           "element" : "serviceEvent",
           "variable" : "serviceEvent"
         }],
         "target" : [{
-          "context" : "tgt",
+          "context" : "composition",
           "contextType" : "variable",
           "element" : "event",
           "variable" : "event"
@@ -2028,11 +1815,11 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
           }]
         },
         {
-          "name" : "eventTime",
+          "name" : "eventPeriod",
           "source" : [{
             "context" : "serviceEvent",
             "element" : "effectiveTime",
-            "variable" : "effectivetime"
+            "variable" : "eff"
           }],
           "target" : [{
             "context" : "event",
@@ -2046,63 +1833,195 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
           }],
           "dependent" : [{
             "name" : "IVLTSPeriod",
-            "variable" : ["effectivetime", "period"]
-          }],
-          "documentation" : "performerType: for src.performer.typeCode ..."
-        }]
-      }]
-    },
-    {
-      "name" : "relatedDoc",
-      "source" : [{
-        "context" : "src",
-        "element" : "relatedDocument",
-        "variable" : "relatedDoc"
-      }],
-      "target" : [{
-        "context" : "tgt",
-        "contextType" : "variable",
-        "element" : "relatesTo",
-        "variable" : "relates"
-      }],
-      "rule" : [{
-        "name" : "typeCode",
-        "source" : [{
-          "context" : "relatedDoc",
-          "element" : "typeCode",
-          "variable" : "typeCode"
-        }],
-        "target" : [{
-          "context" : "relates",
-          "contextType" : "variable",
-          "element" : "code",
-          "transform" : "copy",
-          "parameter" : [{
-            "valueId" : "typeCode"
+            "variable" : ["eff", "period"]
           }]
         }]
-      },
-      {
-        "name" : "parentDoc",
+      }]
+    }]
+  },
+  {
+    "name" : "MapHeaderEncounterContext",
+    "typeMode" : "none",
+    "documentation" : "GROUPE — TRAITEMENT DU CONTEXTE DE PRISE EN CHARGE CDA\n\n   Ce groupe traite le bloc componentOf.encompassingEncounter de l’en-tête CDA.\n\n   Si encompassingEncounter existe, il crée une ressource Encounter et l’associe\n   à la Composition.\n\n   Le remplissage générique de l’Encounter est délégué au groupe commun :\n   MapCDAEncompassingEncounterToEncounter.\n\n   Si encompassingEncounter.location.healthCareFacility est également présent,\n   il crée une Location et une Organization pour représenter le lieu et la\n   structure de prise en charge, puis appelle :\n   MapCDAHealthCareFacilityToLocationContext.",
+    "input" : [{
+      "name" : "src",
+      "type" : "ClinicalDocument",
+      "mode" : "source"
+    },
+    {
+      "name" : "composition",
+      "type" : "Composition",
+      "mode" : "target"
+    },
+    {
+      "name" : "bundle",
+      "type" : "Bundle",
+      "mode" : "target"
+    },
+    {
+      "name" : "patient",
+      "type" : "Patient",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "componentOf",
+      "source" : [{
+        "context" : "src",
+        "element" : "componentOf",
+        "variable" : "componentOf"
+      }],
+      "rule" : [{
+        "name" : "encounterResource",
         "source" : [{
-          "context" : "relatedDoc",
-          "element" : "parentDocument",
-          "variable" : "parentDoc"
+          "context" : "componentOf",
+          "element" : "encompassingEncounter",
+          "variable" : "encompassingEncounter"
+        }],
+        "target" : [{
+          "context" : "bundle",
+          "contextType" : "variable",
+          "element" : "entry",
+          "variable" : "encounterEntry"
+        },
+        {
+          "context" : "encounterEntry",
+          "contextType" : "variable",
+          "element" : "resource",
+          "variable" : "encounter",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "Encounter"
+          }]
+        },
+        {
+          "context" : "encounter",
+          "contextType" : "variable",
+          "element" : "id",
+          "transform" : "uuid"
+        },
+        {
+          "context" : "encounterEntry",
+          "contextType" : "variable",
+          "element" : "fullUrl",
+          "transform" : "evaluate",
+          "parameter" : [{
+            "valueString" : "'urn:uuid:' + %encounter.id"
+          }]
         }],
         "rule" : [{
-          "name" : "setId",
+          "name" : "compositionEncounterRef",
           "source" : [{
-            "context" : "parentDoc",
-            "element" : "setId",
-            "variable" : "sid"
+            "context" : "encompassingEncounter"
           }],
           "target" : [{
-            "context" : "relates",
+            "context" : "composition",
             "contextType" : "variable",
-            "element" : "targetIdentifier",
-            "transform" : "copy",
+            "element" : "encounter",
+            "variable" : "encRef",
+            "transform" : "create",
             "parameter" : [{
-              "valueId" : "sid"
+              "valueString" : "Reference"
+            }]
+          },
+          {
+            "context" : "encRef",
+            "contextType" : "variable",
+            "element" : "reference",
+            "transform" : "evaluate",
+            "parameter" : [{
+              "valueString" : "'urn:uuid:' + %encounter.id"
+            }]
+          }]
+        },
+        {
+          "name" : "encounterBase",
+          "source" : [{
+            "context" : "encompassingEncounter"
+          }],
+          "dependent" : [{
+            "name" : "MapCDAEncompassingEncounterToEncounter",
+            "variable" : ["encompassingEncounter", "encounter", "patient"]
+          }]
+        },
+        {
+          "name" : "location",
+          "source" : [{
+            "context" : "encompassingEncounter",
+            "element" : "location",
+            "variable" : "srcLocation"
+          }],
+          "rule" : [{
+            "name" : "facilityContext",
+            "source" : [{
+              "context" : "srcLocation",
+              "element" : "healthCareFacility",
+              "variable" : "facility"
+            }],
+            "target" : [{
+              "context" : "bundle",
+              "contextType" : "variable",
+              "element" : "entry",
+              "variable" : "locationEntry"
+            },
+            {
+              "context" : "locationEntry",
+              "contextType" : "variable",
+              "element" : "resource",
+              "variable" : "location",
+              "transform" : "create",
+              "parameter" : [{
+                "valueString" : "Location"
+              }]
+            },
+            {
+              "context" : "location",
+              "contextType" : "variable",
+              "element" : "id",
+              "transform" : "uuid"
+            },
+            {
+              "context" : "locationEntry",
+              "contextType" : "variable",
+              "element" : "fullUrl",
+              "transform" : "evaluate",
+              "parameter" : [{
+                "valueString" : "'urn:uuid:' + %location.id"
+              }]
+            },
+            {
+              "context" : "bundle",
+              "contextType" : "variable",
+              "element" : "entry",
+              "variable" : "facilityOrganizationEntry"
+            },
+            {
+              "context" : "facilityOrganizationEntry",
+              "contextType" : "variable",
+              "element" : "resource",
+              "variable" : "facilityOrganization",
+              "transform" : "create",
+              "parameter" : [{
+                "valueString" : "Organization"
+              }]
+            },
+            {
+              "context" : "facilityOrganization",
+              "contextType" : "variable",
+              "element" : "id",
+              "transform" : "uuid"
+            },
+            {
+              "context" : "facilityOrganizationEntry",
+              "contextType" : "variable",
+              "element" : "fullUrl",
+              "transform" : "evaluate",
+              "parameter" : [{
+                "valueString" : "'urn:uuid:' + %facilityOrganization.id"
+              }]
+            }],
+            "dependent" : [{
+              "name" : "MapCDAHealthCareFacilityToLocationContext",
+              "variable" : ["facility", "encounter", "location", "facilityOrganization"]
             }]
           }]
         }]
@@ -2110,58 +2029,33 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
     }]
   },
   {
-    "name" : "ClinicalDocumentEntityPractitioner",
+    "name" : "MapCDAEncompassingEncounterToEncounter",
     "typeMode" : "none",
+    "documentation" : "GROUPE COMMUN — ENCOMPASSINGENCOUNTER CDA VERS ENCOUNTER FHIR\n\n   Ce groupe transforme les informations génériques du bloc CDA\n   componentOf.encompassingEncounter vers une ressource FHIR Encounter déjà créée\n   par le groupe appelant.\n\n   Il alimente :\n   - Encounter.identifier ;\n   - Encounter.subject ;\n   - Encounter.status ;\n   - Encounter.class ;\n   - Encounter.period.\n\n   Si le code CDA de l’encompassingEncounter est absent, Encounter.class est\n   créé avec l’extension data-absent-reason afin de respecter l’obligation FHIR\n   sans inventer une information absente du CDA",
     "input" : [{
-      "name" : "src",
-      "type" : "AssignedEntity",
+      "name" : "encompassingEncounter",
+      "type" : "EncompassingEncounter",
       "mode" : "source"
     },
     {
-      "name" : "tgt",
-      "type" : "Practitioner",
+      "name" : "encounter",
+      "type" : "Encounter",
+      "mode" : "target"
+    },
+    {
+      "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
-      "name" : "meta",
-      "source" : [{
-        "context" : "src"
-      }],
-      "target" : [{
-        "context" : "tgt",
-        "contextType" : "variable",
-        "element" : "meta",
-        "variable" : "meta",
-        "transform" : "create",
-        "parameter" : [{
-          "valueString" : "Meta"
-        }]
-      }],
-      "rule" : [{
-        "name" : "profile",
-        "source" : [{
-          "context" : "src"
-        }],
-        "target" : [{
-          "context" : "meta",
-          "contextType" : "variable",
-          "element" : "profile",
-          "transform" : "copy",
-          "parameter" : [{
-            "valueString" : "https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-practitioner"
-          }]
-        }]
-      }]
-    },
-    {
       "name" : "identifier",
       "source" : [{
-        "context" : "src",
+        "context" : "encompassingEncounter",
         "element" : "id",
-        "variable" : "srcId"
+        "variable" : "id"
       }],
       "target" : [{
-        "context" : "tgt",
+        "context" : "encounter",
         "contextType" : "variable",
         "element" : "identifier",
         "variable" : "identifier",
@@ -2173,7 +2067,7 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
       "rule" : [{
         "name" : "baseIdentifier",
         "source" : [{
-          "context" : "srcId"
+          "context" : "id"
         }],
         "target" : [{
           "context" : "identifier",
@@ -2181,20 +2075,19 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
         }],
         "dependent" : [{
           "name" : "II",
-          "variable" : ["srcId", "identifier"]
+          "variable" : ["id", "identifier"]
         }]
       },
       {
-        "name" : "idNatPs",
+        "name" : "type",
         "source" : [{
-          "context" : "srcId",
-          "condition" : "root = '1.2.250.1.71.4.2.1'"
+          "context" : "id"
         }],
         "target" : [{
           "context" : "identifier",
           "contextType" : "variable",
           "element" : "type",
-          "variable" : "type",
+          "variable" : "idType",
           "transform" : "create",
           "parameter" : [{
             "valueString" : "CodeableConcept"
@@ -2203,10 +2096,10 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
         "rule" : [{
           "name" : "coding",
           "source" : [{
-            "context" : "srcId"
+            "context" : "id"
           }],
           "target" : [{
-            "context" : "type",
+            "context" : "idType",
             "contextType" : "variable",
             "element" : "coding",
             "variable" : "coding",
@@ -2218,7 +2111,7 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
           "rule" : [{
             "name" : "system",
             "source" : [{
-              "context" : "srcId"
+              "context" : "id"
             }],
             "target" : [{
               "context" : "coding",
@@ -2226,14 +2119,14 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
               "element" : "system",
               "transform" : "copy",
               "parameter" : [{
-                "valueString" : "https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203"
+                "valueString" : "http://terminology.hl7.org/CodeSystem/v2-0203"
               }]
             }]
           },
           {
             "name" : "code",
             "source" : [{
-              "context" : "srcId"
+              "context" : "id"
             }],
             "target" : [{
               "context" : "coding",
@@ -2241,7 +2134,22 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
               "element" : "code",
               "transform" : "copy",
               "parameter" : [{
-                "valueString" : "IDNPS"
+                "valueString" : "VN"
+              }]
+            }]
+          },
+          {
+            "name" : "display",
+            "source" : [{
+              "context" : "id"
+            }],
+            "target" : [{
+              "context" : "coding",
+              "contextType" : "variable",
+              "element" : "display",
+              "transform" : "copy",
+              "parameter" : [{
+                "valueString" : "Visit number"
               }]
             }]
           }]
@@ -2249,25 +2157,640 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
       }]
     },
     {
-      "name" : "addr",
+      "name" : "subject",
       "source" : [{
-        "context" : "src",
-        "element" : "addr",
-        "variable" : "srcAddr"
+        "context" : "encompassingEncounter"
       }],
       "target" : [{
-        "context" : "tgt",
+        "context" : "encounter",
         "contextType" : "variable",
-        "element" : "address",
-        "variable" : "address",
+        "element" : "subject",
+        "variable" : "subjectRef",
         "transform" : "create",
         "parameter" : [{
-          "valueString" : "Address"
+          "valueString" : "Reference"
+        }]
+      },
+      {
+        "context" : "subjectRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %patient.id"
+        }]
+      }]
+    },
+    {
+      "name" : "status",
+      "source" : [{
+        "context" : "encompassingEncounter"
+      }],
+      "target" : [{
+        "context" : "encounter",
+        "contextType" : "variable",
+        "element" : "status",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "finished"
+        }]
+      }]
+    },
+    {
+      "name" : "class",
+      "source" : [{
+        "context" : "encompassingEncounter",
+        "element" : "code",
+        "variable" : "srcCode"
+      }],
+      "target" : [{
+        "context" : "encounter",
+        "contextType" : "variable",
+        "element" : "class",
+        "variable" : "coding",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Coding"
         }]
       }],
       "dependent" : [{
-        "name" : "ADAddress",
-        "variable" : ["srcAddr", "address"]
+        "name" : "CDCoding",
+        "variable" : ["srcCode", "coding"]
+      }]
+    },
+    {
+      "name" : "classAbsentReason",
+      "source" : [{
+        "context" : "encompassingEncounter",
+        "condition" : "encompassingEncounter.code.empty()"
+      }],
+      "target" : [{
+        "context" : "encounter",
+        "contextType" : "variable",
+        "element" : "class",
+        "variable" : "coding",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Coding"
+        }]
+      }],
+      "rule" : [{
+        "name" : "dataAbsentReason",
+        "source" : [{
+          "context" : "encompassingEncounter"
+        }],
+        "target" : [{
+          "context" : "coding",
+          "contextType" : "variable",
+          "element" : "extension",
+          "variable" : "absentReason",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "Extension"
+          }]
+        }],
+        "rule" : [{
+          "name" : "url",
+          "source" : [{
+            "context" : "encompassingEncounter"
+          }],
+          "target" : [{
+            "context" : "absentReason",
+            "contextType" : "variable",
+            "element" : "url",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueString" : "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
+            }]
+          }]
+        },
+        {
+          "name" : "valueCode",
+          "source" : [{
+            "context" : "encompassingEncounter"
+          }],
+          "target" : [{
+            "context" : "absentReason",
+            "contextType" : "variable",
+            "element" : "value",
+            "transform" : "cast",
+            "parameter" : [{
+              "valueString" : "unknown"
+            },
+            {
+              "valueString" : "code"
+            }]
+          }]
+        }]
+      }]
+    },
+    {
+      "name" : "period",
+      "source" : [{
+        "context" : "encompassingEncounter",
+        "element" : "effectiveTime",
+        "variable" : "effTime",
+        "condition" : "effTime.value.exists() or effTime.low.exists() or effTime.high.exists()"
+      }],
+      "target" : [{
+        "context" : "encounter",
+        "contextType" : "variable",
+        "element" : "period",
+        "variable" : "period",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Period"
+        }]
+      }],
+      "dependent" : [{
+        "name" : "IVLTSPeriod",
+        "variable" : ["effTime", "period"]
+      }]
+    }]
+  },
+  {
+    "name" : "MapHeaderEmergencyContact",
+    "typeMode" : "none",
+    "documentation" : "GROUPE — TRAITEMENT DE LA PERSONNE À PRÉVENIR CDA\n\n   Ce groupe traite les blocs informant.relatedEntity dont classCode = ECON.\n\n   Si un informant ECON est présent dans le CDA, il crée une RelatedPerson pour\n   représenter la personne à prévenir en cas d’urgence, puis l’associe au Patient.\n\n   La ressource RelatedPerson est donc créée uniquement si ce bloc CDA existe",
+    "input" : [{
+      "name" : "src",
+      "type" : "ClinicalDocument",
+      "mode" : "source"
+    },
+    {
+      "name" : "bundle",
+      "type" : "Bundle",
+      "mode" : "target"
+    },
+    {
+      "name" : "patient",
+      "type" : "Patient",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "informant",
+      "source" : [{
+        "context" : "src",
+        "element" : "informant",
+        "variable" : "informant"
+      }],
+      "rule" : [{
+        "name" : "relatedPersonECON",
+        "source" : [{
+          "context" : "informant",
+          "element" : "relatedEntity",
+          "variable" : "relatedEntity",
+          "condition" : "relatedEntity.classCode = 'ECON'"
+        }],
+        "target" : [{
+          "context" : "bundle",
+          "contextType" : "variable",
+          "element" : "entry",
+          "variable" : "relatedPersonEntry"
+        },
+        {
+          "context" : "relatedPersonEntry",
+          "contextType" : "variable",
+          "element" : "resource",
+          "variable" : "emergencyContactRelatedPerson",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "RelatedPerson"
+          }]
+        },
+        {
+          "context" : "emergencyContactRelatedPerson",
+          "contextType" : "variable",
+          "element" : "id",
+          "transform" : "uuid"
+        },
+        {
+          "context" : "relatedPersonEntry",
+          "contextType" : "variable",
+          "element" : "fullUrl",
+          "transform" : "evaluate",
+          "parameter" : [{
+            "valueString" : "'urn:uuid:' + %emergencyContactRelatedPerson.id"
+          }]
+        }],
+        "dependent" : [{
+          "name" : "MapCDARelatedEntityToRelatedPerson",
+          "variable" : ["relatedEntity", "emergencyContactRelatedPerson", "patient"]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "MapHeaderTrustedPerson",
+    "typeMode" : "none",
+    "documentation" : "GROUPE — TRAITEMENT DE LA PERSONNE DE CONFIANCE CDA\n\n   Ce groupe traite les blocs informant.relatedEntity dont classCode = NOK.\n\n   Si un informant NOK est présent dans le CDA, il crée une RelatedPerson pour\n   représenter la personne de confiance, puis l’associe au Patient.\n\n   La ressource RelatedPerson est donc créée uniquement si ce bloc CDA existe.",
+    "input" : [{
+      "name" : "src",
+      "type" : "ClinicalDocument",
+      "mode" : "source"
+    },
+    {
+      "name" : "bundle",
+      "type" : "Bundle",
+      "mode" : "target"
+    },
+    {
+      "name" : "patient",
+      "type" : "Patient",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "informant",
+      "source" : [{
+        "context" : "src",
+        "element" : "informant",
+        "variable" : "informant"
+      }],
+      "rule" : [{
+        "name" : "relatedPersonNOK",
+        "source" : [{
+          "context" : "informant",
+          "element" : "relatedEntity",
+          "variable" : "relatedEntity",
+          "condition" : "relatedEntity.classCode = 'NOK'"
+        }],
+        "target" : [{
+          "context" : "bundle",
+          "contextType" : "variable",
+          "element" : "entry",
+          "variable" : "relatedPersonEntry"
+        },
+        {
+          "context" : "relatedPersonEntry",
+          "contextType" : "variable",
+          "element" : "resource",
+          "variable" : "trustedPersonRelatedPerson",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "RelatedPerson"
+          }]
+        },
+        {
+          "context" : "trustedPersonRelatedPerson",
+          "contextType" : "variable",
+          "element" : "id",
+          "transform" : "uuid"
+        },
+        {
+          "context" : "relatedPersonEntry",
+          "contextType" : "variable",
+          "element" : "fullUrl",
+          "transform" : "evaluate",
+          "parameter" : [{
+            "valueString" : "'urn:uuid:' + %trustedPersonRelatedPerson.id"
+          }]
+        }],
+        "dependent" : [{
+          "name" : "MapCDARelatedEntityToRelatedPerson",
+          "variable" : ["relatedEntity", "trustedPersonRelatedPerson", "patient"]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "MapHeaderGuardian",
+    "typeMode" : "none",
+    "documentation" : "GROUPE — TRAITEMENT DU GUARDIAN CDA\n\n   Ce groupe traite le bloc recordTarget.patientRole.patient.guardian.\n\n   Si un guardian est présent dans le CDA, il crée une RelatedPerson pour\n   représenter le représentant légal ou responsable du patient.\n\n   La ressource RelatedPerson est donc créée uniquement si le bloc guardian existe",
+    "input" : [{
+      "name" : "src",
+      "type" : "ClinicalDocument",
+      "mode" : "source"
+    },
+    {
+      "name" : "bundle",
+      "type" : "Bundle",
+      "mode" : "target"
+    },
+    {
+      "name" : "patient",
+      "type" : "Patient",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "recordTarget",
+      "source" : [{
+        "context" : "src",
+        "element" : "recordTarget",
+        "variable" : "recordTarget"
+      }],
+      "rule" : [{
+        "name" : "patientRole",
+        "source" : [{
+          "context" : "recordTarget",
+          "element" : "patientRole",
+          "variable" : "patientRole"
+        }],
+        "rule" : [{
+          "name" : "patient",
+          "source" : [{
+            "context" : "patientRole",
+            "element" : "patient",
+            "variable" : "patientCda"
+          }],
+          "rule" : [{
+            "name" : "guardianResource",
+            "source" : [{
+              "context" : "patientCda",
+              "element" : "guardian",
+              "variable" : "guardian"
+            }],
+            "target" : [{
+              "context" : "bundle",
+              "contextType" : "variable",
+              "element" : "entry",
+              "variable" : "guardianEntry"
+            },
+            {
+              "context" : "guardianEntry",
+              "contextType" : "variable",
+              "element" : "resource",
+              "variable" : "guardianRelatedPerson",
+              "transform" : "create",
+              "parameter" : [{
+                "valueString" : "RelatedPerson"
+              }]
+            },
+            {
+              "context" : "guardianRelatedPerson",
+              "contextType" : "variable",
+              "element" : "id",
+              "transform" : "uuid"
+            },
+            {
+              "context" : "guardianEntry",
+              "contextType" : "variable",
+              "element" : "fullUrl",
+              "transform" : "evaluate",
+              "parameter" : [{
+                "valueString" : "'urn:uuid:' + %guardianRelatedPerson.id"
+              }]
+            }],
+            "rule" : [{
+              "name" : "patientRef",
+              "source" : [{
+                "context" : "guardian"
+              }],
+              "target" : [{
+                "context" : "guardianRelatedPerson",
+                "contextType" : "variable",
+                "element" : "patient",
+                "variable" : "patientRef",
+                "transform" : "create",
+                "parameter" : [{
+                  "valueString" : "Reference"
+                }]
+              },
+              {
+                "context" : "patientRef",
+                "contextType" : "variable",
+                "element" : "reference",
+                "transform" : "evaluate",
+                "parameter" : [{
+                  "valueString" : "'urn:uuid:' + %patient.id"
+                }]
+              }]
+            },
+            {
+              "name" : "identifier",
+              "source" : [{
+                "context" : "guardian",
+                "element" : "id",
+                "variable" : "id"
+              }],
+              "target" : [{
+                "context" : "guardianRelatedPerson",
+                "contextType" : "variable",
+                "element" : "identifier",
+                "variable" : "identifier",
+                "transform" : "create",
+                "parameter" : [{
+                  "valueString" : "Identifier"
+                }]
+              }],
+              "dependent" : [{
+                "name" : "II",
+                "variable" : ["id", "identifier"]
+              }]
+            },
+            {
+              "name" : "address",
+              "source" : [{
+                "context" : "guardian",
+                "element" : "addr",
+                "variable" : "addr"
+              }],
+              "target" : [{
+                "context" : "guardianRelatedPerson",
+                "contextType" : "variable",
+                "element" : "address",
+                "variable" : "address",
+                "transform" : "create",
+                "parameter" : [{
+                  "valueString" : "Address"
+                }]
+              }],
+              "dependent" : [{
+                "name" : "ADAddress",
+                "variable" : ["addr", "address"]
+              }]
+            },
+            {
+              "name" : "telecom",
+              "source" : [{
+                "context" : "guardian",
+                "element" : "telecom",
+                "variable" : "telecom"
+              }],
+              "target" : [{
+                "context" : "guardianRelatedPerson",
+                "contextType" : "variable",
+                "element" : "telecom",
+                "variable" : "contactPoint",
+                "transform" : "create",
+                "parameter" : [{
+                  "valueString" : "ContactPoint"
+                }]
+              }],
+              "dependent" : [{
+                "name" : "TELContactPoint",
+                "variable" : ["telecom", "contactPoint"]
+              }]
+            },
+            {
+              "name" : "guardianPerson",
+              "source" : [{
+                "context" : "guardian",
+                "element" : "guardianPerson",
+                "variable" : "guardianPerson"
+              }],
+              "rule" : [{
+                "name" : "name",
+                "source" : [{
+                  "context" : "guardianPerson",
+                  "element" : "name",
+                  "variable" : "name"
+                }],
+                "target" : [{
+                  "context" : "guardianRelatedPerson",
+                  "contextType" : "variable",
+                  "element" : "name",
+                  "variable" : "humanName",
+                  "transform" : "create",
+                  "parameter" : [{
+                    "valueString" : "HumanName"
+                  }]
+                }],
+                "dependent" : [{
+                  "name" : "ENHumanName",
+                  "variable" : ["name", "humanName"]
+                }]
+              }]
+            }]
+          }]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "MapHeaderRelatedDocument",
+    "typeMode" : "none",
+    "documentation" : "GROUPE — TRAITEMENT DU DOCUMENT LIÉ CDA\n\n   Ce groupe traite le bloc relatedDocument du CDA.\n\n   Si relatedDocument est présent, il alimente Composition.relatesTo afin de\n   représenter le lien avec un document antérieur, par exemple un document\n   remplacé.\n\n   Ce groupe ne crée pas de ressource FHIR indépendante. Il complète uniquement\n   la Composition déjà initialisée",
+    "input" : [{
+      "name" : "src",
+      "type" : "ClinicalDocument",
+      "mode" : "source"
+    },
+    {
+      "name" : "composition",
+      "type" : "Composition",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "relatedDocument",
+      "source" : [{
+        "context" : "src",
+        "element" : "relatedDocument",
+        "variable" : "relatedDoc"
+      }],
+      "target" : [{
+        "context" : "composition",
+        "contextType" : "variable",
+        "element" : "relatesTo",
+        "variable" : "relatesTo"
+      }],
+      "rule" : [{
+        "name" : "replaces",
+        "source" : [{
+          "context" : "relatedDoc",
+          "element" : "typeCode",
+          "variable" : "typeCode",
+          "condition" : "typeCode = 'RPLC'"
+        }],
+        "target" : [{
+          "context" : "relatesTo",
+          "contextType" : "variable",
+          "element" : "code",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueString" : "replaces"
+          }]
+        }]
+      },
+      {
+        "name" : "parentDocument",
+        "source" : [{
+          "context" : "relatedDoc",
+          "element" : "parentDocument",
+          "variable" : "parentDoc"
+        }],
+        "rule" : [{
+          "name" : "targetIdentifier",
+          "source" : [{
+            "context" : "parentDoc",
+            "element" : "id",
+            "variable" : "id"
+          }],
+          "target" : [{
+            "context" : "relatesTo",
+            "contextType" : "variable",
+            "element" : "target",
+            "variable" : "identifier",
+            "transform" : "create",
+            "parameter" : [{
+              "valueString" : "Identifier"
+            }]
+          }],
+          "dependent" : [{
+            "name" : "II",
+            "variable" : ["id", "identifier"]
+          }]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "MapCDAOrganizationToOrganization",
+    "typeMode" : "none",
+    "documentation" : "GROUPE COMMUN — ORGANISATION CDA VERS ORGANIZATION FHIR\n\n   Ce groupe transforme un élément CDA de type organisation vers une ressource\n   FHIR Organization déjà créée par le groupe appelant.\n\n   Il alimente les informations génériques de l’organisation :\n   identifier, name, telecom et address",
+    "input" : [{
+      "name" : "src",
+      "mode" : "source"
+    },
+    {
+      "name" : "organization",
+      "type" : "Organization",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "identifier",
+      "source" : [{
+        "context" : "src",
+        "element" : "id",
+        "variable" : "id"
+      }],
+      "target" : [{
+        "context" : "organization",
+        "contextType" : "variable",
+        "element" : "identifier",
+        "variable" : "identifier",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Identifier"
+        }]
+      }],
+      "dependent" : [{
+        "name" : "II",
+        "variable" : ["id", "identifier"]
+      }]
+    },
+    {
+      "name" : "orgName",
+      "source" : [{
+        "context" : "src",
+        "element" : "name",
+        "variable" : "orgName"
+      }],
+      "rule" : [{
+        "name" : "name",
+        "source" : [{
+          "context" : "orgName",
+          "element" : "item",
+          "variable" : "item"
+        }],
+        "target" : [{
+          "context" : "organization",
+          "contextType" : "variable",
+          "element" : "name",
+          "transform" : "evaluate",
+          "parameter" : [{
+            "valueString" : "item.xmlText"
+          }]
+        }]
       }]
     },
     {
@@ -2278,7 +2801,7 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
         "variable" : "srcTelecom"
       }],
       "target" : [{
-        "context" : "tgt",
+        "context" : "organization",
         "contextType" : "variable",
         "element" : "telecom",
         "variable" : "contactPoint",
@@ -2293,21 +2816,123 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
       }]
     },
     {
-      "name" : "name",
+      "name" : "address",
+      "source" : [{
+        "context" : "src",
+        "element" : "addr",
+        "variable" : "srcAddr"
+      }],
+      "target" : [{
+        "context" : "organization",
+        "contextType" : "variable",
+        "element" : "address",
+        "variable" : "address",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Address"
+        }]
+      }],
+      "dependent" : [{
+        "name" : "ADAddress",
+        "variable" : ["srcAddr", "address"]
+      }]
+    }]
+  },
+  {
+    "name" : "MapCDAAssignedEntityToPractitioner",
+    "typeMode" : "none",
+    "documentation" : "GROUPE COMMUN — ASSIGNEDENTITY CDA VERS PRACTITIONER FHIR\n\n   Ce groupe transforme un élément CDA de type assignedEntity vers une ressource\n   FHIR Practitioner déjà créée par le groupe appelant.\n\n   Il alimente les informations génériques du professionnel :\n   identifier, address, telecom et name",
+    "input" : [{
+      "name" : "src",
+      "mode" : "source"
+    },
+    {
+      "name" : "practitioner",
+      "type" : "Practitioner",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "identifier",
+      "source" : [{
+        "context" : "src",
+        "element" : "id",
+        "variable" : "id"
+      }],
+      "target" : [{
+        "context" : "practitioner",
+        "contextType" : "variable",
+        "element" : "identifier",
+        "variable" : "identifier",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Identifier"
+        }]
+      }],
+      "dependent" : [{
+        "name" : "II",
+        "variable" : ["id", "identifier"]
+      }]
+    },
+    {
+      "name" : "address",
+      "source" : [{
+        "context" : "src",
+        "element" : "addr",
+        "variable" : "addr"
+      }],
+      "target" : [{
+        "context" : "practitioner",
+        "contextType" : "variable",
+        "element" : "address",
+        "variable" : "address",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Address"
+        }]
+      }],
+      "dependent" : [{
+        "name" : "ADAddress",
+        "variable" : ["addr", "address"]
+      }]
+    },
+    {
+      "name" : "telecom",
+      "source" : [{
+        "context" : "src",
+        "element" : "telecom",
+        "variable" : "telecom"
+      }],
+      "target" : [{
+        "context" : "practitioner",
+        "contextType" : "variable",
+        "element" : "telecom",
+        "variable" : "contactPoint",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "ContactPoint"
+        }]
+      }],
+      "dependent" : [{
+        "name" : "TELContactPoint",
+        "variable" : ["telecom", "contactPoint"]
+      }]
+    },
+    {
+      "name" : "assignedPerson",
       "source" : [{
         "context" : "src",
         "element" : "assignedPerson",
         "variable" : "person"
       }],
       "rule" : [{
-        "name" : "name",
+        "name" : "assignedName",
         "source" : [{
           "context" : "person",
           "element" : "name",
           "variable" : "pName"
         }],
         "target" : [{
-          "context" : "tgt",
+          "context" : "practitioner",
           "contextType" : "variable",
           "element" : "name",
           "variable" : "humanName",
@@ -2324,58 +2949,132 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
     }]
   },
   {
-    "name" : "ClinicalDocumentOrganization",
+    "name" : "MapCDAAssignedEntityToPractitionerRole",
     "typeMode" : "none",
+    "documentation" : "GROUPE COMMUN — ASSIGNEDENTITY CDA VERS PRACTITIONERROLE FHIR\n\n   Ce groupe transforme le lien fonctionnel porté par un assignedEntity CDA vers\n   une ressource FHIR PractitionerRole déjà créée par le groupe appelant.\n\n   Il alimente les références PractitionerRole.practitioner et\n   PractitionerRole.organization à partir des ressources Practitioner et\n   Organization déjà créées",
     "input" : [{
       "name" : "src",
-      "type" : "CustodianOrganization",
       "mode" : "source"
     },
     {
-      "name" : "tgt",
+      "name" : "role",
+      "type" : "PractitionerRole",
+      "mode" : "target"
+    },
+    {
+      "name" : "practitioner",
+      "type" : "Practitioner",
+      "mode" : "target"
+    },
+    {
+      "name" : "organization",
       "type" : "Organization",
       "mode" : "target"
     }],
     "rule" : [{
-      "name" : "meta",
+      "name" : "practitionerRef",
       "source" : [{
         "context" : "src"
       }],
       "target" : [{
-        "context" : "tgt",
+        "context" : "role",
         "contextType" : "variable",
-        "element" : "meta",
-        "variable" : "meta",
+        "element" : "practitioner",
+        "variable" : "refPractitioner",
         "transform" : "create",
         "parameter" : [{
-          "valueString" : "Meta"
+          "valueString" : "Reference"
         }]
-      }],
-      "rule" : [{
-        "name" : "profile",
-        "source" : [{
-          "context" : "src"
-        }],
-        "target" : [{
-          "context" : "meta",
-          "contextType" : "variable",
-          "element" : "profile",
-          "transform" : "copy",
-          "parameter" : [{
-            "valueString" : "https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-organization"
-          }]
+      },
+      {
+        "context" : "refPractitioner",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %practitioner.id"
         }]
       }]
     },
     {
-      "name" : "id",
+      "name" : "organizationRef",
       "source" : [{
-        "context" : "src",
-        "element" : "id",
-        "variable" : "srcId"
+        "context" : "src"
       }],
       "target" : [{
-        "context" : "tgt",
+        "context" : "role",
+        "contextType" : "variable",
+        "element" : "organization",
+        "variable" : "refOrganization",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Reference"
+        }]
+      },
+      {
+        "context" : "refOrganization",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %organization.id"
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "MapCDARelatedEntityToRelatedPerson",
+    "typeMode" : "none",
+    "documentation" : "GROUPE COMMUN — RELATEDENTITY CDA VERS RELATEDPERSON FHIR\n\n   Ce groupe transforme un relatedEntity CDA vers une ressource FHIR RelatedPerson\n   déjà créée par le groupe appelant.\n\n   Il alimente le lien avec le Patient ainsi que les informations génériques :\n   identifier, address, telecom et name.\n\n   Le champ relationship n’est pas alimenté dans cette étape afin d’éviter un\n   double mapping. Il est enrichi ensuite dans l’étape française avec le système\n   NOS approprié",
+    "input" : [{
+      "name" : "relatedEntity",
+      "type" : "RelatedEntity",
+      "mode" : "source"
+    },
+    {
+      "name" : "relatedPerson",
+      "type" : "RelatedPerson",
+      "mode" : "target"
+    },
+    {
+      "name" : "patient",
+      "type" : "Patient",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "patientRef",
+      "source" : [{
+        "context" : "relatedEntity"
+      }],
+      "target" : [{
+        "context" : "relatedPerson",
+        "contextType" : "variable",
+        "element" : "patient",
+        "variable" : "patientRef",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Reference"
+        }]
+      },
+      {
+        "context" : "patientRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %patient.id"
+        }]
+      }]
+    },
+    {
+      "name" : "identifier",
+      "source" : [{
+        "context" : "relatedEntity",
+        "element" : "id",
+        "variable" : "id"
+      }],
+      "target" : [{
+        "context" : "relatedPerson",
         "contextType" : "variable",
         "element" : "identifier",
         "variable" : "identifier",
@@ -2386,120 +3085,18 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
       }],
       "dependent" : [{
         "name" : "II",
-        "variable" : ["srcId", "identifier"]
-      }]
-    },
-    {
-      "name" : "name",
-      "source" : [{
-        "context" : "src",
-        "element" : "name",
-        "variable" : "v"
-      }],
-      "target" : [{
-        "context" : "tgt",
-        "contextType" : "variable",
-        "element" : "name",
-        "transform" : "evaluate",
-        "parameter" : [{
-          "valueString" : "v.other"
-        }]
-      }]
-    },
-    {
-      "name" : "telecom",
-      "source" : [{
-        "context" : "src",
-        "element" : "telecom",
-        "variable" : "srcTelecom"
-      }],
-      "target" : [{
-        "context" : "tgt",
-        "contextType" : "variable",
-        "element" : "telecom",
-        "variable" : "contactPoint",
-        "transform" : "create",
-        "parameter" : [{
-          "valueString" : "ContactPoint"
-        }]
-      }],
-      "dependent" : [{
-        "name" : "TELContactPoint",
-        "variable" : ["srcTelecom", "contactPoint"]
-      }]
-    },
-    {
-      "name" : "addr",
-      "source" : [{
-        "context" : "src",
-        "element" : "addr",
-        "variable" : "srcAddr"
-      }],
-      "target" : [{
-        "context" : "tgt",
-        "contextType" : "variable",
-        "element" : "address",
-        "variable" : "address",
-        "transform" : "create",
-        "parameter" : [{
-          "valueString" : "Address"
-        }]
-      }],
-      "dependent" : [{
-        "name" : "ADAddress",
-        "variable" : ["srcAddr", "address"]
-      }]
-    }]
-  },
-  {
-    "name" : "ClinicalDocumentPatientRole",
-    "typeMode" : "none",
-    "input" : [{
-      "name" : "src",
-      "type" : "PatientRole",
-      "mode" : "source"
-    },
-    {
-      "name" : "tgt",
-      "type" : "Patient",
-      "mode" : "target"
-    },
-    {
-      "name" : "bundle",
-      "type" : "Bundle",
-      "mode" : "target"
-    }],
-    "rule" : [{
-      "name" : "id",
-      "source" : [{
-        "context" : "src",
-        "element" : "id",
-        "variable" : "id"
-      }],
-      "target" : [{
-        "context" : "tgt",
-        "contextType" : "variable",
-        "element" : "identifier",
-        "variable" : "identifier",
-        "transform" : "create",
-        "parameter" : [{
-          "valueString" : "Identifier"
-        }]
-      }],
-      "dependent" : [{
-        "name" : "setFrPatientIdentifier",
         "variable" : ["id", "identifier"]
       }]
     },
     {
-      "name" : "addr",
+      "name" : "address",
       "source" : [{
-        "context" : "src",
+        "context" : "relatedEntity",
         "element" : "addr",
-        "variable" : "srcAddr"
+        "variable" : "addr"
       }],
       "target" : [{
-        "context" : "tgt",
+        "context" : "relatedPerson",
         "contextType" : "variable",
         "element" : "address",
         "variable" : "address",
@@ -2510,18 +3107,18 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
       }],
       "dependent" : [{
         "name" : "ADAddress",
-        "variable" : ["srcAddr", "address"]
+        "variable" : ["addr", "address"]
       }]
     },
     {
       "name" : "telecom",
       "source" : [{
-        "context" : "src",
+        "context" : "relatedEntity",
         "element" : "telecom",
-        "variable" : "srcTelecom"
+        "variable" : "telecom"
       }],
       "target" : [{
-        "context" : "tgt",
+        "context" : "relatedPerson",
         "contextType" : "variable",
         "element" : "telecom",
         "variable" : "contactPoint",
@@ -2532,25 +3129,25 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
       }],
       "dependent" : [{
         "name" : "TELContactPoint",
-        "variable" : ["srcTelecom", "contactPoint"]
+        "variable" : ["telecom", "contactPoint"]
       }]
     },
     {
-      "name" : "patientrole",
+      "name" : "relatedPerson",
       "source" : [{
-        "context" : "src",
-        "element" : "patient",
-        "variable" : "patient"
+        "context" : "relatedEntity",
+        "element" : "relatedPerson",
+        "variable" : "person"
       }],
       "rule" : [{
         "name" : "name",
         "source" : [{
-          "context" : "patient",
+          "context" : "person",
           "element" : "name",
-          "variable" : "patientName"
+          "variable" : "name"
         }],
         "target" : [{
-          "context" : "tgt",
+          "context" : "relatedPerson",
           "contextType" : "variable",
           "element" : "name",
           "variable" : "humanName",
@@ -2561,611 +3158,164 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
         }],
         "dependent" : [{
           "name" : "ENHumanName",
-          "variable" : ["patientName", "humanName"]
-        }]
-      },
-      {
-        "name" : "gender",
-        "source" : [{
-          "context" : "patient",
-          "element" : "administrativeGenderCode",
-          "variable" : "gender"
-        }],
-        "rule" : [{
-          "name" : "gender",
-          "source" : [{
-            "context" : "gender",
-            "element" : "code",
-            "variable" : "v"
-          }],
-          "target" : [{
-            "context" : "tgt",
-            "contextType" : "variable",
-            "element" : "gender",
-            "transform" : "translate",
-            "parameter" : [{
-              "valueId" : "v"
-            },
-            {
-              "valueString" : "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/cm-v3-administrative-gender"
-            },
-            {
-              "valueString" : "code"
-            }]
-          }]
-        }]
-      },
-      {
-        "name" : "birthDate",
-        "source" : [{
-          "context" : "patient",
-          "element" : "birthTime",
-          "variable" : "birthTime"
-        }],
-        "target" : [{
-          "context" : "tgt",
-          "contextType" : "variable",
-          "element" : "birthDate",
-          "variable" : "date",
-          "transform" : "create",
-          "parameter" : [{
-            "valueString" : "date"
-          }]
-        }],
-        "dependent" : [{
-          "name" : "TSDate",
-          "variable" : ["birthTime", "date"]
-        }]
-      },
-      {
-        "name" : "deceasedBL",
-        "source" : [{
-          "context" : "patient",
-          "element" : "deceasedInd",
-          "variable" : "indicator",
-          "condition" : "patient.deceasedTime.empty()"
-        }],
-        "target" : [{
-          "context" : "tgt",
-          "contextType" : "variable",
-          "element" : "deceased",
-          "variable" : "bool",
-          "transform" : "create",
-          "parameter" : [{
-            "valueString" : "boolean"
-          }]
-        }],
-        "dependent" : [{
-          "name" : "boolean",
-          "variable" : ["indicator", "bool"]
-        }]
-      },
-      {
-        "name" : "deceasedTime",
-        "source" : [{
-          "context" : "patient",
-          "element" : "deceasedTime",
-          "variable" : "dTime"
-        }],
-        "target" : [{
-          "context" : "tgt",
-          "contextType" : "variable",
-          "element" : "deceased",
-          "transform" : "copy",
-          "parameter" : [{
-            "valueId" : "dTime"
-          }]
-        }]
-      },
-      {
-        "name" : "maritalStatus",
-        "source" : [{
-          "context" : "patient",
-          "element" : "maritalStatusCode",
-          "variable" : "mStatus"
-        }],
-        "target" : [{
-          "context" : "tgt",
-          "contextType" : "variable",
-          "element" : "maritalStatus",
-          "transform" : "copy",
-          "parameter" : [{
-            "valueId" : "mStatus"
-          }]
-        }]
-      },
-      {
-        "name" : "language",
-        "source" : [{
-          "context" : "patient",
-          "element" : "languageCommunication",
-          "variable" : "language"
-        }],
-        "target" : [{
-          "context" : "tgt",
-          "contextType" : "variable",
-          "element" : "communication",
-          "variable" : "communication"
-        }],
-        "rule" : [{
-          "name" : "communication",
-          "source" : [{
-            "context" : "language",
-            "element" : "languageCode",
-            "variable" : "lCode"
-          }],
-          "target" : [{
-            "context" : "communication",
-            "contextType" : "variable",
-            "element" : "language",
-            "transform" : "copy",
-            "parameter" : [{
-              "valueId" : "lCode"
-            }]
-          }],
-          "documentation" : "preference: for language.preferenceInd make communication.preferred"
+          "variable" : ["name", "humanName"]
         }]
       }]
+    }]
+  },
+  {
+    "name" : "MapCDAHealthCareFacilityToLocationContext",
+    "typeMode" : "none",
+    "documentation" : "GROUPE COMMUN — HEALTHCAREFACILITY CDA VERS CONTEXTE DE LIEU FHIR\n\n   Ce groupe traite le bloc healthCareFacility du CDA.\n\n   Il complète les ressources Encounter, Location et Organization déjà créées\n   par le groupe appelant lorsque le bloc healthCareFacility existe.\n\n   Il alimente notamment :\n   - Encounter.location ;\n   - Encounter.serviceProvider ;\n   - Location.managingOrganization ;\n   - Location.name ;\n   - Location.type ;\n   - Organization représentant la structure de prise en charge.",
+    "input" : [{
+      "name" : "facility",
+      "type" : "HealthCareFacility",
+      "mode" : "source"
     },
     {
-      "name" : "organization",
+      "name" : "encounter",
+      "type" : "Encounter",
+      "mode" : "target"
+    },
+    {
+      "name" : "location",
+      "type" : "Location",
+      "mode" : "target"
+    },
+    {
+      "name" : "facilityOrganization",
+      "type" : "Organization",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "encounterLocation",
       "source" : [{
-        "context" : "src",
-        "element" : "providerOrganization",
-        "variable" : "org"
+        "context" : "facility"
       }],
       "target" : [{
-        "context" : "bundle",
+        "context" : "encounter",
         "contextType" : "variable",
-        "element" : "entry",
-        "variable" : "e"
-      },
-      {
-        "context" : "e",
-        "contextType" : "variable",
-        "element" : "resource",
-        "variable" : "organization",
-        "transform" : "create",
-        "parameter" : [{
-          "valueString" : "Organization"
-        }]
-      },
-      {
-        "context" : "organization",
-        "contextType" : "variable",
-        "element" : "id",
-        "variable" : "uuid3",
-        "transform" : "uuid"
-      },
-      {
-        "context" : "e",
-        "contextType" : "variable",
-        "element" : "fullUrl",
-        "transform" : "append",
-        "parameter" : [{
-          "valueString" : "urn:uuid:"
-        },
-        {
-          "valueId" : "uuid3"
-        }]
+        "element" : "location",
+        "variable" : "encLocation"
       }],
       "rule" : [{
-        "name" : "reference",
+        "name" : "locationRef",
         "source" : [{
-          "context" : "org"
+          "context" : "facility"
         }],
         "target" : [{
-          "context" : "tgt",
+          "context" : "encLocation",
           "contextType" : "variable",
-          "element" : "managingOrganization",
-          "variable" : "reference",
+          "element" : "location",
+          "variable" : "locRef",
           "transform" : "create",
           "parameter" : [{
             "valueString" : "Reference"
           }]
         },
         {
-          "context" : "reference",
+          "context" : "locRef",
           "contextType" : "variable",
           "element" : "reference",
           "transform" : "evaluate",
           "parameter" : [{
-            "valueString" : "'urn:uuid:' + %organization.id"
-          }]
-        }]
-      },
-      {
-        "name" : "id",
-        "source" : [{
-          "context" : "org",
-          "element" : "id",
-          "variable" : "orgId"
-        }],
-        "target" : [{
-          "context" : "organization",
-          "contextType" : "variable",
-          "element" : "identifier",
-          "variable" : "identifier",
-          "transform" : "create",
-          "parameter" : [{
-            "valueString" : "Identifier"
-          }]
-        }],
-        "dependent" : [{
-          "name" : "II",
-          "variable" : ["orgId", "identifier"]
-        }]
-      },
-      {
-        "name" : "name",
-        "source" : [{
-          "context" : "org",
-          "element" : "name",
-          "variable" : "v"
-        }],
-        "target" : [{
-          "context" : "organization",
-          "contextType" : "variable",
-          "element" : "name",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "v.other"
-          }]
-        }]
-      },
-      {
-        "name" : "telecom",
-        "source" : [{
-          "context" : "org",
-          "element" : "telecom",
-          "variable" : "orgTel"
-        }],
-        "target" : [{
-          "context" : "organization",
-          "contextType" : "variable",
-          "element" : "telecom",
-          "variable" : "contactPoint",
-          "transform" : "create",
-          "parameter" : [{
-            "valueString" : "ContactPoint"
-          }]
-        }],
-        "dependent" : [{
-          "name" : "TELContactPoint",
-          "variable" : ["orgTel", "contactPoint"]
-        }]
-      },
-      {
-        "name" : "addr",
-        "source" : [{
-          "context" : "org",
-          "element" : "addr",
-          "variable" : "orgAddr"
-        }],
-        "target" : [{
-          "context" : "organization",
-          "contextType" : "variable",
-          "element" : "address",
-          "variable" : "address",
-          "transform" : "create",
-          "parameter" : [{
-            "valueString" : "Address"
-          }]
-        }],
-        "dependent" : [{
-          "name" : "ADAddress",
-          "variable" : ["orgAddr", "address"]
-        }]
-      }]
-    }]
-  },
-  {
-    "name" : "setFrPatientIdentifier",
-    "typeMode" : "none",
-    "input" : [{
-      "name" : "id",
-      "type" : "II",
-      "mode" : "source"
-    },
-    {
-      "name" : "identifier",
-      "type" : "Identifier",
-      "mode" : "target"
-    }],
-    "rule" : [{
-      "name" : "identifierType",
-      "source" : [{
-        "context" : "id"
-      }],
-      "target" : [{
-        "context" : "identifier",
-        "contextType" : "variable"
-      },
-      {
-        "context" : "identifier",
-        "contextType" : "variable",
-        "element" : "type",
-        "variable" : "type"
-      },
-      {
-        "context" : "type",
-        "contextType" : "variable",
-        "element" : "coding",
-        "variable" : "coding"
-      },
-      {
-        "context" : "coding",
-        "contextType" : "variable",
-        "element" : "system",
-        "variable" : "system"
-      },
-      {
-        "context" : "coding",
-        "contextType" : "variable",
-        "element" : "code",
-        "variable" : "code"
-      }],
-      "rule" : [{
-        "name" : "system",
-        "source" : [{
-          "context" : "id",
-          "condition" : "(id.root = '1.2.250.1.213.1.4.8')"
-        }],
-        "target" : [{
-          "context" : "system",
-          "contextType" : "variable",
-          "element" : "value",
-          "transform" : "copy",
-          "parameter" : [{
-            "valueString" : "https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203"
-          }]
-        }]
-      },
-      {
-        "name" : "code",
-        "source" : [{
-          "context" : "id",
-          "condition" : "(id.root = '1.2.250.1.213.1.4.8')"
-        }],
-        "target" : [{
-          "context" : "code",
-          "contextType" : "variable",
-          "element" : "value",
-          "transform" : "copy",
-          "parameter" : [{
-            "valueString" : "INS-NIR"
-          }]
-        }]
-      },
-      {
-        "name" : "system",
-        "source" : [{
-          "context" : "id",
-          "condition" : "(id.root = '1.2.3.4.5.6.7.8.9.10')"
-        }],
-        "target" : [{
-          "context" : "system",
-          "contextType" : "variable",
-          "element" : "value",
-          "transform" : "copy",
-          "parameter" : [{
-            "valueString" : "http://terminology.hl7.org/CodeSystem/v2-0203"
-          }]
-        }]
-      },
-      {
-        "name" : "code",
-        "source" : [{
-          "context" : "id",
-          "condition" : "(id.root = '1.2.3.4.5.6.7.8.9.10')"
-        }],
-        "target" : [{
-          "context" : "code",
-          "contextType" : "variable",
-          "element" : "value",
-          "transform" : "copy",
-          "parameter" : [{
-            "valueString" : "PI"
+            "valueString" : "'urn:uuid:' + %location.id"
           }]
         }]
       }]
     },
     {
-      "name" : "extension",
+      "name" : "serviceProvider",
       "source" : [{
-        "context" : "id",
-        "element" : "extension",
-        "variable" : "extension"
+        "context" : "facility"
       }],
       "target" : [{
-        "context" : "identifier",
+        "context" : "encounter",
         "contextType" : "variable",
-        "element" : "value",
-        "variable" : "value"
-      },
-      {
-        "context" : "value",
-        "contextType" : "variable",
-        "element" : "value",
-        "transform" : "copy",
-        "parameter" : [{
-          "valueId" : "extension"
-        }]
-      }]
-    },
-    {
-      "name" : "root",
-      "source" : [{
-        "context" : "id",
-        "element" : "root",
-        "variable" : "root"
-      }],
-      "target" : [{
-        "context" : "identifier",
-        "contextType" : "variable",
-        "element" : "system",
-        "variable" : "system"
-      },
-      {
-        "context" : "system",
-        "contextType" : "variable",
-        "element" : "value",
-        "transform" : "append",
-        "parameter" : [{
-          "valueString" : "urn:oid:"
-        },
-        {
-          "valueId" : "root"
-        }]
-      }]
-    }]
-  },
-  {
-    "name" : "ClinicalDocumentEncounter",
-    "typeMode" : "none",
-    "documentation" : "Fin modification NR\r\nEtat initial\r\nsrc -> tgt.identifier as identifier then {\r\nsrc.id as id -> identifier.type as type, type.coding as coding, coding.system as system, coding.code as code then {\r\nsrc -> system.value = 'http://terminology.hl7.org/CodeSystem/v2-0203' \"system\";\r\nsrc -> code.value = 'MR' \"code\";\r\nid.extension as extension -> identifier.value as value, value.value = extension \"extension\";\r\nid.root as root -> identifier.system as system, system.value = append('urn:oid:', root) \"root\";\r\n} \"id\";\r\n} \"identifier\";\r\nFin état initial",
-    "input" : [{
-      "name" : "src",
-      "type" : "EncompassingEncounter",
-      "mode" : "source"
-    },
-    {
-      "name" : "bundle",
-      "type" : "Bundle",
-      "mode" : "target"
-    },
-    {
-      "name" : "tgt",
-      "type" : "Encounter",
-      "mode" : "target"
-    }],
-    "rule" : [{
-      "name" : "id",
-      "source" : [{
-        "context" : "src",
-        "element" : "id",
-        "variable" : "Id"
-      }],
-      "target" : [{
-        "context" : "tgt",
-        "contextType" : "variable",
-        "element" : "identifier",
-        "variable" : "identifier",
+        "element" : "serviceProvider",
+        "variable" : "orgRef",
         "transform" : "create",
         "parameter" : [{
-          "valueString" : "Identifier"
+          "valueString" : "Reference"
         }]
-      }],
-      "dependent" : [{
-        "name" : "II",
-        "variable" : ["Id", "identifier"]
-      }]
-    },
-    {
-      "name" : "status",
-      "source" : [{
-        "context" : "src"
-      }],
-      "target" : [{
-        "context" : "tgt",
+      },
+      {
+        "context" : "orgRef",
         "contextType" : "variable",
-        "element" : "status",
-        "transform" : "copy",
+        "element" : "reference",
+        "transform" : "evaluate",
         "parameter" : [{
-          "valueString" : "finished"
+          "valueString" : "'urn:uuid:' + %facilityOrganization.id"
         }]
       }]
     },
     {
-      "name" : "class",
+      "name" : "managingOrganization",
       "source" : [{
-        "context" : "src",
-        "element" : "code",
-        "variable" : "srcCode"
+        "context" : "facility"
       }],
       "target" : [{
-        "context" : "tgt",
+        "context" : "location",
         "contextType" : "variable",
-        "element" : "class",
-        "variable" : "coding",
+        "element" : "managingOrganization",
+        "variable" : "managingOrgRef",
         "transform" : "create",
         "parameter" : [{
-          "valueString" : "Coding"
+          "valueString" : "Reference"
         }]
+      },
+      {
+        "context" : "managingOrgRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %facilityOrganization.id"
+        }]
+      }]
+    },
+    {
+      "name" : "facilityLocation",
+      "source" : [{
+        "context" : "facility",
+        "element" : "location",
+        "variable" : "facilityLocation"
       }],
       "rule" : [{
-        "name" : "code",
+        "name" : "locationName",
         "source" : [{
-          "context" : "srcCode",
-          "element" : "code",
-          "variable" : "code"
+          "context" : "facilityLocation",
+          "element" : "name",
+          "variable" : "locName"
         }],
-        "target" : [{
-          "context" : "coding",
-          "contextType" : "variable",
-          "element" : "code",
-          "transform" : "cast",
-          "parameter" : [{
-            "valueId" : "code"
-          },
-          {
-            "valueString" : "string"
-          }]
-        }]
-      },
-      {
-        "name" : "codeSystem",
-        "source" : [{
-          "context" : "srcCode",
-          "element" : "codeSystem",
-          "variable" : "system"
-        }],
-        "target" : [{
-          "context" : "coding",
-          "contextType" : "variable",
-          "element" : "system",
-          "transform" : "translate",
-          "parameter" : [{
-            "valueId" : "system"
-          },
-          {
-            "valueString" : "http://hl7.org/fhir/ConceptMap/special-oid2uri"
-          },
-          {
-            "valueString" : "uri"
-          }]
-        }]
-      },
-      {
-        "name" : "displayName",
-        "source" : [{
-          "context" : "srcCode",
-          "element" : "displayName",
-          "variable" : "display"
-        }],
-        "target" : [{
-          "context" : "coding",
-          "contextType" : "variable",
-          "element" : "display",
-          "transform" : "cast",
-          "parameter" : [{
-            "valueId" : "display"
-          },
-          {
-            "valueString" : "string"
+        "rule" : [{
+          "name" : "locationName",
+          "source" : [{
+            "context" : "locName",
+            "element" : "item",
+            "variable" : "item"
+          }],
+          "target" : [{
+            "context" : "location",
+            "contextType" : "variable",
+            "element" : "name",
+            "transform" : "evaluate",
+            "parameter" : [{
+              "valueString" : "item.xmlText"
+            }]
           }]
         }]
       }]
     },
     {
-      "name" : "code",
+      "name" : "locationType",
       "source" : [{
-        "context" : "src",
+        "context" : "facility",
         "element" : "code",
-        "variable" : "srcCode"
+        "variable" : "facilityCode"
       }],
       "target" : [{
-        "context" : "tgt",
+        "context" : "location",
         "contextType" : "variable",
         "element" : "type",
         "variable" : "cc",
@@ -3176,310 +3326,41 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
       }],
       "dependent" : [{
         "name" : "CDCodeableConcept",
-        "variable" : ["srcCode", "cc"]
+        "variable" : ["facilityCode", "cc"]
       }]
     },
     {
-      "name" : "effectiveTime",
+      "name" : "serviceProviderOrganization",
       "source" : [{
-        "context" : "src",
-        "element" : "effectiveTime",
-        "variable" : "effTime"
-      }],
-      "target" : [{
-        "context" : "tgt",
-        "contextType" : "variable",
-        "element" : "period",
-        "variable" : "period",
-        "transform" : "create",
-        "parameter" : [{
-          "valueString" : "Period"
-        }]
-      }],
-      "dependent" : [{
-        "name" : "IVLTSPeriod",
-        "variable" : ["effTime", "period"]
-      }]
-    },
-    {
-      "name" : "hospitalization",
-      "source" : [{
-        "context" : "src",
-        "condition" : "admissionReferralSourceCode.exists() or dischargeDispositionCode.exists()"
-      }],
-      "target" : [{
-        "context" : "tgt",
-        "contextType" : "variable",
-        "element" : "hospitalization",
-        "variable" : "hosp"
+        "context" : "facility",
+        "element" : "serviceProviderOrganization",
+        "variable" : "serviceProviderOrganization"
       }],
       "rule" : [{
-        "name" : "adminReferral",
+        "name" : "facilityOrganization",
         "source" : [{
-          "context" : "src",
-          "element" : "admissionReferralSourceCode",
-          "variable" : "admRef"
-        }],
-        "target" : [{
-          "context" : "hosp",
-          "contextType" : "variable",
-          "element" : "admitSource",
-          "variable" : "cc",
-          "transform" : "create",
-          "parameter" : [{
-            "valueString" : "CodeableConcept"
-          }]
+          "context" : "serviceProviderOrganization"
         }],
         "dependent" : [{
-          "name" : "CDCodeableConcept",
-          "variable" : ["admRef", "cc"]
-        }]
-      },
-      {
-        "name" : "discDisposition",
-        "source" : [{
-          "context" : "src",
-          "element" : "dischargeDispositionCode",
-          "variable" : "discDispo"
-        }],
-        "target" : [{
-          "context" : "hosp",
-          "contextType" : "variable",
-          "element" : "dischargeDisposition",
-          "variable" : "cc",
-          "transform" : "create",
-          "parameter" : [{
-            "valueString" : "CodeableConcept"
-          }]
-        }],
-        "dependent" : [{
-          "name" : "CDCodeableConcept",
-          "variable" : ["discDispo", "cc"]
-        }]
-      }]
-    },
-    {
-      "name" : "participant",
-      "source" : [{
-        "context" : "src",
-        "element" : "encounterParticipant",
-        "variable" : "srcPart"
-      }],
-      "target" : [{
-        "context" : "tgt",
-        "contextType" : "variable",
-        "element" : "participant",
-        "variable" : "tgtPart"
-      }],
-      "rule" : [{
-        "name" : "typeCode",
-        "source" : [{
-          "context" : "srcPart",
-          "element" : "typeCode",
-          "variable" : "code"
-        }],
-        "target" : [{
-          "context" : "tgtPart",
-          "contextType" : "variable",
-          "element" : "type",
-          "transform" : "cc",
-          "parameter" : [{
-            "valueString" : "http://terminology.hl7.org/CodeSystem/v3-ParticipationType"
-          },
-          {
-            "valueId" : "code"
-          }]
-        }]
-      },
-      {
-        "name" : "time",
-        "source" : [{
-          "context" : "srcPart",
-          "element" : "time",
-          "variable" : "srcTime"
-        }],
-        "target" : [{
-          "context" : "tgtPart",
-          "contextType" : "variable",
-          "element" : "period",
-          "variable" : "period",
-          "transform" : "create",
-          "parameter" : [{
-            "valueString" : "Period"
-          }]
-        }],
-        "dependent" : [{
-          "name" : "IVLTSPeriod",
-          "variable" : ["srcTime", "period"]
-        }]
-      },
-      {
-        "name" : "entity",
-        "source" : [{
-          "context" : "srcPart",
-          "element" : "assignedEntity",
-          "variable" : "entity"
-        }],
-        "target" : [{
-          "context" : "bundle",
-          "contextType" : "variable",
-          "element" : "entry",
-          "variable" : "e"
-        },
-        {
-          "context" : "e",
-          "contextType" : "variable",
-          "element" : "resource",
-          "variable" : "practitioner",
-          "transform" : "create",
-          "parameter" : [{
-            "valueString" : "Practitioner"
-          }]
-        },
-        {
-          "context" : "practitioner",
-          "contextType" : "variable",
-          "element" : "id",
-          "variable" : "uuid2",
-          "transform" : "uuid"
-        },
-        {
-          "context" : "e",
-          "contextType" : "variable",
-          "element" : "fullUrl",
-          "transform" : "append",
-          "parameter" : [{
-            "valueString" : "urn:uuid:"
-          },
-          {
-            "valueId" : "uuid2"
-          }]
-        }],
-        "rule" : [{
-          "name" : "entry",
-          "source" : [{
-            "context" : "entity"
-          }],
-          "target" : [{
-            "context" : "tgtPart",
-            "contextType" : "variable",
-            "element" : "individual",
-            "variable" : "reference",
-            "transform" : "create",
-            "parameter" : [{
-              "valueString" : "Reference"
-            }]
-          },
-          {
-            "context" : "reference",
-            "contextType" : "variable",
-            "element" : "reference",
-            "transform" : "evaluate",
-            "parameter" : [{
-              "valueString" : "'urn:uuid:' + %practitioner.id"
-            }]
-          }],
-          "dependent" : [{
-            "name" : "ClinicalDocumentEntityPractitioner",
-            "variable" : ["entity", "practitioner"]
-          }]
-        }]
-      }]
-    },
-    {
-      "name" : "location",
-      "source" : [{
-        "context" : "src",
-        "element" : "location",
-        "variable" : "srcLocation"
-      }],
-      "rule" : [{
-        "name" : "facility",
-        "source" : [{
-          "context" : "srcLocation",
-          "element" : "healthCareFacility",
-          "variable" : "facility"
-        }],
-        "target" : [{
-          "context" : "bundle",
-          "contextType" : "variable",
-          "element" : "entry",
-          "variable" : "e"
-        },
-        {
-          "context" : "e",
-          "contextType" : "variable",
-          "element" : "resource",
-          "variable" : "location",
-          "transform" : "create",
-          "parameter" : [{
-            "valueString" : "Location"
-          }]
-        },
-        {
-          "context" : "location",
-          "contextType" : "variable",
-          "element" : "id",
-          "variable" : "uuid2",
-          "transform" : "uuid"
-        },
-        {
-          "context" : "e",
-          "contextType" : "variable",
-          "element" : "fullUrl",
-          "transform" : "append",
-          "parameter" : [{
-            "valueString" : "urn:uuid:"
-          },
-          {
-            "valueId" : "uuid2"
-          }]
-        }],
-        "rule" : [{
-          "name" : "facLocation",
-          "source" : [{
-            "context" : "facility"
-          }],
-          "target" : [{
-            "context" : "tgt",
-            "contextType" : "variable",
-            "element" : "location",
-            "variable" : "tgtLocation"
-          },
-          {
-            "context" : "tgtLocation",
-            "contextType" : "variable",
-            "element" : "location",
-            "variable" : "reference",
-            "transform" : "create",
-            "parameter" : [{
-              "valueString" : "Reference"
-            }]
-          },
-          {
-            "context" : "reference",
-            "contextType" : "variable",
-            "element" : "reference",
-            "transform" : "evaluate",
-            "parameter" : [{
-              "valueString" : "'urn:uuid:' + %location.id"
-            }]
-          }],
-          "dependent" : [{
-            "name" : "ClinicalDocumentLocation",
-            "variable" : ["facility", "bundle", "location"]
-          }]
+          "name" : "MapCDAOrganizationToOrganization",
+          "variable" : ["serviceProviderOrganization", "facilityOrganization"]
         }]
       }]
     }]
   },
   {
-    "name" : "ClinicalDocumentLocation",
+    "name" : "MapClinicalDocumentBody",
     "typeMode" : "none",
+    "documentation" : "CORPS CDA -> SECTIONS FHIR\n\n   Cette partie transforme uniquement le squelette du structuredBody CDA.\n   Les entries métier ne sont pas transformées dans l’étape 2\r\nCDA component.structuredBody -> FHIR Composition.section",
     "input" : [{
       "name" : "src",
-      "type" : "HealthCareFacility",
+      "type" : "ClinicalDocument",
       "mode" : "source"
+    },
+    {
+      "name" : "composition",
+      "type" : "Composition",
+      "mode" : "target"
     },
     {
       "name" : "bundle",
@@ -3487,269 +3368,158 @@ Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)
       "mode" : "target"
     },
     {
-      "name" : "tgt",
-      "type" : "Location",
+      "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
-      "name" : "id",
+      "name" : "component",
       "source" : [{
         "context" : "src",
-        "element" : "id",
-        "variable" : "srcIdentifier"
+        "element" : "component",
+        "variable" : "cdaComponent"
+      }],
+      "rule" : [{
+        "name" : "structuredBody",
+        "source" : [{
+          "context" : "cdaComponent",
+          "element" : "structuredBody",
+          "variable" : "structuredBody"
+        }],
+        "rule" : [{
+          "name" : "bodyComponent",
+          "source" : [{
+            "context" : "structuredBody",
+            "element" : "component",
+            "variable" : "bodyComponent"
+          }],
+          "rule" : [{
+            "name" : "section",
+            "source" : [{
+              "context" : "bodyComponent",
+              "element" : "section",
+              "variable" : "section"
+            }],
+            "target" : [{
+              "context" : "composition",
+              "contextType" : "variable",
+              "element" : "section",
+              "variable" : "compSection"
+            }],
+            "rule" : [{
+              "name" : "sectionBase",
+              "source" : [{
+                "context" : "section"
+              }],
+              "dependent" : [{
+                "name" : "MapCDASectionToCompositionSection",
+                "variable" : ["section", "compSection"]
+              }]
+            }]
+          }]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "MapCDASectionToCompositionSection",
+    "typeMode" : "none",
+    "documentation" : "CDA section -> FHIR Composition.section title/code/text",
+    "input" : [{
+      "name" : "section",
+      "mode" : "source"
+    },
+    {
+      "name" : "compSection",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "sectionTitle",
+      "source" : [{
+        "context" : "section",
+        "element" : "title",
+        "variable" : "sectionTitle"
       }],
       "target" : [{
-        "context" : "tgt",
+        "context" : "compSection",
         "contextType" : "variable",
-        "element" : "identifier",
-        "variable" : "identifier",
-        "transform" : "create",
+        "element" : "title",
+        "transform" : "evaluate",
         "parameter" : [{
-          "valueString" : "Identifier"
+          "valueString" : "sectionTitle.xmlText"
         }]
-      }],
-      "dependent" : [{
-        "name" : "II",
-        "variable" : ["srcIdentifier", "identifier"]
       }]
     },
     {
-      "name" : "locationType",
+      "name" : "sectionCode",
       "source" : [{
-        "context" : "src",
+        "context" : "section",
         "element" : "code",
-        "variable" : "srcCode"
+        "variable" : "sectionCode"
       }],
       "target" : [{
-        "context" : "tgt",
+        "context" : "compSection",
         "contextType" : "variable",
-        "element" : "type",
+        "element" : "code",
         "variable" : "cc",
         "transform" : "create",
         "parameter" : [{
           "valueString" : "CodeableConcept"
         }]
       }],
-      "rule" : [{
-        "name" : "coding",
-        "source" : [{
-          "context" : "srcCode",
-          "element" : "code",
-          "variable" : "code"
-        }],
-        "target" : [{
-          "context" : "cc",
-          "contextType" : "variable",
-          "element" : "coding",
-          "variable" : "coding",
-          "transform" : "create",
-          "parameter" : [{
-            "valueString" : "Coding"
-          }]
-        }],
-        "rule" : [{
-          "name" : "code",
-          "source" : [{
-            "context" : "code"
-          }],
-          "target" : [{
-            "context" : "coding",
-            "contextType" : "variable",
-            "element" : "code",
-            "transform" : "copy",
-            "parameter" : [{
-              "valueId" : "code"
-            }]
-          }]
-        },
-        {
-          "name" : "system",
-          "source" : [{
-            "context" : "code"
-          }],
-          "target" : [{
-            "context" : "coding",
-            "contextType" : "variable",
-            "element" : "system",
-            "transform" : "copy",
-            "parameter" : [{
-              "valueString" : "https://mos.esante.gouv.fr/NOS/TRE_R02-SecteurActivite/FHIR/TRE-R02-SecteurActivite"
-            }]
-          }]
-        },
-        {
-          "name" : "display",
-          "source" : [{
-            "context" : "srcCode",
-            "element" : "displayName",
-            "variable" : "display"
-          }],
-          "target" : [{
-            "context" : "coding",
-            "contextType" : "variable",
-            "element" : "display",
-            "transform" : "copy",
-            "parameter" : [{
-              "valueId" : "display"
-            }]
-          }]
-        }]
+      "dependent" : [{
+        "name" : "CDCodeableConcept",
+        "variable" : ["sectionCode", "cc"]
       }]
     },
     {
-      "name" : "location",
+      "name" : "sectionText",
       "source" : [{
-        "context" : "src",
-        "element" : "location",
-        "variable" : "location"
-      }],
-      "rule" : [{
-        "name" : "addr",
-        "source" : [{
-          "context" : "location",
-          "element" : "addr",
-          "variable" : "locAddr"
-        }],
-        "target" : [{
-          "context" : "tgt",
-          "contextType" : "variable",
-          "element" : "address",
-          "variable" : "address",
-          "transform" : "create",
-          "parameter" : [{
-            "valueString" : "Address"
-          }]
-        }],
-        "dependent" : [{
-          "name" : "ADAddress",
-          "variable" : ["locAddr", "address"]
-        }]
-      },
-      {
-        "name" : "org",
-        "source" : [{
-          "context" : "location",
-          "element" : "serviceProviderOrganization",
-          "variable" : "srcOrg"
-        }],
-        "target" : [{
-          "context" : "bundle",
-          "contextType" : "variable",
-          "element" : "entry",
-          "variable" : "e"
-        },
-        {
-          "context" : "e",
-          "contextType" : "variable",
-          "element" : "resource",
-          "variable" : "organization",
-          "transform" : "create",
-          "parameter" : [{
-            "valueString" : "Organization"
-          }]
-        },
-        {
-          "context" : "organization",
-          "contextType" : "variable",
-          "element" : "id",
-          "variable" : "uuid3",
-          "transform" : "uuid"
-        },
-        {
-          "context" : "e",
-          "contextType" : "variable",
-          "element" : "fullUrl",
-          "transform" : "append",
-          "parameter" : [{
-            "valueString" : "urn:uuid:"
-          },
-          {
-            "valueId" : "uuid3"
-          }]
-        }],
-        "rule" : [{
-          "name" : "organization",
-          "source" : [{
-            "context" : "srcOrg"
-          }],
-          "target" : [{
-            "context" : "tgt",
-            "contextType" : "variable",
-            "element" : "managingOrganization",
-            "variable" : "reference",
-            "transform" : "create",
-            "parameter" : [{
-              "valueString" : "Reference"
-            }]
-          },
-          {
-            "context" : "reference",
-            "contextType" : "variable",
-            "element" : "reference",
-            "transform" : "evaluate",
-            "parameter" : [{
-              "valueString" : "'urn:uuid:' + %organization.id"
-            }]
-          }],
-          "dependent" : [{
-            "name" : "ClinicalDocumentOrganization",
-            "variable" : ["srcOrg", "organization"]
-          }]
-        }]
-      }],
-      "documentation" : "place names are usually stored with no parts"
-    }]
-  },
-  {
-    "name" : "NarrativeLink",
-    "typeMode" : "none",
-    "documentation" : "_________________________ Template Type not specified  ___________________",
-    "input" : [{
-      "name" : "url",
-      "mode" : "source"
-    },
-    {
-      "name" : "ext",
-      "type" : "Extension",
-      "mode" : "target"
-    }],
-    "rule" : [{
-      "name" : "url",
-      "source" : [{
-        "context" : "url"
+        "context" : "section",
+        "element" : "text",
+        "variable" : "sectionText"
       }],
       "target" : [{
-        "context" : "ext",
+        "context" : "compSection",
         "contextType" : "variable",
-        "element" : "url",
-        "transform" : "copy",
-        "parameter" : [{
-          "valueString" : "http://hl7.org/fhir/StructureDefinition/narrativeLink"
-        }]
-      }]
-    },
-    {
-      "name" : "value",
-      "source" : [{
-        "context" : "url"
-      }],
-      "target" : [{
-        "context" : "ext",
-        "contextType" : "variable",
-        "element" : "value",
-        "variable" : "value",
+        "element" : "text",
+        "variable" : "narrative",
         "transform" : "create",
         "parameter" : [{
-          "valueString" : "url"
+          "valueString" : "Narrative"
+        }]
+      }],
+      "rule" : [{
+        "name" : "narrativeStatus",
+        "source" : [{
+          "context" : "sectionText"
+        }],
+        "target" : [{
+          "context" : "narrative",
+          "contextType" : "variable",
+          "element" : "status",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueString" : "generated"
+          }]
         }]
       },
       {
-        "context" : "value",
-        "contextType" : "variable",
-        "element" : "value",
-        "transform" : "copy",
-        "parameter" : [{
-          "valueId" : "url"
+        "name" : "narrativeDiv",
+        "source" : [{
+          "context" : "sectionText"
+        }],
+        "target" : [{
+          "context" : "narrative",
+          "contextType" : "variable",
+          "element" : "div",
+          "transform" : "cast",
+          "parameter" : [{
+            "valueId" : "sectionText"
+          },
+          {
+            "valueString" : "string"
+          }]
         }]
       }]
     }]

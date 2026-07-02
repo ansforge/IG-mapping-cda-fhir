@@ -11,7 +11,7 @@
   <name value="CDA2FHIRMAP"/>
   <title value="POC - Mapping CDA to FHIR"/>
   <status value="draft"/>
-  <date value="2026-06-30T14:53:19+00:00"/>
+  <date value="2026-07-02T14:54:00+00:00"/>
   <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
   <contact>
     <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
@@ -842,20 +842,10 @@
         <valueString value="StructureMap"/>
       </extension>
       <reference>
-        <reference value="StructureMap/CdaFrMDEToBundle"/>
-      </reference>
-      <name value="Mapping CSE-MDE vers FHIR Bundle - Contexte Français"/>
-      <description value="Mapping CSE-MDE vers FHIR Bundle - Contexte Français"/>
-    </resource>
-    <resource>
-      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
-        <valueString value="StructureMap"/>
-      </extension>
-      <reference>
         <reference value="StructureMap/CdaFrToBundle"/>
       </reference>
-      <name value="Mapping de CDAFr vers FHIR Bundle (A partir des sources de Oliver Egger)"/>
-      <description value="Mapping de CDAFr vers FHIR Bundle (A partir des sources de Oliver Egger)"/>
+      <name value="Mapping CDA-FR vers FHIR - Socle enrichi français"/>
+      <description value="Mapping CDA-FR vers FHIR - Socle enrichi français"/>
     </resource>
     <resource>
       <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
@@ -872,10 +862,20 @@
         <valueString value="StructureMap"/>
       </extension>
       <reference>
+        <reference value="StructureMap/CdaPatientSummaryToBundle"/>
+      </reference>
+      <name value="Mapping CDA Patient Summary vers FHIR - Étape 4 finale"/>
+      <description value="Mapping CDA Patient Summary vers FHIR - Étape 4 finale"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="StructureMap"/>
+      </extension>
+      <reference>
         <reference value="StructureMap/CdaToBundle"/>
       </reference>
-      <name value="Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)"/>
-      <description value="Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)"/>
+      <name value="Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA"/>
+      <description value="Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA"/>
     </resource>
     <page>
       <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">

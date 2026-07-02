@@ -1,12 +1,13 @@
 
+
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE HTML>
 
 
-<html xml:lang="fr" xmlns="http://www.w3.org/1999/xhtml" lang="fr" dir="ltr">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en" dir="ltr">
   <head>
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
-    <title> - POC - Mapping CDA to FHIR v0.1.0</title>
+    <title>Mapping CDA Patient Summary vers FHIR - Étape 4 finale - POC - Mapping CDA to FHIR v0.1.0</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="author" content="http://hl7.org/fhir"/>
@@ -49,8 +50,8 @@
 	  <script type="text/javascript" src="assets/js/prism-cql.js"></script>
     <script type="text/javascript" src="assets/js/mermaid.js"></script>
     <script type="text/javascript" src="assets/js/mermaid-init.js"></script>
-    <style type="text/css">h2{--heading-prefix:""}
-    h3,h4,h5,h6{--heading-prefix:""}</style>
+    <style type="text/css">h2{--heading-prefix:"7.3"}
+    h3,h4,h5,h6{--heading-prefix:"7.3"}</style>
     <div id="segment-header" class="segment">  <!-- segment-header -->
       <div class="container">  <!-- container -->
 
@@ -76,7 +77,7 @@
 
 
 
-  <img alt="France (la) drapeau" src="../assets/images/fra.svg" height="16" title="France (la)"/>
+  <img alt="France (la) flag" src="../assets/images/fra.svg" height="16" title="France (la)"/>
 
 
             </span>
@@ -153,13 +154,13 @@
 
 <div style="float: var(--ig-right);padding: 8px 0px;" id="language">
   <div id="select_flg" class="flaglist" style="background-image: url(assets/images/icon_arrow_down.png);background-position: 133px 3px;">
-    <div><img class="flag" alt="flag en" src="assets/images/lang-fr.png"/>Français</div>
+    <div><img class="flag" alt="flag en" src="assets/images/lang-en.png"/>English</div>
   </div>
   <div style="float: var(--ig-right); margin: 2px 0px; padding: 1px 0;color: var(--btn-text-color);font-size:12px">Language:</div>
  	<div id="flaglist" class="flaglist" style="display: none;position: absolute;right: 0;z-index: 100;background-image: url(assets/images/icon_arrow_up.png);background-position: 133px 3px;">
-    <div><img class="flag" alt="flag fr" src="assets/images/lang-fr.png"/>Français</div>
+    <div><img class="flag" alt="flag en" src="assets/images/lang-en.png"/>English</div>
 
-    <div><a href="../en/StructureMap-CdaFrMDEToBundle.change.history.html"><img class="flag" src="assets/images/lang-en.png" alt="flag en"/>English</a></div>
+    <div><a href="../fr/StructureMap-CdaPatientSummaryToBundle-testing.html"><img class="flag" src="assets/images/lang-fr.png" alt="flag fr"/>Français</a></div>
 
   </div>
 </div>
@@ -175,11 +176,15 @@
     <div id="segment-breadcrumb" class="segment" data-fhir="generated">  <!-- segment-breadcrumb -->
       <div class="container">  <!-- container -->
         <ul class="breadcrumb">
-          
+          <li><a href='toc.html'><b>Table of Contents</b></a></li><li><a href='artifacts.html'><b>Artifacts Summary</b></a></li><li><b>Mapping CDA Patient Summary vers FHIR - Étape 4 finale</b></li>
 
           <span style="float: var(--ig-right);">
 
-            <a href="#bottom">bas de page</a>
+            <a href="StructureMap-CdaPatientSummaryToBundle.html">&lt; prev</a> | 
+
+            <a href="#bottom">bottom</a>
+
+          | <a href="StructureMap-CdaPatientSummaryToBundle.xml.html">next &gt;</a>
 
           </span>
 
@@ -193,10 +198,9 @@
         <div class="row">
           <div class="inner-wrapper">
 
-<!-- layouts\layout-changehistory.html -->
-
-<div style="counter-reset: section 10" class="col-12">
-  <!--ReleaseHeader--><p id="publish-box">POC - Mapping CDA to FHIR - version de développement local (intégration continue v0.1.0) construite par les outils de publication FHIR (HL7® FHIR® Standard). Voir le <a href='https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/history.html'>répertoire des versions publiées</a></p><!--EndReleaseHeader-->
+<!-- layouts\layout-canonical-testing -->
+<div class="col-12">
+  <!--ReleaseHeader--><p id="publish-box">POC - Mapping CDA to FHIR - Local Development build (v0.1.0) built by the FHIR (HL7® FHIR® Standard) Build Tools. See the <a href='https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/history.html'>Directory of published versions</a></p><!--EndReleaseHeader-->
   
 
 
@@ -211,28 +215,28 @@
 <ul class="nav nav-tabs">
 
   <li>
-    <a href="StructureMap-CdaFrMDEToBundle.html">Contenu narratif</a>
+    <a href="StructureMap-CdaPatientSummaryToBundle.html">Narrative Content</a>
   </li>
 
 
 
   
     <li>
-      <a href="StructureMap-CdaFrMDEToBundle.xml.html">XML</a>
+      <a href="StructureMap-CdaPatientSummaryToBundle.xml.html">XML</a>
     </li>
   
 
 
   
     <li>
-      <a href="StructureMap-CdaFrMDEToBundle.json.html">JSON</a>
+      <a href="StructureMap-CdaPatientSummaryToBundle.json.html">JSON</a>
     </li>
   
 
 
   
     <li>
-      <a href="StructureMap-CdaFrMDEToBundle.ttl.html">TTL</a>
+      <a href="StructureMap-CdaPatientSummaryToBundle.ttl.html">TTL</a>
     </li>
   
 
@@ -240,15 +244,57 @@
 
 </ul>
 
-
   <a name="root"> </a>
-  <h2 id="root">: Mapping CSE-MDE vers FHIR Bundle - Contexte Français - Historique des changements</h2>
-  <p>Historique des modifications pour CdaFrMDEToBundle StructureMap | downcase.</p>
 
-  
+  <h2 id="root">StructureMap: Mapping CDA Patient Summary vers FHIR - Étape 4 finale
+
+  </h2>
+
+
+  <table class="colsd" data-fhir="generated">
+    <tr>
+
+      <td colspan="2">
+        
+          Draft
+          
+
+            as of 
+2026-07-02
+
+          
+        
+      </td>
+
+    </tr>
+  </table>
+
+
+
+
+<!-- insert intro if present -->
+
+
+
+
+<h3>Test Plans</h3>
+
+  <p><b>No test plans are currently available for the CdaPatientSummaryToBundle StructureMap.</b></p>
+
+
+<h3>Test Scripts</h3>
+
+  <p><b>No test scripts are currently available for the CdaPatientSummaryToBundle StructureMap.</b></p>
+
+
+<!-- insert notes if present -->
+
+
+
+
+
 
 </div>
-
         </div>  <!-- /inner-wrapper -->
       </div>  <!-- /row -->
     </div>  <!-- /container -->
@@ -257,8 +303,6 @@
   <script type="text/javascript" src="assets/js/jquery.js"> </script>     <!-- note keep space here, otherwise it will be transformed to empty tag -> fails -->
   <script type="text/javascript" src="assets/js/jquery-ui.min.js"> </script>
   <script type="text/javascript" src="assets/js/flags.js"> </script>
-
-  <script type="text/javascript" src="assets/js/tabs.js"> </script>
 
   <script type="text/javascript" src="assets/js/window-hash.js"> </script>
 
@@ -272,15 +316,15 @@
             <tr>
               <td style="text-align:var(--ig-left);">&#xA0;
 
-                <span style="visibility:hidden">&lt; précédent</span>
+                <a href="StructureMap-CdaPatientSummaryToBundle.html">&lt; prev</a>
 
               </td>
               <td style="text-align:center">
-                <a href="#top">haut</a>
+                <a href="#top">top</a>
               </td>
               <td style="text-align:var(--ig-right);">&#xA0;
 
-                <span style="visibility:hidden">suivant ></span>
+                <a href="StructureMap-CdaPatientSummaryToBundle.xml.html">next ></a>
 
               </td>
             </tr>
@@ -294,16 +338,16 @@
 
 
           IG © 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d&#39;Oradour-sur-Glane, 75015 Paris</a>.  
-          Le package ans.fhir.fr.mappingcdafhir#0.1.0 est basé sur <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>.
-          Date de génération : 
-  <span title="2026-06-30 14:53:00 +0000">
-    2026-06-30
+          Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>.
+          Generated 
+  <span title="2026-07-02 14:54:00 +0000">
+    2026-07-02
   </span>
 
           <br/>
           <span style="color: var(--footer-highlight-text-color)">
-            Liens: <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table des matières</a> |
-<a style="color: var(--footer-hyperlink-text-color)" href="../qa.html">Rapport de QA</a> |
+            Links: <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table of Contents</a> |
+<a style="color: var(--footer-hyperlink-text-color)" href="../qa.html">QA Report</a> |
 <a style="color: var(--footer-hyperlink-text-color)" target="_blank" href="https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/history.html">Historique des versions</a>
 <a style="color: var(--footer-hyperlink-text-color)" target="_blank" href="https://interop.esante.gouv.fr/ig/documentation">Documentation</a>
  | <a style="color: var(--footer-hyperlink-text-color)" target="_blank" href="https://github.com/ansforge/IG-mapping-cda-fhir/issues/new">New Issue</a>

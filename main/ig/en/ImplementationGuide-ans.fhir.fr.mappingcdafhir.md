@@ -14,7 +14,7 @@
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2026-06-30T14:53:19+00:00",
+  "date" : "2026-07-02T14:54:00+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -1093,21 +1093,10 @@
         "valueString" : "StructureMap"
       }],
       "reference" : {
-        "reference" : "StructureMap/CdaFrMDEToBundle"
-      },
-      "name" : "Mapping CSE-MDE vers FHIR Bundle - Contexte Français",
-      "description" : "Mapping CSE-MDE vers FHIR Bundle - Contexte Français"
-    },
-    {
-      "extension" : [{
-        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "StructureMap"
-      }],
-      "reference" : {
         "reference" : "StructureMap/CdaFrToBundle"
       },
-      "name" : "Mapping de CDAFr vers FHIR Bundle (A partir des sources de Oliver Egger)",
-      "description" : "Mapping de CDAFr vers FHIR Bundle (A partir des sources de Oliver Egger)"
+      "name" : "Mapping CDA-FR vers FHIR - Socle enrichi français",
+      "description" : "Mapping CDA-FR vers FHIR - Socle enrichi français"
     },
     {
       "extension" : [{
@@ -1126,10 +1115,21 @@
         "valueString" : "StructureMap"
       }],
       "reference" : {
+        "reference" : "StructureMap/CdaPatientSummaryToBundle"
+      },
+      "name" : "Mapping CDA Patient Summary vers FHIR - Étape 4 finale",
+      "description" : "Mapping CDA Patient Summary vers FHIR - Étape 4 finale"
+    },
+    {
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+        "valueString" : "StructureMap"
+      }],
+      "reference" : {
         "reference" : "StructureMap/CdaToBundle"
       },
-      "name" : "Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)",
-      "description" : "Mapping de CDA vers FHIR Bundle (A partir des sources de Oliver Egger)"
+      "name" : "Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA",
+      "description" : "Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA"
     }],
     "page" : {
       "extension" : [{
