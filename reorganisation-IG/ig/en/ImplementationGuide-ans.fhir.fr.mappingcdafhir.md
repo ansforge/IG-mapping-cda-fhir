@@ -14,7 +14,7 @@
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2026-07-02T14:57:33+00:00",
+  "date" : "2026-07-02T15:07:06+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -1173,6 +1173,15 @@
         }],
         "nameUrl" : "guide-demarrage.html",
         "title" : "Démarrage Matchbox",
+        "generation" : "markdown"
+      },
+      {
+        "extension" : [{
+          "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
+          "valueUrl" : "limites-mapping.html"
+        }],
+        "nameUrl" : "limites-mapping.html",
+        "title" : "Limites de mapping",
         "generation" : "markdown"
       },
       {
