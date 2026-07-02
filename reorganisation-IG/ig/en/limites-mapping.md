@@ -87,9 +87,5 @@ Il est recommandé de documenter les règles de correspondance terminologique en
 
 ### Conclusion
 
-Les limites identifiées au cours du mapping montrent que la transformation d’un document CDA vers FHIR ne peut pas être réduite à une simple conversion syntaxique. Elle implique des choix relatifs à l’identification des entités, à l’interprétation des informations contenues dans le document CDA, à la structuration des ressources générées et à leur conformité terminologique.
-
-Ces difficultés sont principalement liées aux différences entre les modèles CDA et FHIR et peuvent donc être rencontrées indépendamment de la méthode de mapping utilisée. Le recours à FML permet de formaliser et d’exécuter les règles de mapping, mais ne résout pas à lui seul les problématiques de dédoublonnage, d’accès aux éléments sources, d’interprétation des sections locales ou d’alignement terminologique.
-
-La fiabilité du mapping repose ainsi sur des règles explicites, une documentation précise des choix réalisés, une stratégie de dédoublonnage multicritère et une validation systématique au regard des profils FHIR français et européens applicables. Ces recommandations constituent une base pour consolider progressivement le mapping du Patient Summary et faciliter sa réutilisation par les implémenteurs.
+Le mapping de CDA vers FHIR nécessite de prendre en compte les différences entre les deux modèles, les contraintes des données sources et les exigences de conformité des ressources produites. Les recommandations présentées permettent de mieux encadrer ces difficultés et d’améliorer la qualité des ressources FHIR générées.
 
