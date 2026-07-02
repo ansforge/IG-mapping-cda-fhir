@@ -15,7 +15,7 @@ Les mappings CDA vers FHIR sont organisés en couches afin de séparer les respo
 Chaque couche couvre un niveau précis du mapping et s’appuie sur les couches inférieure.
 
 <div style="text-align:center; margin: 2rem auto 2.5rem auto; max-width:950px;">
-{% include etapes-mapping.svg %}
+{% include etapes-de-mapping.svg %}
 </div>
 <br clear="all"/>
 
