@@ -19,7 +19,7 @@ Correspondances documentaires entre le datatype CDA TEL et les éléments FHIR C
   "title" : "ConceptMap — CDA TEL vers FHIR ContactPoint",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-07-02T08:36:38+00:00",
+  "date" : "2026-07-02T09:18:57+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
