@@ -2,8 +2,6 @@
 
 ## Limites de mapping
 
-### Limites et recommandations
-
 Le mapping d’un document CDA vers des ressources FHIR ne repose pas uniquement sur une correspondance directe entre les éléments des deux standards. Il doit également prendre en compte d’autres éléments, tels que les différences entre les modèles CDA et FHIR et les exigences de conformité applicables aux ressources FHIR produites.
 
 Les travaux menés sur le document Patient Summary ont permis d’identifier plusieurs limites et points de vigilance rencontrés au cours du mapping CDA vers FHIR. Ces difficultés ne sont pas nécessairement propres au langage FML : elles peuvent également concerner d’autres méthodes ou outils de transformation, car elles sont principalement liées aux écarts entre les modèles CDA et FHIR, à l’interprétation des données sources et aux exigences de conformité attendues en sortie.

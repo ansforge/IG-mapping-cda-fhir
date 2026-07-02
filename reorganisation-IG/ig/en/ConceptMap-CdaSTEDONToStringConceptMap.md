@@ -19,7 +19,7 @@ Correspondances documentaires entre les datatypes CDA ST, ED et ON et le datatyp
   "title" : "ConceptMap — CDA ST/ED/ON vers FHIR string",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-07-02T15:31:57+00:00",
+  "date" : "2026-07-02T15:33:01+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
