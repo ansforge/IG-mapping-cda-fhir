@@ -237,18 +237,30 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
 
 
     <p><!-- white space is critical inside of capture --></p>
-<div>
-<!-- do not remove - needed to prevent Jekyll from adding a p tag to any non block level element in the markdown.-->
-</div>
+<div class="markdown-toc">
+<ul id="markdown-toc">
+  <li><a href="#introduction" id="markdown-toc-introduction">introduction</a></li>
+  <li><a href="#résultats-globaux-de-la-transformation" id="markdown-toc-résultats-globaux-de-la-transformation">Résultats globaux de la transformation</a></li>
+</ul>
 
-<p><strong>Résultats obtenus de la transformation complète :</strong></p>
+</div>
+<h3 id="introduction">introduction</h3>
+
+<p>L’exécution des règles de mapping avec Matchbox a permis de générer un Bundle FHIR documentaire à partir d’un document CDA de type Patient Summary. La transformation porte sur l’en-tête du document, les informations administratives et contextuelles ainsi que sur les données cliniques contenues dans ses différentes sections.</p>
+
+<p>Cette page présente les résultats globaux de la transformation, les sections prises en compte, les principales ressources FHIR générées ainsi que les précautions nécessaires pour vérifier la conservation des informations du document source.</p>
+
+<p>Les résultats présentés correspondent à une preuve de concept et ne permettent pas, à eux seuls, de garantir que l’ensemble des informations du CDA a été repris sans perte.</p>
+
+<h3 id="résultats-globaux-de-la-transformation">Résultats globaux de la transformation</h3>
+
+<p>À l’issue de la transformation complète :</p>
 <ul>
-  <li>génération d’un Bundle FHIR documentaire contenant 97 ressources dans <code class="language-plaintext highlighter-rouge">Bundle.entry</code>, soit 98 ressources au total en incluant le Bundle lui-même ;</li>
-  <li>organisation de la sortie autour d’une <code class="language-plaintext highlighter-rouge">Composition</code>, qui structure le document Patient Summary et référence les ressources FHIR générées ;</li>
-  <li>production des principales ressources administratives et contextuelles ;</li>
-  <li>production de ressources cliniques couvrant plusieurs sections du Patient Summary ;</li>
-  <li>prise en compte des profils européens et français mobilisés dans la preuve de concept ;</li>
-  <li>structuration des ressources générées à l’aide d’identifiants techniques de type UUID et de références internes au Bundle.</li>
+  <li>un Bundle FHIR de type document a été généré avec 97 ressources dans Bundle.entry, soit 98 ressources au total en incluant le Bundle lui-même ;</li>
+  <li>les informations de l’en-tête CDA ont été transformées en ressources FHIR administratives et contextuelles ;</li>
+  <li>les sections cliniques du Patient Summary ont été prises en compte et associées aux ressources FHIR correspondantes ;</li>
+  <li>les profils européens et français retenus dans le cadre de la preuve de concept ont été appliqués aux ressources concernées ;</li>
+  <li>les ressources générées ont été intégrées au Bundle à l’aide d’identifiants techniques de type UUID et de références internes au format urn:uuid.</li>
 </ul>
 
 <p><strong>**Exemple de ressource générée : Patient</strong>:**</p>
@@ -445,7 +457,7 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
           IG © 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d&#39;Oradour-sur-Glane, 75015 Paris</a>.  
           Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>.
           Generated 
-  <span title="2026-07-06 08:10:00 +0000">
+  <span title="2026-07-06 08:32:00 +0000">
     2026-07-06
   </span>
 
