@@ -6,141 +6,39 @@ Cette page présente les résultats globaux de la transformation, les sections p
 
 Les résultats présentés correspondent à une preuve de concept et ne permettent pas, à eux seuls, de garantir que l’ensemble des informations du CDA a été repris sans perte.
 
-### Résultats globaux de la transformation
+### Résultats de la transformation complète
 
-À l’issue de la transformation complète :
-* un Bundle FHIR de type document a été généré avec 97 ressources dans Bundle.entry, soit 98 ressources au total en incluant le Bundle lui-même ;
-* les informations de l’en-tête CDA ont été transformées en ressources FHIR administratives et contextuelles ;
-* les sections cliniques du Patient Summary ont été prises en compte et associées aux ressources FHIR correspondantes ;
-* les profils européens et français retenus dans le cadre de la preuve de concept ont été appliqués aux ressources concernées ;
-* les ressources générées ont été intégrées au Bundle à l’aide d’identifiants techniques de type UUID et de références internes au format urn:uuid.
+À l’issue de la transformation complète, un `Bundle` FHIR de type `document` a été généré, contenant 97 ressources dans `Bundle.entry`, soit 98 ressources au total en incluant le `Bundle` lui-même.
 
-### Mapping de l’en-tête du document
+Le mapping de l’en-tête a permis de reprendre les principales informations du document CDA, notamment ses métadonnées, l’identité du patient, les acteurs impliqués, les organisations associées et le contexte de prise en charge. Ces informations ont conduit à la création des ressources administratives et contextuelles correspondantes, telles que `Composition`, `Patient`, `Practitioner`, `PractitionerRole`, `Organization`, `RelatedPerson`, `Encounter` et `Location`, en tenant compte des spécifications européennes et françaises mobilisées dans la preuve de concept. Les éléments optionnels de l’en-tête n’ont donné lieu à la création de ressources que lorsqu’ils étaient présents dans le document source.
 
-Le mapping de l’en-tête prend en compte les principales informations du document CDA nécessaires à la construction du document FHIR, notamment les métadonnées du document, l’identité du patient, les acteurs impliqués, les organisations associées ainsi que le contexte de prise en charge.
+Le mapping du corps a pris en compte les sections relatives aux problèmes actifs, aux antécédents médicaux, à l’historique des actes, aux allergies et hypersensibilités, aux traitements, aux effets indésirables liés aux médicaments, aux vaccinations, au statut fonctionnel, aux constantes, au mode de vie, aux facteurs de risques professionnels, aux résultats d’examens, au plan de soins et aux antécédents familiaux.
 
-Ces éléments CDA sont mappés vers les ressources administratives et contextuelles correspondantes du `Bundle` FHIR, telles que `Composition`, `Patient`, `Practitioner`, `PractitionerRole`, `Organization`, `RelatedPerson`, `Encounter` et `Location`, en tenant compte des spécifications françaises mobilisées dans la preuve de concept.
+Ces informations ont alimenté différentes ressources cliniques, notamment `Condition`, `Procedure`, `AllergyIntolerance`, `AdverseEvent`, `Medication`, `MedicationStatement`, `MedicationRequest`, `Immunization`, `ImmunizationRecommendation`, `Observation`, `DiagnosticReport`, `CarePlan`, `ServiceRequest`, `Encounter` et `FamilyMemberHistory`.
 
-Les éléments optionnels de l’en-tête CDA ne sont mappés vers FHIR que lorsqu’ils sont présents dans le document source.
+Les sections relatives aux dispositifs médicaux, aux points de vigilance, aux directives anticipées et aux documents joints sont actuellement conservées dans le contenu narratif de la `Composition`. Leur mapping vers des ressources FHIR structurées, telles que `Device`, `Flag`, `Consent` ou `DocumentReference`, pourra être complété ultérieurement.
 
+Enfin, les ressources générées sont identifiées par des UUID et reliées entre elles au moyen de références internes au format `urn:uuid`.
 
+### Validation métier des résultats
 
+La génération du `Bundle` FHIR et sa validation technique ne permettent pas, à elles seules, de garantir que l’ensemble des informations du document CDA a été correctement repris.
 
-****Exemple de ressource générée : Patient**:**
+Une validation par un expert métier est donc nécessaire afin de comparer le document CDA source avec le résultat FHIR obtenu et de vérifier notamment :
 
-```json
-{
-  "fullUrl": "urn:uuid:4b3f518b-cf54-4508-8a30-d600cbbf528a",
-  "resource": {
-    "resourceType": "Patient",
-    "id": "4b3f518b-cf54-4508-8a30-d600cbbf528a",
-    "meta": {
-      "profile": [
-        "https://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-patient-ins"
-      ]
-    },
-    "extension": [
-      {
-        "url": "http://hl7.org/fhir/StructureDefinition/patient-birthPlace",
-        "valueAddress": {
-          "extension": [
-            {
-              "url": "https://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-address-insee-code",
-              "valueCoding": {
-                "code": "51215"
-              }
-            }
-          ],
-          "city": "DOMPREMY",
-          "district": "51215"
-        }
-      },
-      {
-        "extension": [
-          {
-            "url": "identityStatus",
-            "valueCoding": {
-              "system": "https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-v2-0445",
-              "code": "VALI"
-            }
-          }
-        ],
-        "url": "https://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-identity-reliability"
-      }
-    ],
-    "identifier": [
-      {
-        "use": "official",
-        "type": {
-          "coding": [
-            {
-              "system": "https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203",
-              "code": "INS-NIR-TEST"
-            }
-          ]
-        },
-        "system": "urn:oid:1.2.250.1.213.1.4.10",
-        "value": "279035121518989"
-      }
-    ],
-    "name": [
-      {
-        "extension": [
-          {
-            "url": "https://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-patient-birth-list-given-name",
-            "valueString": "DOMINIQUE MARIE-LOUISE"
-          }
-        ],
-        "use": "official",
-        "family": "PAT-TROIS",
-        "given": [
-          "DOMINIQUE"
-        ]
-      }
-    ],
-    "telecom": [
-      {
-        "system": "phone",
-        "value": "0144534551",
-        "use": "home"
-      },
-      {
-        "system": "phone",
-        "value": "0647151010",
-        "use": "mobile"
-      },
-      {
-        "system": "email",
-        "value": "279035121518989@patient.mssante.fr"
-      }
-    ],
-    "gender": "female",
-    "birthDate": "1979-03-28",
-    "address": [
-      {
-        "line": [
-          "28",
-          "Avenue de Breteuil"
-        ],
-        "city": "PARIS",
-        "postalCode": "75007",
-        "country": "FRANCE"
-      }
-    ]
-  }
-}
-```
+* la conservation du sens clinique des informations ;
+* l’absence de perte ou de modification des données ;
+* la bonne interprétation des codes, des valeurs et des contenus narratifs.
 
+Cette validation permet d’identifier les éventuels écarts du mapping et de compléter ou d’ajuster les règles FML avant toute utilisation dans un contexte opérationnel.
 
+### Conservation et traçabilité du document CDA source
 
+Afin de faciliter la validation métier et de permettre un retour au document d’origine en cas de doute, il est recommandé de conserver le document CDA source. Trois approches peuvent être envisagées.
 
-#### Conservation du document CDA source 
+#### Encapsulation du document CDA
 
-Afin de garantir la traçabilité de la transformation, le document CDA original peut être conservé directement dans le `Bundle` FHIR généré.
-
-Pour cela, le contenu XML du CDA est encodé en Base64 à l’aide d’un traitement externe (par exemple en Python ou en Java), puis intégré dans une ressource FHIR `Binary`. Cette ressource est conçue pour transporter des contenus bruts (comme un fichier XML) sans les modifier.
-
-Ce traitement d’encodage n’est pas réalisé en FML, mais en amont ou en aval du mapping.
+Cette approche consiste à encoder le document CDA au format XML en Base64, en amont ou en aval du mapping FML, puis à l’intégrer dans une ressource FHIR `Binary`.
 
 ```json
 {
@@ -150,27 +48,41 @@ Ce traitement d’encodage n’est pas réalisé en FML, mais en amont ou en ava
   "data": "Base64(CDA)"
 }
 ```
-Une ressource Provenance est ensuite utilisée pour relier les ressources FHIR produites au document CDA source :
+
+#### Encapsulation du document CDA au format PDF
+
+Cette approche consiste à convertir le document CDA en PDF à l’aide d’un traitement externe, par exemple en Python ou en Java. Elle permet de conserver une représentation lisible du document, sans préserver sa structure XML exploitable.
+
+Le fichier PDF généré est ensuite encapsulé selon le même principe que le document XML : il est encodé en Base64 et intégré dans une ressource Binary. 
 
 ```json
 {
-  "resourceType": "Provenance",
-  "target": [
-    { "reference": "urn:uuid:composition-id" },
-    { "reference": "urn:uuid:patient-id" }
-  ],
-  "entity": [
+  "resourceType": "Binary",
+  "id": "cda-source-pdf",
+  "contentType": "application/pdf",
+  "data": "Base64(PDF)"
+}
+```
+
+#### Référencement du document CDA conservé dans un système externe
+
+Cette approche consiste à conserver le document CDA dans son système d’origine ou dans un espace documentaire externe, sans intégrer directement son contenu dans le Bundle.
+
+Une ressource DocumentReference peut être utilisée pour renseigner l’adresse permettant d’accéder au document.
+
+```json
+{
+  "resourceType": "DocumentReference",
+  "id": "cda-source-reference",
+  "status": "current",
+  "content": [
     {
-      "role": "source",
-      "what": {
-        "reference": "urn:uuid:cda-source"
+      "attachment": {
+        "contentType": "application/xml",
+        "url": "https://exemple.fr/documents/cda-source.xml"
       }
     }
   ]
 }
 ```
-
-Dans cette approche :
-* la ressource `Binary` contient le CDA original encodé en Base64 ;
-* La ressource `Provenance` établit le lien entre les ressources FHIR générées et leur source ;
-* L’encodage Base64 est réalisé en dehors du mapping FML
+Cette solution évite de dupliquer le document source. Elle nécessite toutefois de garantir la pérennité du lien, la disponibilité du document ainsi que la gestion des droits d’accès.
