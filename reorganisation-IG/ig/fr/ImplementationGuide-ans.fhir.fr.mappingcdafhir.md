@@ -14,7 +14,7 @@
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2026-07-06T08:32:48+00:00",
+  "date" : "2026-07-06T08:33:32+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -1106,8 +1106,8 @@
       "reference" : {
         "reference" : "StructureMap/CdaFrToBundle"
       },
-      "name" : "Mapping de CDAFr vers FHIR Bundle (A partir des sources de Oliver Egger)",
-      "description" : "Mapping de CDAFr vers FHIR Bundle (A partir des sources de Oliver Egger)"
+      "name" : "Mapping CDA-FR vers FHIR - Socle enrichi français",
+      "description" : "Mapping CDA-FR vers FHIR - Socle enrichi français"
     },
     {
       "extension" : [{
