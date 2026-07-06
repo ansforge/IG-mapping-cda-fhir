@@ -234,6 +234,7 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
 <ul id="markdown-toc">
   <li><a href="#introduction" id="markdown-toc-introduction">introduction</a></li>
   <li><a href="#résultats-globaux-de-la-transformation" id="markdown-toc-résultats-globaux-de-la-transformation">Résultats globaux de la transformation</a></li>
+  <li><a href="#mapping-de-len-tête-du-document" id="markdown-toc-mapping-de-len-tête-du-document">Mapping de l’en-tête du document</a></li>
 </ul>
 
 </div>
@@ -255,6 +256,14 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
   <li>les profils européens et français retenus dans le cadre de la preuve de concept ont été appliqués aux ressources concernées ;</li>
   <li>les ressources générées ont été intégrées au Bundle à l’aide d’identifiants techniques de type UUID et de références internes au format urn:uuid.</li>
 </ul>
+
+<h3 id="mapping-de-len-tête-du-document">Mapping de l’en-tête du document</h3>
+
+<p>Le mapping de l’en-tête prend en compte les principales informations du document CDA nécessaires à la construction du document FHIR, notamment les métadonnées du document, l’identité du patient, les acteurs impliqués, les organisations associées ainsi que le contexte de prise en charge.</p>
+
+<p>Ces éléments CDA sont mappés vers les ressources administratives et contextuelles correspondantes du <code class="language-plaintext highlighter-rouge">Bundle</code> FHIR, telles que <code class="language-plaintext highlighter-rouge">Composition</code>, <code class="language-plaintext highlighter-rouge">Patient</code>, <code class="language-plaintext highlighter-rouge">Practitioner</code>, <code class="language-plaintext highlighter-rouge">PractitionerRole</code>, <code class="language-plaintext highlighter-rouge">Organization</code>, <code class="language-plaintext highlighter-rouge">RelatedPerson</code>, <code class="language-plaintext highlighter-rouge">Encounter</code> et <code class="language-plaintext highlighter-rouge">Location</code>, en tenant compte des spécifications françaises mobilisées dans la preuve de concept.</p>
+
+<p>Les éléments optionnels de l’en-tête CDA ne sont mappés vers FHIR que lorsqu’ils sont présents dans le document source.</p>
 
 <p><strong>**Exemple de ressource générée : Patient</strong>:**</p>
 
@@ -450,7 +459,7 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
           IG © 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d&#39;Oradour-sur-Glane, 75015 Paris</a>.  
           Le package ans.fhir.fr.mappingcdafhir#0.1.0 est basé sur <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>.
           Date de génération : 
-  <span title="2026-07-06 08:36:00 +0000">
+  <span title="2026-07-06 08:48:00 +0000">
     2026-07-06
   </span>
 
