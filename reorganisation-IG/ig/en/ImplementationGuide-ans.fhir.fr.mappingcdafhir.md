@@ -14,7 +14,7 @@
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2026-07-06T08:34:25+00:00",
+  "date" : "2026-07-06T08:35:06+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -1093,17 +1093,6 @@
         "valueString" : "StructureMap"
       }],
       "reference" : {
-        "reference" : "StructureMap/CdaPatientSummaryToBundle"
-      },
-      "name" : "Mapping CDA Patient Summary vers FHIR - Étape 4 finale",
-      "description" : "Mapping CDA Patient Summary vers FHIR - Étape 4 finale"
-    },
-    {
-      "extension" : [{
-        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "StructureMap"
-      }],
-      "reference" : {
         "reference" : "StructureMap/CdaFrToBundle"
       },
       "name" : "Mapping CDA-FR vers FHIR - Socle enrichi français",
@@ -1119,6 +1108,17 @@
       },
       "name" : "Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)",
       "description" : "Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)"
+    },
+    {
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+        "valueString" : "StructureMap"
+      }],
+      "reference" : {
+        "reference" : "StructureMap/CdaPatientSummaryToBundle"
+      },
+      "name" : "Mapping CDA Patient Summary vers FHIR - Étape 4 finale",
+      "description" : "Mapping CDA Patient Summary vers FHIR - Étape 4 finale"
     },
     {
       "extension" : [{

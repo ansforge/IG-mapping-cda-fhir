@@ -18,7 +18,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
   "name" : "CdaPatientSummaryToBundle",
   "title" : "Mapping CDA Patient Summary vers FHIR - Étape 4 finale",
   "status" : "draft",
-  "date" : "2026-07-06T08:34:25+00:00",
+  "date" : "2026-07-06T08:35:06+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -260,9 +260,9 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     "mode" : "target",
     "alias" : "boolean"
   }],
-  "import" : ["https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes",
+  "import" : ["https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes|0.1.0",
   "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle",
-  "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrToBundle"],
+  "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrToBundle|0.1.0"],
   "group" : [{
     "name" : "TransformPatientSummaryClinicalDocumentToFHIRDocument",
     "typeMode" : "none",
