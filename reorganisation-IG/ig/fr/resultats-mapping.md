@@ -2,7 +2,7 @@
 
 ## Résultats de mapping
 
-### introduction
+### Introduction
 
 L’exécution des règles de mapping avec Matchbox a permis de générer un Bundle FHIR documentaire à partir d’un document CDA de type Patient Summary. La transformation porte sur l’en-tête du document, les informations administratives et contextuelles ainsi que sur les données cliniques contenues dans ses différentes sections.
 
@@ -36,11 +36,11 @@ Une validation par un expert métier est donc nécessaire afin de comparer le do
 
 Cette validation permet d’identifier les éventuels écarts du mapping et de compléter ou d’ajuster les règles FML avant toute utilisation dans un contexte opérationnel.
 
-### Conservation et traçabilité du document CDA source
+#### Conservation et traçabilité du document CDA source
 
 Afin de faciliter la validation métier et de permettre un retour au document d’origine en cas de doute, il est recommandé de conserver le document CDA source. Trois approches peuvent être envisagées.
 
-#### Encapsulation du document CDA
+##### Encapsulation du document CDA
 
 Cette approche consiste à encoder le document CDA au format XML en Base64, en amont ou en aval du mapping FML, puis à l’intégrer dans une ressource FHIR `Binary`.
 
@@ -54,7 +54,7 @@ Cette approche consiste à encoder le document CDA au format XML en Base64, en a
 
 ```
 
-#### Encapsulation du document CDA au format PDF
+##### Encapsulation du document CDA au format PDF
 
 Cette approche consiste à convertir le document CDA en PDF à l’aide d’un traitement externe, par exemple en Python ou en Java. Elle permet de conserver une représentation lisible du document, sans préserver sa structure XML exploitable.
 
@@ -70,7 +70,7 @@ Le fichier PDF généré est ensuite encapsulé selon le même principe que le d
 
 ```
 
-#### Référencement du document CDA conservé dans un système externe
+##### Référencement du document CDA conservé dans un système externe
 
 Cette approche consiste à conserver le document CDA dans son système d’origine ou dans un espace documentaire externe, sans intégrer directement son contenu dans le Bundle.
 
