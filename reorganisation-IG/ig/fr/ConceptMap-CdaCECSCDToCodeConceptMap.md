@@ -19,7 +19,7 @@ Correspondances documentaires entre les datatypes CDA CE, CS et CD et les types 
   "title" : "ConceptMap — CDA CE/CS/CD vers FHIR code et CodeableConcept",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-07-06T08:33:50+00:00",
+  "date" : "2026-07-06T08:34:25+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
