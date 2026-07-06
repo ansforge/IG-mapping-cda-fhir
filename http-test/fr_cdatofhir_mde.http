@@ -15,7 +15,6 @@ Content-Type: application/fhir+json
 
 < ../input/resources/ConceptMap-cm-v3-administrative-gender.json
 
-
 ### 1. POST CDAtoFHIRTypes.fml
 POST {{host}}/StructureMap HTTP/1.1
 Accept: application/fhir+xml;fhirVersion=4.0
@@ -23,15 +22,14 @@ Content-Type: text/fhir-mapping
 
 < ../input/fml/CDAtoFHIRTypes.fml
 
-
 ### 2. POST CdaToBundle.fml
 POST {{host}}/StructureMap HTTP/1.1
 Accept: application/fhir+xml;fhirVersion=4.0
 Content-Type: text/fhir-mapping
 
+
+
 < ../input/fml/CdaToBundle.fml
-
-
 ### 3. POST CDAFrToBundle.fml
 POST {{host}}/StructureMap HTTP/1.1
 Accept: application/fhir+xml;fhirVersion=4.0
@@ -39,19 +37,40 @@ Content-Type: text/fhir-mapping
 
 < ../input/fml/CDAFrToBundle.fml
 
-
-### 4. POST CDAFrMDEToBundle.fml
+#Patient summary
+### 4. POST CDAFrPSToBundle.fml
 POST {{host}}/StructureMap HTTP/1.1
 Accept: application/fhir+xml;fhirVersion=4.0
 Content-Type: text/fhir-mapping
 
-< ../input/fml/CDAFrMDEToBundle.fml
+< ../input/fml/CdaPatientSummaryToBundle.fml
 
-
-### 5. Transform CSE-MDE_2023.01.xml from CDA to FHIR (JSON output)
-
-POST {{host}}/StructureMap/$transform?source=https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrMDEToBundle
+#résultats
+### Socle générique (entete)
+POST {{host}}/StructureMap/$transform?source=https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle
 Accept: application/fhir+json;fhirVersion=4.0
 Content-Type: application/fhir+xml;fhirVersion=4.0
 
-< ../input/attachments/CSE-MDE_2023.01.xml
+< ../input/attachments/patient-summary.xml
+
+### entete enrichie
+POST {{host}}/StructureMap/$transform?source=https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrToBundle
+Accept: application/fhir+json;fhirVersion=4.0
+Content-Type: application/fhir+xml;fhirVersion=4.0
+
+< ../input/attachments/patient-summary.xml
+
+### 5. tout le document
+POST {{host}}/StructureMap/$transform?source=https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaPatientSummaryToBundle
+Accept: application/fhir+json;fhirVersion=4.0
+Content-Type: application/fhir+xml;fhirVersion=4.0
+
+< ../input/attachments/patient-summary.xml
+
+
+
+
+
+
+
+
