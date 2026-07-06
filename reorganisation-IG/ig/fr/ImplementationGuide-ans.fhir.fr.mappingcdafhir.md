@@ -14,7 +14,7 @@
   "name" : "CDA2FHIRMAP",
   "title" : "POC - Mapping CDA to FHIR",
   "status" : "draft",
-  "date" : "2026-07-06T07:26:45+00:00",
+  "date" : "2026-07-06T07:32:14+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -1209,6 +1209,15 @@
         }],
         "nameUrl" : "translationinfo.html",
         "title" : "Informations sur la traduction",
+        "generation" : "markdown"
+      },
+      {
+        "extension" : [{
+          "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
+          "valueUrl" : "resultats-mapping.html"
+        }],
+        "nameUrl" : "resultats-mapping.html",
+        "title" : "Résultats de mapping",
         "generation" : "markdown"
       }]
     },
