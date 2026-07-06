@@ -15,6 +15,17 @@ Les résultats présentés correspondent à une preuve de concept et ne permette
 * les profils européens et français retenus dans le cadre de la preuve de concept ont été appliqués aux ressources concernées ;
 * les ressources générées ont été intégrées au Bundle à l’aide d’identifiants techniques de type UUID et de références internes au format urn:uuid.
 
+### Mapping de l’en-tête du document
+
+Le mapping de l’en-tête prend en compte les principales informations du document CDA nécessaires à la construction du document FHIR, notamment les métadonnées du document, l’identité du patient, les acteurs impliqués, les organisations associées ainsi que le contexte de prise en charge.
+
+Ces éléments CDA sont mappés vers les ressources administratives et contextuelles correspondantes du `Bundle` FHIR, telles que `Composition`, `Patient`, `Practitioner`, `PractitionerRole`, `Organization`, `RelatedPerson`, `Encounter` et `Location`, en tenant compte des spécifications françaises mobilisées dans la preuve de concept.
+
+Les éléments optionnels de l’en-tête CDA ne sont mappés vers FHIR que lorsqu’ils sont présents dans le document source.
+
+
+
+
 ****Exemple de ressource générée : Patient**:**
 
 ```json
