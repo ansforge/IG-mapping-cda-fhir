@@ -1,172 +1,741 @@
+/* ÉTAPE 3 — SOCLE GÉNÉRIQUE ENRICHI FRANÇAIS AVEC CRÉATION INTERNE
+
+   Cette étape peut être exécutée seule avec $transform.
+
+   Elle crée uniquement les ressources toujours nécessaires au document : Bundle
+   cible, Composition et Patient. Les autres ressources de l’en-tête sont créées
+   dans le groupe qui traite le bloc CDA correspondant, puis elles sont remplies
+   avec le socle générique de l’étape 2 et enrichies avec les règles françaises.
+
+   Cette organisation évite de créer des ressources vides quand un bloc CDA
+   optionnel est absent.
+
+   Résultat attendu : socle CDA -> FHIR enrichi français, sans entries métier
+   Patient Summary */
+
 map "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaFrToBundle" = "CdaFrToBundle"
 
 /// name = 'CdaFrToBundle'
-/// title = 'Mapping de CDAFr vers FHIR Bundle (A partir des sources de Oliver Egger)'
+/// title = 'Mapping CDA-FR vers FHIR - Socle enrichi français'
 /// status = 'draft'
 
-// Adapted from 2020-01-16 Oliver Egger, copyright ahdis ag, Apache License 
-// CDA-CH:  https://art-decor.org/art-decor/decor-templates--hl7chcda-
-// FHIR CH-Core: http://fhir.ch/ig/ch-core/index.html
-//
-
+// TYPES CDA UTILISÉS COMME SOURCES
 uses "http://hl7.org/cda/stds/core/StructureDefinition/ClinicalDocument" alias ClinicalDocument as source
-uses "http://hl7.org/cda/stds/core/StructureDefinition/Section" alias Section as source
 uses "http://hl7.org/cda/stds/core/StructureDefinition/PatientRole" alias PatientRole as source
-uses "http://hl7.org/cda/stds/core/StructureDefinition/DataEnterer" alias DataEnterer as source
+uses "http://hl7.org/cda/stds/core/StructureDefinition/PN" alias PN as source
+uses "http://hl7.org/cda/stds/core/StructureDefinition/II" alias II as source
+uses "http://hl7.org/cda/stds/core/StructureDefinition/RelatedEntity" alias RelatedEntity as source
+uses "http://hl7.org/cda/stds/core/StructureDefinition/EncompassingEncounter" alias EncompassingEncounter as source
+uses "http://hl7.org/cda/stds/core/StructureDefinition/HealthCareFacility" alias HealthCareFacility as source
 
+//TYPES FHIR UTILISÉS COMME CIBLES
 uses "http://hl7.org/fhir/StructureDefinition/Bundle" alias Bundle as target
 uses "http://hl7.org/fhir/StructureDefinition/Composition" alias Composition as target
 uses "http://hl7.org/fhir/StructureDefinition/Patient" alias Patient as target
-uses "http://hl7.org/fhir/StructureDefinition/Person" alias Person as target
+uses "http://hl7.org/fhir/StructureDefinition/HumanName" alias HumanName as target
+uses "http://hl7.org/fhir/StructureDefinition/Extension" alias Extension as target
+uses "http://hl7.org/fhir/StructureDefinition/Address" alias Address as target
+uses "http://hl7.org/fhir/StructureDefinition/Coding" alias Coding as target
+uses "http://hl7.org/fhir/StructureDefinition/Identifier" alias Identifier as target
+uses "http://hl7.org/fhir/StructureDefinition/CodeableConcept" alias CodeableConcept as target
+uses "http://hl7.org/fhir/StructureDefinition/Organization" alias Organization as target
 uses "http://hl7.org/fhir/StructureDefinition/Practitioner" alias Practitioner as target
 uses "http://hl7.org/fhir/StructureDefinition/PractitionerRole" alias PractitionerRole as target
-uses "http://hl7.org/fhir/StructureDefinition/Organization" alias Organization as target
+uses "http://hl7.org/fhir/StructureDefinition/RelatedPerson" alias RelatedPerson as target
+uses "http://hl7.org/fhir/StructureDefinition/Encounter" alias Encounter as target
+uses "http://hl7.org/fhir/StructureDefinition/Location" alias Location as target
+uses "http://hl7.org/fhir/StructureDefinition/Meta" alias Meta as target
+uses "http://hl7.org/fhir/StructureDefinition/code" alias code as target
+uses "http://hl7.org/fhir/StructureDefinition/string" alias string as target
 
+//IMPORTS UTILISÉS PAR L’ÉTAPE 3
 imports "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes"
 imports "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle"
 
-// _________________________ Document Level Template  _________________________ 
 
-// source: https://art-decor.org/art-decor/decor-templates--hl7chcda-?id=2.16.756.5.30.1.1.10.1.14
-// target: http://build.fhir.org/ig/hl7ch/ch-core/branches/master/StructureDefinition-ch-core-document.html
-group CdaFrToBundle(source cda : ClinicalDocument, target bundle : Bundle) {
-  cda ->  bundle.entry as e, 
-             e.resource = create('Composition') as composition, 
-             composition.id = uuid() as uuid,
-             e.fullUrl = append('urn:uuid:',uuid),
-             bundle.entry as e2, 
-             e2.resource = create('Patient') as patient,
-             patient.id = uuid() as uuid2,
-             e2.fullUrl = append('urn:uuid:',uuid2)
-             then ClinicalDocumentFrToBundle(cda, patient, composition, bundle) "ClinicalDocumentToBody";
-}
+/*  GROUPE D’ENTRÉE — CRÉATION DU SOCLE FRANÇAIS
+   Ce groupe crée le Bundle final de l’étape 3 avec Composition et Patient.
+   Les autres ressources administratives sont créées dans les groupes CDA qui
+   les justifient, afin d’éviter les ressources optionnelles vides*/
 
-// source: https://art-decor.org/art-decor/decor-templates--hl7chcda-?id=2.16.756.5.30.1.1.10.1.14
-// target: http://build.fhir.org/ig/hl7ch/ch-core/branches/master/StructureDefinition-ch-core-document.html
-// group ClinicalDocumentFrToBundle(source cda : ClinicalDocument, target patient : Patient, target composition : Composition, target bundle : Bundle) 
-//   extends ClinicalDocumentToBundle {
-//   cda then ClinicalDocumentCompositionFr(cda, composition, patient, bundle) "composition";
-//   cda.component as component then {
-//     component.structuredBody as body then {
-//       body.component as component then {
-//         component.section as srcSection where (templateId.where(root='2.16.756.5.30.1.1.10.3.2')) -> composition.section as tgtSection 
-//           then ClinicalDocumentSection(cda, srcSection, patient, tgtSection, bundle);
-//         component.section as srcSection where (templateId.where(root='2.16.756.5.30.1.1.10.3.45')) -> composition.section as tgtSection
-//           then SectionOriginalRepresentation(cda, srcSection, patient, tgtSection, bundle);
-//       } "component";
-//     } "body";
-//   } "component";
-// }
+group TransformClinicalDocumentToFrenchFHIRDocument(source cda : ClinicalDocument, target bundle : Bundle) {
+  cda ->
+    /* ClinicalDocument CDA -> Composition FHIR */
+    bundle.entry as compositionEntry, compositionEntry.resource = create('Composition') as composition, composition.id = uuid(), compositionEntry.fullUrl = ('urn:uuid:' + %composition.id),
 
-// _________________________ Section Level Templates _________________________ 
+    /* recordTarget.patientRole CDA -> Patient FHIR */
+    bundle.entry as patientEntry, patientEntry.resource = create('Patient') as patient, patient.id = uuid(), patientEntry.fullUrl = ('urn:uuid:' + %patient.id)
 
-
-// source: https://art-decor.org/art-decor/decor-templates--hl7chcda-?id=2.16.756.5.30.1.1.10.1.14
-// target: http://build.fhir.org/ig/hl7ch/ch-core/branches/master/StructureDefinition-ch-core-composition-definitions.html#Composition.section
-// TODO: not excplicitly modeled in CH-Core
-group SectionOriginalRepresentation(source cda : ClinicalDocument, source src : Section, source patient : Patient, target tgt, target bundle: Bundle) extends ClinicalDocumentSection {
-  src.entry as cdaEntry ->  bundle.entry as e,  
-    e.resource = create('Binary') as binary,
-    binary.id = uuid() as uuid,
-    e.fullUrl = append('urn:uuid:',uuid) as urnuuid, 
-    tgt.entry = create('Reference') as reference,
-    reference.reference = urnuuid then {
-      cdaEntry.observationMedia as observationMedia then {
-        observationMedia then ObservationMedia(observationMedia, binary) "observationMedia";
-        observationMedia.ID as value -> reference.extension as ext then NarrativeLink(value, ext) "narrativeLink";
-      } "observationMedia";
-  } "cdaEntry";
+  then OrchestrateClinicalDocumentFrenchTransformation(cda, patient, composition, bundle) "main";
 }
 
 
-// _________________________ Entry Level Templates   ________________________ 
+/*GROUPE D’ORCHESTRATION — SOCLE GÉNÉRIQUE + ENRICHISSEMENT FRANÇAIS
+   Ce groupe suit la structure du ClinicalDocument CDA.
+   Il appelle d’abord le traitement français de l’en-tête, où chaque ressource
+   optionnelle est créée dans le groupe correspondant au bloc CDA. Il appelle
+   ensuite le corps générique de l’étape 2 pour créer les sections narratives*/
 
+group OrchestrateClinicalDocumentFrenchTransformation(source cda : ClinicalDocument, target patient : Patient, target composition : Composition, target bundle : Bundle) {
+  // CDA ClinicalDocument.header -> socle générique + enrichissement français
+  cda then MapClinicalDocumentHeaderWithFrenchRules(cda, bundle, composition, patient) "headerFrenchBase";
 
-// source: https://art-decor.org/art-decor/decor-templates--hl7chcda-?id=2.16.756.5.30.1.1.10.4.83
-// TODO: not excplicitly modeled in CH-Core
-group ObservationMedia(source observationMedia, target binary : Binary) {
-  observationMedia.value as value then {
-    value.mediaType as mediaType -> binary.contentType = mediaType "contentType";
-    value -> binary.data = (value.dataBase64Binary) "dataString";
-  } "value";
-  observationMedia.languageCode as languageCode then {
-    languageCode.code as lang -> binary.language = lang "lang";
-  } "languageCode";
+  // CDA ClinicalDocument.structuredBody -> FHIR Composition.section title/code/text
+  cda then MapClinicalDocumentBody(cda, composition, bundle, patient) "body";
 }
 
 
-// _________________________ Header Level Templates _________________________ 
+/* GROUPE — EN-TÊTE CDA AVEC RÈGLES FRANÇAISES
+   Ce groupe reprend l’organisation de l’en-tête CDA. Les ressources optionnelles
+   sont créées dans les sous-groupes correspondant aux blocs CDA, puis remplies
+   avec les groupes génériques de l’étape 2 et enrichies avec les groupes français*/
 
-// source: https://art-decor.org/art-decor/decor-templates--hl7chcda-?id=2.16.756.5.30.1.1.10.9.36
-// target: http://build.fhir.org/ig/hl7ch/ch-core/branches/master/StructureDefinition-ch-ext-epr-confidentialitycode.html
-group ChExtEprConfidentialityCode(source src: CE, target ext: Extension) {
-  src -> ext.url = 'http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-confidentialitycode' "url";
-  src -> ext.value = create('CodeableConcept') as value then CECodeableConcept(src, value) "code";
+  group MapClinicalDocumentHeaderWithFrenchRules(source cda : ClinicalDocument, target bundle : Bundle, target composition : Composition, target patient : Patient) {
+  // CDA ClinicalDocument -> profils généraux Bundle / Composition
+  //cda -> bundle.meta as bundleMeta then { cda -> bundleMeta.profile = 'http://hl7.org/fhir/StructureDefinition/Bundle' "bundleGenericProfile"; } "bundleMetaProfile";
+  //cda -> composition.meta as compositionMeta then { cda -> compositionMeta.profile = 'http://hl7.org/fhir/StructureDefinition/Composition' "compositionGenericProfile"; } "compositionMetaProfile";
+
+  /* CDA ClinicalDocument -> FHIR Bundle.meta.profile EU EPS */
+  cda -> bundle.meta as bundleMeta then {
+  cda -> bundleMeta.profile = 'http://hl7.eu/fhir/eps/StructureDefinition/bundle-eu-eps' "bundleEUEPSProfile";
+  } "bundleMetaProfile";
+
+  // CDA ClinicalDocument -> FHIR Composition.meta.profile EU EPS
+  cda -> composition.meta as compositionMeta then {
+  cda -> compositionMeta.profile = 'http://hl7.eu/fhir/eps/StructureDefinition/composition-eu-eps' "compositionEUEPSProfile";
+  } "compositionMetaProfile";
+
+  // CDA id/setId/versionNumber/effectiveTime -> FHIR métadonnées Bundle + Composition
+  cda then MapHeaderDocumentIdentity(cda, bundle, composition) "documentIdentity";
+
+  // CDA languageCode/code/title/effectiveTime/confidentialityCode -> FHIR description de la Composition
+  cda then MapHeaderDocumentDescription(cda, composition, patient) "documentDescription";
+
+  // CDA recordTarget.patientRole -> Patient générique + enrichissement français
+  cda then MapHeaderRecordTarget(cda, patient, composition) "recordTargetBase";
+  cda.recordTarget as recordTarget then { recordTarget.patientRole as patientRole then MapCDARecordTargetToFrenchPatient(patientRole, patient) "patientFR"; } "recordTargetFR";
+
+  // CDA custodian -> Organization custodian générique + française
+  cda then MapHeaderCustodianWithFrenchRules(cda, composition, bundle) "custodian";
+
+  // CDA author -> Practitioner / Organization / PractitionerRole génériques + français
+  cda then MapHeaderAuthorWithFrenchRules(cda, composition, bundle) "author";
+
+  // CDA legalAuthenticator -> signataire légal générique + français
+  cda then MapHeaderLegalAuthenticatorWithFrenchRules(cda, composition, bundle) "legalAuthenticator";
+
+  // CDA documentationOf.serviceEvent -> FHIR Composition.event
+  cda then MapHeaderDocumentationOf(cda, composition) "documentationOf";
+
+  // CDA componentOf.encompassingEncounter -> Encounter / Location / Organization génériques + français
+  cda then MapHeaderEncounterContextWithFrenchRules(cda, composition, bundle, patient) "encounterContext";
+
+  // CDA informant ECON/NOK -> RelatedPerson génériques + françaises
+  cda then MapHeaderEmergencyContactWithFrenchRules(cda, bundle, patient) "emergencyContact";
+  cda then MapHeaderTrustedPersonWithFrenchRules(cda, bundle, patient) "trustedPerson";
+
+  // CDA guardian -> RelatedPerson générique + française
+  cda then MapHeaderGuardianWithFrenchRules(cda, bundle, patient) "guardian";
+
+  // CDA relatedDocument -> FHIR Composition.relatesTo
+  cda then MapHeaderRelatedDocument(cda, composition) "relatedDocument";
 }
 
-// source: https://art-decor.org/art-decor/decor-templates--hl7chcda-?id=2.16.756.5.30.1.1.10.9.36
-// target: http://build.fhir.org/ig/hl7ch/ch-core/branches/master/StructureDefinition-ch-ext-epr-informationrecipient.html
-group ChExtEprInformationRecipient(source src: IntendedRecipient, target patient: Patient, target ext: Extension) {
-  src -> ext.url = 'http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-informationrecipient' "url";
-  src -> ext.value = create('Reference') as reference, reference.reference = ('urn:uuid:'+%patient.id) "value";
-  src.addr as addr -> patient.address as address then ADAddress(addr, address) "address";
-  src.informationRecipient as informationRecipient then {
-    informationRecipient.name as cdaname -> patient.name as fhirname then ENHumanName(cdaname, fhirname) "name";
-  } "informationRecipient";
+// CDA custodian -> création Organization + socle générique + enrichissement français
+group MapHeaderCustodianWithFrenchRules(source src : ClinicalDocument, target composition : Composition, target bundle : Bundle) {
+  src.custodian as custodian then {
+    custodian.assignedCustodian as assignedCustodian then {
+      assignedCustodian.representedCustodianOrganization as representedOrg
+        -> bundle.entry as custodianOrgEntry,
+           custodianOrgEntry.resource = create('Organization') as custodianOrganization,
+           custodianOrganization.id = uuid(),
+           custodianOrgEntry.fullUrl = ('urn:uuid:' + %custodianOrganization.id)
+        then {
+          representedOrg then MapCDAOrganizationToOrganization(representedOrg, custodianOrganization) "custodianOrganizationBase";
+          representedOrg then MapCDAOrganizationToFrenchOrganization(representedOrg, custodianOrganization) "custodianOrganizationFR";
+          representedOrg -> composition.custodian = create('Reference') as custodianRef, custodianRef.reference = ('urn:uuid:' + %custodianOrganization.id) "custodianRef";
+        } "custodianOrganizationResource";
+    } "assignedCustodian";
+  } "custodian";
 }
 
-// source: https://art-decor.org/art-decor/decor-templates--hl7chcda-?id=2.16.756.5.30.1.1.10.9.36
-// target: http://build.fhir.org/ig/hl7ch/ch-core/branches/master/StructureDefinition-ch-ext-epr-informationrecipient.html
-group ChExtEprInformationRecipientOrganization(source src: IntendedRecipient, target organization: Organization, target ext: Extension) {
-  src -> ext.url = 'http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-informationrecipient' "url";
-  src -> ext.value = create('Reference') as reference, reference.reference = ('urn:uuid:'+%organization.id) "value";
-  src.receivedOrganization as receivedOrganization then ClinicalDocumentOrganization(receivedOrganization, organization) "organization";
+
+// CDA author -> création Practitioner / Organization / PractitionerRole + enrichissement français
+group MapHeaderAuthorWithFrenchRules(source src : ClinicalDocument, target composition : Composition, target bundle : Bundle) {
+  src.author as author then {
+    author.assignedAuthor as assignedAuthor
+      -> bundle.entry as practitionerEntry,
+         practitionerEntry.resource = create('Practitioner') as authorPractitioner,
+         authorPractitioner.id = uuid(),
+         practitionerEntry.fullUrl = ('urn:uuid:' + %authorPractitioner.id)
+      then {
+        assignedAuthor then MapCDAAssignedEntityToPractitioner(assignedAuthor, authorPractitioner) "authorPractitionerBase";
+        assignedAuthor then MapCDAAssignedEntityToFrenchPractitioner(assignedAuthor, authorPractitioner) "authorPractitionerFR";
+
+        assignedAuthor.representedOrganization as representedOrganization
+          -> bundle.entry as organizationEntry,
+             organizationEntry.resource = create('Organization') as authorOrganization,
+             authorOrganization.id = uuid(),
+             organizationEntry.fullUrl = ('urn:uuid:' + %authorOrganization.id),
+             bundle.entry as roleEntry,
+             roleEntry.resource = create('PractitionerRole') as authorRole,
+             authorRole.id = uuid(),
+             roleEntry.fullUrl = ('urn:uuid:' + %authorRole.id)
+          then {
+            representedOrganization then MapCDAOrganizationToOrganization(representedOrganization, authorOrganization) "authorOrganizationBase";
+            representedOrganization then MapCDAOrganizationToFrenchOrganization(representedOrganization, authorOrganization) "authorOrganizationFR";
+            assignedAuthor then MapCDAAssignedEntityToPractitionerRole(assignedAuthor, authorRole, authorPractitioner, authorOrganization) "authorRoleBase";
+            assignedAuthor then MapCDAAssignedEntityToFrenchPractitionerRole(assignedAuthor, authorRole, authorPractitioner, authorOrganization) "authorRoleFR";
+            assignedAuthor -> composition.author as authorRef, authorRef.reference = ('urn:uuid:' + %authorRole.id) "compositionAuthorRoleRef";
+          } "authorWithOrganization";
+
+        assignedAuthor where assignedAuthor.representedOrganization.empty()
+          -> composition.author as authorRef, authorRef.reference = ('urn:uuid:' + %authorPractitioner.id) "compositionAuthorPractitionerRef";
+      } "authorPractitionerResource";
+  } "author";
 }
 
-// source: https://art-decor.org/art-decor/decor-templates--hl7chcda-?section=templates&id=2.16.756.5.30.1.1.10.2.7
-// target: http://build.fhir.org/ig/hl7ch/ch-core/StructureDefinition-ch-ext-epr-dataenterer.html
-group ChExtEprDataEnterer(source src: DataEnterer, target bundle: Bundle, target practitionerRole: PractitionerRole, target ext: Extension) {
-  src -> ext.url = 'http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-dataenterer' "url";
 
-  src.assignedEntity as assignedEntity -> ext.extension as ext, ext.url='enterer', ext.value = create('Reference') as reference, 
-                reference.reference = ('urn:uuid:'+%practitionerRole.id) "PractitionerRole";
-  src.time as time -> ext.extension as exttime then ChExtEprTime(time, exttime) "time";
+// CDA legalAuthenticator -> création Practitioner / Organization / PractitionerRole + enrichissement français
+group MapHeaderLegalAuthenticatorWithFrenchRules(source src : ClinicalDocument, target composition : Composition, target bundle : Bundle) {
+  src.legalAuthenticator as legalAuthenticator then {
+    legalAuthenticator.assignedEntity as assignedEntity
+      -> bundle.entry as practitionerEntry,
+         practitionerEntry.resource = create('Practitioner') as legalPractitioner,
+         legalPractitioner.id = uuid(),
+         practitionerEntry.fullUrl = ('urn:uuid:' + %legalPractitioner.id)
+      then {
+        assignedEntity then MapCDAAssignedEntityToPractitioner(assignedEntity, legalPractitioner) "legalPractitionerBase";
+        assignedEntity then MapCDAAssignedEntityToFrenchPractitioner(assignedEntity, legalPractitioner) "legalPractitionerFR";
 
-  src.assignedEntity as assignedEntity then {
-    assignedEntity -> bundle.entry as e, e.resource = create('Practitioner') as practitioner, practitioner.id = uuid() as uuid,
-            e.fullUrl = append('urn:uuid:',uuid), practitionerRole.practitioner = create('Reference') as reference, reference.reference = append('urn:uuid:',uuid) then ClinicalDocumentEntityPractitioner(assignedEntity, practitioner) "Practitioner";
-    assignedEntity.representedOrganization as representedOrganization -> bundle.entry as e, e.resource = create('Organization') as organization, organization.id = uuid() as uuid2,
-            e.fullUrl = append('urn:uuid:',uuid2), practitionerRole.organization = create('Reference') as referenceOrg, referenceOrg.reference = append('urn:uuid:',uuid2) then ClinicalDocumentOrganization(representedOrganization, organization) "Organization";
-  } "assignedEntity";
+        legalAuthenticator -> composition.attester as attester then {
+          legalAuthenticator -> attester.mode = 'legal' "mode";
+          legalAuthenticator.time as time -> attester.time = create('dateTime') as dt then TSDateTime(time, dt) "time";
+
+          assignedEntity.representedOrganization as representedOrganization
+            -> bundle.entry as organizationEntry,
+               organizationEntry.resource = create('Organization') as legalOrganization,
+               legalOrganization.id = uuid(),
+               organizationEntry.fullUrl = ('urn:uuid:' + %legalOrganization.id),
+               bundle.entry as roleEntry,
+               roleEntry.resource = create('PractitionerRole') as legalRole,
+               legalRole.id = uuid(),
+               roleEntry.fullUrl = ('urn:uuid:' + %legalRole.id)
+            then {
+              representedOrganization then MapCDAOrganizationToOrganization(representedOrganization, legalOrganization) "legalOrganizationBase";
+              representedOrganization then MapCDAOrganizationToFrenchOrganization(representedOrganization, legalOrganization) "legalOrganizationFR";
+              assignedEntity then MapCDAAssignedEntityToPractitionerRole(assignedEntity, legalRole, legalPractitioner, legalOrganization) "legalRoleBase";
+              assignedEntity then MapCDAAssignedEntityToFrenchPractitionerRole(assignedEntity, legalRole, legalPractitioner, legalOrganization) "legalRoleFR";
+              assignedEntity -> attester.party = create('Reference') as partyRef, partyRef.reference = ('urn:uuid:' + %legalRole.id) "partyRole";
+            } "legalWithOrganization";
+
+          assignedEntity where assignedEntity.representedOrganization.empty()
+            -> attester.party = create('Reference') as partyRef, partyRef.reference = ('urn:uuid:' + %legalPractitioner.id) "partyPractitioner";
+        } "attester";
+      } "legalPractitionerResource";
+  } "legalAuthenticator";
 }
 
-// // _________________________ Template Type not specified  ___________________ 
 
-// // source: https://art-decor.org/art-decor/decor-templates--hl7chcda-?id=2.16.756.5.30.1.1.10.9.36
-// // target: http://build.fhir.org/ig/hl7ch/ch-core/branches/master/StructureDefinition-ch-core-composition-epr.html
-group ClinicalDocumentCompositionFr(source src : ClinicalDocument, target tgt : Composition, target patientResource: Patient, target bundle : Bundle) {
-  src.confidentialityCode as confidentialityCode then {
-    confidentialityCode.code as v where ('http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.confidentialityCode'.resolve().compose.include.concept.where($this.code=src.confidentialityCode.code).exists()) ->
-      tgt.confidentiality = translate(v, 'http://fhir.ch/ig/ch-core/ConceptMap/documententry-confidentialitycode-to-fhir', 'code') as fhirconf,
-            fhirconf.extension as ext then ChExtEprConfidentialityCode(confidentialityCode, ext) "confCode";
-  } "confidentialityCode";
-  src.informationRecipient as informationRecipient -> bundle.entry as e then {
-    informationRecipient.intendedRecipient as intendedRecipient where $this.receivedOrganization.exists()=false 
-       -> e.resource = create('Patient') as recipient,
-          recipient.id = uuid() as uuid,
-          e.fullUrl = append('urn:uuid:',uuid),
-          tgt.extension as ext then ChExtEprInformationRecipient(intendedRecipient, recipient, ext) "informationRecipient";
-    informationRecipient.intendedRecipient as intendedRecipient then {
-      intendedRecipient.receivedOrganization -> e.resource = create('Organization') as recipient, 
-           recipient.id = uuid() as uuid2,
-           e.fullUrl = append('urn:uuid:',uuid2),          
-           tgt.extension as ext 
-           then ChExtEprInformationRecipientOrganization(intendedRecipient, recipient, ext) "informationRecipientOrganization";
-    } "intendedRecipientAsOrganization";
-  } "entry";
-  src.dataEnterer as dataEnterer -> bundle.entry as e, 
-      e.resource = create('PractitionerRole') as practitionerRole, 
-      practitionerRole.id = uuid() as uuid,
-      e.fullUrl = append('urn:uuid:',uuid),
-      tgt.extension as ext then ChExtEprDataEnterer(dataEnterer, bundle, practitionerRole, ext) "dataEnterer";
+// CDA componentOf.encompassingEncounter -> création Encounter / Location / Organization + enrichissement français
+group MapHeaderEncounterContextWithFrenchRules(source src : ClinicalDocument, target composition : Composition, target bundle : Bundle, target patient : Patient) {
+  src.componentOf as componentOf then {
+    componentOf.encompassingEncounter as encompassingEncounter
+      -> bundle.entry as encounterEntry,
+         encounterEntry.resource = create('Encounter') as encounter,
+         encounter.id = uuid(),
+         encounterEntry.fullUrl = ('urn:uuid:' + %encounter.id)
+      then {
+        // CDA encompassingEncounter -> FHIR Composition.encounter
+        encompassingEncounter -> composition.encounter = create('Reference') as encRef,
+          encRef.reference = ('urn:uuid:' + %encounter.id) "compositionEncounterRef";
+
+        // Cas 1 : healthCareFacility présent -> Encounter + Location + Organization
+        encompassingEncounter.location as srcLocation then {
+          srcLocation.healthCareFacility as facility
+            -> bundle.entry as locationEntry,
+               locationEntry.resource = create('Location') as location,
+               location.id = uuid(),
+               locationEntry.fullUrl = ('urn:uuid:' + %location.id),
+               bundle.entry as facilityOrganizationEntry,
+               facilityOrganizationEntry.resource = create('Organization') as facilityOrganization,
+               facilityOrganization.id = uuid(),
+               facilityOrganizationEntry.fullUrl = ('urn:uuid:' + %facilityOrganization.id)
+            then {
+              // Groupe français d’orchestration :
+              // appelle le générique de l’étape 2 puis les enrichissements français de l’étape 3.
+              encompassingEncounter then MapCDAEncounterContextToFrenchResources(encompassingEncounter, facility, encounter, patient, location, facilityOrganization) "encounterContextFR";
+            } "facilityResources";
+        } "location";
+
+        // Cas 2 : encompassingEncounter présent mais sans location
+        encompassingEncounter where encompassingEncounter.location.empty()
+          then MapCDAEncounterOnlyToFrenchResources(encompassingEncounter, encounter, patient) "encounterOnlyFR";
+
+        // Cas 3 : location présente mais sans healthCareFacility
+        encompassingEncounter.location as srcLocation where srcLocation.healthCareFacility.empty()
+          then MapCDAEncounterOnlyToFrenchResources(encompassingEncounter, encounter, patient) "encounterOnlyFRWithoutFacility";
+      } "encounterResource";
+  } "componentOf";
 }
+
+// CDA informant ECON -> création RelatedPerson + enrichissement français
+group MapHeaderEmergencyContactWithFrenchRules(source src : ClinicalDocument, target bundle : Bundle, target patient : Patient) {
+  src.informant as informant then {
+    informant.relatedEntity as relatedEntity where relatedEntity.classCode = 'ECON'
+      -> bundle.entry as relatedPersonEntry,
+         relatedPersonEntry.resource = create('RelatedPerson') as emergencyContactRelatedPerson,
+         emergencyContactRelatedPerson.id = uuid(),
+         relatedPersonEntry.fullUrl = ('urn:uuid:' + %emergencyContactRelatedPerson.id)
+      then {
+        relatedEntity then MapCDARelatedEntityToRelatedPerson(relatedEntity, emergencyContactRelatedPerson, patient) "relatedPersonBase";
+        relatedEntity then MapCDAInformantToFrenchRelatedPerson(relatedEntity, emergencyContactRelatedPerson, patient) "relatedPersonFR";
+      } "relatedPersonECON";
+  } "informant";
+}
+
+
+// CDA informant NOK -> création RelatedPerson + enrichissement français
+group MapHeaderTrustedPersonWithFrenchRules(source src : ClinicalDocument, target bundle : Bundle, target patient : Patient) {
+  src.informant as informant then {
+    informant.relatedEntity as relatedEntity where relatedEntity.classCode = 'NOK'
+      -> bundle.entry as relatedPersonEntry,
+         relatedPersonEntry.resource = create('RelatedPerson') as trustedPersonRelatedPerson,
+         trustedPersonRelatedPerson.id = uuid(),
+         relatedPersonEntry.fullUrl = ('urn:uuid:' + %trustedPersonRelatedPerson.id)
+      then {
+        relatedEntity then MapCDARelatedEntityToRelatedPerson(relatedEntity, trustedPersonRelatedPerson, patient) "relatedPersonBase";
+        relatedEntity then MapCDAInformantToFrenchRelatedPerson(relatedEntity, trustedPersonRelatedPerson, patient) "relatedPersonFR";
+      } "relatedPersonNOK";
+  } "informant";
+}
+
+// CDA guardian -> création RelatedPerson + enrichissement français
+group MapHeaderGuardianWithFrenchRules(source src : ClinicalDocument, target bundle : Bundle, target patient : Patient) {
+  src.recordTarget as recordTarget then {
+    recordTarget.patientRole as patientRole then {
+      patientRole.patient as patientCda then {
+        patientCda.guardian as guardian
+          -> bundle.entry as guardianEntry,
+             guardianEntry.resource = create('RelatedPerson') as guardianRelatedPerson,
+             guardianRelatedPerson.id = uuid(),
+             guardianEntry.fullUrl = ('urn:uuid:' + %guardianRelatedPerson.id)
+          then {
+            guardian -> guardianRelatedPerson.patient = create('Reference') as patientRef, patientRef.reference = ('urn:uuid:' + %patient.id) "patientRef";
+            guardian.id as id -> guardianRelatedPerson.identifier = create('Identifier') as identifier then II(id, identifier) "identifier";
+            guardian.addr as addr -> guardianRelatedPerson.address = create('Address') as address then ADAddress(addr, address) "address";
+            guardian.telecom as telecom -> guardianRelatedPerson.telecom = create('ContactPoint') as contactPoint then TELContactPoint(telecom, contactPoint) "telecom";
+            guardian.guardianPerson as guardianPerson then { guardianPerson.name as name -> guardianRelatedPerson.name = create('HumanName') as humanName then ENHumanName(name, humanName) "name"; } "guardianPerson";
+            guardian then MapCDAGuardianToFrenchRelatedPerson(guardian, guardianRelatedPerson, patient) "guardianFR";
+          } "guardianResource";
+      } "patient";
+    } "patientRole";
+  } "recordTarget";
+}
+
+group MapCDARecordTargetToFrenchPatient(source src : PatientRole, target tgt : Patient) {
+  // CDA patientRole -> FHIR Patient.meta.profile
+  src -> tgt.meta as meta then { src -> meta.profile = 'https://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-patient-ins' "patientINSProfile"; } "meta";
+
+  src.patient as patient then {
+    // CDA patient.name -> FHIR Patient.name officiel
+    patient.name as patientName -> tgt.name = create('HumanName') as officialName then MapCDAPatientNameToFrenchOfficialName(patientName, officialName) "officialName";
+
+    // CDA patient.birthplace -> FHIR Patient.extension birthPlace
+    patient.birthplace as birthplace -> tgt.extension = create('Extension') as birthPlaceExt then MapCDABirthPlaceToFHIRPatientExtension(birthplace, birthPlaceExt) "birthPlace";
+  } "patientDataFR";
+
+  // CDA patientRole.id -> FHIR Patient.identifier INS
+  src.id as id then MapCDAIIToPatientINSIdentifiers(id, tgt) "insIdentifiers";
+
+  // CDA patientRole.id -> FHIR Patient.identifier PI hors INS
+  src.id as id then MapCDAIIToPatientOtherIdentifiers(id, tgt) "otherIdentifiers";
+
+  // CDA patientRole.id INS-NIR -> FHIR Patient.extension identity reliability VALI
+  src.id as id where id.root = '1.2.250.1.213.1.4.8' -> tgt.extension = create('Extension') as identityReliability then MapCDAIIToIdentityReliabilityVALI(id, identityReliability) "identityReliabilityNIR";
+
+  // CDA patientRole.id INS-NIA -> FHIR Patient.extension identity reliability VALI
+  src.id as id where id.root = '1.2.250.1.213.1.4.9' -> tgt.extension = create('Extension') as identityReliability then MapCDAIIToIdentityReliabilityVALI(id, identityReliability) "identityReliabilityNIA";
+
+  // CDA patientRole.id INS-NIR-TEST -> FHIR Patient.extension identity reliability VALI
+  src.id as id where id.root = '1.2.250.1.213.1.4.10' -> tgt.extension = create('Extension') as identityReliability then MapCDAIIToIdentityReliabilityVALI(id, identityReliability) "identityReliabilityNIRTest";
+
+  // CDA patientRole.id INS-NIR-DEMO -> FHIR Patient.extension identity reliability VALI
+  src.id as id where id.root = '1.2.250.1.213.1.4.11' -> tgt.extension = create('Extension') as identityReliability then MapCDAIIToIdentityReliabilityVALI(id, identityReliability) "identityReliabilityNIRDemo";
+}
+
+// CDA PN patient.name -> FHIR HumanName officiel
+group MapCDAPatientNameToFrenchOfficialName(source src : PN, target tgt : HumanName) {
+  // CDA patient.name -> FHIR HumanName.use
+  src -> tgt.use = 'official' "use";
+
+  src.item as item then {
+    // CDA family qualifier=BR -> FHIR HumanName.family
+    item.family as family where family.qualifier = 'BR' -> tgt.family = (family.xmlText) "family";
+
+    // CDA given qualifier=BR -> FHIR HumanName.given
+    item.given as given where given.qualifier = 'BR' -> tgt.given = (given.xmlText) "given";
+
+    // CDA given sans qualifier -> FHIR HumanName.extension liste des prénoms de naissance
+    item.given as givenList where givenList.qualifier.empty() -> tgt.extension = create('Extension') as ext then MapCDAGivenNameToBirthListGivenNameExtension(givenList, ext) "birthListGivenName";
+  } "items";
+}
+
+// CDA given sans qualifier -> FHIR extension liste des prénoms de naissance
+group MapCDAGivenNameToBirthListGivenNameExtension(source src, target tgt : Extension) {
+  // CDA given -> FHIR Extension.url
+  src -> tgt.url = 'https://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-patient-birth-list-given-name' "url";
+
+  // CDA given.xmlText -> FHIR Extension.valueString
+  src.xmlText as txt -> tgt.value = cast(txt, 'string') "valueString";
+}
+
+// CDA patient.birthplace -> FHIR Patient.extension birthPlace
+group MapCDABirthPlaceToFHIRPatientExtension(source src, target tgt : Extension) {
+  // CDA birthplace -> FHIR Extension.url
+  src -> tgt.url = 'http://hl7.org/fhir/StructureDefinition/patient-birthPlace' "url";
+
+  // CDA birthplace.place.addr -> FHIR Extension.valueAddress
+  src.place as place -> tgt.value = create('Address') as addr then {
+    place.addr as placeAddr then ADAddress(placeAddr, addr) "baseAddress";
+    place.addr as placeAddr then {
+      placeAddr.item as item then {
+        // CDA county -> FHIR Address.extension code INSEE
+        item.county as insee -> addr.extension = create('Extension') as inseeExt then {
+          insee -> inseeExt.url = 'https://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-address-insee-code' "url";
+          insee.xmlText as txt -> inseeExt.value = create('Coding') as coding then { txt -> coding.code = cast(txt, 'code') "code"; } "valueCoding";
+        } "inseeCodeExtension";
+      } "item";
+    } "county";
+  } "valueAddress";
+}
+
+
+
+//IDENTIFIANTS PATIENT FR
+// CDA II patientRole.id -> FHIR Patient.identifier INS
+group MapCDAIIToPatientINSIdentifiers(source src : II, target tgt : Patient) {
+  // CDA root INS-NIR -> FHIR Identifier INS-NIR
+  src where src.root = '1.2.250.1.213.1.4.8' -> tgt.identifier = create('Identifier') as id then MapCDAIIToINSNIRIdentifier(src, id) "INS-NIR";
+
+  // CDA root INS-NIA -> FHIR Identifier INS-NIA
+  src where src.root = '1.2.250.1.213.1.4.9' -> tgt.identifier = create('Identifier') as id then MapCDAIIToINSNIAIdentifier(src, id) "INS-NIA";
+
+  // CDA root INS-NIR-TEST -> FHIR Identifier INS-NIR-TEST
+  src where src.root = '1.2.250.1.213.1.4.10' -> tgt.identifier = create('Identifier') as id then MapCDAIIToINSNIRTestIdentifier(src, id) "INS-NIR-TEST";
+
+  // CDA root INS-NIR-DEMO -> FHIR Identifier INS-NIR-DEMO
+  src where src.root = '1.2.250.1.213.1.4.11' -> tgt.identifier = create('Identifier') as id then MapCDAIIToINSNIRDemoIdentifier(src, id) "INS-NIR-DEMO";
+}
+
+// CDA II INS-NIR -> FHIR Identifier INS-NIR
+group MapCDAIIToINSNIRIdentifier(source src : II, target tgt : Identifier) {
+  src -> tgt then II(src, tgt) "base";
+  src -> tgt.use = 'official' "use";
+  src -> tgt.type = create('CodeableConcept') as idType then { src -> idType.coding = create('Coding') as idCoding then { src -> idCoding.system = 'https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203' "system"; src -> idCoding.code = 'INS-NIR' "code"; } "coding"; } "type";
+}
+
+// CDA II INS-NIA -> FHIR Identifier INS-NIA
+group MapCDAIIToINSNIAIdentifier(source src : II, target tgt : Identifier) {
+  src -> tgt then II(src, tgt) "base";
+  src -> tgt.use = 'official' "use";
+  src -> tgt.type = create('CodeableConcept') as idType then { src -> idType.coding = create('Coding') as idCoding then { src -> idCoding.system = 'https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203' "system"; src -> idCoding.code = 'INS-NIA' "code"; } "coding"; } "type";
+}
+
+// CDA II INS-NIR-TEST -> FHIR Identifier INS-NIR-TEST
+group MapCDAIIToINSNIRTestIdentifier(source src : II, target tgt : Identifier) {
+  src -> tgt then II(src, tgt) "base";
+  src -> tgt.use = 'official' "use";
+  src -> tgt.type = create('CodeableConcept') as idType then { src -> idType.coding = create('Coding') as idCoding then { src -> idCoding.system = 'https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203' "system"; src -> idCoding.code = 'INS-NIR-TEST' "code"; } "coding"; } "type";
+}
+
+// CDA II INS-NIR-DEMO -> FHIR Identifier INS-NIR-DEMO
+group MapCDAIIToINSNIRDemoIdentifier(source src : II, target tgt : Identifier) {
+  src -> tgt then II(src, tgt) "base";
+  src -> tgt.use = 'official' "use";
+  src -> tgt.type = create('CodeableConcept') as idType then { src -> idType.coding = create('Coding') as idCoding then { src -> idCoding.system = 'https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203' "system"; src -> idCoding.code = 'INS-NIR-DEMO' "code"; } "coding"; } "type";
+}
+
+// CDA II hors INS -> FHIR Patient.identifier PI
+group MapCDAIIToPatientOtherIdentifiers(source src : II, target tgt : Patient) {
+  src where src.root != '1.2.250.1.213.1.4.8' and src.root != '1.2.250.1.213.1.4.9' and src.root != '1.2.250.1.213.1.4.10' and src.root != '1.2.250.1.213.1.4.11' -> tgt.identifier = create('Identifier') as id then MapCDAIIToPatientPIIdentifier(src, id) "otherIdentifier";
+}
+
+// CDA II hors INS -> FHIR Identifier PI
+group MapCDAIIToPatientPIIdentifier(source src : II, target tgt : Identifier) {
+  src -> tgt then II(src, tgt) "base";
+  src -> tgt.use = 'usual' "use";
+  src -> tgt.type = create('CodeableConcept') as idType then { src -> idType.coding = create('Coding') as idCoding then { src -> idCoding.system = 'http://terminology.hl7.org/CodeSystem/v2-0203' "system"; src -> idCoding.code = 'PI' "code"; src -> idCoding.display = 'Patient internal identifier' "display"; } "coding"; } "type";
+}
+
+// CDA II INS reconnu -> FHIR Patient.extension fiabilité VALI
+group MapCDAIIToIdentityReliabilityVALI(source src : II, target tgt : Extension) {
+  // CDA II -> FHIR Extension.url
+  src -> tgt.url = 'https://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-identity-reliability' "url";
+
+  // CDA II -> FHIR Extension.extension identityStatus
+  src -> tgt.extension = create('Extension') as statusExt then {
+    src -> statusExt.url = 'identityStatus' "statusUrl";
+    src -> statusExt.value = create('Coding') as coding then { src -> coding.system = 'https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-v2-0445' "system"; src -> coding.code = 'VALI' "code"; } "valueCoding";
+  } "identityStatus";
+}
+
+
+
+//ORGANIZATION FR
+// CDA organization-like element -> FHIR Organization profils et identifiants français
+group MapCDAOrganizationToFrenchOrganization(source src, target tgt : Organization) {
+  // CDA organization -> FHIR Organization.meta.profile
+  src -> tgt.meta as metaBlock then {
+    src -> metaBlock.profile = 'https://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-organization' "frCoreOrganizationProfile";
+    src -> metaBlock.profile = 'https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-organization' "asOrganizationProfile";
+  } "meta";
+
+  // CDA organization.id -> FHIR Organization.identifier français
+  src.id as id then MapCDAIIToFrenchOrganizationIdentifiers(id, tgt) "identifiers";
+}
+
+// CDA healthCareFacility -> FHIR Organization facility française
+group MapCDAHealthCareFacilityToFrenchOrganization(source src : HealthCareFacility, target tgt : Organization) {
+  // Cas principal : healthCareFacility.serviceProviderOrganization existe.
+  // On réutilise le groupe français général des Organization pour éviter de
+  // reprofiler manuellement ici.
+  src.serviceProviderOrganization as serviceProviderOrganization
+    then MapCDAOrganizationToFrenchOrganization(serviceProviderOrganization, tgt) "serviceProviderOrganizationFR";
+
+  // Cas complémentaire : si le healthCareFacility porte lui-même un identifiant,
+  // on l’ajoute aussi à l’Organization de prise en charge.
+  src.id as id then MapCDAIIToFrenchOrganizationIdentifiers(id, tgt) "facilityIdentifiers";
+
+  // Cas de secours : si aucune serviceProviderOrganization n’existe, on applique
+  // quand même les profils/identifiants français via le groupe général.
+  src where src.serviceProviderOrganization.empty()
+    then MapCDAOrganizationToFrenchOrganization(src, tgt) "facilityFR";
+
+  // CDA healthCareFacility sans id ni organization -> FHIR Organization.name data-absent-reason
+  src where src.id.empty() and src.serviceProviderOrganization.empty()
+    -> tgt.name = create('string') as nameString then {
+      src -> nameString.extension = create('Extension') as absentReason then {
+        src -> absentReason.url = 'http://hl7.org/fhir/StructureDefinition/data-absent-reason' "url";
+        src -> absentReason.value = cast('unknown', 'code') "valueCode";
+      } "dataAbsentReason";
+    } "facilityOrganizationNameAbsentReason";
+
+  // CDA serviceProviderOrganization sans nom ni id -> FHIR Organization.name data-absent-reason
+  src.serviceProviderOrganization as serviceProviderOrganization
+    where serviceProviderOrganization.name.empty() and serviceProviderOrganization.id.empty()
+    -> tgt.name = create('string') as nameString then {
+      serviceProviderOrganization -> nameString.extension = create('Extension') as absentReason then {
+        serviceProviderOrganization -> absentReason.url = 'http://hl7.org/fhir/StructureDefinition/data-absent-reason' "url";
+        serviceProviderOrganization -> absentReason.value = cast('unknown', 'code') "valueCode";
+      } "dataAbsentReason";
+    } "serviceProviderOrganizationNameAbsentReason";
+}
+
+// CDA II organization.id -> FHIR Organization.identifier français
+group MapCDAIIToFrenchOrganizationIdentifiers(source src : II, target tgt : Organization) {
+  // CDA root IdNatSt -> FHIR Organization.identifier
+  src where src.root = '1.2.250.1.71.4.2.2' -> tgt.identifier = create('Identifier') as idNatStIdentifier then MapCDAIIToIdNatStIdentifier(src, idNatStIdentifier) "idNatSt";
+
+  // CDA root SNR -> FHIR Organization.identifier
+  src where src.root = '1.2.250.1.213.4.1' -> tgt.identifier = create('Identifier') as snrIdentifier then MapCDAIIToSNRIdentifier(src, snrIdentifier) "snr";
+
+  // CDA root COFRAC -> FHIR Organization.identifier
+  src where src.root = '1.2.250.1.213.6.3.1' -> tgt.identifier = create('Identifier') as cofracIdentifier then MapCDAIIToCOFRACIdentifier(src, cofracIdentifier) "cofrac";
+}
+
+// CDA II IdNatSt -> FHIR Identifier
+group MapCDAIIToIdNatStIdentifier(source src : II, target tgt : Identifier) {
+  src -> tgt then II(src, tgt) "base";
+}
+
+// CDA II SNR -> FHIR Identifier
+group MapCDAIIToSNRIdentifier(source src : II, target tgt : Identifier) {
+  src -> tgt.system = 'urn:oid:1.2.250.1.213.4.1' "system";
+  src.extension as extension -> tgt.value = cast(extension, 'string') "valueFromExtension";
+  src where src.extension.empty() -> tgt.value = 'DMP-SNR' "defaultValue";
+}
+
+// CDA II COFRAC -> FHIR Identifier
+group MapCDAIIToCOFRACIdentifier(source src : II, target tgt : Identifier) {
+  src -> tgt then II(src, tgt) "base";
+  src -> tgt.assigner as assigner then { src -> assigner.display = 'COFRAC' "assignerDisplay"; } "assigner";
+}
+
+
+// PRACTITIONER / PRACTITIONERROLE FR
+// CDA assignedEntity-like element -> FHIR Practitioner français
+group MapCDAAssignedEntityToFrenchPractitioner(source src, target tgt : Practitioner) {
+  // CDA assignedEntity -> FHIR Practitioner.meta.profile
+  src -> tgt.meta as metaBlock then { src -> metaBlock.profile = 'https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-practitioner' "asPractitioner"; } "meta";
+
+  // CDA assignedEntity.id -> FHIR Practitioner.identifier IDNPS
+  src.id as id then MapCDAIIToFrenchPractitionerIdentifiers(id, tgt) "identifiers";
+
+  // CDA assignedEntity.code -> FHIR Practitioner.qualification
+  src.code as roleCode then MapCDACodeToPractitionerQualification(roleCode, tgt) "qualification";
+}
+
+// CDA II assignedEntity.id -> FHIR Practitioner.identifier français
+group MapCDAIIToFrenchPractitionerIdentifiers(source src : II, target tgt : Practitioner) {
+  // CDA root IDNPS -> FHIR Practitioner.identifier IDNPS
+  src where src.root = '1.2.250.1.71.4.2.1' -> tgt.identifier = create('Identifier') as idNatPsIdentifier then MapCDAIIToIDNPSIdentifier(src, idNatPsIdentifier) "idNatPs";
+}
+
+// CDA II IDNPS -> FHIR Identifier IDNPS
+group MapCDAIIToIDNPSIdentifier(source src : II, target tgt : Identifier) {
+  src -> tgt then II(src, tgt) "base";
+  src -> tgt.use = 'official' "use";
+  src -> tgt.type = create('CodeableConcept') as idType then { src -> idType.coding = create('Coding') as idCoding then { src -> idCoding.system = 'https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203' "system"; src -> idCoding.code = 'IDNPS' "code"; } "coding"; } "type";
+}
+
+// CDA assignedEntity.code -> FHIR Practitioner.qualification.code
+group MapCDACodeToPractitionerQualification(source roleCode, target tgt : Practitioner) {
+  roleCode -> tgt.qualification as qualification then { roleCode -> qualification.code = create('CodeableConcept') as cc then CDCodeableConcept(roleCode, cc) "qualificationCode"; } "qualification";
+}
+
+// CDA assignedEntity-like element -> FHIR PractitionerRole français
+group MapCDAAssignedEntityToFrenchPractitionerRole(source src, target tgt : PractitionerRole, target practitioner : Practitioner, target organization : Organization) {
+  // CDA assignedEntity -> FHIR PractitionerRole.meta.profile
+  src -> tgt.meta as metaBlock then { src -> metaBlock.profile = 'https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-practitionerrole' "profile"; } "meta";
+
+  // CDA assignedEntity.id RPPS rang -> FHIR PractitionerRole.identifier
+  src.id as id where id.root = '1.2.250.1.213.1.6.4.3' -> tgt.identifier = create('Identifier') as identifier then MapCDAIIToRPPSRangIdentifier(id, identifier) "rppsRang";
+}
+
+// CDA II RPPS rang -> FHIR Identifier
+group MapCDAIIToRPPSRangIdentifier(source src : II, target tgt : Identifier) {
+  src -> tgt then II(src, tgt) "base";
+  src -> tgt.use = 'usual' "use";
+}
+
+// ENCOUNTER / LOCATION / FACILITY FR
+// CDA encompassingEncounter + healthCareFacility -> FHIR Encounter / Location / Organization génériques + français
+group MapCDAEncounterContextToFrenchResources(
+  source encompassingEncounter : EncompassingEncounter,
+  source facility : HealthCareFacility,
+  target encounter : Encounter,
+  target patient : Patient,
+  target location : Location,
+  target facilityOrganization : Organization
+) {
+  // CDA encompassingEncounter -> FHIR Encounter générique étape 2
+  encompassingEncounter then MapCDAEncompassingEncounterToEncounter(encompassingEncounter, encounter, patient) "encounterBase";
+
+  // CDA encompassingEncounter -> FHIR Encounter enrichi français étape 3
+  encompassingEncounter then MapCDAEncompassingEncounterToFrenchEncounter(encompassingEncounter, encounter, patient) "encounterFR";
+
+  // CDA healthCareFacility -> FHIR Location / Organization génériques étape 2
+  facility then MapCDAHealthCareFacilityToLocationContext(facility, encounter, location, facilityOrganization) "facilityBase";
+
+  // CDA healthCareFacility -> FHIR Location française étape 3
+  facility then MapCDAHealthCareFacilityToFrenchLocation(facility, location, facilityOrganization) "locationFR";
+
+  // CDA healthCareFacility -> FHIR Organization française étape 3
+  facility then MapCDAHealthCareFacilityToFrenchOrganization(facility, facilityOrganization) "facilityOrganizationFR";
+}
+
+// CDA encompassingEncounter -> FHIR Encounter français
+
+// ENCOUNTER FR SANS HEALTHCAREFACILITY
+// CDA encompassingEncounter seul -> FHIR Encounter générique + français
+group MapCDAEncounterOnlyToFrenchResources(source encompassingEncounter : EncompassingEncounter, target encounter : Encounter, target patient : Patient) {
+  // CDA encompassingEncounter -> FHIR Encounter générique étape 2
+  encompassingEncounter then MapCDAEncompassingEncounterToEncounter(encompassingEncounter, encounter, patient) "encounterBase";
+
+  // CDA encompassingEncounter -> FHIR Encounter enrichi français étape 3
+  encompassingEncounter then MapCDAEncompassingEncounterToFrenchEncounter(encompassingEncounter, encounter, patient) "encounterFR";
+}
+
+group MapCDAEncompassingEncounterToFrenchEncounter(source src : EncompassingEncounter, target tgt : Encounter, target patient : Patient) {
+  // CDA encompassingEncounter -> FHIR Encounter.meta.profile
+  src -> tgt.meta as metaBlock then { src -> metaBlock.profile = 'https://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-encounter' "profile"; } "meta";
+
+  // CDA encompassingEncounter.code -> FHIR Encounter.type NOS
+  src.code as srcCode -> tgt.type = create('CodeableConcept') as cc then {
+    srcCode.code as code -> cc.coding = create('Coding') as coding then {
+      code -> coding.system = 'https://mos.esante.gouv.fr/NOS/TRE_R304-HL7v3ActCode/FHIR/TRE-R304-HL7v3ActCode' "typeSystem";
+      code -> coding.code = cast(code, 'code') "typeCode";
+      srcCode.displayName as display -> coding.display = cast(display, 'string') "typeDisplay";
+    } "coding";
+  } "encounterType";
+}
+
+
+// CDA healthCareFacility -> FHIR Location française
+group MapCDAHealthCareFacilityToFrenchLocation(source src : HealthCareFacility, target tgt : Location, target facilityOrganization : Organization) {
+  // CDA healthCareFacility -> FHIR Location.meta.profile
+  src -> tgt.meta as metaBlock then {
+    src -> metaBlock.profile = 'https://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-location' "frCoreLocationProfile";
+    src -> metaBlock.profile = 'https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-location' "asLocationProfile";
+  } "meta";
+
+  // CDA healthCareFacility.location.name -> FHIR Location.name
+  src.location as facilityLocation then { facilityLocation.name as locName then { locName.item as item -> tgt.name = (item.xmlText) "locationName"; } "locationName"; } "facilityLocation";
+
+  // CDA healthCareFacility sans location -> FHIR Location.name data-absent-reason
+  src where src.location.empty() -> tgt.name = create('string') as nameString then { src -> nameString.extension = create('Extension') as absentReason then { src -> absentReason.url = 'http://hl7.org/fhir/StructureDefinition/data-absent-reason' "url"; src -> absentReason.value = cast('unknown', 'code') "valueCode"; } "dataAbsentReason"; } "locationNameAbsentReasonNoLocation";
+
+  // CDA healthCareFacility.location sans name -> FHIR Location.name data-absent-reason
+  src.location as facilityLocation where facilityLocation.name.empty() -> tgt.name = create('string') as nameString then { facilityLocation -> nameString.extension = create('Extension') as absentReason then { facilityLocation -> absentReason.url = 'http://hl7.org/fhir/StructureDefinition/data-absent-reason' "url"; facilityLocation -> absentReason.value = cast('unknown', 'code') "valueCode"; } "dataAbsentReason"; } "locationNameAbsentReasonNoName";
+
+  // CDA healthCareFacility.code -> FHIR Location.type NOS
+  src.code as srcCode -> tgt.type = create('CodeableConcept') as cc then {
+    srcCode.code as code -> cc.coding = create('Coding') as coding then {
+      code -> coding.system = 'https://mos.esante.gouv.fr/NOS/TRE_R02-SecteurActivite/FHIR/TRE-R02-SecteurActivite' "system";
+      code -> coding.code = cast(code, 'code') "code";
+      srcCode.displayName as display -> coding.display = cast(display, 'string') "display";
+    } "coding";
+  } "locationType";
+}
+
+
+// RELATEDPERSON FR
+// CDA informant.relatedEntity -> FHIR RelatedPerson français
+group MapCDAInformantToFrenchRelatedPerson(source relatedEntity : RelatedEntity, target relatedPerson : RelatedPerson, target patientResource : Patient) {
+  // CDA relatedEntity -> FHIR RelatedPerson.meta.profile
+  relatedEntity -> relatedPerson.meta as metaBlock then { relatedEntity -> metaBlock.profile = 'https://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-related-person' "profile"; } "meta";
+
+  // CDA relatedEntity.code -> FHIR RelatedPerson.relationship NOS
+  relatedEntity.code as relationCode -> relatedPerson.relationship = create('CodeableConcept') as cc then {
+    relationCode.code as code -> cc.coding = create('Coding') as coding then {
+      code -> coding.system = 'https://mos.esante.gouv.fr/NOS/TRE_R216-HL7RoleCode/FHIR/TRE-R216-HL7RoleCode' "system";
+      code -> coding.code = cast(code, 'code') "code";
+      relationCode.displayName as display -> coding.display = cast(display, 'string') "display";
+    } "coding";
+  } "relationshipRole";
+
+  // CDA relatedEntity.code absent -> FHIR RelatedPerson.relationship data-absent-reason
+  relatedEntity where relatedEntity.code.empty() -> relatedPerson.relationship = create('CodeableConcept') as cc then {
+    relatedEntity -> cc.extension = create('Extension') as absentReason then {
+      relatedEntity -> absentReason.url = 'http://hl7.org/fhir/StructureDefinition/data-absent-reason' "url";
+      relatedEntity -> absentReason.value = cast('unknown', 'code') "valueCode";
+    } "dataAbsentReason";
+  } "relationshipAbsentReason";
+}
+
+
+// CDA guardian -> FHIR RelatedPerson français
+group MapCDAGuardianToFrenchRelatedPerson(source guardian, target relatedPerson : RelatedPerson, target patientResource : Patient) {
+  // CDA guardian -> FHIR RelatedPerson.meta.profile
+  guardian -> relatedPerson.meta as metaBlock then { guardian -> metaBlock.profile = 'https://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-related-person' "profile"; } "meta";
+
+  // CDA guardian.code -> FHIR RelatedPerson.relationship NOS
+  guardian.code as relationCode -> relatedPerson.relationship = create('CodeableConcept') as cc then {
+    relationCode.code as code -> cc.coding = create('Coding') as coding then {
+      code -> coding.system = 'https://mos.esante.gouv.fr/NOS/TRE_R216-HL7RoleCode/FHIR/TRE-R216-HL7RoleCode' "system";
+      code -> coding.code = cast(code, 'code') "code";
+      relationCode.displayName as display -> coding.display = cast(display, 'string') "display";
+    } "coding";
+  } "relationshipRole";
+
+  // CDA guardian.code absent -> FHIR RelatedPerson.relationship data-absent-reason
+  guardian where guardian.code.empty() -> relatedPerson.relationship = create('CodeableConcept') as cc then {
+    guardian -> cc.extension = create('Extension') as absentReason then {
+      guardian -> absentReason.url = 'http://hl7.org/fhir/StructureDefinition/data-absent-reason' "url";
+      guardian -> absentReason.value = cast('unknown', 'code') "valueCode";
+    } "dataAbsentReason";
+  } "relationshipAbsentReason";
+}
+
+
