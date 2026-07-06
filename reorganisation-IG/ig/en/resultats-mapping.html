@@ -240,8 +240,9 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
 <div class="markdown-toc">
 <ul id="markdown-toc">
   <li><a href="#introduction" id="markdown-toc-introduction">introduction</a></li>
-  <li><a href="#résultats-globaux-de-la-transformation" id="markdown-toc-résultats-globaux-de-la-transformation">Résultats globaux de la transformation</a></li>
-  <li><a href="#mapping-de-len-tête-du-document" id="markdown-toc-mapping-de-len-tête-du-document">Mapping de l’en-tête du document</a></li>
+  <li><a href="#résultats-de-la-transformation-complète" id="markdown-toc-résultats-de-la-transformation-complète">Résultats de la transformation complète</a></li>
+  <li><a href="#validation-métier-des-résultats" id="markdown-toc-validation-métier-des-résultats">Validation métier des résultats</a></li>
+  <li><a href="#conservation-et-traçabilité-du-document-cda-source" id="markdown-toc-conservation-et-traçabilité-du-document-cda-source">Conservation et traçabilité du document CDA source</a></li>
 </ul>
 
 </div>
@@ -253,136 +254,41 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
 
 <p>Les résultats présentés correspondent à une preuve de concept et ne permettent pas, à eux seuls, de garantir que l’ensemble des informations du CDA a été repris sans perte.</p>
 
-<h3 id="résultats-globaux-de-la-transformation">Résultats globaux de la transformation</h3>
+<h3 id="résultats-de-la-transformation-complète">Résultats de la transformation complète</h3>
 
-<p>À l’issue de la transformation complète :</p>
+<p>À l’issue de la transformation complète, un <code class="language-plaintext highlighter-rouge">Bundle</code> FHIR de type <code class="language-plaintext highlighter-rouge">document</code> a été généré, contenant 97 ressources dans <code class="language-plaintext highlighter-rouge">Bundle.entry</code>, soit 98 ressources au total en incluant le <code class="language-plaintext highlighter-rouge">Bundle</code> lui-même.</p>
+
+<p>Le mapping de l’en-tête a permis de reprendre les principales informations du document CDA, notamment ses métadonnées, l’identité du patient, les acteurs impliqués, les organisations associées et le contexte de prise en charge. Ces informations ont conduit à la création des ressources administratives et contextuelles correspondantes, telles que <code class="language-plaintext highlighter-rouge">Composition</code>, <code class="language-plaintext highlighter-rouge">Patient</code>, <code class="language-plaintext highlighter-rouge">Practitioner</code>, <code class="language-plaintext highlighter-rouge">PractitionerRole</code>, <code class="language-plaintext highlighter-rouge">Organization</code>, <code class="language-plaintext highlighter-rouge">RelatedPerson</code>, <code class="language-plaintext highlighter-rouge">Encounter</code> et <code class="language-plaintext highlighter-rouge">Location</code>, en tenant compte des spécifications européennes et françaises mobilisées dans la preuve de concept. Les éléments optionnels de l’en-tête n’ont donné lieu à la création de ressources que lorsqu’ils étaient présents dans le document source.</p>
+
+<p>Le mapping du corps a pris en compte les sections relatives aux problèmes actifs, aux antécédents médicaux, à l’historique des actes, aux allergies et hypersensibilités, aux traitements, aux effets indésirables liés aux médicaments, aux vaccinations, au statut fonctionnel, aux constantes, au mode de vie, aux facteurs de risques professionnels, aux résultats d’examens, au plan de soins et aux antécédents familiaux.</p>
+
+<p>Ces informations ont alimenté différentes ressources cliniques, notamment <code class="language-plaintext highlighter-rouge">Condition</code>, <code class="language-plaintext highlighter-rouge">Procedure</code>, <code class="language-plaintext highlighter-rouge">AllergyIntolerance</code>, <code class="language-plaintext highlighter-rouge">AdverseEvent</code>, <code class="language-plaintext highlighter-rouge">Medication</code>, <code class="language-plaintext highlighter-rouge">MedicationStatement</code>, <code class="language-plaintext highlighter-rouge">MedicationRequest</code>, <code class="language-plaintext highlighter-rouge">Immunization</code>, <code class="language-plaintext highlighter-rouge">ImmunizationRecommendation</code>, <code class="language-plaintext highlighter-rouge">Observation</code>, <code class="language-plaintext highlighter-rouge">DiagnosticReport</code>, <code class="language-plaintext highlighter-rouge">CarePlan</code>, <code class="language-plaintext highlighter-rouge">ServiceRequest</code>, <code class="language-plaintext highlighter-rouge">Encounter</code> et <code class="language-plaintext highlighter-rouge">FamilyMemberHistory</code>.</p>
+
+<p>Les sections relatives aux dispositifs médicaux, aux points de vigilance, aux directives anticipées et aux documents joints sont actuellement conservées dans le contenu narratif de la <code class="language-plaintext highlighter-rouge">Composition</code>. Leur mapping vers des ressources FHIR structurées, telles que <code class="language-plaintext highlighter-rouge">Device</code>, <code class="language-plaintext highlighter-rouge">Flag</code>, <code class="language-plaintext highlighter-rouge">Consent</code> ou <code class="language-plaintext highlighter-rouge">DocumentReference</code>, pourra être complété ultérieurement.</p>
+
+<p>Enfin, les ressources générées sont identifiées par des UUID et reliées entre elles au moyen de références internes au format <code class="language-plaintext highlighter-rouge">urn:uuid</code>.</p>
+
+<h3 id="validation-métier-des-résultats">Validation métier des résultats</h3>
+
+<p>La génération du <code class="language-plaintext highlighter-rouge">Bundle</code> FHIR et sa validation technique ne permettent pas, à elles seules, de garantir que l’ensemble des informations du document CDA a été correctement repris.</p>
+
+<p>Une validation par un expert métier est donc nécessaire afin de comparer le document CDA source avec le résultat FHIR obtenu et de vérifier notamment :</p>
+
 <ul>
-  <li>un Bundle FHIR de type document a été généré avec 97 ressources dans Bundle.entry, soit 98 ressources au total en incluant le Bundle lui-même ;</li>
-  <li>les informations de l’en-tête CDA ont été transformées en ressources FHIR administratives et contextuelles ;</li>
-  <li>les sections cliniques du Patient Summary ont été prises en compte et associées aux ressources FHIR correspondantes ;</li>
-  <li>les profils européens et français retenus dans le cadre de la preuve de concept ont été appliqués aux ressources concernées ;</li>
-  <li>les ressources générées ont été intégrées au Bundle à l’aide d’identifiants techniques de type UUID et de références internes au format urn:uuid.</li>
+  <li>la conservation du sens clinique des informations ;</li>
+  <li>l’absence de perte ou de modification des données ;</li>
+  <li>la bonne interprétation des codes, des valeurs et des contenus narratifs.</li>
 </ul>
 
-<h3 id="mapping-de-len-tête-du-document">Mapping de l’en-tête du document</h3>
+<p>Cette validation permet d’identifier les éventuels écarts du mapping et de compléter ou d’ajuster les règles FML avant toute utilisation dans un contexte opérationnel.</p>
 
-<p>Le mapping de l’en-tête prend en compte les principales informations du document CDA nécessaires à la construction du document FHIR, notamment les métadonnées du document, l’identité du patient, les acteurs impliqués, les organisations associées ainsi que le contexte de prise en charge.</p>
+<h3 id="conservation-et-traçabilité-du-document-cda-source">Conservation et traçabilité du document CDA source</h3>
 
-<p>Ces éléments CDA sont mappés vers les ressources administratives et contextuelles correspondantes du <code class="language-plaintext highlighter-rouge">Bundle</code> FHIR, telles que <code class="language-plaintext highlighter-rouge">Composition</code>, <code class="language-plaintext highlighter-rouge">Patient</code>, <code class="language-plaintext highlighter-rouge">Practitioner</code>, <code class="language-plaintext highlighter-rouge">PractitionerRole</code>, <code class="language-plaintext highlighter-rouge">Organization</code>, <code class="language-plaintext highlighter-rouge">RelatedPerson</code>, <code class="language-plaintext highlighter-rouge">Encounter</code> et <code class="language-plaintext highlighter-rouge">Location</code>, en tenant compte des spécifications françaises mobilisées dans la preuve de concept.</p>
+<p>Afin de faciliter la validation métier et de permettre un retour au document d’origine en cas de doute, il est recommandé de conserver le document CDA source. Trois approches peuvent être envisagées.</p>
 
-<p>Les éléments optionnels de l’en-tête CDA ne sont mappés vers FHIR que lorsqu’ils sont présents dans le document source.</p>
+<h4 id="encapsulation-du-document-cda">Encapsulation du document CDA</h4>
 
-<p><strong>**Exemple de ressource générée : Patient</strong>:**</p>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"fullUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"urn:uuid:4b3f518b-cf54-4508-8a30-d600cbbf528a"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"resource"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"resourceType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Patient"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4b3f518b-cf54-4508-8a30-d600cbbf528a"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"profile"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="s2">"https://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-patient-ins"</span><span class="w">
-      </span><span class="p">]</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"extension"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://hl7.org/fhir/StructureDefinition/patient-birthPlace"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"valueAddress"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nl">"extension"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-              </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-address-insee-code"</span><span class="p">,</span><span class="w">
-              </span><span class="nl">"valueCoding"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51215"</span><span class="w">
-              </span><span class="p">}</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-          </span><span class="p">],</span><span class="w">
-          </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DOMPREMY"</span><span class="p">,</span><span class="w">
-          </span><span class="nl">"district"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51215"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"extension"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"identityStatus"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"valueCoding"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-              </span><span class="nl">"system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-v2-0445"</span><span class="p">,</span><span class="w">
-              </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VALI"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-          </span><span class="p">}</span><span class="w">
-        </span><span class="p">],</span><span class="w">
-        </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-identity-reliability"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"identifier"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"use"</span><span class="p">:</span><span class="w"> </span><span class="s2">"official"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nl">"coding"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-              </span><span class="nl">"system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203"</span><span class="p">,</span><span class="w">
-              </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INS-NIR-TEST"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-          </span><span class="p">]</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="nl">"system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"urn:oid:1.2.250.1.213.1.4.10"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"279035121518989"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"extension"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-patient-birth-list-given-name"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"valueString"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DOMINIQUE MARIE-LOUISE"</span><span class="w">
-          </span><span class="p">}</span><span class="w">
-        </span><span class="p">],</span><span class="w">
-        </span><span class="nl">"use"</span><span class="p">:</span><span class="w"> </span><span class="s2">"official"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"family"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PAT-TROIS"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"given"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-          </span><span class="s2">"DOMINIQUE"</span><span class="w">
-        </span><span class="p">]</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"telecom"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"phone"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0144534551"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"use"</span><span class="p">:</span><span class="w"> </span><span class="s2">"home"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"phone"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0647151010"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"use"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobile"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"279035121518989@patient.mssante.fr"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"female"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"birthDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1979-03-28"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"line"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-          </span><span class="s2">"28"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"Avenue de Breteuil"</span><span class="w">
-        </span><span class="p">],</span><span class="w">
-        </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PARIS"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"postalCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"75007"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FRANCE"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<h4 id="conservation-du-document-cda-source">Conservation du document CDA source</h4>
-
-<p>Afin de garantir la traçabilité de la transformation, le document CDA original peut être conservé directement dans le <code class="language-plaintext highlighter-rouge">Bundle</code> FHIR généré.</p>
-
-<p>Pour cela, le contenu XML du CDA est encodé en Base64 à l’aide d’un traitement externe (par exemple en Python ou en Java), puis intégré dans une ressource FHIR <code class="language-plaintext highlighter-rouge">Binary</code>. Cette ressource est conçue pour transporter des contenus bruts (comme un fichier XML) sans les modifier.</p>
-
-<p>Ce traitement d’encodage n’est pas réalisé en FML, mais en amont ou en aval du mapping.</p>
+<p>Cette approche consiste à encoder le document CDA au format XML en Base64, en amont ou en aval du mapping FML, puis à l’intégrer dans une ressource FHIR <code class="language-plaintext highlighter-rouge">Binary</code>.</p>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"resourceType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Binary"</span><span class="p">,</span><span class="w">
@@ -391,31 +297,42 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Base64(CDA)"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
-<p>Une ressource Provenance est ensuite utilisée pour relier les ressources FHIR produites au document CDA source :</p>
+
+<h4 id="encapsulation-du-document-cda-au-format-pdf">Encapsulation du document CDA au format PDF</h4>
+
+<p>Cette approche consiste à convertir le document CDA en PDF à l’aide d’un traitement externe, par exemple en Python ou en Java. Elle permet de conserver une représentation lisible du document, sans préserver sa structure XML exploitable.</p>
+
+<p>Le fichier PDF généré est ensuite encapsulé selon le même principe que le document XML : il est encodé en Base64 et intégré dans une ressource Binary.</p>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"resourceType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Provenance"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"target"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w"> </span><span class="nl">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"urn:uuid:composition-id"</span><span class="w"> </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w"> </span><span class="nl">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"urn:uuid:patient-id"</span><span class="w"> </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nl">"entity"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="nl">"resourceType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Binary"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cda-source-pdf"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"contentType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/pdf"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Base64(PDF)"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h4 id="référencement-du-document-cda-conservé-dans-un-système-externe">Référencement du document CDA conservé dans un système externe</h4>
+
+<p>Cette approche consiste à conserver le document CDA dans son système d’origine ou dans un espace documentaire externe, sans intégrer directement son contenu dans le Bundle.</p>
+
+<p>Une ressource DocumentReference peut être utilisée pour renseigner l’adresse permettant d’accéder au document.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"resourceType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DocumentReference"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cda-source-reference"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"current"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"content"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"source"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"what"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"urn:uuid:cda-source"</span><span class="w">
+      </span><span class="nl">"attachment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"contentType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/xml"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://exemple.fr/documents/cda-source.xml"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
-
-<p>Dans cette approche :</p>
-<ul>
-  <li>la ressource <code class="language-plaintext highlighter-rouge">Binary</code> contient le CDA original encodé en Base64 ;</li>
-  <li>La ressource <code class="language-plaintext highlighter-rouge">Provenance</code> établit le lien entre les ressources FHIR générées et leur source ;</li>
-  <li>L’encodage Base64 est réalisé en dehors du mapping FML</li>
-</ul>
+<p>Cette solution évite de dupliquer le document source. Elle nécessite toutefois de garantir la pérennité du lien, la disponibilité du document ainsi que la gestion des droits d’accès.</p>
 
 
 
@@ -466,7 +383,7 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
           IG © 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d&#39;Oradour-sur-Glane, 75015 Paris</a>.  
           Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>.
           Generated 
-  <span title="2026-07-06 08:48:00 +0000">
+  <span title="2026-07-06 11:34:00 +0000">
     2026-07-06
   </span>
 
