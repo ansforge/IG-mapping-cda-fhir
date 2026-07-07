@@ -1,4 +1,4 @@
-# CDA to FHIR Administrative Gender Mapping - POC - Mapping CDA to FHIR v0.1.0
+# CDA to FHIR Administrative Gender Mapping - Mapping CDA to FHIR (Preuve de concept) v0.1.0
 
 ## ConceptMap: CDA to FHIR Administrative Gender Mapping 
 
@@ -19,7 +19,7 @@ Mapping between CDA v3 Administrative Gender codes and FHIR Administrative Gende
   "title" : "CDA to FHIR Administrative Gender Mapping",
   "status" : "active",
   "experimental" : false,
-  "date" : "2026-07-07T12:59:25+00:00",
+  "date" : "2026-07-07T15:16:43+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",

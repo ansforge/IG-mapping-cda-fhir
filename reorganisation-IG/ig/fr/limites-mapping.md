@@ -1,4 +1,4 @@
-# Limites de mapping - POC - Mapping CDA to FHIR v0.1.0
+# Limites de mapping - Mapping CDA to FHIR (Preuve de concept) v0.1.0
 
 ## Limites de mapping
 

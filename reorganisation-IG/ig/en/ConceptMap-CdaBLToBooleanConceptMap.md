@@ -1,4 +1,4 @@
-# ConceptMap — CDA BL vers FHIR boolean - POC - Mapping CDA to FHIR v0.1.0
+# ConceptMap — CDA BL vers FHIR boolean - Mapping CDA to FHIR (Preuve de concept) v0.1.0
 
 ## ConceptMap: ConceptMap — CDA BL vers FHIR boolean (Experimental) 
 
@@ -19,7 +19,7 @@ Correspondance documentaire entre le datatype CDA BL et le datatype FHIR boolean
   "title" : "ConceptMap — CDA BL vers FHIR boolean",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-07-07T12:59:25+00:00",
+  "date" : "2026-07-07T15:16:43+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",

@@ -1,4 +1,4 @@
-# Démarrage Matchbox - POC - Mapping CDA to FHIR v0.1.0
+# Démarrage Matchbox - Mapping CDA to FHIR (Preuve de concept) v0.1.0
 
 ## Démarrage Matchbox
 

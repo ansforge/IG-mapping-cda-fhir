@@ -1,4 +1,4 @@
-# Accueil - POC - Mapping CDA to FHIR v0.1.0
+# Accueil - Mapping CDA to FHIR (Preuve de concept) v0.1.0
 
 ## Accueil
 

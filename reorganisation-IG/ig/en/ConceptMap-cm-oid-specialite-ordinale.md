@@ -1,4 +1,4 @@
-# ConceptMap - OID to URL for TRE_R38-SpecialiteOrdinale - POC - Mapping CDA to FHIR v0.1.0
+# ConceptMap - OID to URL for TRE_R38-SpecialiteOrdinale - Mapping CDA to FHIR (Preuve de concept) v0.1.0
 
 ## ConceptMap: ConceptMap - OID to URL for TRE_R38-SpecialiteOrdinale 
 
