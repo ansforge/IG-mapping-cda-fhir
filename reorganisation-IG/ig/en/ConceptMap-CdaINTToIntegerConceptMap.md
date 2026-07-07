@@ -19,7 +19,7 @@ Correspondances documentaires entre le datatype CDA INT et le datatype FHIR inte
   "title" : "ConceptMap — CDA INT vers FHIR integer",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-07-07T08:59:34+00:00",
+  "date" : "2026-07-07T12:36:06+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
