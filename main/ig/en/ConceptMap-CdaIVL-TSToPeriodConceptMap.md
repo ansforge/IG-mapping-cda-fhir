@@ -1,4 +1,4 @@
-# ConceptMap — CDA IVL_TS vers FHIR Period et dateTime - POC - Mapping CDA to FHIR v0.1.0
+# ConceptMap — CDA IVL_TS vers FHIR Period et dateTime - Mapping CDA to FHIR (Preuve de concept) v0.1.0
 
 ## ConceptMap: ConceptMap — CDA IVL_TS vers FHIR Period et dateTime (Experimental) 
 
@@ -19,7 +19,7 @@ Correspondances documentaires entre le datatype CDA IVL_TS et les types FHIR Per
   "title" : "ConceptMap — CDA IVL_TS vers FHIR Period et dateTime",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-07-02T14:58:37+00:00",
+  "date" : "2026-07-07T15:31:37+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",

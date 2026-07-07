@@ -1,4 +1,4 @@
-# Historique des versions - POC - Mapping CDA to FHIR v0.1.0
+# Historique des versions - Mapping CDA to FHIR (Preuve de concept) v0.1.0
 
 ## Historique des versions
 

@@ -1,4 +1,4 @@
-# Mapping CDA-FR vers FHIR - Socle enrichi français - POC - Mapping CDA to FHIR v0.1.0
+# Mapping CDA-FR vers FHIR - Socle enrichi français - Mapping CDA to FHIR (Preuve de concept) v0.1.0
 
 ## StructureMap: Mapping CDA-FR vers FHIR - Socle enrichi français 
 
@@ -18,7 +18,7 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
   "name" : "CdaFrToBundle",
   "title" : "Mapping CDA-FR vers FHIR - Socle enrichi français",
   "status" : "draft",
-  "date" : "2026-07-02T14:58:37+00:00",
+  "date" : "2026-07-07T15:31:37+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",

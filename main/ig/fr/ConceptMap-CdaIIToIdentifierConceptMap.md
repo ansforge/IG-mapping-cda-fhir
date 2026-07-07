@@ -1,4 +1,4 @@
-# ConceptMap — CDA II vers FHIR Identifier - POC - Mapping CDA to FHIR v0.1.0
+# ConceptMap — CDA II vers FHIR Identifier - Mapping CDA to FHIR (Preuve de concept) v0.1.0
 
 ## ConceptMap: ConceptMap — CDA II vers FHIR Identifier (Expérimental) 
 
@@ -19,7 +19,7 @@ Correspondances entre les éléments du datatype CDA II et les éléments FHIR I
   "title" : "ConceptMap — CDA II vers FHIR Identifier",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-07-02T14:58:37+00:00",
+  "date" : "2026-07-07T15:31:37+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",

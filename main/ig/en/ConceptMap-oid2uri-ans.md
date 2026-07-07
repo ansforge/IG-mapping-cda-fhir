@@ -1,4 +1,4 @@
-# OID to URI Mapping for ANS terminologies - POC - Mapping CDA to FHIR v0.1.0
+# OID to URI Mapping for ANS terminologies - Mapping CDA to FHIR (Preuve de concept) v0.1.0
 
 ## ConceptMap: OID to URI Mapping for ANS terminologies 
 

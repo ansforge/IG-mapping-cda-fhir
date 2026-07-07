@@ -5,7 +5,7 @@
 <html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en" dir="ltr">
   <head>
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
-    <title>Outils de Mapping - POC - Mapping CDA to FHIR v0.1.0</title>
+    <title>Méthodes de mapping - Mapping CDA to FHIR (Preuve de concept) v0.1.0</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="author" content="http://hl7.org/fhir"/>
@@ -48,8 +48,8 @@
 	  <script type="text/javascript" src="assets/js/prism-cql.js"></script>
     <script type="text/javascript" src="assets/js/mermaid.js"></script>
     <script type="text/javascript" src="assets/js/mermaid-init.js"></script>
-    <style type="text/css">h2{--heading-prefix:"4"}
-    h3,h4,h5,h6{--heading-prefix:"4"}</style>
+    <style type="text/css">h2{--heading-prefix:"7"}
+    h3,h4,h5,h6{--heading-prefix:"7"}</style>
     <div id="segment-header" class="segment">  <!-- segment-header -->
       <div class="container">  <!-- container -->
 
@@ -67,7 +67,7 @@
 
 
         <div id="ig-status" data-fhir="generated">
-          <p><span style="font-size:12pt;font-weight:bold">POC - Mapping CDA to FHIR</span>
+          <p><span style="font-size:12pt;font-weight:bold">Mapping CDA to FHIR (Preuve de concept)</span>
             <br/>
             <span style="display:inline-block;">0.1.0 - ci-build
 
@@ -107,20 +107,26 @@
     <a href="index.html">Accueil</a>
   </li>
   <li class="dropdown">
-    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Mapping CDA vers FHIR
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Mécanismes de mapping
       <b class="caret"></b>
     </a>
     <ul class="dropdown-menu">
       <li>
-        <a href="mapping-mechanisms.html">Mécanisme du Mapping</a>
+        <a href="Architecture-de-mapping.html">Architecture</a>
       </li>
       <li>
-        <a href="guide-demarrage.html">Guide de démarrage</a>
+        <a href="Transformation-FML.html">Transformation FML</a>
       </li>
       <li>
-        <a href="outils-mapping.html">Outils de Mapping</a>
+        <a href="guide-demarrage.html">Démarrage Matchbox</a>
+      </li>
+      <li>
+        <a href="resultats-mapping.html">Résultats</a>
       </li>
     </ul>
+  </li>
+  <li>
+    <a href="limites-mapping.html">Limites de mapping</a>
   </li>
   <li>
     <a href="artifacts.html">Ressources de conformité</a>
@@ -130,6 +136,9 @@
       <b class="caret"></b>
     </a>
     <ul class="dropdown-menu">
+      <li>
+        <a href="outils-mapping.html">Autres méthodes de mapping</a>
+      </li>
       <li>
         <a target="_blank" href="http://hl7.org/fhir/R4/index.html">Spécification FHIR</a>
       </li>
@@ -174,11 +183,11 @@
     <div id="segment-breadcrumb" class="segment" data-fhir="generated">  <!-- segment-breadcrumb -->
       <div class="container">  <!-- container -->
         <ul class="breadcrumb">
-          <li><a href='toc.html'><b>Table of Contents</b></a></li><li><b>Outils de Mapping</b></li>
+          <li><a href='toc.html'><b>Table of Contents</b></a></li><li><b>Méthodes de mapping</b></li>
 
           <span style="float: var(--ig-right);">
 
-            <a href="guide-demarrage.html">&lt; prev</a> | 
+            <a href="limites-mapping.html">&lt; prev</a> | 
 
             <a href="#bottom">bottom</a>
 
@@ -204,8 +213,8 @@ h5:before{color:silver;counter-increment:detail;content:var(--heading-prefix) ".
 h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) "." counter(detail) "." counter(more-detail)" ";}
 </style>
 <div class="col-12">
-  <!--ReleaseHeader--><p id="publish-box">POC - Mapping CDA to FHIR - Local Development build (v0.1.0) built by the FHIR (HL7® FHIR® Standard) Build Tools. See the <a href='https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/history.html'>Directory of published versions</a></p><!--EndReleaseHeader-->
-  <h2>Outils de Mapping</h2>
+  <!--ReleaseHeader--><p id="publish-box">Mapping CDA to FHIR (Preuve de concept) - Local Development build (v0.1.0) built by the FHIR (HL7® FHIR® Standard) Build Tools. See the <a href='https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/history.html'>Directory of published versions</a></p><!--EndReleaseHeader-->
+  <h2>Méthodes de mapping</h2>
   
 
 
@@ -230,7 +239,6 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
     <p><!-- white space is critical inside of capture --></p>
 <div class="markdown-toc">
 <ul id="markdown-toc">
-  <li><a href="#approche-basée-sur-le-fhir-mapping-language-fml" id="markdown-toc-approche-basée-sur-le-fhir-mapping-language-fml">Approche basée sur le FHIR Mapping Language (FML)</a></li>
   <li><a href="#méthodes-doutils-visuels-de-transformation" id="markdown-toc-méthodes-doutils-visuels-de-transformation">Méthodes d’outils visuels de transformation</a></li>
   <li><a href="#méthodes-de-transformation-xml" id="markdown-toc-méthodes-de-transformation-xml">Méthodes de transformation XML</a></li>
   <li><a href="#méthodes-de-transformation-modèle-vers-modèle" id="markdown-toc-méthodes-de-transformation-modèle-vers-modèle">Méthodes de transformation modèle vers modèle</a></li>
@@ -240,52 +248,13 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
 </ul>
 
 </div>
+
 <div class="stu-note" style="width: 65%">
     <p><strong>Note :</strong> Les méthodes et outils de mapping présentés ci‑dessous sont fournis à titre informatif. 
     Ils illustrent différentes approches identifiées sans pour autant avoir été toutes testées dans le cadre de ce guide d'implémentation.</p>
 </div>
 
-<p>La transformation de documents CDA vers des ressources FHIR peut s’appuyer sur différentes méthodes.
-Les exemples présentés ci‑après illustrent quelques‑unes des solutions existantes : ils ne couvrent pas l’ensemble des possibilités, mais montrent la diversité des approches disponibles.</p>
-
-<h3 id="approche-basée-sur-le-fhir-mapping-language-fml">Approche basée sur le FHIR Mapping Language (FML)</h3>
-
-<p>Le FHIR Mapping Language est un langage défini par HL7 pour décrire, sous forme de règles formelles, comment transformer une structure source (par exemple un document CDA en XML) en ressources FHIR.
-Ce langage repose sur FHIRPath et prend en charge des transformations structurelles, conditionnelles ou complexes. 
-Les règles écrites en FML doivent être interprétées par un moteur capable d’exécuter des StructureMap. Parmi les moteurs d’exécution disponibles dans l’écosystème open source, on retrouve notamment HAPI FHIR et Matchbox.</p>
-
-<h4 id="hapi-fhir">HAPI FHIR</h4>
-
-<p>HAPI FHIR est un framework open source de référence pour la manipulation des ressources FHIR en Java. Il intègre un moteur capable d’interpréter et d’exécuter les cartes de transformation FML (StructureMap). Ce moteur fournit l’ensemble des fonctionnalités nécessaires pour appliquer les règles de conversion définies en FML : navigation dans les données, exécution de FHIRPath, création des ressources FHIR générées et validation de leur conformité aux profils utilisés.</p>
-
-<h4 id="matchbox">Matchbox</h4>
-
-<p>Matchbox est une implémentation spécialisée basée sur HAPI FHIR qui enrichit ce moteur d’exécution avec un ensemble d’outils dédiés au développement, au test et à la validation des mappings FML. Il propose un environnement complet incluant l’exécution interactive des StructureMap, des mécanismes avancés de validation FHIR basés sur les Implementation Guides, ainsi que des fonctionnalités facilitant la mise au point des transformations.</p>
-
-<h4 id="avantages">Avantages</h4>
-
-<ul>
-  <li>Flexible.</li>
-  <li>Adapté aux règles métier complexes.</li>
-  <li>Intégration simple.</li>
-</ul>
-
-<h4 id="limites">Limites</h4>
-
-<ul>
-  <li>Complexité du langage FML.</li>
-</ul>
-
-<h4 id="ressources-utiles">Ressources utiles</h4>
-
-<ul>
-  <li>FHIR Mapping Language (FML) : https://build.fhir.org/mapping-language.html</li>
-  <li>HAPI FHIR – GitHub : https://github.com/hapifhir/hapi-fhir</li>
-  <li>HAPI FHIR – Documentation : https://hapifhir.io/hapi-fhir/docs/</li>
-  <li>Matchbox – GitHub : https://github.com/ahdis/matchbox</li>
-  <li>Matchbox API Utils – Documentation : https://matchbox-api-utils.readthedocs.io</li>
-  <li>Matchbox API Utils – GitHub : https://github.com/drmrgd/matchbox_api_utils</li>
-</ul>
+<p>La transformation de documents CDA vers des ressources FHIR peut s’appuyer sur différentes méthodes, outre l’approche basée sur le FHIR Mapping Language. Les exemples présentés ci-après donnent un aperçu de quelques solutions existantes et illustrent la diversité des approches disponibles pour ce type de transformation.</p>
 
 <h3 id="méthodes-doutils-visuels-de-transformation">Méthodes d’outils visuels de transformation</h3>
 
@@ -315,7 +284,7 @@ Les règles écrites en FML doivent être interprétées par un moteur capable d
   <li>Les solutions graphiques sont souvent contraintes à des exports propriétaires pour conserver les informations visuels (placement des éléments, rendus graphiques,…). Même lorsqu'un export vers un format standard est disponible, la réimportation à iso-fonctionnalité reste partielle. Par ailleurs, ces formats propriétaires sont généralement incompatibles avec les fonctionnalités collaboratives de GitHub (pull requests, revues de code, comparaison de  versions), qui ne s'appliquent qu'aux fichiers texte. La collaboration simultanée via les branches reste donc limitée.</li>
 </ul>
 
-<h4 id="ressources-utiles-1">Ressources utiles</h4>
+<h4 id="ressources-utiles">Ressources utiles</h4>
 
 <ul>
   <li>TermX – Site officiel : https://termx.org/</li>
@@ -336,7 +305,7 @@ Les règles écrites en FML doivent être interprétées par un moteur capable d
 
 <p>XQuery est un langage de requête standardisé par le World Wide Web Consortium (W3C) pour interroger, extraire et recomposer des données XML. Fondé sur XPath, il permet d’exprimer une logique de transformation dans laquelle le document source est parcouru, certaines données sont sélectionnées et filtrées, puis un résultat cible est reconstruit sous la forme d’un fragment XML ou JSON. Dans le cadre d’un document CDA, cette approche permet de cibler précisément des sections, des entrées ou des valeurs, puis de les réorganiser selon la structure attendue en sortie. XQuery 3.1 prend également en charge JSON grâce à l’introduction des maps et des arrays dans son modèle de données.</p>
 
-<h4 id="avantages-1">Avantages</h4>
+<h4 id="avantages">Avantages</h4>
 
 <ul>
   <li>Traitement direct du document CDA source : mise en œuvre de la transformation directement à partir de l’arbre XML du document, sans recours préalable à un modèle intermédiaire.</li>
@@ -344,14 +313,14 @@ Les règles écrites en FML doivent être interprétées par un moteur capable d
   <li>Adéquation aux transformations orientées structure documentaire : approche pertinente lorsque la logique de transformation porte principalement sur l’extraction, la réorganisation et la recomposition de fragments du document XML source.</li>
 </ul>
 
-<h4 id="limites-1">Limites</h4>
+<h4 id="limites">Limites</h4>
 
 <ul>
   <li>Lisibilité et maintenabilité réduites sur des mappings étendus : multiplication des feuilles de style, des règles et des requêtes lorsque le périmètre documentaire et les variantes de transformation augmentent.</li>
   <li>Nécessité de maîtriser les langages et mécanismes associés à XSLT et XQuery.</li>
 </ul>
 
-<h4 id="ressources-utiles-2">Ressources utiles</h4>
+<h4 id="ressources-utiles-1">Ressources utiles</h4>
 
 <ul>
   <li>XSLT – Introduction : https://www.educba.com/xslt-mapping/</li>
@@ -384,14 +353,14 @@ Dans Eclipse, ces langages sont implémentés via :</li>
 Ces outils prennent en entrée des modèles définis selon des métamodèles (souvent Ecore ou UML), qui servent de base à l’exécution des règles QVT.</li>
 </ul>
 
-<h4 id="avantages-2">Avantages</h4>
+<h4 id="avantages-1">Avantages</h4>
 
 <ul>
   <li>Formalisation explicite des règles de transformation: appui sur des métamodèles explicites, structuration cohérente du mapping, lisibilité accrue des correspondances.</li>
   <li>Contrôle de la conformité structurelle du modèle cible : production d’instances conformes au métamodèle cible, facilitation des vérifications de structure et de la validation.</li>
 </ul>
 
-<h4 id="limites-2">Limites</h4>
+<h4 id="limites-1">Limites</h4>
 
 <ul>
   <li>Nécessite des métamodèles CDA/FHIR et leur maintenance.</li>
@@ -399,7 +368,7 @@ Ces outils prennent en entrée des modèles définis selon des métamodèles (so
   <li>Moins adapté lorsque la transformation dépend fortement du contexte: variations du profil FHIR cible, des terminologies, du type de document CDA ou des contraintes d’implémentation rendent l’approche modèle‑vers‑modèle plus complexe à exprimer et à maintenir, en raison de son ancrage dans des correspondances structurelles stables entre métamodèles.</li>
 </ul>
 
-<h4 id="ressources-utiles-3">Ressources utiles</h4>
+<h4 id="ressources-utiles-2">Ressources utiles</h4>
 
 <ul>
   <li>ATL – Documentation : https://eclipse.dev/atl/documentation/</li>
@@ -425,7 +394,7 @@ Ces outils prennent en entrée des modèles définis selon des métamodèles (so
 
 <p>Kodjin Data Mapper est un outil de transformation de données de santé vers FHIR. Il s’appuie sur des templates Liquid pour définir les règles de mapping, puis exécute ces règles afin de convertir des formats tels que HL7v2, C‑CDA ou des formats propriétaires en ressources FHIR. La documentation officielle le présente comme un service de conversion spécialisé dans l’industrialisation de ces mappings.</p>
 
-<h4 id="avantages-3">Avantages</h4>
+<h4 id="avantages-2">Avantages</h4>
 
 <ul>
   <li>Intégration aisée dans des chaînes de traitement automatisées : exécution répétable des mécanismes de génération ou de transformation dans des workflows structurés.</li>
@@ -433,14 +402,14 @@ Ces outils prennent en entrée des modèles définis selon des métamodèles (so
   <li>Légèreté relative de mise en œuvre :insertion facilitée dans des processus existants grâce à la production directe d’une sortie textuelle structurée.</li>
 </ul>
 
-<h4 id="limites-3">Limites</h4>
+<h4 id="limites-2">Limites</h4>
 
 <ul>
   <li>Nécessité fréquente d’une préparation préalable du document CDA : adaptation ou normalisation de la structure source en vue de sa compatibilité avec les chemins et éléments attendus par les templates de transformation.</li>
   <li>Expressivité plus limitée face à des logiques métier complexes.</li>
 </ul>
 
-<h4 id="ressources-utiles-4">Ressources utiles</h4>
+<h4 id="ressources-utiles-3">Ressources utiles</h4>
 
 <ul>
   <li>Acceleo – User Guide : https://wiki.eclipse.org/Acceleo/User_Guide</li>
@@ -456,7 +425,7 @@ Ces outils prennent en entrée des modèles définis selon des métamodèles (so
 
 <p>Cette catégorie regroupe les approches dans lesquelles la transformation CDA → FHIR est codée directement dans un langage de programmation généraliste. Elle repose sur le parsing du document XML source, l’écriture explicite des règles de transformation dans le code, puis la construction des ressources FHIR à l’aide de bibliothèques adaptées. Cette logique peut être mise en œuvre en Java, notamment avec HAPI FHIR ; en JavaScript, par transformation du XML en objets puis génération d’un FHIR JSON, avec l’appui éventuel d’un client tel que SMART on FHIR JavaScript Client ; et en Python, par manipulation XML et construction des ressources via des modèles ou clients FHIR tels que fhirclient.</p>
 
-<h4 id="avantages-4">Avantages</h4>
+<h4 id="avantages-3">Avantages</h4>
 
 <ul>
   <li>Très flexible.</li>
@@ -464,7 +433,7 @@ Ces outils prennent en entrée des modèles définis selon des métamodèles (so
   <li>Intégration simple.</li>
 </ul>
 
-<h4 id="limites-4">Limites</h4>
+<h4 id="limites-3">Limites</h4>
 
 <ul>
   <li>Pas de formalisme standard.</li>
@@ -473,7 +442,7 @@ Ces outils prennent en entrée des modèles définis selon des métamodèles (so
   <li>Dépendance aux compétences.</li>
 </ul>
 
-<h4 id="ressources-utiles-5">Ressources utiles</h4>
+<h4 id="ressources-utiles-4">Ressources utiles</h4>
 
 <ul>
   <li>HAPI FHIR (Java) : https://github.com/hapifhir/hapi-fhir</li>
@@ -497,7 +466,7 @@ Ces outils prennent en entrée des modèles définis selon des métamodèles (so
   <li>Itérer (demander des corrections, reformuler) jusqu’à obtenir un résultat exploitable.</li>
 </ul>
 
-<h4 id="avantages-5">Avantages</h4>
+<h4 id="avantages-4">Avantages</h4>
 
 <ul>
   <li>Démarrage rapide d’un mapping vers FHIR à partir de données sources</li>
@@ -505,7 +474,7 @@ Ces outils prennent en entrée des modèles définis selon des métamodèles (so
   <li>Boucles de correction : l’itération et les retours de type « feedback » aident à converger vers une structure FHIR mieux formée.</li>
 </ul>
 
-<h4 id="limites-5">Limites</h4>
+<h4 id="limites-4">Limites</h4>
 
 <ul>
   <li>Hallucinations : attributs inexistants, appariements inadaptés, problèmes de granularité) ; une relecture experte est nécessaire.</li>
@@ -540,7 +509,7 @@ Ces outils prennent en entrée des modèles définis selon des métamodèles (so
             <tr>
               <td style="text-align:var(--ig-left);">&#xA0;
 
-                <a href="guide-demarrage.html">&lt; prev</a>
+                <a href="limites-mapping.html">&lt; prev</a>
 
               </td>
               <td style="text-align:center">
@@ -564,8 +533,8 @@ Ces outils prennent en entrée des modèles définis selon des métamodèles (so
           IG © 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d&#39;Oradour-sur-Glane, 75015 Paris</a>.  
           Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>.
           Generated 
-  <span title="2026-07-02 14:58:00 +0000">
-    2026-07-02
+  <span title="2026-07-07 15:31:00 +0000">
+    2026-07-07
   </span>
 
           <br/>
