@@ -43,9 +43,9 @@ skinparam rectangle<<layer4>> {
   BorderColor #22C55E
 }
 
-rectangle "Couche 1\nMappings de conversion des types\n\nCdaToFHIRTypes.fml\n\n← Conversions des types de données CDA v3\n(II, EN, AD, CD, PQ, TS, ... → types FHIR)" <<layer1>> as L1
+rectangle "Couche 1\nMappings de conversion des types\n\nCdaToFHIRTypes.fml\n\n← Conversions des types de données CDA \n(II, EN, AD, CD, PQ, TS, ... → types FHIR)" <<layer1>> as L1
 
-rectangle "Couche 2\nMappings CDA génériques\n\nCdaToBundle.fml\n\n← Mapping générique CDA → Bundle FHIR\n(en-tête CDA : Composition, Patient,\nEncounter, Organization, Location...)" <<layer2>> as L2
+rectangle "Couche 2\nMappings CDA génériques\n\nCdaToBundle.fml\n\n← Mapping générique CDA → Bundle FHIR\n(en-tête CDA : PatientRole, AssignedEntity\n AssignedAuthor, EncompassingEncounter...)" <<layer2>> as L2
 
 rectangle "Couche 3\nSpécifications françaises\n\nCdaFrToBundle.fml\n\n← Spécifications françaises\n(INS, IDNPS, profils AS,\nMOS, FINESS, etc.)\n<color:#F5E8FF>________________________________________</color>" <<layer3>> as L3
 

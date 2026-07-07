@@ -3,7 +3,7 @@
 id: ans.fhir.fr.mappingcdafhir
 canonical: https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir # the last part of canonical and id must be the same
 name: CDA2FHIRMAP # Should be an acronym
-title: POC - Mapping CDA to FHIR 
+title: Mapping CDA to FHIR (Preuve de concept) 
 publisher:
   name: Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris
   url: https://esante.gouv.fr
@@ -44,33 +44,47 @@ dependencies:
 
 
 
-
 pages:
   index.md:
     title: Accueil
-    
-  mapping-mechanisms.md:
-    title: Mécanisme du Mapping
+
+  Architecture-de-mapping.md:
+    title: Architecture de mapping
+
+  Transformation-FML.md:
+    title: Transformation FML
+
   guide-demarrage.md:
-    title: Guide de démarrage
+    title: Démarrage Matchbox
+    
+  resultats-mapping.md:
+    title: Résultats de mapping
+
+  limites-mapping.md:
+    title: Limites de mapping
+
   outils-mapping.md:
-    title: Outils de Mapping
+    title: Méthodes de mapping
 
   change-log.md:
     title: Historique des versions
+
   translationinfo.md:
     title: Informations sur la traduction
+  
 
 menu:
   Accueil: index.html
-  Mapping CDA vers FHIR:
-    Mécanisme du Mapping: mapping-mechanisms.html
-    Guide de démarrage: guide-demarrage.html
-    Outils de Mapping: outils-mapping.html
+  Mécanismes de mapping:
+    Architecture: Architecture-de-mapping.html
+    Transformation FML: Transformation-FML.html
+    Démarrage Matchbox: guide-demarrage.html
+    Résultats: resultats-mapping.html
+  Limites de mapping: limites-mapping.html 
   Ressources de conformité: artifacts.html
   Autres ressources:
+    Autres méthodes de mapping: outils-mapping.html
     Spécification FHIR: new-tab {{site.data.fhir.path}}index.html
     Site de l’ANS: new-tab https://esante.gouv.fr/
     Documentation: new-tab https://interop.esante.gouv.fr/ig/documentation/
   Historique des versions: change-log.html
-  
