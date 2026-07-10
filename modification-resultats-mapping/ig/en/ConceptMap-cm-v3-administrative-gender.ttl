@@ -1,0 +1,108 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/cm-v3-administrative-gender> a fhir:ConceptMap ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:Resource.id [ fhir:value "cm-v3-administrative-gender"] ;
+  fhir:Resource.language [ fhir:value "en"] ;
+  fhir:DomainResource.text [
+     fhir:Narrative.status [ fhir:value "generated" ] ;
+     fhir:Narrative.div "<div xml:lang=\"en\" lang=\"en\"><hr/><p><b>English</b></p><hr/><p class=\"res-header-id\"><b>Generated Narrative: ConceptMap cm-v3-administrative-gender</b></p><a name=\"en-cm-v3-administrative-gender\"> </a><a name=\"en-hccm-v3-administrative-gender\"> </a><p>Mapping from <a href=\"http://terminology.hl7.org/7.2.0/ValueSet-v3-AdministrativeGender.html\">AdministrativeGender</a> to <a href=\"http://hl7.org/fhir/R4/valueset-administrative-gender.html\">AdministrativeGender</a></p><br/><p>Mapping from <a href=\"http://terminology.hl7.org/7.2.0/CodeSystem-v3-AdministrativeGender.html\">AdministrativeGenderversion: 4.0.0)</a> to <a href=\"http://hl7.org/fhir/R4/codesystem-administrative-gender.html\">AdministrativeGenderversion: 4.0.1)</a></p><table class=\"grid\"><tr><td><b>Source Code</b></td><td><b>Relationship</b></td><td><b>Target Code</b></td><td><b>Comment</b></td></tr><tr><td>M (Male)</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td>male</td><td/></tr><tr><td>F (Female)</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td>female</td><td/></tr><tr><td>UN (Undifferentiated)</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td>other</td><td>CDA 'Undifferentiated' maps to FHIR 'other'</td></tr><tr><td>UNK (Unknown)</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td>unknown</td><td/></tr></table></div>"
+  ] ;
+  fhir:ConceptMap.url [ fhir:value "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/cm-v3-administrative-gender"] ;
+  fhir:ConceptMap.version [ fhir:value "0.1.0"] ;
+  fhir:ConceptMap.name [ fhir:value "CdaToFhirAdministrativeGender"] ;
+  fhir:ConceptMap.title [ fhir:value "CDA to FHIR Administrative Gender Mapping"] ;
+  fhir:ConceptMap.status [ fhir:value "active"] ;
+  fhir:ConceptMap.experimental [ fhir:value "false"^^xsd:boolean] ;
+  fhir:ConceptMap.date [ fhir:value "2026-07-10T12:11:05+00:00"^^xsd:dateTime] ;
+  fhir:ConceptMap.publisher [ fhir:value "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"] ;
+  fhir:ConceptMap.contact [
+     fhir:index -1 ;
+     fhir:ContactDetail.name [ fhir:value "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris" ] ;
+     fhir:ContactDetail.telecom [
+       fhir:index -1 ;
+       fhir:ContactPoint.system [ fhir:value "url" ] ;
+       fhir:ContactPoint.value [ fhir:value "https://esante.gouv.fr" ]
+     ]
+  ] ;
+  fhir:ConceptMap.description [ fhir:value "Mapping between CDA v3 Administrative Gender codes and FHIR Administrative Gender codes"] ;
+  fhir:ConceptMap.jurisdiction [
+     fhir:index -1 ;
+     fhir:CodeableConcept.coding [
+       fhir:index -1 ;
+       fhir:Coding.system [ fhir:value "urn:iso:std:iso:3166" ] ;
+       fhir:Coding.code [ fhir:value "FR" ] ;
+       fhir:Coding.display [ fhir:value "France (la)" ]
+     ]
+  ] ;
+  fhir:ConceptMap.purpose [ fhir:value "Used in CDA to FHIR transformations to map gender codes"] ;
+  fhir:ConceptMap.sourceCanonical [
+     fhir:value "http://terminology.hl7.org/ValueSet/v3-AdministrativeGender|3.0.0" ;
+     fhir:link <http://terminology.hl7.org/ValueSet/v3-AdministrativeGender|3.0.0>
+  ] ;
+  fhir:ConceptMap.targetCanonical [
+     fhir:value "http://hl7.org/fhir/ValueSet/administrative-gender|4.0.1" ;
+     fhir:link <http://hl7.org/fhir/ValueSet/administrative-gender|4.0.1>
+  ] ;
+  fhir:ConceptMap.group [
+     fhir:index -1 ;
+     fhir:ConceptMap.group.source [ fhir:value "http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender" ] ;
+     fhir:ConceptMap.group.sourceVersion [ fhir:value "4.0.0" ] ;
+     fhir:ConceptMap.group.target [ fhir:value "http://hl7.org/fhir/administrative-gender" ] ;
+     fhir:ConceptMap.group.targetVersion [ fhir:value "4.0.1" ] ;
+     fhir:ConceptMap.group.element [
+       fhir:index -1 ;
+       fhir:ConceptMap.group.element.code [ fhir:value "M" ] ;
+       fhir:ConceptMap.group.element.display [ fhir:value "Male" ] ;
+       fhir:ConceptMap.group.element.target [
+         fhir:index -1 ;
+         fhir:ConceptMap.group.element.target.code [ fhir:value "male" ] ;
+         fhir:ConceptMap.group.element.target.display [ fhir:value "Male" ] ;
+         fhir:ConceptMap.group.element.target.equivalence [ fhir:value "equivalent" ]
+       ]
+     ], [
+       fhir:index -1 ;
+       fhir:ConceptMap.group.element.code [ fhir:value "F" ] ;
+       fhir:ConceptMap.group.element.display [ fhir:value "Female" ] ;
+       fhir:ConceptMap.group.element.target [
+         fhir:index -1 ;
+         fhir:ConceptMap.group.element.target.code [ fhir:value "female" ] ;
+         fhir:ConceptMap.group.element.target.display [ fhir:value "Female" ] ;
+         fhir:ConceptMap.group.element.target.equivalence [ fhir:value "equivalent" ]
+       ]
+     ], [
+       fhir:index -1 ;
+       fhir:ConceptMap.group.element.code [ fhir:value "UN" ] ;
+       fhir:ConceptMap.group.element.display [ fhir:value "Undifferentiated" ] ;
+       fhir:ConceptMap.group.element.target [
+         fhir:index -1 ;
+         fhir:ConceptMap.group.element.target.code [ fhir:value "other" ] ;
+         fhir:ConceptMap.group.element.target.display [ fhir:value "Other" ] ;
+         fhir:ConceptMap.group.element.target.equivalence [ fhir:value "equivalent" ] ;
+         fhir:ConceptMap.group.element.target.comment [ fhir:value "CDA 'Undifferentiated' maps to FHIR 'other'" ]
+       ]
+     ], [
+       fhir:index -1 ;
+       fhir:ConceptMap.group.element.code [ fhir:value "UNK" ] ;
+       fhir:ConceptMap.group.element.display [ fhir:value "Unknown" ] ;
+       fhir:ConceptMap.group.element.target [
+         fhir:index -1 ;
+         fhir:ConceptMap.group.element.target.code [ fhir:value "unknown" ] ;
+         fhir:ConceptMap.group.element.target.display [ fhir:value "Unknown" ] ;
+         fhir:ConceptMap.group.element.target.equivalence [ fhir:value "equivalent" ]
+       ]
+     ]
+  ] .
+
+# - ontology header ------------------------------------------------------------
+
+<https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/cm-v3-administrative-gender.ttl> a owl:Ontology ;
+  owl:imports fhir:fhir.ttl .
+
+# -------------------------------------------------------------------------------------
+

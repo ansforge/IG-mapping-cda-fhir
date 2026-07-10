@@ -1,0 +1,105 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaSTEDONToStringConceptMap> a fhir:ConceptMap ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:Resource.id [ fhir:value "CdaSTEDONToStringConceptMap"] ;
+  fhir:Resource.language [ fhir:value "fr"] ;
+  fhir:DomainResource.text [
+     fhir:Narrative.status [ fhir:value "generated" ] ;
+     fhir:Narrative.div "<div xml:lang=\"fr\" lang=\"fr\"><hr/><p><b>French</b></p><hr/><p class=\"res-header-id\"><b>Narratif généré : CarteDeConcepts CdaSTEDONToStringConceptMap</b></p><a name=\"CdaSTEDONToStringConceptMap\"> </a><a name=\"hcCdaSTEDONToStringConceptMap\"> </a><p>This mapping does not specify any particular context of use.</p><br/><p><b>Groupe 1 </b>Mapping de <a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html\">ST: CharacterString (V3 Data Type)</a> to <a href=\"http://hl7.org/fhir/R4/datatypes.html#string\">string</a></p><table class=\"grid\"><tr><td><b>Code source</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>relation</b></td><td><b>Code cible</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Commentaire</b></td></tr><tr><td><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html#s-ST.xmlText\">ST.xmlText</a></td><td>0..1</td><td>todo</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#string#s-string\">string</a></td><td>0..*</td><td>todo</td><td>Le texte CDA ST (xmlText) alimente directement un string FHIR.</td></tr></table><hr/><p><b>Groupe 2 </b>Mapping de <a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ED.html\">ED: EncapsulatedData (V3 Data Type)</a> to <a href=\"http://hl7.org/fhir/R4/datatypes.html#string\">string</a></p><table class=\"grid\"><tr><td><b>Code source</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>relation</b></td><td><b>Code cible</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Commentaire</b></td></tr><tr><td><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ED.html#s-ED.xmlText\">ED.xmlText</a></td><td>0..1</td><td>todo</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto\" title=\"relatedto\">is related to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#string#s-string\">string</a></td><td>0..*</td><td>todo</td><td>Le contenu textuel CDA ED (xmlText) peut être converti en string FHIR selon le contexte (texte, base64, etc.).</td></tr></table><hr/><p><b>Groupe 3 </b>Mapping de <a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ON.html\">ON: OrganizationName (V3 Data Type)</a> to <a href=\"http://hl7.org/fhir/R4/datatypes.html#string\">string</a></p><table class=\"grid\"><tr><td><b>Code source</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>relation</b></td><td><b>Code cible</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Commentaire</b></td></tr><tr><td colspan=\"3\">ON.xmlText</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#string#s-string\">string</a></td><td>0..*</td><td>todo</td><td>Le texte CDA ON (xmlText) alimente directement un string FHIR.</td></tr></table></div>"
+  ] ;
+  fhir:ConceptMap.url [ fhir:value "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaStringTypesToFHIR"] ;
+  fhir:ConceptMap.version [ fhir:value "0.1.0"] ;
+  fhir:ConceptMap.name [ fhir:value "CdaStringTypesToFHIR"] ;
+  fhir:ConceptMap.title [ fhir:value "ConceptMap — CDA ST/ED/ON vers FHIR string"] ;
+  fhir:ConceptMap.status [ fhir:value "draft"] ;
+  fhir:ConceptMap.experimental [ fhir:value "true"^^xsd:boolean] ;
+  fhir:ConceptMap.date [ fhir:value "2026-07-10T12:11:05+00:00"^^xsd:dateTime] ;
+  fhir:ConceptMap.publisher [ fhir:value "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"] ;
+  fhir:ConceptMap.contact [
+     fhir:index -1 ;
+     fhir:ContactDetail.name [ fhir:value "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris" ] ;
+     fhir:ContactDetail.telecom [
+       fhir:index -1 ;
+       fhir:ContactPoint.system [ fhir:value "url" ] ;
+       fhir:ContactPoint.value [ fhir:value "https://esante.gouv.fr" ]
+     ]
+  ] ;
+  fhir:ConceptMap.description [ fhir:value "Correspondances documentaires entre les datatypes CDA ST, ED et ON et le datatype FHIR string."] ;
+  fhir:ConceptMap.jurisdiction [
+     fhir:index -1 ;
+     fhir:CodeableConcept.coding [
+       fhir:index -1 ;
+       fhir:Coding.system [ fhir:value "urn:iso:std:iso:3166" ] ;
+       fhir:Coding.code [ fhir:value "FR" ] ;
+       fhir:Coding.display [ fhir:value "France (la)" ]
+     ]
+  ] ;
+  fhir:ConceptMap.group [
+     fhir:index -1 ;
+     fhir:ConceptMap.group.source [ fhir:value "http://hl7.org/cda/stds/core/StructureDefinition/ST" ] ;
+     fhir:ConceptMap.group.sourceVersion [ fhir:value "2.0.0-sd" ] ;
+     fhir:ConceptMap.group.target [ fhir:value "http://hl7.org/fhir/StructureDefinition/string" ] ;
+     fhir:ConceptMap.group.targetVersion [ fhir:value "4.0.1" ] ;
+     fhir:ConceptMap.group.element [
+       fhir:index -1 ;
+       fhir:ConceptMap.group.element.code [ fhir:value "ST.xmlText" ] ;
+       fhir:ConceptMap.group.element.display [ fhir:value "ST.xmlText" ] ;
+       fhir:ConceptMap.group.element.target [
+         fhir:index -1 ;
+         fhir:ConceptMap.group.element.target.code [ fhir:value "string" ] ;
+         fhir:ConceptMap.group.element.target.display [ fhir:value "string" ] ;
+         fhir:ConceptMap.group.element.target.equivalence [ fhir:value "equivalent" ] ;
+         fhir:ConceptMap.group.element.target.comment [ fhir:value "Le texte CDA ST (xmlText) alimente directement un string FHIR." ]
+       ]
+     ]
+  ], [
+     fhir:index -1 ;
+     fhir:ConceptMap.group.source [ fhir:value "http://hl7.org/cda/stds/core/StructureDefinition/ED" ] ;
+     fhir:ConceptMap.group.sourceVersion [ fhir:value "2.0.0-sd" ] ;
+     fhir:ConceptMap.group.target [ fhir:value "http://hl7.org/fhir/StructureDefinition/string" ] ;
+     fhir:ConceptMap.group.targetVersion [ fhir:value "4.0.1" ] ;
+     fhir:ConceptMap.group.element [
+       fhir:index -1 ;
+       fhir:ConceptMap.group.element.code [ fhir:value "ED.xmlText" ] ;
+       fhir:ConceptMap.group.element.display [ fhir:value "ED.xmlText" ] ;
+       fhir:ConceptMap.group.element.target [
+         fhir:index -1 ;
+         fhir:ConceptMap.group.element.target.code [ fhir:value "string" ] ;
+         fhir:ConceptMap.group.element.target.display [ fhir:value "string" ] ;
+         fhir:ConceptMap.group.element.target.equivalence [ fhir:value "relatedto" ] ;
+         fhir:ConceptMap.group.element.target.comment [ fhir:value "Le contenu textuel CDA ED (xmlText) peut être converti en string FHIR selon le contexte (texte, base64, etc.)." ]
+       ]
+     ]
+  ], [
+     fhir:index -1 ;
+     fhir:ConceptMap.group.source [ fhir:value "http://hl7.org/cda/stds/core/StructureDefinition/ON" ] ;
+     fhir:ConceptMap.group.sourceVersion [ fhir:value "2.0.0-sd" ] ;
+     fhir:ConceptMap.group.target [ fhir:value "http://hl7.org/fhir/StructureDefinition/string" ] ;
+     fhir:ConceptMap.group.targetVersion [ fhir:value "4.0.1" ] ;
+     fhir:ConceptMap.group.element [
+       fhir:index -1 ;
+       fhir:ConceptMap.group.element.code [ fhir:value "ON.xmlText" ] ;
+       fhir:ConceptMap.group.element.display [ fhir:value "ON.xmlText" ] ;
+       fhir:ConceptMap.group.element.target [
+         fhir:index -1 ;
+         fhir:ConceptMap.group.element.target.code [ fhir:value "string" ] ;
+         fhir:ConceptMap.group.element.target.display [ fhir:value "string" ] ;
+         fhir:ConceptMap.group.element.target.equivalence [ fhir:value "equivalent" ] ;
+         fhir:ConceptMap.group.element.target.comment [ fhir:value "Le texte CDA ON (xmlText) alimente directement un string FHIR." ]
+       ]
+     ]
+  ] .
+
+# - ontology header ------------------------------------------------------------
+
+<https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaSTEDONToStringConceptMap.ttl> a owl:Ontology ;
+  owl:imports fhir:fhir.ttl .
+
+# -------------------------------------------------------------------------------------
+
