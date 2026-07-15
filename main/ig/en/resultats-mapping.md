@@ -11,7 +11,7 @@ L’exécution des règles de mapping avec Matchbox a permis de générer un Bun
 
 Cette page présente les résultats globaux de la transformation, les sections prises en compte, les principales ressources FHIR générées ainsi que les précautions nécessaires pour vérifier la conservation des informations du document source.
 
-Les résultats présentés correspondent à une preuve de concept et ne permettent pas, à eux seuls, de garantir que l’ensemble des informations du CDA a été repris sans perte.
+Les résultats présentés ont été obtenus à partir d’un document CDA d’exemple fourni par l’Agence du Numérique en Santé. Ils illustrent la faisabilité du mapping dans le cadre de cette preuve de concept, mais ne constituent pas une preuve de son fonctionnement sur des CDA provenant du monde réel.
 
 ### Résultats de la transformation complète
 
