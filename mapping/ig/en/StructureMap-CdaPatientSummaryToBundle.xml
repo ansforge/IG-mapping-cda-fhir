@@ -54,6 +54,9 @@
 <b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#date" title="date">http://hl7.org/fhir/StructureDefinition/date|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>date <b>as </b><b>target</b>
 <b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#dateTime" title="dateTime">http://hl7.org/fhir/StructureDefinition/dateTime|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>dateTime <b>as </b><b>target</b>
 <b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#boolean" title="boolean">http://hl7.org/fhir/StructureDefinition/boolean|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>boolean <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/device.html" title="Device">http://hl7.org/fhir/StructureDefinition/Device|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>Device <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/deviceusestatement.html" title="DeviceUseStatement">http://hl7.org/fhir/StructureDefinition/DeviceUseStatement|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>DeviceUseStatement <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/consent.html" title="Consent">http://hl7.org/fhir/StructureDefinition/Consent|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>Consent <b>as </b><b>target</b>
 
 <b>imports</b><span style="color: navy"> &quot;</span><a href="StructureMap-CdaToFHIRTypes.html" title="Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)">https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes|0.1.0</a><span style="color: navy">&quot;
 </span><b>imports</b><span style="color: navy"> &quot;</span><a href="StructureMap-CdaToBundle.html" title="Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA">https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle</a><span style="color: navy">&quot;
@@ -139,12 +142,15 @@
   section.code<b> as </b><span style="color: maroon">secCode</span><b> where </b>secCode.code = '18776-5'<b> then </b>PatientSummaryCarePlanSection<span style="color: navy">(</span><span style="color: maroon">section</span><span style="color: navy">, </span><span style="color: maroon">compSection</span><span style="color: navy">, </span><span style="color: maroon">bundle</span><span style="color: navy">, </span><span style="color: maroon">patient</span><span style="color: navy">)</span> <i>&quot;carePlan&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">CDA section Antécédents familiaux -&gt; FHIR FamilyMemberHistory</span>
   section.code<b> as </b><span style="color: maroon">secCode</span><b> where </b>secCode.code = '10157-6'<b> then </b>PatientSummaryFamilyHistorySection<span style="color: navy">(</span><span style="color: maroon">section</span><span style="color: navy">, </span><span style="color: maroon">compSection</span><span style="color: navy">, </span><span style="color: maroon">bundle</span><span style="color: navy">, </span><span style="color: maroon">patient</span><span style="color: navy">)</span> <i>&quot;familyHistory&quot;</i><span style="color: navy">;</span>
-<span style="color: navy">// </span><span style="color: green">Dispositifs médicaux : section conservée en narratif uniquement pour l’instant.</span>
-<span style="color: navy">// </span><span style="color: green">Le mapping structuré sera traité plus tard avec Device / DeviceUseStatement.</span>
-<span style="color: navy">// </span><span style="color: green">Points de vigilance : section conservée en narratif uniquement pour l’instant.</span>
-<span style="color: navy">// </span><span style="color: green">Le mapping structuré sera traité plus tard avec Flag, DetectedIssue ou Observation selon le contenu.</span>
-<span style="color: navy">// </span><span style="color: green">Directives anticipées : section conservée en narratif uniquement pour l’instant.</span>
-<span style="color: navy">// </span><span style="color: green">Le mapping structuré sera traité plus tard avec Consent, Observation ou DocumentReference selon le contenu.</span>
+  <span style="color: navy">// </span><span style="color: green">Dispositifs médicaux -&gt; FHir Device / DeviceUseStatement</span>
+  section.code<b> as </b><span style="color: maroon">secCode</span><b> where </b>secCode.code = '46264-8'<b> then </b>PatientSummaryMedicalDeviceSection<span style="color: navy">(</span><span style="color: maroon">section</span><span style="color: navy">, </span><span style="color: maroon">compSection</span><span style="color: navy">, </span><span style="color: maroon">bundle</span><span style="color: navy">, </span><span style="color: maroon">patient</span><span style="color: navy">)</span> <i>&quot;medicalDevices&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">CDA section Documents joints -&gt; FHIR DocumentReference</span>
+  section.code<b> as </b><span style="color: maroon">secCode</span><b> where </b>secCode.code = '55107-7'<b> then </b>PatientSummaryAddedDocumentsSection<span style="color: navy">(</span><span style="color: maroon">section</span><span style="color: navy">, </span><span style="color: maroon">compSection</span><span style="color: navy">, </span><span style="color: maroon">bundle</span><span style="color: navy">, </span><span style="color: maroon">patient</span><span style="color: navy">)</span> <i>&quot;addedDocuments&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Points de vigilance : section conservée en narratif uniquement    Section déjà prise en charge à l’étape 2 via Composition.section   Aucun traitement supplémentaire dans cette étape, car la section ne contient pas d’entry structurée</span>
+  <span style="color: navy">// </span><span style="color: green">Directives anticipées : section conservée en narratif uniquement pour l’instant.</span>
+  <span style="color: navy">// </span><span style="color: green">Le mapping structuré sera traité plus tard avec Consent, Observation ou DocumentReference selon le contenu.</span>
+  <span style="color: navy">// </span><span style="color: green">CDA section Directives anticipées -&gt; FHIR Consent</span>
+  section.code<b> as </b><span style="color: maroon">secCode</span><b> where </b>secCode.code = '42348-3'<b> then </b>PatientSummaryAdvanceDirectiveSection<span style="color: navy">(</span><span style="color: maroon">section</span><span style="color: navy">, </span><span style="color: maroon">compSection</span><span style="color: navy">, </span><span style="color: maroon">bundle</span><span style="color: navy">, </span><span style="color: maroon">patient</span><span style="color: navy">)</span> <i>&quot;advanceDirective&quot;</i><span style="color: navy">;</span>
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">1. PROBLÈMES ACTIFS ET ANTÉCÉDENTS MÉDICAUX</span>
@@ -2510,6 +2516,263 @@
   <span style="color: navy">}</span> <i>&quot;sectionEntry&quot;</i><span style="color: navy">;</span>
 <span style="color: navy">}
 
+</span><span style="color: navy">// </span><span style="color: green">10. DISPOSITIFS MÉDICAUX</span>
+<b>group </b>PatientSummaryMedicalDeviceSection<span style="color: navy">(</span><b>source</b> <span style="color: maroon">section</span>, <b>target</b> <span style="color: maroon">compSection</span>, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy"> : </span>Patient<span style="color: navy">)</span><span style="color: navy"> {
+</span>  <span style="color: navy">// </span><span style="color: green">Section dispositifs médicaux.</span>
+  section.templateId<b> as </b><span style="color: maroon">sectionTid</span><b> then</b><span style="color: navy"> {
+</span>    sectionTid.root<b> as </b><span style="color: maroon">sectionRoot</span><b> where </b>sectionRoot = '1.2.250.1.213.1.1.2.1'<b> then</b><span style="color: navy"> {
+</span>      section.entry<b> as </b><span style="color: maroon">entry</span><b> then</b><span style="color: navy"> {
+</span>        entry.supply<b> as </b><span style="color: maroon">supply</span><b> then</b><span style="color: navy"> {
+</span>          supply.templateId<b> as </b><span style="color: maroon">supplyTid</span><b> then</b><span style="color: navy"> {
+</span>            supplyTid.root<b> as </b><span style="color: maroon">supplyRoot</span><b> where </b>supplyRoot = '1.2.250.1.213.1.1.3.20'<span style="color: navy"><b> -&gt; </b></span> bundle.entry<b> as </b><span style="color: maroon">deviceUseStatementEntry</span><span style="color: navy">, </span> deviceUseStatementEntry.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'DeviceUseStatement'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">deviceUseStatement</span><span style="color: navy">, </span> deviceUseStatement.id = <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span><span style="color: navy">, </span> deviceUseStatementEntry.fullUrl = <span style="color: navy">(</span>'urn:uuid:' + %deviceUseStatement.id<span style="color: navy">)</span><b> then </b>PatientSummaryDeviceUseStatementFromSupply<span style="color: navy">(</span><span style="color: maroon">supply</span><span style="color: navy">, </span><span style="color: maroon">deviceUseStatement</span><span style="color: navy">, </span><span style="color: maroon">compSection</span><span style="color: navy">, </span><span style="color: maroon">bundle</span><span style="color: navy">, </span><span style="color: maroon">patient</span><span style="color: navy">)</span> <i>&quot;deviceUseStatement&quot;</i><span style="color: navy">;</span>
+          <span style="color: navy">}</span> <i>&quot;deviceSupplyTemplate&quot;</i><span style="color: navy">;</span>
+        <span style="color: navy">}</span> <i>&quot;deviceSupply&quot;</i><span style="color: navy">;</span>
+      <span style="color: navy">}</span> <i>&quot;sectionEntry&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;medicalDeviceSection&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;sectionTemplate&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><span style="color: navy">// </span><span style="color: green">Supply CDA -&gt; DeviceUseStatement</span>
+<b>group </b>PatientSummaryDeviceUseStatementFromSupply<span style="color: navy">(</span><b>source</b> <span style="color: maroon">supply</span>, <b>target</b> <span style="color: maroon">deviceUseStatement</span><span style="color: navy"> : </span>DeviceUseStatement, <b>target</b> <span style="color: maroon">compSection</span>, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy"> : </span>Patient<span style="color: navy">)</span><span style="color: navy"> {
+</span>  <span style="color: navy">// </span><span style="color: green">Statut par défaut : dispositif présent / utilisé.</span>
+  supply<span style="color: navy"><b> -&gt; </b></span>deviceUseStatement.status = <span style="color: blue">'active'</span> <i>&quot;statusDefault&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Si une borne haute est présente, on considère l’usage terminé.</span>
+  supply.effectiveTime<b> as </b><span style="color: maroon">effectiveTime</span><b> then</b><span style="color: navy"> {
+</span>    effectiveTime.high<b> as </b><span style="color: maroon">high</span><span style="color: navy"><b> -&gt; </b></span>deviceUseStatement.status = <span style="color: blue">'completed'</span> <i>&quot;statusCompleted&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;statusFromHigh&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Identifiant de l’entrée CDA.</span>
+  supply.id<b> as </b><span style="color: maroon">supplyId</span><span style="color: navy"><b> -&gt; </b></span>deviceUseStatement.identifier = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Identifier'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">identifier</span><b> then </b>II<span style="color: navy">(</span><span style="color: maroon">supplyId</span><span style="color: navy">, </span><span style="color: maroon">identifier</span><span style="color: navy">)</span> <i>&quot;identifier&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Patient concerné.</span>
+  supply<span style="color: navy"><b> -&gt; </b></span> deviceUseStatement.subject = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Reference'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">subjectRef</span><span style="color: navy">, </span> subjectRef.reference = <span style="color: navy">(</span>'urn:uuid:' + %patient.id<span style="color: navy">)</span> <i>&quot;subject&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Date / période d’utilisation du dispositif.</span>
+  supply.effectiveTime<b> as </b><span style="color: maroon">effectiveTime</span><b> then </b>DeviceUseStatementTimingFromEffectiveTime<span style="color: navy">(</span><span style="color: maroon">effectiveTime</span><span style="color: navy">, </span><span style="color: maroon">deviceUseStatement</span><span style="color: navy">)</span> <i>&quot;timing&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Dispositif médical associé.</span>
+  supply.participant<b> as </b><span style="color: maroon">participant</span><span style="color: navy"><b> -&gt; </b></span> bundle.entry<b> as </b><span style="color: maroon">deviceEntry</span><span style="color: navy">, </span> deviceEntry.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Device'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">device</span><span style="color: navy">, </span> device.id = <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span><span style="color: navy">, </span> deviceEntry.fullUrl = <span style="color: navy">(</span>'urn:uuid:' + %device.id<span style="color: navy">)</span><b> then</b><span style="color: navy"> {
+</span>    participant<b> then </b>PatientSummaryDeviceFromParticipant<span style="color: navy">(</span><span style="color: maroon">participant</span><span style="color: navy">, </span><span style="color: maroon">device</span><span style="color: navy">, </span><span style="color: maroon">patient</span><span style="color: navy">)</span> <i>&quot;device&quot;</i><span style="color: navy">;</span>
+    participant<span style="color: navy"><b> -&gt; </b></span> deviceUseStatement.device = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Reference'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">deviceRef</span><span style="color: navy">, </span> deviceRef.reference = <span style="color: navy">(</span>'urn:uuid:' + %device.id<span style="color: navy">)</span> <i>&quot;deviceReference&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;participantDevice&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Commentaire -&gt; DeviceUseStatement.note</span>
+  <span style="color: navy">// </span><span style="color: green">On conserve ici la valeur CDA telle quelle (#...),</span>
+  <span style="color: navy">// </span><span style="color: green">sans résolution du texte narratif à cette étape.</span>
+  supply.entryRelationship<b> as </b><span style="color: maroon">er</span><b> then</b><span style="color: navy"> {
+</span>    er.act<b> as </b><span style="color: maroon">commentAct</span><b> where </b>er.typeCode = 'SUBJ'<b> then</b><span style="color: navy"> {
+</span>      commentAct.templateId<b> as </b><span style="color: maroon">tid</span><b> then</b><span style="color: navy"> {
+</span>        tid.root<b> as </b><span style="color: maroon">root</span><b> where </b>root = '1.2.250.1.213.1.1.3.32'<b> then</b><span style="color: navy"> {
+</span>          commentAct.text<b> as </b><span style="color: maroon">commentText</span><b> then</b><span style="color: navy"> {
+</span>            commentText.reference<b> as </b><span style="color: maroon">ref</span><b> then</b><span style="color: navy"> {
+</span>              ref.value<b> as </b><span style="color: maroon">value</span><span style="color: navy"><b> -&gt; </b></span>deviceUseStatement.note = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Annotation'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">note</span><b> then</b><span style="color: navy"> {
+</span>                value<span style="color: navy"><b> -&gt; </b></span>note.text = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">value</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span> <i>&quot;noteText&quot;</i><span style="color: navy">;</span>
+              <span style="color: navy">}</span> <i>&quot;note&quot;</i><span style="color: navy">;</span>
+            <span style="color: navy">}</span> <i>&quot;commentReference&quot;</i><span style="color: navy">;</span>
+          <span style="color: navy">}</span> <i>&quot;commentText&quot;</i><span style="color: navy">;</span>
+        <span style="color: navy">}</span> <i>&quot;commentMapped&quot;</i><span style="color: navy">;</span>
+      <span style="color: navy">}</span> <i>&quot;commentTemplate&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;commentAct&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Référence dans la section FHIR.</span>
+  supply<span style="color: navy"><b> -&gt; </b></span> compSection.entry = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Reference'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">sectionRef</span><span style="color: navy">, </span> sectionRef.reference = <span style="color: navy">(</span>'urn:uuid:' + %deviceUseStatement.id<span style="color: navy">)</span> <i>&quot;sectionEntry&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><span style="color: navy">// </span><span style="color: green">effectiveTime CDA -&gt; DeviceUseStatement.timing[x]</span>
+<b>group </b>DeviceUseStatementTimingFromEffectiveTime<span style="color: navy">(</span><b>source</b> <span style="color: maroon">effectiveTime</span>, <b>target</b> <span style="color: maroon">deviceUseStatement</span><span style="color: navy"> : </span>DeviceUseStatement<span style="color: navy">)</span><span style="color: navy"> {
+</span>  <span style="color: navy">// </span><span style="color: green">Cas 1 : date ponctuelle.</span>
+  effectiveTime.value<b> as </b><span style="color: maroon">value</span><span style="color: navy"><b> -&gt; </b></span>deviceUseStatement.timing = <b>create</b><span style="color: navy">(</span><span style="color: blue">'dateTime'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">timingDateTime</span><b> then </b>TSDateTime<span style="color: navy">(</span><span style="color: maroon">effectiveTime</span><span style="color: navy">, </span><span style="color: maroon">timingDateTime</span><span style="color: navy">)</span> <i>&quot;timingDateTime&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Cas 2 : période low/high.</span>
+  effectiveTime.low<b> as </b><span style="color: maroon">low</span><span style="color: navy"><b> -&gt; </b></span>deviceUseStatement.timing = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Period'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">period</span><b> then</b><span style="color: navy"> {
+</span>    low<span style="color: navy"><b> -&gt; </b></span>period.start = <b>create</b><span style="color: navy">(</span><span style="color: blue">'dateTime'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">start</span><b> then </b>TSDateTime<span style="color: navy">(</span><span style="color: maroon">low</span><span style="color: navy">, </span><span style="color: maroon">start</span><span style="color: navy">)</span> <i>&quot;start&quot;</i><span style="color: navy">;</span>
+    effectiveTime.high<b> as </b><span style="color: maroon">high</span><span style="color: navy"><b> -&gt; </b></span>period.end = <b>create</b><span style="color: navy">(</span><span style="color: blue">'dateTime'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">end</span><b> then </b>TSDateTime<span style="color: navy">(</span><span style="color: maroon">high</span><span style="color: navy">, </span><span style="color: maroon">end</span><span style="color: navy">)</span> <i>&quot;end&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;timingPeriodByLow&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Cas 3 : borne haute seule.</span>
+  effectiveTime.high<b> as </b><span style="color: maroon">high</span><b> where </b>effectiveTime.low.empty()<span style="color: navy"><b> -&gt; </b></span>deviceUseStatement.timing = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Period'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">period</span><b> then</b><span style="color: navy"> {
+</span>    high<span style="color: navy"><b> -&gt; </b></span>period.end = <b>create</b><span style="color: navy">(</span><span style="color: blue">'dateTime'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">end</span><b> then </b>TSDateTime<span style="color: navy">(</span><span style="color: maroon">high</span><span style="color: navy">, </span><span style="color: maroon">end</span><span style="color: navy">)</span> <i>&quot;endOnly&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;timingPeriodByHigh&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><span style="color: navy">// </span><span style="color: green">participant CDA -&gt; Device</span>
+<b>group </b>PatientSummaryDeviceFromParticipant<span style="color: navy">(</span><b>source</b> <span style="color: maroon">participant</span>, <b>target</b> <span style="color: maroon">device</span><span style="color: navy"> : </span>Device, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy"> : </span>Patient<span style="color: navy">)</span><span style="color: navy"> {
+</span>  participant.participantRole<b> as </b><span style="color: maroon">participantRole</span><b> then</b><span style="color: navy"> {
+</span>    <span style="color: navy">// </span><span style="color: green">Identifiant éventuel du dispositif.</span>
+    participantRole.id<b> as </b><span style="color: maroon">deviceId</span><span style="color: navy"><b> -&gt; </b></span>device.identifier = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Identifier'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">identifier</span><b> then </b>II<span style="color: navy">(</span><span style="color: maroon">deviceId</span><span style="color: navy">, </span><span style="color: maroon">identifier</span><span style="color: navy">)</span> <i>&quot;identifier&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">// </span><span style="color: green">Description codée du dispositif.</span>
+    participantRole.playingDevice<b> as </b><span style="color: maroon">playingDevice</span><b> then</b><span style="color: navy"> {
+</span>      playingDevice.code<b> as </b><span style="color: maroon">deviceCode</span><span style="color: navy"><b> -&gt; </b></span>device.type = <b>create</b><span style="color: navy">(</span><span style="color: blue">'CodeableConcept'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">type</span><b> then </b>CDCodeableConcept<span style="color: navy">(</span><span style="color: maroon">deviceCode</span><span style="color: navy">, </span><span style="color: maroon">type</span><span style="color: navy">)</span> <i>&quot;type&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span><span style="color: navy">;</span>
+    <span style="color: navy">// </span><span style="color: green">Lien patient.</span>
+    participantRole<span style="color: navy"><b> -&gt; </b></span> device.patient = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Reference'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">patientRef</span><span style="color: navy">, </span> patientRef.reference = <span style="color: navy">(</span>'urn:uuid:' + %patient.id<span style="color: navy">)</span> <i>&quot;patient&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><span style="color: navy">// </span><span style="color: green">11. DOCUMENTS JOINTS</span>
+<b>group </b>PatientSummaryAddedDocumentsSection<span style="color: navy">(</span><b>source</b> <span style="color: maroon">section</span>, <b>target</b> <span style="color: maroon">compSection</span>, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy"> : </span>Patient<span style="color: navy">)</span><span style="color: navy"> {
+</span>  <span style="color: navy">// </span><span style="color: green">Section documents ajoutés.</span>
+  section.templateId<b> as </b><span style="color: maroon">sectionTid</span><b> then</b><span style="color: navy"> {
+</span>    sectionTid.root<b> as </b><span style="color: maroon">sectionRoot</span><b> where </b>sectionRoot = '1.2.250.1.213.1.1.2.37'<b> then</b><span style="color: navy"> {
+</span>      section.entry<b> as </b><span style="color: maroon">entry</span><b> then</b><span style="color: navy"> {
+</span>        <span style="color: navy">// </span><span style="color: green">Document attaché -&gt; DocumentReference</span>
+        entry.organizer<b> as </b><span style="color: maroon">attachedDocument</span><b> then</b><span style="color: navy"> {
+</span>          attachedDocument.templateId<b> as </b><span style="color: maroon">docTid</span><b> then</b><span style="color: navy"> {
+</span>            docTid.root<b> as </b><span style="color: maroon">docRoot</span><b> where </b>docRoot = '1.2.250.1.213.1.1.3.18'<span style="color: navy"><b> -&gt; </b></span> bundle.entry<b> as </b><span style="color: maroon">documentReferenceEntry</span><span style="color: navy">, </span> documentReferenceEntry.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'DocumentReference'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">documentReference</span><span style="color: navy">, </span> documentReference.id = <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span><span style="color: navy">, </span> documentReferenceEntry.fullUrl = <span style="color: navy">(</span>'urn:uuid:' + %documentReference.id<span style="color: navy">)</span><b> then </b>DocumentReferenceFromCdaAttachedDocument<span style="color: navy">(</span><span style="color: maroon">attachedDocument</span><span style="color: navy">, </span><span style="color: maroon">documentReference</span><span style="color: navy">, </span><span style="color: maroon">compSection</span><span style="color: navy">, </span><span style="color: maroon">patient</span><span style="color: navy">)</span> <i>&quot;attachedDocument&quot;</i><span style="color: navy">;</span>
+          <span style="color: navy">}</span> <i>&quot;attachedDocumentTemplate&quot;</i><span style="color: navy">;</span>
+        <span style="color: navy">}</span> <i>&quot;attachedDocument&quot;</i><span style="color: navy">;</span>
+        <span style="color: navy">// </span><span style="color: green">SimpleObservation non mappée dans cette V1.</span>
+        entry.observation<b> as </b><span style="color: maroon">simpleObservation</span> <i>&quot;simpleObservationNotMapped&quot;</i><span style="color: navy">;</span>
+      <span style="color: navy">}</span> <i>&quot;sectionEntry&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;addedDocumentsSection&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;sectionTemplate&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><span style="color: navy">// </span><span style="color: green">Organizer CDA de document attaché -&gt; DocumentReference</span>
+<b>group </b>DocumentReferenceFromCdaAttachedDocument<span style="color: navy">(</span><b>source</b> <span style="color: maroon">attachedDocument</span>, <b>target</b> <span style="color: maroon">documentReference</span><span style="color: navy"> : </span>DocumentReference, <b>target</b> <span style="color: maroon">compSection</span>, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy"> : </span>Patient<span style="color: navy">)</span><span style="color: navy"> {
+</span>  <span style="color: navy">// </span><span style="color: green">Statut FHIR obligatoire.</span>
+  attachedDocument<span style="color: navy"><b> -&gt; </b></span>documentReference.status = <span style="color: blue">'current'</span> <i>&quot;statusDefault&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Identifiant.</span>
+  attachedDocument.id<b> as </b><span style="color: maroon">docId</span><span style="color: navy"><b> -&gt; </b></span>documentReference.identifier = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Identifier'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">identifier</span><b> then </b>II<span style="color: navy">(</span><span style="color: maroon">docId</span><span style="color: navy">, </span><span style="color: maroon">identifier</span><span style="color: navy">)</span> <i>&quot;identifier&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Patient concerné.</span>
+  attachedDocument<span style="color: navy"><b> -&gt; </b></span> documentReference.subject = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Reference'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">subjectRef</span><span style="color: navy">, </span> subjectRef.reference = <span style="color: navy">(</span>'urn:uuid:' + %patient.id<span style="color: navy">)</span> <i>&quot;subject&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Statut documentaire.</span>
+  attachedDocument.statusCode<b> as </b><span style="color: maroon">statusCode</span><b> then</b><span style="color: navy"> {
+</span>    statusCode.code<b> as </b><span style="color: maroon">code</span><b> where </b>code = 'completed'<span style="color: navy"><b> -&gt; </b></span>documentReference.docStatus = <span style="color: blue">'final'</span> <i>&quot;final&quot;</i><span style="color: navy">;</span>
+    statusCode.code<b> as </b><span style="color: maroon">code</span><b> where </b>code = 'active'<span style="color: navy"><b> -&gt; </b></span>documentReference.docStatus = <span style="color: blue">'preliminary'</span> <i>&quot;preliminary&quot;</i><span style="color: navy">;</span>
+    statusCode.code<b> as </b><span style="color: maroon">code</span><b> where </b>code = 'aborted'<span style="color: navy"><b> -&gt; </b></span>documentReference.docStatus = <span style="color: blue">'entered-in-error'</span> <i>&quot;aborted&quot;</i><span style="color: navy">;</span>
+    statusCode.code<b> as </b><span style="color: maroon">code</span><b> where </b>code = 'cancelled'<span style="color: navy"><b> -&gt; </b></span>documentReference.docStatus = <span style="color: blue">'entered-in-error'</span> <i>&quot;cancelled&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;docStatus&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Date du document si présente.</span>
+  attachedDocument.effectiveTime<b> as </b><span style="color: maroon">effectiveTime</span><b> then</b><span style="color: navy"> {
+</span>    effectiveTime.value<b> as </b><span style="color: maroon">value</span><span style="color: navy"><b> -&gt; </b></span>documentReference.date = <b>create</b><span style="color: navy">(</span><span style="color: blue">'dateTime'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">date</span><b> then </b>TSDateTime<span style="color: navy">(</span><span style="color: maroon">effectiveTime</span><span style="color: navy">, </span><span style="color: maroon">date</span><span style="color: navy">)</span> <i>&quot;dateTime&quot;</i><span style="color: navy">;</span>
+    effectiveTime.low<b> as </b><span style="color: maroon">low</span><span style="color: navy"><b> -&gt; </b></span>documentReference.date = <b>create</b><span style="color: navy">(</span><span style="color: blue">'dateTime'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">date</span><b> then </b>TSDateTime<span style="color: navy">(</span><span style="color: maroon">low</span><span style="color: navy">, </span><span style="color: maroon">date</span><span style="color: navy">)</span> <i>&quot;dateLow&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;date&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Type métier du document attaché.</span>
+  attachedDocument.component<b> as </b><span style="color: maroon">component</span><b> then</b><span style="color: navy"> {
+</span>    component.observation<b> as </b><span style="color: maroon">typeObservation</span><b> then</b><span style="color: navy"> {
+</span>      typeObservation.templateId<b> as </b><span style="color: maroon">tid</span><b> then</b><span style="color: navy"> {
+</span>        tid.root<b> as </b><span style="color: maroon">root</span><b> where </b>root = '1.2.250.1.213.1.1.3.48.18'<b> then</b><span style="color: navy"> {
+</span>          typeObservation.value<b> as </b><span style="color: maroon">typeValue</span><span style="color: navy"><b> -&gt; </b></span>documentReference.type = <b>create</b><span style="color: navy">(</span><span style="color: blue">'CodeableConcept'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">type</span><b> then </b>CDCodeableConcept<span style="color: navy">(</span><span style="color: maroon">typeValue</span><span style="color: navy">, </span><span style="color: maroon">type</span><span style="color: navy">)</span> <i>&quot;type&quot;</i><span style="color: navy">;</span>
+        <span style="color: navy">}</span> <i>&quot;typeValue&quot;</i><span style="color: navy">;</span>
+      <span style="color: navy">}</span> <i>&quot;typeTemplate&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;typeObservation&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;typeComponent&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Contenu du document attaché.</span>
+  attachedDocument.component<b> as </b><span style="color: maroon">component</span><b> then</b><span style="color: navy"> {
+</span>    component.observationMedia<b> as </b><span style="color: maroon">observationMedia</span><span style="color: navy"><b> -&gt; </b></span>documentReference.content<b> as </b><span style="color: maroon">content</span><b> then</b><span style="color: navy"> {
+</span>      observationMedia<b> then </b>AttachmentFromObservationMedia<span style="color: navy">(</span><span style="color: maroon">observationMedia</span><span style="color: navy">, </span><span style="color: maroon">content</span><span style="color: navy">)</span> <i>&quot;attachment&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;mediaComponent&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Référence dans la section FHIR.</span>
+  attachedDocument<span style="color: navy"><b> -&gt; </b></span> compSection.entry = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Reference'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">sectionRef</span><span style="color: navy">, </span> sectionRef.reference = <span style="color: navy">(</span>'urn:uuid:' + %documentReference.id<span style="color: navy">)</span> <i>&quot;sectionEntry&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><span style="color: navy">// </span><span style="color: green">ObservationMedia CDA -&gt; DocumentReference.content.attachment</span>
+<b>group </b>AttachmentFromObservationMedia<span style="color: navy">(</span><b>source</b> <span style="color: maroon">observationMedia</span>, <b>target</b> <span style="color: maroon">content</span><span style="color: navy">)</span><span style="color: navy"> {
+</span>  observationMedia<span style="color: navy"><b> -&gt; </b></span>content.attachment = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Attachment'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">attachment</span><b> then</b><span style="color: navy"> {
+</span>    <span style="color: navy">// </span><span style="color: green">Identifiant technique de l’observationMedia si présent.</span>
+    observationMedia.ID<b> as </b><span style="color: maroon">mediaId</span><span style="color: navy"><b> -&gt; </b></span>attachment.id = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">mediaId</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span> <i>&quot;attachmentId&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">// </span><span style="color: green">Contenu encapsulé ED.</span>
+    observationMedia.value<b> as </b><span style="color: maroon">mediaValue</span><b> then</b><span style="color: navy"> {
+</span>      <span style="color: navy">// </span><span style="color: green">Type MIME du document.</span>
+      mediaValue.mediaType<b> as </b><span style="color: maroon">mediaType</span><span style="color: navy"><b> -&gt; </b></span>attachment.contentType = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">mediaType</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span> <i>&quot;contentType&quot;</i><span style="color: navy">;</span>
+      <span style="color: navy">// </span><span style="color: green">Contenu Base64 du document.</span>
+      mediaValue.xmlText<b> as </b><span style="color: maroon">rawData</span><span style="color: navy"><b> -&gt; </b></span>attachment.data = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">rawData</span><span style="color: navy">, </span><span style="color: blue">'base64Binary'</span><span style="color: navy">)</span> <i>&quot;data&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;mediaValue&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;attachment&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><span style="color: navy">// </span><span style="color: green">12 DIRECTIVES ANTICIPEES</span>
+<b>group </b>PatientSummaryAdvanceDirectiveSection<span style="color: navy">(</span><b>source</b> <span style="color: maroon">section</span>, <b>target</b> <span style="color: maroon">compSection</span>, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy"> : </span>Patient<span style="color: navy">)</span><span style="color: navy"> {
+</span>  <span style="color: navy">// </span><span style="color: green">Section Directives anticipées.</span>
+  section.templateId<b> as </b><span style="color: maroon">sectionTid</span><b> then</b><span style="color: navy"> {
+</span>    sectionTid.root<b> as </b><span style="color: maroon">sectionRoot</span><b> where </b>sectionRoot = '1.2.250.1.213.1.1.2.157'<b> then</b><span style="color: navy"> {
+</span>      section.entry<b> as </b><span style="color: maroon">entry</span><b> then</b><span style="color: navy"> {
+</span>        entry.observation<b> as </b><span style="color: maroon">directiveObservation</span><b> then</b><span style="color: navy"> {
+</span>          directiveObservation.templateId<b> as </b><span style="color: maroon">directiveTid</span><b> then</b><span style="color: navy"> {
+</span>            directiveTid.root<b> as </b><span style="color: maroon">directiveRoot</span><b> where </b>directiveRoot = '1.2.250.1.213.1.1.3.54'<span style="color: navy"><b> -&gt; </b></span> bundle.entry<b> as </b><span style="color: maroon">consentEntry</span><span style="color: navy">, </span> consentEntry.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Consent'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">consent</span><span style="color: navy">, </span> consent.id = <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span><span style="color: navy">, </span> consentEntry.fullUrl = <span style="color: navy">(</span>'urn:uuid:' + %consent.id<span style="color: navy">)</span><b> then </b>AdvanceDirectiveConsentFromObservation<span style="color: navy">(</span><span style="color: maroon">directiveObservation</span><span style="color: navy">, </span><span style="color: maroon">consent</span><span style="color: navy">, </span><span style="color: maroon">compSection</span><span style="color: navy">, </span><span style="color: maroon">patient</span><span style="color: navy">)</span> <i>&quot;advanceDirectiveConsent&quot;</i><span style="color: navy">;</span>
+          <span style="color: navy">}</span> <i>&quot;advanceDirectiveTemplate&quot;</i><span style="color: navy">;</span>
+        <span style="color: navy">}</span> <i>&quot;directiveObservation&quot;</i><span style="color: navy">;</span>
+      <span style="color: navy">}</span> <i>&quot;sectionEntry&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;advanceDirectiveSection&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;sectionTemplate&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><span style="color: navy">// </span><span style="color: green">Observation CDA FR-Directive-Anticipee -&gt; Consent</span>
+<b>group </b>AdvanceDirectiveConsentFromObservation<span style="color: navy">(</span><b>source</b> <span style="color: maroon">directiveObservation</span>, <b>target</b> <span style="color: maroon">consent</span><span style="color: navy"> : </span>Consent, <b>target</b> <span style="color: maroon">compSection</span>, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy"> : </span>Patient<span style="color: navy">)</span><span style="color: navy"> {
+</span>  <span style="color: navy">// </span><span style="color: green">Identifiant.</span>
+  directiveObservation.id<b> as </b><span style="color: maroon">directiveId</span><span style="color: navy"><b> -&gt; </b></span>consent.identifier = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Identifier'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">identifier</span><b> then </b>II<span style="color: navy">(</span><span style="color: maroon">directiveId</span><span style="color: navy">, </span><span style="color: maroon">identifier</span><span style="color: navy">)</span> <i>&quot;identifier&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Patient concerné.</span>
+  directiveObservation<span style="color: navy"><b> -&gt; </b></span> consent.patient = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Reference'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">patientRef</span><span style="color: navy">, </span> patientRef.reference = <span style="color: navy">(</span>'urn:uuid:' + %patient.id<span style="color: navy">)</span> <i>&quot;patient&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Status FHIR obligatoire.</span>
+  directiveObservation<span style="color: navy"><b> -&gt; </b></span>consent.status = <span style="color: blue">'active'</span> <i>&quot;statusDefault&quot;</i><span style="color: navy">;</span>
+  directiveObservation.statusCode<b> as </b><span style="color: maroon">statusCode</span><b> then</b><span style="color: navy"> {
+</span>    statusCode.code<b> as </b><span style="color: maroon">code</span><b> where </b>code = 'completed'<span style="color: navy"><b> -&gt; </b></span>consent.status = <span style="color: blue">'active'</span> <i>&quot;completedToActive&quot;</i><span style="color: navy">;</span>
+    statusCode.code<b> as </b><span style="color: maroon">code</span><b> where </b>code = 'active'<span style="color: navy"><b> -&gt; </b></span>consent.status = <span style="color: blue">'active'</span> <i>&quot;activeToActive&quot;</i><span style="color: navy">;</span>
+    statusCode.code<b> as </b><span style="color: maroon">code</span><b> where </b>code = 'aborted'<span style="color: navy"><b> -&gt; </b></span>consent.status = <span style="color: blue">'inactive'</span> <i>&quot;abortedToInactive&quot;</i><span style="color: navy">;</span>
+    statusCode.code<b> as </b><span style="color: maroon">code</span><b> where </b>code = 'cancelled'<span style="color: navy"><b> -&gt; </b></span>consent.status = <span style="color: blue">'inactive'</span> <i>&quot;cancelledToInactive&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;status&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Scope FHIR obligatoire : advance directive.</span>
+  directiveObservation<span style="color: navy"><b> -&gt; </b></span>consent.scope = <b>create</b><span style="color: navy">(</span><span style="color: blue">'CodeableConcept'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">scope</span><b> then</b><span style="color: navy"> {
+</span>    directiveObservation<span style="color: navy"><b> -&gt; </b></span>scope.coding = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Coding'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">scopeCoding</span><b> then</b><span style="color: navy"> {
+</span>      directiveObservation<span style="color: navy"><b> -&gt; </b></span>scopeCoding.system = <span style="color: blue">'http://terminology.hl7.org/CodeSystem/consentscope'</span> <i>&quot;scopeSystem&quot;</i><span style="color: navy">;</span>
+      directiveObservation<span style="color: navy"><b> -&gt; </b></span>scopeCoding.code = <span style="color: blue">'adr'</span> <i>&quot;scopeCode&quot;</i><span style="color: navy">;</span>
+      directiveObservation<span style="color: navy"><b> -&gt; </b></span>scopeCoding.display = <span style="color: blue">'Advanced Care Directive'</span> <i>&quot;scopeDisplay&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;scopeCoding&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;scope&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Catégorie pour indexation / recherche.</span>
+  directiveObservation.code<b> as </b><span style="color: maroon">directiveCode</span><span style="color: navy"><b> -&gt; </b></span>consent.category = <b>create</b><span style="color: navy">(</span><span style="color: blue">'CodeableConcept'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">category</span><b> then </b>CDCodeableConcept<span style="color: navy">(</span><span style="color: maroon">directiveCode</span><span style="color: navy">, </span><span style="color: maroon">category</span><span style="color: navy">)</span> <i>&quot;category&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Date de la directive.</span>
+  directiveObservation.effectiveTime<b> as </b><span style="color: maroon">effectiveTime</span><b> then</b><span style="color: navy"> {
+</span>    effectiveTime.value<b> as </b><span style="color: maroon">value</span><span style="color: navy"><b> -&gt; </b></span>consent.dateTime = <b>create</b><span style="color: navy">(</span><span style="color: blue">'dateTime'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">consentDateTime</span><b> then </b>TSDateTime<span style="color: navy">(</span><span style="color: maroon">effectiveTime</span><span style="color: navy">, </span><span style="color: maroon">consentDateTime</span><span style="color: navy">)</span> <i>&quot;dateTime&quot;</i><span style="color: navy">;</span>
+    effectiveTime.low<b> as </b><span style="color: maroon">low</span><span style="color: navy"><b> -&gt; </b></span>consent.dateTime = <b>create</b><span style="color: navy">(</span><span style="color: blue">'dateTime'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">consentDateTime</span><b> then </b>TSDateTime<span style="color: navy">(</span><span style="color: maroon">low</span><span style="color: navy">, </span><span style="color: maroon">consentDateTime</span><span style="color: navy">)</span> <i>&quot;dateLow&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;dateTime&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Provision commune.</span>
+  directiveObservation<span style="color: navy"><b> -&gt; </b></span>consent.provision<b> as </b><span style="color: maroon">provision</span><b> then</b><span style="color: navy"> {
+</span>    <span style="color: navy">// </span><span style="color: green">Type de directive.</span>
+    directiveObservation.code<b> as </b><span style="color: maroon">directiveCode</span><span style="color: navy"><b> -&gt; </b></span>provision.code = <b>create</b><span style="color: navy">(</span><span style="color: blue">'CodeableConcept'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">provisionCode</span><b> then </b>CDCodeableConcept<span style="color: navy">(</span><span style="color: maroon">directiveCode</span><span style="color: navy">, </span><span style="color: maroon">provisionCode</span><span style="color: navy">)</span> <i>&quot;provisionCode&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">// </span><span style="color: green">Booléen CDA -&gt; provision.type</span>
+    directiveObservation.value<b> as </b><span style="color: maroon">directiveValue</span><b> then</b><span style="color: navy"> {
+</span>      directiveValue.value<b> as </b><span style="color: maroon">value</span><b> where </b>value = 'true'<span style="color: navy"><b> -&gt; </b></span>provision.type = <span style="color: blue">'permit'</span> <i>&quot;trueToPermit&quot;</i><span style="color: navy">;</span>
+      directiveValue.value<b> as </b><span style="color: maroon">value</span><b> where </b>value = 'false'<span style="color: navy"><b> -&gt; </b></span>provision.type = <span style="color: blue">'deny'</span> <i>&quot;falseToDeny&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;provisionType&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;provision&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Référence externe éventuelle.</span>
+  directiveObservation.reference<b> as </b><span style="color: maroon">reference</span><b> then</b><span style="color: navy"> {
+</span>    reference.externalDocument<b> as </b><span style="color: maroon">externalDocument</span><b> then</b><span style="color: navy"> {
+</span>      externalDocument.text<b> as </b><span style="color: maroon">externalText</span><b> then</b><span style="color: navy"> {
+</span>        externalText.reference<b> as </b><span style="color: maroon">externalReference</span><b> then</b><span style="color: navy"> {
+</span>          externalReference.value<b> as </b><span style="color: maroon">externalUrl</span><span style="color: navy"><b> -&gt; </b></span>consent.source = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Attachment'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">sourceAttachment</span><b> then</b><span style="color: navy"> {
+</span>            externalUrl<span style="color: navy"><b> -&gt; </b></span>sourceAttachment.url = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">externalUrl</span><span style="color: navy">, </span><span style="color: blue">'url'</span><span style="color: navy">)</span> <i>&quot;sourceAttachmentUrl&quot;</i><span style="color: navy">;</span>
+          <span style="color: navy">}</span> <i>&quot;sourceAttachment&quot;</i><span style="color: navy">;</span>
+        <span style="color: navy">}</span> <i>&quot;externalReference&quot;</i><span style="color: navy">;</span>
+      <span style="color: navy">}</span> <i>&quot;externalText&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;externalReference&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Document encapsulé éventuel + commentaire éventuel.</span>
+  directiveObservation.entryRelationship<b> as </b><span style="color: maroon">entryRelationship</span><b> then</b><span style="color: navy"> {
+</span>    <span style="color: navy">// </span><span style="color: green">PDF / document encapsulé.</span>
+    entryRelationship.observationMedia<b> as </b><span style="color: maroon">observationMedia</span><span style="color: navy"><b> -&gt; </b></span>consent.source = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Attachment'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">sourceAttachment</span><b> then </b>AdvanceDirectiveAttachmentFromObservationMedia<span style="color: navy">(</span><span style="color: maroon">observationMedia</span><span style="color: navy">, </span><span style="color: maroon">sourceAttachment</span><span style="color: navy">)</span> <i>&quot;sourceAttachment&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">// </span><span style="color: green">Commentaire : non mappé dans cette V1, conservé dans le narratif.</span>
+    entryRelationship.act<b> as </b><span style="color: maroon">commentAct</span><b> where </b>entryRelationship.typeCode = 'SUBJ'<b> then</b><span style="color: navy"> {
+</span>      commentAct.templateId<b> as </b><span style="color: maroon">commentTid</span><b> then</b><span style="color: navy"> {
+</span>        commentTid.root<b> as </b><span style="color: maroon">commentRoot</span><b> where </b>commentRoot = '1.2.250.1.213.1.1.3.32' <i>&quot;commentNotMapped&quot;</i><span style="color: navy">;</span>
+      <span style="color: navy">}</span> <i>&quot;commentTemplate&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;commentAct&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Référence dans la section FHIR.</span>
+  directiveObservation<span style="color: navy"><b> -&gt; </b></span> compSection.entry = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Reference'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">sectionRef</span><span style="color: navy">, </span> sectionRef.reference = <span style="color: navy">(</span>'urn:uuid:' + %consent.id<span style="color: navy">)</span> <i>&quot;sectionEntry&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><span style="color: navy">// </span><span style="color: green">observationMedia CDA -&gt; Consent.sourceAttachment</span>
+<b>group </b>AdvanceDirectiveAttachmentFromObservationMedia<span style="color: navy">(</span><b>source</b> <span style="color: maroon">observationMedia</span>, <b>target</b> <span style="color: maroon">sourceAttachment</span><span style="color: navy"> : </span>Attachment<span style="color: navy">)</span><span style="color: navy"> {
+</span>  <span style="color: navy">// </span><span style="color: green">Contenu encapsulé ED.</span>
+  observationMedia.value<b> as </b><span style="color: maroon">mediaValue</span><b> then</b><span style="color: navy"> {
+</span>    <span style="color: navy">// </span><span style="color: green">Type MIME.</span>
+    mediaValue.mediaType<b> as </b><span style="color: maroon">mediaType</span><span style="color: navy"><b> -&gt; </b></span>sourceAttachment.contentType = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">mediaType</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span> <i>&quot;contentType&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">// </span><span style="color: green">Contenu Base64.</span>
+    mediaValue.xmlText<b> as </b><span style="color: maroon">rawData</span><span style="color: navy"><b> -&gt; </b></span>sourceAttachment.data = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">rawData</span><span style="color: navy">, </span><span style="color: blue">'base64Binary'</span><span style="color: navy">)</span> <i>&quot;data&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">// </span><span style="color: green">URL si présente.</span>
+    mediaValue.reference<b> as </b><span style="color: maroon">mediaReference</span><b> then</b><span style="color: navy"> {
+</span>      mediaReference.value<b> as </b><span style="color: maroon">mediaUrl</span><span style="color: navy"><b> -&gt; </b></span>sourceAttachment.url = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">mediaUrl</span><span style="color: navy">, </span><span style="color: blue">'url'</span><span style="color: navy">)</span> <i>&quot;url&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;mediaReference&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;mediaValue&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
 </span></pre></div>
   </text>
   <url value="https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaPatientSummaryToBundle"/>
@@ -2517,7 +2780,7 @@
   <name value="CdaPatientSummaryToBundle"/>
   <title value="Mapping CDA Patient Summary vers FHIR - Étape 4 finale"/>
   <status value="draft"/>
-  <date value="2026-07-16T07:55:09+00:00"/>
+  <date value="2026-07-16T08:29:45+00:00"/>
   <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
   <contact>
     <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
@@ -2758,6 +3021,21 @@
     <url value="http://hl7.org/fhir/StructureDefinition/boolean|4.0.1"/>
     <mode value="target"/>
     <alias value="boolean"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/Device|4.0.1"/>
+    <mode value="target"/>
+    <alias value="Device"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/DeviceUseStatement|4.0.1"/>
+    <mode value="target"/>
+    <alias value="DeviceUseStatement"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/Consent|4.0.1"/>
+    <mode value="target"/>
+    <alias value="Consent"/>
   </structure>
   <import value="https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes|0.1.0"/>
   <import value="https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle"/>
@@ -3230,6 +3508,54 @@
       </source>
       <dependent>
         <name value="PatientSummaryFamilyHistorySection"/>
+        <variable value="section"/>
+        <variable value="compSection"/>
+        <variable value="bundle"/>
+        <variable value="patient"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="medicalDevices"/>
+      <source>
+        <context value="section"/>
+        <element value="code"/>
+        <variable value="secCode"/>
+        <condition value="secCode.code = '46264-8'"/>
+      </source>
+      <dependent>
+        <name value="PatientSummaryMedicalDeviceSection"/>
+        <variable value="section"/>
+        <variable value="compSection"/>
+        <variable value="bundle"/>
+        <variable value="patient"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="addedDocuments"/>
+      <source>
+        <context value="section"/>
+        <element value="code"/>
+        <variable value="secCode"/>
+        <condition value="secCode.code = '55107-7'"/>
+      </source>
+      <dependent>
+        <name value="PatientSummaryAddedDocumentsSection"/>
+        <variable value="section"/>
+        <variable value="compSection"/>
+        <variable value="bundle"/>
+        <variable value="patient"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="advanceDirective"/>
+      <source>
+        <context value="section"/>
+        <element value="code"/>
+        <variable value="secCode"/>
+        <condition value="secCode.code = '42348-3'"/>
+      </source>
+      <dependent>
+        <name value="PatientSummaryAdvanceDirectiveSection"/>
         <variable value="section"/>
         <variable value="compSection"/>
         <variable value="bundle"/>
@@ -26741,6 +27067,1979 @@
             <transform value="evaluate"/>
             <parameter>
               <valueString value="'urn:uuid:' + %familyHistory.id"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
+    </rule>
+  </group>
+  <group>
+    <name value="PatientSummaryMedicalDeviceSection"/>
+    <typeMode value="none"/>
+    <documentation value="10. DISPOSITIFS MÉDICAUX"/>
+    <input>
+      <name value="section"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="compSection"/>
+      <mode value="target"/>
+    </input>
+    <input>
+      <name value="bundle"/>
+      <type value="Bundle"/>
+      <mode value="target"/>
+    </input>
+    <input>
+      <name value="patient"/>
+      <type value="Patient"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="sectionTemplate"/>
+      <source>
+        <context value="section"/>
+        <element value="templateId"/>
+        <variable value="sectionTid"/>
+      </source>
+      <rule>
+        <name value="medicalDeviceSection"/>
+        <source>
+          <context value="sectionTid"/>
+          <element value="root"/>
+          <variable value="sectionRoot"/>
+          <condition value="sectionRoot = '1.2.250.1.213.1.1.2.1'"/>
+        </source>
+        <rule>
+          <name value="sectionEntry"/>
+          <source>
+            <context value="section"/>
+            <element value="entry"/>
+            <variable value="entry"/>
+          </source>
+          <rule>
+            <name value="deviceSupply"/>
+            <source>
+              <context value="entry"/>
+              <element value="supply"/>
+              <variable value="supply"/>
+            </source>
+            <rule>
+              <name value="deviceSupplyTemplate"/>
+              <source>
+                <context value="supply"/>
+                <element value="templateId"/>
+                <variable value="supplyTid"/>
+              </source>
+              <rule>
+                <name value="deviceUseStatement"/>
+                <source>
+                  <context value="supplyTid"/>
+                  <element value="root"/>
+                  <variable value="supplyRoot"/>
+                  <condition value="supplyRoot = '1.2.250.1.213.1.1.3.20'"/>
+                </source>
+                <target>
+                  <context value="bundle"/>
+                  <contextType value="variable"/>
+                  <element value="entry"/>
+                  <variable value="deviceUseStatementEntry"/>
+                </target>
+                <target>
+                  <context value="deviceUseStatementEntry"/>
+                  <contextType value="variable"/>
+                  <element value="resource"/>
+                  <variable value="deviceUseStatement"/>
+                  <transform value="create"/>
+                  <parameter>
+                    <valueString value="DeviceUseStatement"/>
+                  </parameter>
+                </target>
+                <target>
+                  <context value="deviceUseStatement"/>
+                  <contextType value="variable"/>
+                  <element value="id"/>
+                  <transform value="uuid"/>
+                </target>
+                <target>
+                  <context value="deviceUseStatementEntry"/>
+                  <contextType value="variable"/>
+                  <element value="fullUrl"/>
+                  <transform value="evaluate"/>
+                  <parameter>
+                    <valueString value="'urn:uuid:' + %deviceUseStatement.id"/>
+                  </parameter>
+                </target>
+                <dependent>
+                  <name value="PatientSummaryDeviceUseStatementFromSupply"/>
+                  <variable value="supply"/>
+                  <variable value="deviceUseStatement"/>
+                  <variable value="compSection"/>
+                  <variable value="bundle"/>
+                  <variable value="patient"/>
+                </dependent>
+              </rule>
+            </rule>
+          </rule>
+        </rule>
+      </rule>
+    </rule>
+  </group>
+  <group>
+    <name value="PatientSummaryDeviceUseStatementFromSupply"/>
+    <typeMode value="none"/>
+    <documentation value="Supply CDA -&gt; DeviceUseStatement"/>
+    <input>
+      <name value="supply"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="deviceUseStatement"/>
+      <type value="DeviceUseStatement"/>
+      <mode value="target"/>
+    </input>
+    <input>
+      <name value="compSection"/>
+      <mode value="target"/>
+    </input>
+    <input>
+      <name value="bundle"/>
+      <type value="Bundle"/>
+      <mode value="target"/>
+    </input>
+    <input>
+      <name value="patient"/>
+      <type value="Patient"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="statusDefault"/>
+      <source>
+        <context value="supply"/>
+      </source>
+      <target>
+        <context value="deviceUseStatement"/>
+        <contextType value="variable"/>
+        <element value="status"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueString value="active"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
+      <name value="statusFromHigh"/>
+      <source>
+        <context value="supply"/>
+        <element value="effectiveTime"/>
+        <variable value="effectiveTime"/>
+      </source>
+      <rule>
+        <name value="statusCompleted"/>
+        <source>
+          <context value="effectiveTime"/>
+          <element value="high"/>
+          <variable value="high"/>
+        </source>
+        <target>
+          <context value="deviceUseStatement"/>
+          <contextType value="variable"/>
+          <element value="status"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueString value="completed"/>
+          </parameter>
+        </target>
+      </rule>
+    </rule>
+    <rule>
+      <name value="identifier"/>
+      <source>
+        <context value="supply"/>
+        <element value="id"/>
+        <variable value="supplyId"/>
+      </source>
+      <target>
+        <context value="deviceUseStatement"/>
+        <contextType value="variable"/>
+        <element value="identifier"/>
+        <variable value="identifier"/>
+        <transform value="create"/>
+        <parameter>
+          <valueString value="Identifier"/>
+        </parameter>
+      </target>
+      <dependent>
+        <name value="II"/>
+        <variable value="supplyId"/>
+        <variable value="identifier"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="subject"/>
+      <source>
+        <context value="supply"/>
+      </source>
+      <target>
+        <context value="deviceUseStatement"/>
+        <contextType value="variable"/>
+        <element value="subject"/>
+        <variable value="subjectRef"/>
+        <transform value="create"/>
+        <parameter>
+          <valueString value="Reference"/>
+        </parameter>
+      </target>
+      <target>
+        <context value="subjectRef"/>
+        <contextType value="variable"/>
+        <element value="reference"/>
+        <transform value="evaluate"/>
+        <parameter>
+          <valueString value="'urn:uuid:' + %patient.id"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
+      <name value="timing"/>
+      <source>
+        <context value="supply"/>
+        <element value="effectiveTime"/>
+        <variable value="effectiveTime"/>
+      </source>
+      <dependent>
+        <name value="DeviceUseStatementTimingFromEffectiveTime"/>
+        <variable value="effectiveTime"/>
+        <variable value="deviceUseStatement"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="participantDevice"/>
+      <source>
+        <context value="supply"/>
+        <element value="participant"/>
+        <variable value="participant"/>
+      </source>
+      <target>
+        <context value="bundle"/>
+        <contextType value="variable"/>
+        <element value="entry"/>
+        <variable value="deviceEntry"/>
+      </target>
+      <target>
+        <context value="deviceEntry"/>
+        <contextType value="variable"/>
+        <element value="resource"/>
+        <variable value="device"/>
+        <transform value="create"/>
+        <parameter>
+          <valueString value="Device"/>
+        </parameter>
+      </target>
+      <target>
+        <context value="device"/>
+        <contextType value="variable"/>
+        <element value="id"/>
+        <transform value="uuid"/>
+      </target>
+      <target>
+        <context value="deviceEntry"/>
+        <contextType value="variable"/>
+        <element value="fullUrl"/>
+        <transform value="evaluate"/>
+        <parameter>
+          <valueString value="'urn:uuid:' + %device.id"/>
+        </parameter>
+      </target>
+      <rule>
+        <name value="device"/>
+        <source>
+          <context value="participant"/>
+        </source>
+        <dependent>
+          <name value="PatientSummaryDeviceFromParticipant"/>
+          <variable value="participant"/>
+          <variable value="device"/>
+          <variable value="patient"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="deviceReference"/>
+        <source>
+          <context value="participant"/>
+        </source>
+        <target>
+          <context value="deviceUseStatement"/>
+          <contextType value="variable"/>
+          <element value="device"/>
+          <variable value="deviceRef"/>
+          <transform value="create"/>
+          <parameter>
+            <valueString value="Reference"/>
+          </parameter>
+        </target>
+        <target>
+          <context value="deviceRef"/>
+          <contextType value="variable"/>
+          <element value="reference"/>
+          <transform value="evaluate"/>
+          <parameter>
+            <valueString value="'urn:uuid:' + %device.id"/>
+          </parameter>
+        </target>
+      </rule>
+    </rule>
+    <rule>
+      <name value="entryRelationship"/>
+      <source>
+        <context value="supply"/>
+        <element value="entryRelationship"/>
+        <variable value="er"/>
+      </source>
+      <rule>
+        <name value="commentAct"/>
+        <source>
+          <context value="er"/>
+          <element value="act"/>
+          <variable value="commentAct"/>
+          <condition value="er.typeCode = 'SUBJ'"/>
+        </source>
+        <rule>
+          <name value="commentTemplate"/>
+          <source>
+            <context value="commentAct"/>
+            <element value="templateId"/>
+            <variable value="tid"/>
+          </source>
+          <rule>
+            <name value="commentMapped"/>
+            <source>
+              <context value="tid"/>
+              <element value="root"/>
+              <variable value="root"/>
+              <condition value="root = '1.2.250.1.213.1.1.3.32'"/>
+            </source>
+            <rule>
+              <name value="commentText"/>
+              <source>
+                <context value="commentAct"/>
+                <element value="text"/>
+                <variable value="commentText"/>
+              </source>
+              <rule>
+                <name value="commentReference"/>
+                <source>
+                  <context value="commentText"/>
+                  <element value="reference"/>
+                  <variable value="ref"/>
+                </source>
+                <rule>
+                  <name value="note"/>
+                  <source>
+                    <context value="ref"/>
+                    <element value="value"/>
+                    <variable value="value"/>
+                  </source>
+                  <target>
+                    <context value="deviceUseStatement"/>
+                    <contextType value="variable"/>
+                    <element value="note"/>
+                    <variable value="note"/>
+                    <transform value="create"/>
+                    <parameter>
+                      <valueString value="Annotation"/>
+                    </parameter>
+                  </target>
+                  <rule>
+                    <name value="noteText"/>
+                    <source>
+                      <context value="value"/>
+                    </source>
+                    <target>
+                      <context value="note"/>
+                      <contextType value="variable"/>
+                      <element value="text"/>
+                      <transform value="cast"/>
+                      <parameter>
+                        <valueId value="value"/>
+                      </parameter>
+                      <parameter>
+                        <valueString value="string"/>
+                      </parameter>
+                    </target>
+                  </rule>
+                </rule>
+              </rule>
+            </rule>
+          </rule>
+        </rule>
+      </rule>
+    </rule>
+    <rule>
+      <name value="sectionEntry"/>
+      <source>
+        <context value="supply"/>
+      </source>
+      <target>
+        <context value="compSection"/>
+        <contextType value="variable"/>
+        <element value="entry"/>
+        <variable value="sectionRef"/>
+        <transform value="create"/>
+        <parameter>
+          <valueString value="Reference"/>
+        </parameter>
+      </target>
+      <target>
+        <context value="sectionRef"/>
+        <contextType value="variable"/>
+        <element value="reference"/>
+        <transform value="evaluate"/>
+        <parameter>
+          <valueString value="'urn:uuid:' + %deviceUseStatement.id"/>
+        </parameter>
+      </target>
+    </rule>
+  </group>
+  <group>
+    <name value="DeviceUseStatementTimingFromEffectiveTime"/>
+    <typeMode value="none"/>
+    <documentation value="effectiveTime CDA -&gt; DeviceUseStatement.timing[x]"/>
+    <input>
+      <name value="effectiveTime"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="deviceUseStatement"/>
+      <type value="DeviceUseStatement"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="timingDateTime"/>
+      <source>
+        <context value="effectiveTime"/>
+        <element value="value"/>
+        <variable value="value"/>
+      </source>
+      <target>
+        <context value="deviceUseStatement"/>
+        <contextType value="variable"/>
+        <element value="timing"/>
+        <variable value="timingDateTime"/>
+        <transform value="create"/>
+        <parameter>
+          <valueString value="dateTime"/>
+        </parameter>
+      </target>
+      <dependent>
+        <name value="TSDateTime"/>
+        <variable value="effectiveTime"/>
+        <variable value="timingDateTime"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="timingPeriodByLow"/>
+      <source>
+        <context value="effectiveTime"/>
+        <element value="low"/>
+        <variable value="low"/>
+      </source>
+      <target>
+        <context value="deviceUseStatement"/>
+        <contextType value="variable"/>
+        <element value="timing"/>
+        <variable value="period"/>
+        <transform value="create"/>
+        <parameter>
+          <valueString value="Period"/>
+        </parameter>
+      </target>
+      <rule>
+        <name value="start"/>
+        <source>
+          <context value="low"/>
+        </source>
+        <target>
+          <context value="period"/>
+          <contextType value="variable"/>
+          <element value="start"/>
+          <variable value="start"/>
+          <transform value="create"/>
+          <parameter>
+            <valueString value="dateTime"/>
+          </parameter>
+        </target>
+        <dependent>
+          <name value="TSDateTime"/>
+          <variable value="low"/>
+          <variable value="start"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="end"/>
+        <source>
+          <context value="effectiveTime"/>
+          <element value="high"/>
+          <variable value="high"/>
+        </source>
+        <target>
+          <context value="period"/>
+          <contextType value="variable"/>
+          <element value="end"/>
+          <variable value="end"/>
+          <transform value="create"/>
+          <parameter>
+            <valueString value="dateTime"/>
+          </parameter>
+        </target>
+        <dependent>
+          <name value="TSDateTime"/>
+          <variable value="high"/>
+          <variable value="end"/>
+        </dependent>
+      </rule>
+    </rule>
+    <rule>
+      <name value="timingPeriodByHigh"/>
+      <source>
+        <context value="effectiveTime"/>
+        <element value="high"/>
+        <variable value="high"/>
+        <condition value="effectiveTime.low.empty()"/>
+      </source>
+      <target>
+        <context value="deviceUseStatement"/>
+        <contextType value="variable"/>
+        <element value="timing"/>
+        <variable value="period"/>
+        <transform value="create"/>
+        <parameter>
+          <valueString value="Period"/>
+        </parameter>
+      </target>
+      <rule>
+        <name value="endOnly"/>
+        <source>
+          <context value="high"/>
+        </source>
+        <target>
+          <context value="period"/>
+          <contextType value="variable"/>
+          <element value="end"/>
+          <variable value="end"/>
+          <transform value="create"/>
+          <parameter>
+            <valueString value="dateTime"/>
+          </parameter>
+        </target>
+        <dependent>
+          <name value="TSDateTime"/>
+          <variable value="high"/>
+          <variable value="end"/>
+        </dependent>
+      </rule>
+    </rule>
+  </group>
+  <group>
+    <name value="PatientSummaryDeviceFromParticipant"/>
+    <typeMode value="none"/>
+    <documentation value="participant CDA -&gt; Device"/>
+    <input>
+      <name value="participant"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="device"/>
+      <type value="Device"/>
+      <mode value="target"/>
+    </input>
+    <input>
+      <name value="patient"/>
+      <type value="Patient"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="participantRole"/>
+      <source>
+        <context value="participant"/>
+        <element value="participantRole"/>
+        <variable value="participantRole"/>
+      </source>
+      <rule>
+        <name value="identifier"/>
+        <source>
+          <context value="participantRole"/>
+          <element value="id"/>
+          <variable value="deviceId"/>
+        </source>
+        <target>
+          <context value="device"/>
+          <contextType value="variable"/>
+          <element value="identifier"/>
+          <variable value="identifier"/>
+          <transform value="create"/>
+          <parameter>
+            <valueString value="Identifier"/>
+          </parameter>
+        </target>
+        <dependent>
+          <name value="II"/>
+          <variable value="deviceId"/>
+          <variable value="identifier"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="playingDevice"/>
+        <source>
+          <context value="participantRole"/>
+          <element value="playingDevice"/>
+          <variable value="playingDevice"/>
+        </source>
+        <rule>
+          <name value="type"/>
+          <source>
+            <context value="playingDevice"/>
+            <element value="code"/>
+            <variable value="deviceCode"/>
+          </source>
+          <target>
+            <context value="device"/>
+            <contextType value="variable"/>
+            <element value="type"/>
+            <variable value="type"/>
+            <transform value="create"/>
+            <parameter>
+              <valueString value="CodeableConcept"/>
+            </parameter>
+          </target>
+          <dependent>
+            <name value="CDCodeableConcept"/>
+            <variable value="deviceCode"/>
+            <variable value="type"/>
+          </dependent>
+        </rule>
+      </rule>
+      <rule>
+        <name value="patient"/>
+        <source>
+          <context value="participantRole"/>
+        </source>
+        <target>
+          <context value="device"/>
+          <contextType value="variable"/>
+          <element value="patient"/>
+          <variable value="patientRef"/>
+          <transform value="create"/>
+          <parameter>
+            <valueString value="Reference"/>
+          </parameter>
+        </target>
+        <target>
+          <context value="patientRef"/>
+          <contextType value="variable"/>
+          <element value="reference"/>
+          <transform value="evaluate"/>
+          <parameter>
+            <valueString value="'urn:uuid:' + %patient.id"/>
+          </parameter>
+        </target>
+      </rule>
+    </rule>
+  </group>
+  <group>
+    <name value="PatientSummaryAddedDocumentsSection"/>
+    <typeMode value="none"/>
+    <documentation value="11. DOCUMENTS JOINTS"/>
+    <input>
+      <name value="section"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="compSection"/>
+      <mode value="target"/>
+    </input>
+    <input>
+      <name value="bundle"/>
+      <type value="Bundle"/>
+      <mode value="target"/>
+    </input>
+    <input>
+      <name value="patient"/>
+      <type value="Patient"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="sectionTemplate"/>
+      <source>
+        <context value="section"/>
+        <element value="templateId"/>
+        <variable value="sectionTid"/>
+      </source>
+      <rule>
+        <name value="addedDocumentsSection"/>
+        <source>
+          <context value="sectionTid"/>
+          <element value="root"/>
+          <variable value="sectionRoot"/>
+          <condition value="sectionRoot = '1.2.250.1.213.1.1.2.37'"/>
+        </source>
+        <rule>
+          <name value="sectionEntry"/>
+          <source>
+            <context value="section"/>
+            <element value="entry"/>
+            <variable value="entry"/>
+          </source>
+          <rule>
+            <name value="attachedDocument"/>
+            <source>
+              <context value="entry"/>
+              <element value="organizer"/>
+              <variable value="attachedDocument"/>
+            </source>
+            <rule>
+              <name value="attachedDocumentTemplate"/>
+              <source>
+                <context value="attachedDocument"/>
+                <element value="templateId"/>
+                <variable value="docTid"/>
+              </source>
+              <rule>
+                <name value="attachedDocument"/>
+                <source>
+                  <context value="docTid"/>
+                  <element value="root"/>
+                  <variable value="docRoot"/>
+                  <condition value="docRoot = '1.2.250.1.213.1.1.3.18'"/>
+                </source>
+                <target>
+                  <context value="bundle"/>
+                  <contextType value="variable"/>
+                  <element value="entry"/>
+                  <variable value="documentReferenceEntry"/>
+                </target>
+                <target>
+                  <context value="documentReferenceEntry"/>
+                  <contextType value="variable"/>
+                  <element value="resource"/>
+                  <variable value="documentReference"/>
+                  <transform value="create"/>
+                  <parameter>
+                    <valueString value="DocumentReference"/>
+                  </parameter>
+                </target>
+                <target>
+                  <context value="documentReference"/>
+                  <contextType value="variable"/>
+                  <element value="id"/>
+                  <transform value="uuid"/>
+                </target>
+                <target>
+                  <context value="documentReferenceEntry"/>
+                  <contextType value="variable"/>
+                  <element value="fullUrl"/>
+                  <transform value="evaluate"/>
+                  <parameter>
+                    <valueString value="'urn:uuid:' + %documentReference.id"/>
+                  </parameter>
+                </target>
+                <dependent>
+                  <name value="DocumentReferenceFromCdaAttachedDocument"/>
+                  <variable value="attachedDocument"/>
+                  <variable value="documentReference"/>
+                  <variable value="compSection"/>
+                  <variable value="patient"/>
+                </dependent>
+              </rule>
+            </rule>
+          </rule>
+          <rule>
+            <name value="simpleObservationNotMapped"/>
+            <source>
+              <context value="entry"/>
+              <element value="observation"/>
+              <variable value="simpleObservation"/>
+            </source>
+          </rule>
+        </rule>
+      </rule>
+    </rule>
+  </group>
+  <group>
+    <name value="DocumentReferenceFromCdaAttachedDocument"/>
+    <typeMode value="none"/>
+    <documentation value="Organizer CDA de document attaché -&gt; DocumentReference"/>
+    <input>
+      <name value="attachedDocument"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="documentReference"/>
+      <type value="DocumentReference"/>
+      <mode value="target"/>
+    </input>
+    <input>
+      <name value="compSection"/>
+      <mode value="target"/>
+    </input>
+    <input>
+      <name value="patient"/>
+      <type value="Patient"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="statusDefault"/>
+      <source>
+        <context value="attachedDocument"/>
+      </source>
+      <target>
+        <context value="documentReference"/>
+        <contextType value="variable"/>
+        <element value="status"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueString value="current"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
+      <name value="identifier"/>
+      <source>
+        <context value="attachedDocument"/>
+        <element value="id"/>
+        <variable value="docId"/>
+      </source>
+      <target>
+        <context value="documentReference"/>
+        <contextType value="variable"/>
+        <element value="identifier"/>
+        <variable value="identifier"/>
+        <transform value="create"/>
+        <parameter>
+          <valueString value="Identifier"/>
+        </parameter>
+      </target>
+      <dependent>
+        <name value="II"/>
+        <variable value="docId"/>
+        <variable value="identifier"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="subject"/>
+      <source>
+        <context value="attachedDocument"/>
+      </source>
+      <target>
+        <context value="documentReference"/>
+        <contextType value="variable"/>
+        <element value="subject"/>
+        <variable value="subjectRef"/>
+        <transform value="create"/>
+        <parameter>
+          <valueString value="Reference"/>
+        </parameter>
+      </target>
+      <target>
+        <context value="subjectRef"/>
+        <contextType value="variable"/>
+        <element value="reference"/>
+        <transform value="evaluate"/>
+        <parameter>
+          <valueString value="'urn:uuid:' + %patient.id"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
+      <name value="docStatus"/>
+      <source>
+        <context value="attachedDocument"/>
+        <element value="statusCode"/>
+        <variable value="statusCode"/>
+      </source>
+      <rule>
+        <name value="final"/>
+        <source>
+          <context value="statusCode"/>
+          <element value="code"/>
+          <variable value="code"/>
+          <condition value="code = 'completed'"/>
+        </source>
+        <target>
+          <context value="documentReference"/>
+          <contextType value="variable"/>
+          <element value="docStatus"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueString value="final"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="preliminary"/>
+        <source>
+          <context value="statusCode"/>
+          <element value="code"/>
+          <variable value="code"/>
+          <condition value="code = 'active'"/>
+        </source>
+        <target>
+          <context value="documentReference"/>
+          <contextType value="variable"/>
+          <element value="docStatus"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueString value="preliminary"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="aborted"/>
+        <source>
+          <context value="statusCode"/>
+          <element value="code"/>
+          <variable value="code"/>
+          <condition value="code = 'aborted'"/>
+        </source>
+        <target>
+          <context value="documentReference"/>
+          <contextType value="variable"/>
+          <element value="docStatus"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueString value="entered-in-error"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="cancelled"/>
+        <source>
+          <context value="statusCode"/>
+          <element value="code"/>
+          <variable value="code"/>
+          <condition value="code = 'cancelled'"/>
+        </source>
+        <target>
+          <context value="documentReference"/>
+          <contextType value="variable"/>
+          <element value="docStatus"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueString value="entered-in-error"/>
+          </parameter>
+        </target>
+      </rule>
+    </rule>
+    <rule>
+      <name value="date"/>
+      <source>
+        <context value="attachedDocument"/>
+        <element value="effectiveTime"/>
+        <variable value="effectiveTime"/>
+      </source>
+      <rule>
+        <name value="dateTime"/>
+        <source>
+          <context value="effectiveTime"/>
+          <element value="value"/>
+          <variable value="value"/>
+        </source>
+        <target>
+          <context value="documentReference"/>
+          <contextType value="variable"/>
+          <element value="date"/>
+          <variable value="date"/>
+          <transform value="create"/>
+          <parameter>
+            <valueString value="dateTime"/>
+          </parameter>
+        </target>
+        <dependent>
+          <name value="TSDateTime"/>
+          <variable value="effectiveTime"/>
+          <variable value="date"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="dateLow"/>
+        <source>
+          <context value="effectiveTime"/>
+          <element value="low"/>
+          <variable value="low"/>
+        </source>
+        <target>
+          <context value="documentReference"/>
+          <contextType value="variable"/>
+          <element value="date"/>
+          <variable value="date"/>
+          <transform value="create"/>
+          <parameter>
+            <valueString value="dateTime"/>
+          </parameter>
+        </target>
+        <dependent>
+          <name value="TSDateTime"/>
+          <variable value="low"/>
+          <variable value="date"/>
+        </dependent>
+      </rule>
+    </rule>
+    <rule>
+      <name value="typeComponent"/>
+      <source>
+        <context value="attachedDocument"/>
+        <element value="component"/>
+        <variable value="component"/>
+      </source>
+      <rule>
+        <name value="typeObservation"/>
+        <source>
+          <context value="component"/>
+          <element value="observation"/>
+          <variable value="typeObservation"/>
+        </source>
+        <rule>
+          <name value="typeTemplate"/>
+          <source>
+            <context value="typeObservation"/>
+            <element value="templateId"/>
+            <variable value="tid"/>
+          </source>
+          <rule>
+            <name value="typeValue"/>
+            <source>
+              <context value="tid"/>
+              <element value="root"/>
+              <variable value="root"/>
+              <condition value="root = '1.2.250.1.213.1.1.3.48.18'"/>
+            </source>
+            <rule>
+              <name value="type"/>
+              <source>
+                <context value="typeObservation"/>
+                <element value="value"/>
+                <variable value="typeValue"/>
+              </source>
+              <target>
+                <context value="documentReference"/>
+                <contextType value="variable"/>
+                <element value="type"/>
+                <variable value="type"/>
+                <transform value="create"/>
+                <parameter>
+                  <valueString value="CodeableConcept"/>
+                </parameter>
+              </target>
+              <dependent>
+                <name value="CDCodeableConcept"/>
+                <variable value="typeValue"/>
+                <variable value="type"/>
+              </dependent>
+            </rule>
+          </rule>
+        </rule>
+      </rule>
+    </rule>
+    <rule>
+      <name value="mediaComponent"/>
+      <source>
+        <context value="attachedDocument"/>
+        <element value="component"/>
+        <variable value="component"/>
+      </source>
+      <rule>
+        <name value="observationMedia"/>
+        <source>
+          <context value="component"/>
+          <element value="observationMedia"/>
+          <variable value="observationMedia"/>
+        </source>
+        <target>
+          <context value="documentReference"/>
+          <contextType value="variable"/>
+          <element value="content"/>
+          <variable value="content"/>
+        </target>
+        <rule>
+          <name value="attachment"/>
+          <source>
+            <context value="observationMedia"/>
+          </source>
+          <dependent>
+            <name value="AttachmentFromObservationMedia"/>
+            <variable value="observationMedia"/>
+            <variable value="content"/>
+          </dependent>
+        </rule>
+      </rule>
+    </rule>
+    <rule>
+      <name value="sectionEntry"/>
+      <source>
+        <context value="attachedDocument"/>
+      </source>
+      <target>
+        <context value="compSection"/>
+        <contextType value="variable"/>
+        <element value="entry"/>
+        <variable value="sectionRef"/>
+        <transform value="create"/>
+        <parameter>
+          <valueString value="Reference"/>
+        </parameter>
+      </target>
+      <target>
+        <context value="sectionRef"/>
+        <contextType value="variable"/>
+        <element value="reference"/>
+        <transform value="evaluate"/>
+        <parameter>
+          <valueString value="'urn:uuid:' + %documentReference.id"/>
+        </parameter>
+      </target>
+    </rule>
+  </group>
+  <group>
+    <name value="AttachmentFromObservationMedia"/>
+    <typeMode value="none"/>
+    <documentation value="ObservationMedia CDA -&gt; DocumentReference.content.attachment"/>
+    <input>
+      <name value="observationMedia"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="content"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="attachment"/>
+      <source>
+        <context value="observationMedia"/>
+      </source>
+      <target>
+        <context value="content"/>
+        <contextType value="variable"/>
+        <element value="attachment"/>
+        <variable value="attachment"/>
+        <transform value="create"/>
+        <parameter>
+          <valueString value="Attachment"/>
+        </parameter>
+      </target>
+      <rule>
+        <name value="attachmentId"/>
+        <source>
+          <context value="observationMedia"/>
+          <element value="ID"/>
+          <variable value="mediaId"/>
+        </source>
+        <target>
+          <context value="attachment"/>
+          <contextType value="variable"/>
+          <element value="id"/>
+          <transform value="cast"/>
+          <parameter>
+            <valueId value="mediaId"/>
+          </parameter>
+          <parameter>
+            <valueString value="string"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="mediaValue"/>
+        <source>
+          <context value="observationMedia"/>
+          <element value="value"/>
+          <variable value="mediaValue"/>
+        </source>
+        <rule>
+          <name value="contentType"/>
+          <source>
+            <context value="mediaValue"/>
+            <element value="mediaType"/>
+            <variable value="mediaType"/>
+          </source>
+          <target>
+            <context value="attachment"/>
+            <contextType value="variable"/>
+            <element value="contentType"/>
+            <transform value="cast"/>
+            <parameter>
+              <valueId value="mediaType"/>
+            </parameter>
+            <parameter>
+              <valueString value="string"/>
+            </parameter>
+          </target>
+        </rule>
+        <rule>
+          <name value="data"/>
+          <source>
+            <context value="mediaValue"/>
+            <element value="xmlText"/>
+            <variable value="rawData"/>
+          </source>
+          <target>
+            <context value="attachment"/>
+            <contextType value="variable"/>
+            <element value="data"/>
+            <transform value="cast"/>
+            <parameter>
+              <valueId value="rawData"/>
+            </parameter>
+            <parameter>
+              <valueString value="base64Binary"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
+    </rule>
+  </group>
+  <group>
+    <name value="PatientSummaryAdvanceDirectiveSection"/>
+    <typeMode value="none"/>
+    <documentation value="12 DIRECTIVES ANTICIPEES"/>
+    <input>
+      <name value="section"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="compSection"/>
+      <mode value="target"/>
+    </input>
+    <input>
+      <name value="bundle"/>
+      <type value="Bundle"/>
+      <mode value="target"/>
+    </input>
+    <input>
+      <name value="patient"/>
+      <type value="Patient"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="sectionTemplate"/>
+      <source>
+        <context value="section"/>
+        <element value="templateId"/>
+        <variable value="sectionTid"/>
+      </source>
+      <rule>
+        <name value="advanceDirectiveSection"/>
+        <source>
+          <context value="sectionTid"/>
+          <element value="root"/>
+          <variable value="sectionRoot"/>
+          <condition value="sectionRoot = '1.2.250.1.213.1.1.2.157'"/>
+        </source>
+        <rule>
+          <name value="sectionEntry"/>
+          <source>
+            <context value="section"/>
+            <element value="entry"/>
+            <variable value="entry"/>
+          </source>
+          <rule>
+            <name value="directiveObservation"/>
+            <source>
+              <context value="entry"/>
+              <element value="observation"/>
+              <variable value="directiveObservation"/>
+            </source>
+            <rule>
+              <name value="advanceDirectiveTemplate"/>
+              <source>
+                <context value="directiveObservation"/>
+                <element value="templateId"/>
+                <variable value="directiveTid"/>
+              </source>
+              <rule>
+                <name value="advanceDirectiveConsent"/>
+                <source>
+                  <context value="directiveTid"/>
+                  <element value="root"/>
+                  <variable value="directiveRoot"/>
+                  <condition value="directiveRoot = '1.2.250.1.213.1.1.3.54'"/>
+                </source>
+                <target>
+                  <context value="bundle"/>
+                  <contextType value="variable"/>
+                  <element value="entry"/>
+                  <variable value="consentEntry"/>
+                </target>
+                <target>
+                  <context value="consentEntry"/>
+                  <contextType value="variable"/>
+                  <element value="resource"/>
+                  <variable value="consent"/>
+                  <transform value="create"/>
+                  <parameter>
+                    <valueString value="Consent"/>
+                  </parameter>
+                </target>
+                <target>
+                  <context value="consent"/>
+                  <contextType value="variable"/>
+                  <element value="id"/>
+                  <transform value="uuid"/>
+                </target>
+                <target>
+                  <context value="consentEntry"/>
+                  <contextType value="variable"/>
+                  <element value="fullUrl"/>
+                  <transform value="evaluate"/>
+                  <parameter>
+                    <valueString value="'urn:uuid:' + %consent.id"/>
+                  </parameter>
+                </target>
+                <dependent>
+                  <name value="AdvanceDirectiveConsentFromObservation"/>
+                  <variable value="directiveObservation"/>
+                  <variable value="consent"/>
+                  <variable value="compSection"/>
+                  <variable value="patient"/>
+                </dependent>
+              </rule>
+            </rule>
+          </rule>
+        </rule>
+      </rule>
+    </rule>
+  </group>
+  <group>
+    <name value="AdvanceDirectiveConsentFromObservation"/>
+    <typeMode value="none"/>
+    <documentation value="Observation CDA FR-Directive-Anticipee -&gt; Consent"/>
+    <input>
+      <name value="directiveObservation"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="consent"/>
+      <type value="Consent"/>
+      <mode value="target"/>
+    </input>
+    <input>
+      <name value="compSection"/>
+      <mode value="target"/>
+    </input>
+    <input>
+      <name value="patient"/>
+      <type value="Patient"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="identifier"/>
+      <source>
+        <context value="directiveObservation"/>
+        <element value="id"/>
+        <variable value="directiveId"/>
+      </source>
+      <target>
+        <context value="consent"/>
+        <contextType value="variable"/>
+        <element value="identifier"/>
+        <variable value="identifier"/>
+        <transform value="create"/>
+        <parameter>
+          <valueString value="Identifier"/>
+        </parameter>
+      </target>
+      <dependent>
+        <name value="II"/>
+        <variable value="directiveId"/>
+        <variable value="identifier"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="patient"/>
+      <source>
+        <context value="directiveObservation"/>
+      </source>
+      <target>
+        <context value="consent"/>
+        <contextType value="variable"/>
+        <element value="patient"/>
+        <variable value="patientRef"/>
+        <transform value="create"/>
+        <parameter>
+          <valueString value="Reference"/>
+        </parameter>
+      </target>
+      <target>
+        <context value="patientRef"/>
+        <contextType value="variable"/>
+        <element value="reference"/>
+        <transform value="evaluate"/>
+        <parameter>
+          <valueString value="'urn:uuid:' + %patient.id"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
+      <name value="statusDefault"/>
+      <source>
+        <context value="directiveObservation"/>
+      </source>
+      <target>
+        <context value="consent"/>
+        <contextType value="variable"/>
+        <element value="status"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueString value="active"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
+      <name value="status"/>
+      <source>
+        <context value="directiveObservation"/>
+        <element value="statusCode"/>
+        <variable value="statusCode"/>
+      </source>
+      <rule>
+        <name value="completedToActive"/>
+        <source>
+          <context value="statusCode"/>
+          <element value="code"/>
+          <variable value="code"/>
+          <condition value="code = 'completed'"/>
+        </source>
+        <target>
+          <context value="consent"/>
+          <contextType value="variable"/>
+          <element value="status"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueString value="active"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="activeToActive"/>
+        <source>
+          <context value="statusCode"/>
+          <element value="code"/>
+          <variable value="code"/>
+          <condition value="code = 'active'"/>
+        </source>
+        <target>
+          <context value="consent"/>
+          <contextType value="variable"/>
+          <element value="status"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueString value="active"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="abortedToInactive"/>
+        <source>
+          <context value="statusCode"/>
+          <element value="code"/>
+          <variable value="code"/>
+          <condition value="code = 'aborted'"/>
+        </source>
+        <target>
+          <context value="consent"/>
+          <contextType value="variable"/>
+          <element value="status"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueString value="inactive"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="cancelledToInactive"/>
+        <source>
+          <context value="statusCode"/>
+          <element value="code"/>
+          <variable value="code"/>
+          <condition value="code = 'cancelled'"/>
+        </source>
+        <target>
+          <context value="consent"/>
+          <contextType value="variable"/>
+          <element value="status"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueString value="inactive"/>
+          </parameter>
+        </target>
+      </rule>
+    </rule>
+    <rule>
+      <name value="scope"/>
+      <source>
+        <context value="directiveObservation"/>
+      </source>
+      <target>
+        <context value="consent"/>
+        <contextType value="variable"/>
+        <element value="scope"/>
+        <variable value="scope"/>
+        <transform value="create"/>
+        <parameter>
+          <valueString value="CodeableConcept"/>
+        </parameter>
+      </target>
+      <rule>
+        <name value="scopeCoding"/>
+        <source>
+          <context value="directiveObservation"/>
+        </source>
+        <target>
+          <context value="scope"/>
+          <contextType value="variable"/>
+          <element value="coding"/>
+          <variable value="scopeCoding"/>
+          <transform value="create"/>
+          <parameter>
+            <valueString value="Coding"/>
+          </parameter>
+        </target>
+        <rule>
+          <name value="scopeSystem"/>
+          <source>
+            <context value="directiveObservation"/>
+          </source>
+          <target>
+            <context value="scopeCoding"/>
+            <contextType value="variable"/>
+            <element value="system"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueString value="http://terminology.hl7.org/CodeSystem/consentscope"/>
+            </parameter>
+          </target>
+        </rule>
+        <rule>
+          <name value="scopeCode"/>
+          <source>
+            <context value="directiveObservation"/>
+          </source>
+          <target>
+            <context value="scopeCoding"/>
+            <contextType value="variable"/>
+            <element value="code"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueString value="adr"/>
+            </parameter>
+          </target>
+        </rule>
+        <rule>
+          <name value="scopeDisplay"/>
+          <source>
+            <context value="directiveObservation"/>
+          </source>
+          <target>
+            <context value="scopeCoding"/>
+            <contextType value="variable"/>
+            <element value="display"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueString value="Advanced Care Directive"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
+    </rule>
+    <rule>
+      <name value="category"/>
+      <source>
+        <context value="directiveObservation"/>
+        <element value="code"/>
+        <variable value="directiveCode"/>
+      </source>
+      <target>
+        <context value="consent"/>
+        <contextType value="variable"/>
+        <element value="category"/>
+        <variable value="category"/>
+        <transform value="create"/>
+        <parameter>
+          <valueString value="CodeableConcept"/>
+        </parameter>
+      </target>
+      <dependent>
+        <name value="CDCodeableConcept"/>
+        <variable value="directiveCode"/>
+        <variable value="category"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="dateTime"/>
+      <source>
+        <context value="directiveObservation"/>
+        <element value="effectiveTime"/>
+        <variable value="effectiveTime"/>
+      </source>
+      <rule>
+        <name value="dateTime"/>
+        <source>
+          <context value="effectiveTime"/>
+          <element value="value"/>
+          <variable value="value"/>
+        </source>
+        <target>
+          <context value="consent"/>
+          <contextType value="variable"/>
+          <element value="dateTime"/>
+          <variable value="consentDateTime"/>
+          <transform value="create"/>
+          <parameter>
+            <valueString value="dateTime"/>
+          </parameter>
+        </target>
+        <dependent>
+          <name value="TSDateTime"/>
+          <variable value="effectiveTime"/>
+          <variable value="consentDateTime"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="dateLow"/>
+        <source>
+          <context value="effectiveTime"/>
+          <element value="low"/>
+          <variable value="low"/>
+        </source>
+        <target>
+          <context value="consent"/>
+          <contextType value="variable"/>
+          <element value="dateTime"/>
+          <variable value="consentDateTime"/>
+          <transform value="create"/>
+          <parameter>
+            <valueString value="dateTime"/>
+          </parameter>
+        </target>
+        <dependent>
+          <name value="TSDateTime"/>
+          <variable value="low"/>
+          <variable value="consentDateTime"/>
+        </dependent>
+      </rule>
+    </rule>
+    <rule>
+      <name value="provision"/>
+      <source>
+        <context value="directiveObservation"/>
+      </source>
+      <target>
+        <context value="consent"/>
+        <contextType value="variable"/>
+        <element value="provision"/>
+        <variable value="provision"/>
+      </target>
+      <rule>
+        <name value="provisionCode"/>
+        <source>
+          <context value="directiveObservation"/>
+          <element value="code"/>
+          <variable value="directiveCode"/>
+        </source>
+        <target>
+          <context value="provision"/>
+          <contextType value="variable"/>
+          <element value="code"/>
+          <variable value="provisionCode"/>
+          <transform value="create"/>
+          <parameter>
+            <valueString value="CodeableConcept"/>
+          </parameter>
+        </target>
+        <dependent>
+          <name value="CDCodeableConcept"/>
+          <variable value="directiveCode"/>
+          <variable value="provisionCode"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="provisionType"/>
+        <source>
+          <context value="directiveObservation"/>
+          <element value="value"/>
+          <variable value="directiveValue"/>
+        </source>
+        <rule>
+          <name value="trueToPermit"/>
+          <source>
+            <context value="directiveValue"/>
+            <element value="value"/>
+            <variable value="value"/>
+            <condition value="value = 'true'"/>
+          </source>
+          <target>
+            <context value="provision"/>
+            <contextType value="variable"/>
+            <element value="type"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueString value="permit"/>
+            </parameter>
+          </target>
+        </rule>
+        <rule>
+          <name value="falseToDeny"/>
+          <source>
+            <context value="directiveValue"/>
+            <element value="value"/>
+            <variable value="value"/>
+            <condition value="value = 'false'"/>
+          </source>
+          <target>
+            <context value="provision"/>
+            <contextType value="variable"/>
+            <element value="type"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueString value="deny"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
+    </rule>
+    <rule>
+      <name value="externalReference"/>
+      <source>
+        <context value="directiveObservation"/>
+        <element value="reference"/>
+        <variable value="reference"/>
+      </source>
+      <rule>
+        <name value="externalDocument"/>
+        <source>
+          <context value="reference"/>
+          <element value="externalDocument"/>
+          <variable value="externalDocument"/>
+        </source>
+        <rule>
+          <name value="externalText"/>
+          <source>
+            <context value="externalDocument"/>
+            <element value="text"/>
+            <variable value="externalText"/>
+          </source>
+          <rule>
+            <name value="externalReference"/>
+            <source>
+              <context value="externalText"/>
+              <element value="reference"/>
+              <variable value="externalReference"/>
+            </source>
+            <rule>
+              <name value="sourceAttachment"/>
+              <source>
+                <context value="externalReference"/>
+                <element value="value"/>
+                <variable value="externalUrl"/>
+              </source>
+              <target>
+                <context value="consent"/>
+                <contextType value="variable"/>
+                <element value="source"/>
+                <variable value="sourceAttachment"/>
+                <transform value="create"/>
+                <parameter>
+                  <valueString value="Attachment"/>
+                </parameter>
+              </target>
+              <rule>
+                <name value="sourceAttachmentUrl"/>
+                <source>
+                  <context value="externalUrl"/>
+                </source>
+                <target>
+                  <context value="sourceAttachment"/>
+                  <contextType value="variable"/>
+                  <element value="url"/>
+                  <transform value="cast"/>
+                  <parameter>
+                    <valueId value="externalUrl"/>
+                  </parameter>
+                  <parameter>
+                    <valueString value="url"/>
+                  </parameter>
+                </target>
+              </rule>
+            </rule>
+          </rule>
+        </rule>
+      </rule>
+    </rule>
+    <rule>
+      <name value="entryRelationship"/>
+      <source>
+        <context value="directiveObservation"/>
+        <element value="entryRelationship"/>
+        <variable value="entryRelationship"/>
+      </source>
+      <rule>
+        <name value="sourceAttachment"/>
+        <source>
+          <context value="entryRelationship"/>
+          <element value="observationMedia"/>
+          <variable value="observationMedia"/>
+        </source>
+        <target>
+          <context value="consent"/>
+          <contextType value="variable"/>
+          <element value="source"/>
+          <variable value="sourceAttachment"/>
+          <transform value="create"/>
+          <parameter>
+            <valueString value="Attachment"/>
+          </parameter>
+        </target>
+        <dependent>
+          <name value="AdvanceDirectiveAttachmentFromObservationMedia"/>
+          <variable value="observationMedia"/>
+          <variable value="sourceAttachment"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="commentAct"/>
+        <source>
+          <context value="entryRelationship"/>
+          <element value="act"/>
+          <variable value="commentAct"/>
+          <condition value="entryRelationship.typeCode = 'SUBJ'"/>
+        </source>
+        <rule>
+          <name value="commentTemplate"/>
+          <source>
+            <context value="commentAct"/>
+            <element value="templateId"/>
+            <variable value="commentTid"/>
+          </source>
+          <rule>
+            <name value="commentNotMapped"/>
+            <source>
+              <context value="commentTid"/>
+              <element value="root"/>
+              <variable value="commentRoot"/>
+              <condition value="commentRoot = '1.2.250.1.213.1.1.3.32'"/>
+            </source>
+          </rule>
+        </rule>
+      </rule>
+    </rule>
+    <rule>
+      <name value="sectionEntry"/>
+      <source>
+        <context value="directiveObservation"/>
+      </source>
+      <target>
+        <context value="compSection"/>
+        <contextType value="variable"/>
+        <element value="entry"/>
+        <variable value="sectionRef"/>
+        <transform value="create"/>
+        <parameter>
+          <valueString value="Reference"/>
+        </parameter>
+      </target>
+      <target>
+        <context value="sectionRef"/>
+        <contextType value="variable"/>
+        <element value="reference"/>
+        <transform value="evaluate"/>
+        <parameter>
+          <valueString value="'urn:uuid:' + %consent.id"/>
+        </parameter>
+      </target>
+    </rule>
+  </group>
+  <group>
+    <name value="AdvanceDirectiveAttachmentFromObservationMedia"/>
+    <typeMode value="none"/>
+    <documentation value="observationMedia CDA -&gt; Consent.sourceAttachment"/>
+    <input>
+      <name value="observationMedia"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="sourceAttachment"/>
+      <type value="Attachment"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="mediaValue"/>
+      <source>
+        <context value="observationMedia"/>
+        <element value="value"/>
+        <variable value="mediaValue"/>
+      </source>
+      <rule>
+        <name value="contentType"/>
+        <source>
+          <context value="mediaValue"/>
+          <element value="mediaType"/>
+          <variable value="mediaType"/>
+        </source>
+        <target>
+          <context value="sourceAttachment"/>
+          <contextType value="variable"/>
+          <element value="contentType"/>
+          <transform value="cast"/>
+          <parameter>
+            <valueId value="mediaType"/>
+          </parameter>
+          <parameter>
+            <valueString value="string"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="data"/>
+        <source>
+          <context value="mediaValue"/>
+          <element value="xmlText"/>
+          <variable value="rawData"/>
+        </source>
+        <target>
+          <context value="sourceAttachment"/>
+          <contextType value="variable"/>
+          <element value="data"/>
+          <transform value="cast"/>
+          <parameter>
+            <valueId value="rawData"/>
+          </parameter>
+          <parameter>
+            <valueString value="base64Binary"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="mediaReference"/>
+        <source>
+          <context value="mediaValue"/>
+          <element value="reference"/>
+          <variable value="mediaReference"/>
+        </source>
+        <rule>
+          <name value="url"/>
+          <source>
+            <context value="mediaReference"/>
+            <element value="value"/>
+            <variable value="mediaUrl"/>
+          </source>
+          <target>
+            <context value="sourceAttachment"/>
+            <contextType value="variable"/>
+            <element value="url"/>
+            <transform value="cast"/>
+            <parameter>
+              <valueId value="mediaUrl"/>
+            </parameter>
+            <parameter>
+              <valueString value="url"/>
             </parameter>
           </target>
         </rule>

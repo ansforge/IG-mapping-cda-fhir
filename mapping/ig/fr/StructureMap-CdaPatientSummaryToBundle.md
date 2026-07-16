@@ -18,7 +18,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
   "name" : "CdaPatientSummaryToBundle",
   "title" : "Mapping CDA Patient Summary vers FHIR - Étape 4 finale",
   "status" : "draft",
-  "date" : "2026-07-16T07:55:09+00:00",
+  "date" : "2026-07-16T08:29:45+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -259,6 +259,21 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     "url" : "http://hl7.org/fhir/StructureDefinition/boolean|4.0.1",
     "mode" : "target",
     "alias" : "boolean"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Device|4.0.1",
+    "mode" : "target",
+    "alias" : "Device"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement|4.0.1",
+    "mode" : "target",
+    "alias" : "DeviceUseStatement"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Consent|4.0.1",
+    "mode" : "target",
+    "alias" : "Consent"
   }],
   "import" : ["https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes|0.1.0",
   "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToBundle",
@@ -679,6 +694,45 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
       }],
       "dependent" : [{
         "name" : "PatientSummaryFamilyHistorySection",
+        "variable" : ["section", "compSection", "bundle", "patient"]
+      }]
+    },
+    {
+      "name" : "medicalDevices",
+      "source" : [{
+        "context" : "section",
+        "element" : "code",
+        "variable" : "secCode",
+        "condition" : "secCode.code = '46264-8'"
+      }],
+      "dependent" : [{
+        "name" : "PatientSummaryMedicalDeviceSection",
+        "variable" : ["section", "compSection", "bundle", "patient"]
+      }]
+    },
+    {
+      "name" : "addedDocuments",
+      "source" : [{
+        "context" : "section",
+        "element" : "code",
+        "variable" : "secCode",
+        "condition" : "secCode.code = '55107-7'"
+      }],
+      "dependent" : [{
+        "name" : "PatientSummaryAddedDocumentsSection",
+        "variable" : ["section", "compSection", "bundle", "patient"]
+      }]
+    },
+    {
+      "name" : "advanceDirective",
+      "source" : [{
+        "context" : "section",
+        "element" : "code",
+        "variable" : "secCode",
+        "condition" : "secCode.code = '42348-3'"
+      }],
+      "dependent" : [{
+        "name" : "PatientSummaryAdvanceDirectiveSection",
         "variable" : ["section", "compSection", "bundle", "patient"]
       }]
     }]
@@ -23779,6 +23833,1948 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
             "transform" : "evaluate",
             "parameter" : [{
               "valueString" : "'urn:uuid:' + %familyHistory.id"
+            }]
+          }]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "PatientSummaryMedicalDeviceSection",
+    "typeMode" : "none",
+    "documentation" : "10. DISPOSITIFS MÉDICAUX",
+    "input" : [{
+      "name" : "section",
+      "mode" : "source"
+    },
+    {
+      "name" : "compSection",
+      "mode" : "target"
+    },
+    {
+      "name" : "bundle",
+      "type" : "Bundle",
+      "mode" : "target"
+    },
+    {
+      "name" : "patient",
+      "type" : "Patient",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "sectionTemplate",
+      "source" : [{
+        "context" : "section",
+        "element" : "templateId",
+        "variable" : "sectionTid"
+      }],
+      "rule" : [{
+        "name" : "medicalDeviceSection",
+        "source" : [{
+          "context" : "sectionTid",
+          "element" : "root",
+          "variable" : "sectionRoot",
+          "condition" : "sectionRoot = '1.2.250.1.213.1.1.2.1'"
+        }],
+        "rule" : [{
+          "name" : "sectionEntry",
+          "source" : [{
+            "context" : "section",
+            "element" : "entry",
+            "variable" : "entry"
+          }],
+          "rule" : [{
+            "name" : "deviceSupply",
+            "source" : [{
+              "context" : "entry",
+              "element" : "supply",
+              "variable" : "supply"
+            }],
+            "rule" : [{
+              "name" : "deviceSupplyTemplate",
+              "source" : [{
+                "context" : "supply",
+                "element" : "templateId",
+                "variable" : "supplyTid"
+              }],
+              "rule" : [{
+                "name" : "deviceUseStatement",
+                "source" : [{
+                  "context" : "supplyTid",
+                  "element" : "root",
+                  "variable" : "supplyRoot",
+                  "condition" : "supplyRoot = '1.2.250.1.213.1.1.3.20'"
+                }],
+                "target" : [{
+                  "context" : "bundle",
+                  "contextType" : "variable",
+                  "element" : "entry",
+                  "variable" : "deviceUseStatementEntry"
+                },
+                {
+                  "context" : "deviceUseStatementEntry",
+                  "contextType" : "variable",
+                  "element" : "resource",
+                  "variable" : "deviceUseStatement",
+                  "transform" : "create",
+                  "parameter" : [{
+                    "valueString" : "DeviceUseStatement"
+                  }]
+                },
+                {
+                  "context" : "deviceUseStatement",
+                  "contextType" : "variable",
+                  "element" : "id",
+                  "transform" : "uuid"
+                },
+                {
+                  "context" : "deviceUseStatementEntry",
+                  "contextType" : "variable",
+                  "element" : "fullUrl",
+                  "transform" : "evaluate",
+                  "parameter" : [{
+                    "valueString" : "'urn:uuid:' + %deviceUseStatement.id"
+                  }]
+                }],
+                "dependent" : [{
+                  "name" : "PatientSummaryDeviceUseStatementFromSupply",
+                  "variable" : ["supply", "deviceUseStatement", "compSection", "bundle", "patient"]
+                }]
+              }]
+            }]
+          }]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "PatientSummaryDeviceUseStatementFromSupply",
+    "typeMode" : "none",
+    "documentation" : "Supply CDA -> DeviceUseStatement",
+    "input" : [{
+      "name" : "supply",
+      "mode" : "source"
+    },
+    {
+      "name" : "deviceUseStatement",
+      "type" : "DeviceUseStatement",
+      "mode" : "target"
+    },
+    {
+      "name" : "compSection",
+      "mode" : "target"
+    },
+    {
+      "name" : "bundle",
+      "type" : "Bundle",
+      "mode" : "target"
+    },
+    {
+      "name" : "patient",
+      "type" : "Patient",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "statusDefault",
+      "source" : [{
+        "context" : "supply"
+      }],
+      "target" : [{
+        "context" : "deviceUseStatement",
+        "contextType" : "variable",
+        "element" : "status",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "active"
+        }]
+      }]
+    },
+    {
+      "name" : "statusFromHigh",
+      "source" : [{
+        "context" : "supply",
+        "element" : "effectiveTime",
+        "variable" : "effectiveTime"
+      }],
+      "rule" : [{
+        "name" : "statusCompleted",
+        "source" : [{
+          "context" : "effectiveTime",
+          "element" : "high",
+          "variable" : "high"
+        }],
+        "target" : [{
+          "context" : "deviceUseStatement",
+          "contextType" : "variable",
+          "element" : "status",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueString" : "completed"
+          }]
+        }]
+      }]
+    },
+    {
+      "name" : "identifier",
+      "source" : [{
+        "context" : "supply",
+        "element" : "id",
+        "variable" : "supplyId"
+      }],
+      "target" : [{
+        "context" : "deviceUseStatement",
+        "contextType" : "variable",
+        "element" : "identifier",
+        "variable" : "identifier",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Identifier"
+        }]
+      }],
+      "dependent" : [{
+        "name" : "II",
+        "variable" : ["supplyId", "identifier"]
+      }]
+    },
+    {
+      "name" : "subject",
+      "source" : [{
+        "context" : "supply"
+      }],
+      "target" : [{
+        "context" : "deviceUseStatement",
+        "contextType" : "variable",
+        "element" : "subject",
+        "variable" : "subjectRef",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Reference"
+        }]
+      },
+      {
+        "context" : "subjectRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %patient.id"
+        }]
+      }]
+    },
+    {
+      "name" : "timing",
+      "source" : [{
+        "context" : "supply",
+        "element" : "effectiveTime",
+        "variable" : "effectiveTime"
+      }],
+      "dependent" : [{
+        "name" : "DeviceUseStatementTimingFromEffectiveTime",
+        "variable" : ["effectiveTime", "deviceUseStatement"]
+      }]
+    },
+    {
+      "name" : "participantDevice",
+      "source" : [{
+        "context" : "supply",
+        "element" : "participant",
+        "variable" : "participant"
+      }],
+      "target" : [{
+        "context" : "bundle",
+        "contextType" : "variable",
+        "element" : "entry",
+        "variable" : "deviceEntry"
+      },
+      {
+        "context" : "deviceEntry",
+        "contextType" : "variable",
+        "element" : "resource",
+        "variable" : "device",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Device"
+        }]
+      },
+      {
+        "context" : "device",
+        "contextType" : "variable",
+        "element" : "id",
+        "transform" : "uuid"
+      },
+      {
+        "context" : "deviceEntry",
+        "contextType" : "variable",
+        "element" : "fullUrl",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %device.id"
+        }]
+      }],
+      "rule" : [{
+        "name" : "device",
+        "source" : [{
+          "context" : "participant"
+        }],
+        "dependent" : [{
+          "name" : "PatientSummaryDeviceFromParticipant",
+          "variable" : ["participant", "device", "patient"]
+        }]
+      },
+      {
+        "name" : "deviceReference",
+        "source" : [{
+          "context" : "participant"
+        }],
+        "target" : [{
+          "context" : "deviceUseStatement",
+          "contextType" : "variable",
+          "element" : "device",
+          "variable" : "deviceRef",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "Reference"
+          }]
+        },
+        {
+          "context" : "deviceRef",
+          "contextType" : "variable",
+          "element" : "reference",
+          "transform" : "evaluate",
+          "parameter" : [{
+            "valueString" : "'urn:uuid:' + %device.id"
+          }]
+        }]
+      }]
+    },
+    {
+      "name" : "entryRelationship",
+      "source" : [{
+        "context" : "supply",
+        "element" : "entryRelationship",
+        "variable" : "er"
+      }],
+      "rule" : [{
+        "name" : "commentAct",
+        "source" : [{
+          "context" : "er",
+          "element" : "act",
+          "variable" : "commentAct",
+          "condition" : "er.typeCode = 'SUBJ'"
+        }],
+        "rule" : [{
+          "name" : "commentTemplate",
+          "source" : [{
+            "context" : "commentAct",
+            "element" : "templateId",
+            "variable" : "tid"
+          }],
+          "rule" : [{
+            "name" : "commentMapped",
+            "source" : [{
+              "context" : "tid",
+              "element" : "root",
+              "variable" : "root",
+              "condition" : "root = '1.2.250.1.213.1.1.3.32'"
+            }],
+            "rule" : [{
+              "name" : "commentText",
+              "source" : [{
+                "context" : "commentAct",
+                "element" : "text",
+                "variable" : "commentText"
+              }],
+              "rule" : [{
+                "name" : "commentReference",
+                "source" : [{
+                  "context" : "commentText",
+                  "element" : "reference",
+                  "variable" : "ref"
+                }],
+                "rule" : [{
+                  "name" : "note",
+                  "source" : [{
+                    "context" : "ref",
+                    "element" : "value",
+                    "variable" : "value"
+                  }],
+                  "target" : [{
+                    "context" : "deviceUseStatement",
+                    "contextType" : "variable",
+                    "element" : "note",
+                    "variable" : "note",
+                    "transform" : "create",
+                    "parameter" : [{
+                      "valueString" : "Annotation"
+                    }]
+                  }],
+                  "rule" : [{
+                    "name" : "noteText",
+                    "source" : [{
+                      "context" : "value"
+                    }],
+                    "target" : [{
+                      "context" : "note",
+                      "contextType" : "variable",
+                      "element" : "text",
+                      "transform" : "cast",
+                      "parameter" : [{
+                        "valueId" : "value"
+                      },
+                      {
+                        "valueString" : "string"
+                      }]
+                    }]
+                  }]
+                }]
+              }]
+            }]
+          }]
+        }]
+      }]
+    },
+    {
+      "name" : "sectionEntry",
+      "source" : [{
+        "context" : "supply"
+      }],
+      "target" : [{
+        "context" : "compSection",
+        "contextType" : "variable",
+        "element" : "entry",
+        "variable" : "sectionRef",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Reference"
+        }]
+      },
+      {
+        "context" : "sectionRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %deviceUseStatement.id"
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "DeviceUseStatementTimingFromEffectiveTime",
+    "typeMode" : "none",
+    "documentation" : "effectiveTime CDA -> DeviceUseStatement.timing[x]",
+    "input" : [{
+      "name" : "effectiveTime",
+      "mode" : "source"
+    },
+    {
+      "name" : "deviceUseStatement",
+      "type" : "DeviceUseStatement",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "timingDateTime",
+      "source" : [{
+        "context" : "effectiveTime",
+        "element" : "value",
+        "variable" : "value"
+      }],
+      "target" : [{
+        "context" : "deviceUseStatement",
+        "contextType" : "variable",
+        "element" : "timing",
+        "variable" : "timingDateTime",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "dateTime"
+        }]
+      }],
+      "dependent" : [{
+        "name" : "TSDateTime",
+        "variable" : ["effectiveTime", "timingDateTime"]
+      }]
+    },
+    {
+      "name" : "timingPeriodByLow",
+      "source" : [{
+        "context" : "effectiveTime",
+        "element" : "low",
+        "variable" : "low"
+      }],
+      "target" : [{
+        "context" : "deviceUseStatement",
+        "contextType" : "variable",
+        "element" : "timing",
+        "variable" : "period",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Period"
+        }]
+      }],
+      "rule" : [{
+        "name" : "start",
+        "source" : [{
+          "context" : "low"
+        }],
+        "target" : [{
+          "context" : "period",
+          "contextType" : "variable",
+          "element" : "start",
+          "variable" : "start",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "dateTime"
+          }]
+        }],
+        "dependent" : [{
+          "name" : "TSDateTime",
+          "variable" : ["low", "start"]
+        }]
+      },
+      {
+        "name" : "end",
+        "source" : [{
+          "context" : "effectiveTime",
+          "element" : "high",
+          "variable" : "high"
+        }],
+        "target" : [{
+          "context" : "period",
+          "contextType" : "variable",
+          "element" : "end",
+          "variable" : "end",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "dateTime"
+          }]
+        }],
+        "dependent" : [{
+          "name" : "TSDateTime",
+          "variable" : ["high", "end"]
+        }]
+      }]
+    },
+    {
+      "name" : "timingPeriodByHigh",
+      "source" : [{
+        "context" : "effectiveTime",
+        "element" : "high",
+        "variable" : "high",
+        "condition" : "effectiveTime.low.empty()"
+      }],
+      "target" : [{
+        "context" : "deviceUseStatement",
+        "contextType" : "variable",
+        "element" : "timing",
+        "variable" : "period",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Period"
+        }]
+      }],
+      "rule" : [{
+        "name" : "endOnly",
+        "source" : [{
+          "context" : "high"
+        }],
+        "target" : [{
+          "context" : "period",
+          "contextType" : "variable",
+          "element" : "end",
+          "variable" : "end",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "dateTime"
+          }]
+        }],
+        "dependent" : [{
+          "name" : "TSDateTime",
+          "variable" : ["high", "end"]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "PatientSummaryDeviceFromParticipant",
+    "typeMode" : "none",
+    "documentation" : "participant CDA -> Device",
+    "input" : [{
+      "name" : "participant",
+      "mode" : "source"
+    },
+    {
+      "name" : "device",
+      "type" : "Device",
+      "mode" : "target"
+    },
+    {
+      "name" : "patient",
+      "type" : "Patient",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "participantRole",
+      "source" : [{
+        "context" : "participant",
+        "element" : "participantRole",
+        "variable" : "participantRole"
+      }],
+      "rule" : [{
+        "name" : "identifier",
+        "source" : [{
+          "context" : "participantRole",
+          "element" : "id",
+          "variable" : "deviceId"
+        }],
+        "target" : [{
+          "context" : "device",
+          "contextType" : "variable",
+          "element" : "identifier",
+          "variable" : "identifier",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "Identifier"
+          }]
+        }],
+        "dependent" : [{
+          "name" : "II",
+          "variable" : ["deviceId", "identifier"]
+        }]
+      },
+      {
+        "name" : "playingDevice",
+        "source" : [{
+          "context" : "participantRole",
+          "element" : "playingDevice",
+          "variable" : "playingDevice"
+        }],
+        "rule" : [{
+          "name" : "type",
+          "source" : [{
+            "context" : "playingDevice",
+            "element" : "code",
+            "variable" : "deviceCode"
+          }],
+          "target" : [{
+            "context" : "device",
+            "contextType" : "variable",
+            "element" : "type",
+            "variable" : "type",
+            "transform" : "create",
+            "parameter" : [{
+              "valueString" : "CodeableConcept"
+            }]
+          }],
+          "dependent" : [{
+            "name" : "CDCodeableConcept",
+            "variable" : ["deviceCode", "type"]
+          }]
+        }]
+      },
+      {
+        "name" : "patient",
+        "source" : [{
+          "context" : "participantRole"
+        }],
+        "target" : [{
+          "context" : "device",
+          "contextType" : "variable",
+          "element" : "patient",
+          "variable" : "patientRef",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "Reference"
+          }]
+        },
+        {
+          "context" : "patientRef",
+          "contextType" : "variable",
+          "element" : "reference",
+          "transform" : "evaluate",
+          "parameter" : [{
+            "valueString" : "'urn:uuid:' + %patient.id"
+          }]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "PatientSummaryAddedDocumentsSection",
+    "typeMode" : "none",
+    "documentation" : "11. DOCUMENTS JOINTS",
+    "input" : [{
+      "name" : "section",
+      "mode" : "source"
+    },
+    {
+      "name" : "compSection",
+      "mode" : "target"
+    },
+    {
+      "name" : "bundle",
+      "type" : "Bundle",
+      "mode" : "target"
+    },
+    {
+      "name" : "patient",
+      "type" : "Patient",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "sectionTemplate",
+      "source" : [{
+        "context" : "section",
+        "element" : "templateId",
+        "variable" : "sectionTid"
+      }],
+      "rule" : [{
+        "name" : "addedDocumentsSection",
+        "source" : [{
+          "context" : "sectionTid",
+          "element" : "root",
+          "variable" : "sectionRoot",
+          "condition" : "sectionRoot = '1.2.250.1.213.1.1.2.37'"
+        }],
+        "rule" : [{
+          "name" : "sectionEntry",
+          "source" : [{
+            "context" : "section",
+            "element" : "entry",
+            "variable" : "entry"
+          }],
+          "rule" : [{
+            "name" : "attachedDocument",
+            "source" : [{
+              "context" : "entry",
+              "element" : "organizer",
+              "variable" : "attachedDocument"
+            }],
+            "rule" : [{
+              "name" : "attachedDocumentTemplate",
+              "source" : [{
+                "context" : "attachedDocument",
+                "element" : "templateId",
+                "variable" : "docTid"
+              }],
+              "rule" : [{
+                "name" : "attachedDocument",
+                "source" : [{
+                  "context" : "docTid",
+                  "element" : "root",
+                  "variable" : "docRoot",
+                  "condition" : "docRoot = '1.2.250.1.213.1.1.3.18'"
+                }],
+                "target" : [{
+                  "context" : "bundle",
+                  "contextType" : "variable",
+                  "element" : "entry",
+                  "variable" : "documentReferenceEntry"
+                },
+                {
+                  "context" : "documentReferenceEntry",
+                  "contextType" : "variable",
+                  "element" : "resource",
+                  "variable" : "documentReference",
+                  "transform" : "create",
+                  "parameter" : [{
+                    "valueString" : "DocumentReference"
+                  }]
+                },
+                {
+                  "context" : "documentReference",
+                  "contextType" : "variable",
+                  "element" : "id",
+                  "transform" : "uuid"
+                },
+                {
+                  "context" : "documentReferenceEntry",
+                  "contextType" : "variable",
+                  "element" : "fullUrl",
+                  "transform" : "evaluate",
+                  "parameter" : [{
+                    "valueString" : "'urn:uuid:' + %documentReference.id"
+                  }]
+                }],
+                "dependent" : [{
+                  "name" : "DocumentReferenceFromCdaAttachedDocument",
+                  "variable" : ["attachedDocument", "documentReference", "compSection", "patient"]
+                }]
+              }]
+            }]
+          },
+          {
+            "name" : "simpleObservationNotMapped",
+            "source" : [{
+              "context" : "entry",
+              "element" : "observation",
+              "variable" : "simpleObservation"
+            }]
+          }]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "DocumentReferenceFromCdaAttachedDocument",
+    "typeMode" : "none",
+    "documentation" : "Organizer CDA de document attaché -> DocumentReference",
+    "input" : [{
+      "name" : "attachedDocument",
+      "mode" : "source"
+    },
+    {
+      "name" : "documentReference",
+      "type" : "DocumentReference",
+      "mode" : "target"
+    },
+    {
+      "name" : "compSection",
+      "mode" : "target"
+    },
+    {
+      "name" : "patient",
+      "type" : "Patient",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "statusDefault",
+      "source" : [{
+        "context" : "attachedDocument"
+      }],
+      "target" : [{
+        "context" : "documentReference",
+        "contextType" : "variable",
+        "element" : "status",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "current"
+        }]
+      }]
+    },
+    {
+      "name" : "identifier",
+      "source" : [{
+        "context" : "attachedDocument",
+        "element" : "id",
+        "variable" : "docId"
+      }],
+      "target" : [{
+        "context" : "documentReference",
+        "contextType" : "variable",
+        "element" : "identifier",
+        "variable" : "identifier",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Identifier"
+        }]
+      }],
+      "dependent" : [{
+        "name" : "II",
+        "variable" : ["docId", "identifier"]
+      }]
+    },
+    {
+      "name" : "subject",
+      "source" : [{
+        "context" : "attachedDocument"
+      }],
+      "target" : [{
+        "context" : "documentReference",
+        "contextType" : "variable",
+        "element" : "subject",
+        "variable" : "subjectRef",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Reference"
+        }]
+      },
+      {
+        "context" : "subjectRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %patient.id"
+        }]
+      }]
+    },
+    {
+      "name" : "docStatus",
+      "source" : [{
+        "context" : "attachedDocument",
+        "element" : "statusCode",
+        "variable" : "statusCode"
+      }],
+      "rule" : [{
+        "name" : "final",
+        "source" : [{
+          "context" : "statusCode",
+          "element" : "code",
+          "variable" : "code",
+          "condition" : "code = 'completed'"
+        }],
+        "target" : [{
+          "context" : "documentReference",
+          "contextType" : "variable",
+          "element" : "docStatus",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueString" : "final"
+          }]
+        }]
+      },
+      {
+        "name" : "preliminary",
+        "source" : [{
+          "context" : "statusCode",
+          "element" : "code",
+          "variable" : "code",
+          "condition" : "code = 'active'"
+        }],
+        "target" : [{
+          "context" : "documentReference",
+          "contextType" : "variable",
+          "element" : "docStatus",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueString" : "preliminary"
+          }]
+        }]
+      },
+      {
+        "name" : "aborted",
+        "source" : [{
+          "context" : "statusCode",
+          "element" : "code",
+          "variable" : "code",
+          "condition" : "code = 'aborted'"
+        }],
+        "target" : [{
+          "context" : "documentReference",
+          "contextType" : "variable",
+          "element" : "docStatus",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueString" : "entered-in-error"
+          }]
+        }]
+      },
+      {
+        "name" : "cancelled",
+        "source" : [{
+          "context" : "statusCode",
+          "element" : "code",
+          "variable" : "code",
+          "condition" : "code = 'cancelled'"
+        }],
+        "target" : [{
+          "context" : "documentReference",
+          "contextType" : "variable",
+          "element" : "docStatus",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueString" : "entered-in-error"
+          }]
+        }]
+      }]
+    },
+    {
+      "name" : "date",
+      "source" : [{
+        "context" : "attachedDocument",
+        "element" : "effectiveTime",
+        "variable" : "effectiveTime"
+      }],
+      "rule" : [{
+        "name" : "dateTime",
+        "source" : [{
+          "context" : "effectiveTime",
+          "element" : "value",
+          "variable" : "value"
+        }],
+        "target" : [{
+          "context" : "documentReference",
+          "contextType" : "variable",
+          "element" : "date",
+          "variable" : "date",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "dateTime"
+          }]
+        }],
+        "dependent" : [{
+          "name" : "TSDateTime",
+          "variable" : ["effectiveTime", "date"]
+        }]
+      },
+      {
+        "name" : "dateLow",
+        "source" : [{
+          "context" : "effectiveTime",
+          "element" : "low",
+          "variable" : "low"
+        }],
+        "target" : [{
+          "context" : "documentReference",
+          "contextType" : "variable",
+          "element" : "date",
+          "variable" : "date",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "dateTime"
+          }]
+        }],
+        "dependent" : [{
+          "name" : "TSDateTime",
+          "variable" : ["low", "date"]
+        }]
+      }]
+    },
+    {
+      "name" : "typeComponent",
+      "source" : [{
+        "context" : "attachedDocument",
+        "element" : "component",
+        "variable" : "component"
+      }],
+      "rule" : [{
+        "name" : "typeObservation",
+        "source" : [{
+          "context" : "component",
+          "element" : "observation",
+          "variable" : "typeObservation"
+        }],
+        "rule" : [{
+          "name" : "typeTemplate",
+          "source" : [{
+            "context" : "typeObservation",
+            "element" : "templateId",
+            "variable" : "tid"
+          }],
+          "rule" : [{
+            "name" : "typeValue",
+            "source" : [{
+              "context" : "tid",
+              "element" : "root",
+              "variable" : "root",
+              "condition" : "root = '1.2.250.1.213.1.1.3.48.18'"
+            }],
+            "rule" : [{
+              "name" : "type",
+              "source" : [{
+                "context" : "typeObservation",
+                "element" : "value",
+                "variable" : "typeValue"
+              }],
+              "target" : [{
+                "context" : "documentReference",
+                "contextType" : "variable",
+                "element" : "type",
+                "variable" : "type",
+                "transform" : "create",
+                "parameter" : [{
+                  "valueString" : "CodeableConcept"
+                }]
+              }],
+              "dependent" : [{
+                "name" : "CDCodeableConcept",
+                "variable" : ["typeValue", "type"]
+              }]
+            }]
+          }]
+        }]
+      }]
+    },
+    {
+      "name" : "mediaComponent",
+      "source" : [{
+        "context" : "attachedDocument",
+        "element" : "component",
+        "variable" : "component"
+      }],
+      "rule" : [{
+        "name" : "observationMedia",
+        "source" : [{
+          "context" : "component",
+          "element" : "observationMedia",
+          "variable" : "observationMedia"
+        }],
+        "target" : [{
+          "context" : "documentReference",
+          "contextType" : "variable",
+          "element" : "content",
+          "variable" : "content"
+        }],
+        "rule" : [{
+          "name" : "attachment",
+          "source" : [{
+            "context" : "observationMedia"
+          }],
+          "dependent" : [{
+            "name" : "AttachmentFromObservationMedia",
+            "variable" : ["observationMedia", "content"]
+          }]
+        }]
+      }]
+    },
+    {
+      "name" : "sectionEntry",
+      "source" : [{
+        "context" : "attachedDocument"
+      }],
+      "target" : [{
+        "context" : "compSection",
+        "contextType" : "variable",
+        "element" : "entry",
+        "variable" : "sectionRef",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Reference"
+        }]
+      },
+      {
+        "context" : "sectionRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %documentReference.id"
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "AttachmentFromObservationMedia",
+    "typeMode" : "none",
+    "documentation" : "ObservationMedia CDA -> DocumentReference.content.attachment",
+    "input" : [{
+      "name" : "observationMedia",
+      "mode" : "source"
+    },
+    {
+      "name" : "content",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "attachment",
+      "source" : [{
+        "context" : "observationMedia"
+      }],
+      "target" : [{
+        "context" : "content",
+        "contextType" : "variable",
+        "element" : "attachment",
+        "variable" : "attachment",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Attachment"
+        }]
+      }],
+      "rule" : [{
+        "name" : "attachmentId",
+        "source" : [{
+          "context" : "observationMedia",
+          "element" : "ID",
+          "variable" : "mediaId"
+        }],
+        "target" : [{
+          "context" : "attachment",
+          "contextType" : "variable",
+          "element" : "id",
+          "transform" : "cast",
+          "parameter" : [{
+            "valueId" : "mediaId"
+          },
+          {
+            "valueString" : "string"
+          }]
+        }]
+      },
+      {
+        "name" : "mediaValue",
+        "source" : [{
+          "context" : "observationMedia",
+          "element" : "value",
+          "variable" : "mediaValue"
+        }],
+        "rule" : [{
+          "name" : "contentType",
+          "source" : [{
+            "context" : "mediaValue",
+            "element" : "mediaType",
+            "variable" : "mediaType"
+          }],
+          "target" : [{
+            "context" : "attachment",
+            "contextType" : "variable",
+            "element" : "contentType",
+            "transform" : "cast",
+            "parameter" : [{
+              "valueId" : "mediaType"
+            },
+            {
+              "valueString" : "string"
+            }]
+          }]
+        },
+        {
+          "name" : "data",
+          "source" : [{
+            "context" : "mediaValue",
+            "element" : "xmlText",
+            "variable" : "rawData"
+          }],
+          "target" : [{
+            "context" : "attachment",
+            "contextType" : "variable",
+            "element" : "data",
+            "transform" : "cast",
+            "parameter" : [{
+              "valueId" : "rawData"
+            },
+            {
+              "valueString" : "base64Binary"
+            }]
+          }]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "PatientSummaryAdvanceDirectiveSection",
+    "typeMode" : "none",
+    "documentation" : "12 DIRECTIVES ANTICIPEES",
+    "input" : [{
+      "name" : "section",
+      "mode" : "source"
+    },
+    {
+      "name" : "compSection",
+      "mode" : "target"
+    },
+    {
+      "name" : "bundle",
+      "type" : "Bundle",
+      "mode" : "target"
+    },
+    {
+      "name" : "patient",
+      "type" : "Patient",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "sectionTemplate",
+      "source" : [{
+        "context" : "section",
+        "element" : "templateId",
+        "variable" : "sectionTid"
+      }],
+      "rule" : [{
+        "name" : "advanceDirectiveSection",
+        "source" : [{
+          "context" : "sectionTid",
+          "element" : "root",
+          "variable" : "sectionRoot",
+          "condition" : "sectionRoot = '1.2.250.1.213.1.1.2.157'"
+        }],
+        "rule" : [{
+          "name" : "sectionEntry",
+          "source" : [{
+            "context" : "section",
+            "element" : "entry",
+            "variable" : "entry"
+          }],
+          "rule" : [{
+            "name" : "directiveObservation",
+            "source" : [{
+              "context" : "entry",
+              "element" : "observation",
+              "variable" : "directiveObservation"
+            }],
+            "rule" : [{
+              "name" : "advanceDirectiveTemplate",
+              "source" : [{
+                "context" : "directiveObservation",
+                "element" : "templateId",
+                "variable" : "directiveTid"
+              }],
+              "rule" : [{
+                "name" : "advanceDirectiveConsent",
+                "source" : [{
+                  "context" : "directiveTid",
+                  "element" : "root",
+                  "variable" : "directiveRoot",
+                  "condition" : "directiveRoot = '1.2.250.1.213.1.1.3.54'"
+                }],
+                "target" : [{
+                  "context" : "bundle",
+                  "contextType" : "variable",
+                  "element" : "entry",
+                  "variable" : "consentEntry"
+                },
+                {
+                  "context" : "consentEntry",
+                  "contextType" : "variable",
+                  "element" : "resource",
+                  "variable" : "consent",
+                  "transform" : "create",
+                  "parameter" : [{
+                    "valueString" : "Consent"
+                  }]
+                },
+                {
+                  "context" : "consent",
+                  "contextType" : "variable",
+                  "element" : "id",
+                  "transform" : "uuid"
+                },
+                {
+                  "context" : "consentEntry",
+                  "contextType" : "variable",
+                  "element" : "fullUrl",
+                  "transform" : "evaluate",
+                  "parameter" : [{
+                    "valueString" : "'urn:uuid:' + %consent.id"
+                  }]
+                }],
+                "dependent" : [{
+                  "name" : "AdvanceDirectiveConsentFromObservation",
+                  "variable" : ["directiveObservation", "consent", "compSection", "patient"]
+                }]
+              }]
+            }]
+          }]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "AdvanceDirectiveConsentFromObservation",
+    "typeMode" : "none",
+    "documentation" : "Observation CDA FR-Directive-Anticipee -> Consent",
+    "input" : [{
+      "name" : "directiveObservation",
+      "mode" : "source"
+    },
+    {
+      "name" : "consent",
+      "type" : "Consent",
+      "mode" : "target"
+    },
+    {
+      "name" : "compSection",
+      "mode" : "target"
+    },
+    {
+      "name" : "patient",
+      "type" : "Patient",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "identifier",
+      "source" : [{
+        "context" : "directiveObservation",
+        "element" : "id",
+        "variable" : "directiveId"
+      }],
+      "target" : [{
+        "context" : "consent",
+        "contextType" : "variable",
+        "element" : "identifier",
+        "variable" : "identifier",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Identifier"
+        }]
+      }],
+      "dependent" : [{
+        "name" : "II",
+        "variable" : ["directiveId", "identifier"]
+      }]
+    },
+    {
+      "name" : "patient",
+      "source" : [{
+        "context" : "directiveObservation"
+      }],
+      "target" : [{
+        "context" : "consent",
+        "contextType" : "variable",
+        "element" : "patient",
+        "variable" : "patientRef",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Reference"
+        }]
+      },
+      {
+        "context" : "patientRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %patient.id"
+        }]
+      }]
+    },
+    {
+      "name" : "statusDefault",
+      "source" : [{
+        "context" : "directiveObservation"
+      }],
+      "target" : [{
+        "context" : "consent",
+        "contextType" : "variable",
+        "element" : "status",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "active"
+        }]
+      }]
+    },
+    {
+      "name" : "status",
+      "source" : [{
+        "context" : "directiveObservation",
+        "element" : "statusCode",
+        "variable" : "statusCode"
+      }],
+      "rule" : [{
+        "name" : "completedToActive",
+        "source" : [{
+          "context" : "statusCode",
+          "element" : "code",
+          "variable" : "code",
+          "condition" : "code = 'completed'"
+        }],
+        "target" : [{
+          "context" : "consent",
+          "contextType" : "variable",
+          "element" : "status",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueString" : "active"
+          }]
+        }]
+      },
+      {
+        "name" : "activeToActive",
+        "source" : [{
+          "context" : "statusCode",
+          "element" : "code",
+          "variable" : "code",
+          "condition" : "code = 'active'"
+        }],
+        "target" : [{
+          "context" : "consent",
+          "contextType" : "variable",
+          "element" : "status",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueString" : "active"
+          }]
+        }]
+      },
+      {
+        "name" : "abortedToInactive",
+        "source" : [{
+          "context" : "statusCode",
+          "element" : "code",
+          "variable" : "code",
+          "condition" : "code = 'aborted'"
+        }],
+        "target" : [{
+          "context" : "consent",
+          "contextType" : "variable",
+          "element" : "status",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueString" : "inactive"
+          }]
+        }]
+      },
+      {
+        "name" : "cancelledToInactive",
+        "source" : [{
+          "context" : "statusCode",
+          "element" : "code",
+          "variable" : "code",
+          "condition" : "code = 'cancelled'"
+        }],
+        "target" : [{
+          "context" : "consent",
+          "contextType" : "variable",
+          "element" : "status",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueString" : "inactive"
+          }]
+        }]
+      }]
+    },
+    {
+      "name" : "scope",
+      "source" : [{
+        "context" : "directiveObservation"
+      }],
+      "target" : [{
+        "context" : "consent",
+        "contextType" : "variable",
+        "element" : "scope",
+        "variable" : "scope",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "CodeableConcept"
+        }]
+      }],
+      "rule" : [{
+        "name" : "scopeCoding",
+        "source" : [{
+          "context" : "directiveObservation"
+        }],
+        "target" : [{
+          "context" : "scope",
+          "contextType" : "variable",
+          "element" : "coding",
+          "variable" : "scopeCoding",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "Coding"
+          }]
+        }],
+        "rule" : [{
+          "name" : "scopeSystem",
+          "source" : [{
+            "context" : "directiveObservation"
+          }],
+          "target" : [{
+            "context" : "scopeCoding",
+            "contextType" : "variable",
+            "element" : "system",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueString" : "http://terminology.hl7.org/CodeSystem/consentscope"
+            }]
+          }]
+        },
+        {
+          "name" : "scopeCode",
+          "source" : [{
+            "context" : "directiveObservation"
+          }],
+          "target" : [{
+            "context" : "scopeCoding",
+            "contextType" : "variable",
+            "element" : "code",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueString" : "adr"
+            }]
+          }]
+        },
+        {
+          "name" : "scopeDisplay",
+          "source" : [{
+            "context" : "directiveObservation"
+          }],
+          "target" : [{
+            "context" : "scopeCoding",
+            "contextType" : "variable",
+            "element" : "display",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueString" : "Advanced Care Directive"
+            }]
+          }]
+        }]
+      }]
+    },
+    {
+      "name" : "category",
+      "source" : [{
+        "context" : "directiveObservation",
+        "element" : "code",
+        "variable" : "directiveCode"
+      }],
+      "target" : [{
+        "context" : "consent",
+        "contextType" : "variable",
+        "element" : "category",
+        "variable" : "category",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "CodeableConcept"
+        }]
+      }],
+      "dependent" : [{
+        "name" : "CDCodeableConcept",
+        "variable" : ["directiveCode", "category"]
+      }]
+    },
+    {
+      "name" : "dateTime",
+      "source" : [{
+        "context" : "directiveObservation",
+        "element" : "effectiveTime",
+        "variable" : "effectiveTime"
+      }],
+      "rule" : [{
+        "name" : "dateTime",
+        "source" : [{
+          "context" : "effectiveTime",
+          "element" : "value",
+          "variable" : "value"
+        }],
+        "target" : [{
+          "context" : "consent",
+          "contextType" : "variable",
+          "element" : "dateTime",
+          "variable" : "consentDateTime",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "dateTime"
+          }]
+        }],
+        "dependent" : [{
+          "name" : "TSDateTime",
+          "variable" : ["effectiveTime", "consentDateTime"]
+        }]
+      },
+      {
+        "name" : "dateLow",
+        "source" : [{
+          "context" : "effectiveTime",
+          "element" : "low",
+          "variable" : "low"
+        }],
+        "target" : [{
+          "context" : "consent",
+          "contextType" : "variable",
+          "element" : "dateTime",
+          "variable" : "consentDateTime",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "dateTime"
+          }]
+        }],
+        "dependent" : [{
+          "name" : "TSDateTime",
+          "variable" : ["low", "consentDateTime"]
+        }]
+      }]
+    },
+    {
+      "name" : "provision",
+      "source" : [{
+        "context" : "directiveObservation"
+      }],
+      "target" : [{
+        "context" : "consent",
+        "contextType" : "variable",
+        "element" : "provision",
+        "variable" : "provision"
+      }],
+      "rule" : [{
+        "name" : "provisionCode",
+        "source" : [{
+          "context" : "directiveObservation",
+          "element" : "code",
+          "variable" : "directiveCode"
+        }],
+        "target" : [{
+          "context" : "provision",
+          "contextType" : "variable",
+          "element" : "code",
+          "variable" : "provisionCode",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "CodeableConcept"
+          }]
+        }],
+        "dependent" : [{
+          "name" : "CDCodeableConcept",
+          "variable" : ["directiveCode", "provisionCode"]
+        }]
+      },
+      {
+        "name" : "provisionType",
+        "source" : [{
+          "context" : "directiveObservation",
+          "element" : "value",
+          "variable" : "directiveValue"
+        }],
+        "rule" : [{
+          "name" : "trueToPermit",
+          "source" : [{
+            "context" : "directiveValue",
+            "element" : "value",
+            "variable" : "value",
+            "condition" : "value = 'true'"
+          }],
+          "target" : [{
+            "context" : "provision",
+            "contextType" : "variable",
+            "element" : "type",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueString" : "permit"
+            }]
+          }]
+        },
+        {
+          "name" : "falseToDeny",
+          "source" : [{
+            "context" : "directiveValue",
+            "element" : "value",
+            "variable" : "value",
+            "condition" : "value = 'false'"
+          }],
+          "target" : [{
+            "context" : "provision",
+            "contextType" : "variable",
+            "element" : "type",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueString" : "deny"
+            }]
+          }]
+        }]
+      }]
+    },
+    {
+      "name" : "externalReference",
+      "source" : [{
+        "context" : "directiveObservation",
+        "element" : "reference",
+        "variable" : "reference"
+      }],
+      "rule" : [{
+        "name" : "externalDocument",
+        "source" : [{
+          "context" : "reference",
+          "element" : "externalDocument",
+          "variable" : "externalDocument"
+        }],
+        "rule" : [{
+          "name" : "externalText",
+          "source" : [{
+            "context" : "externalDocument",
+            "element" : "text",
+            "variable" : "externalText"
+          }],
+          "rule" : [{
+            "name" : "externalReference",
+            "source" : [{
+              "context" : "externalText",
+              "element" : "reference",
+              "variable" : "externalReference"
+            }],
+            "rule" : [{
+              "name" : "sourceAttachment",
+              "source" : [{
+                "context" : "externalReference",
+                "element" : "value",
+                "variable" : "externalUrl"
+              }],
+              "target" : [{
+                "context" : "consent",
+                "contextType" : "variable",
+                "element" : "source",
+                "variable" : "sourceAttachment",
+                "transform" : "create",
+                "parameter" : [{
+                  "valueString" : "Attachment"
+                }]
+              }],
+              "rule" : [{
+                "name" : "sourceAttachmentUrl",
+                "source" : [{
+                  "context" : "externalUrl"
+                }],
+                "target" : [{
+                  "context" : "sourceAttachment",
+                  "contextType" : "variable",
+                  "element" : "url",
+                  "transform" : "cast",
+                  "parameter" : [{
+                    "valueId" : "externalUrl"
+                  },
+                  {
+                    "valueString" : "url"
+                  }]
+                }]
+              }]
+            }]
+          }]
+        }]
+      }]
+    },
+    {
+      "name" : "entryRelationship",
+      "source" : [{
+        "context" : "directiveObservation",
+        "element" : "entryRelationship",
+        "variable" : "entryRelationship"
+      }],
+      "rule" : [{
+        "name" : "sourceAttachment",
+        "source" : [{
+          "context" : "entryRelationship",
+          "element" : "observationMedia",
+          "variable" : "observationMedia"
+        }],
+        "target" : [{
+          "context" : "consent",
+          "contextType" : "variable",
+          "element" : "source",
+          "variable" : "sourceAttachment",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "Attachment"
+          }]
+        }],
+        "dependent" : [{
+          "name" : "AdvanceDirectiveAttachmentFromObservationMedia",
+          "variable" : ["observationMedia", "sourceAttachment"]
+        }]
+      },
+      {
+        "name" : "commentAct",
+        "source" : [{
+          "context" : "entryRelationship",
+          "element" : "act",
+          "variable" : "commentAct",
+          "condition" : "entryRelationship.typeCode = 'SUBJ'"
+        }],
+        "rule" : [{
+          "name" : "commentTemplate",
+          "source" : [{
+            "context" : "commentAct",
+            "element" : "templateId",
+            "variable" : "commentTid"
+          }],
+          "rule" : [{
+            "name" : "commentNotMapped",
+            "source" : [{
+              "context" : "commentTid",
+              "element" : "root",
+              "variable" : "commentRoot",
+              "condition" : "commentRoot = '1.2.250.1.213.1.1.3.32'"
+            }]
+          }]
+        }]
+      }]
+    },
+    {
+      "name" : "sectionEntry",
+      "source" : [{
+        "context" : "directiveObservation"
+      }],
+      "target" : [{
+        "context" : "compSection",
+        "contextType" : "variable",
+        "element" : "entry",
+        "variable" : "sectionRef",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Reference"
+        }]
+      },
+      {
+        "context" : "sectionRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %consent.id"
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "AdvanceDirectiveAttachmentFromObservationMedia",
+    "typeMode" : "none",
+    "documentation" : "observationMedia CDA -> Consent.sourceAttachment",
+    "input" : [{
+      "name" : "observationMedia",
+      "mode" : "source"
+    },
+    {
+      "name" : "sourceAttachment",
+      "type" : "Attachment",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "mediaValue",
+      "source" : [{
+        "context" : "observationMedia",
+        "element" : "value",
+        "variable" : "mediaValue"
+      }],
+      "rule" : [{
+        "name" : "contentType",
+        "source" : [{
+          "context" : "mediaValue",
+          "element" : "mediaType",
+          "variable" : "mediaType"
+        }],
+        "target" : [{
+          "context" : "sourceAttachment",
+          "contextType" : "variable",
+          "element" : "contentType",
+          "transform" : "cast",
+          "parameter" : [{
+            "valueId" : "mediaType"
+          },
+          {
+            "valueString" : "string"
+          }]
+        }]
+      },
+      {
+        "name" : "data",
+        "source" : [{
+          "context" : "mediaValue",
+          "element" : "xmlText",
+          "variable" : "rawData"
+        }],
+        "target" : [{
+          "context" : "sourceAttachment",
+          "contextType" : "variable",
+          "element" : "data",
+          "transform" : "cast",
+          "parameter" : [{
+            "valueId" : "rawData"
+          },
+          {
+            "valueString" : "base64Binary"
+          }]
+        }]
+      },
+      {
+        "name" : "mediaReference",
+        "source" : [{
+          "context" : "mediaValue",
+          "element" : "reference",
+          "variable" : "mediaReference"
+        }],
+        "rule" : [{
+          "name" : "url",
+          "source" : [{
+            "context" : "mediaReference",
+            "element" : "value",
+            "variable" : "mediaUrl"
+          }],
+          "target" : [{
+            "context" : "sourceAttachment",
+            "contextType" : "variable",
+            "element" : "url",
+            "transform" : "cast",
+            "parameter" : [{
+              "valueId" : "mediaUrl"
+            },
+            {
+              "valueString" : "url"
             }]
           }]
         }]
