@@ -1,4 +1,4 @@
-# ConceptMap — CDA CE/CS/CD vers FHIR code et CodeableConcept - POC - Mapping CDA to FHIR v0.1.0
+# ConceptMap — CDA CE/CS/CD vers FHIR code et CodeableConcept - Mapping CDA to FHIR (Preuve de concept) v0.1.0
 
 ## ConceptMap: ConceptMap — CDA CE/CS/CD vers FHIR code et CodeableConcept (Expérimental) 
 
@@ -19,7 +19,7 @@ Correspondances documentaires entre les datatypes CDA CE, CS et CD et les types 
   "title" : "ConceptMap — CDA CE/CS/CD vers FHIR code et CodeableConcept",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-07-01T08:10:30+00:00",
+  "date" : "2026-07-16T07:55:09+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",

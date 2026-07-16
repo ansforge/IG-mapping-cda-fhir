@@ -1,4 +1,4 @@
-# ConceptMap — CDA RTO_PQ_PQ vers FHIR Ratio - POC - Mapping CDA to FHIR v0.1.0
+# ConceptMap — CDA RTO_PQ_PQ vers FHIR Ratio - Mapping CDA to FHIR (Preuve de concept) v0.1.0
 
 ## ConceptMap: ConceptMap — CDA RTO_PQ_PQ vers FHIR Ratio (Experimental) 
 
@@ -19,7 +19,7 @@ Correspondances documentaires entre le datatype CDA RTO_PQ_PQ et le datatype FHI
   "title" : "ConceptMap — CDA RTO_PQ_PQ vers FHIR Ratio",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-07-01T08:10:30+00:00",
+  "date" : "2026-07-16T07:55:09+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",

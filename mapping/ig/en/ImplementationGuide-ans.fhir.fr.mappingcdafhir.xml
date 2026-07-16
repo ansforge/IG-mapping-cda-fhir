@@ -9,9 +9,9 @@
   <url value="https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ImplementationGuide/ans.fhir.fr.mappingcdafhir"/>
   <version value="0.1.0"/>
   <name value="CDA2FHIRMAP"/>
-  <title value="POC - Mapping CDA to FHIR"/>
+  <title value="Mapping CDA to FHIR (Preuve de concept)"/>
   <status value="draft"/>
-  <date value="2026-07-01T08:10:30+00:00"/>
+  <date value="2026-07-16T07:55:09+00:00"/>
   <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
   <contact>
     <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
@@ -894,10 +894,18 @@
       </page>
       <page>
         <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
-          <valueUrl value="mapping-mechanisms.html"/>
+          <valueUrl value="Architecture-de-mapping.html"/>
         </extension>
-        <nameUrl value="mapping-mechanisms.html"/>
-        <title value="Mécanisme du Mapping"/>
+        <nameUrl value="Architecture-de-mapping.html"/>
+        <title value="Architecture de mapping"/>
+        <generation value="markdown"/>
+      </page>
+      <page>
+        <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
+          <valueUrl value="Transformation-FML.html"/>
+        </extension>
+        <nameUrl value="Transformation-FML.html"/>
+        <title value="Transformation FML"/>
         <generation value="markdown"/>
       </page>
       <page>
@@ -905,7 +913,23 @@
           <valueUrl value="guide-demarrage.html"/>
         </extension>
         <nameUrl value="guide-demarrage.html"/>
-        <title value="Guide de démarrage"/>
+        <title value="Démarrage Matchbox"/>
+        <generation value="markdown"/>
+      </page>
+      <page>
+        <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
+          <valueUrl value="resultats-mapping.html"/>
+        </extension>
+        <nameUrl value="resultats-mapping.html"/>
+        <title value="Résultats de mapping"/>
+        <generation value="markdown"/>
+      </page>
+      <page>
+        <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
+          <valueUrl value="limites-mapping.html"/>
+        </extension>
+        <nameUrl value="limites-mapping.html"/>
+        <title value="Limites de mapping"/>
         <generation value="markdown"/>
       </page>
       <page>
@@ -913,7 +937,7 @@
           <valueUrl value="outils-mapping.html"/>
         </extension>
         <nameUrl value="outils-mapping.html"/>
-        <title value="Outils de Mapping"/>
+        <title value="Méthodes de mapping"/>
         <generation value="markdown"/>
       </page>
       <page>

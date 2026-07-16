@@ -1,4 +1,4 @@
-# Accueil - POC - Mapping CDA to FHIR v0.1.0
+# Accueil - Mapping CDA to FHIR (Preuve de concept) v0.1.0
 
 ## Accueil
 
@@ -29,11 +29,12 @@ L’ANS s’inscrit dans cette dynamique afin d’assurer une transition cohére
 
 Ce guide a pour objectifs de :
 
-* proposer une preuve de concept de mapping CDA → FHIR appliquée à un document de type Patient Summary, à l’aide du FHIR Mapping Language ;
+* Mettre à disposition une base de mapping CDA vers FHIR réutilisable, appliquée à un document de type Patient Summary à l’aide du FHIR Mapping Language ;
 * produire un Bundle FHIR conforme à la structure attendue en Europe ;
 * intégrer les spécifications françaises ;
 * permettre l’exécution du mapping via Matchbox ;
 * fournir les artefacts FHIR nécessaires (StructureMap et ConceptMap) ;
+* Proposer une preuve de concept de mapping CDA vers FHIR, appliquée à un document de type **Patient Summary** à l’aide du FHIR Mapping Language, et organisée en couches afin de mettre à disposition une base réutilisable pour de futurs mappings.
 
 Ce guide constitue un travail exploratoire, servant de base aux travaux de convergence FHIR futurs.
 
