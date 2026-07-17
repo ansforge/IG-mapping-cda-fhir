@@ -1,35 +1,115 @@
-Preview : https://ansforge.github.io/IG-mapping-cda-fhir/main/ig/
 
-# fhir-transformation
+# Mapping CDA vers FHIR — Patient Summary
 
-This repository works like a proof of concept for transforming data from FHIR or to FHIR to another data format.
-The tools used are FHIR Mapping Language to describe the transformations and [matchbox (AHDIS)](https://github.com/ahdis/matchbox) as a tool to apply the transformations.
+**Prévisualisation :** [consulter le guide d’implémentation](https://ansforge.github.io/IG-mapping-cda-fhir/main/ig/)
 
-# Getting started
+## Présentation
 
-1/ Charge matchbox image docker
+Ce guide d’implémentation présente une expérimentation visant à évaluer l’utilisation du **FHIR Mapping Language (FML)** pour transformer un document CDA de type **Patient Summary** en un `Bundle` FHIR R4.
 
-docker pull europe-west6-docker.pkg.dev/ahdis-ch/ahdis/matchbox:v3.8.9
+Les règles de transformation sont décrites en FML et exécutées avec [Matchbox](https://github.com/ahdis/matchbox).
 
-2/ Create the container with the docker image
+Cette preuve de concept fournit une base de travail pour la transformation de documents CDA vers FHIR à l’aide du FHIR Mapping Language. Les mappings proposés doivent être revus, adaptés et validés avant leur réutilisation dans un contexte opérationnel.
 
-docker run -d --name matchbox -p 8080:8080 -v /Users/nicolasriss/Desktop/cda-fhir-maps/fhir-transformation/with-cda:/config europe-west6-docker.pkg.dev/ahdis-ch/ahdis/matchbox:v3.8.9
+Le mapping est organisé en quatre couches dépendantes :
 
-The path should be adapted to your local folder containing the with-cda folder.
+1. la conversion des types de données CDA vers FHIR ;
+2. le mapping du socle générique CDA vers FHIR ;
+3. l’adaptation aux spécifications françaises et européennes ;
+4. le mapping des sections cliniques du Patient Summary.
 
-To access the docker logs, launch this command:
+Les principales règles FML sont disponibles dans le dossier :
 
+```text
+input/fml/
+```
+
+Les résultats ont été obtenus à partir d’un document CDA d’exemple. Ils illustrent la faisabilité technique de la transformation, mais ne garantissent pas le fonctionnement du mapping sur l’ensemble des CDA provenant du monde réel.
+
+Le guide d’implémentation détaille notamment :
+
+* Architecture du mapping ;
+* Transformation via le FHIR Mapping Language ;
+* Guide de démarrage de Matchbox ;
+* Résultats obtenus ;
+* Limites du mapping ;
+* Artefacts produits ;
+* Autres méthodes de mapping.
+
+## Prérequis
+
+Les outils suivants doivent être installés :
+
+- Git ;
+- Docker ou Docker Desktop ;
+- Visual Studio Code avec l’extension **REST Client**, ou un autre client HTTP.
+
+## Installation
+
+Cloner le projet :
+
+```bash
+git clone https://github.com/ansforge/IG-mapping-cda-fhir.git
+cd IG-mapping-cda-fhir
+```
+
+Démarrer Matchbox avec le script fourni :
+
+```bash
+chmod +x start-matchbox.sh
+./start-matchbox.sh
+```
+
+Matchbox est ensuite accessible à l’adresse suivante :
+
+```text
+http://localhost:8080/matchbox
+```
+
+Pour suivre le démarrage du conteneur :
+
+```bash
 docker logs --follow matchbox
+```
 
-3/ Adapt application.yml
+Il est nécessaire d’attendre la fin du démarrage de Matchbox avant de charger les mappings et de lancer une transformation.
 
-To add some new packages to matchbox, you just have to create a new folder equivalent to "with-cda", and add the packages you want indicating the url.
+La configuration locale de Matchbox se trouve dans :
 
-To change the package, you have to delete your docker container (using docker desktop for instance) and then go to step 2/
+```text
+input/with-all/application.yaml
+```
 
-3/ Launch transformations
+Après une modification de cette configuration, le conteneur doit être supprimé puis recréé :
 
-Then, you will have to launch the transformations in the tests folder :
+```bash
+docker rm -f matchbox
+./start-matchbox.sh
+```
 
-* The cda folder allows to test with the swiss maps and a first try with the french maps
-* the eds (entrepôt de données de santé) folder allows to test with https://github.com/ansforge/IG-FHIR-EDS-SOCLE-COMMUN
+## Utilisation
+
+Les requêtes permettant de charger les ressources de mapping et d’exécuter les transformations sont disponibles dans :
+
+```text
+http-test/fr_cdatofhir_mde.http
+```
+
+Pour lancer une transformation avec Visual Studio Code :
+
+1. installer l’extension **REST Client** ;
+2. ouvrir le fichier `fr_cdatofhir_mde.http` ;
+3. attendre la fin du démarrage de Matchbox ;
+4. exécuter les requêtes dans l’ordre indiqué dans le fichier ;
+5. charger les `ConceptMap` et les `StructureMap` ;
+6. lancer la transformation avec l’opération `StructureMap/$transform`.
+
+L’ordre de chargement doit être respecté, car les mappings de niveau supérieur dépendent des mappings chargés précédemment.
+
+Les documents CDA utilisés pour les tests sont disponibles dans :
+
+```text
+input/attachments/
+```
+
+Après la modification d’une règle FML, la `StructureMap` correspondante ainsi que les mappings qui en dépendent doivent être chargés de nouveau dans Matchbox.
