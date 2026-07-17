@@ -1,4 +1,4 @@
-Preview : https://ansforge.github.io/IG-mapping-cda-fhir/mai/ig/
+Preview : https://ansforge.github.io/IG-mapping-cda-fhir/main/ig/
 
 # fhir-transformation
 
