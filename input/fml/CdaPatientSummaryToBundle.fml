@@ -67,6 +67,9 @@ uses "http://hl7.org/fhir/StructureDefinition/code" alias code as target
 uses "http://hl7.org/fhir/StructureDefinition/date" alias date as target
 uses "http://hl7.org/fhir/StructureDefinition/dateTime" alias dateTime as target
 uses "http://hl7.org/fhir/StructureDefinition/boolean" alias boolean as target
+uses "http://hl7.org/fhir/StructureDefinition/Device" alias Device as target
+uses "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement" alias DeviceUseStatement as target
+uses "http://hl7.org/fhir/StructureDefinition/Consent" alias Consent as target
 
 // IMPORTS DES ÉTAPES PRÉCÉDENTES
 imports "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes"
@@ -191,15 +194,23 @@ group MapPatientSummarySectionEntries(source section, target compSection, target
   // CDA section Antécédents familiaux -> FHIR FamilyMemberHistory
   section.code as secCode where secCode.code = '10157-6' then PatientSummaryFamilyHistorySection(section, compSection, bundle, patient) "familyHistory";
   
-  // Dispositifs médicaux : section conservée en narratif uniquement pour l’instant.
-  // Le mapping structuré sera traité plus tard avec Device / DeviceUseStatement.
+  // Dispositifs médicaux -> FHir Device / DeviceUseStatement
+  section.code as secCode where secCode.code = '46264-8' then PatientSummaryMedicalDeviceSection(section, compSection, bundle, patient) "medicalDevices";
 
-  // Points de vigilance : section conservée en narratif uniquement pour l’instant.
-  // Le mapping structuré sera traité plus tard avec Flag, DetectedIssue ou Observation selon le contenu.
+
+  // CDA section Documents joints -> FHIR DocumentReference
+  section.code as secCode where secCode.code = '55107-7' then PatientSummaryAddedDocumentsSection(section, compSection, bundle, patient) "addedDocuments";
+
+  /*Points de vigilance : section conservée en narratif uniquement 
+  Section déjà prise en charge à l’étape 2 via Composition.section
+  Aucun traitement supplémentaire dans cette étape, car la section ne contient pas d’entry structurée*/
 
   // Directives anticipées : section conservée en narratif uniquement pour l’instant.
   // Le mapping structuré sera traité plus tard avec Consent, Observation ou DocumentReference selon le contenu.
+    // CDA section Directives anticipées -> FHIR Consent
+  section.code as secCode where secCode.code = '42348-3' then PatientSummaryAdvanceDirectiveSection(section, compSection, bundle, patient) "advanceDirective";
 }
+
 
 
 
@@ -3103,6 +3114,410 @@ group PatientSummaryFamilyHistorySection(source section, target compSection, tar
 
 
 
+
+/* 10. DISPOSITIFS MÉDICAUX */
+
+group PatientSummaryMedicalDeviceSection(source section, target compSection, target bundle : Bundle, target patient : Patient) {
+
+  // Section dispositifs médicaux.
+  section.templateId as sectionTid then {
+    sectionTid.root as sectionRoot where sectionRoot = '1.2.250.1.213.1.1.2.1' then {
+      section.entry as entry then {
+        entry.supply as supply then {
+          supply.templateId as supplyTid then {
+            supplyTid.root as supplyRoot where supplyRoot = '1.2.250.1.213.1.1.3.20'
+              -> bundle.entry as deviceUseStatementEntry,
+                 deviceUseStatementEntry.resource = create('DeviceUseStatement') as deviceUseStatement,
+                 deviceUseStatement.id = uuid(),
+                 deviceUseStatementEntry.fullUrl = ('urn:uuid:' + %deviceUseStatement.id)
+              then PatientSummaryDeviceUseStatementFromSupply(supply, deviceUseStatement, compSection, bundle, patient) "deviceUseStatement";
+          } "deviceSupplyTemplate";
+        } "deviceSupply";
+      } "sectionEntry";
+    } "medicalDeviceSection";
+  } "sectionTemplate";
+}
+
+
+/* Supply CDA -> DeviceUseStatement */
+group PatientSummaryDeviceUseStatementFromSupply(source supply, target deviceUseStatement : DeviceUseStatement, target compSection, target bundle : Bundle, target patient : Patient) {
+
+  // Statut par défaut : dispositif présent / utilisé.
+  supply -> deviceUseStatement.status = 'active' "statusDefault";
+
+  // Si une borne haute est présente, on considère l’usage terminé.
+  supply.effectiveTime as effectiveTime then {
+    effectiveTime.high as high -> deviceUseStatement.status = 'completed' "statusCompleted";
+  } "statusFromHigh";
+
+  // Identifiant de l’entrée CDA.
+  supply.id as supplyId
+    -> deviceUseStatement.identifier = create('Identifier') as identifier
+    then II(supplyId, identifier) "identifier";
+
+  // Patient concerné.
+  supply
+    -> deviceUseStatement.subject = create('Reference') as subjectRef,
+       subjectRef.reference = ('urn:uuid:' + %patient.id) "subject";
+
+  // Date / période d’utilisation du dispositif.
+  supply.effectiveTime as effectiveTime
+    then DeviceUseStatementTimingFromEffectiveTime(effectiveTime, deviceUseStatement) "timing";
+
+  // Dispositif médical associé.
+  supply.participant as participant
+    -> bundle.entry as deviceEntry,
+       deviceEntry.resource = create('Device') as device,
+       device.id = uuid(),
+       deviceEntry.fullUrl = ('urn:uuid:' + %device.id)
+    then {
+      participant then PatientSummaryDeviceFromParticipant(participant, device, patient) "device";
+      participant
+        -> deviceUseStatement.device = create('Reference') as deviceRef,
+           deviceRef.reference = ('urn:uuid:' + %device.id) "deviceReference";
+    } "participantDevice";
+
+  // Commentaire -> DeviceUseStatement.note
+  // On conserve ici la valeur CDA telle quelle (#...),
+  // sans résolution du texte narratif à cette étape.
+  supply.entryRelationship as er then {
+    er.act as commentAct where er.typeCode = 'SUBJ' then {
+      commentAct.templateId as tid then {
+        tid.root as root where root = '1.2.250.1.213.1.1.3.32' then {
+          commentAct.text as commentText then {
+            commentText.reference as ref then {
+              ref.value as value
+                -> deviceUseStatement.note = create('Annotation') as note then {
+                     value -> note.text = cast(value, 'string') "noteText";
+                   } "note";
+            } "commentReference";
+          } "commentText";
+        } "commentMapped";
+      } "commentTemplate";
+    } "commentAct";
+  } "entryRelationship";
+
+  // Référence dans la section FHIR.
+  supply
+    -> compSection.entry = create('Reference') as sectionRef,
+       sectionRef.reference = ('urn:uuid:' + %deviceUseStatement.id) "sectionEntry";
+}
+
+
+/* effectiveTime CDA -> DeviceUseStatement.timing[x] */
+group DeviceUseStatementTimingFromEffectiveTime(source effectiveTime, target deviceUseStatement : DeviceUseStatement) {
+
+  // Cas 1 : date ponctuelle.
+  effectiveTime.value as value ->
+    deviceUseStatement.timing = create('dateTime') as timingDateTime
+    then TSDateTime(effectiveTime, timingDateTime) "timingDateTime";
+
+  // Cas 2 : période low/high.
+  effectiveTime.low as low ->
+    deviceUseStatement.timing = create('Period') as period then {
+      low -> period.start = create('dateTime') as start then TSDateTime(low, start) "start";
+      effectiveTime.high as high -> period.end = create('dateTime') as end then TSDateTime(high, end) "end";
+    } "timingPeriodByLow";
+
+  // Cas 3 : borne haute seule.
+  effectiveTime.high as high where effectiveTime.low.empty() ->
+    deviceUseStatement.timing = create('Period') as period then {
+      high -> period.end = create('dateTime') as end then TSDateTime(high, end) "endOnly";
+    } "timingPeriodByHigh";
+}
+
+
+/* participant CDA -> Device */
+group PatientSummaryDeviceFromParticipant(source participant, target device : Device, target patient : Patient) {
+
+  participant.participantRole as participantRole then {
+
+    // Identifiant éventuel du dispositif.
+    participantRole.id as deviceId
+      -> device.identifier = create('Identifier') as identifier
+      then II(deviceId, identifier) "identifier";
+
+    // Description codée du dispositif.
+    participantRole.playingDevice as playingDevice then {
+      playingDevice.code as deviceCode
+        -> device.type = create('CodeableConcept') as type
+        then CDCodeableConcept(deviceCode, type) "type";
+    } "playingDevice";
+
+    // Lien patient.
+    participantRole
+      -> device.patient = create('Reference') as patientRef,
+         patientRef.reference = ('urn:uuid:' + %patient.id) "patient";
+
+  } "participantRole";
+}
+
+
+
+
+
+
+
+
+
+/* 11. DOCUMENTS JOINTS */
+
+group PatientSummaryAddedDocumentsSection(source section, target compSection, target bundle : Bundle, target patient : Patient) {
+
+  // Section documents ajoutés.
+  section.templateId as sectionTid then {
+    sectionTid.root as sectionRoot where sectionRoot = '1.2.250.1.213.1.1.2.37' then {
+      section.entry as entry then {
+
+        // Document attaché -> DocumentReference
+        entry.organizer as attachedDocument then {
+          attachedDocument.templateId as docTid then {
+            docTid.root as docRoot where docRoot = '1.2.250.1.213.1.1.3.18'
+              -> bundle.entry as documentReferenceEntry,
+                 documentReferenceEntry.resource = create('DocumentReference') as documentReference,
+                 documentReference.id = uuid(),
+                 documentReferenceEntry.fullUrl = ('urn:uuid:' + %documentReference.id)
+              then DocumentReferenceFromCdaAttachedDocument(attachedDocument, documentReference, compSection, patient) "attachedDocument";
+          } "attachedDocumentTemplate";
+        } "attachedDocument";
+
+        // SimpleObservation non mappée dans cette V1.
+        entry.observation as simpleObservation then {
+        } "simpleObservationNotMapped";
+
+      } "sectionEntry";
+    } "addedDocumentsSection";
+  } "sectionTemplate";
+}
+
+
+/* Organizer CDA de document attaché -> DocumentReference */
+group DocumentReferenceFromCdaAttachedDocument(source attachedDocument, target documentReference : DocumentReference, target compSection, target patient : Patient) {
+
+  // Statut FHIR obligatoire.
+  attachedDocument -> documentReference.status = 'current' "statusDefault";
+
+  // Identifiant.
+  attachedDocument.id as docId -> documentReference.identifier = create('Identifier') as identifier then II(docId, identifier) "identifier";
+
+  // Patient concerné.
+  attachedDocument -> documentReference.subject = create('Reference') as subjectRef, subjectRef.reference = ('urn:uuid:' + %patient.id) "subject";
+
+  // Statut documentaire.
+  attachedDocument.statusCode as statusCode then {
+    statusCode.code as code where code = 'completed' -> documentReference.docStatus = 'final' "final";
+    statusCode.code as code where code = 'active' -> documentReference.docStatus = 'preliminary' "preliminary";
+    statusCode.code as code where code = 'aborted' -> documentReference.docStatus = 'entered-in-error' "aborted";
+    statusCode.code as code where code = 'cancelled' -> documentReference.docStatus = 'entered-in-error' "cancelled";
+  } "docStatus";
+
+  // Date du document si présente.
+  attachedDocument.effectiveTime as effectiveTime then {
+    effectiveTime.value as value -> documentReference.date = create('dateTime') as date then TSDateTime(effectiveTime, date) "dateTime";
+    effectiveTime.low as low -> documentReference.date = create('dateTime') as date then TSDateTime(low, date) "dateLow";
+  } "date";
+
+  // Type métier du document attaché.
+  attachedDocument.component as component then {
+    component.observation as typeObservation then {
+      typeObservation.templateId as tid then {
+        tid.root as root where root = '1.2.250.1.213.1.1.3.48.18' then {
+          typeObservation.value as typeValue -> documentReference.type = create('CodeableConcept') as type then CDCodeableConcept(typeValue, type) "type";
+        } "typeValue";
+      } "typeTemplate";
+    } "typeObservation";
+  } "typeComponent";
+
+  // Contenu du document attaché.
+  attachedDocument.component as component then {
+    component.observationMedia as observationMedia -> documentReference.content as content then {
+      observationMedia then AttachmentFromObservationMedia(observationMedia, content) "attachment";
+    } "observationMedia";
+  } "mediaComponent";
+
+  // Référence dans la section FHIR.
+  attachedDocument -> compSection.entry = create('Reference') as sectionRef, sectionRef.reference = ('urn:uuid:' + %documentReference.id) "sectionEntry";
+}
+
+
+/* ObservationMedia CDA -> DocumentReference.content.attachment */
+group AttachmentFromObservationMedia(source observationMedia, target content) {
+
+  observationMedia -> content.attachment = create('Attachment') as attachment then {
+
+    // Identifiant technique de l’observationMedia si présent.
+    observationMedia.ID as mediaId -> attachment.id = cast(mediaId, 'string') "attachmentId";
+
+    // Contenu encapsulé ED.
+    observationMedia.value as mediaValue then {
+
+      // Type MIME du document.
+      mediaValue.mediaType as mediaType -> attachment.contentType = cast(mediaType, 'string') "contentType";
+
+      // Contenu Base64 du document.
+      mediaValue.xmlText as rawData -> attachment.data = cast(rawData, 'base64Binary') "data";
+    } "mediaValue";
+  } "attachment";
+}
+
+
+
+
+
+
+
+/* 12 DIRECTIVES ANTICIPEES */
+
+group PatientSummaryAdvanceDirectiveSection(source section, target compSection, target bundle : Bundle, target patient : Patient) {
+
+  // Section Directives anticipées.
+  section.templateId as sectionTid then {
+    sectionTid.root as sectionRoot where sectionRoot = '1.2.250.1.213.1.1.2.157' then {
+      section.entry as entry then {
+        entry.observation as directiveObservation then {
+          directiveObservation.templateId as directiveTid then {
+            directiveTid.root as directiveRoot where directiveRoot = '1.2.250.1.213.1.1.3.54'
+              -> bundle.entry as consentEntry,
+                 consentEntry.resource = create('Consent') as consent,
+                 consent.id = uuid(),
+                 consentEntry.fullUrl = ('urn:uuid:' + %consent.id)
+              then AdvanceDirectiveConsentFromObservation(directiveObservation, consent, compSection, patient) "advanceDirectiveConsent";
+          } "advanceDirectiveTemplate";
+        } "directiveObservation";
+      } "sectionEntry";
+    } "advanceDirectiveSection";
+  } "sectionTemplate";
+}
+
+
+/* Observation CDA FR-Directive-Anticipee -> Consent */
+group AdvanceDirectiveConsentFromObservation(source directiveObservation, target consent : Consent, target compSection, target patient : Patient) {
+
+  // Identifiant.
+  directiveObservation.id as directiveId
+    -> consent.identifier = create('Identifier') as identifier
+    then II(directiveId, identifier) "identifier";
+
+  // Patient concerné.
+  directiveObservation
+    -> consent.patient = create('Reference') as patientRef,
+       patientRef.reference = ('urn:uuid:' + %patient.id) "patient";
+
+  // Status FHIR obligatoire.
+  directiveObservation -> consent.status = 'active' "statusDefault";
+  directiveObservation.statusCode as statusCode then {
+    statusCode.code as code where code = 'completed' -> consent.status = 'active' "completedToActive";
+    statusCode.code as code where code = 'active' -> consent.status = 'active' "activeToActive";
+    statusCode.code as code where code = 'aborted' -> consent.status = 'inactive' "abortedToInactive";
+    statusCode.code as code where code = 'cancelled' -> consent.status = 'inactive' "cancelledToInactive";
+  } "status";
+
+  // Scope FHIR obligatoire : advance directive.
+  directiveObservation
+    -> consent.scope = create('CodeableConcept') as scope then {
+         directiveObservation
+           -> scope.coding = create('Coding') as scopeCoding then {
+                directiveObservation -> scopeCoding.system = 'http://terminology.hl7.org/CodeSystem/consentscope' "scopeSystem";
+                directiveObservation -> scopeCoding.code = 'adr' "scopeCode";
+                directiveObservation -> scopeCoding.display = 'Advanced Care Directive' "scopeDisplay";
+              } "scopeCoding";
+       } "scope";
+
+  // Catégorie pour indexation / recherche.
+  directiveObservation.code as directiveCode
+    -> consent.category = create('CodeableConcept') as category
+    then CDCodeableConcept(directiveCode, category) "category";
+
+  // Date de la directive.
+  directiveObservation.effectiveTime as effectiveTime then {
+    effectiveTime.value as value
+      -> consent.dateTime = create('dateTime') as consentDateTime
+      then TSDateTime(effectiveTime, consentDateTime) "dateTime";
+    effectiveTime.low as low
+      -> consent.dateTime = create('dateTime') as consentDateTime
+      then TSDateTime(low, consentDateTime) "dateLow";
+  } "dateTime";
+
+  // Provision commune.
+  directiveObservation -> consent.provision as provision then {
+
+    // Type de directive.
+    directiveObservation.code as directiveCode
+      -> provision.code = create('CodeableConcept') as provisionCode
+      then CDCodeableConcept(directiveCode, provisionCode) "provisionCode";
+
+    // Booléen CDA -> provision.type
+    directiveObservation.value as directiveValue then {
+      directiveValue.value as value where value = 'true' -> provision.type = 'permit' "trueToPermit";
+      directiveValue.value as value where value = 'false' -> provision.type = 'deny' "falseToDeny";
+    } "provisionType";
+
+  } "provision";
+
+  // Référence externe éventuelle.
+  directiveObservation.reference as reference then {
+    reference.externalDocument as externalDocument then {
+      externalDocument.text as externalText then {
+        externalText.reference as externalReference then {
+          externalReference.value as externalUrl
+            -> consent.source = create('Attachment') as sourceAttachment then {
+                 externalUrl -> sourceAttachment.url = cast(externalUrl, 'url') "sourceAttachmentUrl";
+               } "sourceAttachment";
+        } "externalReference";
+      } "externalText";
+    } "externalDocument";
+  } "externalReference";
+
+  // Document encapsulé éventuel + commentaire éventuel.
+  directiveObservation.entryRelationship as entryRelationship then {
+
+    // PDF / document encapsulé.
+    entryRelationship.observationMedia as observationMedia
+      -> consent.source = create('Attachment') as sourceAttachment
+      then AdvanceDirectiveAttachmentFromObservationMedia(observationMedia, sourceAttachment) "sourceAttachment";
+
+    // Commentaire : non mappé dans cette V1, conservé dans le narratif.
+    entryRelationship.act as commentAct where entryRelationship.typeCode = 'SUBJ' then {
+      commentAct.templateId as commentTid then {
+        commentTid.root as commentRoot where commentRoot = '1.2.250.1.213.1.1.3.32' then {
+        } "commentNotMapped";
+      } "commentTemplate";
+    } "commentAct";
+
+  } "entryRelationship";
+
+  // Référence dans la section FHIR.
+  directiveObservation
+    -> compSection.entry = create('Reference') as sectionRef,
+       sectionRef.reference = ('urn:uuid:' + %consent.id) "sectionEntry";
+}
+
+
+/* observationMedia CDA -> Consent.sourceAttachment */
+group AdvanceDirectiveAttachmentFromObservationMedia(source observationMedia, target sourceAttachment : Attachment) {
+
+  // Contenu encapsulé ED.
+  observationMedia.value as mediaValue then {
+
+    // Type MIME.
+    mediaValue.mediaType as mediaType
+      -> sourceAttachment.contentType = cast(mediaType, 'string') "contentType";
+
+    // Contenu Base64.
+    mediaValue.xmlText as rawData
+      -> sourceAttachment.data = cast(rawData, 'base64Binary') "data";
+
+    // URL si présente.
+    mediaValue.reference as mediaReference then {
+      mediaReference.value as mediaUrl
+        -> sourceAttachment.url = cast(mediaUrl, 'url') "url";
+    } "mediaReference";
+
+  } "mediaValue";
+}
+
+
+
 //explication détaillée de mapping de chaque section
    /*1. explication du mapping: PROBLÈMES ACTIFS ET ANTÉCÉDENTS MÉDICAUX
 
@@ -4341,8 +4756,169 @@ pas d’utilisation d’extensions non confirmées. */
 
 
 
-/*ce qui reste
-Documents joints -> DocumentReference
-Dispositifs médicaux -> Device / DeviceUseStatement
-Points de vigilance -> Flag
-Directives anticipées -> Consent / DocumentReference*/
+
+
+/* 10. EXPLICATION DU MAPPING DES DISPOSITIFS MÉDICAUX
+
+Dans le CDA, la section "Dispositifs médicaux" est organisée de manière
+hiérarchique. Elle est d’abord portée par une section identifiée par le code
+LOINC 46264-8 et par le templateId 1.2.250.1.213.1.1.2.1. À l’intérieur de
+cette section, chaque dispositif médical est représenté par une entry de type
+supply, reconnue grâce au templateId 1.2.250.1.213.1.1.3.20. Cette entrée
+supply porte les informations générales d’utilisation du dispositif, notamment
+son identifiant et sa temporalité. Elle contient ensuite un participant, puis
+un participantRole, à l’intérieur duquel se trouve playingDevice, qui décrit le
+dispositif lui-même. Un entryRelationship supplémentaire peut également être
+présent pour porter un commentaire associé à ce dispositif.
+
+Le mapping suit directement cette architecture. Il commence par reconnaître la
+section des dispositifs médicaux, puis parcourt ses entries pour identifier les
+entrées supply correspondant à des dispositifs médicaux. Pour chaque supply
+reconnu, le mapping crée une ressource FHIR DeviceUseStatement dans le Bundle.
+Cette ressource représente le fait qu’un dispositif médical est présent ou
+utilisé chez le patient. L’identifiant porté par supply.id devient
+DeviceUseStatement.identifier, et le DeviceUseStatement est relié au patient
+déjà présent dans le Bundle via DeviceUseStatement.subject.
+
+Le statut du DeviceUseStatement est fixé par défaut à active afin de
+représenter un dispositif considéré comme présent ou utilisé. Si une borne
+haute est présente dans supply.effectiveTime, le mapping considère que
+l’utilisation est terminée et remplace alors ce statut par completed. La
+temporalité d’utilisation est elle aussi récupérée à partir de
+supply.effectiveTime. Selon la forme portée par le CDA, le mapping produit soit
+un timing de type dateTime, soit un timing de type Period.
+
+Le mapping exploite ensuite le participant contenu dans le supply pour créer
+une ressource Device. L’identifiant porté par participantRole.id devient
+Device.identifier, et le code porté par playingDevice.code devient Device.type.
+La ressource Device représente donc le dispositif lui-même, tandis que le
+DeviceUseStatement représente son usage ou sa présence chez le patient. Une
+fois le Device créé, le mapping renseigne DeviceUseStatement.device avec une
+référence vers ce Device.
+
+Le commentaire éventuel porté par entryRelationship.act concerne un dispositif
+précis et non la section dans son ensemble. Il est donc mappé vers
+DeviceUseStatement.note. À cette étape, le mapping conserve la valeur CDA telle
+quelle : il récupère commentAct.text.reference.value et la copie dans
+note.text, sans résoudre le texte narratif correspondant. Cette logique reste
+cohérente avec l’étape préalable de transformation des types CDA vers FHIR.
+
+Enfin, chaque DeviceUseStatement créé est ajouté dans Composition.section.entry.
+La section FHIR "Dispositifs médicaux" référence donc les DeviceUseStatement
+produits par le mapping. Les ressources Device ne sont pas référencées
+directement dans la section, mais restent accessibles dans le Bundle via les
+références portées par les DeviceUseStatement. Le principe général retenu est
+donc le suivant : chaque entry supply produit un DeviceUseStatement, chaque
+participant associé produit un Device, et le DeviceUseStatement référence ce
+Device.  */
+
+
+
+
+
+
+
+/* 11. EXPLICATION DU MAPPING DES DOCUMENTS JOINTS
+
+Cette partie du mapping traite la section CDA "Documents joints" et la
+transforme en ressources FHIR DocumentReference.
+
+Le mapping commence par reconnaître la section grâce au code LOINC 55107-7 et
+au templateId 1.2.250.1.213.1.1.2.37. Une fois cette section identifiée, il
+parcourt ses entries pour rechercher un organizer correspondant à un document
+attaché. Cet organizer est reconnu grâce au templateId
+1.2.250.1.213.1.1.3.18. Lorsqu’un organizer de ce type est trouvé, le mapping
+crée une ressource DocumentReference dans le Bundle.
+
+À partir de cet organizer, le mapping récupère d’abord les informations
+générales du document. L’identifiant porté par organizer.id devient
+DocumentReference.identifier. Le document est relié au patient déjà présent
+dans le Bundle via DocumentReference.subject. Le champ
+DocumentReference.status est fixé à current pour indiquer que la référence FHIR
+créée est active dans le Bundle. Le statut documentaire est porté séparément
+par DocumentReference.docStatus : il est récupéré à partir de
+organizer.statusCode, puis converti vers les valeurs FHIR correspondantes.
+Ainsi, completed devient final, active devient preliminary, et aborted ou
+cancelled deviennent entered-in-error. La date du document est récupérée à
+partir de organizer.effectiveTime et mappée vers DocumentReference.date. Si le
+CDA porte une date dans effectiveTime.value, cette date est utilisée ; si la
+date est portée dans effectiveTime.low, c’est cette borne basse qui est
+retenue.
+
+Le mapping traite ensuite les components contenus dans cet organizer. Un
+premier component contient une observation décrivant le type métier du
+document. Cette observation est reconnue grâce au templateId
+1.2.250.1.213.1.1.3.48.18. Sa valeur est mappée vers DocumentReference.type
+afin de préciser la nature du document joint. Un second component contient une
+observationMedia qui porte le document lui-même. À partir de cette
+observationMedia, le mapping crée un Attachment dans
+DocumentReference.content. L’identifiant technique observationMedia.ID est
+mappé vers Attachment.id lorsqu’il est présent. Le type MIME porté par
+observationMedia.value.mediaType est mappé vers Attachment.contentType, et le
+contenu encodé en Base64 est mappé vers Attachment.data. Le contenu du
+document n’est donc ni interprété ni transformé : il est directement transporté
+dans la ressource FHIR avec son type MIME et son encodage d’origine.
+
+Enfin, chaque DocumentReference créé est ajouté dans
+Composition.section.entry. La section FHIR "Documents joints" référence ainsi
+les ressources DocumentReference produites par le mapping. Les entries de type
+SimpleObservation présentes directement dans la section ne sont pas traitées
+dans cette première version et restent uniquement conservées dans le narratif
+de la section, porté par Composition.section.text. */
+
+
+
+
+
+
+
+
+/* 12. EXPLICATION DU MAPPING DES DIRECTIVES ANTICIPÉES
+Cette partie du mapping transforme la section CDA des directives
+anticipées, identifiée par le code LOINC 42348-3, en ressources FHIR
+Consent. Dans le CDA, cette section porte les choix exprimés par le patient
+sur certains actes, soins ou interventions. Ces informations peuvent être
+représentées soit de manière structurée, via des entries de type
+observation, soit via un document associé, par exemple un PDF.
+
+La conception retenue consiste à créer une ressource Consent pour chaque
+directive anticipée. Le mapping commence donc par reconnaître la section
+42348-3, puis parcourt ses entries. Chaque entry correspondant à une
+directive anticipée produit une ressource Consent. Cette ressource est
+ensuite reliée au patient déjà présent dans le Bundle via Consent.patient,
+sans recréer le patient.
+
+L’identifiant de la directive, porté par observation.id, devient
+Consent.identifier. Le type de directive, porté par observation.code,
+alimente Consent.category et Consent.provision.code. La date portée par
+effectiveTime devient Consent.dateTime. Le statut de la ressource est porté
+par Consent.status, et le champ Consent.scope est renseigné pour indiquer
+qu’il s’agit d’une directive anticipée.
+
+Lorsque la directive est représentée de manière structurée, la décision du
+patient est portée par une valeur booléenne. Cette valeur indique si l’acte
+concerné est autorisé ou non autorisé par le patient. Le mapping transforme
+donc cette valeur vers Consent.provision.type :
+
+* true devient permit ;
+* false devient deny.
+
+Lorsque la directive est représentée par un document associé, le mapping
+alimente la source du Consent. Si le CDA porte une référence externe, l’URL du
+document est placée dans `Consent.sourceAttachment.url`. Si le CDA porte un
+document encapsulé, par exemple un PDF dans un `observationMedia`, le mapping
+récupère son type MIME pour alimenter `Consent.sourceAttachment.contentType` et
+son contenu encodé pour alimenter `Consent.sourceAttachment.data`. Ainsi, la
+ressource Consent conserve non seulement l’information métier portée par la
+directive, mais aussi le document qui lui est associé lorsque celui-ci est
+présent.
+
+Enfin, chaque Consent créé est ajouté dans Composition.section.entry. La
+section FHIR des directives anticipées référence donc directement les
+ressources Consent produites par le mapping, tandis que le texte lisible par
+l’humain reste conservé dans Composition.section.text. */
+
+
+
+
+
