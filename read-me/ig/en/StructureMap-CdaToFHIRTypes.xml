@@ -1,0 +1,2370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<StructureMap xmlns="http://hl7.org/fhir">
+  <id value="CdaToFHIRTypes"/>
+  <language value="en"/>
+  <text>
+    <status value="generated"/><div xml:lang="en" lang="en"><hr/><p><b>English</b></p><hr/><p class="res-header-id"><b>Generated Narrative: StructureMap CdaToFHIRTypes</b></p><a name="en-CdaToFHIRTypes"> </a><a name="en-hcCdaToFHIRTypes"> </a><pre class="fml">
+<b>map</b><span style="color: navy"> &quot;</span>https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes<span style="color: navy">&quot; = &quot;</span>CdaToFHIRTypes<span style="color: navy">&quot;
+
+</span><span style="color: navy">// </span><span style="color: green">Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)</span>
+
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ED.html" title="ED: EncapsulatedData (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/ED|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>ED <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-PN.html" title="PN: PersonName (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/PN|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>PN <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html" title="II: InstanceIdentifier (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/II|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>II <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TS.html" title="TS: PointInTime (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/TS|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>TS <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CS.html" title="CS: CodedSimpleValue (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/CS|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>CS <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CE.html" title="CE: CodedWithEquivalents (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/CE|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>CE <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html" title="ST: CharacterString (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/ST|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>ST <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ON.html" title="ON: OrganizationName (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/ON|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>ON <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html" title="EN: EntityName (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/EN|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>EN <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html" title="AD: PostalAddress (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/AD|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>AD <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html" title="TEL: TelecommunicationAddress (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/TEL|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>TEL <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-BL.html" title="BL: Boolean (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/BL|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>BL <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-IVL-TS.html" title="IVL_TS: Interval (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/IVL-TS|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>IVL_TS <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-INT.html" title="INT: IntegerNumber (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/INT|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>INT <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html" title="CD: ConceptDescriptor (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/CD|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>CD <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-PQ.html" title="PQ: PhysicalQuantity (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/PQ|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>PQ <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-RTO-PQ-PQ.html" title="RTO_PQ_PQ: Ratio (V3 Data Type)">http://hl7.org/cda/stds/core/StructureDefinition/RTO-PQ-PQ|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>RTO_PQ_PQ <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#Identifier" title="Identifier">http://hl7.org/fhir/StructureDefinition/Identifier|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>Identifier <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#instant" title="instant">http://hl7.org/fhir/StructureDefinition/instant|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>instant <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#code" title="code">http://hl7.org/fhir/StructureDefinition/code|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>code <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#CodeableConcept" title="CodeableConcept">http://hl7.org/fhir/StructureDefinition/CodeableConcept|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>CodeableConcept <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#Coding" title="Coding">http://hl7.org/fhir/StructureDefinition/Coding|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>Coding <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#string" title="string">http://hl7.org/fhir/StructureDefinition/string|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>string <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#HumanName" title="HumanName">http://hl7.org/fhir/StructureDefinition/HumanName|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>HumanName <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#Address" title="Address">http://hl7.org/fhir/StructureDefinition/Address|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>Address <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#ContactPoint" title="ContactPoint">http://hl7.org/fhir/StructureDefinition/ContactPoint|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>ContactPoint <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#boolean" title="boolean">http://hl7.org/fhir/StructureDefinition/boolean|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>boolean <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#Period" title="Period">http://hl7.org/fhir/StructureDefinition/Period|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>Period <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#integer" title="integer">http://hl7.org/fhir/StructureDefinition/integer|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>integer <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#dateTime" title="dateTime">http://hl7.org/fhir/StructureDefinition/dateTime|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>dateTime <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#date" title="date">http://hl7.org/fhir/StructureDefinition/date|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>date <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#Quantity" title="Quantity">http://hl7.org/fhir/StructureDefinition/Quantity|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>Quantity <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#Ratio" title="Ratio">http://hl7.org/fhir/StructureDefinition/Ratio|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>Ratio <b>as </b><b>target</b>
+
+<span style="color: navy">// </span><span style="color: green">Groupe générique de base (Sert de groupe parent pour les autres mappings)</span>
+<b>group </b>Any<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy">)</span><span style="color: navy"> {
+</span>  <span style="color: navy">// </span><span style="color: green">Mapping de base sans transformation spécifique</span>
+  src<span style="color: navy"><b> -&gt; </b></span>tgt <i>&quot;base&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><span style="color: navy">// </span><span style="color: green">Mapping CDA II vers FHIR Identifier</span>
+<span style="color: navy">// </span><span style="color: green">II = Identifiant CDA</span>
+<span style="color: navy">// </span><span style="color: green">Identifier = Identifiant FHIR</span>
+<b>group </b>II<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>II, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Identifier<span style="color: navy">)</span><b> extends </b>Any<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
+</span>  <span style="color: navy">// </span><span style="color: green">Si root existe avec une extension, alors root devient le system en urn:oid</span>
+  src.root<b> as </b><span style="color: maroon">r</span><b> where </b>src.extension.exists()<span style="color: navy"><b> -&gt; </b></span>tgt.system = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:oid:'</span><span style="color: navy">, </span><span style="color: maroon">r</span><span style="color: navy">)</span> <i>&quot;root1&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Si root est un UUID sans extension, alors il est mappé comme urn:uuid</span>
+  src.root<b> as </b><span style="color: maroon">r</span><b> where </b>src.extension.empty() and src.root.matches('[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}')<span style="color: navy"><b> -&gt; </b></span> tgt.system = <span style="color: blue">'urn:ietf:rfc:3986'</span><span style="color: navy">, </span> tgt.value = <span style="color: navy">(</span>'urn:uuid:' + r.lower()<span style="color: navy">)</span> <i>&quot;rootuuid&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Si root est un OID sans extension, alors il devient une valeur urn:oid</span>
+  src.root<b> as </b><span style="color: maroon">r</span><b> where </b>src.extension.empty() and src.root.contains('.')<span style="color: navy"><b> -&gt; </b></span> tgt.system = <span style="color: blue">'urn:ietf:rfc:3986'</span><span style="color: navy">, </span> tgt.value = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:oid:'</span><span style="color: navy">, </span><span style="color: maroon">r</span><span style="color: navy">)</span> <i>&quot;rootoid&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">L’extension CDA devient la valeur de l’Identifier FHIR</span>
+  src.extension<b> as </b><span style="color: maroon">e</span><span style="color: navy"><b> -&gt; </b></span>tgt.value = <span style="color: maroon">e</span><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Le nom de l’autorité d’assignation devient le display de l’assigner</span>
+  src.assigningAuthorityName<b> as </b><span style="color: maroon">s</span><span style="color: navy"><b> -&gt; </b></span> tgt.assigner<b> as </b><span style="color: maroon">a</span><span style="color: navy">, </span> a.display = <span style="color: maroon">s</span><span style="color: navy">;</span> <span style="color: navy">// </span><span style="color: green">there's no equivalent for displayable in FHIR - and it probably will never matter, but if it does, it might map to Identifier.use.</span>
+  <span style="color: navy">// </span><span style="color: green">Mapping de l’attribut displayable sous forme d’extension FHIR</span>
+  src.displayable<b> as </b><span style="color: maroon">displayable</span><span style="color: navy"><b> -&gt; </b></span>tgt.extension<b> as </b><span style="color: maroon">ext</span><b> then</b><span style="color: navy"> {
+</span>    <span style="color: navy">// </span><span style="color: green">URL de l’extension displayable</span>
+    displayable<span style="color: navy"><b> -&gt; </b></span>ext.url = <span style="color: blue">'http://hl7.org/fhir/cdaStructureDefinition/extension-displayable'</span> <i>&quot;url&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">// </span><span style="color: green">Valeur de displayable convertie en string</span>
+    displayable.value<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>ext.value = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">v</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;extension&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><span style="color: navy">// </span><span style="color: green">Mapping CDA INT vers FHIR integer</span>
+<span style="color: navy">// </span><span style="color: green">INT = entier CDA</span>
+<span style="color: navy">// </span><span style="color: green">integer = entier FHIR</span>
+<b>group </b>INT<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>INT, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>integer<span style="color: navy">)</span><b> extends </b>Any<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
+</span>  <span style="color: navy">// </span><span style="color: green">La valeur CDA devient la valeur FHIR</span>
+  src.value<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.value = <span style="color: maroon">v</span> <i>&quot;integer&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><span style="color: navy">// </span><span style="color: green">Mapping des templateId CDA (Les templateId sont conservés dans des extensions FHIR)</span>
+<b>group </b>TemplateID<span style="color: navy">(</span><b>source</b> <span style="color: maroon">template</span><span style="color: navy"> : </span>II, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy">)</span><span style="color: navy"> {
+</span>  <span style="color: navy">// </span><span style="color: green">Création d’une extension pour stocker le templateId CDA</span>
+  template<span style="color: navy"><b> -&gt; </b></span>tgt.extension<b> as </b><span style="color: maroon">ext</span><b> then</b><span style="color: navy"> {
+</span>    <span style="color: navy">// </span><span style="color: green">URL de l’extension templateID</span>
+    template<span style="color: navy"><b> -&gt; </b></span>ext.url = <span style="color: blue">'http://hl7.org/cda/stds/core/StructureDefinition/templateID'</span> <i>&quot;url&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">// </span><span style="color: green">Le templateId est transformé en Identifier FHIR</span>
+    template<span style="color: navy"><b> -&gt; </b></span>ext.value = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Identifier'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">value</span><b> then </b>II<span style="color: navy">(</span><span style="color: maroon">template</span><span style="color: navy">, </span><span style="color: maroon">value</span><span style="color: navy">)</span> <i>&quot;value&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;templateId&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><span style="color: navy">// </span><span style="color: green">Mapping du negationIndicator CDA (La négation CDA est représentée comme modifierExtension FHIR)</span>
+<b>group </b>Negation<span style="color: navy">(</span><b>source</b> <span style="color: maroon">negation</span><span style="color: navy"> : </span>BL, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy">)</span><span style="color: navy"> {
+</span>  <span style="color: navy">// </span><span style="color: green">Création d’une modifierExtension pour indiquer la négation</span>
+  negation<span style="color: navy"><b> -&gt; </b></span>tgt.modifierExtension<b> as </b><span style="color: maroon">ext</span><b> then</b><span style="color: navy"> {
+</span>    <span style="color: navy">// </span><span style="color: green">URL de l’extension negationIndicator</span>
+    negation<span style="color: navy"><b> -&gt; </b></span>ext.url = <span style="color: blue">'http://hl7.org/cda/stds/core/StructureDefinition/negationIndicator'</span> <i>&quot;url&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">// </span><span style="color: green">Valeur booléenne de la négation</span>
+    negation<b> as </b><span style="color: maroon">neg</span><span style="color: navy"><b> -&gt; </b></span> ext.value = <b>create</b><span style="color: navy">(</span><span style="color: blue">'boolean'</span><span style="color: navy">)</span><span style="color: navy">, </span> ext.value = <span style="color: maroon">neg</span> <i>&quot;value&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;negation&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><span style="color: navy">// </span><span style="color: green">Mapping CDA TS vers FHIR instant (TS = timestamp CDA)</span>
+<b>group </b>TSInstant<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>TS, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>instant<span style="color: navy">)</span><b> extends </b>Any<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
+</span>  <span style="color: navy">// </span><span style="color: green">La valeur temporelle CDA est convertie en string pour alimenter l’instant FHIR</span>
+  src.value<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.value = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">v</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><span style="color: navy">// </span><span style="color: green">Mapping CDA TS vers FHIR dateTime (Hérite du mapping TSInstant)</span>
+<b>group </b>TSDateTime<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>TS, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>dateTime<span style="color: navy">)</span><b> extends </b>TSInstant<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
+</span>  <span style="color: navy">// </span><span style="color: green">Réutilisation du mapping parent</span>
+  src<span style="color: navy"><b> -&gt; </b></span>tgt <i>&quot;inherit&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><span style="color: navy">// </span><span style="color: green">Mapping CDA TS vers FHIR date (Hérite aussi du mapping TSInstant)</span>
+<b>group </b>TSDate<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>TS, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>date<span style="color: navy">)</span><b> extends </b>TSInstant<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
+</span>  <span style="color: navy">// </span><span style="color: green">Réutilisation du mapping parent</span>
+  src<span style="color: navy"><b> -&gt; </b></span>tgt <i>&quot;inherit&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><span style="color: navy">// </span><span style="color: green">Mapping CDA IVL_TS vers FHIR Period</span>
+<span style="color: navy">// </span><span style="color: green">IVL_TS = intervalle de temps CDA</span>
+<span style="color: navy">// </span><span style="color: green">Period = période FHIR avec start et end</span>
+<b>group </b>IVLTSPeriod<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>IVL_TS, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Period<span style="color: navy">)</span><b> extends </b>Any<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
+</span>  <span style="color: navy">// </span><span style="color: green">La borne basse CDA devient le start FHIR</span>
+  src.low<b> as </b><span style="color: maroon">low</span><span style="color: navy"><b> -&gt; </b></span>tgt.start = <b>create</b><span style="color: navy">(</span><span style="color: blue">'dateTime'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">start</span><b> then </b>TSDateTime<span style="color: navy">(</span><span style="color: maroon">low</span><span style="color: navy">, </span><span style="color: maroon">start</span><span style="color: navy">)</span><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">La borne haute CDA devient le end FHIR</span>
+  src.high<b> as </b><span style="color: maroon">high</span><span style="color: navy"><b> -&gt; </b></span>tgt.end = <b>create</b><span style="color: navy">(</span><span style="color: blue">'dateTime'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">end</span><b> then </b>TSDateTime<span style="color: navy">(</span><span style="color: maroon">high</span><span style="color: navy">, </span><span style="color: maroon">end</span><span style="color: navy">)</span><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><span style="color: navy">// </span><span style="color: green">Mapping CDA IVL_TS vers FHIR dateTime (On utilise uniquement la borne basse low)</span>
+<b>group </b>IVLTSDateTime<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>IVL_TS, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>dateTime<span style="color: navy">)</span><b> extends </b>Any<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
+</span>  <span style="color: navy">// </span><span style="color: green">La borne basse est transformée en dateTime</span>
+  src.low<b> as </b><span style="color: maroon">s</span><b> then </b>TSDateTime<span style="color: navy">(</span><span style="color: maroon">s</span><span style="color: navy">, </span><span style="color: maroon">tgt</span><span style="color: navy">)</span><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><span style="color: navy">// </span><span style="color: green">Mapping CDA ST vers FHIR string (ST = texte simple CDA)</span>
+<b>group </b>STstring<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>ST, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>string<span style="color: navy">)</span><span style="color: navy"> {
+</span>  <span style="color: navy">// </span><span style="color: green">Le texte CDA est converti en string FHIR</span>
+  src<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.value = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">v</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span> <i>&quot;value&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><span style="color: navy">// </span><span style="color: green">Mapping CDA ED vers FHIR string (ED hérite du comportement de STstring)</span>
+<b>group </b>EDstring<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>ED, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>string<span style="color: navy">)</span><b> extends </b>STstring<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
+</span>  <span style="color: navy">// </span><span style="color: green">Réutilisation du mapping STstring</span>
+  src<span style="color: navy"><b> -&gt; </b></span>tgt <i>&quot;inherit&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><span style="color: navy">// </span><span style="color: green">Mapping CDA ON vers FHIR string (ON = Organization Name CDA)</span>
+<b>group </b>ONstring<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>ON, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>string<span style="color: navy">)</span><b> extends </b>STstring<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
+</span>  <span style="color: navy">// </span><span style="color: green">Réutilisation du mapping STstring</span>
+  src<span style="color: navy"><b> -&gt; </b></span>tgt <i>&quot;inherit&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><span style="color: navy">// </span><span style="color: green">Mapping CDA CS vers FHIR code (CS = coded simple CDA)</span>
+<b>group </b>CSCode<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>CS, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>code<span style="color: navy">)</span><span style="color: navy"> {
+</span>  <span style="color: navy">// </span><span style="color: green">Le code CDA devient la valeur du code FHIR</span>
+  src.code<b> as </b><span style="color: maroon">c</span><span style="color: navy"><b> -&gt; </b></span>tgt.value = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">c</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><span style="color: navy">// </span><span style="color: green">Mapping CDA CE vers FHIR code (CE hérite du mapping CSCode)</span>
+<b>group </b>CECode<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>CE, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>code<span style="color: navy">)</span><b> extends </b>CSCode<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
+</span>  <span style="color: navy">// </span><span style="color: green">Réutilisation du mapping CSCode</span>
+  src<span style="color: navy"><b> -&gt; </b></span>tgt <i>&quot;inherit&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><span style="color: navy">// </span><span style="color: green">Mapping CDA CD vers FHIR code (CD hérite du mapping CSCode)</span>
+<b>group </b>CDCode<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>CD, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>code<span style="color: navy">)</span><b> extends </b>CSCode<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
+</span>  <span style="color: navy">// </span><span style="color: green">Réutilisation du mapping CSCode</span>
+  src<span style="color: navy"><b> -&gt; </b></span>tgt <i>&quot;inherit&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><b>group </b>CECodeableConcept<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>CE, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>CodeableConcept<span style="color: navy">)</span><span style="color: navy"> {
+</span>  <span style="color: navy">// </span><span style="color: green">originalText CDA -&gt; FHIR CodeableConcept.text</span>
+  
+  <span style="color: navy">// </span><span style="color: green">Exemple CDA :</span>
+  <span style="color: navy">// </span><span style="color: green">&lt;originalText&gt;</span>
+  <span style="color: navy">// </span><span style="color: green">&lt;reference value=&quot;#allergie-01-agent&quot;/&gt;</span>
+  <span style="color: navy">// </span><span style="color: green">&lt;/originalText&gt;</span>
+  
+  <span style="color: navy">// </span><span style="color: green">Résultat FHIR attendu :</span>
+  <span style="color: navy">// </span><span style="color: green">&quot;text&quot;: &quot;#allergie-01-agent&quot;</span>
+  
+  <span style="color: navy">// </span><span style="color: green">On récupère uniquement reference.value, pas tout l’objet originalText.</span>
+  src.originalText<b> as </b><span style="color: maroon">originalText</span><b> then</b><span style="color: navy"> {
+</span>    originalText.reference<b> as </b><span style="color: maroon">ref</span><b> then</b><span style="color: navy"> {
+</span>      ref.value<b> as </b><span style="color: maroon">value</span><span style="color: navy"><b> -&gt; </b></span>tgt.text = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">value</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span> <i>&quot;textFromOriginalTextReference&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;originalTextReference&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Création du coding principal à partir du code CDA</span>
+  src<span style="color: navy"><b> -&gt; </b></span>tgt.coding<b> as </b><span style="color: maroon">coding</span><b> then</b><span style="color: navy"> {
+</span>    <span style="color: navy">// </span><span style="color: green">CDA code -&gt; FHIR Coding.code.</span>
+    src.code<b> as </b><span style="color: maroon">code</span><span style="color: navy"><b> -&gt; </b></span>coding.code = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">code</span><span style="color: navy">, </span><span style="color: blue">'code'</span><span style="color: navy">)</span><span style="color: navy">;</span>
+    <span style="color: navy">// </span><span style="color: green">CDA codeSystem LOINC -&gt; FHIR Coding.system.</span>
+    src.codeSystem<b> as </b><span style="color: maroon">system</span><b> where </b>system = '2.16.840.1.113883.6.1'<span style="color: navy"><b> -&gt; </b></span>coding.system = <span style="color: blue">'http://loinc.org'</span> <i>&quot;systemLoinc&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">// </span><span style="color: green">CDA codeSystem SNOMED CT -&gt; FHIR Coding.system.</span>
+    src.codeSystem<b> as </b><span style="color: maroon">system</span><b> where </b>system = '2.16.840.1.113883.6.96'<span style="color: navy"><b> -&gt; </b></span>coding.system = <span style="color: blue">'http://snomed.info/sct'</span> <i>&quot;systemSnomed&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">// </span><span style="color: green">CDA codeSystem HL7 v3 ActCode -&gt; FHIR Coding.system.</span>
+    src.codeSystem<b> as </b><span style="color: maroon">system</span><b> where </b>system = '2.16.840.1.113883.5.4'<span style="color: navy"><b> -&gt; </b></span>coding.system = <span style="color: blue">'http://terminology.hl7.org/CodeSystem/v3-ActCode'</span> <i>&quot;systemActCode&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">// </span><span style="color: green">CDA codeSystem TRE_A02 -&gt; FHIR Coding.system NOS.</span>
+    src.codeSystem<b> as </b><span style="color: maroon">system</span><b> where </b>system = '1.2.250.1.213.1.1.4.5'<span style="color: navy"><b> -&gt; </b></span>coding.system = <span style="color: blue">'https://mos.esante.gouv.fr/NOS/TRE_A02-ProfessionSavFaire-CISIS/FHIR/TRE-A02-ProfessionSavFaire-CISIS'</span> <i>&quot;systemTRE_A02&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">// </span><span style="color: green">CDA autres codeSystem OID -&gt; FHIR Coding.system urn:oid.</span>
+    src.codeSystem<b> as </b><span style="color: maroon">system</span><b> where </b>(system != '2.16.840.1.113883.6.1') and (system != '2.16.840.1.113883.6.96') and (system != '2.16.840.1.113883.5.4') and (system != '1.2.250.1.213.1.1.4.5')<span style="color: navy"><b> -&gt; </b></span>coding.system = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:oid:'</span><span style="color: navy">, </span><span style="color: maroon">system</span><span style="color: navy">)</span> <i>&quot;systemFallback&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">// </span><span style="color: green">CDA displayName -&gt; FHIR Coding.display.</span>
+    <span style="color: navy">// </span><span style="color: green">Ici on met le display pour tous les systèmes, y compris LOINC.</span>
+    src.displayName<b> as </b><span style="color: maroon">display</span><span style="color: navy"><b> -&gt; </b></span>coding.display = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">display</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span> <i>&quot;display&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;code&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><span style="color: navy">// </span><span style="color: green">Mapping CDA CS vers FHIR CodeableConcept (CS réutilise la logique CECodeableConcept)</span>
+<b>group </b>CSCodeableConcept<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>CS, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>CodeableConcept<span style="color: navy">)</span><b> extends </b>CECodeableConcept<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
+</span>  <span style="color: navy">// </span><span style="color: green">Réutilisation du mapping CECodeableConcept</span>
+  src<span style="color: navy"><b> -&gt; </b></span>tgt <i>&quot;inherit&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><span style="color: navy">// </span><span style="color: green">Mapping CDA CD vers FHIR CodeableConcept (CD réutilise la logique CECodeableConcept)</span>
+<b>group </b>CDCodeableConcept<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>CD, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>CodeableConcept<span style="color: navy">)</span><b> extends </b>CECodeableConcept<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
+</span>  <span style="color: navy">// </span><span style="color: green">Réutilisation du mapping CECodeableConcept</span>
+  src<span style="color: navy"><b> -&gt; </b></span>tgt <i>&quot;inherit&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><span style="color: navy">// </span><span style="color: green">Mapping CDA CD / CE vers FHIR Coding (Utilisé quand la cible FHIR attend directement un Coding, par exemple Encounter.class)</span>
+<b>group </b>CDCoding<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Coding<span style="color: navy">)</span><span style="color: navy"> {
+</span>  <span style="color: navy">// </span><span style="color: green">CDA code -&gt; FHIR Coding.code</span>
+  src.code<b> as </b><span style="color: maroon">code</span><span style="color: navy"><b> -&gt; </b></span>tgt.code = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">code</span><span style="color: navy">, </span><span style="color: blue">'code'</span><span style="color: navy">)</span><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">CDA codeSystem LOINC -&gt; FHIR Coding.system</span>
+  src.codeSystem<b> as </b><span style="color: maroon">system</span><b> where </b>system = '2.16.840.1.113883.6.1'<span style="color: navy"><b> -&gt; </b></span>tgt.system = <span style="color: blue">'http://loinc.org'</span> <i>&quot;systemLoinc&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">CDA codeSystem SNOMED CT -&gt; FHIR Coding.system</span>
+  src.codeSystem<b> as </b><span style="color: maroon">system</span><b> where </b>system = '2.16.840.1.113883.6.96'<span style="color: navy"><b> -&gt; </b></span>tgt.system = <span style="color: blue">'http://snomed.info/sct'</span> <i>&quot;systemSnomed&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">CDA codeSystem HL7 v3 ActCode -&gt; FHIR Coding.system</span>
+  src.codeSystem<b> as </b><span style="color: maroon">system</span><b> where </b>system = '2.16.840.1.113883.5.4'<span style="color: navy"><b> -&gt; </b></span>tgt.system = <span style="color: blue">'http://terminology.hl7.org/CodeSystem/v3-ActCode'</span> <i>&quot;systemActCode&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">CDA codeSystem TRE_A02 -&gt; FHIR Coding.system NOS</span>
+  src.codeSystem<b> as </b><span style="color: maroon">system</span><b> where </b>system = '1.2.250.1.213.1.1.4.5'<span style="color: navy"><b> -&gt; </b></span>tgt.system = <span style="color: blue">'https://mos.esante.gouv.fr/NOS/TRE_A02-ProfessionSavFaire-CISIS/FHIR/TRE-A02-ProfessionSavFaire-CISIS'</span> <i>&quot;systemTRE_A02&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">CDA autres codeSystem OID -&gt; FHIR Coding.system urn:oid</span>
+  src.codeSystem<b> as </b><span style="color: maroon">system</span><b> where </b>(system != '2.16.840.1.113883.6.1') and (system != '2.16.840.1.113883.6.96') and (system != '2.16.840.1.113883.5.4') and (system != '1.2.250.1.213.1.1.4.5')<span style="color: navy"><b> -&gt; </b></span>tgt.system = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:oid:'</span><span style="color: navy">, </span><span style="color: maroon">system</span><span style="color: navy">)</span> <i>&quot;systemFallback&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">CDA displayName -&gt; FHIR Coding.display</span>
+  src.displayName<b> as </b><span style="color: maroon">display</span><span style="color: navy"><b> -&gt; </b></span>tgt.display = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">display</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span> <i>&quot;display&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><span style="color: navy">// </span><span style="color: green">Mapping CDA EN vers FHIR HumanName</span>
+<span style="color: navy">// </span><span style="color: green">EN = Entity Name CDA</span>
+<span style="color: navy">// </span><span style="color: green">HumanName = nom humain FHIR</span>
+<b>group </b>ENHumanName<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>EN, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>HumanName<span style="color: navy">)</span><span style="color: navy"> {
+</span>  <span style="color: navy">// </span><span style="color: green">Parcours des composants du nom CDA</span>
+  src.item<b> as </b><span style="color: maroon">item</span><b> then</b><span style="color: navy"> {
+</span>    <span style="color: navy">// </span><span style="color: green">Nom de famille</span>
+    item.family<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.family = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
+    <span style="color: navy">// </span><span style="color: green">Prénom</span>
+    item.given<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.given = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
+    <span style="color: navy">// </span><span style="color: green">Préfixe du nom</span>
+    item.prefix<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.prefix = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
+    <span style="color: navy">// </span><span style="color: green">Suffixe du nom</span>
+    item.suffix<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.suffix = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
+  <span style="color: navy">}</span><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">La période de validité CDA devient period FHIR</span>
+  src.validTime<b> as </b><span style="color: maroon">validTime</span><span style="color: navy"><b> -&gt; </b></span>tgt.period = <span style="color: maroon">validTime</span><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><span style="color: navy">// </span><span style="color: green">Mapping CDA PN vers FHIR HumanName</span>
+<span style="color: navy">// </span><span style="color: green">PN = Person Name CDA</span>
+<span style="color: navy">// </span><span style="color: green">PN hérite du mapping ENHumanName</span>
+<b>group </b>PNHumanName<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>PN, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>HumanName<span style="color: navy">)</span><b> extends </b>ENHumanName<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
+</span>  <span style="color: navy">// </span><span style="color: green">Réutilisation du mapping ENHumanName</span>
+  src<span style="color: navy"><b> -&gt; </b></span>tgt <i>&quot;inherit&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><span style="color: navy">// </span><span style="color: green">Mapping CDA AD vers FHIR Address</span>
+<span style="color: navy">// </span><span style="color: green">AD = adresse CDA</span>
+<span style="color: navy">// </span><span style="color: green">Address = adresse FHIR</span>
+<b>group </b>ADAddress<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>AD, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Address<span style="color: navy">)</span><span style="color: navy"> {
+</span>  <span style="color: navy">// </span><span style="color: green">Parcours des composants de l’adresse CDA</span>
+  src.item<b> as </b><span style="color: maroon">item</span><b> then</b><span style="color: navy"> {
+</span>    <span style="color: navy">// </span><span style="color: green">Pays</span>
+    item.country<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.country = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
+    <span style="color: navy">// </span><span style="color: green">Région / état</span>
+    item.state<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.state = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
+    <span style="color: navy">// </span><span style="color: green">Département / district</span>
+    item.county<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.district = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
+    <span style="color: navy">// </span><span style="color: green">Ville</span>
+    item.city<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.city = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
+    <span style="color: navy">// </span><span style="color: green">Code postal</span>
+    item.postalCode<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.postalCode = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
+    <span style="color: navy">// </span><span style="color: green">Ligne d’adresse complète</span>
+    item.streetAddressLine<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.line = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
+    <span style="color: navy">// </span><span style="color: green">Ajout éventuel d’une extension sur la ligne d’adresse pour le censusTract</span>
+    item<span style="color: navy"><b> -&gt; </b></span>tgt.line<b> as </b><span style="color: maroon">line</span><b> then</b><span style="color: navy"> {
+</span>      item<b> where </b>src.censusTract.exists()<b> then</b><span style="color: navy"> {
+</span>        <span style="color: navy">// </span><span style="color: green">Mapping du censusTract dans une extension de line</span>
+        item.censusTract<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>line.extension<b> as </b><span style="color: maroon">ext1</span><b> then </b>CensusTract<span style="color: navy">(</span><span style="color: maroon">v</span><span style="color: navy">, </span><span style="color: maroon">ext1</span><span style="color: navy">)</span> <i>&quot;line&quot;</i><span style="color: navy">;</span>
+      <span style="color: navy">}</span> <i>&quot;sfgfdsg&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;CensusTract&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">// </span><span style="color: green">Anciennes tentatives de mapping du censusTract, conservées en commentaire</span>
+    <span style="color: navy">// </span><span style="color: green">as streetAddress then{</span>
+    <span style="color: #b36b00" title="This element was not defined prior to R5">// src.censusTract as v-&gt;tgt.line as line, line.extension as ext1 then CensusTract(v, ext1) &quot;line&quot;;</span>
+    <span style="color: #b36b00" title="This element was not defined prior to R5">// src.censusTract as v -&gt;tgt.line as line, line.extension as ext1 then CensusTract(v, ext1) &quot;line&quot;;</span>
+    <span style="color: navy">// </span><span style="color: green">Nom de rue</span>
+    item.streetName<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.line = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
+    <span style="color: navy">// </span><span style="color: green">Numéro de maison</span>
+    item.houseNumber<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.line = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
+  <span style="color: navy">}</span><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Période d’utilisation de l’adresse</span>
+  src.useablePeriod<b> as </b><span style="color: maroon">useablePeriod</span><span style="color: navy"><b> -&gt; </b></span>tgt.period = <span style="color: maroon">useablePeriod</span><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><span style="color: navy">// </span><span style="color: green">Mapping CDA TEL vers FHIR ContactPoint</span>
+<span style="color: navy">// </span><span style="color: green">TEL = téléphone/email/url CDA</span>
+<span style="color: navy">// </span><span style="color: green">ContactPoint = moyen de contact FHIR</span>
+<b>group </b>TELContactPoint<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>TEL, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>ContactPoint<span style="color: navy">)</span><span style="color: navy"> {
+</span>  <span style="color: navy">// </span><span style="color: green">Si la valeur commence par tel:, c’est un téléphone</span>
+  src.value<b> as </b><span style="color: maroon">v</span><b> where </b>(src.value.startsWith('tel:'))<span style="color: navy"><b> -&gt; </b></span> tgt.value = <span style="color: navy">(</span>v.substring(4)<span style="color: navy">)</span><span style="color: navy">, </span> tgt.system = <span style="color: blue">'phone'</span> <i>&quot;valuetel&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Si la valeur commence par fax:, c’est un fax</span>
+  src.value<b> as </b><span style="color: maroon">v</span><b> where </b>(src.value.startsWith('fax:'))<span style="color: navy"><b> -&gt; </b></span> tgt.value = <span style="color: navy">(</span>v.substring(4)<span style="color: navy">)</span><span style="color: navy">, </span> tgt.system = <span style="color: blue">'fax'</span> <i>&quot;valuefax&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Si la valeur commence par mailto:, c’est un email</span>
+  src.value<b> as </b><span style="color: maroon">v</span><b> where </b>(src.value.startsWith('mailto:'))<span style="color: navy"><b> -&gt; </b></span> tgt.value = <span style="color: navy">(</span>v.substring(7)<span style="color: navy">)</span><span style="color: navy">, </span> tgt.system = <span style="color: blue">'email'</span> <i>&quot;valuemail&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Si la valeur commence par http:, c’est une URL</span>
+  src.value<b> as </b><span style="color: maroon">v</span><b> where </b>(src.value.startsWith('http:'))<span style="color: navy"><b> -&gt; </b></span> tgt.value = <span style="color: navy">(</span>v.substring(5)<span style="color: navy">)</span><span style="color: navy">, </span> tgt.system = <span style="color: blue">'url'</span> <i>&quot;valuehttp&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Usage domicile</span>
+  src.use<b> where </b>(src.use.startsWith('H'))<span style="color: navy"><b> -&gt; </b></span>tgt.use = <span style="color: blue">'home'</span> <i>&quot;usehome&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Usage professionnel</span>
+  src.use<b> where </b>((src.use = 'WP') or (src.use = 'DIR') or (src.use = 'PUB'))<span style="color: navy"><b> -&gt; </b></span>tgt.use = <span style="color: blue">'work'</span> <i>&quot;usework&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Ancien contact / mauvais contact</span>
+  src.use<b> where </b>(src.use = 'BAD')<span style="color: navy"><b> -&gt; </b></span>tgt.use = <span style="color: blue">'old'</span> <i>&quot;usebad&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Contact temporaire</span>
+  src.use<b> where </b>(src.use = 'TMP')<span style="color: navy"><b> -&gt; </b></span>tgt.use = <span style="color: blue">'temp'</span> <i>&quot;usetmp&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Contact mobile</span>
+  src.use<b> where </b>(src.use = 'MC')<span style="color: navy"><b> -&gt; </b></span>tgt.use = <span style="color: blue">'mobile'</span> <i>&quot;usemobile&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Période d’utilisation du contact</span>
+  src.useablePeriod<b> as </b><span style="color: maroon">useablePeriod</span><span style="color: navy"><b> -&gt; </b></span>tgt.period = <span style="color: maroon">useablePeriod</span><span style="color: navy">;</span> <span style="color: navy">// </span><span style="color: green">use: for src.use as c make tgt.use = translate(c, 'http://hl7.org/fhir/ConceptMap/cm-telecom-use-v3', 'code')</span>
+<span style="color: navy">}
+
+</span><span style="color: navy">// </span><span style="color: green">Mapping CDA PQ vers FHIR Quantity</span>
+<span style="color: navy">// </span><span style="color: green">PQ = quantité physique CDA</span>
+<span style="color: navy">// </span><span style="color: green">Quantity = quantité FHIR</span>
+<b>group </b>PQQuantity<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>PQ, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Quantity<span style="color: navy">)</span><span style="color: navy"> {
+</span>  <span style="color: navy">// </span><span style="color: green">Unité lisible</span>
+  src.unit<b> as </b><span style="color: maroon">unit</span><span style="color: navy"><b> -&gt; </b></span>tgt.unit = <span style="color: maroon">unit</span><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Code de l’unité</span>
+  src.unit<b> as </b><span style="color: maroon">unit</span><span style="color: navy"><b> -&gt; </b></span>tgt.code = <span style="color: maroon">unit</span><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Système UCUM pour les unités</span>
+  src.unit<b> as </b><span style="color: maroon">unit</span><span style="color: navy"><b> -&gt; </b></span>tgt.system = <span style="color: blue">'http://unitsofmeasure.org'</span><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Valeur numérique de la quantité</span>
+  src.value<b> as </b><span style="color: maroon">value</span><span style="color: navy"><b> -&gt; </b></span>tgt.value = <span style="color: maroon">value</span><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><span style="color: navy">// </span><span style="color: green">Mapping CDA RTO_PQ_PQ vers FHIR Ratio</span>
+<span style="color: navy">// </span><span style="color: green">RTO_PQ_PQ = ratio CDA composé d’un numérateur et d’un dénominateur</span>
+<span style="color: navy">// </span><span style="color: green">Ratio = ratio FHIR</span>
+<b>group </b>RTOPQPQRatio<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>RTO_PQ_PQ, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Ratio<span style="color: navy">)</span><span style="color: navy"> {
+</span>  <span style="color: navy">// </span><span style="color: green">Mapping du numérateur</span>
+  src.numerator<b> as </b><span style="color: maroon">numerator</span><span style="color: navy"><b> -&gt; </b></span>tgt.numerator<b> as </b><span style="color: maroon">targetNumerator</span><b> then </b>PQQuantity<span style="color: navy">(</span><span style="color: maroon">numerator</span><span style="color: navy">, </span><span style="color: maroon">targetNumerator</span><span style="color: navy">)</span><span style="color: navy">;</span>
+  <span style="color: navy">// </span><span style="color: green">Mapping du dénominateur</span>
+  src.denominator<b> as </b><span style="color: maroon">denominator</span><span style="color: navy"><b> -&gt; </b></span>tgt.denominator<b> as </b><span style="color: maroon">targetDenominator</span><b> then </b>PQQuantity<span style="color: navy">(</span><span style="color: maroon">denominator</span><span style="color: navy">, </span><span style="color: maroon">targetDenominator</span><span style="color: navy">)</span><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span></pre></div>
+  </text>
+  <url value="https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes"/>
+  <version value="0.1.0"/>
+  <name value="CdaToFHIRTypes"/>
+  <title value="Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)"/>
+  <status value="draft"/>
+  <date value="2026-07-17T08:13:58+00:00"/>
+  <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
+  <contact>
+    <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
+    <telecom>
+      <system value="url"/>
+      <value value="https://esante.gouv.fr"/>
+    </telecom>
+  </contact>
+  <description value="Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)"/>
+  <jurisdiction>
+    <coding>
+      <system value="urn:iso:std:iso:3166"/>
+      <code value="FR"/>
+      <display value="France (la)"/>
+    </coding>
+  </jurisdiction>
+  <structure>
+    <url value="http://hl7.org/cda/stds/core/StructureDefinition/ED|2.0.0-sd"/>
+    <mode value="source"/>
+    <alias value="ED"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/cda/stds/core/StructureDefinition/PN|2.0.0-sd"/>
+    <mode value="source"/>
+    <alias value="PN"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/cda/stds/core/StructureDefinition/II|2.0.0-sd"/>
+    <mode value="source"/>
+    <alias value="II"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/cda/stds/core/StructureDefinition/TS|2.0.0-sd"/>
+    <mode value="source"/>
+    <alias value="TS"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/cda/stds/core/StructureDefinition/CS|2.0.0-sd"/>
+    <mode value="source"/>
+    <alias value="CS"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/cda/stds/core/StructureDefinition/CE|2.0.0-sd"/>
+    <mode value="source"/>
+    <alias value="CE"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/cda/stds/core/StructureDefinition/ST|2.0.0-sd"/>
+    <mode value="source"/>
+    <alias value="ST"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/cda/stds/core/StructureDefinition/ON|2.0.0-sd"/>
+    <mode value="source"/>
+    <alias value="ON"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/cda/stds/core/StructureDefinition/EN|2.0.0-sd"/>
+    <mode value="source"/>
+    <alias value="EN"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/cda/stds/core/StructureDefinition/AD|2.0.0-sd"/>
+    <mode value="source"/>
+    <alias value="AD"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/cda/stds/core/StructureDefinition/TEL|2.0.0-sd"/>
+    <mode value="source"/>
+    <alias value="TEL"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/cda/stds/core/StructureDefinition/BL|2.0.0-sd"/>
+    <mode value="source"/>
+    <alias value="BL"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/cda/stds/core/StructureDefinition/IVL-TS|2.0.0-sd"/>
+    <mode value="source"/>
+    <alias value="IVL_TS"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/cda/stds/core/StructureDefinition/INT|2.0.0-sd"/>
+    <mode value="source"/>
+    <alias value="INT"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/cda/stds/core/StructureDefinition/CD|2.0.0-sd"/>
+    <mode value="source"/>
+    <alias value="CD"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/cda/stds/core/StructureDefinition/PQ|2.0.0-sd"/>
+    <mode value="source"/>
+    <alias value="PQ"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/cda/stds/core/StructureDefinition/RTO-PQ-PQ|2.0.0-sd"/>
+    <mode value="source"/>
+    <alias value="RTO_PQ_PQ"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/Identifier|4.0.1"/>
+    <mode value="target"/>
+    <alias value="Identifier"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/instant|4.0.1"/>
+    <mode value="target"/>
+    <alias value="instant"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/code|4.0.1"/>
+    <mode value="target"/>
+    <alias value="code"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/CodeableConcept|4.0.1"/>
+    <mode value="target"/>
+    <alias value="CodeableConcept"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/Coding|4.0.1"/>
+    <mode value="target"/>
+    <alias value="Coding"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/string|4.0.1"/>
+    <mode value="target"/>
+    <alias value="string"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/HumanName|4.0.1"/>
+    <mode value="target"/>
+    <alias value="HumanName"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/Address|4.0.1"/>
+    <mode value="target"/>
+    <alias value="Address"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/ContactPoint|4.0.1"/>
+    <mode value="target"/>
+    <alias value="ContactPoint"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/boolean|4.0.1"/>
+    <mode value="target"/>
+    <alias value="boolean"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/Period|4.0.1"/>
+    <mode value="target"/>
+    <alias value="Period"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/integer|4.0.1"/>
+    <mode value="target"/>
+    <alias value="integer"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/dateTime|4.0.1"/>
+    <mode value="target"/>
+    <alias value="dateTime"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/date|4.0.1"/>
+    <mode value="target"/>
+    <alias value="date"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/Quantity|4.0.1"/>
+    <mode value="target"/>
+    <alias value="Quantity"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/Ratio|4.0.1"/>
+    <mode value="target"/>
+    <alias value="Ratio"/>
+  </structure>
+  <group>
+    <name value="Any"/>
+    <typeMode value="none"/>
+    <documentation value="Groupe générique de base (Sert de groupe parent pour les autres mappings)"/>
+    <input>
+      <name value="src"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="tgt"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="base"/>
+      <source>
+        <context value="src"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+      </target>
+    </rule>
+  </group>
+  <group>
+    <name value="II"/>
+    <extends value="Any"/>
+    <typeMode value="types"/>
+    <documentation value="Mapping CDA II vers FHIR Identifier&#xA;II = Identifiant CDA&#xA;Identifier = Identifiant FHIR"/>
+    <input>
+      <name value="src"/>
+      <type value="II"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="tgt"/>
+      <type value="Identifier"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="root1"/>
+      <source>
+        <context value="src"/>
+        <element value="root"/>
+        <variable value="r"/>
+        <condition value="src.extension.exists()"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="system"/>
+        <transform value="append"/>
+        <parameter>
+          <valueString value="urn:oid:"/>
+        </parameter>
+        <parameter>
+          <valueId value="r"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
+      <name value="rootuuid"/>
+      <source>
+        <context value="src"/>
+        <element value="root"/>
+        <variable value="r"/>
+        <condition value="src.extension.empty() and src.root.matches('[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}')"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="system"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueString value="urn:ietf:rfc:3986"/>
+        </parameter>
+      </target>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="value"/>
+        <transform value="evaluate"/>
+        <parameter>
+          <valueString value="'urn:uuid:' + r.lower()"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
+      <name value="rootoid"/>
+      <source>
+        <context value="src"/>
+        <element value="root"/>
+        <variable value="r"/>
+        <condition value="src.extension.empty() and src.root.contains('.')"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="system"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueString value="urn:ietf:rfc:3986"/>
+        </parameter>
+      </target>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="value"/>
+        <transform value="append"/>
+        <parameter>
+          <valueString value="urn:oid:"/>
+        </parameter>
+        <parameter>
+          <valueId value="r"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
+      <name value="extension"/>
+      <source>
+        <context value="src"/>
+        <element value="extension"/>
+        <variable value="e"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="value"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueId value="e"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
+      <name value="assigningAuthorityName"/>
+      <source>
+        <context value="src"/>
+        <element value="assigningAuthorityName"/>
+        <variable value="s"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="assigner"/>
+        <variable value="a"/>
+      </target>
+      <target>
+        <context value="a"/>
+        <contextType value="variable"/>
+        <element value="display"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueId value="s"/>
+        </parameter>
+      </target>
+      <documentation value="there's no equivalent for displayable in FHIR - and it probably will never matter, but if it does, it might map to Identifier.use."/>
+    </rule>
+    <rule>
+      <name value="extension"/>
+      <source>
+        <context value="src"/>
+        <element value="displayable"/>
+        <variable value="displayable"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="extension"/>
+        <variable value="ext"/>
+      </target>
+      <rule>
+        <name value="url"/>
+        <source>
+          <context value="displayable"/>
+        </source>
+        <target>
+          <context value="ext"/>
+          <contextType value="variable"/>
+          <element value="url"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueString value="http://hl7.org/fhir/cdaStructureDefinition/extension-displayable"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="value"/>
+        <source>
+          <context value="displayable"/>
+          <element value="value"/>
+          <variable value="v"/>
+        </source>
+        <target>
+          <context value="ext"/>
+          <contextType value="variable"/>
+          <element value="value"/>
+          <transform value="cast"/>
+          <parameter>
+            <valueId value="v"/>
+          </parameter>
+          <parameter>
+            <valueString value="string"/>
+          </parameter>
+        </target>
+      </rule>
+    </rule>
+  </group>
+  <group>
+    <name value="INT"/>
+    <extends value="Any"/>
+    <typeMode value="types"/>
+    <documentation value="Mapping CDA INT vers FHIR integer&#xA;INT = entier CDA&#xA;integer = entier FHIR"/>
+    <input>
+      <name value="src"/>
+      <type value="INT"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="tgt"/>
+      <type value="integer"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="integer"/>
+      <source>
+        <context value="src"/>
+        <element value="value"/>
+        <variable value="v"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="value"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueId value="v"/>
+        </parameter>
+      </target>
+    </rule>
+  </group>
+  <group>
+    <name value="TemplateID"/>
+    <typeMode value="none"/>
+    <documentation value="Mapping des templateId CDA (Les templateId sont conservés dans des extensions FHIR)"/>
+    <input>
+      <name value="template"/>
+      <type value="II"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="tgt"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="templateId"/>
+      <source>
+        <context value="template"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="extension"/>
+        <variable value="ext"/>
+      </target>
+      <rule>
+        <name value="url"/>
+        <source>
+          <context value="template"/>
+        </source>
+        <target>
+          <context value="ext"/>
+          <contextType value="variable"/>
+          <element value="url"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueString value="http://hl7.org/cda/stds/core/StructureDefinition/templateID"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="value"/>
+        <source>
+          <context value="template"/>
+        </source>
+        <target>
+          <context value="ext"/>
+          <contextType value="variable"/>
+          <element value="value"/>
+          <variable value="value"/>
+          <transform value="create"/>
+          <parameter>
+            <valueString value="Identifier"/>
+          </parameter>
+        </target>
+        <dependent>
+          <name value="II"/>
+          <variable value="template"/>
+          <variable value="value"/>
+        </dependent>
+      </rule>
+    </rule>
+  </group>
+  <group>
+    <name value="Negation"/>
+    <typeMode value="none"/>
+    <documentation value="Mapping du negationIndicator CDA (La négation CDA est représentée comme modifierExtension FHIR)"/>
+    <input>
+      <name value="negation"/>
+      <type value="BL"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="tgt"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="negation"/>
+      <source>
+        <context value="negation"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="modifierExtension"/>
+        <variable value="ext"/>
+      </target>
+      <rule>
+        <name value="url"/>
+        <source>
+          <context value="negation"/>
+        </source>
+        <target>
+          <context value="ext"/>
+          <contextType value="variable"/>
+          <element value="url"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueString value="http://hl7.org/cda/stds/core/StructureDefinition/negationIndicator"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="value"/>
+        <source>
+          <context value="negation"/>
+          <variable value="neg"/>
+        </source>
+        <target>
+          <context value="ext"/>
+          <contextType value="variable"/>
+          <element value="value"/>
+          <transform value="create"/>
+          <parameter>
+            <valueString value="boolean"/>
+          </parameter>
+        </target>
+        <target>
+          <context value="ext"/>
+          <contextType value="variable"/>
+          <element value="value"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueId value="neg"/>
+          </parameter>
+        </target>
+      </rule>
+    </rule>
+  </group>
+  <group>
+    <name value="TSInstant"/>
+    <extends value="Any"/>
+    <typeMode value="types"/>
+    <documentation value="Mapping CDA TS vers FHIR instant (TS = timestamp CDA)"/>
+    <input>
+      <name value="src"/>
+      <type value="TS"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="tgt"/>
+      <type value="instant"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="value"/>
+      <source>
+        <context value="src"/>
+        <element value="value"/>
+        <variable value="v"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="value"/>
+        <transform value="cast"/>
+        <parameter>
+          <valueId value="v"/>
+        </parameter>
+        <parameter>
+          <valueString value="string"/>
+        </parameter>
+      </target>
+    </rule>
+  </group>
+  <group>
+    <name value="TSDateTime"/>
+    <extends value="TSInstant"/>
+    <typeMode value="types"/>
+    <documentation value="Mapping CDA TS vers FHIR dateTime (Hérite du mapping TSInstant)"/>
+    <input>
+      <name value="src"/>
+      <type value="TS"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="tgt"/>
+      <type value="dateTime"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="inherit"/>
+      <source>
+        <context value="src"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+      </target>
+    </rule>
+  </group>
+  <group>
+    <name value="TSDate"/>
+    <extends value="TSInstant"/>
+    <typeMode value="types"/>
+    <documentation value="Mapping CDA TS vers FHIR date (Hérite aussi du mapping TSInstant)"/>
+    <input>
+      <name value="src"/>
+      <type value="TS"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="tgt"/>
+      <type value="date"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="inherit"/>
+      <source>
+        <context value="src"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+      </target>
+    </rule>
+  </group>
+  <group>
+    <name value="IVLTSPeriod"/>
+    <extends value="Any"/>
+    <typeMode value="types"/>
+    <documentation value="Mapping CDA IVL_TS vers FHIR Period&#xA;IVL_TS = intervalle de temps CDA&#xA;Period = période FHIR avec start et end"/>
+    <input>
+      <name value="src"/>
+      <type value="IVL_TS"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="tgt"/>
+      <type value="Period"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="low"/>
+      <source>
+        <context value="src"/>
+        <element value="low"/>
+        <variable value="low"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="start"/>
+        <variable value="start"/>
+        <transform value="create"/>
+        <parameter>
+          <valueString value="dateTime"/>
+        </parameter>
+      </target>
+      <dependent>
+        <name value="TSDateTime"/>
+        <variable value="low"/>
+        <variable value="start"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="high"/>
+      <source>
+        <context value="src"/>
+        <element value="high"/>
+        <variable value="high"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="end"/>
+        <variable value="end"/>
+        <transform value="create"/>
+        <parameter>
+          <valueString value="dateTime"/>
+        </parameter>
+      </target>
+      <dependent>
+        <name value="TSDateTime"/>
+        <variable value="high"/>
+        <variable value="end"/>
+      </dependent>
+    </rule>
+  </group>
+  <group>
+    <name value="IVLTSDateTime"/>
+    <extends value="Any"/>
+    <typeMode value="types"/>
+    <documentation value="Mapping CDA IVL_TS vers FHIR dateTime (On utilise uniquement la borne basse low)"/>
+    <input>
+      <name value="src"/>
+      <type value="IVL_TS"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="tgt"/>
+      <type value="dateTime"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="low"/>
+      <source>
+        <context value="src"/>
+        <element value="low"/>
+        <variable value="s"/>
+      </source>
+      <dependent>
+        <name value="TSDateTime"/>
+        <variable value="s"/>
+        <variable value="tgt"/>
+      </dependent>
+    </rule>
+  </group>
+  <group>
+    <name value="STstring"/>
+    <typeMode value="none"/>
+    <documentation value="Mapping CDA ST vers FHIR string (ST = texte simple CDA)"/>
+    <input>
+      <name value="src"/>
+      <type value="ST"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="tgt"/>
+      <type value="string"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="value"/>
+      <source>
+        <context value="src"/>
+        <variable value="v"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="value"/>
+        <transform value="cast"/>
+        <parameter>
+          <valueId value="v"/>
+        </parameter>
+        <parameter>
+          <valueString value="string"/>
+        </parameter>
+      </target>
+    </rule>
+  </group>
+  <group>
+    <name value="EDstring"/>
+    <extends value="STstring"/>
+    <typeMode value="types"/>
+    <documentation value="Mapping CDA ED vers FHIR string (ED hérite du comportement de STstring)"/>
+    <input>
+      <name value="src"/>
+      <type value="ED"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="tgt"/>
+      <type value="string"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="inherit"/>
+      <source>
+        <context value="src"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+      </target>
+    </rule>
+  </group>
+  <group>
+    <name value="ONstring"/>
+    <extends value="STstring"/>
+    <typeMode value="types"/>
+    <documentation value="Mapping CDA ON vers FHIR string (ON = Organization Name CDA)"/>
+    <input>
+      <name value="src"/>
+      <type value="ON"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="tgt"/>
+      <type value="string"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="inherit"/>
+      <source>
+        <context value="src"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+      </target>
+    </rule>
+  </group>
+  <group>
+    <name value="CSCode"/>
+    <typeMode value="none"/>
+    <documentation value="Mapping CDA CS vers FHIR code (CS = coded simple CDA)"/>
+    <input>
+      <name value="src"/>
+      <type value="CS"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="tgt"/>
+      <type value="code"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="code"/>
+      <source>
+        <context value="src"/>
+        <element value="code"/>
+        <variable value="c"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="value"/>
+        <transform value="cast"/>
+        <parameter>
+          <valueId value="c"/>
+        </parameter>
+        <parameter>
+          <valueString value="string"/>
+        </parameter>
+      </target>
+    </rule>
+  </group>
+  <group>
+    <name value="CECode"/>
+    <extends value="CSCode"/>
+    <typeMode value="types"/>
+    <documentation value="Mapping CDA CE vers FHIR code (CE hérite du mapping CSCode)"/>
+    <input>
+      <name value="src"/>
+      <type value="CE"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="tgt"/>
+      <type value="code"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="inherit"/>
+      <source>
+        <context value="src"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+      </target>
+    </rule>
+  </group>
+  <group>
+    <name value="CDCode"/>
+    <extends value="CSCode"/>
+    <typeMode value="types"/>
+    <documentation value="Mapping CDA CD vers FHIR code (CD hérite du mapping CSCode)"/>
+    <input>
+      <name value="src"/>
+      <type value="CD"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="tgt"/>
+      <type value="code"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="inherit"/>
+      <source>
+        <context value="src"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+      </target>
+    </rule>
+  </group>
+  <group>
+    <name value="CECodeableConcept"/>
+    <typeMode value="none"/>
+    <input>
+      <name value="src"/>
+      <type value="CE"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="tgt"/>
+      <type value="CodeableConcept"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="originalText"/>
+      <source>
+        <context value="src"/>
+        <element value="originalText"/>
+        <variable value="originalText"/>
+      </source>
+      <rule>
+        <name value="originalTextReference"/>
+        <source>
+          <context value="originalText"/>
+          <element value="reference"/>
+          <variable value="ref"/>
+        </source>
+        <rule>
+          <name value="textFromOriginalTextReference"/>
+          <source>
+            <context value="ref"/>
+            <element value="value"/>
+            <variable value="value"/>
+          </source>
+          <target>
+            <context value="tgt"/>
+            <contextType value="variable"/>
+            <element value="text"/>
+            <transform value="cast"/>
+            <parameter>
+              <valueId value="value"/>
+            </parameter>
+            <parameter>
+              <valueString value="string"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
+    </rule>
+    <rule>
+      <name value="code"/>
+      <source>
+        <context value="src"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="coding"/>
+        <variable value="coding"/>
+      </target>
+      <rule>
+        <name value="code"/>
+        <source>
+          <context value="src"/>
+          <element value="code"/>
+          <variable value="code"/>
+        </source>
+        <target>
+          <context value="coding"/>
+          <contextType value="variable"/>
+          <element value="code"/>
+          <transform value="cast"/>
+          <parameter>
+            <valueId value="code"/>
+          </parameter>
+          <parameter>
+            <valueString value="code"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="systemLoinc"/>
+        <source>
+          <context value="src"/>
+          <element value="codeSystem"/>
+          <variable value="system"/>
+          <condition value="system = '2.16.840.1.113883.6.1'"/>
+        </source>
+        <target>
+          <context value="coding"/>
+          <contextType value="variable"/>
+          <element value="system"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueString value="http://loinc.org"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="systemSnomed"/>
+        <source>
+          <context value="src"/>
+          <element value="codeSystem"/>
+          <variable value="system"/>
+          <condition value="system = '2.16.840.1.113883.6.96'"/>
+        </source>
+        <target>
+          <context value="coding"/>
+          <contextType value="variable"/>
+          <element value="system"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueString value="http://snomed.info/sct"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="systemActCode"/>
+        <source>
+          <context value="src"/>
+          <element value="codeSystem"/>
+          <variable value="system"/>
+          <condition value="system = '2.16.840.1.113883.5.4'"/>
+        </source>
+        <target>
+          <context value="coding"/>
+          <contextType value="variable"/>
+          <element value="system"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueString value="http://terminology.hl7.org/CodeSystem/v3-ActCode"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="systemTRE_A02"/>
+        <source>
+          <context value="src"/>
+          <element value="codeSystem"/>
+          <variable value="system"/>
+          <condition value="system = '1.2.250.1.213.1.1.4.5'"/>
+        </source>
+        <target>
+          <context value="coding"/>
+          <contextType value="variable"/>
+          <element value="system"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueString value="https://mos.esante.gouv.fr/NOS/TRE_A02-ProfessionSavFaire-CISIS/FHIR/TRE-A02-ProfessionSavFaire-CISIS"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="systemFallback"/>
+        <source>
+          <context value="src"/>
+          <element value="codeSystem"/>
+          <variable value="system"/>
+          <condition value="(system != '2.16.840.1.113883.6.1') and (system != '2.16.840.1.113883.6.96') and (system != '2.16.840.1.113883.5.4') and (system != '1.2.250.1.213.1.1.4.5')"/>
+        </source>
+        <target>
+          <context value="coding"/>
+          <contextType value="variable"/>
+          <element value="system"/>
+          <transform value="append"/>
+          <parameter>
+            <valueString value="urn:oid:"/>
+          </parameter>
+          <parameter>
+            <valueId value="system"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="display"/>
+        <source>
+          <context value="src"/>
+          <element value="displayName"/>
+          <variable value="display"/>
+        </source>
+        <target>
+          <context value="coding"/>
+          <contextType value="variable"/>
+          <element value="display"/>
+          <transform value="cast"/>
+          <parameter>
+            <valueId value="display"/>
+          </parameter>
+          <parameter>
+            <valueString value="string"/>
+          </parameter>
+        </target>
+      </rule>
+    </rule>
+  </group>
+  <group>
+    <name value="CSCodeableConcept"/>
+    <extends value="CECodeableConcept"/>
+    <typeMode value="types"/>
+    <documentation value="Mapping CDA CS vers FHIR CodeableConcept (CS réutilise la logique CECodeableConcept)"/>
+    <input>
+      <name value="src"/>
+      <type value="CS"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="tgt"/>
+      <type value="CodeableConcept"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="inherit"/>
+      <source>
+        <context value="src"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+      </target>
+    </rule>
+  </group>
+  <group>
+    <name value="CDCodeableConcept"/>
+    <extends value="CECodeableConcept"/>
+    <typeMode value="types"/>
+    <documentation value="Mapping CDA CD vers FHIR CodeableConcept (CD réutilise la logique CECodeableConcept)"/>
+    <input>
+      <name value="src"/>
+      <type value="CD"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="tgt"/>
+      <type value="CodeableConcept"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="inherit"/>
+      <source>
+        <context value="src"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+      </target>
+    </rule>
+  </group>
+  <group>
+    <name value="CDCoding"/>
+    <typeMode value="none"/>
+    <documentation value="Mapping CDA CD / CE vers FHIR Coding (Utilisé quand la cible FHIR attend directement un Coding, par exemple Encounter.class)"/>
+    <input>
+      <name value="src"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="tgt"/>
+      <type value="Coding"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="code"/>
+      <source>
+        <context value="src"/>
+        <element value="code"/>
+        <variable value="code"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="code"/>
+        <transform value="cast"/>
+        <parameter>
+          <valueId value="code"/>
+        </parameter>
+        <parameter>
+          <valueString value="code"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
+      <name value="systemLoinc"/>
+      <source>
+        <context value="src"/>
+        <element value="codeSystem"/>
+        <variable value="system"/>
+        <condition value="system = '2.16.840.1.113883.6.1'"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="system"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueString value="http://loinc.org"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
+      <name value="systemSnomed"/>
+      <source>
+        <context value="src"/>
+        <element value="codeSystem"/>
+        <variable value="system"/>
+        <condition value="system = '2.16.840.1.113883.6.96'"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="system"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueString value="http://snomed.info/sct"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
+      <name value="systemActCode"/>
+      <source>
+        <context value="src"/>
+        <element value="codeSystem"/>
+        <variable value="system"/>
+        <condition value="system = '2.16.840.1.113883.5.4'"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="system"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueString value="http://terminology.hl7.org/CodeSystem/v3-ActCode"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
+      <name value="systemTRE_A02"/>
+      <source>
+        <context value="src"/>
+        <element value="codeSystem"/>
+        <variable value="system"/>
+        <condition value="system = '1.2.250.1.213.1.1.4.5'"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="system"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueString value="https://mos.esante.gouv.fr/NOS/TRE_A02-ProfessionSavFaire-CISIS/FHIR/TRE-A02-ProfessionSavFaire-CISIS"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
+      <name value="systemFallback"/>
+      <source>
+        <context value="src"/>
+        <element value="codeSystem"/>
+        <variable value="system"/>
+        <condition value="(system != '2.16.840.1.113883.6.1') and (system != '2.16.840.1.113883.6.96') and (system != '2.16.840.1.113883.5.4') and (system != '1.2.250.1.213.1.1.4.5')"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="system"/>
+        <transform value="append"/>
+        <parameter>
+          <valueString value="urn:oid:"/>
+        </parameter>
+        <parameter>
+          <valueId value="system"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
+      <name value="display"/>
+      <source>
+        <context value="src"/>
+        <element value="displayName"/>
+        <variable value="display"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="display"/>
+        <transform value="cast"/>
+        <parameter>
+          <valueId value="display"/>
+        </parameter>
+        <parameter>
+          <valueString value="string"/>
+        </parameter>
+      </target>
+    </rule>
+  </group>
+  <group>
+    <name value="ENHumanName"/>
+    <typeMode value="none"/>
+    <documentation value="Mapping CDA EN vers FHIR HumanName&#xA;EN = Entity Name CDA&#xA;HumanName = nom humain FHIR"/>
+    <input>
+      <name value="src"/>
+      <type value="EN"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="tgt"/>
+      <type value="HumanName"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="item"/>
+      <source>
+        <context value="src"/>
+        <element value="item"/>
+        <variable value="item"/>
+      </source>
+      <rule>
+        <name value="family"/>
+        <source>
+          <context value="item"/>
+          <element value="family"/>
+          <variable value="v"/>
+        </source>
+        <target>
+          <context value="tgt"/>
+          <contextType value="variable"/>
+          <element value="family"/>
+          <transform value="evaluate"/>
+          <parameter>
+            <valueString value="v.xmlText"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="given"/>
+        <source>
+          <context value="item"/>
+          <element value="given"/>
+          <variable value="v"/>
+        </source>
+        <target>
+          <context value="tgt"/>
+          <contextType value="variable"/>
+          <element value="given"/>
+          <transform value="evaluate"/>
+          <parameter>
+            <valueString value="v.xmlText"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="prefix"/>
+        <source>
+          <context value="item"/>
+          <element value="prefix"/>
+          <variable value="v"/>
+        </source>
+        <target>
+          <context value="tgt"/>
+          <contextType value="variable"/>
+          <element value="prefix"/>
+          <transform value="evaluate"/>
+          <parameter>
+            <valueString value="v.xmlText"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="suffix"/>
+        <source>
+          <context value="item"/>
+          <element value="suffix"/>
+          <variable value="v"/>
+        </source>
+        <target>
+          <context value="tgt"/>
+          <contextType value="variable"/>
+          <element value="suffix"/>
+          <transform value="evaluate"/>
+          <parameter>
+            <valueString value="v.xmlText"/>
+          </parameter>
+        </target>
+      </rule>
+    </rule>
+    <rule>
+      <name value="validTime"/>
+      <source>
+        <context value="src"/>
+        <element value="validTime"/>
+        <variable value="validTime"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="period"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueId value="validTime"/>
+        </parameter>
+      </target>
+    </rule>
+  </group>
+  <group>
+    <name value="PNHumanName"/>
+    <extends value="ENHumanName"/>
+    <typeMode value="types"/>
+    <documentation value="Mapping CDA PN vers FHIR HumanName&#xA;PN = Person Name CDA&#xA;PN hérite du mapping ENHumanName"/>
+    <input>
+      <name value="src"/>
+      <type value="PN"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="tgt"/>
+      <type value="HumanName"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="inherit"/>
+      <source>
+        <context value="src"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+      </target>
+    </rule>
+  </group>
+  <group>
+    <name value="ADAddress"/>
+    <typeMode value="none"/>
+    <documentation value="Mapping CDA AD vers FHIR Address&#xA;AD = adresse CDA&#xA;Address = adresse FHIR"/>
+    <input>
+      <name value="src"/>
+      <type value="AD"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="tgt"/>
+      <type value="Address"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="item"/>
+      <source>
+        <context value="src"/>
+        <element value="item"/>
+        <variable value="item"/>
+      </source>
+      <rule>
+        <name value="country"/>
+        <source>
+          <context value="item"/>
+          <element value="country"/>
+          <variable value="v"/>
+        </source>
+        <target>
+          <context value="tgt"/>
+          <contextType value="variable"/>
+          <element value="country"/>
+          <transform value="evaluate"/>
+          <parameter>
+            <valueString value="v.xmlText"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="state"/>
+        <source>
+          <context value="item"/>
+          <element value="state"/>
+          <variable value="v"/>
+        </source>
+        <target>
+          <context value="tgt"/>
+          <contextType value="variable"/>
+          <element value="state"/>
+          <transform value="evaluate"/>
+          <parameter>
+            <valueString value="v.xmlText"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="county"/>
+        <source>
+          <context value="item"/>
+          <element value="county"/>
+          <variable value="v"/>
+        </source>
+        <target>
+          <context value="tgt"/>
+          <contextType value="variable"/>
+          <element value="district"/>
+          <transform value="evaluate"/>
+          <parameter>
+            <valueString value="v.xmlText"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="city"/>
+        <source>
+          <context value="item"/>
+          <element value="city"/>
+          <variable value="v"/>
+        </source>
+        <target>
+          <context value="tgt"/>
+          <contextType value="variable"/>
+          <element value="city"/>
+          <transform value="evaluate"/>
+          <parameter>
+            <valueString value="v.xmlText"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="postalCode"/>
+        <source>
+          <context value="item"/>
+          <element value="postalCode"/>
+          <variable value="v"/>
+        </source>
+        <target>
+          <context value="tgt"/>
+          <contextType value="variable"/>
+          <element value="postalCode"/>
+          <transform value="evaluate"/>
+          <parameter>
+            <valueString value="v.xmlText"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="streetAddressLine"/>
+        <source>
+          <context value="item"/>
+          <element value="streetAddressLine"/>
+          <variable value="v"/>
+        </source>
+        <target>
+          <context value="tgt"/>
+          <contextType value="variable"/>
+          <element value="line"/>
+          <transform value="evaluate"/>
+          <parameter>
+            <valueString value="v.xmlText"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="CensusTract"/>
+        <source>
+          <context value="item"/>
+        </source>
+        <target>
+          <context value="tgt"/>
+          <contextType value="variable"/>
+          <element value="line"/>
+          <variable value="line"/>
+        </target>
+        <rule>
+          <name value="sfgfdsg"/>
+          <source>
+            <context value="item"/>
+            <condition value="src.censusTract.exists()"/>
+          </source>
+          <rule>
+            <name value="line"/>
+            <source>
+              <context value="item"/>
+              <element value="censusTract"/>
+              <variable value="v"/>
+            </source>
+            <target>
+              <context value="line"/>
+              <contextType value="variable"/>
+              <element value="extension"/>
+              <variable value="ext1"/>
+            </target>
+            <dependent>
+              <name value="CensusTract"/>
+              <variable value="v"/>
+              <variable value="ext1"/>
+            </dependent>
+          </rule>
+        </rule>
+      </rule>
+      <rule>
+        <name value="streetName"/>
+        <source>
+          <context value="item"/>
+          <element value="streetName"/>
+          <variable value="v"/>
+        </source>
+        <target>
+          <context value="tgt"/>
+          <contextType value="variable"/>
+          <element value="line"/>
+          <transform value="evaluate"/>
+          <parameter>
+            <valueString value="v.xmlText"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="houseNumber"/>
+        <source>
+          <context value="item"/>
+          <element value="houseNumber"/>
+          <variable value="v"/>
+        </source>
+        <target>
+          <context value="tgt"/>
+          <contextType value="variable"/>
+          <element value="line"/>
+          <transform value="evaluate"/>
+          <parameter>
+            <valueString value="v.xmlText"/>
+          </parameter>
+        </target>
+      </rule>
+    </rule>
+    <rule>
+      <name value="useablePeriod"/>
+      <source>
+        <context value="src"/>
+        <element value="useablePeriod"/>
+        <variable value="useablePeriod"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="period"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueId value="useablePeriod"/>
+        </parameter>
+      </target>
+    </rule>
+  </group>
+  <group>
+    <name value="TELContactPoint"/>
+    <typeMode value="none"/>
+    <documentation value="Mapping CDA TEL vers FHIR ContactPoint&#xA;TEL = téléphone/email/url CDA&#xA;ContactPoint = moyen de contact FHIR"/>
+    <input>
+      <name value="src"/>
+      <type value="TEL"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="tgt"/>
+      <type value="ContactPoint"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="valuetel"/>
+      <source>
+        <context value="src"/>
+        <element value="value"/>
+        <variable value="v"/>
+        <condition value="(src.value.startsWith('tel:'))"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="value"/>
+        <transform value="evaluate"/>
+        <parameter>
+          <valueString value="v.substring(4)"/>
+        </parameter>
+      </target>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="system"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueString value="phone"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
+      <name value="valuefax"/>
+      <source>
+        <context value="src"/>
+        <element value="value"/>
+        <variable value="v"/>
+        <condition value="(src.value.startsWith('fax:'))"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="value"/>
+        <transform value="evaluate"/>
+        <parameter>
+          <valueString value="v.substring(4)"/>
+        </parameter>
+      </target>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="system"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueString value="fax"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
+      <name value="valuemail"/>
+      <source>
+        <context value="src"/>
+        <element value="value"/>
+        <variable value="v"/>
+        <condition value="(src.value.startsWith('mailto:'))"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="value"/>
+        <transform value="evaluate"/>
+        <parameter>
+          <valueString value="v.substring(7)"/>
+        </parameter>
+      </target>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="system"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueString value="email"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
+      <name value="valuehttp"/>
+      <source>
+        <context value="src"/>
+        <element value="value"/>
+        <variable value="v"/>
+        <condition value="(src.value.startsWith('http:'))"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="value"/>
+        <transform value="evaluate"/>
+        <parameter>
+          <valueString value="v.substring(5)"/>
+        </parameter>
+      </target>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="system"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueString value="url"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
+      <name value="usehome"/>
+      <source>
+        <context value="src"/>
+        <element value="use"/>
+        <condition value="(src.use.startsWith('H'))"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="use"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueString value="home"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
+      <name value="usework"/>
+      <source>
+        <context value="src"/>
+        <element value="use"/>
+        <condition value="((src.use = 'WP') or (src.use = 'DIR') or (src.use = 'PUB'))"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="use"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueString value="work"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
+      <name value="usebad"/>
+      <source>
+        <context value="src"/>
+        <element value="use"/>
+        <condition value="(src.use = 'BAD')"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="use"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueString value="old"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
+      <name value="usetmp"/>
+      <source>
+        <context value="src"/>
+        <element value="use"/>
+        <condition value="(src.use = 'TMP')"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="use"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueString value="temp"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
+      <name value="usemobile"/>
+      <source>
+        <context value="src"/>
+        <element value="use"/>
+        <condition value="(src.use = 'MC')"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="use"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueString value="mobile"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
+      <name value="useablePeriod"/>
+      <source>
+        <context value="src"/>
+        <element value="useablePeriod"/>
+        <variable value="useablePeriod"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="period"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueId value="useablePeriod"/>
+        </parameter>
+      </target>
+      <documentation value="use: for src.use as c make tgt.use = translate(c, 'http://hl7.org/fhir/ConceptMap/cm-telecom-use-v3', 'code')"/>
+    </rule>
+  </group>
+  <group>
+    <name value="PQQuantity"/>
+    <typeMode value="none"/>
+    <documentation value="Mapping CDA PQ vers FHIR Quantity&#xA;PQ = quantité physique CDA&#xA;Quantity = quantité FHIR"/>
+    <input>
+      <name value="src"/>
+      <type value="PQ"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="tgt"/>
+      <type value="Quantity"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="unit"/>
+      <source>
+        <context value="src"/>
+        <element value="unit"/>
+        <variable value="unit"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="unit"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueId value="unit"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
+      <name value="unit"/>
+      <source>
+        <context value="src"/>
+        <element value="unit"/>
+        <variable value="unit"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="code"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueId value="unit"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
+      <name value="unit"/>
+      <source>
+        <context value="src"/>
+        <element value="unit"/>
+        <variable value="unit"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="system"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueString value="http://unitsofmeasure.org"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
+      <name value="value"/>
+      <source>
+        <context value="src"/>
+        <element value="value"/>
+        <variable value="value"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="value"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueId value="value"/>
+        </parameter>
+      </target>
+    </rule>
+  </group>
+  <group>
+    <name value="RTOPQPQRatio"/>
+    <typeMode value="none"/>
+    <documentation value="Mapping CDA RTO_PQ_PQ vers FHIR Ratio&#xA;RTO_PQ_PQ = ratio CDA composé d’un numérateur et d’un dénominateur&#xA;Ratio = ratio FHIR"/>
+    <input>
+      <name value="src"/>
+      <type value="RTO_PQ_PQ"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="tgt"/>
+      <type value="Ratio"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="numerator"/>
+      <source>
+        <context value="src"/>
+        <element value="numerator"/>
+        <variable value="numerator"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="numerator"/>
+        <variable value="targetNumerator"/>
+      </target>
+      <dependent>
+        <name value="PQQuantity"/>
+        <variable value="numerator"/>
+        <variable value="targetNumerator"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="denominator"/>
+      <source>
+        <context value="src"/>
+        <element value="denominator"/>
+        <variable value="denominator"/>
+      </source>
+      <target>
+        <context value="tgt"/>
+        <contextType value="variable"/>
+        <element value="denominator"/>
+        <variable value="targetDenominator"/>
+      </target>
+      <dependent>
+        <name value="PQQuantity"/>
+        <variable value="denominator"/>
+        <variable value="targetDenominator"/>
+      </dependent>
+    </rule>
+  </group>
+</StructureMap>
