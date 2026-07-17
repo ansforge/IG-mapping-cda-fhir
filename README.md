@@ -5,11 +5,11 @@
 
 ## Présentation
 
-Ce guide d’implémentation présente une expérimentation visant à évaluer l’utilisation du **FHIR Mapping Language (FML)** pour transformer un document CDA de type **Patient Summary** en un `Bundle` FHIR R4.
+Ce guide d’implémentation présente une expérimentation visant à évaluer l’utilisation du FHIR Mapping Language (FML) pour transformer automatiquement un document CDA de type Patient Summary en un Bundle FHIR R4.
 
-Les règles de transformation sont décrites en FML et exécutées avec [Matchbox](https://github.com/ahdis/matchbox).
+Les règles de transformation sont décrites en FML et exécutées avec Matchbox. Cette preuve de concept a été testée à partir d’un document CDA d’exemple fourni par l’ANS et n’a pas été validée sur des données issues de situations réelles.
 
-Cette preuve de concept fournit une base de travail pour la transformation de documents CDA vers FHIR à l’aide du FHIR Mapping Language. Les mappings proposés doivent être revus, adaptés et validés avant leur réutilisation dans un contexte opérationnel.
+Elle est mise librement à la disposition des implémenteurs comme base de travail pour faciliter la transition du CDA vers FHIR. Les mappings proposés doivent être revus, adaptés et validés avant toute utilisation dans un contexte opérationnel. Leur utilisation nécessite une maîtrise approfondie du FML ainsi qu’une vérification de leur exhaustivité, de leur conformité et du bon fonctionnement des ressources produites.
 
 Le mapping est organisé en quatre couches dépendantes :
 
