@@ -5,7 +5,7 @@
  **FHIR Mapping Language for CDA to FHIR transformation**
  Proof of concept for CDA to FHIR transformation 
 
-> Cet Implementation Guide n'est pas la version courante, il s'agit de la version en intégration continue, soumise à des changements fréquents et uniquement destinée à suivre les travaux en cours. La version courante sera accessible via l'URL canonique suite à la première release : http://interop.esante.gouv.fr/ig/fhir/[code - ig]
+> Ce guide d’implémentation propose une transformation automatisée d’un document CDA de type Patient Summary vers FHIR. Sa maturité se limite toutefois à une preuve de concept, testée à partir d’un document CDA d’exemple fourni par l’ANS, sans validation sur des données issues de situations réelles. Il est mis librement à la disposition des implémenteurs afin de contribuer à la transition entre ces deux standards. Néanmoins, son utilisation nécessite une maîtrise approfondie du FHIR Mapping Language. Il appartient donc à chaque implémenteur de vérifier l’exhaustivité et la conformité des mappings, de valider les ressources FHIR produites et de s’assurer du bon fonctionnement de la transformation dans son propre contexte opérationnel. Par ailleurs, ce guide d’implémentation correspond à une version en intégration continue, susceptible d’être modifiée fréquemment et destinée uniquement au suivi des travaux en cours. 
 
 ### Introduction
 
