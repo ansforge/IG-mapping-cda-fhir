@@ -1,0 +1,48 @@
+{
+  "resourceType" : "ConceptMap",
+  "id" : "CdaINTToIntegerConceptMap",
+  "language" : "fr",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xml:lang=\"fr\" lang=\"fr\"><hr/><p><b>French</b></p><hr/><p class=\"res-header-id\"><b>Narratif généré : CarteDeConcepts CdaINTToIntegerConceptMap</b></p><a name=\"CdaINTToIntegerConceptMap\"> </a><a name=\"hcCdaINTToIntegerConceptMap\"> </a><p>This mapping does not specify any particular context of use.</p><br/><p>Mapping de <a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-INT.html\">INT: IntegerNumber (V3 Data Type)</a> to <a href=\"http://hl7.org/fhir/R4/datatypes.html#integer\">integer</a></p><table class=\"grid\"><tr><td><b>Code source</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>relation</b></td><td><b>Code cible</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Commentaire</b></td></tr><tr><td><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-INT.html#s-INT.value\">INT.value</a></td><td>0..1</td><td>todo</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#integer#s-integer\">integer</a></td><td>0..*</td><td>todo</td><td>INT.value alimente directement un integer FHIR.</td></tr></table></div>"
+  },
+  "url" : "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaINTToInteger",
+  "version" : "0.1.0",
+  "name" : "CdaINTToInteger",
+  "title" : "ConceptMap — CDA INT vers FHIR integer",
+  "status" : "draft",
+  "experimental" : true,
+  "date" : "2026-07-17T13:54:13+00:00",
+  "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
+  "contact" : [{
+    "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
+    "telecom" : [{
+      "system" : "url",
+      "value" : "https://esante.gouv.fr"
+    }]
+  }],
+  "description" : "Correspondances documentaires entre le datatype CDA INT et le datatype FHIR integer.",
+  "jurisdiction" : [{
+    "coding" : [{
+      "system" : "urn:iso:std:iso:3166",
+      "code" : "FR",
+      "display" : "France (la)"
+    }]
+  }],
+  "group" : [{
+    "source" : "http://hl7.org/cda/stds/core/StructureDefinition/INT",
+    "sourceVersion" : "2.0.0-sd",
+    "target" : "http://hl7.org/fhir/StructureDefinition/integer",
+    "targetVersion" : "4.0.1",
+    "element" : [{
+      "code" : "INT.value",
+      "display" : "INT.value",
+      "target" : [{
+        "code" : "integer",
+        "display" : "integer",
+        "equivalence" : "equivalent",
+        "comment" : "INT.value alimente directement un integer FHIR."
+      }]
+    }]
+  }]
+}

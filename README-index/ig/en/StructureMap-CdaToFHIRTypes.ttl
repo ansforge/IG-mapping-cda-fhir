@@ -1,0 +1,2472 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes> a fhir:StructureMap ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:Resource.id [ fhir:value "CdaToFHIRTypes"] ;
+  fhir:Resource.language [ fhir:value "en"] ;
+  fhir:DomainResource.text [
+     fhir:Narrative.status [ fhir:value "generated" ] ;
+     fhir:Narrative.div "<div xml:lang=\"en\" lang=\"en\"><hr/><p><b>English</b></p><hr/><p class=\"res-header-id\"><b>Generated Narrative: StructureMap CdaToFHIRTypes</b></p><a name=\"en-CdaToFHIRTypes\"> </a><a name=\"en-hcCdaToFHIRTypes\"> </a><pre class=\"fml\">#xD;\n<b>map</b><span style=\"color: navy\"> \"</span>https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes<span style=\"color: navy\">\" = \"</span>CdaToFHIRTypes<span style=\"color: navy\">\"#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)</span>#xD;\n#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ED.html\" title=\"ED: EncapsulatedData (V3 Data Type)\">http://hl7.org/cda/stds/core/StructureDefinition/ED|2.0.0-sd</a><span style=\"color: navy\">\" </span><b>alias </b>ED <b>as </b><b>source</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-PN.html\" title=\"PN: PersonName (V3 Data Type)\">http://hl7.org/cda/stds/core/StructureDefinition/PN|2.0.0-sd</a><span style=\"color: navy\">\" </span><b>alias </b>PN <b>as </b><b>source</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html\" title=\"II: InstanceIdentifier (V3 Data Type)\">http://hl7.org/cda/stds/core/StructureDefinition/II|2.0.0-sd</a><span style=\"color: navy\">\" </span><b>alias </b>II <b>as </b><b>source</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TS.html\" title=\"TS: PointInTime (V3 Data Type)\">http://hl7.org/cda/stds/core/StructureDefinition/TS|2.0.0-sd</a><span style=\"color: navy\">\" </span><b>alias </b>TS <b>as </b><b>source</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CS.html\" title=\"CS: CodedSimpleValue (V3 Data Type)\">http://hl7.org/cda/stds/core/StructureDefinition/CS|2.0.0-sd</a><span style=\"color: navy\">\" </span><b>alias </b>CS <b>as </b><b>source</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CE.html\" title=\"CE: CodedWithEquivalents (V3 Data Type)\">http://hl7.org/cda/stds/core/StructureDefinition/CE|2.0.0-sd</a><span style=\"color: navy\">\" </span><b>alias </b>CE <b>as </b><b>source</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ST.html\" title=\"ST: CharacterString (V3 Data Type)\">http://hl7.org/cda/stds/core/StructureDefinition/ST|2.0.0-sd</a><span style=\"color: navy\">\" </span><b>alias </b>ST <b>as </b><b>source</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ON.html\" title=\"ON: OrganizationName (V3 Data Type)\">http://hl7.org/cda/stds/core/StructureDefinition/ON|2.0.0-sd</a><span style=\"color: navy\">\" </span><b>alias </b>ON <b>as </b><b>source</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EN.html\" title=\"EN: EntityName (V3 Data Type)\">http://hl7.org/cda/stds/core/StructureDefinition/EN|2.0.0-sd</a><span style=\"color: navy\">\" </span><b>alias </b>EN <b>as </b><b>source</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-AD.html\" title=\"AD: PostalAddress (V3 Data Type)\">http://hl7.org/cda/stds/core/StructureDefinition/AD|2.0.0-sd</a><span style=\"color: navy\">\" </span><b>alias </b>AD <b>as </b><b>source</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TEL.html\" title=\"TEL: TelecommunicationAddress (V3 Data Type)\">http://hl7.org/cda/stds/core/StructureDefinition/TEL|2.0.0-sd</a><span style=\"color: navy\">\" </span><b>alias </b>TEL <b>as </b><b>source</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-BL.html\" title=\"BL: Boolean (V3 Data Type)\">http://hl7.org/cda/stds/core/StructureDefinition/BL|2.0.0-sd</a><span style=\"color: navy\">\" </span><b>alias </b>BL <b>as </b><b>source</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-IVL-TS.html\" title=\"IVL_TS: Interval (V3 Data Type)\">http://hl7.org/cda/stds/core/StructureDefinition/IVL-TS|2.0.0-sd</a><span style=\"color: navy\">\" </span><b>alias </b>IVL_TS <b>as </b><b>source</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-INT.html\" title=\"INT: IntegerNumber (V3 Data Type)\">http://hl7.org/cda/stds/core/StructureDefinition/INT|2.0.0-sd</a><span style=\"color: navy\">\" </span><b>alias </b>INT <b>as </b><b>source</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-CD.html\" title=\"CD: ConceptDescriptor (V3 Data Type)\">http://hl7.org/cda/stds/core/StructureDefinition/CD|2.0.0-sd</a><span style=\"color: navy\">\" </span><b>alias </b>CD <b>as </b><b>source</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-PQ.html\" title=\"PQ: PhysicalQuantity (V3 Data Type)\">http://hl7.org/cda/stds/core/StructureDefinition/PQ|2.0.0-sd</a><span style=\"color: navy\">\" </span><b>alias </b>PQ <b>as </b><b>source</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-RTO-PQ-PQ.html\" title=\"RTO_PQ_PQ: Ratio (V3 Data Type)\">http://hl7.org/cda/stds/core/StructureDefinition/RTO-PQ-PQ|2.0.0-sd</a><span style=\"color: navy\">\" </span><b>alias </b>RTO_PQ_PQ <b>as </b><b>source</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/fhir/R4/datatypes.html#Identifier\" title=\"Identifier\">http://hl7.org/fhir/StructureDefinition/Identifier|4.0.1</a><span style=\"color: navy\">\" </span><b>alias </b>Identifier <b>as </b><b>target</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/fhir/R4/datatypes.html#instant\" title=\"instant\">http://hl7.org/fhir/StructureDefinition/instant|4.0.1</a><span style=\"color: navy\">\" </span><b>alias </b>instant <b>as </b><b>target</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/fhir/R4/datatypes.html#code\" title=\"code\">http://hl7.org/fhir/StructureDefinition/code|4.0.1</a><span style=\"color: navy\">\" </span><b>alias </b>code <b>as </b><b>target</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/fhir/R4/datatypes.html#CodeableConcept\" title=\"CodeableConcept\">http://hl7.org/fhir/StructureDefinition/CodeableConcept|4.0.1</a><span style=\"color: navy\">\" </span><b>alias </b>CodeableConcept <b>as </b><b>target</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/fhir/R4/datatypes.html#Coding\" title=\"Coding\">http://hl7.org/fhir/StructureDefinition/Coding|4.0.1</a><span style=\"color: navy\">\" </span><b>alias </b>Coding <b>as </b><b>target</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/fhir/R4/datatypes.html#string\" title=\"string\">http://hl7.org/fhir/StructureDefinition/string|4.0.1</a><span style=\"color: navy\">\" </span><b>alias </b>string <b>as </b><b>target</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/fhir/R4/datatypes.html#HumanName\" title=\"HumanName\">http://hl7.org/fhir/StructureDefinition/HumanName|4.0.1</a><span style=\"color: navy\">\" </span><b>alias </b>HumanName <b>as </b><b>target</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/fhir/R4/datatypes.html#Address\" title=\"Address\">http://hl7.org/fhir/StructureDefinition/Address|4.0.1</a><span style=\"color: navy\">\" </span><b>alias </b>Address <b>as </b><b>target</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/fhir/R4/datatypes.html#ContactPoint\" title=\"ContactPoint\">http://hl7.org/fhir/StructureDefinition/ContactPoint|4.0.1</a><span style=\"color: navy\">\" </span><b>alias </b>ContactPoint <b>as </b><b>target</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/fhir/R4/datatypes.html#boolean\" title=\"boolean\">http://hl7.org/fhir/StructureDefinition/boolean|4.0.1</a><span style=\"color: navy\">\" </span><b>alias </b>boolean <b>as </b><b>target</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/fhir/R4/datatypes.html#Period\" title=\"Period\">http://hl7.org/fhir/StructureDefinition/Period|4.0.1</a><span style=\"color: navy\">\" </span><b>alias </b>Period <b>as </b><b>target</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/fhir/R4/datatypes.html#integer\" title=\"integer\">http://hl7.org/fhir/StructureDefinition/integer|4.0.1</a><span style=\"color: navy\">\" </span><b>alias </b>integer <b>as </b><b>target</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/fhir/R4/datatypes.html#dateTime\" title=\"dateTime\">http://hl7.org/fhir/StructureDefinition/dateTime|4.0.1</a><span style=\"color: navy\">\" </span><b>alias </b>dateTime <b>as </b><b>target</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/fhir/R4/datatypes.html#date\" title=\"date\">http://hl7.org/fhir/StructureDefinition/date|4.0.1</a><span style=\"color: navy\">\" </span><b>alias </b>date <b>as </b><b>target</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/fhir/R4/datatypes.html#Quantity\" title=\"Quantity\">http://hl7.org/fhir/StructureDefinition/Quantity|4.0.1</a><span style=\"color: navy\">\" </span><b>alias </b>Quantity <b>as </b><b>target</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/fhir/R4/datatypes.html#Ratio\" title=\"Ratio\">http://hl7.org/fhir/StructureDefinition/Ratio|4.0.1</a><span style=\"color: navy\">\" </span><b>alias </b>Ratio <b>as </b><b>target</b>#xD;\n#xD;\n<span style=\"color: navy\">// </span><span style=\"color: green\">Groupe générique de base (Sert de groupe parent pour les autres mappings)</span>#xD;\n<b>group </b>Any<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span>, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  <span style=\"color: navy\">// </span><span style=\"color: green\">Mapping de base sans transformation spécifique</span>#xD;\n  src<span style=\"color: navy\"><b> -&gt; </b></span>tgt <i>\"base\"</i><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">Mapping CDA II vers FHIR Identifier</span>#xD;\n<span style=\"color: navy\">// </span><span style=\"color: green\">II = Identifiant CDA</span>#xD;\n<span style=\"color: navy\">// </span><span style=\"color: green\">Identifier = Identifiant FHIR</span>#xD;\n<b>group </b>II<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>II, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>Identifier<span style=\"color: navy\">)</span><b> extends </b>Any<b> &lt;&lt;types&gt;&gt;</b><span style=\"color: navy\"> {#xD;\n</span>  <span style=\"color: navy\">// </span><span style=\"color: green\">Si root existe avec une extension, alors root devient le system en urn:oid</span>#xD;\n  src.root<b> as </b><span style=\"color: maroon\">r</span><b> where </b>src.extension.exists()<span style=\"color: navy\"><b> -&gt; </b></span>tgt.system = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:oid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">r</span><span style=\"color: navy\">)</span> <i>\"root1\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">Si root est un UUID sans extension, alors il est mappé comme urn:uuid</span>#xD;\n  src.root<b> as </b><span style=\"color: maroon\">r</span><b> where </b>src.extension.empty() and src.root.matches('[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}')<span style=\"color: navy\"><b> -&gt; </b></span> tgt.system = <span style=\"color: blue\">'urn:ietf:rfc:3986'</span><span style=\"color: navy\">, </span> tgt.value = <span style=\"color: navy\">(</span>'urn:uuid:' + r.lower()<span style=\"color: navy\">)</span> <i>\"rootuuid\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">Si root est un OID sans extension, alors il devient une valeur urn:oid</span>#xD;\n  src.root<b> as </b><span style=\"color: maroon\">r</span><b> where </b>src.extension.empty() and src.root.contains('.')<span style=\"color: navy\"><b> -&gt; </b></span> tgt.system = <span style=\"color: blue\">'urn:ietf:rfc:3986'</span><span style=\"color: navy\">, </span> tgt.value = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:oid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">r</span><span style=\"color: navy\">)</span> <i>\"rootoid\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">L’extension CDA devient la valeur de l’Identifier FHIR</span>#xD;\n  src.extension<b> as </b><span style=\"color: maroon\">e</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.value = <span style=\"color: maroon\">e</span><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">Le nom de l’autorité d’assignation devient le display de l’assigner</span>#xD;\n  src.assigningAuthorityName<b> as </b><span style=\"color: maroon\">s</span><span style=\"color: navy\"><b> -&gt; </b></span> tgt.assigner<b> as </b><span style=\"color: maroon\">a</span><span style=\"color: navy\">, </span> a.display = <span style=\"color: maroon\">s</span><span style=\"color: navy\">;</span> <span style=\"color: navy\">// </span><span style=\"color: green\">there's no equivalent for displayable in FHIR - and it probably will never matter, but if it does, it might map to Identifier.use.</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">Mapping de l’attribut displayable sous forme d’extension FHIR</span>#xD;\n  src.displayable<b> as </b><span style=\"color: maroon\">displayable</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.extension<b> as </b><span style=\"color: maroon\">ext</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    <span style=\"color: navy\">// </span><span style=\"color: green\">URL de l’extension displayable</span>#xD;\n    displayable<span style=\"color: navy\"><b> -&gt; </b></span>ext.url = <span style=\"color: blue\">'http://hl7.org/fhir/cdaStructureDefinition/extension-displayable'</span> <i>\"url\"</i><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">// </span><span style=\"color: green\">Valeur de displayable convertie en string</span>#xD;\n    displayable.value<b> as </b><span style=\"color: maroon\">v</span><span style=\"color: navy\"><b> -&gt; </b></span>ext.value = <b>cast</b><span style=\"color: navy\">(</span><span style=\"color: maroon\">v</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'string'</span><span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"extension\"</i><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">Mapping CDA INT vers FHIR integer</span>#xD;\n<span style=\"color: navy\">// </span><span style=\"color: green\">INT = entier CDA</span>#xD;\n<span style=\"color: navy\">// </span><span style=\"color: green\">integer = entier FHIR</span>#xD;\n<b>group </b>INT<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>INT, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>integer<span style=\"color: navy\">)</span><b> extends </b>Any<b> &lt;&lt;types&gt;&gt;</b><span style=\"color: navy\"> {#xD;\n</span>  <span style=\"color: navy\">// </span><span style=\"color: green\">La valeur CDA devient la valeur FHIR</span>#xD;\n  src.value<b> as </b><span style=\"color: maroon\">v</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.value = <span style=\"color: maroon\">v</span> <i>\"integer\"</i><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">Mapping des templateId CDA (Les templateId sont conservés dans des extensions FHIR)</span>#xD;\n<b>group </b>TemplateID<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">template</span><span style=\"color: navy\"> : </span>II, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  <span style=\"color: navy\">// </span><span style=\"color: green\">Création d’une extension pour stocker le templateId CDA</span>#xD;\n  template<span style=\"color: navy\"><b> -&gt; </b></span>tgt.extension<b> as </b><span style=\"color: maroon\">ext</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    <span style=\"color: navy\">// </span><span style=\"color: green\">URL de l’extension templateID</span>#xD;\n    template<span style=\"color: navy\"><b> -&gt; </b></span>ext.url = <span style=\"color: blue\">'http://hl7.org/cda/stds/core/StructureDefinition/templateID'</span> <i>\"url\"</i><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">// </span><span style=\"color: green\">Le templateId est transformé en Identifier FHIR</span>#xD;\n    template<span style=\"color: navy\"><b> -&gt; </b></span>ext.value = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Identifier'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">value</span><b> then </b>II<span style=\"color: navy\">(</span><span style=\"color: maroon\">template</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">value</span><span style=\"color: navy\">)</span> <i>\"value\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"templateId\"</i><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">Mapping du negationIndicator CDA (La négation CDA est représentée comme modifierExtension FHIR)</span>#xD;\n<b>group </b>Negation<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">negation</span><span style=\"color: navy\"> : </span>BL, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  <span style=\"color: navy\">// </span><span style=\"color: green\">Création d’une modifierExtension pour indiquer la négation</span>#xD;\n  negation<span style=\"color: navy\"><b> -&gt; </b></span>tgt.modifierExtension<b> as </b><span style=\"color: maroon\">ext</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    <span style=\"color: navy\">// </span><span style=\"color: green\">URL de l’extension negationIndicator</span>#xD;\n    negation<span style=\"color: navy\"><b> -&gt; </b></span>ext.url = <span style=\"color: blue\">'http://hl7.org/cda/stds/core/StructureDefinition/negationIndicator'</span> <i>\"url\"</i><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">// </span><span style=\"color: green\">Valeur booléenne de la négation</span>#xD;\n    negation<b> as </b><span style=\"color: maroon\">neg</span><span style=\"color: navy\"><b> -&gt; </b></span> ext.value = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'boolean'</span><span style=\"color: navy\">)</span><span style=\"color: navy\">, </span> ext.value = <span style=\"color: maroon\">neg</span> <i>\"value\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"negation\"</i><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">Mapping CDA TS vers FHIR instant (TS = timestamp CDA)</span>#xD;\n<b>group </b>TSInstant<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>TS, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>instant<span style=\"color: navy\">)</span><b> extends </b>Any<b> &lt;&lt;types&gt;&gt;</b><span style=\"color: navy\"> {#xD;\n</span>  <span style=\"color: navy\">// </span><span style=\"color: green\">La valeur temporelle CDA est convertie en string pour alimenter l’instant FHIR</span>#xD;\n  src.value<b> as </b><span style=\"color: maroon\">v</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.value = <b>cast</b><span style=\"color: navy\">(</span><span style=\"color: maroon\">v</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'string'</span><span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">Mapping CDA TS vers FHIR dateTime (Hérite du mapping TSInstant)</span>#xD;\n<b>group </b>TSDateTime<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>TS, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>dateTime<span style=\"color: navy\">)</span><b> extends </b>TSInstant<b> &lt;&lt;types&gt;&gt;</b><span style=\"color: navy\"> {#xD;\n</span>  <span style=\"color: navy\">// </span><span style=\"color: green\">Réutilisation du mapping parent</span>#xD;\n  src<span style=\"color: navy\"><b> -&gt; </b></span>tgt <i>\"inherit\"</i><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">Mapping CDA TS vers FHIR date (Hérite aussi du mapping TSInstant)</span>#xD;\n<b>group </b>TSDate<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>TS, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>date<span style=\"color: navy\">)</span><b> extends </b>TSInstant<b> &lt;&lt;types&gt;&gt;</b><span style=\"color: navy\"> {#xD;\n</span>  <span style=\"color: navy\">// </span><span style=\"color: green\">Réutilisation du mapping parent</span>#xD;\n  src<span style=\"color: navy\"><b> -&gt; </b></span>tgt <i>\"inherit\"</i><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">Mapping CDA IVL_TS vers FHIR Period</span>#xD;\n<span style=\"color: navy\">// </span><span style=\"color: green\">IVL_TS = intervalle de temps CDA</span>#xD;\n<span style=\"color: navy\">// </span><span style=\"color: green\">Period = période FHIR avec start et end</span>#xD;\n<b>group </b>IVLTSPeriod<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>IVL_TS, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>Period<span style=\"color: navy\">)</span><b> extends </b>Any<b> &lt;&lt;types&gt;&gt;</b><span style=\"color: navy\"> {#xD;\n</span>  <span style=\"color: navy\">// </span><span style=\"color: green\">La borne basse CDA devient le start FHIR</span>#xD;\n  src.low<b> as </b><span style=\"color: maroon\">low</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.start = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'dateTime'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">start</span><b> then </b>TSDateTime<span style=\"color: navy\">(</span><span style=\"color: maroon\">low</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">start</span><span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">La borne haute CDA devient le end FHIR</span>#xD;\n  src.high<b> as </b><span style=\"color: maroon\">high</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.end = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'dateTime'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">end</span><b> then </b>TSDateTime<span style=\"color: navy\">(</span><span style=\"color: maroon\">high</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">end</span><span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">Mapping CDA IVL_TS vers FHIR dateTime (On utilise uniquement la borne basse low)</span>#xD;\n<b>group </b>IVLTSDateTime<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>IVL_TS, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>dateTime<span style=\"color: navy\">)</span><b> extends </b>Any<b> &lt;&lt;types&gt;&gt;</b><span style=\"color: navy\"> {#xD;\n</span>  <span style=\"color: navy\">// </span><span style=\"color: green\">La borne basse est transformée en dateTime</span>#xD;\n  src.low<b> as </b><span style=\"color: maroon\">s</span><b> then </b>TSDateTime<span style=\"color: navy\">(</span><span style=\"color: maroon\">s</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">tgt</span><span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">Mapping CDA ST vers FHIR string (ST = texte simple CDA)</span>#xD;\n<b>group </b>STstring<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>ST, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>string<span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  <span style=\"color: navy\">// </span><span style=\"color: green\">Le texte CDA est converti en string FHIR</span>#xD;\n  src<b> as </b><span style=\"color: maroon\">v</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.value = <b>cast</b><span style=\"color: navy\">(</span><span style=\"color: maroon\">v</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'string'</span><span style=\"color: navy\">)</span> <i>\"value\"</i><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">Mapping CDA ED vers FHIR string (ED hérite du comportement de STstring)</span>#xD;\n<b>group </b>EDstring<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>ED, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>string<span style=\"color: navy\">)</span><b> extends </b>STstring<b> &lt;&lt;types&gt;&gt;</b><span style=\"color: navy\"> {#xD;\n</span>  <span style=\"color: navy\">// </span><span style=\"color: green\">Réutilisation du mapping STstring</span>#xD;\n  src<span style=\"color: navy\"><b> -&gt; </b></span>tgt <i>\"inherit\"</i><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">Mapping CDA ON vers FHIR string (ON = Organization Name CDA)</span>#xD;\n<b>group </b>ONstring<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>ON, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>string<span style=\"color: navy\">)</span><b> extends </b>STstring<b> &lt;&lt;types&gt;&gt;</b><span style=\"color: navy\"> {#xD;\n</span>  <span style=\"color: navy\">// </span><span style=\"color: green\">Réutilisation du mapping STstring</span>#xD;\n  src<span style=\"color: navy\"><b> -&gt; </b></span>tgt <i>\"inherit\"</i><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">Mapping CDA CS vers FHIR code (CS = coded simple CDA)</span>#xD;\n<b>group </b>CSCode<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>CS, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>code<span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  <span style=\"color: navy\">// </span><span style=\"color: green\">Le code CDA devient la valeur du code FHIR</span>#xD;\n  src.code<b> as </b><span style=\"color: maroon\">c</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.value = <b>cast</b><span style=\"color: navy\">(</span><span style=\"color: maroon\">c</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'string'</span><span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">Mapping CDA CE vers FHIR code (CE hérite du mapping CSCode)</span>#xD;\n<b>group </b>CECode<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>CE, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>code<span style=\"color: navy\">)</span><b> extends </b>CSCode<b> &lt;&lt;types&gt;&gt;</b><span style=\"color: navy\"> {#xD;\n</span>  <span style=\"color: navy\">// </span><span style=\"color: green\">Réutilisation du mapping CSCode</span>#xD;\n  src<span style=\"color: navy\"><b> -&gt; </b></span>tgt <i>\"inherit\"</i><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">Mapping CDA CD vers FHIR code (CD hérite du mapping CSCode)</span>#xD;\n<b>group </b>CDCode<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>CD, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>code<span style=\"color: navy\">)</span><b> extends </b>CSCode<b> &lt;&lt;types&gt;&gt;</b><span style=\"color: navy\"> {#xD;\n</span>  <span style=\"color: navy\">// </span><span style=\"color: green\">Réutilisation du mapping CSCode</span>#xD;\n  src<span style=\"color: navy\"><b> -&gt; </b></span>tgt <i>\"inherit\"</i><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><b>group </b>CECodeableConcept<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>CE, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>CodeableConcept<span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  <span style=\"color: navy\">// </span><span style=\"color: green\">originalText CDA -&gt; FHIR CodeableConcept.text</span>#xD;\n  #xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">Exemple CDA :</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">&lt;originalText&gt;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">&lt;reference value=\"#allergie-01-agent\"/&gt;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">&lt;/originalText&gt;</span>#xD;\n  #xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">Résultat FHIR attendu :</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">\"text\": \"#allergie-01-agent\"</span>#xD;\n  #xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">On récupère uniquement reference.value, pas tout l’objet originalText.</span>#xD;\n  src.originalText<b> as </b><span style=\"color: maroon\">originalText</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    originalText.reference<b> as </b><span style=\"color: maroon\">ref</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>      ref.value<b> as </b><span style=\"color: maroon\">value</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.text = <b>cast</b><span style=\"color: navy\">(</span><span style=\"color: maroon\">value</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'string'</span><span style=\"color: navy\">)</span> <i>\"textFromOriginalTextReference\"</i><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">}</span> <i>\"originalTextReference\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">Création du coding principal à partir du code CDA</span>#xD;\n  src<span style=\"color: navy\"><b> -&gt; </b></span>tgt.coding<b> as </b><span style=\"color: maroon\">coding</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    <span style=\"color: navy\">// </span><span style=\"color: green\">CDA code -&gt; FHIR Coding.code.</span>#xD;\n    src.code<b> as </b><span style=\"color: maroon\">code</span><span style=\"color: navy\"><b> -&gt; </b></span>coding.code = <b>cast</b><span style=\"color: navy\">(</span><span style=\"color: maroon\">code</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'code'</span><span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">// </span><span style=\"color: green\">CDA codeSystem LOINC -&gt; FHIR Coding.system.</span>#xD;\n    src.codeSystem<b> as </b><span style=\"color: maroon\">system</span><b> where </b>system = '2.16.840.1.113883.6.1'<span style=\"color: navy\"><b> -&gt; </b></span>coding.system = <span style=\"color: blue\">'http://loinc.org'</span> <i>\"systemLoinc\"</i><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">// </span><span style=\"color: green\">CDA codeSystem SNOMED CT -&gt; FHIR Coding.system.</span>#xD;\n    src.codeSystem<b> as </b><span style=\"color: maroon\">system</span><b> where </b>system = '2.16.840.1.113883.6.96'<span style=\"color: navy\"><b> -&gt; </b></span>coding.system = <span style=\"color: blue\">'http://snomed.info/sct'</span> <i>\"systemSnomed\"</i><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">// </span><span style=\"color: green\">CDA codeSystem HL7 v3 ActCode -&gt; FHIR Coding.system.</span>#xD;\n    src.codeSystem<b> as </b><span style=\"color: maroon\">system</span><b> where </b>system = '2.16.840.1.113883.5.4'<span style=\"color: navy\"><b> -&gt; </b></span>coding.system = <span style=\"color: blue\">'http://terminology.hl7.org/CodeSystem/v3-ActCode'</span> <i>\"systemActCode\"</i><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">// </span><span style=\"color: green\">CDA codeSystem TRE_A02 -&gt; FHIR Coding.system NOS.</span>#xD;\n    src.codeSystem<b> as </b><span style=\"color: maroon\">system</span><b> where </b>system = '1.2.250.1.213.1.1.4.5'<span style=\"color: navy\"><b> -&gt; </b></span>coding.system = <span style=\"color: blue\">'https://mos.esante.gouv.fr/NOS/TRE_A02-ProfessionSavFaire-CISIS/FHIR/TRE-A02-ProfessionSavFaire-CISIS'</span> <i>\"systemTRE_A02\"</i><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">// </span><span style=\"color: green\">CDA autres codeSystem OID -&gt; FHIR Coding.system urn:oid.</span>#xD;\n    src.codeSystem<b> as </b><span style=\"color: maroon\">system</span><b> where </b>(system != '2.16.840.1.113883.6.1') and (system != '2.16.840.1.113883.6.96') and (system != '2.16.840.1.113883.5.4') and (system != '1.2.250.1.213.1.1.4.5')<span style=\"color: navy\"><b> -&gt; </b></span>coding.system = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:oid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">system</span><span style=\"color: navy\">)</span> <i>\"systemFallback\"</i><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">// </span><span style=\"color: green\">CDA displayName -&gt; FHIR Coding.display.</span>#xD;\n    <span style=\"color: navy\">// </span><span style=\"color: green\">Ici on met le display pour tous les systèmes, y compris LOINC.</span>#xD;\n    src.displayName<b> as </b><span style=\"color: maroon\">display</span><span style=\"color: navy\"><b> -&gt; </b></span>coding.display = <b>cast</b><span style=\"color: navy\">(</span><span style=\"color: maroon\">display</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'string'</span><span style=\"color: navy\">)</span> <i>\"display\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"code\"</i><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">Mapping CDA CS vers FHIR CodeableConcept (CS réutilise la logique CECodeableConcept)</span>#xD;\n<b>group </b>CSCodeableConcept<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>CS, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>CodeableConcept<span style=\"color: navy\">)</span><b> extends </b>CECodeableConcept<b> &lt;&lt;types&gt;&gt;</b><span style=\"color: navy\"> {#xD;\n</span>  <span style=\"color: navy\">// </span><span style=\"color: green\">Réutilisation du mapping CECodeableConcept</span>#xD;\n  src<span style=\"color: navy\"><b> -&gt; </b></span>tgt <i>\"inherit\"</i><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">Mapping CDA CD vers FHIR CodeableConcept (CD réutilise la logique CECodeableConcept)</span>#xD;\n<b>group </b>CDCodeableConcept<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>CD, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>CodeableConcept<span style=\"color: navy\">)</span><b> extends </b>CECodeableConcept<b> &lt;&lt;types&gt;&gt;</b><span style=\"color: navy\"> {#xD;\n</span>  <span style=\"color: navy\">// </span><span style=\"color: green\">Réutilisation du mapping CECodeableConcept</span>#xD;\n  src<span style=\"color: navy\"><b> -&gt; </b></span>tgt <i>\"inherit\"</i><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">Mapping CDA CD / CE vers FHIR Coding (Utilisé quand la cible FHIR attend directement un Coding, par exemple Encounter.class)</span>#xD;\n<b>group </b>CDCoding<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span>, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>Coding<span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  <span style=\"color: navy\">// </span><span style=\"color: green\">CDA code -&gt; FHIR Coding.code</span>#xD;\n  src.code<b> as </b><span style=\"color: maroon\">code</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.code = <b>cast</b><span style=\"color: navy\">(</span><span style=\"color: maroon\">code</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'code'</span><span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">CDA codeSystem LOINC -&gt; FHIR Coding.system</span>#xD;\n  src.codeSystem<b> as </b><span style=\"color: maroon\">system</span><b> where </b>system = '2.16.840.1.113883.6.1'<span style=\"color: navy\"><b> -&gt; </b></span>tgt.system = <span style=\"color: blue\">'http://loinc.org'</span> <i>\"systemLoinc\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">CDA codeSystem SNOMED CT -&gt; FHIR Coding.system</span>#xD;\n  src.codeSystem<b> as </b><span style=\"color: maroon\">system</span><b> where </b>system = '2.16.840.1.113883.6.96'<span style=\"color: navy\"><b> -&gt; </b></span>tgt.system = <span style=\"color: blue\">'http://snomed.info/sct'</span> <i>\"systemSnomed\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">CDA codeSystem HL7 v3 ActCode -&gt; FHIR Coding.system</span>#xD;\n  src.codeSystem<b> as </b><span style=\"color: maroon\">system</span><b> where </b>system = '2.16.840.1.113883.5.4'<span style=\"color: navy\"><b> -&gt; </b></span>tgt.system = <span style=\"color: blue\">'http://terminology.hl7.org/CodeSystem/v3-ActCode'</span> <i>\"systemActCode\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">CDA codeSystem TRE_A02 -&gt; FHIR Coding.system NOS</span>#xD;\n  src.codeSystem<b> as </b><span style=\"color: maroon\">system</span><b> where </b>system = '1.2.250.1.213.1.1.4.5'<span style=\"color: navy\"><b> -&gt; </b></span>tgt.system = <span style=\"color: blue\">'https://mos.esante.gouv.fr/NOS/TRE_A02-ProfessionSavFaire-CISIS/FHIR/TRE-A02-ProfessionSavFaire-CISIS'</span> <i>\"systemTRE_A02\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">CDA autres codeSystem OID -&gt; FHIR Coding.system urn:oid</span>#xD;\n  src.codeSystem<b> as </b><span style=\"color: maroon\">system</span><b> where </b>(system != '2.16.840.1.113883.6.1') and (system != '2.16.840.1.113883.6.96') and (system != '2.16.840.1.113883.5.4') and (system != '1.2.250.1.213.1.1.4.5')<span style=\"color: navy\"><b> -&gt; </b></span>tgt.system = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:oid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">system</span><span style=\"color: navy\">)</span> <i>\"systemFallback\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">CDA displayName -&gt; FHIR Coding.display</span>#xD;\n  src.displayName<b> as </b><span style=\"color: maroon\">display</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.display = <b>cast</b><span style=\"color: navy\">(</span><span style=\"color: maroon\">display</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'string'</span><span style=\"color: navy\">)</span> <i>\"display\"</i><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">Mapping CDA EN vers FHIR HumanName</span>#xD;\n<span style=\"color: navy\">// </span><span style=\"color: green\">EN = Entity Name CDA</span>#xD;\n<span style=\"color: navy\">// </span><span style=\"color: green\">HumanName = nom humain FHIR</span>#xD;\n<b>group </b>ENHumanName<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>EN, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>HumanName<span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  <span style=\"color: navy\">// </span><span style=\"color: green\">Parcours des composants du nom CDA</span>#xD;\n  src.item<b> as </b><span style=\"color: maroon\">item</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    <span style=\"color: navy\">// </span><span style=\"color: green\">Nom de famille</span>#xD;\n    item.family<b> as </b><span style=\"color: maroon\">v</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.family = <span style=\"color: navy\">(</span>v.xmlText<span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">// </span><span style=\"color: green\">Prénom</span>#xD;\n    item.given<b> as </b><span style=\"color: maroon\">v</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.given = <span style=\"color: navy\">(</span>v.xmlText<span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">// </span><span style=\"color: green\">Préfixe du nom</span>#xD;\n    item.prefix<b> as </b><span style=\"color: maroon\">v</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.prefix = <span style=\"color: navy\">(</span>v.xmlText<span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">// </span><span style=\"color: green\">Suffixe du nom</span>#xD;\n    item.suffix<b> as </b><span style=\"color: maroon\">v</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.suffix = <span style=\"color: navy\">(</span>v.xmlText<span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">La période de validité CDA devient period FHIR</span>#xD;\n  src.validTime<b> as </b><span style=\"color: maroon\">validTime</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.period = <span style=\"color: maroon\">validTime</span><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">Mapping CDA PN vers FHIR HumanName</span>#xD;\n<span style=\"color: navy\">// </span><span style=\"color: green\">PN = Person Name CDA</span>#xD;\n<span style=\"color: navy\">// </span><span style=\"color: green\">PN hérite du mapping ENHumanName</span>#xD;\n<b>group </b>PNHumanName<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>PN, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>HumanName<span style=\"color: navy\">)</span><b> extends </b>ENHumanName<b> &lt;&lt;types&gt;&gt;</b><span style=\"color: navy\"> {#xD;\n</span>  <span style=\"color: navy\">// </span><span style=\"color: green\">Réutilisation du mapping ENHumanName</span>#xD;\n  src<span style=\"color: navy\"><b> -&gt; </b></span>tgt <i>\"inherit\"</i><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">Mapping CDA AD vers FHIR Address</span>#xD;\n<span style=\"color: navy\">// </span><span style=\"color: green\">AD = adresse CDA</span>#xD;\n<span style=\"color: navy\">// </span><span style=\"color: green\">Address = adresse FHIR</span>#xD;\n<b>group </b>ADAddress<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>AD, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>Address<span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  <span style=\"color: navy\">// </span><span style=\"color: green\">Parcours des composants de l’adresse CDA</span>#xD;\n  src.item<b> as </b><span style=\"color: maroon\">item</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    <span style=\"color: navy\">// </span><span style=\"color: green\">Pays</span>#xD;\n    item.country<b> as </b><span style=\"color: maroon\">v</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.country = <span style=\"color: navy\">(</span>v.xmlText<span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">// </span><span style=\"color: green\">Région / état</span>#xD;\n    item.state<b> as </b><span style=\"color: maroon\">v</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.state = <span style=\"color: navy\">(</span>v.xmlText<span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">// </span><span style=\"color: green\">Département / district</span>#xD;\n    item.county<b> as </b><span style=\"color: maroon\">v</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.district = <span style=\"color: navy\">(</span>v.xmlText<span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">// </span><span style=\"color: green\">Ville</span>#xD;\n    item.city<b> as </b><span style=\"color: maroon\">v</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.city = <span style=\"color: navy\">(</span>v.xmlText<span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">// </span><span style=\"color: green\">Code postal</span>#xD;\n    item.postalCode<b> as </b><span style=\"color: maroon\">v</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.postalCode = <span style=\"color: navy\">(</span>v.xmlText<span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">// </span><span style=\"color: green\">Ligne d’adresse complète</span>#xD;\n    item.streetAddressLine<b> as </b><span style=\"color: maroon\">v</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.line = <span style=\"color: navy\">(</span>v.xmlText<span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">// </span><span style=\"color: green\">Ajout éventuel d’une extension sur la ligne d’adresse pour le censusTract</span>#xD;\n    item<span style=\"color: navy\"><b> -&gt; </b></span>tgt.line<b> as </b><span style=\"color: maroon\">line</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>      item<b> where </b>src.censusTract.exists()<b> then</b><span style=\"color: navy\"> {#xD;\n</span>        <span style=\"color: navy\">// </span><span style=\"color: green\">Mapping du censusTract dans une extension de line</span>#xD;\n        item.censusTract<b> as </b><span style=\"color: maroon\">v</span><span style=\"color: navy\"><b> -&gt; </b></span>line.extension<b> as </b><span style=\"color: maroon\">ext1</span><b> then </b>CensusTract<span style=\"color: navy\">(</span><span style=\"color: maroon\">v</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">ext1</span><span style=\"color: navy\">)</span> <i>\"line\"</i><span style=\"color: navy\">;</span>#xD;\n      <span style=\"color: navy\">}</span> <i>\"sfgfdsg\"</i><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">}</span> <i>\"CensusTract\"</i><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">// </span><span style=\"color: green\">Anciennes tentatives de mapping du censusTract, conservées en commentaire</span>#xD;\n    <span style=\"color: navy\">// </span><span style=\"color: green\">as streetAddress then{</span>#xD;\n    <span style=\"color: #b36b00\" title=\"This element was not defined prior to R5\">// src.censusTract as v-&gt;tgt.line as line, line.extension as ext1 then CensusTract(v, ext1) \"line\";</span>#xD;\n    <span style=\"color: #b36b00\" title=\"This element was not defined prior to R5\">// src.censusTract as v -&gt;tgt.line as line, line.extension as ext1 then CensusTract(v, ext1) \"line\";</span>#xD;\n    <span style=\"color: navy\">// </span><span style=\"color: green\">Nom de rue</span>#xD;\n    item.streetName<b> as </b><span style=\"color: maroon\">v</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.line = <span style=\"color: navy\">(</span>v.xmlText<span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">// </span><span style=\"color: green\">Numéro de maison</span>#xD;\n    item.houseNumber<b> as </b><span style=\"color: maroon\">v</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.line = <span style=\"color: navy\">(</span>v.xmlText<span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">Période d’utilisation de l’adresse</span>#xD;\n  src.useablePeriod<b> as </b><span style=\"color: maroon\">useablePeriod</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.period = <span style=\"color: maroon\">useablePeriod</span><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">Mapping CDA TEL vers FHIR ContactPoint</span>#xD;\n<span style=\"color: navy\">// </span><span style=\"color: green\">TEL = téléphone/email/url CDA</span>#xD;\n<span style=\"color: navy\">// </span><span style=\"color: green\">ContactPoint = moyen de contact FHIR</span>#xD;\n<b>group </b>TELContactPoint<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>TEL, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>ContactPoint<span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  <span style=\"color: navy\">// </span><span style=\"color: green\">Si la valeur commence par tel:, c’est un téléphone</span>#xD;\n  src.value<b> as </b><span style=\"color: maroon\">v</span><b> where </b>(src.value.startsWith('tel:'))<span style=\"color: navy\"><b> -&gt; </b></span> tgt.value = <span style=\"color: navy\">(</span>v.substring(4)<span style=\"color: navy\">)</span><span style=\"color: navy\">, </span> tgt.system = <span style=\"color: blue\">'phone'</span> <i>\"valuetel\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">Si la valeur commence par fax:, c’est un fax</span>#xD;\n  src.value<b> as </b><span style=\"color: maroon\">v</span><b> where </b>(src.value.startsWith('fax:'))<span style=\"color: navy\"><b> -&gt; </b></span> tgt.value = <span style=\"color: navy\">(</span>v.substring(4)<span style=\"color: navy\">)</span><span style=\"color: navy\">, </span> tgt.system = <span style=\"color: blue\">'fax'</span> <i>\"valuefax\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">Si la valeur commence par mailto:, c’est un email</span>#xD;\n  src.value<b> as </b><span style=\"color: maroon\">v</span><b> where </b>(src.value.startsWith('mailto:'))<span style=\"color: navy\"><b> -&gt; </b></span> tgt.value = <span style=\"color: navy\">(</span>v.substring(7)<span style=\"color: navy\">)</span><span style=\"color: navy\">, </span> tgt.system = <span style=\"color: blue\">'email'</span> <i>\"valuemail\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">Si la valeur commence par http:, c’est une URL</span>#xD;\n  src.value<b> as </b><span style=\"color: maroon\">v</span><b> where </b>(src.value.startsWith('http:'))<span style=\"color: navy\"><b> -&gt; </b></span> tgt.value = <span style=\"color: navy\">(</span>v.substring(5)<span style=\"color: navy\">)</span><span style=\"color: navy\">, </span> tgt.system = <span style=\"color: blue\">'url'</span> <i>\"valuehttp\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">Usage domicile</span>#xD;\n  src.use<b> where </b>(src.use.startsWith('H'))<span style=\"color: navy\"><b> -&gt; </b></span>tgt.use = <span style=\"color: blue\">'home'</span> <i>\"usehome\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">Usage professionnel</span>#xD;\n  src.use<b> where </b>((src.use = 'WP') or (src.use = 'DIR') or (src.use = 'PUB'))<span style=\"color: navy\"><b> -&gt; </b></span>tgt.use = <span style=\"color: blue\">'work'</span> <i>\"usework\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">Ancien contact / mauvais contact</span>#xD;\n  src.use<b> where </b>(src.use = 'BAD')<span style=\"color: navy\"><b> -&gt; </b></span>tgt.use = <span style=\"color: blue\">'old'</span> <i>\"usebad\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">Contact temporaire</span>#xD;\n  src.use<b> where </b>(src.use = 'TMP')<span style=\"color: navy\"><b> -&gt; </b></span>tgt.use = <span style=\"color: blue\">'temp'</span> <i>\"usetmp\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">Contact mobile</span>#xD;\n  src.use<b> where </b>(src.use = 'MC')<span style=\"color: navy\"><b> -&gt; </b></span>tgt.use = <span style=\"color: blue\">'mobile'</span> <i>\"usemobile\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">Période d’utilisation du contact</span>#xD;\n  src.useablePeriod<b> as </b><span style=\"color: maroon\">useablePeriod</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.period = <span style=\"color: maroon\">useablePeriod</span><span style=\"color: navy\">;</span> <span style=\"color: navy\">// </span><span style=\"color: green\">use: for src.use as c make tgt.use = translate(c, 'http://hl7.org/fhir/ConceptMap/cm-telecom-use-v3', 'code')</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">Mapping CDA PQ vers FHIR Quantity</span>#xD;\n<span style=\"color: navy\">// </span><span style=\"color: green\">PQ = quantité physique CDA</span>#xD;\n<span style=\"color: navy\">// </span><span style=\"color: green\">Quantity = quantité FHIR</span>#xD;\n<b>group </b>PQQuantity<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>PQ, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>Quantity<span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  <span style=\"color: navy\">// </span><span style=\"color: green\">Unité lisible</span>#xD;\n  src.unit<b> as </b><span style=\"color: maroon\">unit</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.unit = <span style=\"color: maroon\">unit</span><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">Code de l’unité</span>#xD;\n  src.unit<b> as </b><span style=\"color: maroon\">unit</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.code = <span style=\"color: maroon\">unit</span><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">Système UCUM pour les unités</span>#xD;\n  src.unit<b> as </b><span style=\"color: maroon\">unit</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.system = <span style=\"color: blue\">'http://unitsofmeasure.org'</span><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">Valeur numérique de la quantité</span>#xD;\n  src.value<b> as </b><span style=\"color: maroon\">value</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.value = <span style=\"color: maroon\">value</span><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">Mapping CDA RTO_PQ_PQ vers FHIR Ratio</span>#xD;\n<span style=\"color: navy\">// </span><span style=\"color: green\">RTO_PQ_PQ = ratio CDA composé d’un numérateur et d’un dénominateur</span>#xD;\n<span style=\"color: navy\">// </span><span style=\"color: green\">Ratio = ratio FHIR</span>#xD;\n<b>group </b>RTOPQPQRatio<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">src</span><span style=\"color: navy\"> : </span>RTO_PQ_PQ, <b>target</b> <span style=\"color: maroon\">tgt</span><span style=\"color: navy\"> : </span>Ratio<span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  <span style=\"color: navy\">// </span><span style=\"color: green\">Mapping du numérateur</span>#xD;\n  src.numerator<b> as </b><span style=\"color: maroon\">numerator</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.numerator<b> as </b><span style=\"color: maroon\">targetNumerator</span><b> then </b>PQQuantity<span style=\"color: navy\">(</span><span style=\"color: maroon\">numerator</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">targetNumerator</span><span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">// </span><span style=\"color: green\">Mapping du dénominateur</span>#xD;\n  src.denominator<b> as </b><span style=\"color: maroon\">denominator</span><span style=\"color: navy\"><b> -&gt; </b></span>tgt.denominator<b> as </b><span style=\"color: maroon\">targetDenominator</span><b> then </b>PQQuantity<span style=\"color: navy\">(</span><span style=\"color: maroon\">denominator</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">targetDenominator</span><span style=\"color: navy\">)</span><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span></pre></div>"
+  ] ;
+  fhir:StructureMap.url [ fhir:value "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes"] ;
+  fhir:StructureMap.version [ fhir:value "0.1.0"] ;
+  fhir:StructureMap.name [ fhir:value "CdaToFHIRTypes"] ;
+  fhir:StructureMap.title [ fhir:value "Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)"] ;
+  fhir:StructureMap.status [ fhir:value "draft"] ;
+  fhir:StructureMap.date [ fhir:value "2026-07-17T13:54:13+00:00"^^xsd:dateTime] ;
+  fhir:StructureMap.publisher [ fhir:value "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"] ;
+  fhir:StructureMap.contact [
+     fhir:index -1 ;
+     fhir:ContactDetail.name [ fhir:value "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris" ] ;
+     fhir:ContactDetail.telecom [
+       fhir:index -1 ;
+       fhir:ContactPoint.system [ fhir:value "url" ] ;
+       fhir:ContactPoint.value [ fhir:value "https://esante.gouv.fr" ]
+     ]
+  ] ;
+  fhir:StructureMap.description [ fhir:value "Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)"] ;
+  fhir:StructureMap.jurisdiction [
+     fhir:index -1 ;
+     fhir:CodeableConcept.coding [
+       fhir:index -1 ;
+       fhir:Coding.system [ fhir:value "urn:iso:std:iso:3166" ] ;
+       fhir:Coding.code [ fhir:value "FR" ] ;
+       fhir:Coding.display [ fhir:value "France (la)" ]
+     ]
+  ] ;
+  fhir:StructureMap.structure [
+     fhir:index -1 ;
+     fhir:StructureMap.structure.url [
+       fhir:value "http://hl7.org/cda/stds/core/StructureDefinition/ED|2.0.0-sd" ;
+       fhir:link <http://hl7.org/cda/stds/core/StructureDefinition/ED|2.0.0-sd>
+     ] ;
+     fhir:StructureMap.structure.mode [ fhir:value "source" ] ;
+     fhir:StructureMap.structure.alias [ fhir:value "ED" ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.structure.url [
+       fhir:value "http://hl7.org/cda/stds/core/StructureDefinition/PN|2.0.0-sd" ;
+       fhir:link <http://hl7.org/cda/stds/core/StructureDefinition/PN|2.0.0-sd>
+     ] ;
+     fhir:StructureMap.structure.mode [ fhir:value "source" ] ;
+     fhir:StructureMap.structure.alias [ fhir:value "PN" ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.structure.url [
+       fhir:value "http://hl7.org/cda/stds/core/StructureDefinition/II|2.0.0-sd" ;
+       fhir:link <http://hl7.org/cda/stds/core/StructureDefinition/II|2.0.0-sd>
+     ] ;
+     fhir:StructureMap.structure.mode [ fhir:value "source" ] ;
+     fhir:StructureMap.structure.alias [ fhir:value "II" ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.structure.url [
+       fhir:value "http://hl7.org/cda/stds/core/StructureDefinition/TS|2.0.0-sd" ;
+       fhir:link <http://hl7.org/cda/stds/core/StructureDefinition/TS|2.0.0-sd>
+     ] ;
+     fhir:StructureMap.structure.mode [ fhir:value "source" ] ;
+     fhir:StructureMap.structure.alias [ fhir:value "TS" ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.structure.url [
+       fhir:value "http://hl7.org/cda/stds/core/StructureDefinition/CS|2.0.0-sd" ;
+       fhir:link <http://hl7.org/cda/stds/core/StructureDefinition/CS|2.0.0-sd>
+     ] ;
+     fhir:StructureMap.structure.mode [ fhir:value "source" ] ;
+     fhir:StructureMap.structure.alias [ fhir:value "CS" ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.structure.url [
+       fhir:value "http://hl7.org/cda/stds/core/StructureDefinition/CE|2.0.0-sd" ;
+       fhir:link <http://hl7.org/cda/stds/core/StructureDefinition/CE|2.0.0-sd>
+     ] ;
+     fhir:StructureMap.structure.mode [ fhir:value "source" ] ;
+     fhir:StructureMap.structure.alias [ fhir:value "CE" ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.structure.url [
+       fhir:value "http://hl7.org/cda/stds/core/StructureDefinition/ST|2.0.0-sd" ;
+       fhir:link <http://hl7.org/cda/stds/core/StructureDefinition/ST|2.0.0-sd>
+     ] ;
+     fhir:StructureMap.structure.mode [ fhir:value "source" ] ;
+     fhir:StructureMap.structure.alias [ fhir:value "ST" ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.structure.url [
+       fhir:value "http://hl7.org/cda/stds/core/StructureDefinition/ON|2.0.0-sd" ;
+       fhir:link <http://hl7.org/cda/stds/core/StructureDefinition/ON|2.0.0-sd>
+     ] ;
+     fhir:StructureMap.structure.mode [ fhir:value "source" ] ;
+     fhir:StructureMap.structure.alias [ fhir:value "ON" ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.structure.url [
+       fhir:value "http://hl7.org/cda/stds/core/StructureDefinition/EN|2.0.0-sd" ;
+       fhir:link <http://hl7.org/cda/stds/core/StructureDefinition/EN|2.0.0-sd>
+     ] ;
+     fhir:StructureMap.structure.mode [ fhir:value "source" ] ;
+     fhir:StructureMap.structure.alias [ fhir:value "EN" ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.structure.url [
+       fhir:value "http://hl7.org/cda/stds/core/StructureDefinition/AD|2.0.0-sd" ;
+       fhir:link <http://hl7.org/cda/stds/core/StructureDefinition/AD|2.0.0-sd>
+     ] ;
+     fhir:StructureMap.structure.mode [ fhir:value "source" ] ;
+     fhir:StructureMap.structure.alias [ fhir:value "AD" ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.structure.url [
+       fhir:value "http://hl7.org/cda/stds/core/StructureDefinition/TEL|2.0.0-sd" ;
+       fhir:link <http://hl7.org/cda/stds/core/StructureDefinition/TEL|2.0.0-sd>
+     ] ;
+     fhir:StructureMap.structure.mode [ fhir:value "source" ] ;
+     fhir:StructureMap.structure.alias [ fhir:value "TEL" ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.structure.url [
+       fhir:value "http://hl7.org/cda/stds/core/StructureDefinition/BL|2.0.0-sd" ;
+       fhir:link <http://hl7.org/cda/stds/core/StructureDefinition/BL|2.0.0-sd>
+     ] ;
+     fhir:StructureMap.structure.mode [ fhir:value "source" ] ;
+     fhir:StructureMap.structure.alias [ fhir:value "BL" ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.structure.url [
+       fhir:value "http://hl7.org/cda/stds/core/StructureDefinition/IVL-TS|2.0.0-sd" ;
+       fhir:link <http://hl7.org/cda/stds/core/StructureDefinition/IVL-TS|2.0.0-sd>
+     ] ;
+     fhir:StructureMap.structure.mode [ fhir:value "source" ] ;
+     fhir:StructureMap.structure.alias [ fhir:value "IVL_TS" ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.structure.url [
+       fhir:value "http://hl7.org/cda/stds/core/StructureDefinition/INT|2.0.0-sd" ;
+       fhir:link <http://hl7.org/cda/stds/core/StructureDefinition/INT|2.0.0-sd>
+     ] ;
+     fhir:StructureMap.structure.mode [ fhir:value "source" ] ;
+     fhir:StructureMap.structure.alias [ fhir:value "INT" ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.structure.url [
+       fhir:value "http://hl7.org/cda/stds/core/StructureDefinition/CD|2.0.0-sd" ;
+       fhir:link <http://hl7.org/cda/stds/core/StructureDefinition/CD|2.0.0-sd>
+     ] ;
+     fhir:StructureMap.structure.mode [ fhir:value "source" ] ;
+     fhir:StructureMap.structure.alias [ fhir:value "CD" ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.structure.url [
+       fhir:value "http://hl7.org/cda/stds/core/StructureDefinition/PQ|2.0.0-sd" ;
+       fhir:link <http://hl7.org/cda/stds/core/StructureDefinition/PQ|2.0.0-sd>
+     ] ;
+     fhir:StructureMap.structure.mode [ fhir:value "source" ] ;
+     fhir:StructureMap.structure.alias [ fhir:value "PQ" ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.structure.url [
+       fhir:value "http://hl7.org/cda/stds/core/StructureDefinition/RTO-PQ-PQ|2.0.0-sd" ;
+       fhir:link <http://hl7.org/cda/stds/core/StructureDefinition/RTO-PQ-PQ|2.0.0-sd>
+     ] ;
+     fhir:StructureMap.structure.mode [ fhir:value "source" ] ;
+     fhir:StructureMap.structure.alias [ fhir:value "RTO_PQ_PQ" ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.structure.url [
+       fhir:value "http://hl7.org/fhir/StructureDefinition/Identifier|4.0.1" ;
+       fhir:link <http://hl7.org/fhir/StructureDefinition/Identifier|4.0.1>
+     ] ;
+     fhir:StructureMap.structure.mode [ fhir:value "target" ] ;
+     fhir:StructureMap.structure.alias [ fhir:value "Identifier" ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.structure.url [
+       fhir:value "http://hl7.org/fhir/StructureDefinition/instant|4.0.1" ;
+       fhir:link <http://hl7.org/fhir/StructureDefinition/instant|4.0.1>
+     ] ;
+     fhir:StructureMap.structure.mode [ fhir:value "target" ] ;
+     fhir:StructureMap.structure.alias [ fhir:value "instant" ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.structure.url [
+       fhir:value "http://hl7.org/fhir/StructureDefinition/code|4.0.1" ;
+       fhir:link <http://hl7.org/fhir/StructureDefinition/code|4.0.1>
+     ] ;
+     fhir:StructureMap.structure.mode [ fhir:value "target" ] ;
+     fhir:StructureMap.structure.alias [ fhir:value "code" ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.structure.url [
+       fhir:value "http://hl7.org/fhir/StructureDefinition/CodeableConcept|4.0.1" ;
+       fhir:link <http://hl7.org/fhir/StructureDefinition/CodeableConcept|4.0.1>
+     ] ;
+     fhir:StructureMap.structure.mode [ fhir:value "target" ] ;
+     fhir:StructureMap.structure.alias [ fhir:value "CodeableConcept" ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.structure.url [
+       fhir:value "http://hl7.org/fhir/StructureDefinition/Coding|4.0.1" ;
+       fhir:link <http://hl7.org/fhir/StructureDefinition/Coding|4.0.1>
+     ] ;
+     fhir:StructureMap.structure.mode [ fhir:value "target" ] ;
+     fhir:StructureMap.structure.alias [ fhir:value "Coding" ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.structure.url [
+       fhir:value "http://hl7.org/fhir/StructureDefinition/string|4.0.1" ;
+       fhir:link <http://hl7.org/fhir/StructureDefinition/string|4.0.1>
+     ] ;
+     fhir:StructureMap.structure.mode [ fhir:value "target" ] ;
+     fhir:StructureMap.structure.alias [ fhir:value "string" ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.structure.url [
+       fhir:value "http://hl7.org/fhir/StructureDefinition/HumanName|4.0.1" ;
+       fhir:link <http://hl7.org/fhir/StructureDefinition/HumanName|4.0.1>
+     ] ;
+     fhir:StructureMap.structure.mode [ fhir:value "target" ] ;
+     fhir:StructureMap.structure.alias [ fhir:value "HumanName" ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.structure.url [
+       fhir:value "http://hl7.org/fhir/StructureDefinition/Address|4.0.1" ;
+       fhir:link <http://hl7.org/fhir/StructureDefinition/Address|4.0.1>
+     ] ;
+     fhir:StructureMap.structure.mode [ fhir:value "target" ] ;
+     fhir:StructureMap.structure.alias [ fhir:value "Address" ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.structure.url [
+       fhir:value "http://hl7.org/fhir/StructureDefinition/ContactPoint|4.0.1" ;
+       fhir:link <http://hl7.org/fhir/StructureDefinition/ContactPoint|4.0.1>
+     ] ;
+     fhir:StructureMap.structure.mode [ fhir:value "target" ] ;
+     fhir:StructureMap.structure.alias [ fhir:value "ContactPoint" ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.structure.url [
+       fhir:value "http://hl7.org/fhir/StructureDefinition/boolean|4.0.1" ;
+       fhir:link <http://hl7.org/fhir/StructureDefinition/boolean|4.0.1>
+     ] ;
+     fhir:StructureMap.structure.mode [ fhir:value "target" ] ;
+     fhir:StructureMap.structure.alias [ fhir:value "boolean" ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.structure.url [
+       fhir:value "http://hl7.org/fhir/StructureDefinition/Period|4.0.1" ;
+       fhir:link <http://hl7.org/fhir/StructureDefinition/Period|4.0.1>
+     ] ;
+     fhir:StructureMap.structure.mode [ fhir:value "target" ] ;
+     fhir:StructureMap.structure.alias [ fhir:value "Period" ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.structure.url [
+       fhir:value "http://hl7.org/fhir/StructureDefinition/integer|4.0.1" ;
+       fhir:link <http://hl7.org/fhir/StructureDefinition/integer|4.0.1>
+     ] ;
+     fhir:StructureMap.structure.mode [ fhir:value "target" ] ;
+     fhir:StructureMap.structure.alias [ fhir:value "integer" ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.structure.url [
+       fhir:value "http://hl7.org/fhir/StructureDefinition/dateTime|4.0.1" ;
+       fhir:link <http://hl7.org/fhir/StructureDefinition/dateTime|4.0.1>
+     ] ;
+     fhir:StructureMap.structure.mode [ fhir:value "target" ] ;
+     fhir:StructureMap.structure.alias [ fhir:value "dateTime" ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.structure.url [
+       fhir:value "http://hl7.org/fhir/StructureDefinition/date|4.0.1" ;
+       fhir:link <http://hl7.org/fhir/StructureDefinition/date|4.0.1>
+     ] ;
+     fhir:StructureMap.structure.mode [ fhir:value "target" ] ;
+     fhir:StructureMap.structure.alias [ fhir:value "date" ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.structure.url [
+       fhir:value "http://hl7.org/fhir/StructureDefinition/Quantity|4.0.1" ;
+       fhir:link <http://hl7.org/fhir/StructureDefinition/Quantity|4.0.1>
+     ] ;
+     fhir:StructureMap.structure.mode [ fhir:value "target" ] ;
+     fhir:StructureMap.structure.alias [ fhir:value "Quantity" ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.structure.url [
+       fhir:value "http://hl7.org/fhir/StructureDefinition/Ratio|4.0.1" ;
+       fhir:link <http://hl7.org/fhir/StructureDefinition/Ratio|4.0.1>
+     ] ;
+     fhir:StructureMap.structure.mode [ fhir:value "target" ] ;
+     fhir:StructureMap.structure.alias [ fhir:value "Ratio" ]
+  ] ;
+  fhir:StructureMap.group [
+     fhir:index -1 ;
+     fhir:StructureMap.group.name [ fhir:value "Any" ] ;
+     fhir:StructureMap.group.typeMode [ fhir:value "none" ] ;
+     fhir:StructureMap.group.documentation [ fhir:value "Groupe générique de base (Sert de groupe parent pour les autres mappings)" ] ;
+     fhir:StructureMap.group.input [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "src" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "source" ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "tgt" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "target" ]
+     ] ;
+     fhir:StructureMap.group.rule [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "base" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ]
+       ]
+     ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.group.name [ fhir:value "II" ] ;
+     fhir:StructureMap.group.extends [ fhir:value "Any" ] ;
+     fhir:StructureMap.group.typeMode [ fhir:value "types" ] ;
+     fhir:StructureMap.group.documentation [ fhir:value "Mapping CDA II vers FHIR Identifier\nII = Identifiant CDA\nIdentifier = Identifiant FHIR" ] ;
+     fhir:StructureMap.group.input [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "src" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "II" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "source" ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "tgt" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "Identifier" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "target" ]
+     ] ;
+     fhir:StructureMap.group.rule [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "root1" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+         fhir:StructureMap.group.rule.source.element [ fhir:value "root" ] ;
+         fhir:StructureMap.group.rule.source.variable [ fhir:value "r" ] ;
+         fhir:StructureMap.group.rule.source.condition [ fhir:value "src.extension.exists()" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "system" ] ;
+         fhir:StructureMap.group.rule.target.transform [ fhir:value "append" ] ;
+         fhir:StructureMap.group.rule.target.parameter [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "urn:oid:" ]
+         ], [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueId [ fhir:value "r" ]
+         ]
+       ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "rootuuid" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+         fhir:StructureMap.group.rule.source.element [ fhir:value "root" ] ;
+         fhir:StructureMap.group.rule.source.variable [ fhir:value "r" ] ;
+         fhir:StructureMap.group.rule.source.condition [ fhir:value "src.extension.empty() and src.root.matches('[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}')" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "system" ] ;
+         fhir:StructureMap.group.rule.target.transform [ fhir:value "copy" ] ;
+         fhir:StructureMap.group.rule.target.parameter [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "urn:ietf:rfc:3986" ]
+         ]
+       ], [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "value" ] ;
+         fhir:StructureMap.group.rule.target.transform [ fhir:value "evaluate" ] ;
+         fhir:StructureMap.group.rule.target.parameter [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "'urn:uuid:' + r.lower()" ]
+         ]
+       ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "rootoid" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+         fhir:StructureMap.group.rule.source.element [ fhir:value "root" ] ;
+         fhir:StructureMap.group.rule.source.variable [ fhir:value "r" ] ;
+         fhir:StructureMap.group.rule.source.condition [ fhir:value "src.extension.empty() and src.root.contains('.')" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "system" ] ;
+         fhir:StructureMap.group.rule.target.transform [ fhir:value "copy" ] ;
+         fhir:StructureMap.group.rule.target.parameter [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "urn:ietf:rfc:3986" ]
+         ]
+       ], [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "value" ] ;
+         fhir:StructureMap.group.rule.target.transform [ fhir:value "append" ] ;
+         fhir:StructureMap.group.rule.target.parameter [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "urn:oid:" ]
+         ], [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueId [ fhir:value "r" ]
+         ]
+       ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "extension" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+         fhir:StructureMap.group.rule.source.element [ fhir:value "extension" ] ;
+         fhir:StructureMap.group.rule.source.variable [ fhir:value "e" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "value" ] ;
+         fhir:StructureMap.group.rule.target.transform [ fhir:value "copy" ] ;
+         fhir:StructureMap.group.rule.target.parameter [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueId [ fhir:value "e" ]
+         ]
+       ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "assigningAuthorityName" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+         fhir:StructureMap.group.rule.source.element [ fhir:value "assigningAuthorityName" ] ;
+         fhir:StructureMap.group.rule.source.variable [ fhir:value "s" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "assigner" ] ;
+         fhir:StructureMap.group.rule.target.variable [ fhir:value "a" ]
+       ], [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "a" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "display" ] ;
+         fhir:StructureMap.group.rule.target.transform [ fhir:value "copy" ] ;
+         fhir:StructureMap.group.rule.target.parameter [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueId [ fhir:value "s" ]
+         ]
+       ] ;
+       fhir:StructureMap.group.rule.documentation [ fhir:value "there's no equivalent for displayable in FHIR - and it probably will never matter, but if it does, it might map to Identifier.use." ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "extension" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+         fhir:StructureMap.group.rule.source.element [ fhir:value "displayable" ] ;
+         fhir:StructureMap.group.rule.source.variable [ fhir:value "displayable" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "extension" ] ;
+         fhir:StructureMap.group.rule.target.variable [ fhir:value "ext" ]
+       ] ;
+       fhir:StructureMap.group.rule.rule [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.name [ fhir:value "url" ] ;
+         fhir:StructureMap.group.rule.source [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.source.context [ fhir:value "displayable" ]
+         ] ;
+         fhir:StructureMap.group.rule.target [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.context [ fhir:value "ext" ] ;
+           fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+           fhir:StructureMap.group.rule.target.element [ fhir:value "url" ] ;
+           fhir:StructureMap.group.rule.target.transform [ fhir:value "copy" ] ;
+           fhir:StructureMap.group.rule.target.parameter [
+             fhir:index -1 ;
+             fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "http://hl7.org/fhir/cdaStructureDefinition/extension-displayable" ]
+           ]
+         ]
+       ], [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.name [ fhir:value "value" ] ;
+         fhir:StructureMap.group.rule.source [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.source.context [ fhir:value "displayable" ] ;
+           fhir:StructureMap.group.rule.source.element [ fhir:value "value" ] ;
+           fhir:StructureMap.group.rule.source.variable [ fhir:value "v" ]
+         ] ;
+         fhir:StructureMap.group.rule.target [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.context [ fhir:value "ext" ] ;
+           fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+           fhir:StructureMap.group.rule.target.element [ fhir:value "value" ] ;
+           fhir:StructureMap.group.rule.target.transform [ fhir:value "cast" ] ;
+           fhir:StructureMap.group.rule.target.parameter [
+             fhir:index -1 ;
+             fhir:StructureMap.group.rule.target.parameter.valueId [ fhir:value "v" ]
+           ], [
+             fhir:index -1 ;
+             fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "string" ]
+           ]
+         ]
+       ]
+     ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.group.name [ fhir:value "INT" ] ;
+     fhir:StructureMap.group.extends [ fhir:value "Any" ] ;
+     fhir:StructureMap.group.typeMode [ fhir:value "types" ] ;
+     fhir:StructureMap.group.documentation [ fhir:value "Mapping CDA INT vers FHIR integer\nINT = entier CDA\ninteger = entier FHIR" ] ;
+     fhir:StructureMap.group.input [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "src" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "INT" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "source" ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "tgt" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "integer" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "target" ]
+     ] ;
+     fhir:StructureMap.group.rule [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "integer" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+         fhir:StructureMap.group.rule.source.element [ fhir:value "value" ] ;
+         fhir:StructureMap.group.rule.source.variable [ fhir:value "v" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "value" ] ;
+         fhir:StructureMap.group.rule.target.transform [ fhir:value "copy" ] ;
+         fhir:StructureMap.group.rule.target.parameter [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueId [ fhir:value "v" ]
+         ]
+       ]
+     ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.group.name [ fhir:value "TemplateID" ] ;
+     fhir:StructureMap.group.typeMode [ fhir:value "none" ] ;
+     fhir:StructureMap.group.documentation [ fhir:value "Mapping des templateId CDA (Les templateId sont conservés dans des extensions FHIR)" ] ;
+     fhir:StructureMap.group.input [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "template" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "II" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "source" ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "tgt" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "target" ]
+     ] ;
+     fhir:StructureMap.group.rule [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "templateId" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "template" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "extension" ] ;
+         fhir:StructureMap.group.rule.target.variable [ fhir:value "ext" ]
+       ] ;
+       fhir:StructureMap.group.rule.rule [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.name [ fhir:value "url" ] ;
+         fhir:StructureMap.group.rule.source [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.source.context [ fhir:value "template" ]
+         ] ;
+         fhir:StructureMap.group.rule.target [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.context [ fhir:value "ext" ] ;
+           fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+           fhir:StructureMap.group.rule.target.element [ fhir:value "url" ] ;
+           fhir:StructureMap.group.rule.target.transform [ fhir:value "copy" ] ;
+           fhir:StructureMap.group.rule.target.parameter [
+             fhir:index -1 ;
+             fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "http://hl7.org/cda/stds/core/StructureDefinition/templateID" ]
+           ]
+         ]
+       ], [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.name [ fhir:value "value" ] ;
+         fhir:StructureMap.group.rule.source [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.source.context [ fhir:value "template" ]
+         ] ;
+         fhir:StructureMap.group.rule.target [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.context [ fhir:value "ext" ] ;
+           fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+           fhir:StructureMap.group.rule.target.element [ fhir:value "value" ] ;
+           fhir:StructureMap.group.rule.target.variable [ fhir:value "value" ] ;
+           fhir:StructureMap.group.rule.target.transform [ fhir:value "create" ] ;
+           fhir:StructureMap.group.rule.target.parameter [
+             fhir:index -1 ;
+             fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "Identifier" ]
+           ]
+         ] ;
+         fhir:StructureMap.group.rule.dependent [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.dependent.name [ fhir:value "II" ] ;
+           fhir:StructureMap.group.rule.dependent.variable [
+             fhir:value "template" ;
+             fhir:index -1
+           ], [
+             fhir:value "value" ;
+             fhir:index -1
+           ]
+         ]
+       ]
+     ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.group.name [ fhir:value "Negation" ] ;
+     fhir:StructureMap.group.typeMode [ fhir:value "none" ] ;
+     fhir:StructureMap.group.documentation [ fhir:value "Mapping du negationIndicator CDA (La négation CDA est représentée comme modifierExtension FHIR)" ] ;
+     fhir:StructureMap.group.input [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "negation" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "BL" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "source" ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "tgt" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "target" ]
+     ] ;
+     fhir:StructureMap.group.rule [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "negation" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "negation" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "modifierExtension" ] ;
+         fhir:StructureMap.group.rule.target.variable [ fhir:value "ext" ]
+       ] ;
+       fhir:StructureMap.group.rule.rule [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.name [ fhir:value "url" ] ;
+         fhir:StructureMap.group.rule.source [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.source.context [ fhir:value "negation" ]
+         ] ;
+         fhir:StructureMap.group.rule.target [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.context [ fhir:value "ext" ] ;
+           fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+           fhir:StructureMap.group.rule.target.element [ fhir:value "url" ] ;
+           fhir:StructureMap.group.rule.target.transform [ fhir:value "copy" ] ;
+           fhir:StructureMap.group.rule.target.parameter [
+             fhir:index -1 ;
+             fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "http://hl7.org/cda/stds/core/StructureDefinition/negationIndicator" ]
+           ]
+         ]
+       ], [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.name [ fhir:value "value" ] ;
+         fhir:StructureMap.group.rule.source [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.source.context [ fhir:value "negation" ] ;
+           fhir:StructureMap.group.rule.source.variable [ fhir:value "neg" ]
+         ] ;
+         fhir:StructureMap.group.rule.target [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.context [ fhir:value "ext" ] ;
+           fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+           fhir:StructureMap.group.rule.target.element [ fhir:value "value" ] ;
+           fhir:StructureMap.group.rule.target.transform [ fhir:value "create" ] ;
+           fhir:StructureMap.group.rule.target.parameter [
+             fhir:index -1 ;
+             fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "boolean" ]
+           ]
+         ], [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.context [ fhir:value "ext" ] ;
+           fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+           fhir:StructureMap.group.rule.target.element [ fhir:value "value" ] ;
+           fhir:StructureMap.group.rule.target.transform [ fhir:value "copy" ] ;
+           fhir:StructureMap.group.rule.target.parameter [
+             fhir:index -1 ;
+             fhir:StructureMap.group.rule.target.parameter.valueId [ fhir:value "neg" ]
+           ]
+         ]
+       ]
+     ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.group.name [ fhir:value "TSInstant" ] ;
+     fhir:StructureMap.group.extends [ fhir:value "Any" ] ;
+     fhir:StructureMap.group.typeMode [ fhir:value "types" ] ;
+     fhir:StructureMap.group.documentation [ fhir:value "Mapping CDA TS vers FHIR instant (TS = timestamp CDA)" ] ;
+     fhir:StructureMap.group.input [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "src" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "TS" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "source" ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "tgt" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "instant" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "target" ]
+     ] ;
+     fhir:StructureMap.group.rule [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "value" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+         fhir:StructureMap.group.rule.source.element [ fhir:value "value" ] ;
+         fhir:StructureMap.group.rule.source.variable [ fhir:value "v" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "value" ] ;
+         fhir:StructureMap.group.rule.target.transform [ fhir:value "cast" ] ;
+         fhir:StructureMap.group.rule.target.parameter [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueId [ fhir:value "v" ]
+         ], [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "string" ]
+         ]
+       ]
+     ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.group.name [ fhir:value "TSDateTime" ] ;
+     fhir:StructureMap.group.extends [ fhir:value "TSInstant" ] ;
+     fhir:StructureMap.group.typeMode [ fhir:value "types" ] ;
+     fhir:StructureMap.group.documentation [ fhir:value "Mapping CDA TS vers FHIR dateTime (Hérite du mapping TSInstant)" ] ;
+     fhir:StructureMap.group.input [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "src" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "TS" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "source" ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "tgt" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "dateTime" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "target" ]
+     ] ;
+     fhir:StructureMap.group.rule [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "inherit" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ]
+       ]
+     ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.group.name [ fhir:value "TSDate" ] ;
+     fhir:StructureMap.group.extends [ fhir:value "TSInstant" ] ;
+     fhir:StructureMap.group.typeMode [ fhir:value "types" ] ;
+     fhir:StructureMap.group.documentation [ fhir:value "Mapping CDA TS vers FHIR date (Hérite aussi du mapping TSInstant)" ] ;
+     fhir:StructureMap.group.input [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "src" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "TS" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "source" ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "tgt" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "date" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "target" ]
+     ] ;
+     fhir:StructureMap.group.rule [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "inherit" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ]
+       ]
+     ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.group.name [ fhir:value "IVLTSPeriod" ] ;
+     fhir:StructureMap.group.extends [ fhir:value "Any" ] ;
+     fhir:StructureMap.group.typeMode [ fhir:value "types" ] ;
+     fhir:StructureMap.group.documentation [ fhir:value "Mapping CDA IVL_TS vers FHIR Period\nIVL_TS = intervalle de temps CDA\nPeriod = période FHIR avec start et end" ] ;
+     fhir:StructureMap.group.input [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "src" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "IVL_TS" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "source" ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "tgt" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "Period" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "target" ]
+     ] ;
+     fhir:StructureMap.group.rule [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "low" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+         fhir:StructureMap.group.rule.source.element [ fhir:value "low" ] ;
+         fhir:StructureMap.group.rule.source.variable [ fhir:value "low" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "start" ] ;
+         fhir:StructureMap.group.rule.target.variable [ fhir:value "start" ] ;
+         fhir:StructureMap.group.rule.target.transform [ fhir:value "create" ] ;
+         fhir:StructureMap.group.rule.target.parameter [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "dateTime" ]
+         ]
+       ] ;
+       fhir:StructureMap.group.rule.dependent [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.dependent.name [ fhir:value "TSDateTime" ] ;
+         fhir:StructureMap.group.rule.dependent.variable [
+           fhir:value "low" ;
+           fhir:index -1
+         ], [
+           fhir:value "start" ;
+           fhir:index -1
+         ]
+       ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "high" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+         fhir:StructureMap.group.rule.source.element [ fhir:value "high" ] ;
+         fhir:StructureMap.group.rule.source.variable [ fhir:value "high" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "end" ] ;
+         fhir:StructureMap.group.rule.target.variable [ fhir:value "end" ] ;
+         fhir:StructureMap.group.rule.target.transform [ fhir:value "create" ] ;
+         fhir:StructureMap.group.rule.target.parameter [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "dateTime" ]
+         ]
+       ] ;
+       fhir:StructureMap.group.rule.dependent [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.dependent.name [ fhir:value "TSDateTime" ] ;
+         fhir:StructureMap.group.rule.dependent.variable [
+           fhir:value "high" ;
+           fhir:index -1
+         ], [
+           fhir:value "end" ;
+           fhir:index -1
+         ]
+       ]
+     ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.group.name [ fhir:value "IVLTSDateTime" ] ;
+     fhir:StructureMap.group.extends [ fhir:value "Any" ] ;
+     fhir:StructureMap.group.typeMode [ fhir:value "types" ] ;
+     fhir:StructureMap.group.documentation [ fhir:value "Mapping CDA IVL_TS vers FHIR dateTime (On utilise uniquement la borne basse low)" ] ;
+     fhir:StructureMap.group.input [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "src" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "IVL_TS" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "source" ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "tgt" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "dateTime" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "target" ]
+     ] ;
+     fhir:StructureMap.group.rule [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "low" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+         fhir:StructureMap.group.rule.source.element [ fhir:value "low" ] ;
+         fhir:StructureMap.group.rule.source.variable [ fhir:value "s" ]
+       ] ;
+       fhir:StructureMap.group.rule.dependent [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.dependent.name [ fhir:value "TSDateTime" ] ;
+         fhir:StructureMap.group.rule.dependent.variable [
+           fhir:value "s" ;
+           fhir:index -1
+         ], [
+           fhir:value "tgt" ;
+           fhir:index -1
+         ]
+       ]
+     ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.group.name [ fhir:value "STstring" ] ;
+     fhir:StructureMap.group.typeMode [ fhir:value "none" ] ;
+     fhir:StructureMap.group.documentation [ fhir:value "Mapping CDA ST vers FHIR string (ST = texte simple CDA)" ] ;
+     fhir:StructureMap.group.input [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "src" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "ST" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "source" ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "tgt" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "string" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "target" ]
+     ] ;
+     fhir:StructureMap.group.rule [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "value" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+         fhir:StructureMap.group.rule.source.variable [ fhir:value "v" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "value" ] ;
+         fhir:StructureMap.group.rule.target.transform [ fhir:value "cast" ] ;
+         fhir:StructureMap.group.rule.target.parameter [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueId [ fhir:value "v" ]
+         ], [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "string" ]
+         ]
+       ]
+     ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.group.name [ fhir:value "EDstring" ] ;
+     fhir:StructureMap.group.extends [ fhir:value "STstring" ] ;
+     fhir:StructureMap.group.typeMode [ fhir:value "types" ] ;
+     fhir:StructureMap.group.documentation [ fhir:value "Mapping CDA ED vers FHIR string (ED hérite du comportement de STstring)" ] ;
+     fhir:StructureMap.group.input [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "src" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "ED" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "source" ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "tgt" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "string" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "target" ]
+     ] ;
+     fhir:StructureMap.group.rule [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "inherit" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ]
+       ]
+     ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.group.name [ fhir:value "ONstring" ] ;
+     fhir:StructureMap.group.extends [ fhir:value "STstring" ] ;
+     fhir:StructureMap.group.typeMode [ fhir:value "types" ] ;
+     fhir:StructureMap.group.documentation [ fhir:value "Mapping CDA ON vers FHIR string (ON = Organization Name CDA)" ] ;
+     fhir:StructureMap.group.input [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "src" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "ON" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "source" ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "tgt" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "string" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "target" ]
+     ] ;
+     fhir:StructureMap.group.rule [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "inherit" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ]
+       ]
+     ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.group.name [ fhir:value "CSCode" ] ;
+     fhir:StructureMap.group.typeMode [ fhir:value "none" ] ;
+     fhir:StructureMap.group.documentation [ fhir:value "Mapping CDA CS vers FHIR code (CS = coded simple CDA)" ] ;
+     fhir:StructureMap.group.input [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "src" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "CS" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "source" ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "tgt" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "code" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "target" ]
+     ] ;
+     fhir:StructureMap.group.rule [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "code" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+         fhir:StructureMap.group.rule.source.element [ fhir:value "code" ] ;
+         fhir:StructureMap.group.rule.source.variable [ fhir:value "c" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "value" ] ;
+         fhir:StructureMap.group.rule.target.transform [ fhir:value "cast" ] ;
+         fhir:StructureMap.group.rule.target.parameter [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueId [ fhir:value "c" ]
+         ], [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "string" ]
+         ]
+       ]
+     ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.group.name [ fhir:value "CECode" ] ;
+     fhir:StructureMap.group.extends [ fhir:value "CSCode" ] ;
+     fhir:StructureMap.group.typeMode [ fhir:value "types" ] ;
+     fhir:StructureMap.group.documentation [ fhir:value "Mapping CDA CE vers FHIR code (CE hérite du mapping CSCode)" ] ;
+     fhir:StructureMap.group.input [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "src" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "CE" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "source" ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "tgt" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "code" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "target" ]
+     ] ;
+     fhir:StructureMap.group.rule [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "inherit" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ]
+       ]
+     ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.group.name [ fhir:value "CDCode" ] ;
+     fhir:StructureMap.group.extends [ fhir:value "CSCode" ] ;
+     fhir:StructureMap.group.typeMode [ fhir:value "types" ] ;
+     fhir:StructureMap.group.documentation [ fhir:value "Mapping CDA CD vers FHIR code (CD hérite du mapping CSCode)" ] ;
+     fhir:StructureMap.group.input [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "src" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "CD" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "source" ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "tgt" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "code" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "target" ]
+     ] ;
+     fhir:StructureMap.group.rule [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "inherit" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ]
+       ]
+     ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.group.name [ fhir:value "CECodeableConcept" ] ;
+     fhir:StructureMap.group.typeMode [ fhir:value "none" ] ;
+     fhir:StructureMap.group.input [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "src" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "CE" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "source" ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "tgt" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "CodeableConcept" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "target" ]
+     ] ;
+     fhir:StructureMap.group.rule [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "originalText" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+         fhir:StructureMap.group.rule.source.element [ fhir:value "originalText" ] ;
+         fhir:StructureMap.group.rule.source.variable [ fhir:value "originalText" ]
+       ] ;
+       fhir:StructureMap.group.rule.rule [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.name [ fhir:value "originalTextReference" ] ;
+         fhir:StructureMap.group.rule.source [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.source.context [ fhir:value "originalText" ] ;
+           fhir:StructureMap.group.rule.source.element [ fhir:value "reference" ] ;
+           fhir:StructureMap.group.rule.source.variable [ fhir:value "ref" ]
+         ] ;
+         fhir:StructureMap.group.rule.rule [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.name [ fhir:value "textFromOriginalTextReference" ] ;
+           fhir:StructureMap.group.rule.source [
+             fhir:index -1 ;
+             fhir:StructureMap.group.rule.source.context [ fhir:value "ref" ] ;
+             fhir:StructureMap.group.rule.source.element [ fhir:value "value" ] ;
+             fhir:StructureMap.group.rule.source.variable [ fhir:value "value" ]
+           ] ;
+           fhir:StructureMap.group.rule.target [
+             fhir:index -1 ;
+             fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+             fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+             fhir:StructureMap.group.rule.target.element [ fhir:value "text" ] ;
+             fhir:StructureMap.group.rule.target.transform [ fhir:value "cast" ] ;
+             fhir:StructureMap.group.rule.target.parameter [
+               fhir:index -1 ;
+               fhir:StructureMap.group.rule.target.parameter.valueId [ fhir:value "value" ]
+             ], [
+               fhir:index -1 ;
+               fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "string" ]
+             ]
+           ]
+         ]
+       ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "code" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "coding" ] ;
+         fhir:StructureMap.group.rule.target.variable [ fhir:value "coding" ]
+       ] ;
+       fhir:StructureMap.group.rule.rule [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.name [ fhir:value "code" ] ;
+         fhir:StructureMap.group.rule.source [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+           fhir:StructureMap.group.rule.source.element [ fhir:value "code" ] ;
+           fhir:StructureMap.group.rule.source.variable [ fhir:value "code" ]
+         ] ;
+         fhir:StructureMap.group.rule.target [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.context [ fhir:value "coding" ] ;
+           fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+           fhir:StructureMap.group.rule.target.element [ fhir:value "code" ] ;
+           fhir:StructureMap.group.rule.target.transform [ fhir:value "cast" ] ;
+           fhir:StructureMap.group.rule.target.parameter [
+             fhir:index -1 ;
+             fhir:StructureMap.group.rule.target.parameter.valueId [ fhir:value "code" ]
+           ], [
+             fhir:index -1 ;
+             fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "code" ]
+           ]
+         ]
+       ], [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.name [ fhir:value "systemLoinc" ] ;
+         fhir:StructureMap.group.rule.source [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+           fhir:StructureMap.group.rule.source.element [ fhir:value "codeSystem" ] ;
+           fhir:StructureMap.group.rule.source.variable [ fhir:value "system" ] ;
+           fhir:StructureMap.group.rule.source.condition [ fhir:value "system = '2.16.840.1.113883.6.1'" ]
+         ] ;
+         fhir:StructureMap.group.rule.target [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.context [ fhir:value "coding" ] ;
+           fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+           fhir:StructureMap.group.rule.target.element [ fhir:value "system" ] ;
+           fhir:StructureMap.group.rule.target.transform [ fhir:value "copy" ] ;
+           fhir:StructureMap.group.rule.target.parameter [
+             fhir:index -1 ;
+             fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "http://loinc.org" ]
+           ]
+         ]
+       ], [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.name [ fhir:value "systemSnomed" ] ;
+         fhir:StructureMap.group.rule.source [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+           fhir:StructureMap.group.rule.source.element [ fhir:value "codeSystem" ] ;
+           fhir:StructureMap.group.rule.source.variable [ fhir:value "system" ] ;
+           fhir:StructureMap.group.rule.source.condition [ fhir:value "system = '2.16.840.1.113883.6.96'" ]
+         ] ;
+         fhir:StructureMap.group.rule.target [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.context [ fhir:value "coding" ] ;
+           fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+           fhir:StructureMap.group.rule.target.element [ fhir:value "system" ] ;
+           fhir:StructureMap.group.rule.target.transform [ fhir:value "copy" ] ;
+           fhir:StructureMap.group.rule.target.parameter [
+             fhir:index -1 ;
+             fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "http://snomed.info/sct" ]
+           ]
+         ]
+       ], [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.name [ fhir:value "systemActCode" ] ;
+         fhir:StructureMap.group.rule.source [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+           fhir:StructureMap.group.rule.source.element [ fhir:value "codeSystem" ] ;
+           fhir:StructureMap.group.rule.source.variable [ fhir:value "system" ] ;
+           fhir:StructureMap.group.rule.source.condition [ fhir:value "system = '2.16.840.1.113883.5.4'" ]
+         ] ;
+         fhir:StructureMap.group.rule.target [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.context [ fhir:value "coding" ] ;
+           fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+           fhir:StructureMap.group.rule.target.element [ fhir:value "system" ] ;
+           fhir:StructureMap.group.rule.target.transform [ fhir:value "copy" ] ;
+           fhir:StructureMap.group.rule.target.parameter [
+             fhir:index -1 ;
+             fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "http://terminology.hl7.org/CodeSystem/v3-ActCode" ]
+           ]
+         ]
+       ], [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.name [ fhir:value "systemTRE_A02" ] ;
+         fhir:StructureMap.group.rule.source [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+           fhir:StructureMap.group.rule.source.element [ fhir:value "codeSystem" ] ;
+           fhir:StructureMap.group.rule.source.variable [ fhir:value "system" ] ;
+           fhir:StructureMap.group.rule.source.condition [ fhir:value "system = '1.2.250.1.213.1.1.4.5'" ]
+         ] ;
+         fhir:StructureMap.group.rule.target [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.context [ fhir:value "coding" ] ;
+           fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+           fhir:StructureMap.group.rule.target.element [ fhir:value "system" ] ;
+           fhir:StructureMap.group.rule.target.transform [ fhir:value "copy" ] ;
+           fhir:StructureMap.group.rule.target.parameter [
+             fhir:index -1 ;
+             fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "https://mos.esante.gouv.fr/NOS/TRE_A02-ProfessionSavFaire-CISIS/FHIR/TRE-A02-ProfessionSavFaire-CISIS" ]
+           ]
+         ]
+       ], [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.name [ fhir:value "systemFallback" ] ;
+         fhir:StructureMap.group.rule.source [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+           fhir:StructureMap.group.rule.source.element [ fhir:value "codeSystem" ] ;
+           fhir:StructureMap.group.rule.source.variable [ fhir:value "system" ] ;
+           fhir:StructureMap.group.rule.source.condition [ fhir:value "(system != '2.16.840.1.113883.6.1') and (system != '2.16.840.1.113883.6.96') and (system != '2.16.840.1.113883.5.4') and (system != '1.2.250.1.213.1.1.4.5')" ]
+         ] ;
+         fhir:StructureMap.group.rule.target [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.context [ fhir:value "coding" ] ;
+           fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+           fhir:StructureMap.group.rule.target.element [ fhir:value "system" ] ;
+           fhir:StructureMap.group.rule.target.transform [ fhir:value "append" ] ;
+           fhir:StructureMap.group.rule.target.parameter [
+             fhir:index -1 ;
+             fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "urn:oid:" ]
+           ], [
+             fhir:index -1 ;
+             fhir:StructureMap.group.rule.target.parameter.valueId [ fhir:value "system" ]
+           ]
+         ]
+       ], [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.name [ fhir:value "display" ] ;
+         fhir:StructureMap.group.rule.source [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+           fhir:StructureMap.group.rule.source.element [ fhir:value "displayName" ] ;
+           fhir:StructureMap.group.rule.source.variable [ fhir:value "display" ]
+         ] ;
+         fhir:StructureMap.group.rule.target [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.context [ fhir:value "coding" ] ;
+           fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+           fhir:StructureMap.group.rule.target.element [ fhir:value "display" ] ;
+           fhir:StructureMap.group.rule.target.transform [ fhir:value "cast" ] ;
+           fhir:StructureMap.group.rule.target.parameter [
+             fhir:index -1 ;
+             fhir:StructureMap.group.rule.target.parameter.valueId [ fhir:value "display" ]
+           ], [
+             fhir:index -1 ;
+             fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "string" ]
+           ]
+         ]
+       ]
+     ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.group.name [ fhir:value "CSCodeableConcept" ] ;
+     fhir:StructureMap.group.extends [ fhir:value "CECodeableConcept" ] ;
+     fhir:StructureMap.group.typeMode [ fhir:value "types" ] ;
+     fhir:StructureMap.group.documentation [ fhir:value "Mapping CDA CS vers FHIR CodeableConcept (CS réutilise la logique CECodeableConcept)" ] ;
+     fhir:StructureMap.group.input [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "src" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "CS" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "source" ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "tgt" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "CodeableConcept" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "target" ]
+     ] ;
+     fhir:StructureMap.group.rule [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "inherit" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ]
+       ]
+     ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.group.name [ fhir:value "CDCodeableConcept" ] ;
+     fhir:StructureMap.group.extends [ fhir:value "CECodeableConcept" ] ;
+     fhir:StructureMap.group.typeMode [ fhir:value "types" ] ;
+     fhir:StructureMap.group.documentation [ fhir:value "Mapping CDA CD vers FHIR CodeableConcept (CD réutilise la logique CECodeableConcept)" ] ;
+     fhir:StructureMap.group.input [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "src" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "CD" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "source" ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "tgt" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "CodeableConcept" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "target" ]
+     ] ;
+     fhir:StructureMap.group.rule [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "inherit" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ]
+       ]
+     ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.group.name [ fhir:value "CDCoding" ] ;
+     fhir:StructureMap.group.typeMode [ fhir:value "none" ] ;
+     fhir:StructureMap.group.documentation [ fhir:value "Mapping CDA CD / CE vers FHIR Coding (Utilisé quand la cible FHIR attend directement un Coding, par exemple Encounter.class)" ] ;
+     fhir:StructureMap.group.input [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "src" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "source" ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "tgt" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "Coding" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "target" ]
+     ] ;
+     fhir:StructureMap.group.rule [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "code" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+         fhir:StructureMap.group.rule.source.element [ fhir:value "code" ] ;
+         fhir:StructureMap.group.rule.source.variable [ fhir:value "code" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "code" ] ;
+         fhir:StructureMap.group.rule.target.transform [ fhir:value "cast" ] ;
+         fhir:StructureMap.group.rule.target.parameter [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueId [ fhir:value "code" ]
+         ], [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "code" ]
+         ]
+       ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "systemLoinc" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+         fhir:StructureMap.group.rule.source.element [ fhir:value "codeSystem" ] ;
+         fhir:StructureMap.group.rule.source.variable [ fhir:value "system" ] ;
+         fhir:StructureMap.group.rule.source.condition [ fhir:value "system = '2.16.840.1.113883.6.1'" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "system" ] ;
+         fhir:StructureMap.group.rule.target.transform [ fhir:value "copy" ] ;
+         fhir:StructureMap.group.rule.target.parameter [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "http://loinc.org" ]
+         ]
+       ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "systemSnomed" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+         fhir:StructureMap.group.rule.source.element [ fhir:value "codeSystem" ] ;
+         fhir:StructureMap.group.rule.source.variable [ fhir:value "system" ] ;
+         fhir:StructureMap.group.rule.source.condition [ fhir:value "system = '2.16.840.1.113883.6.96'" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "system" ] ;
+         fhir:StructureMap.group.rule.target.transform [ fhir:value "copy" ] ;
+         fhir:StructureMap.group.rule.target.parameter [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "http://snomed.info/sct" ]
+         ]
+       ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "systemActCode" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+         fhir:StructureMap.group.rule.source.element [ fhir:value "codeSystem" ] ;
+         fhir:StructureMap.group.rule.source.variable [ fhir:value "system" ] ;
+         fhir:StructureMap.group.rule.source.condition [ fhir:value "system = '2.16.840.1.113883.5.4'" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "system" ] ;
+         fhir:StructureMap.group.rule.target.transform [ fhir:value "copy" ] ;
+         fhir:StructureMap.group.rule.target.parameter [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "http://terminology.hl7.org/CodeSystem/v3-ActCode" ]
+         ]
+       ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "systemTRE_A02" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+         fhir:StructureMap.group.rule.source.element [ fhir:value "codeSystem" ] ;
+         fhir:StructureMap.group.rule.source.variable [ fhir:value "system" ] ;
+         fhir:StructureMap.group.rule.source.condition [ fhir:value "system = '1.2.250.1.213.1.1.4.5'" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "system" ] ;
+         fhir:StructureMap.group.rule.target.transform [ fhir:value "copy" ] ;
+         fhir:StructureMap.group.rule.target.parameter [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "https://mos.esante.gouv.fr/NOS/TRE_A02-ProfessionSavFaire-CISIS/FHIR/TRE-A02-ProfessionSavFaire-CISIS" ]
+         ]
+       ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "systemFallback" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+         fhir:StructureMap.group.rule.source.element [ fhir:value "codeSystem" ] ;
+         fhir:StructureMap.group.rule.source.variable [ fhir:value "system" ] ;
+         fhir:StructureMap.group.rule.source.condition [ fhir:value "(system != '2.16.840.1.113883.6.1') and (system != '2.16.840.1.113883.6.96') and (system != '2.16.840.1.113883.5.4') and (system != '1.2.250.1.213.1.1.4.5')" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "system" ] ;
+         fhir:StructureMap.group.rule.target.transform [ fhir:value "append" ] ;
+         fhir:StructureMap.group.rule.target.parameter [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "urn:oid:" ]
+         ], [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueId [ fhir:value "system" ]
+         ]
+       ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "display" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+         fhir:StructureMap.group.rule.source.element [ fhir:value "displayName" ] ;
+         fhir:StructureMap.group.rule.source.variable [ fhir:value "display" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "display" ] ;
+         fhir:StructureMap.group.rule.target.transform [ fhir:value "cast" ] ;
+         fhir:StructureMap.group.rule.target.parameter [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueId [ fhir:value "display" ]
+         ], [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "string" ]
+         ]
+       ]
+     ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.group.name [ fhir:value "ENHumanName" ] ;
+     fhir:StructureMap.group.typeMode [ fhir:value "none" ] ;
+     fhir:StructureMap.group.documentation [ fhir:value "Mapping CDA EN vers FHIR HumanName\nEN = Entity Name CDA\nHumanName = nom humain FHIR" ] ;
+     fhir:StructureMap.group.input [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "src" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "EN" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "source" ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "tgt" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "HumanName" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "target" ]
+     ] ;
+     fhir:StructureMap.group.rule [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "item" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+         fhir:StructureMap.group.rule.source.element [ fhir:value "item" ] ;
+         fhir:StructureMap.group.rule.source.variable [ fhir:value "item" ]
+       ] ;
+       fhir:StructureMap.group.rule.rule [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.name [ fhir:value "family" ] ;
+         fhir:StructureMap.group.rule.source [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.source.context [ fhir:value "item" ] ;
+           fhir:StructureMap.group.rule.source.element [ fhir:value "family" ] ;
+           fhir:StructureMap.group.rule.source.variable [ fhir:value "v" ]
+         ] ;
+         fhir:StructureMap.group.rule.target [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+           fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+           fhir:StructureMap.group.rule.target.element [ fhir:value "family" ] ;
+           fhir:StructureMap.group.rule.target.transform [ fhir:value "evaluate" ] ;
+           fhir:StructureMap.group.rule.target.parameter [
+             fhir:index -1 ;
+             fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "v.xmlText" ]
+           ]
+         ]
+       ], [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.name [ fhir:value "given" ] ;
+         fhir:StructureMap.group.rule.source [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.source.context [ fhir:value "item" ] ;
+           fhir:StructureMap.group.rule.source.element [ fhir:value "given" ] ;
+           fhir:StructureMap.group.rule.source.variable [ fhir:value "v" ]
+         ] ;
+         fhir:StructureMap.group.rule.target [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+           fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+           fhir:StructureMap.group.rule.target.element [ fhir:value "given" ] ;
+           fhir:StructureMap.group.rule.target.transform [ fhir:value "evaluate" ] ;
+           fhir:StructureMap.group.rule.target.parameter [
+             fhir:index -1 ;
+             fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "v.xmlText" ]
+           ]
+         ]
+       ], [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.name [ fhir:value "prefix" ] ;
+         fhir:StructureMap.group.rule.source [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.source.context [ fhir:value "item" ] ;
+           fhir:StructureMap.group.rule.source.element [ fhir:value "prefix" ] ;
+           fhir:StructureMap.group.rule.source.variable [ fhir:value "v" ]
+         ] ;
+         fhir:StructureMap.group.rule.target [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+           fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+           fhir:StructureMap.group.rule.target.element [ fhir:value "prefix" ] ;
+           fhir:StructureMap.group.rule.target.transform [ fhir:value "evaluate" ] ;
+           fhir:StructureMap.group.rule.target.parameter [
+             fhir:index -1 ;
+             fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "v.xmlText" ]
+           ]
+         ]
+       ], [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.name [ fhir:value "suffix" ] ;
+         fhir:StructureMap.group.rule.source [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.source.context [ fhir:value "item" ] ;
+           fhir:StructureMap.group.rule.source.element [ fhir:value "suffix" ] ;
+           fhir:StructureMap.group.rule.source.variable [ fhir:value "v" ]
+         ] ;
+         fhir:StructureMap.group.rule.target [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+           fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+           fhir:StructureMap.group.rule.target.element [ fhir:value "suffix" ] ;
+           fhir:StructureMap.group.rule.target.transform [ fhir:value "evaluate" ] ;
+           fhir:StructureMap.group.rule.target.parameter [
+             fhir:index -1 ;
+             fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "v.xmlText" ]
+           ]
+         ]
+       ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "validTime" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+         fhir:StructureMap.group.rule.source.element [ fhir:value "validTime" ] ;
+         fhir:StructureMap.group.rule.source.variable [ fhir:value "validTime" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "period" ] ;
+         fhir:StructureMap.group.rule.target.transform [ fhir:value "copy" ] ;
+         fhir:StructureMap.group.rule.target.parameter [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueId [ fhir:value "validTime" ]
+         ]
+       ]
+     ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.group.name [ fhir:value "PNHumanName" ] ;
+     fhir:StructureMap.group.extends [ fhir:value "ENHumanName" ] ;
+     fhir:StructureMap.group.typeMode [ fhir:value "types" ] ;
+     fhir:StructureMap.group.documentation [ fhir:value "Mapping CDA PN vers FHIR HumanName\nPN = Person Name CDA\nPN hérite du mapping ENHumanName" ] ;
+     fhir:StructureMap.group.input [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "src" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "PN" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "source" ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "tgt" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "HumanName" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "target" ]
+     ] ;
+     fhir:StructureMap.group.rule [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "inherit" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ]
+       ]
+     ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.group.name [ fhir:value "ADAddress" ] ;
+     fhir:StructureMap.group.typeMode [ fhir:value "none" ] ;
+     fhir:StructureMap.group.documentation [ fhir:value "Mapping CDA AD vers FHIR Address\nAD = adresse CDA\nAddress = adresse FHIR" ] ;
+     fhir:StructureMap.group.input [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "src" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "AD" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "source" ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "tgt" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "Address" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "target" ]
+     ] ;
+     fhir:StructureMap.group.rule [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "item" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+         fhir:StructureMap.group.rule.source.element [ fhir:value "item" ] ;
+         fhir:StructureMap.group.rule.source.variable [ fhir:value "item" ]
+       ] ;
+       fhir:StructureMap.group.rule.rule [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.name [ fhir:value "country" ] ;
+         fhir:StructureMap.group.rule.source [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.source.context [ fhir:value "item" ] ;
+           fhir:StructureMap.group.rule.source.element [ fhir:value "country" ] ;
+           fhir:StructureMap.group.rule.source.variable [ fhir:value "v" ]
+         ] ;
+         fhir:StructureMap.group.rule.target [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+           fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+           fhir:StructureMap.group.rule.target.element [ fhir:value "country" ] ;
+           fhir:StructureMap.group.rule.target.transform [ fhir:value "evaluate" ] ;
+           fhir:StructureMap.group.rule.target.parameter [
+             fhir:index -1 ;
+             fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "v.xmlText" ]
+           ]
+         ]
+       ], [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.name [ fhir:value "state" ] ;
+         fhir:StructureMap.group.rule.source [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.source.context [ fhir:value "item" ] ;
+           fhir:StructureMap.group.rule.source.element [ fhir:value "state" ] ;
+           fhir:StructureMap.group.rule.source.variable [ fhir:value "v" ]
+         ] ;
+         fhir:StructureMap.group.rule.target [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+           fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+           fhir:StructureMap.group.rule.target.element [ fhir:value "state" ] ;
+           fhir:StructureMap.group.rule.target.transform [ fhir:value "evaluate" ] ;
+           fhir:StructureMap.group.rule.target.parameter [
+             fhir:index -1 ;
+             fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "v.xmlText" ]
+           ]
+         ]
+       ], [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.name [ fhir:value "county" ] ;
+         fhir:StructureMap.group.rule.source [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.source.context [ fhir:value "item" ] ;
+           fhir:StructureMap.group.rule.source.element [ fhir:value "county" ] ;
+           fhir:StructureMap.group.rule.source.variable [ fhir:value "v" ]
+         ] ;
+         fhir:StructureMap.group.rule.target [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+           fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+           fhir:StructureMap.group.rule.target.element [ fhir:value "district" ] ;
+           fhir:StructureMap.group.rule.target.transform [ fhir:value "evaluate" ] ;
+           fhir:StructureMap.group.rule.target.parameter [
+             fhir:index -1 ;
+             fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "v.xmlText" ]
+           ]
+         ]
+       ], [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.name [ fhir:value "city" ] ;
+         fhir:StructureMap.group.rule.source [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.source.context [ fhir:value "item" ] ;
+           fhir:StructureMap.group.rule.source.element [ fhir:value "city" ] ;
+           fhir:StructureMap.group.rule.source.variable [ fhir:value "v" ]
+         ] ;
+         fhir:StructureMap.group.rule.target [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+           fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+           fhir:StructureMap.group.rule.target.element [ fhir:value "city" ] ;
+           fhir:StructureMap.group.rule.target.transform [ fhir:value "evaluate" ] ;
+           fhir:StructureMap.group.rule.target.parameter [
+             fhir:index -1 ;
+             fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "v.xmlText" ]
+           ]
+         ]
+       ], [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.name [ fhir:value "postalCode" ] ;
+         fhir:StructureMap.group.rule.source [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.source.context [ fhir:value "item" ] ;
+           fhir:StructureMap.group.rule.source.element [ fhir:value "postalCode" ] ;
+           fhir:StructureMap.group.rule.source.variable [ fhir:value "v" ]
+         ] ;
+         fhir:StructureMap.group.rule.target [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+           fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+           fhir:StructureMap.group.rule.target.element [ fhir:value "postalCode" ] ;
+           fhir:StructureMap.group.rule.target.transform [ fhir:value "evaluate" ] ;
+           fhir:StructureMap.group.rule.target.parameter [
+             fhir:index -1 ;
+             fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "v.xmlText" ]
+           ]
+         ]
+       ], [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.name [ fhir:value "streetAddressLine" ] ;
+         fhir:StructureMap.group.rule.source [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.source.context [ fhir:value "item" ] ;
+           fhir:StructureMap.group.rule.source.element [ fhir:value "streetAddressLine" ] ;
+           fhir:StructureMap.group.rule.source.variable [ fhir:value "v" ]
+         ] ;
+         fhir:StructureMap.group.rule.target [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+           fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+           fhir:StructureMap.group.rule.target.element [ fhir:value "line" ] ;
+           fhir:StructureMap.group.rule.target.transform [ fhir:value "evaluate" ] ;
+           fhir:StructureMap.group.rule.target.parameter [
+             fhir:index -1 ;
+             fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "v.xmlText" ]
+           ]
+         ]
+       ], [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.name [ fhir:value "CensusTract" ] ;
+         fhir:StructureMap.group.rule.source [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.source.context [ fhir:value "item" ]
+         ] ;
+         fhir:StructureMap.group.rule.target [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+           fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+           fhir:StructureMap.group.rule.target.element [ fhir:value "line" ] ;
+           fhir:StructureMap.group.rule.target.variable [ fhir:value "line" ]
+         ] ;
+         fhir:StructureMap.group.rule.rule [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.name [ fhir:value "sfgfdsg" ] ;
+           fhir:StructureMap.group.rule.source [
+             fhir:index -1 ;
+             fhir:StructureMap.group.rule.source.context [ fhir:value "item" ] ;
+             fhir:StructureMap.group.rule.source.condition [ fhir:value "src.censusTract.exists()" ]
+           ] ;
+           fhir:StructureMap.group.rule.rule [
+             fhir:index -1 ;
+             fhir:StructureMap.group.rule.name [ fhir:value "line" ] ;
+             fhir:StructureMap.group.rule.source [
+               fhir:index -1 ;
+               fhir:StructureMap.group.rule.source.context [ fhir:value "item" ] ;
+               fhir:StructureMap.group.rule.source.element [ fhir:value "censusTract" ] ;
+               fhir:StructureMap.group.rule.source.variable [ fhir:value "v" ]
+             ] ;
+             fhir:StructureMap.group.rule.target [
+               fhir:index -1 ;
+               fhir:StructureMap.group.rule.target.context [ fhir:value "line" ] ;
+               fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+               fhir:StructureMap.group.rule.target.element [ fhir:value "extension" ] ;
+               fhir:StructureMap.group.rule.target.variable [ fhir:value "ext1" ]
+             ] ;
+             fhir:StructureMap.group.rule.dependent [
+               fhir:index -1 ;
+               fhir:StructureMap.group.rule.dependent.name [ fhir:value "CensusTract" ] ;
+               fhir:StructureMap.group.rule.dependent.variable [
+                 fhir:value "v" ;
+                 fhir:index -1
+               ], [
+                 fhir:value "ext1" ;
+                 fhir:index -1
+               ]
+             ]
+           ]
+         ]
+       ], [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.name [ fhir:value "streetName" ] ;
+         fhir:StructureMap.group.rule.source [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.source.context [ fhir:value "item" ] ;
+           fhir:StructureMap.group.rule.source.element [ fhir:value "streetName" ] ;
+           fhir:StructureMap.group.rule.source.variable [ fhir:value "v" ]
+         ] ;
+         fhir:StructureMap.group.rule.target [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+           fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+           fhir:StructureMap.group.rule.target.element [ fhir:value "line" ] ;
+           fhir:StructureMap.group.rule.target.transform [ fhir:value "evaluate" ] ;
+           fhir:StructureMap.group.rule.target.parameter [
+             fhir:index -1 ;
+             fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "v.xmlText" ]
+           ]
+         ]
+       ], [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.name [ fhir:value "houseNumber" ] ;
+         fhir:StructureMap.group.rule.source [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.source.context [ fhir:value "item" ] ;
+           fhir:StructureMap.group.rule.source.element [ fhir:value "houseNumber" ] ;
+           fhir:StructureMap.group.rule.source.variable [ fhir:value "v" ]
+         ] ;
+         fhir:StructureMap.group.rule.target [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+           fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+           fhir:StructureMap.group.rule.target.element [ fhir:value "line" ] ;
+           fhir:StructureMap.group.rule.target.transform [ fhir:value "evaluate" ] ;
+           fhir:StructureMap.group.rule.target.parameter [
+             fhir:index -1 ;
+             fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "v.xmlText" ]
+           ]
+         ]
+       ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "useablePeriod" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+         fhir:StructureMap.group.rule.source.element [ fhir:value "useablePeriod" ] ;
+         fhir:StructureMap.group.rule.source.variable [ fhir:value "useablePeriod" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "period" ] ;
+         fhir:StructureMap.group.rule.target.transform [ fhir:value "copy" ] ;
+         fhir:StructureMap.group.rule.target.parameter [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueId [ fhir:value "useablePeriod" ]
+         ]
+       ]
+     ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.group.name [ fhir:value "TELContactPoint" ] ;
+     fhir:StructureMap.group.typeMode [ fhir:value "none" ] ;
+     fhir:StructureMap.group.documentation [ fhir:value "Mapping CDA TEL vers FHIR ContactPoint\nTEL = téléphone/email/url CDA\nContactPoint = moyen de contact FHIR" ] ;
+     fhir:StructureMap.group.input [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "src" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "TEL" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "source" ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "tgt" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "ContactPoint" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "target" ]
+     ] ;
+     fhir:StructureMap.group.rule [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "valuetel" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+         fhir:StructureMap.group.rule.source.element [ fhir:value "value" ] ;
+         fhir:StructureMap.group.rule.source.variable [ fhir:value "v" ] ;
+         fhir:StructureMap.group.rule.source.condition [ fhir:value "(src.value.startsWith('tel:'))" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "value" ] ;
+         fhir:StructureMap.group.rule.target.transform [ fhir:value "evaluate" ] ;
+         fhir:StructureMap.group.rule.target.parameter [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "v.substring(4)" ]
+         ]
+       ], [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "system" ] ;
+         fhir:StructureMap.group.rule.target.transform [ fhir:value "copy" ] ;
+         fhir:StructureMap.group.rule.target.parameter [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "phone" ]
+         ]
+       ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "valuefax" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+         fhir:StructureMap.group.rule.source.element [ fhir:value "value" ] ;
+         fhir:StructureMap.group.rule.source.variable [ fhir:value "v" ] ;
+         fhir:StructureMap.group.rule.source.condition [ fhir:value "(src.value.startsWith('fax:'))" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "value" ] ;
+         fhir:StructureMap.group.rule.target.transform [ fhir:value "evaluate" ] ;
+         fhir:StructureMap.group.rule.target.parameter [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "v.substring(4)" ]
+         ]
+       ], [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "system" ] ;
+         fhir:StructureMap.group.rule.target.transform [ fhir:value "copy" ] ;
+         fhir:StructureMap.group.rule.target.parameter [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "fax" ]
+         ]
+       ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "valuemail" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+         fhir:StructureMap.group.rule.source.element [ fhir:value "value" ] ;
+         fhir:StructureMap.group.rule.source.variable [ fhir:value "v" ] ;
+         fhir:StructureMap.group.rule.source.condition [ fhir:value "(src.value.startsWith('mailto:'))" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "value" ] ;
+         fhir:StructureMap.group.rule.target.transform [ fhir:value "evaluate" ] ;
+         fhir:StructureMap.group.rule.target.parameter [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "v.substring(7)" ]
+         ]
+       ], [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "system" ] ;
+         fhir:StructureMap.group.rule.target.transform [ fhir:value "copy" ] ;
+         fhir:StructureMap.group.rule.target.parameter [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "email" ]
+         ]
+       ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "valuehttp" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+         fhir:StructureMap.group.rule.source.element [ fhir:value "value" ] ;
+         fhir:StructureMap.group.rule.source.variable [ fhir:value "v" ] ;
+         fhir:StructureMap.group.rule.source.condition [ fhir:value "(src.value.startsWith('http:'))" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "value" ] ;
+         fhir:StructureMap.group.rule.target.transform [ fhir:value "evaluate" ] ;
+         fhir:StructureMap.group.rule.target.parameter [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "v.substring(5)" ]
+         ]
+       ], [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "system" ] ;
+         fhir:StructureMap.group.rule.target.transform [ fhir:value "copy" ] ;
+         fhir:StructureMap.group.rule.target.parameter [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "url" ]
+         ]
+       ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "usehome" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+         fhir:StructureMap.group.rule.source.element [ fhir:value "use" ] ;
+         fhir:StructureMap.group.rule.source.condition [ fhir:value "(src.use.startsWith('H'))" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "use" ] ;
+         fhir:StructureMap.group.rule.target.transform [ fhir:value "copy" ] ;
+         fhir:StructureMap.group.rule.target.parameter [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "home" ]
+         ]
+       ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "usework" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+         fhir:StructureMap.group.rule.source.element [ fhir:value "use" ] ;
+         fhir:StructureMap.group.rule.source.condition [ fhir:value "((src.use = 'WP') or (src.use = 'DIR') or (src.use = 'PUB'))" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "use" ] ;
+         fhir:StructureMap.group.rule.target.transform [ fhir:value "copy" ] ;
+         fhir:StructureMap.group.rule.target.parameter [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "work" ]
+         ]
+       ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "usebad" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+         fhir:StructureMap.group.rule.source.element [ fhir:value "use" ] ;
+         fhir:StructureMap.group.rule.source.condition [ fhir:value "(src.use = 'BAD')" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "use" ] ;
+         fhir:StructureMap.group.rule.target.transform [ fhir:value "copy" ] ;
+         fhir:StructureMap.group.rule.target.parameter [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "old" ]
+         ]
+       ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "usetmp" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+         fhir:StructureMap.group.rule.source.element [ fhir:value "use" ] ;
+         fhir:StructureMap.group.rule.source.condition [ fhir:value "(src.use = 'TMP')" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "use" ] ;
+         fhir:StructureMap.group.rule.target.transform [ fhir:value "copy" ] ;
+         fhir:StructureMap.group.rule.target.parameter [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "temp" ]
+         ]
+       ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "usemobile" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+         fhir:StructureMap.group.rule.source.element [ fhir:value "use" ] ;
+         fhir:StructureMap.group.rule.source.condition [ fhir:value "(src.use = 'MC')" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "use" ] ;
+         fhir:StructureMap.group.rule.target.transform [ fhir:value "copy" ] ;
+         fhir:StructureMap.group.rule.target.parameter [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "mobile" ]
+         ]
+       ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "useablePeriod" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+         fhir:StructureMap.group.rule.source.element [ fhir:value "useablePeriod" ] ;
+         fhir:StructureMap.group.rule.source.variable [ fhir:value "useablePeriod" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "period" ] ;
+         fhir:StructureMap.group.rule.target.transform [ fhir:value "copy" ] ;
+         fhir:StructureMap.group.rule.target.parameter [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueId [ fhir:value "useablePeriod" ]
+         ]
+       ] ;
+       fhir:StructureMap.group.rule.documentation [ fhir:value "use: for src.use as c make tgt.use = translate(c, 'http://hl7.org/fhir/ConceptMap/cm-telecom-use-v3', 'code')" ]
+     ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.group.name [ fhir:value "PQQuantity" ] ;
+     fhir:StructureMap.group.typeMode [ fhir:value "none" ] ;
+     fhir:StructureMap.group.documentation [ fhir:value "Mapping CDA PQ vers FHIR Quantity\nPQ = quantité physique CDA\nQuantity = quantité FHIR" ] ;
+     fhir:StructureMap.group.input [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "src" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "PQ" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "source" ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "tgt" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "Quantity" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "target" ]
+     ] ;
+     fhir:StructureMap.group.rule [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "unit" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+         fhir:StructureMap.group.rule.source.element [ fhir:value "unit" ] ;
+         fhir:StructureMap.group.rule.source.variable [ fhir:value "unit" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "unit" ] ;
+         fhir:StructureMap.group.rule.target.transform [ fhir:value "copy" ] ;
+         fhir:StructureMap.group.rule.target.parameter [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueId [ fhir:value "unit" ]
+         ]
+       ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "unit" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+         fhir:StructureMap.group.rule.source.element [ fhir:value "unit" ] ;
+         fhir:StructureMap.group.rule.source.variable [ fhir:value "unit" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "code" ] ;
+         fhir:StructureMap.group.rule.target.transform [ fhir:value "copy" ] ;
+         fhir:StructureMap.group.rule.target.parameter [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueId [ fhir:value "unit" ]
+         ]
+       ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "unit" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+         fhir:StructureMap.group.rule.source.element [ fhir:value "unit" ] ;
+         fhir:StructureMap.group.rule.source.variable [ fhir:value "unit" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "system" ] ;
+         fhir:StructureMap.group.rule.target.transform [ fhir:value "copy" ] ;
+         fhir:StructureMap.group.rule.target.parameter [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueString [ fhir:value "http://unitsofmeasure.org" ]
+         ]
+       ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "value" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+         fhir:StructureMap.group.rule.source.element [ fhir:value "value" ] ;
+         fhir:StructureMap.group.rule.source.variable [ fhir:value "value" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "value" ] ;
+         fhir:StructureMap.group.rule.target.transform [ fhir:value "copy" ] ;
+         fhir:StructureMap.group.rule.target.parameter [
+           fhir:index -1 ;
+           fhir:StructureMap.group.rule.target.parameter.valueId [ fhir:value "value" ]
+         ]
+       ]
+     ]
+  ], [
+     fhir:index -1 ;
+     fhir:StructureMap.group.name [ fhir:value "RTOPQPQRatio" ] ;
+     fhir:StructureMap.group.typeMode [ fhir:value "none" ] ;
+     fhir:StructureMap.group.documentation [ fhir:value "Mapping CDA RTO_PQ_PQ vers FHIR Ratio\nRTO_PQ_PQ = ratio CDA composé d’un numérateur et d’un dénominateur\nRatio = ratio FHIR" ] ;
+     fhir:StructureMap.group.input [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "src" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "RTO_PQ_PQ" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "source" ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.input.name [ fhir:value "tgt" ] ;
+       fhir:StructureMap.group.input.type [ fhir:value "Ratio" ] ;
+       fhir:StructureMap.group.input.mode [ fhir:value "target" ]
+     ] ;
+     fhir:StructureMap.group.rule [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "numerator" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+         fhir:StructureMap.group.rule.source.element [ fhir:value "numerator" ] ;
+         fhir:StructureMap.group.rule.source.variable [ fhir:value "numerator" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "numerator" ] ;
+         fhir:StructureMap.group.rule.target.variable [ fhir:value "targetNumerator" ]
+       ] ;
+       fhir:StructureMap.group.rule.dependent [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.dependent.name [ fhir:value "PQQuantity" ] ;
+         fhir:StructureMap.group.rule.dependent.variable [
+           fhir:value "numerator" ;
+           fhir:index -1
+         ], [
+           fhir:value "targetNumerator" ;
+           fhir:index -1
+         ]
+       ]
+     ], [
+       fhir:index -1 ;
+       fhir:StructureMap.group.rule.name [ fhir:value "denominator" ] ;
+       fhir:StructureMap.group.rule.source [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.source.context [ fhir:value "src" ] ;
+         fhir:StructureMap.group.rule.source.element [ fhir:value "denominator" ] ;
+         fhir:StructureMap.group.rule.source.variable [ fhir:value "denominator" ]
+       ] ;
+       fhir:StructureMap.group.rule.target [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.target.context [ fhir:value "tgt" ] ;
+         fhir:StructureMap.group.rule.target.contextType [ fhir:value "variable" ] ;
+         fhir:StructureMap.group.rule.target.element [ fhir:value "denominator" ] ;
+         fhir:StructureMap.group.rule.target.variable [ fhir:value "targetDenominator" ]
+       ] ;
+       fhir:StructureMap.group.rule.dependent [
+         fhir:index -1 ;
+         fhir:StructureMap.group.rule.dependent.name [ fhir:value "PQQuantity" ] ;
+         fhir:StructureMap.group.rule.dependent.variable [
+           fhir:value "denominator" ;
+           fhir:index -1
+         ], [
+           fhir:value "targetDenominator" ;
+           fhir:index -1
+         ]
+       ]
+     ]
+  ] .
+
+# - ontology header ------------------------------------------------------------
+
+<https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes.ttl> a owl:Ontology ;
+  owl:imports fhir:fhir.ttl .
+
+# -------------------------------------------------------------------------------------
+
