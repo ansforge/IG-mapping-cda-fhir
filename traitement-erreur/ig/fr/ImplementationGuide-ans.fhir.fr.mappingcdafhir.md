@@ -14,7 +14,7 @@
   "name" : "CDA2FHIRMAP",
   "title" : "Mapping CDA to FHIR (Preuve de concept)",
   "status" : "draft",
-  "date" : "2026-07-22T13:17:03+00:00",
+  "date" : "2026-07-22T13:34:22+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -1001,7 +1001,7 @@
         "reference" : "ConceptMap/CdaIVL-TSToPeriodConceptMap"
       },
       "name" : "ConceptMap — CDA IVL_TS vers FHIR Period et dateTime",
-      "description" : "Correspondances documentaires entre le datatype CDA IVL_TS et les types FHIR Period et dateTime.",
+      "description" : "Correspondances documentaires entre le datatype CDA IVL_TS, ses bornes IVXB_TS et les types FHIR Period et dateTime.",
       "exampleBoolean" : false
     },
     {

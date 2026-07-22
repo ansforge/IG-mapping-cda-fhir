@@ -11,15 +11,15 @@
   fhir:Resource.language [ fhir:value "en"] ;
   fhir:DomainResource.text [
      fhir:Narrative.status [ fhir:value "generated" ] ;
-     fhir:Narrative.div "<div xml:lang=\"en\" lang=\"en\"><hr/><p><b>English</b></p><hr/><p class=\"res-header-id\"><b>Generated Narrative: ConceptMap CdaIVL-TSToPeriodConceptMap</b></p><a name=\"en-CdaIVL-TSToPeriodConceptMap\"> </a><a name=\"en-hcCdaIVL-TSToPeriodConceptMap\"> </a><p>This mapping does not specify any particular context of use.</p><br/><p><b>Group 1 </b>Mapping from <a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-IVL-TS.html\">IVL_TS: Interval (V3 Data Type)</a> to <a href=\"http://hl7.org/fhir/R4/datatypes.html#Period\">Period</a></p><table class=\"grid\"><tr><td><b>Source Code</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Relationship</b></td><td><b>Target Code</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Comment</b></td></tr><tr><td colspan=\"3\">IVL_TS.low.value</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto\" title=\"relatedto\">is related to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#Period#s-Period.start\">Period.start</a></td><td>0..1</td><td>todo</td><td>La valeur de la borne low (IVXB_TS.value) est convertie en dateTime puis affectée à Period.start.</td></tr><tr><td colspan=\"3\">IVL_TS.high.value</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto\" title=\"relatedto\">is related to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#Period#s-Period.end\">Period.end</a></td><td>0..1</td><td>todo</td><td>La valeur de la borne high (IVXB_TS.value) est convertie en dateTime puis affectée à Period.end.</td></tr></table><hr/><p><b>Group 2 </b>Mapping from <a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-IVL-TS.html\">IVL_TS: Interval (V3 Data Type)</a> to <a href=\"http://hl7.org/fhir/R4/datatypes.html#dateTime\">dateTime</a></p><table class=\"grid\"><tr><td><b>Source Code</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Relationship</b></td><td><b>Target Code</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Comment</b></td></tr><tr><td colspan=\"3\">IVL_TS.low.value</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto\" title=\"relatedto\">is related to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#dateTime#s-dateTime\">dateTime</a></td><td>0..*</td><td>todo</td><td>La valeur de la borne low est utilisée comme date représentative et convertie en dateTime.</td></tr></table></div>"
+     fhir:Narrative.div "<div xml:lang=\"en\" lang=\"en\"><hr/><p><b>English</b></p><hr/><p class=\"res-header-id\"><b>Generated Narrative: ConceptMap CdaIVL-TSToPeriodConceptMap</b></p><a name=\"en-CdaIVL-TSToPeriodConceptMap\"> </a><a name=\"en-hcCdaIVL-TSToPeriodConceptMap\"> </a><p>This mapping does not specify any particular context of use.</p><br/><p><b>Group 1 </b>Mapping from <a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-IVL-TS.html\">IVL_TS: Interval (V3 Data Type)</a> to <a href=\"http://hl7.org/fhir/R4/datatypes.html#Period\">Period</a></p><table class=\"grid\"><tr><td><b>Source Code</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Relationship</b></td><td><b>Target Code</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Comment</b></td></tr><tr><td><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-IVL-TS.html#s-IVL_TS.low\">IVL_TS.low</a></td><td>0..1</td><td>todo</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto\" title=\"relatedto\">is related to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#Period#s-Period.start\">Period.start</a></td><td>0..1</td><td>todo</td><td>La valeur de la borne basse IVL_TS.low, portée par IVXB_TS.value, est convertie en dateTime puis affectée à Period.start.</td></tr><tr><td><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-IVL-TS.html#s-IVL_TS.high\">IVL_TS.high</a></td><td>0..1</td><td>todo</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto\" title=\"relatedto\">is related to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#Period#s-Period.end\">Period.end</a></td><td>0..1</td><td>todo</td><td>La valeur de la borne haute IVL_TS.high, portée par IVXB_TS.value, est convertie en dateTime puis affectée à Period.end.</td></tr></table><hr/><p><b>Group 2 </b>Mapping from <a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-IVXB-TS.html\">IVXB_TS: Interval Boundary PointInTime (V3 Data Type)</a> to <a href=\"http://hl7.org/fhir/R4/datatypes.html#dateTime\">dateTime</a></p><table class=\"grid\"><tr><td><b>Source Code</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Relationship</b></td><td><b>Target Code</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Comment</b></td></tr><tr><td><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-IVXB-TS.html#s-IVXB_TS.value\">IVXB_TS.value</a></td><td>0..1</td><td>todo</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto\" title=\"relatedto\">is related to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#dateTime#s-dateTime\">dateTime</a></td><td>0..*</td><td>todo</td><td>La valeur temporelle d’une borne CDA IVXB_TS est convertie vers le datatype primitif FHIR dateTime.</td></tr></table></div>"
   ] ;
-  fhir:ConceptMap.url [ fhir:value "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaIVL_TSToFHIR"] ;
+  fhir:ConceptMap.url [ fhir:value "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaIVL-TSToPeriodConceptMap"] ;
   fhir:ConceptMap.version [ fhir:value "0.1.0"] ;
   fhir:ConceptMap.name [ fhir:value "CdaIVL_TSToFHIR"] ;
   fhir:ConceptMap.title [ fhir:value "ConceptMap — CDA IVL_TS vers FHIR Period et dateTime"] ;
   fhir:ConceptMap.status [ fhir:value "draft"] ;
   fhir:ConceptMap.experimental [ fhir:value "true"^^xsd:boolean] ;
-  fhir:ConceptMap.date [ fhir:value "2026-07-22T13:17:03+00:00"^^xsd:dateTime] ;
+  fhir:ConceptMap.date [ fhir:value "2026-07-22T13:34:22+00:00"^^xsd:dateTime] ;
   fhir:ConceptMap.publisher [ fhir:value "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"] ;
   fhir:ConceptMap.contact [
      fhir:index -1 ;
@@ -30,7 +30,7 @@
        fhir:ContactPoint.value [ fhir:value "https://esante.gouv.fr" ]
      ]
   ] ;
-  fhir:ConceptMap.description [ fhir:value "Correspondances documentaires entre le datatype CDA IVL_TS et les types FHIR Period et dateTime."] ;
+  fhir:ConceptMap.description [ fhir:value "Correspondances documentaires entre le datatype CDA IVL_TS, ses bornes IVXB_TS et les types FHIR Period et dateTime."] ;
   fhir:ConceptMap.jurisdiction [
      fhir:index -1 ;
      fhir:CodeableConcept.coding [
@@ -48,43 +48,43 @@
      fhir:ConceptMap.group.targetVersion [ fhir:value "4.0.1" ] ;
      fhir:ConceptMap.group.element [
        fhir:index -1 ;
-       fhir:ConceptMap.group.element.code [ fhir:value "IVL_TS.low.value" ] ;
-       fhir:ConceptMap.group.element.display [ fhir:value "IVL_TS.low.value" ] ;
+       fhir:ConceptMap.group.element.code [ fhir:value "IVL_TS.low" ] ;
+       fhir:ConceptMap.group.element.display [ fhir:value "Low Boundary" ] ;
        fhir:ConceptMap.group.element.target [
          fhir:index -1 ;
          fhir:ConceptMap.group.element.target.code [ fhir:value "Period.start" ] ;
-         fhir:ConceptMap.group.element.target.display [ fhir:value "Period.start" ] ;
+         fhir:ConceptMap.group.element.target.display [ fhir:value "Starting time with inclusive boundary" ] ;
          fhir:ConceptMap.group.element.target.equivalence [ fhir:value "relatedto" ] ;
-         fhir:ConceptMap.group.element.target.comment [ fhir:value "La valeur de la borne low (IVXB_TS.value) est convertie en dateTime puis affectée à Period.start." ]
+         fhir:ConceptMap.group.element.target.comment [ fhir:value "La valeur de la borne basse IVL_TS.low, portée par IVXB_TS.value, est convertie en dateTime puis affectée à Period.start." ]
        ]
      ], [
        fhir:index -1 ;
-       fhir:ConceptMap.group.element.code [ fhir:value "IVL_TS.high.value" ] ;
-       fhir:ConceptMap.group.element.display [ fhir:value "IVL_TS.high.value" ] ;
+       fhir:ConceptMap.group.element.code [ fhir:value "IVL_TS.high" ] ;
+       fhir:ConceptMap.group.element.display [ fhir:value "High Boundary" ] ;
        fhir:ConceptMap.group.element.target [
          fhir:index -1 ;
          fhir:ConceptMap.group.element.target.code [ fhir:value "Period.end" ] ;
-         fhir:ConceptMap.group.element.target.display [ fhir:value "Period.end" ] ;
+         fhir:ConceptMap.group.element.target.display [ fhir:value "End time with inclusive boundary, if not ongoing" ] ;
          fhir:ConceptMap.group.element.target.equivalence [ fhir:value "relatedto" ] ;
-         fhir:ConceptMap.group.element.target.comment [ fhir:value "La valeur de la borne high (IVXB_TS.value) est convertie en dateTime puis affectée à Period.end." ]
+         fhir:ConceptMap.group.element.target.comment [ fhir:value "La valeur de la borne haute IVL_TS.high, portée par IVXB_TS.value, est convertie en dateTime puis affectée à Period.end." ]
        ]
      ]
   ], [
      fhir:index -1 ;
-     fhir:ConceptMap.group.source [ fhir:value "http://hl7.org/cda/stds/core/StructureDefinition/IVL-TS" ] ;
+     fhir:ConceptMap.group.source [ fhir:value "http://hl7.org/cda/stds/core/StructureDefinition/IVXB-TS" ] ;
      fhir:ConceptMap.group.sourceVersion [ fhir:value "2.0.0-sd" ] ;
      fhir:ConceptMap.group.target [ fhir:value "http://hl7.org/fhir/StructureDefinition/dateTime" ] ;
      fhir:ConceptMap.group.targetVersion [ fhir:value "4.0.1" ] ;
      fhir:ConceptMap.group.element [
        fhir:index -1 ;
-       fhir:ConceptMap.group.element.code [ fhir:value "IVL_TS.low.value" ] ;
-       fhir:ConceptMap.group.element.display [ fhir:value "IVL_TS.low.value" ] ;
+       fhir:ConceptMap.group.element.code [ fhir:value "IVXB_TS.value" ] ;
+       fhir:ConceptMap.group.element.display [ fhir:value "IVXB_TS.value" ] ;
        fhir:ConceptMap.group.element.target [
          fhir:index -1 ;
          fhir:ConceptMap.group.element.target.code [ fhir:value "dateTime" ] ;
-         fhir:ConceptMap.group.element.target.display [ fhir:value "dateTime" ] ;
+         fhir:ConceptMap.group.element.target.display [ fhir:value "Primitive Type dateTime" ] ;
          fhir:ConceptMap.group.element.target.equivalence [ fhir:value "relatedto" ] ;
-         fhir:ConceptMap.group.element.target.comment [ fhir:value "La valeur de la borne low est utilisée comme date représentative et convertie en dateTime." ]
+         fhir:ConceptMap.group.element.target.comment [ fhir:value "La valeur temporelle d’une borne CDA IVXB_TS est convertie vers le datatype primitif FHIR dateTime." ]
        ]
      ]
   ] .

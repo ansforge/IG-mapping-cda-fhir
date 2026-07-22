@@ -53,9 +53,9 @@ Le fichier principal de cette couche est CdaToFHIRTypes.fml. Cette couche regrou
 | Displayable | Additional content defined by implementations |
 | Assigning Authority Name | Text alternative for the resource |
 | INT.value | Primitive Type integer |
-| IVL_TS.low.value | Period.start |
-| IVL_TS.high.value | Period.end |
-| IVL_TS.low.value | dateTime |
+| Low Boundary | Starting time with inclusive boundary |
+| High Boundary | End time with inclusive boundary, if not ongoing |
+| IVXB_TS.value | Primitive Type dateTime |
 | Family | Family name (often called 'Surname') |
 | Given | Given names (not always 'first'). Includes middle names |
 | Prefix | Parts that come before the name |
