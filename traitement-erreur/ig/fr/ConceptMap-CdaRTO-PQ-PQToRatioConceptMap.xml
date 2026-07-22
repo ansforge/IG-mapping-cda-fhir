@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ConceptMap xmlns="http://hl7.org/fhir">
+  <id value="CdaRTO-PQ-PQToRatioConceptMap"/>
+  <language value="fr"/>
+  <text>
+    <status value="generated"/><div xml:lang="fr" lang="fr"><hr/><p><b>French</b></p><hr/><p class="res-header-id"><b>Narratif généré : CarteDeConcepts CdaRTO-PQ-PQToRatioConceptMap</b></p><a name="CdaRTO-PQ-PQToRatioConceptMap"> </a><a name="hcCdaRTO-PQ-PQToRatioConceptMap"> </a><p>This mapping does not specify any particular context of use.</p><br/><p>Mapping de <code>http://hl7.org/cda/stds/core/StructureDefinition/RTO_PQ_PQ</code> to <a href="http://hl7.org/fhir/R4/datatypes.html#Ratio">Ratioversion : 4.0.1)</a></p><table class="grid"><tr><td><b>Code source</b></td><td><b>relation</b></td><td><b>Code cible</b></td><td><b>Commentaire</b></td></tr><tr><td>RTO_PQ_PQ.numerator</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto" title="relatedto">is related to</a></td><td>Ratio.numerator</td><td>Le numérateur CDA est converti en Quantity via le mapping PQ -&gt; Quantity, puis affecté à Ratio.numerator.</td></tr><tr><td>RTO_PQ_PQ.denominator</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto" title="relatedto">is related to</a></td><td>Ratio.denominator</td><td>Le dénominateur CDA est converti en Quantity via le mapping PQ -&gt; Quantity, puis affecté à Ratio.denominator.</td></tr></table></div>
+  </text>
+  <url value="https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaRTOPQPQToFHIR"/>
+  <version value="0.1.0"/>
+  <name value="CdaRTOPQPQToFHIR"/>
+  <title value="ConceptMap — CDA RTO_PQ_PQ vers FHIR Ratio"/>
+  <status value="draft"/>
+  <experimental value="true"/>
+  <date value="2026-07-22T09:26:13+00:00"/>
+  <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
+  <contact>
+    <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
+    <telecom>
+      <system value="url"/>
+      <value value="https://esante.gouv.fr"/>
+    </telecom>
+  </contact>
+  <description value="Correspondances documentaires entre le datatype CDA RTO_PQ_PQ et le datatype FHIR Ratio."/>
+  <jurisdiction>
+    <coding>
+      <system value="urn:iso:std:iso:3166"/>
+      <code value="FR"/>
+      <display value="France (la)"/>
+    </coding>
+  </jurisdiction>
+  <group>
+    <source value="http://hl7.org/cda/stds/core/StructureDefinition/RTO_PQ_PQ"/>
+    <target value="http://hl7.org/fhir/StructureDefinition/Ratio"/>
+    <targetVersion value="4.0.1"/>
+    <element>
+      <code value="RTO_PQ_PQ.numerator"/>
+      <display value="RTO_PQ_PQ.numerator"/>
+      <target>
+        <code value="Ratio.numerator"/>
+        <display value="Ratio.numerator"/>
+        <equivalence value="relatedto"/>
+        <comment value="Le numérateur CDA est converti en Quantity via le mapping PQ -&gt; Quantity, puis affecté à Ratio.numerator."/>
+      </target>
+    </element>
+    <element>
+      <code value="RTO_PQ_PQ.denominator"/>
+      <display value="RTO_PQ_PQ.denominator"/>
+      <target>
+        <code value="Ratio.denominator"/>
+        <display value="Ratio.denominator"/>
+        <equivalence value="relatedto"/>
+        <comment value="Le dénominateur CDA est converti en Quantity via le mapping PQ -&gt; Quantity, puis affecté à Ratio.denominator."/>
+      </target>
+    </element>
+  </group>
+</ConceptMap>
