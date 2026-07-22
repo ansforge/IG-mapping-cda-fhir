@@ -65,10 +65,10 @@ Le fichier principal de cette couche est CdaToFHIRTypes.fml. Cette couche regrou
 | Suffix | Parts that come after the name |
 | Allows for mixed text content | Text representation of the full name |
 | Valid Time | Time period when name was/is in use |
-| PQ.value | Quantity.value |
-| PQ.unit | Quantity.code |
-| PQ.unit | Quantity.unit |
-| PQ.unit | Quantity.system |
+| Maginitude Value | Numerical value (with implicit precision) |
+| Unit of Measure | Coded form of the unit |
+| Unit of Measure | Unit representation |
+| Unit of Measure | System that defines coded unit form |
 | RTO_PQ_PQ.numerator | Ratio.numerator |
 | RTO_PQ_PQ.denominator | Ratio.denominator |
 | ST.xmlText | string |
