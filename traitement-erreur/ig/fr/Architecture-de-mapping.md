@@ -19,68 +19,68 @@ Le fichier principal de cette couche est CdaToFHIRTypes.fml. Cette couche regrou
 | | |
 | :--- | :--- |
 | CDA | FHIR |
-| Country | Country (e.g. can be ISO 3166 2 or 3 letter code) |
-| State | Sub-unit of country (abbreviations ok) |
-| County | District name (aka county) |
-| City | Name of city, town etc. |
-| Postal Code | Postal code for area |
-| Street Address Line | Street name, number, direction & P.O. Box etc. |
-| Useable Period | Time period when address was/is in use |
-| Street Name | Value of extension |
-| House Number | Value of extension |
-| BL.value | Primitive Type boolean |
-| Code | Primitive Type code |
-| Original Text | Plain text representation of the concept |
-| Translation | Code defined by a terminology system |
-| Code | Symbol in syntax defined by the system |
-| Code System | Identity of the terminology system |
-| Display Name | Representation defined by the system |
-| Code | Primitive Type code |
-| Code | Symbol in syntax defined by the system |
-| Code | Primitive Type code |
-| Original Text | Plain text representation of the concept |
-| Translation | Code defined by a terminology system |
-| Code | Symbol in syntax defined by the system |
-| Code System | Identity of the terminology system |
-| Display Name | Representation defined by the system |
-| Extension | The value that is unique |
-| Root | The namespace for the identifier value |
-| Root | The value that is unique |
-| Assigning Authority Name | Organization that issued id (may be just text) |
-| Displayable | Additional content defined by implementations |
-| Assigning Authority Name | Text alternative for the resource |
-| INT.value | Primitive Type integer |
-| Low Boundary | Starting time with inclusive boundary |
-| High Boundary | End time with inclusive boundary, if not ongoing |
-| IVXB_TS.value | Primitive Type dateTime |
-| Family | Family name (often called 'Surname') |
-| Given | Given names (not always 'first'). Includes middle names |
-| Prefix | Parts that come before the name |
-| Suffix | Parts that come after the name |
-| Allows for mixed text content | Text representation of the full name |
-| Valid Time | Time period when name was/is in use |
-| Family | Family name (often called 'Surname') |
-| Given | Given names (not always 'first'). Includes middle names |
-| Prefix | Parts that come before the name |
-| Suffix | Parts that come after the name |
-| Allows for mixed text content | Text representation of the full name |
-| Valid Time | Time period when name was/is in use |
-| Maginitude Value | Numerical value (with implicit precision) |
-| Unit of Measure | Coded form of the unit |
-| Unit of Measure | Unit representation |
-| Unit of Measure | System that defines coded unit form |
-| Numerator | Numerator value |
-| Denominator | Denominator value |
-| Allows for mixed text content | Primitive Type string |
-| Allows for mixed text content. If @representation='B64', this SHALL be a base64binary string. | Primitive Type string |
-| Allows for mixed text content | Primitive Type string |
-| TEL.value | The actual contact point details |
-| TEL.value | phone | fax | email | pager | url | sms | other |
-| Use Code | home | work | temp | old | mobile - purpose of this contact point |
-| Useable Period | Time period when the contact point was/is in use |
-| TS.value | Primitive Type instant |
-| TS.value | Primitive Type dateTime |
-| TS.value | Primitive Type date |
+| AD.item.country | Address.country |
+| AD.item.state | Address.state |
+| AD.item.county | Address.district |
+| AD.item.city | Address.city |
+| AD.item.postalCode | Address.postalCode |
+| AD.item.streetAddressLine | Address.line |
+| AD.useablePeriod | Address.period |
+| AD.item.streetName | Extension.value[x] |
+| AD.item.houseNumber | Extension.value[x] |
+| BL.value | boolean |
+| CE.code | code |
+| CE.originalText | CodeableConcept.text |
+| CE.translation | CodeableConcept.coding |
+| CE.code | Coding.code |
+| CE.codeSystem | Coding.system |
+| CE.displayName | Coding.display |
+| CS.code | code |
+| CS.code | Coding.code |
+| CD.code | code |
+| CD.originalText | CodeableConcept.text |
+| CD.translation | CodeableConcept.coding |
+| CD.code | Coding.code |
+| CD.codeSystem | Coding.system |
+| CD.displayName | Coding.display |
+| II.extension | Identifier.value |
+| II.root | Identifier.system |
+| II.root | Identifier.value |
+| II.assigningAuthorityName | Identifier.assigner |
+| II.displayable | Identifier.extension |
+| II.assigningAuthorityName | Reference.display |
+| INT.value | integer |
+| IVL_TS.low | Period.start |
+| IVL_TS.high | Period.end |
+| IVXB_TS.value | dateTime |
+| EN.item.family | HumanName.family |
+| EN.item.given | HumanName.given |
+| EN.item.prefix | HumanName.prefix |
+| EN.item.suffix | HumanName.suffix |
+| EN.item.xmlText | HumanName.text |
+| EN.validTime | HumanName.period |
+| PN.item.family | HumanName.family |
+| PN.item.given | HumanName.given |
+| PN.item.prefix | HumanName.prefix |
+| PN.item.suffix | HumanName.suffix |
+| PN.item.xmlText | HumanName.text |
+| PN.validTime | HumanName.period |
+| PQ.value | Quantity.value |
+| PQ.unit | Quantity.code |
+| PQ.unit | Quantity.unit |
+| PQ.unit | Quantity.system |
+| RTO_PQ_PQ.numerator | Ratio.numerator |
+| RTO_PQ_PQ.denominator | Ratio.denominator |
+| ST.xmlText | string |
+| ED.xmlText | string |
+| ON.item.xmlText | string |
+| TEL.value | ContactPoint.value |
+| TEL.value | ContactPoint.system |
+| TEL.use | ContactPoint.use |
+| TEL.useablePeriod | ContactPoint.period |
+| TS.value | instant |
+| TS.value | dateTime |
+| TS.value | date |
 
 #### Mappings CDA génériques
 

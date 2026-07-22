@@ -267,130 +267,130 @@ Dans le contexte CDA, les datatypes représentent les structures élémentaires 
 Elle constitue le socle commun de l’ensemble des autres mappings.
 Elle ne contient ni logique métier, ni logique nationale, ni navigation dans la structure du document CDA : son objectif est uniquement d’assurer la correspondance entre les types techniques manipulés dans les mappings.</p>
 
-<table class="lines"><tr><td style="background-color: #eeeeee">CDA</td><td style="background-color: #eeeeee">FHIR</td></tr><tr><td><div><p>Country</p>
-</div></td><td><div><p>Country (e.g. can be ISO 3166 2 or 3 letter code)</p>
-</div></td></tr><tr><td><div><p>State</p>
-</div></td><td><div><p>Sub-unit of country (abbreviations ok)</p>
-</div></td></tr><tr><td><div><p>County</p>
-</div></td><td><div><p>District name (aka county)</p>
-</div></td></tr><tr><td><div><p>City</p>
-</div></td><td><div><p>Name of city, town etc.</p>
-</div></td></tr><tr><td><div><p>Postal Code</p>
-</div></td><td><div><p>Postal code for area</p>
-</div></td></tr><tr><td><div><p>Street Address Line</p>
-</div></td><td><div><p>Street name, number, direction &amp; P.O. Box etc.</p>
-</div></td></tr><tr><td><div><p>Useable Period</p>
-</div></td><td><div><p>Time period when address was/is in use</p>
-</div></td></tr><tr><td><div><p>Street Name</p>
-</div></td><td><div><p>Value of extension</p>
-</div></td></tr><tr><td><div><p>House Number</p>
-</div></td><td><div><p>Value of extension</p>
+<table class="lines"><tr><td style="background-color: #eeeeee">CDA</td><td style="background-color: #eeeeee">FHIR</td></tr><tr><td><div><p>AD.item.country</p>
+</div></td><td><div><p>Address.country</p>
+</div></td></tr><tr><td><div><p>AD.item.state</p>
+</div></td><td><div><p>Address.state</p>
+</div></td></tr><tr><td><div><p>AD.item.county</p>
+</div></td><td><div><p>Address.district</p>
+</div></td></tr><tr><td><div><p>AD.item.city</p>
+</div></td><td><div><p>Address.city</p>
+</div></td></tr><tr><td><div><p>AD.item.postalCode</p>
+</div></td><td><div><p>Address.postalCode</p>
+</div></td></tr><tr><td><div><p>AD.item.streetAddressLine</p>
+</div></td><td><div><p>Address.line</p>
+</div></td></tr><tr><td><div><p>AD.useablePeriod</p>
+</div></td><td><div><p>Address.period</p>
+</div></td></tr><tr><td><div><p>AD.item.streetName</p>
+</div></td><td><div><p>Extension.value[x]</p>
+</div></td></tr><tr><td><div><p>AD.item.houseNumber</p>
+</div></td><td><div><p>Extension.value[x]</p>
 </div></td></tr><tr><td><div><p>BL.value</p>
-</div></td><td><div><p>Primitive Type boolean</p>
-</div></td></tr><tr><td><div><p>Code</p>
-</div></td><td><div><p>Primitive Type code</p>
-</div></td></tr><tr><td><div><p>Original Text</p>
-</div></td><td><div><p>Plain text representation of the concept</p>
-</div></td></tr><tr><td><div><p>Translation</p>
-</div></td><td><div><p>Code defined by a terminology system</p>
-</div></td></tr><tr><td><div><p>Code</p>
-</div></td><td><div><p>Symbol in syntax defined by the system</p>
-</div></td></tr><tr><td><div><p>Code System</p>
-</div></td><td><div><p>Identity of the terminology system</p>
-</div></td></tr><tr><td><div><p>Display Name</p>
-</div></td><td><div><p>Representation defined by the system</p>
-</div></td></tr><tr><td><div><p>Code</p>
-</div></td><td><div><p>Primitive Type code</p>
-</div></td></tr><tr><td><div><p>Code</p>
-</div></td><td><div><p>Symbol in syntax defined by the system</p>
-</div></td></tr><tr><td><div><p>Code</p>
-</div></td><td><div><p>Primitive Type code</p>
-</div></td></tr><tr><td><div><p>Original Text</p>
-</div></td><td><div><p>Plain text representation of the concept</p>
-</div></td></tr><tr><td><div><p>Translation</p>
-</div></td><td><div><p>Code defined by a terminology system</p>
-</div></td></tr><tr><td><div><p>Code</p>
-</div></td><td><div><p>Symbol in syntax defined by the system</p>
-</div></td></tr><tr><td><div><p>Code System</p>
-</div></td><td><div><p>Identity of the terminology system</p>
-</div></td></tr><tr><td><div><p>Display Name</p>
-</div></td><td><div><p>Representation defined by the system</p>
-</div></td></tr><tr><td><div><p>Extension</p>
-</div></td><td><div><p>The value that is unique</p>
-</div></td></tr><tr><td><div><p>Root</p>
-</div></td><td><div><p>The namespace for the identifier value</p>
-</div></td></tr><tr><td><div><p>Root</p>
-</div></td><td><div><p>The value that is unique</p>
-</div></td></tr><tr><td><div><p>Assigning Authority Name</p>
-</div></td><td><div><p>Organization that issued id (may be just text)</p>
-</div></td></tr><tr><td><div><p>Displayable</p>
-</div></td><td><div><p>Additional content defined by implementations</p>
-</div></td></tr><tr><td><div><p>Assigning Authority Name</p>
-</div></td><td><div><p>Text alternative for the resource</p>
+</div></td><td><div><p>boolean</p>
+</div></td></tr><tr><td><div><p>CE.code</p>
+</div></td><td><div><p>code</p>
+</div></td></tr><tr><td><div><p>CE.originalText</p>
+</div></td><td><div><p>CodeableConcept.text</p>
+</div></td></tr><tr><td><div><p>CE.translation</p>
+</div></td><td><div><p>CodeableConcept.coding</p>
+</div></td></tr><tr><td><div><p>CE.code</p>
+</div></td><td><div><p>Coding.code</p>
+</div></td></tr><tr><td><div><p>CE.codeSystem</p>
+</div></td><td><div><p>Coding.system</p>
+</div></td></tr><tr><td><div><p>CE.displayName</p>
+</div></td><td><div><p>Coding.display</p>
+</div></td></tr><tr><td><div><p>CS.code</p>
+</div></td><td><div><p>code</p>
+</div></td></tr><tr><td><div><p>CS.code</p>
+</div></td><td><div><p>Coding.code</p>
+</div></td></tr><tr><td><div><p>CD.code</p>
+</div></td><td><div><p>code</p>
+</div></td></tr><tr><td><div><p>CD.originalText</p>
+</div></td><td><div><p>CodeableConcept.text</p>
+</div></td></tr><tr><td><div><p>CD.translation</p>
+</div></td><td><div><p>CodeableConcept.coding</p>
+</div></td></tr><tr><td><div><p>CD.code</p>
+</div></td><td><div><p>Coding.code</p>
+</div></td></tr><tr><td><div><p>CD.codeSystem</p>
+</div></td><td><div><p>Coding.system</p>
+</div></td></tr><tr><td><div><p>CD.displayName</p>
+</div></td><td><div><p>Coding.display</p>
+</div></td></tr><tr><td><div><p>II.extension</p>
+</div></td><td><div><p>Identifier.value</p>
+</div></td></tr><tr><td><div><p>II.root</p>
+</div></td><td><div><p>Identifier.system</p>
+</div></td></tr><tr><td><div><p>II.root</p>
+</div></td><td><div><p>Identifier.value</p>
+</div></td></tr><tr><td><div><p>II.assigningAuthorityName</p>
+</div></td><td><div><p>Identifier.assigner</p>
+</div></td></tr><tr><td><div><p>II.displayable</p>
+</div></td><td><div><p>Identifier.extension</p>
+</div></td></tr><tr><td><div><p>II.assigningAuthorityName</p>
+</div></td><td><div><p>Reference.display</p>
 </div></td></tr><tr><td><div><p>INT.value</p>
-</div></td><td><div><p>Primitive Type integer</p>
-</div></td></tr><tr><td><div><p>Low Boundary</p>
-</div></td><td><div><p>Starting time with inclusive boundary</p>
-</div></td></tr><tr><td><div><p>High Boundary</p>
-</div></td><td><div><p>End time with inclusive boundary, if not ongoing</p>
+</div></td><td><div><p>integer</p>
+</div></td></tr><tr><td><div><p>IVL_TS.low</p>
+</div></td><td><div><p>Period.start</p>
+</div></td></tr><tr><td><div><p>IVL_TS.high</p>
+</div></td><td><div><p>Period.end</p>
 </div></td></tr><tr><td><div><p>IVXB_TS.value</p>
-</div></td><td><div><p>Primitive Type dateTime</p>
-</div></td></tr><tr><td><div><p>Family</p>
-</div></td><td><div><p>Family name (often called 'Surname')</p>
-</div></td></tr><tr><td><div><p>Given</p>
-</div></td><td><div><p>Given names (not always 'first'). Includes middle names</p>
-</div></td></tr><tr><td><div><p>Prefix</p>
-</div></td><td><div><p>Parts that come before the name</p>
-</div></td></tr><tr><td><div><p>Suffix</p>
-</div></td><td><div><p>Parts that come after the name</p>
-</div></td></tr><tr><td><div><p>Allows for mixed text content</p>
-</div></td><td><div><p>Text representation of the full name</p>
-</div></td></tr><tr><td><div><p>Valid Time</p>
-</div></td><td><div><p>Time period when name was/is in use</p>
-</div></td></tr><tr><td><div><p>Family</p>
-</div></td><td><div><p>Family name (often called 'Surname')</p>
-</div></td></tr><tr><td><div><p>Given</p>
-</div></td><td><div><p>Given names (not always 'first'). Includes middle names</p>
-</div></td></tr><tr><td><div><p>Prefix</p>
-</div></td><td><div><p>Parts that come before the name</p>
-</div></td></tr><tr><td><div><p>Suffix</p>
-</div></td><td><div><p>Parts that come after the name</p>
-</div></td></tr><tr><td><div><p>Allows for mixed text content</p>
-</div></td><td><div><p>Text representation of the full name</p>
-</div></td></tr><tr><td><div><p>Valid Time</p>
-</div></td><td><div><p>Time period when name was/is in use</p>
-</div></td></tr><tr><td><div><p>Maginitude Value</p>
-</div></td><td><div><p>Numerical value (with implicit precision)</p>
-</div></td></tr><tr><td><div><p>Unit of Measure</p>
-</div></td><td><div><p>Coded form of the unit</p>
-</div></td></tr><tr><td><div><p>Unit of Measure</p>
-</div></td><td><div><p>Unit representation</p>
-</div></td></tr><tr><td><div><p>Unit of Measure</p>
-</div></td><td><div><p>System that defines coded unit form</p>
-</div></td></tr><tr><td><div><p>Numerator</p>
-</div></td><td><div><p>Numerator value</p>
-</div></td></tr><tr><td><div><p>Denominator</p>
-</div></td><td><div><p>Denominator value</p>
-</div></td></tr><tr><td><div><p>Allows for mixed text content</p>
-</div></td><td><div><p>Primitive Type string</p>
-</div></td></tr><tr><td><div><p>Allows for mixed text content. If @representation='B64', this SHALL be a base64binary string.</p>
-</div></td><td><div><p>Primitive Type string</p>
-</div></td></tr><tr><td><div><p>Allows for mixed text content</p>
-</div></td><td><div><p>Primitive Type string</p>
+</div></td><td><div><p>dateTime</p>
+</div></td></tr><tr><td><div><p>EN.item.family</p>
+</div></td><td><div><p>HumanName.family</p>
+</div></td></tr><tr><td><div><p>EN.item.given</p>
+</div></td><td><div><p>HumanName.given</p>
+</div></td></tr><tr><td><div><p>EN.item.prefix</p>
+</div></td><td><div><p>HumanName.prefix</p>
+</div></td></tr><tr><td><div><p>EN.item.suffix</p>
+</div></td><td><div><p>HumanName.suffix</p>
+</div></td></tr><tr><td><div><p>EN.item.xmlText</p>
+</div></td><td><div><p>HumanName.text</p>
+</div></td></tr><tr><td><div><p>EN.validTime</p>
+</div></td><td><div><p>HumanName.period</p>
+</div></td></tr><tr><td><div><p>PN.item.family</p>
+</div></td><td><div><p>HumanName.family</p>
+</div></td></tr><tr><td><div><p>PN.item.given</p>
+</div></td><td><div><p>HumanName.given</p>
+</div></td></tr><tr><td><div><p>PN.item.prefix</p>
+</div></td><td><div><p>HumanName.prefix</p>
+</div></td></tr><tr><td><div><p>PN.item.suffix</p>
+</div></td><td><div><p>HumanName.suffix</p>
+</div></td></tr><tr><td><div><p>PN.item.xmlText</p>
+</div></td><td><div><p>HumanName.text</p>
+</div></td></tr><tr><td><div><p>PN.validTime</p>
+</div></td><td><div><p>HumanName.period</p>
+</div></td></tr><tr><td><div><p>PQ.value</p>
+</div></td><td><div><p>Quantity.value</p>
+</div></td></tr><tr><td><div><p>PQ.unit</p>
+</div></td><td><div><p>Quantity.code</p>
+</div></td></tr><tr><td><div><p>PQ.unit</p>
+</div></td><td><div><p>Quantity.unit</p>
+</div></td></tr><tr><td><div><p>PQ.unit</p>
+</div></td><td><div><p>Quantity.system</p>
+</div></td></tr><tr><td><div><p>RTO_PQ_PQ.numerator</p>
+</div></td><td><div><p>Ratio.numerator</p>
+</div></td></tr><tr><td><div><p>RTO_PQ_PQ.denominator</p>
+</div></td><td><div><p>Ratio.denominator</p>
+</div></td></tr><tr><td><div><p>ST.xmlText</p>
+</div></td><td><div><p>string</p>
+</div></td></tr><tr><td><div><p>ED.xmlText</p>
+</div></td><td><div><p>string</p>
+</div></td></tr><tr><td><div><p>ON.item.xmlText</p>
+</div></td><td><div><p>string</p>
 </div></td></tr><tr><td><div><p>TEL.value</p>
-</div></td><td><div><p>The actual contact point details</p>
+</div></td><td><div><p>ContactPoint.value</p>
 </div></td></tr><tr><td><div><p>TEL.value</p>
-</div></td><td><div><p>phone | fax | email | pager | url | sms | other</p>
-</div></td></tr><tr><td><div><p>Use Code</p>
-</div></td><td><div><p>home | work | temp | old | mobile - purpose of this contact point</p>
-</div></td></tr><tr><td><div><p>Useable Period</p>
-</div></td><td><div><p>Time period when the contact point was/is in use</p>
+</div></td><td><div><p>ContactPoint.system</p>
+</div></td></tr><tr><td><div><p>TEL.use</p>
+</div></td><td><div><p>ContactPoint.use</p>
+</div></td></tr><tr><td><div><p>TEL.useablePeriod</p>
+</div></td><td><div><p>ContactPoint.period</p>
 </div></td></tr><tr><td><div><p>TS.value</p>
-</div></td><td><div><p>Primitive Type instant</p>
+</div></td><td><div><p>instant</p>
 </div></td></tr><tr><td><div><p>TS.value</p>
-</div></td><td><div><p>Primitive Type dateTime</p>
+</div></td><td><div><p>dateTime</p>
 </div></td></tr><tr><td><div><p>TS.value</p>
-</div></td><td><div><p>Primitive Type date</p>
+</div></td><td><div><p>date</p>
 </div></td></tr></table>
 
 <h4 id="mappings-cda-génériques">Mappings CDA génériques</h4>
@@ -540,7 +540,7 @@ Elle ne contient ni logique métier, ni logique nationale, ni navigation dans la
           IG © 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d&#39;Oradour-sur-Glane, 75015 Paris</a>.  
           Le package ans.fhir.fr.mappingcdafhir#0.1.0 est basé sur <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>.
           Date de génération : 
-  <span title="2026-07-22 14:16:00 +0000">
+  <span title="2026-07-22 14:21:00 +0000">
     2026-07-22
   </span>
 
