@@ -78,9 +78,9 @@ Le fichier principal de cette couche est CdaToFHIRTypes.fml. Cette couche regrou
 | TEL.value | phone | fax | email | pager | url | sms | other |
 | Use Code | home | work | temp | old | mobile - purpose of this contact point |
 | Useable Period | Time period when the contact point was/is in use |
-| TS.value | instant |
-| TS.value | dateTime |
-| TS.value | date |
+| TS.value | Primitive Type instant |
+| TS.value | Primitive Type dateTime |
+| TS.value | Primitive Type date |
 
 #### Mappings CDA génériques
 

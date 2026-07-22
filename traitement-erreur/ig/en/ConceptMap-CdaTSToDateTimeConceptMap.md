@@ -13,13 +13,13 @@ Correspondances documentaires entre le datatype CDA TS et les types FHIR instant
 {
   "resourceType" : "ConceptMap",
   "id" : "CdaTSToDateTimeConceptMap",
-  "url" : "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaTSToFHIR",
+  "url" : "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaTSToDateTimeConceptMap",
   "version" : "0.1.0",
   "name" : "CdaTSToFHIR",
   "title" : "ConceptMap — CDA TS vers FHIR instant, dateTime et date",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-07-22T14:07:48+00:00",
+  "date" : "2026-07-22T14:16:03+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -46,7 +46,7 @@ Correspondances documentaires entre le datatype CDA TS et les types FHIR instant
       "display" : "TS.value",
       "target" : [{
         "code" : "instant",
-        "display" : "instant",
+        "display" : "Primitive Type instant",
         "equivalence" : "relatedto",
         "comment" : "TS.value est converti en valeur FHIR instant (précision jour ou partielle : AAAA, AAAA-MM ou AAAA-MM-JJ)."
       }]
@@ -62,7 +62,7 @@ Correspondances documentaires entre le datatype CDA TS et les types FHIR instant
       "display" : "TS.value",
       "target" : [{
         "code" : "dateTime",
-        "display" : "dateTime",
+        "display" : "Primitive Type dateTime",
         "equivalence" : "relatedto",
         "comment" : "TS.value est converti en valeur FHIR dateTime (précision variable autorisée : année/mois/jour ou date-heure)."
       }]
@@ -78,7 +78,7 @@ Correspondances documentaires entre le datatype CDA TS et les types FHIR instant
       "display" : "TS.value",
       "target" : [{
         "code" : "date",
-        "display" : "date",
+        "display" : "Primitive Type date",
         "equivalence" : "relatedto",
         "comment" : "TS.value est converti en valeur FHIR date (précision jour ou partielle : AAAA ou AAAA-MM ou AAAA-MM-JJ)."
       }]
