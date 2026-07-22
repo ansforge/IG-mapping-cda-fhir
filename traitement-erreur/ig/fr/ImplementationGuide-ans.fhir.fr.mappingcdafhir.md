@@ -14,7 +14,7 @@
   "name" : "CDA2FHIRMAP",
   "title" : "Mapping CDA to FHIR (Preuve de concept)",
   "status" : "draft",
-  "date" : "2026-07-22T12:56:04+00:00",
+  "date" : "2026-07-22T13:03:41+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -977,7 +977,7 @@
         "reference" : "ConceptMap/CdaIIToIdentifierConceptMap"
       },
       "name" : "ConceptMap — CDA II vers FHIR Identifier",
-      "description" : "Correspondances entre les éléments du datatype CDA II et les éléments FHIR Identifier",
+      "description" : "Correspondances entre les éléments du datatype CDA II et les éléments FHIR Identifier et Reference.",
       "exampleBoolean" : false
     },
     {

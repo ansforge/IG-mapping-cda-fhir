@@ -3,7 +3,7 @@
 ## ConceptMap: ConceptMap — CDA II vers FHIR Identifier (Expérimental) 
 
  
-Correspondances entre les éléments du datatype CDA II et les éléments FHIR Identifier 
+Correspondances entre les éléments du datatype CDA II et les éléments FHIR Identifier et Reference. 
 
 
 
@@ -13,13 +13,13 @@ Correspondances entre les éléments du datatype CDA II et les éléments FHIR I
 {
   "resourceType" : "ConceptMap",
   "id" : "CdaIIToIdentifierConceptMap",
-  "url" : "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaIIToIdentifier",
+  "url" : "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaIIToIdentifierConceptMap",
   "version" : "0.1.0",
   "name" : "CdaIIToIdentifier",
   "title" : "ConceptMap — CDA II vers FHIR Identifier",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-07-22T12:56:04+00:00",
+  "date" : "2026-07-22T13:03:41+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -28,7 +28,7 @@ Correspondances entre les éléments du datatype CDA II et les éléments FHIR I
       "value" : "https://esante.gouv.fr"
     }]
   }],
-  "description" : "Correspondances entre les éléments du datatype CDA II et les éléments FHIR Identifier",
+  "description" : "Correspondances entre les éléments du datatype CDA II et les éléments FHIR Identifier et Reference.",
   "jurisdiction" : [{
     "coding" : [{
       "system" : "urn:iso:std:iso:3166",
@@ -43,47 +43,64 @@ Correspondances entre les éléments du datatype CDA II et les éléments FHIR I
     "targetVersion" : "4.0.1",
     "element" : [{
       "code" : "II.extension",
-      "display" : "II.extension",
+      "display" : "Extension",
       "target" : [{
         "code" : "Identifier.value",
-        "display" : "Identifier.value",
+        "display" : "The value that is unique",
         "equivalence" : "equivalent",
         "comment" : "Lorsque II.extension est présent, il alimente directement Identifier.value."
       }]
     },
     {
       "code" : "II.root",
-      "display" : "II.root",
+      "display" : "Root",
       "target" : [{
         "code" : "Identifier.system",
-        "display" : "Identifier.system",
+        "display" : "The namespace for the identifier value",
         "equivalence" : "relatedto",
-        "comment" : "Utilisé pour alimenter Identifier.system, généralement avec transformation vers un URI."
+        "comment" : "II.root alimente Identifier.system après transformation en URI, par exemple sous la forme urn:oid:[II.root] ou urn:uuid:[II.root]."
       },
       {
         "code" : "Identifier.value",
-        "display" : "Identifier.value",
+        "display" : "The value that is unique",
         "equivalence" : "relatedto",
-        "comment" : "En l’absence de II.extension, Identifier.value peut être dérivé de II.root, par exemple sous la forme urn:uuid:[II.root] si II.root est un UUID, ou urn:oid:[II.root] si II.root est un OID."
+        "comment" : "En l’absence de II.extension, Identifier.value peut être dérivé de II.root, notamment lorsqu’il porte directement l’identifiant."
       }]
     },
     {
       "code" : "II.assigningAuthorityName",
-      "display" : "II.assigningAuthorityName",
+      "display" : "Assigning Authority Name",
       "target" : [{
-        "code" : "Identifier.assigner.display",
-        "display" : "Identifier.assigner.display",
-        "equivalence" : "relatedto"
+        "code" : "Identifier.assigner",
+        "display" : "Organization that issued id (may be just text)",
+        "equivalence" : "relatedto",
+        "comment" : "II.assigningAuthorityName permet de renseigner l’organisme ayant attribué l’identifiant dans Identifier.assigner."
       }]
     },
     {
       "code" : "II.displayable",
-      "display" : "II.displayable",
+      "display" : "Displayable",
       "target" : [{
         "code" : "Identifier.extension",
-        "display" : "Identifier.extension(displayable)",
+        "display" : "Additional content defined by implementations",
         "equivalence" : "relatedto",
-        "comment" : "Porté dans une extension FHIR spécifique."
+        "comment" : "La valeur II.displayable peut être conservée dans une extension FHIR spécifique portée par Identifier."
+      }]
+    }]
+  },
+  {
+    "source" : "http://hl7.org/cda/stds/core/StructureDefinition/II",
+    "sourceVersion" : "2.0.0-sd",
+    "target" : "http://hl7.org/fhir/StructureDefinition/Reference",
+    "targetVersion" : "4.0.1",
+    "element" : [{
+      "code" : "II.assigningAuthorityName",
+      "display" : "Assigning Authority Name",
+      "target" : [{
+        "code" : "Reference.display",
+        "display" : "Text alternative for the resource",
+        "equivalence" : "relatedto",
+        "comment" : "Le nom de l’autorité d’attribution CDA alimente Reference.display dans la référence Identifier.assigner."
       }]
     }]
   }]

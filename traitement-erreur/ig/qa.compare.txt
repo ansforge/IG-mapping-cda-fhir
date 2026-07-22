@@ -1,7 +1,7 @@
 CDA2FHIRMAP : Validation Results
 =========================================
 
-err = 917, warn = 345, info = 612
+err = 912, warn = 337, info = 614
 $--
 Generated $--. FHIR version $-- for ans.fhir.fr.mappingcdafhir#$-- (canonical = https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir)
  Build Errors : 1 / 4 / 0
@@ -9,7 +9,7 @@ Generated $--. FHIR version $-- for ans.fhir.fr.mappingcdafhir#$-- (canonical = 
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaBLToBooleanConceptMap : 0 / 1 / 4
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaCECSCDToCodeConceptMap : 0 / 0 / 18
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaENPNToHumanNameConceptMap : 0 / 8 / 6
- /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaIIToIdentifierConceptMap : 5 / 8 / 4
+ /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaIIToIdentifierConceptMap : 0 / 0 / 6
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaINTToIntegerConceptMap : 4 / 2 / 4
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaIVL-TSToPeriodConceptMap : 7 / 3 / 6
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaPQToQuantityConceptMap : 4 / 6 / 4
@@ -87,22 +87,11 @@ WARNING: ConceptMap/CdaENPNToHumanNameConceptMap: ConceptMap.group[1].element[2]
 WARNING: ConceptMap/CdaENPNToHumanNameConceptMap: ConceptMap.group[1].element[3].code: The source display 'Suffix' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/PN|2.0.0-sd#PN.item.suffix' is not valid. Possible displays: 
 INFORMATION: Resource: The resource ConceptMap/CdaENPNToHumanNameConceptMap could usefully have an OID assigned (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/fhir-tools-ig/CodeSystem-ig-parameters.html#ig-parameters-auto-oid-root)
 == fsh-generated/resources/ConceptMap-CdaIIToIdentifierConceptMap.json ==
-ERROR: ConceptMap.where(url = 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaIIToIdentifier'): Conformance resource /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaIIToIdentifierConceptMap.json - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaIIToIdentifierConceptMap) does not match the URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaIIToIdentifier). Use the special-url parameter if you really mean for it not to match
 INFORMATION: ConceptMap.group[0].source: Pinned the version of http://hl7.org/cda/stds/core/StructureDefinition/II to 2.0.0-sd
 INFORMATION: ConceptMap.group[0].target: Pinned the version of http://hl7.org/fhir/StructureDefinition/Identifier to 4.0.1
-ERROR: ConceptMap.url: Resource id/url mismatch: CdaIIToIdentifierConceptMap/https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaIIToIdentifier
-ERROR: ConceptMap.where(url = 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaIIToIdentifier'): Conformance resource /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaIIToIdentifierConceptMap.json - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaIIToIdentifierConceptMap) does not match the URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaIIToIdentifier). Use the special-url parameter if you really mean for it not to match
-WARNING: ConceptMap/CdaIIToIdentifierConceptMap: ConceptMap.group[0].element[0].code: The source display 'II.extension' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/II|2.0.0-sd#II.extension' is not valid. Possible displays: 'Extension'
-WARNING: ConceptMap/CdaIIToIdentifierConceptMap: ConceptMap.group[0].element[0].target[0].code: The target display 'Identifier.value' for the code 'http://hl7.org/fhir/StructureDefinition/Identifier|4.0.1#Identifier.value' is not valid. Possible displays: 'The value that is unique'
-WARNING: ConceptMap/CdaIIToIdentifierConceptMap: ConceptMap.group[0].element[1].code: The source display 'II.root' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/II|2.0.0-sd#II.root' is not valid. Possible displays: 'Root'
-WARNING: ConceptMap/CdaIIToIdentifierConceptMap: ConceptMap.group[0].element[1].target[0].code: The target display 'Identifier.system' for the code 'http://hl7.org/fhir/StructureDefinition/Identifier|4.0.1#Identifier.system' is not valid. Possible displays: 'The namespace for the identifier value'
-WARNING: ConceptMap/CdaIIToIdentifierConceptMap: ConceptMap.group[0].element[1].target[1].code: The target display 'Identifier.value' for the code 'http://hl7.org/fhir/StructureDefinition/Identifier|4.0.1#Identifier.value' is not valid. Possible displays: 'The value that is unique'
-WARNING: ConceptMap/CdaIIToIdentifierConceptMap: ConceptMap.group[0].element[2].code: The source display 'II.assigningAuthorityName' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/II|2.0.0-sd#II.assigningAuthorityName' is not valid. Possible displays: 'Assigning Authority Name'
-ERROR: ConceptMap/CdaIIToIdentifierConceptMap: ConceptMap.group[0].element[2].target[0].code: The target code 'Identifier.assigner.display' is not valid in the code system http://hl7.org/fhir/StructureDefinition/Identifier|4.0.1
-WARNING: ConceptMap/CdaIIToIdentifierConceptMap: ConceptMap.group[0].element[3].code: The source display 'II.displayable' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/II|2.0.0-sd#II.displayable' is not valid. Possible displays: 'Displayable'
-WARNING: ConceptMap/CdaIIToIdentifierConceptMap: ConceptMap.group[0].element[3].target[0].code: The target display 'Identifier.extension(displayable)' for the code 'http://hl7.org/fhir/StructureDefinition/Identifier|4.0.1#Identifier.extension' is not valid. Possible displays: 'Additional content defined by implementations'
+INFORMATION: ConceptMap.group[1].source: Pinned the version of http://hl7.org/cda/stds/core/StructureDefinition/II to 2.0.0-sd
+INFORMATION: ConceptMap.group[1].target: Pinned the version of http://hl7.org/fhir/StructureDefinition/Reference to 4.0.1
 INFORMATION: Resource: The resource ConceptMap/CdaIIToIdentifierConceptMap could usefully have an OID assigned (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/fhir-tools-ig/CodeSystem-ig-parameters.html#ig-parameters-auto-oid-root)
-ERROR: /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaIIToIdentifierConceptMap: URL Mismatch https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaIIToIdentifierConceptMap vs https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaIIToIdentifier
 == fsh-generated/resources/ConceptMap-CdaINTToIntegerConceptMap.json ==
 ERROR: ConceptMap.where(url = 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaINTToInteger'): Conformance resource /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaINTToIntegerConceptMap.json - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaINTToIntegerConceptMap) does not match the URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaINTToInteger). Use the special-url parameter if you really mean for it not to match
 INFORMATION: ConceptMap.group[0].source: Pinned the version of http://hl7.org/cda/stds/core/StructureDefinition/INT to 2.0.0-sd

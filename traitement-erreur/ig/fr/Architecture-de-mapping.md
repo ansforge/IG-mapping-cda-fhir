@@ -43,11 +43,12 @@ Le fichier principal de cette couche est CdaToFHIRTypes.fml. Cette couche regrou
 | Code | Symbol in syntax defined by the system |
 | Code System | Identity of the terminology system |
 | Display Name | Representation defined by the system |
-| II.extension | Identifier.value |
-| II.root | Identifier.system |
-| II.root | Identifier.value |
-| II.assigningAuthorityName | Identifier.assigner.display |
-| II.displayable | Identifier.extension(displayable) |
+| Extension | The value that is unique |
+| Root | The namespace for the identifier value |
+| Root | The value that is unique |
+| Assigning Authority Name | Organization that issued id (may be just text) |
+| Displayable | Additional content defined by implementations |
+| Assigning Authority Name | Text alternative for the resource |
 | INT.value | integer |
 | IVL_TS.low.value | Period.start |
 | IVL_TS.high.value | Period.end |
