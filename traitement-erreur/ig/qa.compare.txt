@@ -1,12 +1,12 @@
 CDA2FHIRMAP : Validation Results
 =========================================
 
-err = 946, warn = 373, info = 608
+err = 942, warn = 372, info = 608
 $--
 Generated $--. FHIR version $-- for ans.fhir.fr.mappingcdafhir#$-- (canonical = https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir)
  Build Errors : 1 / 4 / 0
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaADToAddressConceptMap : 0 / 8 / 8
- /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaBLToBooleanConceptMap : 4 / 2 / 4
+ /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaBLToBooleanConceptMap : 0 / 1 / 4
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaCECSCDToCodeConceptMap : 11 / 21 / 14
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaENPNToHumanNameConceptMap : 14 / 14 / 6
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaIIToIdentifierConceptMap : 5 / 8 / 4
@@ -50,15 +50,10 @@ WARNING: ConceptMap/CdaADToAddressConceptMap: ConceptMap.group[1].element[0].cod
 WARNING: ConceptMap/CdaADToAddressConceptMap: ConceptMap.group[2].element[0].code: The source display 'House Number' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/AD|2.0.0-sd#AD.item.houseNumber' is not valid. Possible displays: 
 INFORMATION: Resource: The resource ConceptMap/CdaADToAddressConceptMap could usefully have an OID assigned (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/fhir-tools-ig/CodeSystem-ig-parameters.html#ig-parameters-auto-oid-root)
 == fsh-generated/resources/ConceptMap-CdaBLToBooleanConceptMap.json ==
-ERROR: ConceptMap.where(url = 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaBLToFHIR'): Conformance resource /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaBLToBooleanConceptMap.json - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaBLToBooleanConceptMap) does not match the URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaBLToFHIR). Use the special-url parameter if you really mean for it not to match
 INFORMATION: ConceptMap.group[0].source: Pinned the version of http://hl7.org/cda/stds/core/StructureDefinition/BL to 2.0.0-sd
 INFORMATION: ConceptMap.group[0].target: Pinned the version of http://hl7.org/fhir/StructureDefinition/boolean to 4.0.1
-ERROR: ConceptMap.url: Resource id/url mismatch: CdaBLToBooleanConceptMap/https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaBLToFHIR
-ERROR: ConceptMap.where(url = 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaBLToFHIR'): Conformance resource /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaBLToBooleanConceptMap.json - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaBLToBooleanConceptMap) does not match the URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaBLToFHIR). Use the special-url parameter if you really mean for it not to match
 WARNING: ConceptMap/CdaBLToBooleanConceptMap: ConceptMap.group[0].element[0].code: The source display 'BL.value' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/BL|2.0.0-sd#BL.value' is not valid. Possible displays: 
-WARNING: ConceptMap/CdaBLToBooleanConceptMap: ConceptMap.group[0].element[0].target[0].code: The target display 'boolean' for the code 'http://hl7.org/fhir/StructureDefinition/boolean|4.0.1#boolean' is not valid. Possible displays: 'Primitive Type boolean'
 INFORMATION: Resource: The resource ConceptMap/CdaBLToBooleanConceptMap could usefully have an OID assigned (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/fhir-tools-ig/CodeSystem-ig-parameters.html#ig-parameters-auto-oid-root)
-ERROR: /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaBLToBooleanConceptMap: URL Mismatch https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaBLToBooleanConceptMap vs https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaBLToFHIR
 == fsh-generated/resources/ConceptMap-CdaCECSCDToCodeConceptMap.json ==
 ERROR: ConceptMap.where(url = 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaConceptCodesToFHIR'): Conformance resource /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaCECSCDToCodeConceptMap.json - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaCECSCDToCodeConceptMap) does not match the URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaConceptCodesToFHIR). Use the special-url parameter if you really mean for it not to match
 INFORMATION: ConceptMap.group[0].source: Pinned the version of http://hl7.org/cda/stds/core/StructureDefinition/CE to 2.0.0-sd

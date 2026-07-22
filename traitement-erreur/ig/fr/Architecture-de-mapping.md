@@ -28,7 +28,7 @@ Le fichier principal de cette couche est CdaToFHIRTypes.fml. Cette couche regrou
 | Useable Period | Time period when address was/is in use |
 | Street Name | Value of extension |
 | House Number | Value of extension |
-| BL.value | boolean |
+| BL.value | Primitive Type boolean |
 | CE.code | code |
 | CE.originalText | CodeableConcept.text |
 | CE.code | CodeableConcept.coding.code |

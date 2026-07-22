@@ -11,15 +11,15 @@
   fhir:Resource.language [ fhir:value "fr"] ;
   fhir:DomainResource.text [
      fhir:Narrative.status [ fhir:value "generated" ] ;
-     fhir:Narrative.div "<div xml:lang=\"fr\" lang=\"fr\"><hr/><p><b>French</b></p><hr/><p class=\"res-header-id\"><b>Narratif généré : CarteDeConcepts CdaBLToBooleanConceptMap</b></p><a name=\"CdaBLToBooleanConceptMap\"> </a><a name=\"hcCdaBLToBooleanConceptMap\"> </a><p>This mapping does not specify any particular context of use.</p><br/><p>Mapping de <a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-BL.html\">BL: Boolean (V3 Data Type)</a> to <a href=\"http://hl7.org/fhir/R4/datatypes.html#boolean\">boolean</a></p><table class=\"grid\"><tr><td><b>Code source</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>relation</b></td><td><b>Code cible</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Commentaire</b></td></tr><tr><td><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-BL.html#s-BL.value\">BL.value</a></td><td>0..1</td><td>todo</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#boolean#s-boolean\">boolean</a></td><td>0..*</td><td>todo</td><td>La valeur BL CDA alimente directement le datatype primitif FHIR boolean.</td></tr></table></div>"
+     fhir:Narrative.div "<div xml:lang=\"fr\" lang=\"fr\"><hr/><p><b>French</b></p><hr/><p class=\"res-header-id\"><b>Narratif généré : CarteDeConcepts CdaBLToBooleanConceptMap</b></p><a name=\"CdaBLToBooleanConceptMap\"> </a><a name=\"hcCdaBLToBooleanConceptMap\"> </a><p>This mapping does not specify any particular context of use.</p><br/><p>Mapping de <a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-BL.html\">BL: Boolean (V3 Data Type)</a> to <a href=\"http://hl7.org/fhir/R4/datatypes.html#boolean\">boolean</a></p><table class=\"grid\"><tr><td><b>Code source</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>relation</b></td><td><b>Code cible</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Commentaire</b></td></tr><tr><td><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-BL.html#s-BL.value\">BL.value</a></td><td>0..1</td><td>todo</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#boolean#s-boolean\">boolean</a></td><td>0..*</td><td>todo</td><td>La valeur du datatype CDA BL alimente directement le datatype primitif FHIR boolean.</td></tr></table></div>"
   ] ;
-  fhir:ConceptMap.url [ fhir:value "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaBLToFHIR"] ;
+  fhir:ConceptMap.url [ fhir:value "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaBLToBooleanConceptMap"] ;
   fhir:ConceptMap.version [ fhir:value "0.1.0"] ;
   fhir:ConceptMap.name [ fhir:value "CdaBLToFHIR"] ;
   fhir:ConceptMap.title [ fhir:value "ConceptMap — CDA BL vers FHIR boolean"] ;
   fhir:ConceptMap.status [ fhir:value "draft"] ;
   fhir:ConceptMap.experimental [ fhir:value "true"^^xsd:boolean] ;
-  fhir:ConceptMap.date [ fhir:value "2026-07-22T09:42:41+00:00"^^xsd:dateTime] ;
+  fhir:ConceptMap.date [ fhir:value "2026-07-22T12:41:23+00:00"^^xsd:dateTime] ;
   fhir:ConceptMap.publisher [ fhir:value "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"] ;
   fhir:ConceptMap.contact [
      fhir:index -1 ;
@@ -53,9 +53,9 @@
        fhir:ConceptMap.group.element.target [
          fhir:index -1 ;
          fhir:ConceptMap.group.element.target.code [ fhir:value "boolean" ] ;
-         fhir:ConceptMap.group.element.target.display [ fhir:value "boolean" ] ;
+         fhir:ConceptMap.group.element.target.display [ fhir:value "Primitive Type boolean" ] ;
          fhir:ConceptMap.group.element.target.equivalence [ fhir:value "equivalent" ] ;
-         fhir:ConceptMap.group.element.target.comment [ fhir:value "La valeur BL CDA alimente directement le datatype primitif FHIR boolean." ]
+         fhir:ConceptMap.group.element.target.comment [ fhir:value "La valeur du datatype CDA BL alimente directement le datatype primitif FHIR boolean." ]
        ]
      ]
   ] .
