@@ -1,13 +1,13 @@
 CDA2FHIRMAP : Validation Results
 =========================================
 
-err = 942, warn = 372, info = 608
+err = 931, warn = 351, info = 612
 $--
 Generated $--. FHIR version $-- for ans.fhir.fr.mappingcdafhir#$-- (canonical = https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir)
  Build Errors : 1 / 4 / 0
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaADToAddressConceptMap : 0 / 8 / 8
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaBLToBooleanConceptMap : 0 / 1 / 4
- /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaCECSCDToCodeConceptMap : 11 / 21 / 14
+ /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaCECSCDToCodeConceptMap : 0 / 0 / 18
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaENPNToHumanNameConceptMap : 14 / 14 / 6
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaIIToIdentifierConceptMap : 5 / 8 / 4
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaINTToIntegerConceptMap : 4 / 2 / 4
@@ -55,51 +55,23 @@ INFORMATION: ConceptMap.group[0].target: Pinned the version of http://hl7.org/fh
 WARNING: ConceptMap/CdaBLToBooleanConceptMap: ConceptMap.group[0].element[0].code: The source display 'BL.value' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/BL|2.0.0-sd#BL.value' is not valid. Possible displays: 
 INFORMATION: Resource: The resource ConceptMap/CdaBLToBooleanConceptMap could usefully have an OID assigned (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/fhir-tools-ig/CodeSystem-ig-parameters.html#ig-parameters-auto-oid-root)
 == fsh-generated/resources/ConceptMap-CdaCECSCDToCodeConceptMap.json ==
-ERROR: ConceptMap.where(url = 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaConceptCodesToFHIR'): Conformance resource /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaCECSCDToCodeConceptMap.json - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaCECSCDToCodeConceptMap) does not match the URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaConceptCodesToFHIR). Use the special-url parameter if you really mean for it not to match
 INFORMATION: ConceptMap.group[0].source: Pinned the version of http://hl7.org/cda/stds/core/StructureDefinition/CE to 2.0.0-sd
 INFORMATION: ConceptMap.group[0].target: Pinned the version of http://hl7.org/fhir/StructureDefinition/code to 4.0.1
 INFORMATION: ConceptMap.group[1].source: Pinned the version of http://hl7.org/cda/stds/core/StructureDefinition/CE to 2.0.0-sd
 INFORMATION: ConceptMap.group[1].target: Pinned the version of http://hl7.org/fhir/StructureDefinition/CodeableConcept to 4.0.1
-INFORMATION: ConceptMap.group[2].source: Pinned the version of http://hl7.org/cda/stds/core/StructureDefinition/CS to 2.0.0-sd
-INFORMATION: ConceptMap.group[2].target: Pinned the version of http://hl7.org/fhir/StructureDefinition/code to 4.0.1
+INFORMATION: ConceptMap.group[2].source: Pinned the version of http://hl7.org/cda/stds/core/StructureDefinition/CE to 2.0.0-sd
+INFORMATION: ConceptMap.group[2].target: Pinned the version of http://hl7.org/fhir/StructureDefinition/Coding to 4.0.1
 INFORMATION: ConceptMap.group[3].source: Pinned the version of http://hl7.org/cda/stds/core/StructureDefinition/CS to 2.0.0-sd
-INFORMATION: ConceptMap.group[3].target: Pinned the version of http://hl7.org/fhir/StructureDefinition/CodeableConcept to 4.0.1
-INFORMATION: ConceptMap.group[4].source: Pinned the version of http://hl7.org/cda/stds/core/StructureDefinition/CD to 2.0.0-sd
-INFORMATION: ConceptMap.group[4].target: Pinned the version of http://hl7.org/fhir/StructureDefinition/code to 4.0.1
+INFORMATION: ConceptMap.group[3].target: Pinned the version of http://hl7.org/fhir/StructureDefinition/code to 4.0.1
+INFORMATION: ConceptMap.group[4].source: Pinned the version of http://hl7.org/cda/stds/core/StructureDefinition/CS to 2.0.0-sd
+INFORMATION: ConceptMap.group[4].target: Pinned the version of http://hl7.org/fhir/StructureDefinition/Coding to 4.0.1
 INFORMATION: ConceptMap.group[5].source: Pinned the version of http://hl7.org/cda/stds/core/StructureDefinition/CD to 2.0.0-sd
-INFORMATION: ConceptMap.group[5].target: Pinned the version of http://hl7.org/fhir/StructureDefinition/CodeableConcept to 4.0.1
-ERROR: ConceptMap.url: Resource id/url mismatch: CdaCECSCDToCodeConceptMap/https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaConceptCodesToFHIR
-ERROR: ConceptMap.where(url = 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaConceptCodesToFHIR'): Conformance resource /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaCECSCDToCodeConceptMap.json - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaCECSCDToCodeConceptMap) does not match the URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaConceptCodesToFHIR). Use the special-url parameter if you really mean for it not to match
-WARNING: ConceptMap/CdaCECSCDToCodeConceptMap: ConceptMap.group[0].element[0].code: The source display 'CE.code' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/CE|2.0.0-sd#CE.code' is not valid. Possible displays: 'Code'
-WARNING: ConceptMap/CdaCECSCDToCodeConceptMap: ConceptMap.group[0].element[0].target[0].code: The target display 'code' for the code 'http://hl7.org/fhir/StructureDefinition/code|4.0.1#code' is not valid. Possible displays: 'Primitive Type code'
-WARNING: ConceptMap/CdaCECSCDToCodeConceptMap: ConceptMap.group[1].element[0].code: The source display 'CE.originalText' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/CE|2.0.0-sd#CE.originalText' is not valid. Possible displays: 'Original Text'
-WARNING: ConceptMap/CdaCECSCDToCodeConceptMap: ConceptMap.group[1].element[0].target[0].code: The target display 'CodeableConcept.text' for the code 'http://hl7.org/fhir/StructureDefinition/CodeableConcept|4.0.1#CodeableConcept.text' is not valid. Possible displays: 'Plain text representation of the concept'
-WARNING: ConceptMap/CdaCECSCDToCodeConceptMap: ConceptMap.group[1].element[1].code: The source display 'CE.code' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/CE|2.0.0-sd#CE.code' is not valid. Possible displays: 'Code'
-ERROR: ConceptMap/CdaCECSCDToCodeConceptMap: ConceptMap.group[1].element[1].target[0].code: The target code 'CodeableConcept.coding.code' is not valid in the code system http://hl7.org/fhir/StructureDefinition/CodeableConcept|4.0.1
-WARNING: ConceptMap/CdaCECSCDToCodeConceptMap: ConceptMap.group[1].element[2].code: The source display 'CE.codeSystem' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/CE|2.0.0-sd#CE.codeSystem' is not valid. Possible displays: 'Code System'
-ERROR: ConceptMap/CdaCECSCDToCodeConceptMap: ConceptMap.group[1].element[2].target[0].code: The target code 'CodeableConcept.coding.system' is not valid in the code system http://hl7.org/fhir/StructureDefinition/CodeableConcept|4.0.1
-WARNING: ConceptMap/CdaCECSCDToCodeConceptMap: ConceptMap.group[1].element[3].code: The source display 'CE.displayName' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/CE|2.0.0-sd#CE.displayName' is not valid. Possible displays: 'Display Name'
-ERROR: ConceptMap/CdaCECSCDToCodeConceptMap: ConceptMap.group[1].element[3].target[0].code: The target code 'CodeableConcept.coding.display' is not valid in the code system http://hl7.org/fhir/StructureDefinition/CodeableConcept|4.0.1
-WARNING: ConceptMap/CdaCECSCDToCodeConceptMap: ConceptMap.group[1].element[4].code: The source display 'CE.translation' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/CE|2.0.0-sd#CE.translation' is not valid. Possible displays: 'Translation'
-WARNING: ConceptMap/CdaCECSCDToCodeConceptMap: ConceptMap.group[1].element[4].target[0].code: The target display 'CodeableConcept.coding (translation)' for the code 'http://hl7.org/fhir/StructureDefinition/CodeableConcept|4.0.1#CodeableConcept.coding' is not valid. Possible displays: 'Code defined by a terminology system'
-WARNING: ConceptMap/CdaCECSCDToCodeConceptMap: ConceptMap.group[2].element[0].code: The source display 'CS.code' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/CS|2.0.0-sd#CS.code' is not valid. Possible displays: 'Code'
-WARNING: ConceptMap/CdaCECSCDToCodeConceptMap: ConceptMap.group[2].element[0].target[0].code: The target display 'code' for the code 'http://hl7.org/fhir/StructureDefinition/code|4.0.1#code' is not valid. Possible displays: 'Primitive Type code'
-WARNING: ConceptMap/CdaCECSCDToCodeConceptMap: ConceptMap.group[3].element[0].code: The source display 'CS.code' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/CS|2.0.0-sd#CS.code' is not valid. Possible displays: 'Code'
-ERROR: ConceptMap/CdaCECSCDToCodeConceptMap: ConceptMap.group[3].element[0].target[0].code: The target code 'CodeableConcept.coding.code' is not valid in the code system http://hl7.org/fhir/StructureDefinition/CodeableConcept|4.0.1
-WARNING: ConceptMap/CdaCECSCDToCodeConceptMap: ConceptMap.group[4].element[0].code: The source display 'CD.code' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/CD|2.0.0-sd#CD.code' is not valid. Possible displays: 'Code'
-WARNING: ConceptMap/CdaCECSCDToCodeConceptMap: ConceptMap.group[4].element[0].target[0].code: The target display 'code' for the code 'http://hl7.org/fhir/StructureDefinition/code|4.0.1#code' is not valid. Possible displays: 'Primitive Type code'
-WARNING: ConceptMap/CdaCECSCDToCodeConceptMap: ConceptMap.group[5].element[0].code: The source display 'CD.originalText' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/CD|2.0.0-sd#CD.originalText' is not valid. Possible displays: 'Original Text'
-WARNING: ConceptMap/CdaCECSCDToCodeConceptMap: ConceptMap.group[5].element[0].target[0].code: The target display 'CodeableConcept.text' for the code 'http://hl7.org/fhir/StructureDefinition/CodeableConcept|4.0.1#CodeableConcept.text' is not valid. Possible displays: 'Plain text representation of the concept'
-WARNING: ConceptMap/CdaCECSCDToCodeConceptMap: ConceptMap.group[5].element[1].code: The source display 'CD.code' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/CD|2.0.0-sd#CD.code' is not valid. Possible displays: 'Code'
-ERROR: ConceptMap/CdaCECSCDToCodeConceptMap: ConceptMap.group[5].element[1].target[0].code: The target code 'CodeableConcept.coding.code' is not valid in the code system http://hl7.org/fhir/StructureDefinition/CodeableConcept|4.0.1
-WARNING: ConceptMap/CdaCECSCDToCodeConceptMap: ConceptMap.group[5].element[2].code: The source display 'CD.codeSystem' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/CD|2.0.0-sd#CD.codeSystem' is not valid. Possible displays: 'Code System'
-ERROR: ConceptMap/CdaCECSCDToCodeConceptMap: ConceptMap.group[5].element[2].target[0].code: The target code 'CodeableConcept.coding.system' is not valid in the code system http://hl7.org/fhir/StructureDefinition/CodeableConcept|4.0.1
-WARNING: ConceptMap/CdaCECSCDToCodeConceptMap: ConceptMap.group[5].element[3].code: The source display 'CD.displayName' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/CD|2.0.0-sd#CD.displayName' is not valid. Possible displays: 'Display Name'
-ERROR: ConceptMap/CdaCECSCDToCodeConceptMap: ConceptMap.group[5].element[3].target[0].code: The target code 'CodeableConcept.coding.display' is not valid in the code system http://hl7.org/fhir/StructureDefinition/CodeableConcept|4.0.1
-WARNING: ConceptMap/CdaCECSCDToCodeConceptMap: ConceptMap.group[5].element[4].code: The source display 'CD.translation' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/CD|2.0.0-sd#CD.translation' is not valid. Possible displays: 'Translation'
-WARNING: ConceptMap/CdaCECSCDToCodeConceptMap: ConceptMap.group[5].element[4].target[0].code: The target display 'CodeableConcept.coding (translation)' for the code 'http://hl7.org/fhir/StructureDefinition/CodeableConcept|4.0.1#CodeableConcept.coding' is not valid. Possible displays: 'Code defined by a terminology system'
+INFORMATION: ConceptMap.group[5].target: Pinned the version of http://hl7.org/fhir/StructureDefinition/code to 4.0.1
+INFORMATION: ConceptMap.group[6].source: Pinned the version of http://hl7.org/cda/stds/core/StructureDefinition/CD to 2.0.0-sd
+INFORMATION: ConceptMap.group[6].target: Pinned the version of http://hl7.org/fhir/StructureDefinition/CodeableConcept to 4.0.1
+INFORMATION: ConceptMap.group[7].source: Pinned the version of http://hl7.org/cda/stds/core/StructureDefinition/CD to 2.0.0-sd
+INFORMATION: ConceptMap.group[7].target: Pinned the version of http://hl7.org/fhir/StructureDefinition/Coding to 4.0.1
 INFORMATION: Resource: The resource ConceptMap/CdaCECSCDToCodeConceptMap could usefully have an OID assigned (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/fhir-tools-ig/CodeSystem-ig-parameters.html#ig-parameters-auto-oid-root)
-ERROR: /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaCECSCDToCodeConceptMap: URL Mismatch https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaCECSCDToCodeConceptMap vs https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaConceptCodesToFHIR
 == fsh-generated/resources/ConceptMap-CdaENPNToHumanNameConceptMap.json ==
 ERROR: ConceptMap.where(url = 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaNamesToFHIR'): Conformance resource /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaENPNToHumanNameConceptMap.json - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaENPNToHumanNameConceptMap) does not match the URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaNamesToFHIR). Use the special-url parameter if you really mean for it not to match
 INFORMATION: ConceptMap.group[0].source: Pinned the version of http://hl7.org/cda/stds/core/StructureDefinition/EN to 2.0.0-sd

@@ -29,20 +29,20 @@ Le fichier principal de cette couche est CdaToFHIRTypes.fml. Cette couche regrou
 | Street Name | Value of extension |
 | House Number | Value of extension |
 | BL.value | Primitive Type boolean |
-| CE.code | code |
-| CE.originalText | CodeableConcept.text |
-| CE.code | CodeableConcept.coding.code |
-| CE.codeSystem | CodeableConcept.coding.system |
-| CE.displayName | CodeableConcept.coding.display |
-| CE.translation | CodeableConcept.coding (translation) |
-| CS.code | code |
-| CS.code | CodeableConcept.coding.code |
-| CD.code | code |
-| CD.originalText | CodeableConcept.text |
-| CD.code | CodeableConcept.coding.code |
-| CD.codeSystem | CodeableConcept.coding.system |
-| CD.displayName | CodeableConcept.coding.display |
-| CD.translation | CodeableConcept.coding (translation) |
+| Code | Primitive Type code |
+| Original Text | Plain text representation of the concept |
+| Translation | Code defined by a terminology system |
+| Code | Symbol in syntax defined by the system |
+| Code System | Identity of the terminology system |
+| Display Name | Representation defined by the system |
+| Code | Primitive Type code |
+| Code | Symbol in syntax defined by the system |
+| Code | Primitive Type code |
+| Original Text | Plain text representation of the concept |
+| Translation | Code defined by a terminology system |
+| Code | Symbol in syntax defined by the system |
+| Code System | Identity of the terminology system |
+| Display Name | Representation defined by the system |
 | II.extension | Identifier.value |
 | II.root | Identifier.system |
 | II.root | Identifier.value |
