@@ -1,9 +1,9 @@
 CDA2FHIRMAP : Validation Results
 =========================================
 
-err = 893, warn = 324, info = 615
+err = 888, warn = 319, info = 615
 IG Publisher Version: 2.2.10 Out of date - current version is 2.2.11
-Generated Wed Jul 22 13:56:29 UTC 2026. FHIR version 4.0.1 for ans.fhir.fr.mappingcdafhir#0.1.0 (canonical = https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir)
+Generated Wed Jul 22 14:07:30 UTC 2026. FHIR version 4.0.1 for ans.fhir.fr.mappingcdafhir#0.1.0 (canonical = https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir)
  Build Errors : 1 / 4 / 0
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaADToAddressConceptMap : 0 / 8 / 8
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaBLToBooleanConceptMap : 0 / 1 / 4
@@ -14,7 +14,7 @@ Generated Wed Jul 22 13:56:29 UTC 2026. FHIR version 4.0.1 for ans.fhir.fr.mappi
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaIVL-TSToPeriodConceptMap : 0 / 1 / 6
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaPQToQuantityConceptMap : 0 / 0 / 4
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaRTO-PQ-PQToRatioConceptMap : 0 / 0 / 4
- /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaSTEDONToStringConceptMap : 5 / 5 / 8
+ /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaSTEDONToStringConceptMap : 0 / 0 / 8
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaTELToContactPointConceptMap : 4 / 7 / 4
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaTSToDateTimeConceptMap : 4 / 6 / 8
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ImplementationGuide-ans.fhir.fr.mappingcdafhir : 0 / 2 / 2
@@ -113,23 +113,13 @@ INFORMATION: ConceptMap.group[0].source: Pinned the version of http://hl7.org/cd
 INFORMATION: ConceptMap.group[0].target: Pinned the version of http://hl7.org/fhir/StructureDefinition/Ratio to 4.0.1
 INFORMATION: Resource: The resource ConceptMap/CdaRTO-PQ-PQToRatioConceptMap could usefully have an OID assigned (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/fhir-tools-ig/CodeSystem-ig-parameters.html#ig-parameters-auto-oid-root)
 == fsh-generated/resources/ConceptMap-CdaSTEDONToStringConceptMap.json ==
-ERROR: ConceptMap.where(url = 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaStringTypesToFHIR'): Conformance resource /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaSTEDONToStringConceptMap.json - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaSTEDONToStringConceptMap) does not match the URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaStringTypesToFHIR). Use the special-url parameter if you really mean for it not to match
 INFORMATION: ConceptMap.group[0].source: Pinned the version of http://hl7.org/cda/stds/core/StructureDefinition/ST to 2.0.0-sd
 INFORMATION: ConceptMap.group[0].target: Pinned the version of http://hl7.org/fhir/StructureDefinition/string to 4.0.1
 INFORMATION: ConceptMap.group[1].source: Pinned the version of http://hl7.org/cda/stds/core/StructureDefinition/ED to 2.0.0-sd
 INFORMATION: ConceptMap.group[1].target: Pinned the version of http://hl7.org/fhir/StructureDefinition/string to 4.0.1
 INFORMATION: ConceptMap.group[2].source: Pinned the version of http://hl7.org/cda/stds/core/StructureDefinition/ON to 2.0.0-sd
 INFORMATION: ConceptMap.group[2].target: Pinned the version of http://hl7.org/fhir/StructureDefinition/string to 4.0.1
-ERROR: ConceptMap.url: Resource id/url mismatch: CdaSTEDONToStringConceptMap/https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaStringTypesToFHIR
-ERROR: ConceptMap.where(url = 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaStringTypesToFHIR'): Conformance resource /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaSTEDONToStringConceptMap.json - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaSTEDONToStringConceptMap) does not match the URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaStringTypesToFHIR). Use the special-url parameter if you really mean for it not to match
-WARNING: ConceptMap/CdaSTEDONToStringConceptMap: ConceptMap.group[0].element[0].code: The source display 'ST.xmlText' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/ST|2.0.0-sd#ST.xmlText' is not valid. Possible displays: 'Allows for mixed text content'
-WARNING: ConceptMap/CdaSTEDONToStringConceptMap: ConceptMap.group[0].element[0].target[0].code: The target display 'string' for the code 'http://hl7.org/fhir/StructureDefinition/string|4.0.1#string' is not valid. Possible displays: 'Primitive Type string'
-WARNING: ConceptMap/CdaSTEDONToStringConceptMap: ConceptMap.group[1].element[0].code: The source display 'ED.xmlText' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/ED|2.0.0-sd#ED.xmlText' is not valid. Possible displays: 'Allows for mixed text content. If @representation='B64', this SHALL be a base64binary string.'
-WARNING: ConceptMap/CdaSTEDONToStringConceptMap: ConceptMap.group[1].element[0].target[0].code: The target display 'string' for the code 'http://hl7.org/fhir/StructureDefinition/string|4.0.1#string' is not valid. Possible displays: 'Primitive Type string'
-ERROR: ConceptMap/CdaSTEDONToStringConceptMap: ConceptMap.group[2].element[0].code: The source code 'ON.xmlText' is not valid in the code system http://hl7.org/cda/stds/core/StructureDefinition/ON|2.0.0-sd
-WARNING: ConceptMap/CdaSTEDONToStringConceptMap: ConceptMap.group[2].element[0].target[0].code: The target display 'string' for the code 'http://hl7.org/fhir/StructureDefinition/string|4.0.1#string' is not valid. Possible displays: 'Primitive Type string'
 INFORMATION: Resource: The resource ConceptMap/CdaSTEDONToStringConceptMap could usefully have an OID assigned (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/fhir-tools-ig/CodeSystem-ig-parameters.html#ig-parameters-auto-oid-root)
-ERROR: /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaSTEDONToStringConceptMap: URL Mismatch https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaSTEDONToStringConceptMap vs https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaStringTypesToFHIR
 == fsh-generated/resources/ConceptMap-CdaTELToContactPointConceptMap.json ==
 ERROR: ConceptMap.where(url = 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaTELToFHIR'): Conformance resource /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaTELToContactPointConceptMap.json - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaTELToContactPointConceptMap) does not match the URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaTELToFHIR). Use the special-url parameter if you really mean for it not to match
 INFORMATION: ConceptMap.group[0].source: Pinned the version of http://hl7.org/cda/stds/core/StructureDefinition/TEL to 2.0.0-sd

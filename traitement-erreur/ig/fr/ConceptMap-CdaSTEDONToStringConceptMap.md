@@ -13,13 +13,13 @@ Correspondances documentaires entre les datatypes CDA ST, ED et ON et le datatyp
 {
   "resourceType" : "ConceptMap",
   "id" : "CdaSTEDONToStringConceptMap",
-  "url" : "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaStringTypesToFHIR",
+  "url" : "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaSTEDONToStringConceptMap",
   "version" : "0.1.0",
   "name" : "CdaStringTypesToFHIR",
   "title" : "ConceptMap — CDA ST/ED/ON vers FHIR string",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-07-22T13:54:49+00:00",
+  "date" : "2026-07-22T14:05:46+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -43,12 +43,12 @@ Correspondances documentaires entre les datatypes CDA ST, ED et ON et le datatyp
     "targetVersion" : "4.0.1",
     "element" : [{
       "code" : "ST.xmlText",
-      "display" : "ST.xmlText",
+      "display" : "Allows for mixed text content",
       "target" : [{
         "code" : "string",
-        "display" : "string",
+        "display" : "Primitive Type string",
         "equivalence" : "equivalent",
-        "comment" : "Le texte CDA ST (xmlText) alimente directement un string FHIR."
+        "comment" : "Le contenu textuel du datatype CDA ST alimente directement le datatype primitif FHIR string."
       }]
     }]
   },
@@ -59,12 +59,12 @@ Correspondances documentaires entre les datatypes CDA ST, ED et ON et le datatyp
     "targetVersion" : "4.0.1",
     "element" : [{
       "code" : "ED.xmlText",
-      "display" : "ED.xmlText",
+      "display" : "Allows for mixed text content. If @representation='B64', this SHALL be a base64binary string.",
       "target" : [{
         "code" : "string",
-        "display" : "string",
+        "display" : "Primitive Type string",
         "equivalence" : "relatedto",
-        "comment" : "Le contenu textuel CDA ED (xmlText) peut être converti en string FHIR selon le contexte (texte, base64, etc.)."
+        "comment" : "Le contenu textuel du datatype CDA ED peut être converti vers un string FHIR lorsque sa représentation est textuelle. Une représentation B64 nécessite une conversion adaptée au contenu encodé."
       }]
     }]
   },
@@ -74,13 +74,13 @@ Correspondances documentaires entre les datatypes CDA ST, ED et ON et le datatyp
     "target" : "http://hl7.org/fhir/StructureDefinition/string",
     "targetVersion" : "4.0.1",
     "element" : [{
-      "code" : "ON.xmlText",
-      "display" : "ON.xmlText",
+      "code" : "ON.item.xmlText",
+      "display" : "Allows for mixed text content",
       "target" : [{
         "code" : "string",
-        "display" : "string",
+        "display" : "Primitive Type string",
         "equivalence" : "equivalent",
-        "comment" : "Le texte CDA ON (xmlText) alimente directement un string FHIR."
+        "comment" : "Le contenu textuel du nom d’organisation CDA ON alimente directement le datatype primitif FHIR string."
       }]
     }]
   }]

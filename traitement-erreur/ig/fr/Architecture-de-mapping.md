@@ -71,9 +71,9 @@ Le fichier principal de cette couche est CdaToFHIRTypes.fml. Cette couche regrou
 | Unit of Measure | System that defines coded unit form |
 | Numerator | Numerator value |
 | Denominator | Denominator value |
-| ST.xmlText | string |
-| ED.xmlText | string |
-| ON.xmlText | string |
+| Allows for mixed text content | Primitive Type string |
+| Allows for mixed text content. If @representation='B64', this SHALL be a base64binary string. | Primitive Type string |
+| Allows for mixed text content | Primitive Type string |
 | TEL.value | ContactPoint.value |
 | TEL.value | ContactPoint.system |
 | TEL.use | ContactPoint.use |
