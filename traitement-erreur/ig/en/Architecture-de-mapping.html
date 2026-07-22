@@ -274,24 +274,24 @@ Dans le contexte CDA, les datatypes représentent les structures élémentaires 
 Elle constitue le socle commun de l’ensemble des autres mappings.
 Elle ne contient ni logique métier, ni logique nationale, ni navigation dans la structure du document CDA : son objectif est uniquement d’assurer la correspondance entre les types techniques manipulés dans les mappings.</p>
 
-<table class="lines"><tr><td style="background-color: #eeeeee">CDA</td><td style="background-color: #eeeeee">FHIR</td></tr><tr><td><div><p>AD.item.country</p>
-</div></td><td><div><p>Address.country</p>
-</div></td></tr><tr><td><div><p>AD.item.state</p>
-</div></td><td><div><p>Address.state</p>
-</div></td></tr><tr><td><div><p>AD.item.county</p>
-</div></td><td><div><p>Address.district</p>
-</div></td></tr><tr><td><div><p>AD.item.city</p>
-</div></td><td><div><p>Address.city</p>
-</div></td></tr><tr><td><div><p>AD.item.postalCode</p>
-</div></td><td><div><p>Address.postalCode</p>
-</div></td></tr><tr><td><div><p>AD.item.streetAddressLine</p>
-</div></td><td><div><p>Address.line</p>
-</div></td></tr><tr><td><div><p>AD.item.streetName</p>
-</div></td><td><div><p>Address.line.extension[http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName].valueString</p>
-</div></td></tr><tr><td><div><p>AD.item.houseNumber</p>
-</div></td><td><div><p>Address.line.extension[http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber].valueString</p>
-</div></td></tr><tr><td><div><p>AD.useablePeriod</p>
-</div></td><td><div><p>Address.period</p>
+<table class="lines"><tr><td style="background-color: #eeeeee">CDA</td><td style="background-color: #eeeeee">FHIR</td></tr><tr><td><div><p>Country</p>
+</div></td><td><div><p>Country (e.g. can be ISO 3166 2 or 3 letter code)</p>
+</div></td></tr><tr><td><div><p>State</p>
+</div></td><td><div><p>Sub-unit of country (abbreviations ok)</p>
+</div></td></tr><tr><td><div><p>County</p>
+</div></td><td><div><p>District name (aka county)</p>
+</div></td></tr><tr><td><div><p>City</p>
+</div></td><td><div><p>Name of city, town etc.</p>
+</div></td></tr><tr><td><div><p>Postal Code</p>
+</div></td><td><div><p>Postal code for area</p>
+</div></td></tr><tr><td><div><p>Street Address Line</p>
+</div></td><td><div><p>Street name, number, direction &amp; P.O. Box etc.</p>
+</div></td></tr><tr><td><div><p>Useable Period</p>
+</div></td><td><div><p>Time period when address was/is in use</p>
+</div></td></tr><tr><td><div><p>Street Name</p>
+</div></td><td><div><p>Value of extension</p>
+</div></td></tr><tr><td><div><p>House Number</p>
+</div></td><td><div><p>Value of extension</p>
 </div></td></tr><tr><td><div><p>BL.value</p>
 </div></td><td><div><p>boolean</p>
 </div></td></tr><tr><td><div><p>CE.code</p>
@@ -545,7 +545,7 @@ Elle ne contient ni logique métier, ni logique nationale, ni navigation dans la
           IG © 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d&#39;Oradour-sur-Glane, 75015 Paris</a>.  
           Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>.
           Generated 
-  <span title="2026-07-22 09:26:00 +0000">
+  <span title="2026-07-22 09:42:00 +0000">
     2026-07-22
   </span>
 

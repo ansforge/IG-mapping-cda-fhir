@@ -19,15 +19,15 @@ Le fichier principal de cette couche est CdaToFHIRTypes.fml. Cette couche regrou
 | | |
 | :--- | :--- |
 | CDA | FHIR |
-| AD.item.country | Address.country |
-| AD.item.state | Address.state |
-| AD.item.county | Address.district |
-| AD.item.city | Address.city |
-| AD.item.postalCode | Address.postalCode |
-| AD.item.streetAddressLine | Address.line |
-| AD.item.streetName | Address.line.extension[http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName].valueString |
-| AD.item.houseNumber | Address.line.extension[http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber].valueString |
-| AD.useablePeriod | Address.period |
+| Country | Country (e.g. can be ISO 3166 2 or 3 letter code) |
+| State | Sub-unit of country (abbreviations ok) |
+| County | District name (aka county) |
+| City | Name of city, town etc. |
+| Postal Code | Postal code for area |
+| Street Address Line | Street name, number, direction & P.O. Box etc. |
+| Useable Period | Time period when address was/is in use |
+| Street Name | Value of extension |
+| House Number | Value of extension |
 | BL.value | boolean |
 | CE.code | code |
 | CE.originalText | CodeableConcept.text |
