@@ -4,15 +4,15 @@
   "language" : "fr",
   "text" : {
     "status" : "generated",
-    "div" : "<div xml:lang=\"fr\" lang=\"fr\"><hr/><p><b>French</b></p><hr/><p class=\"res-header-id\"><b>Narratif généré : CarteDeConcepts CdaRTO-PQ-PQToRatioConceptMap</b></p><a name=\"CdaRTO-PQ-PQToRatioConceptMap\"> </a><a name=\"hcCdaRTO-PQ-PQToRatioConceptMap\"> </a><p>This mapping does not specify any particular context of use.</p><br/><p>Mapping de <code>http://hl7.org/cda/stds/core/StructureDefinition/RTO_PQ_PQ</code> to <a href=\"http://hl7.org/fhir/R4/datatypes.html#Ratio\">Ratioversion : 4.0.1)</a></p><table class=\"grid\"><tr><td><b>Code source</b></td><td><b>relation</b></td><td><b>Code cible</b></td><td><b>Commentaire</b></td></tr><tr><td>RTO_PQ_PQ.numerator</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto\" title=\"relatedto\">is related to</a></td><td>Ratio.numerator</td><td>Le numérateur CDA est converti en Quantity via le mapping PQ -&gt; Quantity, puis affecté à Ratio.numerator.</td></tr><tr><td>RTO_PQ_PQ.denominator</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto\" title=\"relatedto\">is related to</a></td><td>Ratio.denominator</td><td>Le dénominateur CDA est converti en Quantity via le mapping PQ -&gt; Quantity, puis affecté à Ratio.denominator.</td></tr></table></div>"
+    "div" : "<div xml:lang=\"fr\" lang=\"fr\"><hr/><p><b>French</b></p><hr/><p class=\"res-header-id\"><b>Narratif généré : CarteDeConcepts CdaRTO-PQ-PQToRatioConceptMap</b></p><a name=\"CdaRTO-PQ-PQToRatioConceptMap\"> </a><a name=\"hcCdaRTO-PQ-PQToRatioConceptMap\"> </a><p>This mapping does not specify any particular context of use.</p><br/><p>Mapping de <a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-RTO-PQ-PQ.html\">RTO_PQ_PQ: Ratio (V3 Data Type)</a> to <a href=\"http://hl7.org/fhir/R4/datatypes.html#Ratio\">Ratio</a></p><table class=\"grid\"><tr><td><b>Code source</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>relation</b></td><td><b>Code cible</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Commentaire</b></td></tr><tr><td><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-RTO-PQ-PQ.html#s-RTO_PQ_PQ.numerator\">RTO_PQ_PQ.numerator</a></td><td>0..1</td><td>todo</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto\" title=\"relatedto\">is related to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#Ratio#s-Ratio.numerator\">Ratio.numerator</a></td><td>0..1</td><td>todo</td><td>Le numérateur CDA est converti en Quantity à l’aide du mapping PQ vers Quantity, puis affecté à Ratio.numerator.</td></tr><tr><td><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-RTO-PQ-PQ.html#s-RTO_PQ_PQ.denominator\">RTO_PQ_PQ.denominator</a></td><td>0..1</td><td>todo</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto\" title=\"relatedto\">is related to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#Ratio#s-Ratio.denominator\">Ratio.denominator</a></td><td>0..1</td><td>todo</td><td>Le dénominateur CDA est converti en Quantity à l’aide du mapping PQ vers Quantity, puis affecté à Ratio.denominator.</td></tr></table></div>"
   },
-  "url" : "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaRTOPQPQToFHIR",
+  "url" : "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaRTO-PQ-PQToRatioConceptMap",
   "version" : "0.1.0",
   "name" : "CdaRTOPQPQToFHIR",
   "title" : "ConceptMap — CDA RTO_PQ_PQ vers FHIR Ratio",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-07-22T13:44:26+00:00",
+  "date" : "2026-07-22T13:54:49+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -30,27 +30,28 @@
     }]
   }],
   "group" : [{
-    "source" : "http://hl7.org/cda/stds/core/StructureDefinition/RTO_PQ_PQ",
+    "source" : "http://hl7.org/cda/stds/core/StructureDefinition/RTO-PQ-PQ",
+    "sourceVersion" : "2.0.0-sd",
     "target" : "http://hl7.org/fhir/StructureDefinition/Ratio",
     "targetVersion" : "4.0.1",
     "element" : [{
       "code" : "RTO_PQ_PQ.numerator",
-      "display" : "RTO_PQ_PQ.numerator",
+      "display" : "Numerator",
       "target" : [{
         "code" : "Ratio.numerator",
-        "display" : "Ratio.numerator",
+        "display" : "Numerator value",
         "equivalence" : "relatedto",
-        "comment" : "Le numérateur CDA est converti en Quantity via le mapping PQ -> Quantity, puis affecté à Ratio.numerator."
+        "comment" : "Le numérateur CDA est converti en Quantity à l’aide du mapping PQ vers Quantity, puis affecté à Ratio.numerator."
       }]
     },
     {
       "code" : "RTO_PQ_PQ.denominator",
-      "display" : "RTO_PQ_PQ.denominator",
+      "display" : "Denominator",
       "target" : [{
         "code" : "Ratio.denominator",
-        "display" : "Ratio.denominator",
+        "display" : "Denominator value",
         "equivalence" : "relatedto",
-        "comment" : "Le dénominateur CDA est converti en Quantity via le mapping PQ -> Quantity, puis affecté à Ratio.denominator."
+        "comment" : "Le dénominateur CDA est converti en Quantity à l’aide du mapping PQ vers Quantity, puis affecté à Ratio.denominator."
       }]
     }]
   }]

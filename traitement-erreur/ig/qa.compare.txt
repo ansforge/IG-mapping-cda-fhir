@@ -1,7 +1,7 @@
 CDA2FHIRMAP : Validation Results
 =========================================
 
-err = 897, warn = 328, info = 614
+err = 893, warn = 324, info = 615
 $--
 Generated $--. FHIR version $-- for ans.fhir.fr.mappingcdafhir#$-- (canonical = https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir)
  Build Errors : 1 / 4 / 0
@@ -13,7 +13,7 @@ Generated $--. FHIR version $-- for ans.fhir.fr.mappingcdafhir#$-- (canonical = 
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaINTToIntegerConceptMap : 0 / 1 / 4
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaIVL-TSToPeriodConceptMap : 0 / 1 / 6
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaPQToQuantityConceptMap : 0 / 0 / 4
- /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaRTO-PQ-PQToRatioConceptMap : 4 / 4 / 3
+ /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaRTO-PQ-PQToRatioConceptMap : 0 / 0 / 4
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaSTEDONToStringConceptMap : 5 / 5 / 8
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaTELToContactPointConceptMap : 4 / 7 / 4
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaTSToDateTimeConceptMap : 4 / 6 / 8
@@ -109,16 +109,9 @@ INFORMATION: ConceptMap.group[0].source: Pinned the version of http://hl7.org/cd
 INFORMATION: ConceptMap.group[0].target: Pinned the version of http://hl7.org/fhir/StructureDefinition/Quantity to 4.0.1
 INFORMATION: Resource: The resource ConceptMap/CdaPQToQuantityConceptMap could usefully have an OID assigned (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/fhir-tools-ig/CodeSystem-ig-parameters.html#ig-parameters-auto-oid-root)
 == fsh-generated/resources/ConceptMap-CdaRTO-PQ-PQToRatioConceptMap.json ==
-ERROR: ConceptMap.where(url = 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaRTOPQPQToFHIR'): Conformance resource /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaRTO-PQ-PQToRatioConceptMap.json - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaRTO-PQ-PQToRatioConceptMap) does not match the URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaRTOPQPQToFHIR). Use the special-url parameter if you really mean for it not to match
+INFORMATION: ConceptMap.group[0].source: Pinned the version of http://hl7.org/cda/stds/core/StructureDefinition/RTO-PQ-PQ to 2.0.0-sd
 INFORMATION: ConceptMap.group[0].target: Pinned the version of http://hl7.org/fhir/StructureDefinition/Ratio to 4.0.1
-ERROR: ConceptMap.url: Resource id/url mismatch: CdaRTO-PQ-PQToRatioConceptMap/https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaRTOPQPQToFHIR
-ERROR: ConceptMap.where(url = 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaRTOPQPQToFHIR'): Conformance resource /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaRTO-PQ-PQToRatioConceptMap.json - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaRTO-PQ-PQToRatioConceptMap) does not match the URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaRTOPQPQToFHIR). Use the special-url parameter if you really mean for it not to match
-WARNING: ConceptMap/CdaRTO-PQ-PQToRatioConceptMap: ConceptMap.group[0].source: No definition could be found for URL value 'http://hl7.org/cda/stds/core/StructureDefinition/RTO_PQ_PQ'
-WARNING: ConceptMap/CdaRTO-PQ-PQToRatioConceptMap: ConceptMap.group[0].source: The Source Code System http://hl7.org/cda/stds/core/StructureDefinition/RTO_PQ_PQ is not fully defined and populated, and no sourceScope is specified, so the source code checking will not be performed
-WARNING: ConceptMap/CdaRTO-PQ-PQToRatioConceptMap: ConceptMap.group[0].element[0].target[0].code: The target display 'Ratio.numerator' for the code 'http://hl7.org/fhir/StructureDefinition/Ratio|4.0.1#Ratio.numerator' is not valid. Possible displays: 'Numerator value'
-WARNING: ConceptMap/CdaRTO-PQ-PQToRatioConceptMap: ConceptMap.group[0].element[1].target[0].code: The target display 'Ratio.denominator' for the code 'http://hl7.org/fhir/StructureDefinition/Ratio|4.0.1#Ratio.denominator' is not valid. Possible displays: 'Denominator value'
 INFORMATION: Resource: The resource ConceptMap/CdaRTO-PQ-PQToRatioConceptMap could usefully have an OID assigned (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/fhir-tools-ig/CodeSystem-ig-parameters.html#ig-parameters-auto-oid-root)
-ERROR: /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaRTO-PQ-PQToRatioConceptMap: URL Mismatch https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaRTO-PQ-PQToRatioConceptMap vs https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaRTOPQPQToFHIR
 == fsh-generated/resources/ConceptMap-CdaSTEDONToStringConceptMap.json ==
 ERROR: ConceptMap.where(url = 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaStringTypesToFHIR'): Conformance resource /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaSTEDONToStringConceptMap.json - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaSTEDONToStringConceptMap) does not match the URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaStringTypesToFHIR). Use the special-url parameter if you really mean for it not to match
 INFORMATION: ConceptMap.group[0].source: Pinned the version of http://hl7.org/cda/stds/core/StructureDefinition/ST to 2.0.0-sd

@@ -69,8 +69,8 @@ Le fichier principal de cette couche est CdaToFHIRTypes.fml. Cette couche regrou
 | Unit of Measure | Coded form of the unit |
 | Unit of Measure | Unit representation |
 | Unit of Measure | System that defines coded unit form |
-| RTO_PQ_PQ.numerator | Ratio.numerator |
-| RTO_PQ_PQ.denominator | Ratio.denominator |
+| Numerator | Numerator value |
+| Denominator | Denominator value |
 | ST.xmlText | string |
 | ED.xmlText | string |
 | ON.xmlText | string |
