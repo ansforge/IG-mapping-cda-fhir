@@ -55,18 +55,18 @@ Le fichier principal de cette couche est CdaToFHIRTypes.fml. Cette couche regrou
 | IVL_TS.low.value | Period.start |
 | IVL_TS.high.value | Period.end |
 | IVL_TS.low.value | dateTime |
-| EN.family | HumanName.family |
-| EN.given | HumanName.given |
-| EN.prefix | HumanName.prefix |
-| EN.suffix | HumanName.suffix |
-| EN.xmlText | HumanName.text |
-| EN.validTime | HumanName.period |
-| PN.family | HumanName.family |
-| PN.given | HumanName.given |
-| PN.prefix | HumanName.prefix |
-| PN.suffix | HumanName.suffix |
-| PN.xmlText | HumanName.text |
-| PN.validTime | HumanName.period |
+| Family | Family name (often called 'Surname') |
+| Given | Given names (not always 'first'). Includes middle names |
+| Prefix | Parts that come before the name |
+| Suffix | Parts that come after the name |
+| Allows for mixed text content | Text representation of the full name |
+| Valid Time | Time period when name was/is in use |
+| Family | Family name (often called 'Surname') |
+| Given | Given names (not always 'first'). Includes middle names |
+| Prefix | Parts that come before the name |
+| Suffix | Parts that come after the name |
+| Allows for mixed text content | Text representation of the full name |
+| Valid Time | Time period when name was/is in use |
 | PQ.value | Quantity.value |
 | PQ.unit | Quantity.code |
 | PQ.unit | Quantity.unit |
