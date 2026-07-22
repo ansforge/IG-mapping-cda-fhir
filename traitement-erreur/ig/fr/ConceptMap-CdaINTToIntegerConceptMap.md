@@ -13,13 +13,13 @@ Correspondances documentaires entre le datatype CDA INT et le datatype FHIR inte
 {
   "resourceType" : "ConceptMap",
   "id" : "CdaINTToIntegerConceptMap",
-  "url" : "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaINTToInteger",
+  "url" : "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaINTToIntegerConceptMap",
   "version" : "0.1.0",
   "name" : "CdaINTToInteger",
   "title" : "ConceptMap — CDA INT vers FHIR integer",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-07-22T13:03:41+00:00",
+  "date" : "2026-07-22T13:13:54+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -46,9 +46,9 @@ Correspondances documentaires entre le datatype CDA INT et le datatype FHIR inte
       "display" : "INT.value",
       "target" : [{
         "code" : "integer",
-        "display" : "integer",
+        "display" : "Primitive Type integer",
         "equivalence" : "equivalent",
-        "comment" : "INT.value alimente directement un integer FHIR."
+        "comment" : "INT.value alimente directement le datatype primitif FHIR integer."
       }]
     }]
   }]

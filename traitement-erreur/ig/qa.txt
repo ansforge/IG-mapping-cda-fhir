@@ -1,16 +1,16 @@
 CDA2FHIRMAP : Validation Results
 =========================================
 
-err = 912, warn = 337, info = 614
+err = 908, warn = 336, info = 614
 IG Publisher Version: 2.2.10 Out of date - current version is 2.2.11
-Generated Wed Jul 22 13:05:36 UTC 2026. FHIR version 4.0.1 for ans.fhir.fr.mappingcdafhir#0.1.0 (canonical = https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir)
+Generated Wed Jul 22 13:15:24 UTC 2026. FHIR version 4.0.1 for ans.fhir.fr.mappingcdafhir#0.1.0 (canonical = https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir)
  Build Errors : 1 / 4 / 0
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaADToAddressConceptMap : 0 / 8 / 8
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaBLToBooleanConceptMap : 0 / 1 / 4
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaCECSCDToCodeConceptMap : 0 / 0 / 18
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaENPNToHumanNameConceptMap : 0 / 8 / 6
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaIIToIdentifierConceptMap : 0 / 0 / 6
- /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaINTToIntegerConceptMap : 4 / 2 / 4
+ /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaINTToIntegerConceptMap : 0 / 1 / 4
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaIVL-TSToPeriodConceptMap : 7 / 3 / 6
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaPQToQuantityConceptMap : 4 / 6 / 4
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaRTO-PQ-PQToRatioConceptMap : 4 / 4 / 3
@@ -93,15 +93,10 @@ INFORMATION: ConceptMap.group[1].source: Pinned the version of http://hl7.org/cd
 INFORMATION: ConceptMap.group[1].target: Pinned the version of http://hl7.org/fhir/StructureDefinition/Reference to 4.0.1
 INFORMATION: Resource: The resource ConceptMap/CdaIIToIdentifierConceptMap could usefully have an OID assigned (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/fhir-tools-ig/CodeSystem-ig-parameters.html#ig-parameters-auto-oid-root)
 == fsh-generated/resources/ConceptMap-CdaINTToIntegerConceptMap.json ==
-ERROR: ConceptMap.where(url = 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaINTToInteger'): Conformance resource /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaINTToIntegerConceptMap.json - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaINTToIntegerConceptMap) does not match the URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaINTToInteger). Use the special-url parameter if you really mean for it not to match
 INFORMATION: ConceptMap.group[0].source: Pinned the version of http://hl7.org/cda/stds/core/StructureDefinition/INT to 2.0.0-sd
 INFORMATION: ConceptMap.group[0].target: Pinned the version of http://hl7.org/fhir/StructureDefinition/integer to 4.0.1
-ERROR: ConceptMap.url: Resource id/url mismatch: CdaINTToIntegerConceptMap/https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaINTToInteger
-ERROR: ConceptMap.where(url = 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaINTToInteger'): Conformance resource /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaINTToIntegerConceptMap.json - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaINTToIntegerConceptMap) does not match the URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaINTToInteger). Use the special-url parameter if you really mean for it not to match
 WARNING: ConceptMap/CdaINTToIntegerConceptMap: ConceptMap.group[0].element[0].code: The source display 'INT.value' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/INT|2.0.0-sd#INT.value' is not valid. Possible displays: 
-WARNING: ConceptMap/CdaINTToIntegerConceptMap: ConceptMap.group[0].element[0].target[0].code: The target display 'integer' for the code 'http://hl7.org/fhir/StructureDefinition/integer|4.0.1#integer' is not valid. Possible displays: 'Primitive Type integer'
 INFORMATION: Resource: The resource ConceptMap/CdaINTToIntegerConceptMap could usefully have an OID assigned (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/fhir-tools-ig/CodeSystem-ig-parameters.html#ig-parameters-auto-oid-root)
-ERROR: /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaINTToIntegerConceptMap: URL Mismatch https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaINTToIntegerConceptMap vs https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaINTToInteger
 == fsh-generated/resources/ConceptMap-CdaIVL-TSToPeriodConceptMap.json ==
 ERROR: ConceptMap.where(url = 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaIVL_TSToFHIR'): Conformance resource /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaIVL-TSToPeriodConceptMap.json - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaIVL-TSToPeriodConceptMap) does not match the URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaIVL_TSToFHIR). Use the special-url parameter if you really mean for it not to match
 INFORMATION: ConceptMap.group[0].source: Pinned the version of http://hl7.org/cda/stds/core/StructureDefinition/IVL-TS to 2.0.0-sd

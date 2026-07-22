@@ -52,7 +52,7 @@ Le fichier principal de cette couche est CdaToFHIRTypes.fml. Cette couche regrou
 | Assigning Authority Name | Organization that issued id (may be just text) |
 | Displayable | Additional content defined by implementations |
 | Assigning Authority Name | Text alternative for the resource |
-| INT.value | integer |
+| INT.value | Primitive Type integer |
 | IVL_TS.low.value | Period.start |
 | IVL_TS.high.value | Period.end |
 | IVL_TS.low.value | dateTime |
