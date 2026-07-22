@@ -1,7 +1,7 @@
 CDA2FHIRMAP : Validation Results
 =========================================
 
-err = 888, warn = 319, info = 615
+err = 884, warn = 313, info = 615
 $--
 Generated $--. FHIR version $-- for ans.fhir.fr.mappingcdafhir#$-- (canonical = https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir)
  Build Errors : 1 / 4 / 0
@@ -15,7 +15,7 @@ Generated $--. FHIR version $-- for ans.fhir.fr.mappingcdafhir#$-- (canonical = 
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaPQToQuantityConceptMap : 0 / 0 / 4
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaRTO-PQ-PQToRatioConceptMap : 0 / 0 / 4
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaSTEDONToStringConceptMap : 0 / 0 / 8
- /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaTELToContactPointConceptMap : 4 / 7 / 4
+ /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaTELToContactPointConceptMap : 0 / 1 / 4
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaTSToDateTimeConceptMap : 4 / 6 / 8
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ImplementationGuide-ans.fhir.fr.mappingcdafhir : 0 / 2 / 2
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/input/fml/CDAFrToBundle : 190 / 7 / 187
@@ -121,20 +121,10 @@ INFORMATION: ConceptMap.group[2].source: Pinned the version of http://hl7.org/cd
 INFORMATION: ConceptMap.group[2].target: Pinned the version of http://hl7.org/fhir/StructureDefinition/string to 4.0.1
 INFORMATION: Resource: The resource ConceptMap/CdaSTEDONToStringConceptMap could usefully have an OID assigned (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/fhir-tools-ig/CodeSystem-ig-parameters.html#ig-parameters-auto-oid-root)
 == fsh-generated/resources/ConceptMap-CdaTELToContactPointConceptMap.json ==
-ERROR: ConceptMap.where(url = 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaTELToFHIR'): Conformance resource /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaTELToContactPointConceptMap.json - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaTELToContactPointConceptMap) does not match the URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaTELToFHIR). Use the special-url parameter if you really mean for it not to match
 INFORMATION: ConceptMap.group[0].source: Pinned the version of http://hl7.org/cda/stds/core/StructureDefinition/TEL to 2.0.0-sd
 INFORMATION: ConceptMap.group[0].target: Pinned the version of http://hl7.org/fhir/StructureDefinition/ContactPoint to 4.0.1
-ERROR: ConceptMap.url: Resource id/url mismatch: CdaTELToContactPointConceptMap/https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaTELToFHIR
-ERROR: ConceptMap.where(url = 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaTELToFHIR'): Conformance resource /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaTELToContactPointConceptMap.json - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaTELToContactPointConceptMap) does not match the URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaTELToFHIR). Use the special-url parameter if you really mean for it not to match
 WARNING: ConceptMap/CdaTELToContactPointConceptMap: ConceptMap.group[0].element[0].code: The source display 'TEL.value' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/TEL|2.0.0-sd#TEL.value' is not valid. Possible displays: 
-WARNING: ConceptMap/CdaTELToContactPointConceptMap: ConceptMap.group[0].element[0].target[0].code: The target display 'ContactPoint.value' for the code 'http://hl7.org/fhir/StructureDefinition/ContactPoint|4.0.1#ContactPoint.value' is not valid. Possible displays: 'The actual contact point details'
-WARNING: ConceptMap/CdaTELToContactPointConceptMap: ConceptMap.group[0].element[0].target[1].code: The target display 'ContactPoint.system' for the code 'http://hl7.org/fhir/StructureDefinition/ContactPoint|4.0.1#ContactPoint.system' is not valid. Possible displays: 'phone | fax | email | pager | url | sms | other'
-WARNING: ConceptMap/CdaTELToContactPointConceptMap: ConceptMap.group[0].element[1].code: The source display 'TEL.use' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/TEL|2.0.0-sd#TEL.use' is not valid. Possible displays: 'Use Code'
-WARNING: ConceptMap/CdaTELToContactPointConceptMap: ConceptMap.group[0].element[1].target[0].code: The target display 'ContactPoint.use' for the code 'http://hl7.org/fhir/StructureDefinition/ContactPoint|4.0.1#ContactPoint.use' is not valid. Possible displays: 'home | work | temp | old | mobile - purpose of this contact point'
-WARNING: ConceptMap/CdaTELToContactPointConceptMap: ConceptMap.group[0].element[2].code: The source display 'TEL.useablePeriod' for the code 'http://hl7.org/cda/stds/core/StructureDefinition/TEL|2.0.0-sd#TEL.useablePeriod' is not valid. Possible displays: 'Useable Period'
-WARNING: ConceptMap/CdaTELToContactPointConceptMap: ConceptMap.group[0].element[2].target[0].code: The target display 'ContactPoint.period' for the code 'http://hl7.org/fhir/StructureDefinition/ContactPoint|4.0.1#ContactPoint.period' is not valid. Possible displays: 'Time period when the contact point was/is in use'
 INFORMATION: Resource: The resource ConceptMap/CdaTELToContactPointConceptMap could usefully have an OID assigned (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/fhir-tools-ig/CodeSystem-ig-parameters.html#ig-parameters-auto-oid-root)
-ERROR: /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaTELToContactPointConceptMap: URL Mismatch https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaTELToContactPointConceptMap vs https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaTELToFHIR
 == fsh-generated/resources/ConceptMap-CdaTSToDateTimeConceptMap.json ==
 ERROR: ConceptMap.where(url = 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaTSToFHIR'): Conformance resource /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaTSToDateTimeConceptMap.json - the canonical URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaTSToDateTimeConceptMap) does not match the URL (https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaTSToFHIR). Use the special-url parameter if you really mean for it not to match
 INFORMATION: ConceptMap.group[0].source: Pinned the version of http://hl7.org/cda/stds/core/StructureDefinition/TS to 2.0.0-sd

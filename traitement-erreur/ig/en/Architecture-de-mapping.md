@@ -77,10 +77,10 @@ Le fichier principal de cette couche est CdaToFHIRTypes.fml. Cette couche regrou
 | Allows for mixed text content | Primitive Type string |
 | Allows for mixed text content. If @representation='B64', this SHALL be a base64binary string. | Primitive Type string |
 | Allows for mixed text content | Primitive Type string |
-| TEL.value | ContactPoint.value |
-| TEL.value | ContactPoint.system |
-| TEL.use | ContactPoint.use |
-| TEL.useablePeriod | ContactPoint.period |
+| TEL.value | The actual contact point details |
+| TEL.value | phone | fax | email | pager | url | sms | other |
+| Use Code | home | work | temp | old | mobile - purpose of this contact point |
+| Useable Period | Time period when the contact point was/is in use |
 | TS.value | instant |
 | TS.value | dateTime |
 | TS.value | date |
