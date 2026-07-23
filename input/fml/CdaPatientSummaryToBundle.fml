@@ -240,7 +240,9 @@ group PatientSummaryConditionSection(source section, target compSection, target 
 group PatientSummaryConditionFromProblemObservation(source observation, target condition, target compSection, target patient, target bundle) {
 
   // Patient concerné.
-  observation -> condition.subject = create('Reference') as subjectRef, subjectRef.reference = ('urn:uuid:' + %patient.id) "subject";
+  observation -> condition.subject = create('Reference') as subjectRef then {
+    observation -> subjectRef.reference = ('urn:uuid:' + %patient.id) "reference";
+  } "subject";
 
   // Identifiant du problème.
   observation.id as problemId -> condition.identifier = create('Identifier') as identifier then II(problemId, identifier) "identifier";
@@ -335,7 +337,9 @@ group PatientSummaryConditionFromProblemObservation(source observation, target c
   observation.reference as cdaReference then {
     cdaReference.externalDocument as externalDocument -> bundle.entry as documentReferenceEntry, documentReferenceEntry.resource = create('DocumentReference') as documentReference, documentReference.id = uuid(), documentReferenceEntry.fullUrl = ('urn:uuid:' + %documentReference.id) then {
       externalDocument -> documentReference.status = 'current' "documentReferenceStatus";
-      externalDocument -> documentReference.subject = create('Reference') as subjectRef, subjectRef.reference = ('urn:uuid:' + %patient.id) "documentReferenceSubject";
+      externalDocument -> documentReference.subject = create('Reference') as subjectRef then {
+        externalDocument -> subjectRef.reference = ('urn:uuid:' + %patient.id) "reference";
+      } "documentReferenceSubject";
       externalDocument.id as externalId -> documentReference.identifier = create('Identifier') as identifier then II(externalId, identifier) "documentReferenceIdentifier";
 
       externalDocument.text as externalText then {
@@ -349,13 +353,17 @@ group PatientSummaryConditionFromProblemObservation(source observation, target c
       } "externalText";
 
       externalDocument -> condition.evidence as evidence then {
-        externalDocument -> evidence.detail = create('Reference') as detailRef, detailRef.reference = ('urn:uuid:' + %documentReference.id) "evidenceDetail";
+        externalDocument -> evidence.detail = create('Reference') as detailRef then {
+          externalDocument -> detailRef.reference = ('urn:uuid:' + %documentReference.id) "reference";
+        } "evidenceDetail";
       } "evidence";
     } "externalDocumentReference";
   } "externalReference";
 
   // Référence de la Condition dans la Composition.section.
-  observation -> compSection.entry = create('Reference') as sectionRef, sectionRef.reference = ('urn:uuid:' + %condition.id) "sectionEntry";
+  observation -> compSection.entry = create('Reference') as sectionRef then {
+    observation -> sectionRef.reference = ('urn:uuid:' + %condition.id) "reference";
+  } "sectionEntry";
 }
 
 
@@ -402,7 +410,9 @@ group AllergyFromCdaObservation(source observation, target allergy, target compS
 
   // Identifiant et patient.
   observation.id as allergyId -> allergy.identifier = create('Identifier') as identifier then II(allergyId, identifier) "identifier";
-  observation -> allergy.patient = create('Reference') as patientRef, patientRef.reference = ('urn:uuid:' + %patient.id) "patient";
+  observation -> allergy.patient = create('Reference') as patientRef then {
+    observation -> patientRef.reference = ('urn:uuid:' + %patient.id) "reference";
+  } "patient";
 
   // Agent responsable.
   observation.participant as participant then {
@@ -632,7 +642,9 @@ group AllergyFromCdaObservation(source observation, target allergy, target compS
   } "entryRelationships";
 
   // Référence dans la section FHIR.
-  observation -> compSection.entry = create('Reference') as sectionRef, sectionRef.reference = ('urn:uuid:' + %allergy.id) "sectionEntry";
+  observation -> compSection.entry = create('Reference') as sectionRef then {
+    observation -> sectionRef.reference = ('urn:uuid:' + %allergy.id) "reference";
+  } "sectionEntry";
 }
 
 
@@ -678,7 +690,9 @@ group PatientSummaryProcedureFromProcedure(source procedure, target fhirProcedur
 
   // Identifiant, patient et code de l’acte.
   procedure.id as procedureId -> fhirProcedure.identifier = create('Identifier') as identifier then II(procedureId, identifier) "identifier";
-  procedure -> fhirProcedure.subject = create('Reference') as subjectRef, subjectRef.reference = ('urn:uuid:' + %patient.id) "subject";
+  procedure -> fhirProcedure.subject = create('Reference') as subjectRef then {
+    procedure -> subjectRef.reference = ('urn:uuid:' + %patient.id) "reference";
+  } "subject";
   procedure.code as procedureCode -> fhirProcedure.code = create('CodeableConcept') as code then CDCodeableConcept(procedureCode, code) "code";
 
   // Date ou période de réalisation.
@@ -738,7 +752,9 @@ group PatientSummaryProcedureFromProcedure(source procedure, target fhirProcedur
 
           linkedObservation -> observation.status = 'final' "observationStatus";
           linkedObservation.id as id -> observation.identifier = create('Identifier') as identifier then II(id, identifier) "observationIdentifier";
-          linkedObservation -> observation.subject = create('Reference') as subjectRef, subjectRef.reference = ('urn:uuid:' + %patient.id) "observationSubject";
+          linkedObservation -> observation.subject = create('Reference') as subjectRef then {
+            linkedObservation -> subjectRef.reference = ('urn:uuid:' + %patient.id) "reference";
+          } "observationSubject";
 
           linkedObservation -> observation.category = create('CodeableConcept') as category then {
             linkedObservation -> category.coding = create('Coding') as coding then {
@@ -759,7 +775,9 @@ group PatientSummaryProcedureFromProcedure(source procedure, target fhirProcedur
           } "effectiveTimeAbsentReason";
 
           linkedObservation.value as value -> observation.value = create('CodeableConcept') as cc then CDCodeableConcept(value, cc) "observationValue";
-          linkedObservation -> fhirProcedure.partOf = create('Reference') as partOfRef, partOfRef.reference = ('urn:uuid:' + %observation.id) "partOf";
+          linkedObservation -> fhirProcedure.partOf = create('Reference') as partOfRef then {
+            linkedObservation -> partOfRef.reference = ('urn:uuid:' + %observation.id) "reference";
+          } "partOf";
 
         } "linkedObservationResource";
       } "linkedObservationTemplate";
@@ -768,7 +786,9 @@ group PatientSummaryProcedureFromProcedure(source procedure, target fhirProcedur
   } "entryRelationship";
 
   // Référence dans la section FHIR.
-  procedure -> compSection.entry = create('Reference') as sectionRef, sectionRef.reference = ('urn:uuid:' + %fhirProcedure.id) "sectionEntry";
+  procedure -> compSection.entry = create('Reference') as sectionRef then {
+    procedure -> sectionRef.reference = ('urn:uuid:' + %fhirProcedure.id) "reference";
+  } "sectionEntry";
 }
 
 
@@ -784,10 +804,14 @@ group ProcedureRecorderFromAssignedAuthor(source assignedAuthor, target fhirProc
       representedOrganization then MapCDAOrganizationToFrenchOrganization(representedOrganization, organization) "organizationFR";
       assignedAuthor then MapCDAAssignedEntityToPractitionerRole(assignedAuthor, practitionerRole, practitioner, organization) "roleBase";
       assignedAuthor then MapCDAAssignedEntityToFrenchPractitionerRole(assignedAuthor, practitionerRole, practitioner, organization) "roleFR";
-      assignedAuthor -> fhirProcedure.recorder = create('Reference') as recorderRef, recorderRef.reference = ('urn:uuid:' + %practitionerRole.id) "recorderRole";
+      assignedAuthor -> fhirProcedure.recorder = create('Reference') as recorderRef then {
+        assignedAuthor -> recorderRef.reference = ('urn:uuid:' + %practitionerRole.id) "reference";
+      } "recorderRole";
     } "withOrganization";
 
-    assignedAuthor where assignedAuthor.representedOrganization.empty() -> fhirProcedure.recorder = create('Reference') as recorderRef, recorderRef.reference = ('urn:uuid:' + %practitioner.id) "recorderPractitionerOnly";
+    assignedAuthor where assignedAuthor.representedOrganization.empty() -> fhirProcedure.recorder = create('Reference') as recorderRef then {
+      assignedAuthor where assignedAuthor.representedOrganization.empty() -> recorderRef.reference = ('urn:uuid:' + %practitioner.id) "reference";
+    } "recorderPractitionerOnly";
   } "recorder";
 }
 
@@ -804,10 +828,14 @@ group ProcedurePerformerFromAssignedEntity(source assignedEntity, target fhirPro
       representedOrganization then MapCDAOrganizationToFrenchOrganization(representedOrganization, organization) "organizationFR";
       assignedEntity then MapCDAAssignedEntityToPractitionerRole(assignedEntity, practitionerRole, practitioner, organization) "roleBase";
       assignedEntity then MapCDAAssignedEntityToFrenchPractitionerRole(assignedEntity, practitionerRole, practitioner, organization) "roleFR";
-      assignedEntity -> fhirProcedure.performer as performer, performer.actor = create('Reference') as actorRef, actorRef.reference = ('urn:uuid:' + %practitionerRole.id) "performerRole";
+      assignedEntity -> fhirProcedure.performer as performer, performer.actor = create('Reference') as actorRef then {
+        assignedEntity -> actorRef.reference = ('urn:uuid:' + %practitionerRole.id) "reference";
+      } "performerRole";
     } "withOrganization";
 
-    assignedEntity where assignedEntity.representedOrganization.empty() -> fhirProcedure.performer as performer, performer.actor = create('Reference') as actorRef, actorRef.reference = ('urn:uuid:' + %practitioner.id) "performerPractitionerOnly";
+    assignedEntity where assignedEntity.representedOrganization.empty() -> fhirProcedure.performer as performer, performer.actor = create('Reference') as actorRef then {
+      assignedEntity where assignedEntity.representedOrganization.empty() -> actorRef.reference = ('urn:uuid:' + %practitioner.id) "reference";
+    } "performerPractitionerOnly";
   } "performer";
 }
 
@@ -847,7 +875,9 @@ group PatientSummaryMedicationStatementFromSubstanceAdministration(source substa
   substanceAdministration -> medicationStatement.status = 'unknown' "statusDefault";
   substanceAdministration.statusCode as statusCode then MedicationStatementStatusFromCdaStatus(statusCode, medicationStatement) "status";
   substanceAdministration.id as id -> medicationStatement.identifier = create('Identifier') as identifier then II(id, identifier) "identifier";
-  substanceAdministration -> medicationStatement.subject = create('Reference') as subjectRef, subjectRef.reference = ('urn:uuid:' + %patient.id) "subject";
+  substanceAdministration -> medicationStatement.subject = create('Reference') as subjectRef then {
+    substanceAdministration -> subjectRef.reference = ('urn:uuid:' + %patient.id) "reference";
+  } "subject";
   substanceAdministration.code as treatmentCode -> medicationStatement.category = create('CodeableConcept') as category then CDCodeableConcept(treatmentCode, category) "category";
 
   // Médicament, période et posologie.
@@ -864,7 +894,9 @@ group PatientSummaryMedicationStatementFromSubstanceAdministration(source substa
   } "childTreatment";
 
   // Référence dans la section FHIR.
-  substanceAdministration -> compSection.entry = create('Reference') as sectionRef, sectionRef.reference = ('urn:uuid:' + %medicationStatement.id) "sectionEntry";
+  substanceAdministration -> compSection.entry = create('Reference') as sectionRef then {
+    substanceAdministration -> sectionRef.reference = ('urn:uuid:' + %medicationStatement.id) "reference";
+  } "sectionEntry";
 }
 
 
@@ -883,7 +915,9 @@ group MedicationResourceFromConsumable(source consumable, target medicationState
   consumable.manufacturedProduct as manufacturedProduct then {
     manufacturedProduct.manufacturedMaterial as manufacturedMaterial -> bundle.entry as medicationEntry, medicationEntry.resource = create('Medication') as medication, medication.id = uuid(), medicationEntry.fullUrl = ('urn:uuid:' + %medication.id) then {
       manufacturedMaterial then MedicationFromManufacturedMaterial(manufacturedMaterial, medication) "medicationContent";
-      manufacturedMaterial -> medicationStatement.medication = create('Reference') as medicationRef, medicationRef.reference = ('urn:uuid:' + %medication.id) "medicationReference";
+      manufacturedMaterial -> medicationStatement.medication = create('Reference') as medicationRef then {
+        manufacturedMaterial -> medicationRef.reference = ('urn:uuid:' + %medication.id) "reference";
+      } "medicationReference";
     } "medication";
   } "manufacturedProduct";
 }
@@ -1153,7 +1187,9 @@ group PatientSummaryAdverseEventFromObservation(source adverseObservation, targe
   adverseObservation -> adverseEvent.actuality = 'actual' "actualityDefault";
   adverseObservation.moodCode as mood where mood = 'INT' -> adverseEvent.actuality = 'potential' "actualityPotential";
   adverseObservation.id as id -> adverseEvent.identifier = create('Identifier') as identifier then II(id, identifier) "identifier";
-  adverseObservation -> adverseEvent.subject = create('Reference') as subjectRef, subjectRef.reference = ('urn:uuid:' + %patient.id) "subject";
+  adverseObservation -> adverseEvent.subject = create('Reference') as subjectRef then {
+    adverseObservation -> subjectRef.reference = ('urn:uuid:' + %patient.id) "reference";
+  } "subject";
 
   // Catégorie de l’effet indésirable.
   adverseObservation.code as code -> adverseEvent.category = create('CodeableConcept') as category then {
@@ -1219,7 +1255,9 @@ group PatientSummaryAdverseEventFromObservation(source adverseObservation, targe
   } "entryRelationship";
 
   // Référence dans la section FHIR.
-  adverseObservation -> compSection.entry = create('Reference') as sectionRef, sectionRef.reference = ('urn:uuid:' + %adverseEvent.id) "sectionEntry";
+  adverseObservation -> compSection.entry = create('Reference') as sectionRef then {
+    adverseObservation -> sectionRef.reference = ('urn:uuid:' + %adverseEvent.id) "reference";
+  } "sectionEntry";
 }
 
 
@@ -1232,7 +1270,9 @@ group AdverseEventSuspectMedicationFromTreatment(source treatment, source advers
     treatment -> medicationStatement.status = 'unknown' "statusDefault";
     treatment.statusCode as statusCode then MedicationStatementStatusFromCdaStatus(statusCode, medicationStatement) "status";
     treatment.id as id -> medicationStatement.identifier = create('Identifier') as identifier then II(id, identifier) "identifier";
-    treatment -> medicationStatement.subject = create('Reference') as subjectRef, subjectRef.reference = ('urn:uuid:' + %patient.id) "subject";
+    treatment -> medicationStatement.subject = create('Reference') as subjectRef then {
+      treatment -> subjectRef.reference = ('urn:uuid:' + %patient.id) "reference";
+    } "subject";
     treatment.code as treatmentCode -> medicationStatement.category = create('CodeableConcept') as category then CDCodeableConcept(treatmentCode, category) "category";
     treatment.consumable as consumable then MedicationResourceFromConsumable(consumable, medicationStatement, bundle) "medication";
     treatment.effectiveTime as effectiveTime then MedicationStatementEffectiveFromEffectiveTime(effectiveTime, medicationStatement) "effective";
@@ -1265,7 +1305,9 @@ group AdverseEventResultingConditionFromReaction(source reactionObservation, tar
 
     // Condition liée à la réaction.
     reactionObservation.id as id -> condition.identifier = create('Identifier') as identifier then II(id, identifier) "identifier";
-    reactionObservation -> condition.subject = create('Reference') as subjectRef, subjectRef.reference = ('urn:uuid:' + %patient.id) "subject";
+    reactionObservation -> condition.subject = create('Reference') as subjectRef then {
+      reactionObservation -> subjectRef.reference = ('urn:uuid:' + %patient.id) "reference";
+    } "subject";
     reactionObservation.code as code -> condition.category = create('CodeableConcept') as category then CDCodeableConcept(code, category) "category";
     reactionObservation.value as value -> condition.code = create('CodeableConcept') as conditionCode then CDCodeableConcept(value, conditionCode) "code";
 
@@ -1277,7 +1319,9 @@ group AdverseEventResultingConditionFromReaction(source reactionObservation, tar
     } "effectiveTime";
 
     // Lien avec AdverseEvent.resultingCondition.
-    reactionObservation -> adverseEvent.resultingCondition = create('Reference') as conditionRef, conditionRef.reference = ('urn:uuid:' + %condition.id) "resultingCondition";
+    reactionObservation -> adverseEvent.resultingCondition = create('Reference') as conditionRef then {
+      reactionObservation -> conditionRef.reference = ('urn:uuid:' + %condition.id) "reference";
+    } "resultingCondition";
 
   } "reactionCondition";
 }
@@ -1326,7 +1370,9 @@ group PatientSummaryImmunizationFromSubstanceAdministration(source substanceAdmi
   } "status";
 
   substanceAdministration.id as id -> immunization.identifier = create('Identifier') as identifier then II(id, identifier) "identifier";
-  substanceAdministration -> immunization.patient = create('Reference') as patientRef, patientRef.reference = ('urn:uuid:' + %patient.id) "patient";
+  substanceAdministration -> immunization.patient = create('Reference') as patientRef then {
+    substanceAdministration -> patientRef.reference = ('urn:uuid:' + %patient.id) "reference";
+  } "patient";
   substanceAdministration.effectiveTime as effectiveTime -> immunization.occurrence = create('dateTime') as occurrenceDateTime then TSDateTime(effectiveTime, occurrenceDateTime) "occurrenceDateTime";
 
   // Vaccin et numéro de lot.
@@ -1423,7 +1469,9 @@ group PatientSummaryImmunizationFromSubstanceAdministration(source substanceAdmi
   } "entryRelationship";
 
   // Référence dans la section FHIR.
-  substanceAdministration -> compSection.entry = create('Reference') as sectionRef, sectionRef.reference = ('urn:uuid:' + %immunization.id) "sectionEntry";
+  substanceAdministration -> compSection.entry = create('Reference') as sectionRef then {
+    substanceAdministration -> sectionRef.reference = ('urn:uuid:' + %immunization.id) "reference";
+  } "sectionEntry";
 }
 
 
@@ -1439,10 +1487,14 @@ group ImmunizationPerformerFromAssignedEntity(source assignedEntity, target immu
       representedOrganization then MapCDAOrganizationToFrenchOrganization(representedOrganization, organization) "organizationFR";
       assignedEntity then MapCDAAssignedEntityToPractitionerRole(assignedEntity, practitionerRole, practitioner, organization) "roleBase";
       assignedEntity then MapCDAAssignedEntityToFrenchPractitionerRole(assignedEntity, practitionerRole, practitioner, organization) "roleFR";
-      assignedEntity -> immunization.performer as performer, performer.actor = create('Reference') as actorRef, actorRef.reference = ('urn:uuid:' + %practitionerRole.id) "performerRole";
+      assignedEntity -> immunization.performer as performer, performer.actor = create('Reference') as actorRef then {
+        assignedEntity -> actorRef.reference = ('urn:uuid:' + %practitionerRole.id) "reference";
+      } "performerRole";
     } "withOrganization";
 
-    assignedEntity where assignedEntity.representedOrganization.empty() -> immunization.performer as performer, performer.actor = create('Reference') as actorRef, actorRef.reference = ('urn:uuid:' + %practitioner.id) "performerPractitionerOnly";
+    assignedEntity where assignedEntity.representedOrganization.empty() -> immunization.performer as performer, performer.actor = create('Reference') as actorRef then {
+      assignedEntity where assignedEntity.representedOrganization.empty() -> actorRef.reference = ('urn:uuid:' + %practitioner.id) "reference";
+    } "performerPractitionerOnly";
   } "performer";
 }
 
@@ -1455,7 +1507,9 @@ group ImmunizationReactionFromObservation(source reactionObservation, target imm
     // Observation de réaction.
     reactionObservation -> reaction.status = 'final' "status";
     reactionObservation.id as id -> reaction.identifier = create('Identifier') as identifier then II(id, identifier) "identifier";
-    reactionObservation -> reaction.subject = create('Reference') as subjectRef, subjectRef.reference = ('urn:uuid:' + %patient.id) "subject";
+    reactionObservation -> reaction.subject = create('Reference') as subjectRef then {
+      reactionObservation -> subjectRef.reference = ('urn:uuid:' + %patient.id) "reference";
+    } "subject";
 
     reactionObservation -> reaction.category = create('CodeableConcept') as category then {
       reactionObservation -> category.coding = create('Coding') as coding then {
@@ -1503,7 +1557,9 @@ group ImmunizationReactionFromObservation(source reactionObservation, target imm
         effectiveTime.low as low -> immunizationReaction.date = create('dateTime') as reactionDate then TSDateTime(low, reactionDate) "reactionDate";
       } "reactionDateBlock";
 
-      reactionObservation -> immunizationReaction.detail = create('Reference') as detailRef, detailRef.reference = ('urn:uuid:' + %reaction.id) "reactionDetail";
+      reactionObservation -> immunizationReaction.detail = create('Reference') as detailRef then {
+        reactionObservation -> detailRef.reference = ('urn:uuid:' + %reaction.id) "reference";
+      } "reactionDetail";
     } "immunizationReaction";
   } "reaction";
 }
@@ -1534,7 +1590,9 @@ group PatientSummaryObservationBase(source observation, target fhirObservation :
   observation -> fhirObservation.status = 'final' "statusDefault";
   observation.statusCode as statusCode then ObservationStatusFromCdaStatus(statusCode, fhirObservation) "status";
   observation.id as id -> fhirObservation.identifier = create('Identifier') as identifier then II(id, identifier) "identifier";
-  observation -> fhirObservation.subject = create('Reference') as subjectRef, subjectRef.reference = ('urn:uuid:' + %patient.id) "subject";
+  observation -> fhirObservation.subject = create('Reference') as subjectRef then {
+    observation -> subjectRef.reference = ('urn:uuid:' + %patient.id) "reference";
+  } "subject";
 
   observation -> fhirObservation.category = create('CodeableConcept') as category then {
     observation -> category.extension = create('Extension') as absentReason then {
@@ -1665,7 +1723,9 @@ group PatientSummaryObservationPanelBase(source organizer, target panel, target 
   organizer -> panel.status = 'final' "statusDefault";
   organizer.statusCode as statusCode then ObservationStatusFromCdaStatus(statusCode, panel) "status";
   organizer.id as id -> panel.identifier = create('Identifier') as identifier then II(id, identifier) "identifier";
-  organizer -> panel.subject = create('Reference') as subjectRef, subjectRef.reference = ('urn:uuid:' + %patient.id) "subject";
+  organizer -> panel.subject = create('Reference') as subjectRef then {
+    organizer -> subjectRef.reference = ('urn:uuid:' + %patient.id) "reference";
+  } "subject";
 
   organizer -> panel.category = create('CodeableConcept') as category then {
     organizer -> category.coding = create('Coding') as coding then {
@@ -1688,12 +1748,16 @@ group PatientSummaryObservationPanelBase(source organizer, target panel, target 
 
 
 group ObservationPanelHasMember(source src, target panel, target member) {
-  src -> panel.hasMember = create('Reference') as memberRef, memberRef.reference = ('urn:uuid:' + %member.id) "hasMember";
+  src -> panel.hasMember = create('Reference') as memberRef then {
+    src -> memberRef.reference = ('urn:uuid:' + %member.id) "reference";
+  } "hasMember";
 }
 
 
 group ObservationAddToSection(source src, target fhirObservation, target compSection) {
-  src -> compSection.entry = create('Reference') as sectionRef, sectionRef.reference = ('urn:uuid:' + %fhirObservation.id) "sectionEntry";
+  src -> compSection.entry = create('Reference') as sectionRef then {
+    src -> sectionRef.reference = ('urn:uuid:' + %fhirObservation.id) "reference";
+  } "sectionEntry";
 }
 
 
@@ -1735,7 +1799,9 @@ group PatientSummaryVitalSignObservationFromObservation(source observation, targ
   observation -> fhirObservation.status = 'final' "statusDefault";
   observation.statusCode as statusCode then ObservationStatusFromCdaStatus(statusCode, fhirObservation) "status";
   observation.id as id -> fhirObservation.identifier = create('Identifier') as identifier then II(id, identifier) "identifier";
-  observation -> fhirObservation.subject = create('Reference') as subjectRef, subjectRef.reference = ('urn:uuid:' + %patient.id) "subject";
+  observation -> fhirObservation.subject = create('Reference') as subjectRef then {
+    observation -> subjectRef.reference = ('urn:uuid:' + %patient.id) "reference";
+  } "subject";
 
   observation -> fhirObservation.category = create('CodeableConcept') as category then {
     observation -> category.coding = create('Coding') as coding then {
@@ -1808,7 +1874,9 @@ group PatientSummaryLifestyleObservationFromObservation(source observation, targ
   observation -> fhirObservation.status = 'final' "statusDefault";
   observation.statusCode as statusCode then ObservationStatusFromCdaStatus(statusCode, fhirObservation) "status";
   observation.id as id -> fhirObservation.identifier = create('Identifier') as identifier then II(id, identifier) "identifier";
-  observation -> fhirObservation.subject = create('Reference') as subjectRef, subjectRef.reference = ('urn:uuid:' + %patient.id) "subject";
+  observation -> fhirObservation.subject = create('Reference') as subjectRef then {
+    observation -> subjectRef.reference = ('urn:uuid:' + %patient.id) "reference";
+  } "subject";
 
   observation -> fhirObservation.category = create('CodeableConcept') as category then {
     observation -> category.coding = create('Coding') as coding then {
@@ -1911,7 +1979,9 @@ group FunctionalStatusPanelBase(source organizer, target panel, target patient) 
   organizer -> panel.status = 'final' "statusDefault";
   organizer.statusCode as statusCode then ObservationStatusFromCdaStatus(statusCode, panel) "status";
   organizer.id as id -> panel.identifier = create('Identifier') as identifier then II(id, identifier) "identifier";
-  organizer -> panel.subject = create('Reference') as subjectRef, subjectRef.reference = ('urn:uuid:' + %patient.id) "subject";
+  organizer -> panel.subject = create('Reference') as subjectRef then {
+    organizer -> subjectRef.reference = ('urn:uuid:' + %patient.id) "reference";
+  } "subject";
 
   organizer -> panel.category = create('CodeableConcept') as category then {
     organizer -> category.coding = create('Coding') as coding then {
@@ -1937,7 +2007,9 @@ group FunctionalStatusEvaluationFromObservation(source observation, target fhirO
   observation -> fhirObservation.status = 'final' "statusDefault";
   observation.statusCode as statusCode then ObservationStatusFromCdaStatus(statusCode, fhirObservation) "status";
   observation.id as id -> fhirObservation.identifier = create('Identifier') as identifier then II(id, identifier) "identifier";
-  observation -> fhirObservation.subject = create('Reference') as subjectRef, subjectRef.reference = ('urn:uuid:' + %patient.id) "subject";
+  observation -> fhirObservation.subject = create('Reference') as subjectRef then {
+    observation -> subjectRef.reference = ('urn:uuid:' + %patient.id) "reference";
+  } "subject";
 
   observation -> fhirObservation.category = create('CodeableConcept') as category then {
     observation -> category.coding = create('Coding') as coding then {
@@ -2055,14 +2127,18 @@ group PatientSummaryDiagnosticReportFromOrganizer(source organizer, target diagn
   organizer -> diagnosticReport.status = 'final' "statusDefault";
   organizer.statusCode as statusCode then DiagnosticReportStatusFromCdaStatus(statusCode, diagnosticReport) "status";
   organizer.id as id -> diagnosticReport.identifier = create('Identifier') as identifier then II(id, identifier) "identifier";
-  organizer -> diagnosticReport.subject = create('Reference') as subjectRef, subjectRef.reference = ('urn:uuid:' + %patient.id) "subject";
+  organizer -> diagnosticReport.subject = create('Reference') as subjectRef then {
+    organizer -> subjectRef.reference = ('urn:uuid:' + %patient.id) "reference";
+  } "subject";
   organizer.code as code -> diagnosticReport.code = create('CodeableConcept') as reportCode then CDCodeableConcept(code, reportCode) "code";
   organizer.effectiveTime as effectiveTime then DiagnosticReportEffectiveFromEffectiveTime(effectiveTime, diagnosticReport) "effectiveTime";
 
   organizer.component as component then {
     component.observation as observation -> bundle.entry as observationEntry, observationEntry.resource = create('Observation') as resultObservation, resultObservation.id = uuid(), observationEntry.fullUrl = ('urn:uuid:' + %resultObservation.id) then {
       observation then PatientSummaryResultObservationFromObservation(observation, resultObservation, patient) "resultObservation";
-      observation -> diagnosticReport.result = create('Reference') as resultRef, resultRef.reference = ('urn:uuid:' + %resultObservation.id) "resultReference";
+      observation -> diagnosticReport.result = create('Reference') as resultRef then {
+        observation -> resultRef.reference = ('urn:uuid:' + %resultObservation.id) "reference";
+      } "resultReference";
     } "componentObservation";
   } "component";
 
@@ -2074,13 +2150,17 @@ group PatientSummaryDiagnosticReportFromSingleObservation(source observation, ta
   observation -> diagnosticReport.status = 'final' "statusDefault";
   observation.statusCode as statusCode then DiagnosticReportStatusFromCdaStatus(statusCode, diagnosticReport) "status";
   observation.id as id -> diagnosticReport.identifier = create('Identifier') as identifier then II(id, identifier) "identifier";
-  observation -> diagnosticReport.subject = create('Reference') as subjectRef, subjectRef.reference = ('urn:uuid:' + %patient.id) "subject";
+  observation -> diagnosticReport.subject = create('Reference') as subjectRef then {
+    observation -> subjectRef.reference = ('urn:uuid:' + %patient.id) "reference";
+  } "subject";
   observation.code as code -> diagnosticReport.code = create('CodeableConcept') as reportCode then CDCodeableConcept(code, reportCode) "code";
   observation.effectiveTime as effectiveTime then DiagnosticReportEffectiveFromEffectiveTime(effectiveTime, diagnosticReport) "effectiveTime";
 
   observation -> bundle.entry as observationEntry, observationEntry.resource = create('Observation') as resultObservation, resultObservation.id = uuid(), observationEntry.fullUrl = ('urn:uuid:' + %resultObservation.id) then {
     observation then PatientSummaryResultObservationFromObservation(observation, resultObservation, patient) "resultObservation";
-    observation -> diagnosticReport.result = create('Reference') as resultRef, resultRef.reference = ('urn:uuid:' + %resultObservation.id) "resultReference";
+    observation -> diagnosticReport.result = create('Reference') as resultRef then {
+      observation -> resultRef.reference = ('urn:uuid:' + %resultObservation.id) "reference";
+    } "resultReference";
   } "resultObservationEntry";
 
   observation then DiagnosticReportAddToSection(observation, diagnosticReport, compSection) "sectionEntry";
@@ -2107,7 +2187,9 @@ group DiagnosticReportEffectiveFromEffectiveTime(source effectiveTime, target di
 
 
 group DiagnosticReportAddToSection(source src, target diagnosticReport, target compSection) {
-  src -> compSection.entry = create('Reference') as sectionRef, sectionRef.reference = ('urn:uuid:' + %diagnosticReport.id) "sectionEntry";
+  src -> compSection.entry = create('Reference') as sectionRef then {
+    src -> sectionRef.reference = ('urn:uuid:' + %diagnosticReport.id) "reference";
+  } "sectionEntry";
 }
 
 
@@ -2116,7 +2198,9 @@ group PatientSummaryResultObservationFromObservation(source observation, target 
   observation -> resultObservation.status = 'final' "statusDefault";
   observation.statusCode as statusCode then ObservationStatusFromCdaStatus(statusCode, resultObservation) "status";
   observation.id as id -> resultObservation.identifier = create('Identifier') as identifier then II(id, identifier) "identifier";
-  observation -> resultObservation.subject = create('Reference') as subjectRef, subjectRef.reference = ('urn:uuid:' + %patient.id) "subject";
+  observation -> resultObservation.subject = create('Reference') as subjectRef then {
+    observation -> subjectRef.reference = ('urn:uuid:' + %patient.id) "reference";
+  } "subject";
 
   observation -> resultObservation.category = create('CodeableConcept') as category then {
     observation -> category.coding = create('Coding') as coding then {
@@ -2244,7 +2328,9 @@ group PatientSummaryProfessionalRiskObservationFromObservation(source observatio
   observation -> fhirObservation.status = 'final' "statusDefault";
   observation.statusCode as statusCode then ObservationStatusFromCdaStatus(statusCode, fhirObservation) "status";
   observation.id as id -> fhirObservation.identifier = create('Identifier') as identifier then II(id, identifier) "identifier";
-  observation -> fhirObservation.subject = create('Reference') as subjectRef, subjectRef.reference = ('urn:uuid:' + %patient.id) "subject";
+  observation -> fhirObservation.subject = create('Reference') as subjectRef then {
+    observation -> subjectRef.reference = ('urn:uuid:' + %patient.id) "reference";
+  } "subject";
 
   observation -> fhirObservation.category = create('CodeableConcept') as category then {
     observation -> category.coding = create('Coding') as coding then {
@@ -2343,7 +2429,9 @@ group PSPlanCarePlan(source section, target carePlan, target compSection, target
   section -> carePlan.intent = 'plan' "intent";
 
   // Patient.
-  section -> carePlan.subject = create('Reference') as subjectRef, subjectRef.reference = ('urn:uuid:' + %patient.id) "subject";
+  section -> carePlan.subject = create('Reference') as subjectRef then {
+    section -> subjectRef.reference = ('urn:uuid:' + %patient.id) "reference";
+  } "subject";
 
   // Identifiant.
   section.id as id -> carePlan.identifier = create('Identifier') as identifier then II(id, identifier) "identifier";
@@ -2367,7 +2455,9 @@ group PSPlanCarePlan(source section, target carePlan, target compSection, target
   section.entry as sectionEntry then PSPlanEntryDispatcher(sectionEntry, carePlan, compSection, bundle, patient) "entries";
 
   // Référence section.
-  section -> compSection.entry = create('Reference') as sectionRef, sectionRef.reference = ('urn:uuid:' + %carePlan.id) "sectionEntryCarePlan";
+  section -> compSection.entry = create('Reference') as sectionRef then {
+    section -> sectionRef.reference = ('urn:uuid:' + %carePlan.id) "reference";
+  } "sectionEntryCarePlan";
 }
 
 
@@ -2441,7 +2531,9 @@ group PSPlanMedicationRequest(source sa, target medicationRequest, target carePl
   sa.id as id -> medicationRequest.identifier = create('Identifier') as identifier then II(id, identifier) "identifier";
 
   // Patient.
-  sa -> medicationRequest.subject = create('Reference') as subjectRef, subjectRef.reference = ('urn:uuid:' + %patient.id) "subject";
+  sa -> medicationRequest.subject = create('Reference') as subjectRef then {
+    sa -> subjectRef.reference = ('urn:uuid:' + %patient.id) "reference";
+  } "subject";
 
   // Médicament.
   sa.consumable as consumable then {
@@ -2454,7 +2546,9 @@ group PSPlanMedicationRequest(source sa, target medicationRequest, target carePl
           material.name as name where material.code.empty() -> medication.code = create('CodeableConcept') as codeOnlyText then {
             name.xmlText as nameText -> codeOnlyText.text = cast(nameText, 'string') "nameText";
           } "nameOnly";
-          material -> medicationRequest.medication = create('Reference') as medicationRef, medicationRef.reference = ('urn:uuid:' + %medication.id) "medicationReference";
+          material -> medicationRequest.medication = create('Reference') as medicationRef then {
+            material -> medicationRef.reference = ('urn:uuid:' + %medication.id) "reference";
+          } "medicationReference";
         } "codedMedication";
 
         // Médicament textuel.
@@ -2544,7 +2638,9 @@ group PSPlanMedicationRequest(source sa, target medicationRequest, target carePl
   } "maxDoseQuantity";
 
   // Lien CarePlan.
-  sa -> carePlan.supportingInfo = create('Reference') as supportRef, supportRef.reference = ('urn:uuid:' + %medicationRequest.id) "supportingInfo";
+  sa -> carePlan.supportingInfo = create('Reference') as supportRef then {
+    sa -> supportRef.reference = ('urn:uuid:' + %medicationRequest.id) "reference";
+  } "supportingInfo";
 }
 
 
@@ -2581,7 +2677,9 @@ group PSPlanServiceRequest(source obs, target serviceRequest, target carePlan, t
   obs.id as id -> serviceRequest.identifier = create('Identifier') as identifier then II(id, identifier) "identifier";
 
   // Patient.
-  obs -> serviceRequest.subject = create('Reference') as subjectRef, subjectRef.reference = ('urn:uuid:' + %patient.id) "subject";
+  obs -> serviceRequest.subject = create('Reference') as subjectRef then {
+    obs -> subjectRef.reference = ('urn:uuid:' + %patient.id) "reference";
+  } "subject";
 
   // Code.
   obs.code as code -> serviceRequest.code = create('CodeableConcept') as codeableConcept then CDCodeableConcept(code, codeableConcept) "code";
@@ -2608,7 +2706,9 @@ group PSPlanServiceRequest(source obs, target serviceRequest, target carePlan, t
   obs.targetSiteCode as targetSiteCode -> serviceRequest.bodySite = create('CodeableConcept') as bodySite then CDCodeableConcept(targetSiteCode, bodySite) "bodySite";
 
   // Lien CarePlan.
-  obs -> carePlan.supportingInfo = create('Reference') as supportRef, supportRef.reference = ('urn:uuid:' + %serviceRequest.id) "supportingInfo";
+  obs -> carePlan.supportingInfo = create('Reference') as supportRef then {
+    obs -> supportRef.reference = ('urn:uuid:' + %serviceRequest.id) "reference";
+  } "supportingInfo";
 }
 
 
@@ -2635,7 +2735,9 @@ group PSPlanProcedure(source proc, target fhirProcedure, target carePlan, target
   proc.id as id -> fhirProcedure.identifier = create('Identifier') as identifier then II(id, identifier) "identifier";
 
   // Patient.
-  proc -> fhirProcedure.subject = create('Reference') as subjectRef, subjectRef.reference = ('urn:uuid:' + %patient.id) "subject";
+  proc -> fhirProcedure.subject = create('Reference') as subjectRef then {
+    proc -> subjectRef.reference = ('urn:uuid:' + %patient.id) "reference";
+  } "subject";
 
   // Code.
   proc.code as code -> fhirProcedure.code = create('CodeableConcept') as procedureCode then CDCodeableConcept(code, procedureCode) "code";
@@ -2662,7 +2764,9 @@ group PSPlanProcedure(source proc, target fhirProcedure, target carePlan, target
   proc.approachSiteCode as approachSiteCode -> fhirProcedure.bodySite = create('CodeableConcept') as bodySite then CDCodeableConcept(approachSiteCode, bodySite) "approachSite";
 
   // Lien CarePlan.
-  proc -> carePlan.supportingInfo = create('Reference') as supportRef, supportRef.reference = ('urn:uuid:' + %fhirProcedure.id) "supportingInfo";
+  proc -> carePlan.supportingInfo = create('Reference') as supportRef then {
+    proc -> supportRef.reference = ('urn:uuid:' + %fhirProcedure.id) "reference";
+  } "supportingInfo";
 }
 
 
@@ -2687,7 +2791,9 @@ group PSPlanEncounter(source enc, target plannedEncounter, target carePlan, targ
   enc.id as id -> plannedEncounter.identifier = create('Identifier') as identifier then II(id, identifier) "identifier";
 
   // Patient.
-  enc -> plannedEncounter.subject = create('Reference') as subjectRef, subjectRef.reference = ('urn:uuid:' + %patient.id) "subject";
+  enc -> plannedEncounter.subject = create('Reference') as subjectRef then {
+    enc -> subjectRef.reference = ('urn:uuid:' + %patient.id) "reference";
+  } "subject";
 
   // Classe.
   enc.code as code -> plannedEncounter.class = create('Coding') as classCoding then CDCoding(code, classCoding) "class";
@@ -2714,7 +2820,9 @@ group PSPlanEncounter(source enc, target plannedEncounter, target carePlan, targ
   enc.participant as participant then PSPlanEncounterLocation(participant, plannedEncounter, bundle) "location";
 
   // Lien CarePlan.
-  enc -> carePlan.encounter = create('Reference') as encounterRef, encounterRef.reference = ('urn:uuid:' + %plannedEncounter.id) "carePlanEncounter";
+  enc -> carePlan.encounter = create('Reference') as encounterRef then {
+    enc -> encounterRef.reference = ('urn:uuid:' + %plannedEncounter.id) "reference";
+  } "carePlanEncounter";
 }
 
 
@@ -2733,13 +2841,17 @@ group PSPlanEncounterPerformer(source performer, target plannedEncounter, target
 
       // Participant avec rôle.
       assignedEntity -> plannedEncounter.participant as participant then {
-        assignedEntity -> participant.individual = create('Reference') as individualRef, individualRef.reference = ('urn:uuid:' + %practitionerRole.id) "roleRef";
+        assignedEntity -> participant.individual = create('Reference') as individualRef then {
+          assignedEntity -> individualRef.reference = ('urn:uuid:' + %practitionerRole.id) "reference";
+        } "roleRef";
       } "participantRole";
     } "withOrganization";
 
     // Participant sans organisation.
     assignedEntity where assignedEntity.representedOrganization.empty() -> plannedEncounter.participant as participant then {
-      assignedEntity -> participant.individual = create('Reference') as individualRef, individualRef.reference = ('urn:uuid:' + %practitioner.id) "practitionerRef";
+      assignedEntity -> participant.individual = create('Reference') as individualRef then {
+        assignedEntity -> individualRef.reference = ('urn:uuid:' + %practitioner.id) "reference";
+      } "practitionerRef";
     } "participantPractitioner";
   } "performer";
 }
@@ -2768,7 +2880,9 @@ group PSPlanEncounterLocation(source participant, target plannedEncounter, targe
 
     // Lien Encounter.
     participantRole -> plannedEncounter.location as encounterLocation then {
-      participantRole -> encounterLocation.location = create('Reference') as locationRef, locationRef.reference = ('urn:uuid:' + %location.id) "locationRef";
+      participantRole -> encounterLocation.location = create('Reference') as locationRef then {
+        participantRole -> locationRef.reference = ('urn:uuid:' + %location.id) "reference";
+      } "locationRef";
     } "encounterLocation";
   } "location";
 }
@@ -2787,7 +2901,9 @@ group PSPlanImmunizationRecommendation(source sa, target recommendation, target 
   sa.id as id -> recommendation.identifier = create('Identifier') as identifier then II(id, identifier) "identifier";
 
   // Patient.
-  sa -> recommendation.patient = create('Reference') as patientRef, patientRef.reference = ('urn:uuid:' + %patient.id) "patient";
+  sa -> recommendation.patient = create('Reference') as patientRef then {
+    sa -> patientRef.reference = ('urn:uuid:' + %patient.id) "reference";
+  } "patient";
 
   // Date.
   sa.effectiveTime as effectiveTime then {
@@ -2891,7 +3007,9 @@ group PSPlanImmunizationRecommendation(source sa, target recommendation, target 
   } "recommendation";
 
   // Lien CarePlan.
-  sa -> carePlan.supportingInfo = create('Reference') as supportRef, supportRef.reference = ('urn:uuid:' + %recommendation.id) "supportingInfo";
+  sa -> carePlan.supportingInfo = create('Reference') as supportRef then {
+    sa -> supportRef.reference = ('urn:uuid:' + %recommendation.id) "reference";
+  } "supportingInfo";
 }
 
 
@@ -2982,7 +3100,9 @@ group PatientSummaryFamilyHistorySection(source section, target compSection, tar
       familyOrganizer.id as id -> familyHistory.identifier = create('Identifier') as identifier then II(id, identifier) "identifier";
 
       // Patient.
-      familyOrganizer -> familyHistory.patient = create('Reference') as patientRef, patientRef.reference = ('urn:uuid:' + %patient.id) "patient";
+      familyOrganizer -> familyHistory.patient = create('Reference') as patientRef then {
+        familyOrganizer -> patientRef.reference = ('urn:uuid:' + %patient.id) "reference";
+      } "patient";
 
       // Lien familial.
       familyOrganizer.subject as subject then {
@@ -3103,7 +3223,9 @@ group PatientSummaryFamilyHistorySection(source section, target compSection, tar
       } "components";
 
       // Référence section.
-      familyOrganizer -> compSection.entry = create('Reference') as sectionRef, sectionRef.reference = ('urn:uuid:' + %familyHistory.id) "sectionEntry";
+      familyOrganizer -> compSection.entry = create('Reference') as sectionRef then {
+        familyOrganizer -> sectionRef.reference = ('urn:uuid:' + %familyHistory.id) "reference";
+      } "sectionEntry";
     } "familyHistory";
   } "sectionEntry";
 }
@@ -3301,7 +3423,9 @@ group DocumentReferenceFromCdaAttachedDocument(source attachedDocument, target d
   attachedDocument.id as docId -> documentReference.identifier = create('Identifier') as identifier then II(docId, identifier) "identifier";
 
   // Patient concerné.
-  attachedDocument -> documentReference.subject = create('Reference') as subjectRef, subjectRef.reference = ('urn:uuid:' + %patient.id) "subject";
+  attachedDocument -> documentReference.subject = create('Reference') as subjectRef then {
+    attachedDocument -> subjectRef.reference = ('urn:uuid:' + %patient.id) "reference";
+  } "subject";
 
   // Statut documentaire.
   attachedDocument.statusCode as statusCode then {
@@ -3336,7 +3460,9 @@ group DocumentReferenceFromCdaAttachedDocument(source attachedDocument, target d
   } "mediaComponent";
 
   // Référence dans la section FHIR.
-  attachedDocument -> compSection.entry = create('Reference') as sectionRef, sectionRef.reference = ('urn:uuid:' + %documentReference.id) "sectionEntry";
+  attachedDocument -> compSection.entry = create('Reference') as sectionRef then {
+    attachedDocument -> sectionRef.reference = ('urn:uuid:' + %documentReference.id) "reference";
+  } "sectionEntry";
 }
 
 
