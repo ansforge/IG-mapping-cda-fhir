@@ -18,7 +18,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
   "name" : "CdaPatientSummaryToBundle",
   "title" : "Mapping CDA Patient Summary vers FHIR - Étape 4 finale",
   "status" : "draft",
-  "date" : "2026-07-23T12:46:45+00:00",
+  "date" : "2026-07-23T13:24:07+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -857,20 +857,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
         "parameter" : [{
           "valueString" : "Reference"
         }]
-      }],
-      "rule" : [{
-        "name" : "reference",
-        "source" : [{
-          "context" : "observation"
-        }],
-        "target" : [{
-          "context" : "subjectRef",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %patient.id"
-          }]
+      },
+      {
+        "context" : "subjectRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %patient.id"
         }]
       }]
     },
@@ -1642,20 +1636,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
             "parameter" : [{
               "valueString" : "Reference"
             }]
-          }],
-          "rule" : [{
-            "name" : "reference",
-            "source" : [{
-              "context" : "externalDocument"
-            }],
-            "target" : [{
-              "context" : "subjectRef",
-              "contextType" : "variable",
-              "element" : "reference",
-              "transform" : "evaluate",
-              "parameter" : [{
-                "valueString" : "'urn:uuid:' + %patient.id"
-              }]
+          },
+          {
+            "context" : "subjectRef",
+            "contextType" : "variable",
+            "element" : "reference",
+            "transform" : "evaluate",
+            "parameter" : [{
+              "valueString" : "'urn:uuid:' + %patient.id"
             }]
           }]
         },
@@ -1770,20 +1758,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
               "parameter" : [{
                 "valueString" : "Reference"
               }]
-            }],
-            "rule" : [{
-              "name" : "reference",
-              "source" : [{
-                "context" : "externalDocument"
-              }],
-              "target" : [{
-                "context" : "detailRef",
-                "contextType" : "variable",
-                "element" : "reference",
-                "transform" : "evaluate",
-                "parameter" : [{
-                  "valueString" : "'urn:uuid:' + %documentReference.id"
-                }]
+            },
+            {
+              "context" : "detailRef",
+              "contextType" : "variable",
+              "element" : "reference",
+              "transform" : "evaluate",
+              "parameter" : [{
+                "valueString" : "'urn:uuid:' + %documentReference.id"
               }]
             }]
           }]
@@ -1804,20 +1786,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
         "parameter" : [{
           "valueString" : "Reference"
         }]
-      }],
-      "rule" : [{
-        "name" : "reference",
-        "source" : [{
-          "context" : "observation"
-        }],
-        "target" : [{
-          "context" : "sectionRef",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %condition.id"
-          }]
+      },
+      {
+        "context" : "sectionRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %condition.id"
         }]
       }]
     }]
@@ -2017,20 +1993,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
         "parameter" : [{
           "valueString" : "Reference"
         }]
-      }],
-      "rule" : [{
-        "name" : "reference",
-        "source" : [{
-          "context" : "observation"
-        }],
-        "target" : [{
-          "context" : "patientRef",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %patient.id"
-          }]
+      },
+      {
+        "context" : "patientRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %patient.id"
         }]
       }]
     },
@@ -3964,20 +3934,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
         "parameter" : [{
           "valueString" : "Reference"
         }]
-      }],
-      "rule" : [{
-        "name" : "reference",
-        "source" : [{
-          "context" : "observation"
-        }],
-        "target" : [{
-          "context" : "sectionRef",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %allergy.id"
-          }]
+      },
+      {
+        "context" : "sectionRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %allergy.id"
         }]
       }]
     }]
@@ -4279,20 +4243,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
         "parameter" : [{
           "valueString" : "Reference"
         }]
-      }],
-      "rule" : [{
-        "name" : "reference",
-        "source" : [{
-          "context" : "procedure"
-        }],
-        "target" : [{
-          "context" : "subjectRef",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %patient.id"
-          }]
+      },
+      {
+        "context" : "subjectRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %patient.id"
         }]
       }]
     },
@@ -4735,20 +4693,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
                 "parameter" : [{
                   "valueString" : "Reference"
                 }]
-              }],
-              "rule" : [{
-                "name" : "reference",
-                "source" : [{
-                  "context" : "linkedObservation"
-                }],
-                "target" : [{
-                  "context" : "subjectRef",
-                  "contextType" : "variable",
-                  "element" : "reference",
-                  "transform" : "evaluate",
-                  "parameter" : [{
-                    "valueString" : "'urn:uuid:' + %patient.id"
-                  }]
+              },
+              {
+                "context" : "subjectRef",
+                "contextType" : "variable",
+                "element" : "reference",
+                "transform" : "evaluate",
+                "parameter" : [{
+                  "valueString" : "'urn:uuid:' + %patient.id"
                 }]
               }]
             },
@@ -4965,20 +4917,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
                 "parameter" : [{
                   "valueString" : "Reference"
                 }]
-              }],
-              "rule" : [{
-                "name" : "reference",
-                "source" : [{
-                  "context" : "linkedObservation"
-                }],
-                "target" : [{
-                  "context" : "partOfRef",
-                  "contextType" : "variable",
-                  "element" : "reference",
-                  "transform" : "evaluate",
-                  "parameter" : [{
-                    "valueString" : "'urn:uuid:' + %observation.id"
-                  }]
+              },
+              {
+                "context" : "partOfRef",
+                "contextType" : "variable",
+                "element" : "reference",
+                "transform" : "evaluate",
+                "parameter" : [{
+                  "valueString" : "'urn:uuid:' + %observation.id"
                 }]
               }]
             }]
@@ -5000,20 +4946,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
         "parameter" : [{
           "valueString" : "Reference"
         }]
-      }],
-      "rule" : [{
-        "name" : "reference",
-        "source" : [{
-          "context" : "procedure"
-        }],
-        "target" : [{
-          "context" : "sectionRef",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %fhirProcedure.id"
-          }]
+      },
+      {
+        "context" : "sectionRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %fhirProcedure.id"
         }]
       }]
     }]
@@ -5219,20 +5159,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
             "parameter" : [{
               "valueString" : "Reference"
             }]
-          }],
-          "rule" : [{
-            "name" : "reference",
-            "source" : [{
-              "context" : "assignedAuthor"
-            }],
-            "target" : [{
-              "context" : "recorderRef",
-              "contextType" : "variable",
-              "element" : "reference",
-              "transform" : "evaluate",
-              "parameter" : [{
-                "valueString" : "'urn:uuid:' + %practitionerRole.id"
-              }]
+          },
+          {
+            "context" : "recorderRef",
+            "contextType" : "variable",
+            "element" : "reference",
+            "transform" : "evaluate",
+            "parameter" : [{
+              "valueString" : "'urn:uuid:' + %practitionerRole.id"
             }]
           }]
         }]
@@ -5252,21 +5186,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
           "parameter" : [{
             "valueString" : "Reference"
           }]
-        }],
-        "rule" : [{
-          "name" : "reference",
-          "source" : [{
-            "context" : "assignedAuthor",
-            "condition" : "assignedAuthor.representedOrganization.empty()"
-          }],
-          "target" : [{
-            "context" : "recorderRef",
-            "contextType" : "variable",
-            "element" : "reference",
-            "transform" : "evaluate",
-            "parameter" : [{
-              "valueString" : "'urn:uuid:' + %practitioner.id"
-            }]
+        },
+        {
+          "context" : "recorderRef",
+          "contextType" : "variable",
+          "element" : "reference",
+          "transform" : "evaluate",
+          "parameter" : [{
+            "valueString" : "'urn:uuid:' + %practitioner.id"
           }]
         }]
       }]
@@ -5479,20 +5406,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
             "parameter" : [{
               "valueString" : "Reference"
             }]
-          }],
-          "rule" : [{
-            "name" : "reference",
-            "source" : [{
-              "context" : "assignedEntity"
-            }],
-            "target" : [{
-              "context" : "actorRef",
-              "contextType" : "variable",
-              "element" : "reference",
-              "transform" : "evaluate",
-              "parameter" : [{
-                "valueString" : "'urn:uuid:' + %practitionerRole.id"
-              }]
+          },
+          {
+            "context" : "actorRef",
+            "contextType" : "variable",
+            "element" : "reference",
+            "transform" : "evaluate",
+            "parameter" : [{
+              "valueString" : "'urn:uuid:' + %practitionerRole.id"
             }]
           }]
         }]
@@ -5518,21 +5439,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
           "parameter" : [{
             "valueString" : "Reference"
           }]
-        }],
-        "rule" : [{
-          "name" : "reference",
-          "source" : [{
-            "context" : "assignedEntity",
-            "condition" : "assignedEntity.representedOrganization.empty()"
-          }],
-          "target" : [{
-            "context" : "actorRef",
-            "contextType" : "variable",
-            "element" : "reference",
-            "transform" : "evaluate",
-            "parameter" : [{
-              "valueString" : "'urn:uuid:' + %practitioner.id"
-            }]
+        },
+        {
+          "context" : "actorRef",
+          "contextType" : "variable",
+          "element" : "reference",
+          "transform" : "evaluate",
+          "parameter" : [{
+            "valueString" : "'urn:uuid:' + %practitioner.id"
           }]
         }]
       }]
@@ -5735,20 +5649,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
         "parameter" : [{
           "valueString" : "Reference"
         }]
-      }],
-      "rule" : [{
-        "name" : "reference",
-        "source" : [{
-          "context" : "substanceAdministration"
-        }],
-        "target" : [{
-          "context" : "subjectRef",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %patient.id"
-          }]
+      },
+      {
+        "context" : "subjectRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %patient.id"
         }]
       }]
     },
@@ -5861,20 +5769,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
         "parameter" : [{
           "valueString" : "Reference"
         }]
-      }],
-      "rule" : [{
-        "name" : "reference",
-        "source" : [{
-          "context" : "substanceAdministration"
-        }],
-        "target" : [{
-          "context" : "sectionRef",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %medicationStatement.id"
-          }]
+      },
+      {
+        "context" : "sectionRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %medicationStatement.id"
         }]
       }]
     }]
@@ -6067,20 +5969,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
             "parameter" : [{
               "valueString" : "Reference"
             }]
-          }],
-          "rule" : [{
-            "name" : "reference",
-            "source" : [{
-              "context" : "manufacturedMaterial"
-            }],
-            "target" : [{
-              "context" : "medicationRef",
-              "contextType" : "variable",
-              "element" : "reference",
-              "transform" : "evaluate",
-              "parameter" : [{
-                "valueString" : "'urn:uuid:' + %medication.id"
-              }]
+          },
+          {
+            "context" : "medicationRef",
+            "contextType" : "variable",
+            "element" : "reference",
+            "transform" : "evaluate",
+            "parameter" : [{
+              "valueString" : "'urn:uuid:' + %medication.id"
             }]
           }]
         }]
@@ -7958,20 +7854,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
         "parameter" : [{
           "valueString" : "Reference"
         }]
-      }],
-      "rule" : [{
-        "name" : "reference",
-        "source" : [{
-          "context" : "adverseObservation"
-        }],
-        "target" : [{
-          "context" : "subjectRef",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %patient.id"
-          }]
+      },
+      {
+        "context" : "subjectRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %patient.id"
         }]
       }]
     },
@@ -8307,20 +8197,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
         "parameter" : [{
           "valueString" : "Reference"
         }]
-      }],
-      "rule" : [{
-        "name" : "reference",
-        "source" : [{
-          "context" : "adverseObservation"
-        }],
-        "target" : [{
-          "context" : "sectionRef",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %adverseEvent.id"
-          }]
+      },
+      {
+        "context" : "sectionRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %adverseEvent.id"
         }]
       }]
     }]
@@ -8448,20 +8332,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
           "parameter" : [{
             "valueString" : "Reference"
           }]
-        }],
-        "rule" : [{
-          "name" : "reference",
-          "source" : [{
-            "context" : "treatment"
-          }],
-          "target" : [{
-            "context" : "subjectRef",
-            "contextType" : "variable",
-            "element" : "reference",
-            "transform" : "evaluate",
-            "parameter" : [{
-              "valueString" : "'urn:uuid:' + %patient.id"
-            }]
+        },
+        {
+          "context" : "subjectRef",
+          "contextType" : "variable",
+          "element" : "reference",
+          "transform" : "evaluate",
+          "parameter" : [{
+            "valueString" : "'urn:uuid:' + %patient.id"
           }]
         }]
       },
@@ -8708,20 +8586,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
           "parameter" : [{
             "valueString" : "Reference"
           }]
-        }],
-        "rule" : [{
-          "name" : "reference",
-          "source" : [{
-            "context" : "reactionObservation"
-          }],
-          "target" : [{
-            "context" : "subjectRef",
-            "contextType" : "variable",
-            "element" : "reference",
-            "transform" : "evaluate",
-            "parameter" : [{
-              "valueString" : "'urn:uuid:' + %patient.id"
-            }]
+        },
+        {
+          "context" : "subjectRef",
+          "contextType" : "variable",
+          "element" : "reference",
+          "transform" : "evaluate",
+          "parameter" : [{
+            "valueString" : "'urn:uuid:' + %patient.id"
           }]
         }]
       },
@@ -8843,20 +8715,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
           "parameter" : [{
             "valueString" : "Reference"
           }]
-        }],
-        "rule" : [{
-          "name" : "reference",
-          "source" : [{
-            "context" : "reactionObservation"
-          }],
-          "target" : [{
-            "context" : "conditionRef",
-            "contextType" : "variable",
-            "element" : "reference",
-            "transform" : "evaluate",
-            "parameter" : [{
-              "valueString" : "'urn:uuid:' + %condition.id"
-            }]
+        },
+        {
+          "context" : "conditionRef",
+          "contextType" : "variable",
+          "element" : "reference",
+          "transform" : "evaluate",
+          "parameter" : [{
+            "valueString" : "'urn:uuid:' + %condition.id"
           }]
         }]
       }]
@@ -9127,20 +8993,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
         "parameter" : [{
           "valueString" : "Reference"
         }]
-      }],
-      "rule" : [{
-        "name" : "reference",
-        "source" : [{
-          "context" : "substanceAdministration"
-        }],
-        "target" : [{
-          "context" : "patientRef",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %patient.id"
-          }]
+      },
+      {
+        "context" : "patientRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %patient.id"
         }]
       }]
     },
@@ -9704,20 +9564,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
         "parameter" : [{
           "valueString" : "Reference"
         }]
-      }],
-      "rule" : [{
-        "name" : "reference",
-        "source" : [{
-          "context" : "substanceAdministration"
-        }],
-        "target" : [{
-          "context" : "sectionRef",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %immunization.id"
-          }]
+      },
+      {
+        "context" : "sectionRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %immunization.id"
         }]
       }]
     }]
@@ -9929,20 +9783,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
             "parameter" : [{
               "valueString" : "Reference"
             }]
-          }],
-          "rule" : [{
-            "name" : "reference",
-            "source" : [{
-              "context" : "assignedEntity"
-            }],
-            "target" : [{
-              "context" : "actorRef",
-              "contextType" : "variable",
-              "element" : "reference",
-              "transform" : "evaluate",
-              "parameter" : [{
-                "valueString" : "'urn:uuid:' + %practitionerRole.id"
-              }]
+          },
+          {
+            "context" : "actorRef",
+            "contextType" : "variable",
+            "element" : "reference",
+            "transform" : "evaluate",
+            "parameter" : [{
+              "valueString" : "'urn:uuid:' + %practitionerRole.id"
             }]
           }]
         }]
@@ -9968,21 +9816,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
           "parameter" : [{
             "valueString" : "Reference"
           }]
-        }],
-        "rule" : [{
-          "name" : "reference",
-          "source" : [{
-            "context" : "assignedEntity",
-            "condition" : "assignedEntity.representedOrganization.empty()"
-          }],
-          "target" : [{
-            "context" : "actorRef",
-            "contextType" : "variable",
-            "element" : "reference",
-            "transform" : "evaluate",
-            "parameter" : [{
-              "valueString" : "'urn:uuid:' + %practitioner.id"
-            }]
+        },
+        {
+          "context" : "actorRef",
+          "contextType" : "variable",
+          "element" : "reference",
+          "transform" : "evaluate",
+          "parameter" : [{
+            "valueString" : "'urn:uuid:' + %practitioner.id"
           }]
         }]
       }]
@@ -10095,20 +9936,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
           "parameter" : [{
             "valueString" : "Reference"
           }]
-        }],
-        "rule" : [{
-          "name" : "reference",
-          "source" : [{
-            "context" : "reactionObservation"
-          }],
-          "target" : [{
-            "context" : "subjectRef",
-            "contextType" : "variable",
-            "element" : "reference",
-            "transform" : "evaluate",
-            "parameter" : [{
-              "valueString" : "'urn:uuid:' + %patient.id"
-            }]
+        },
+        {
+          "context" : "subjectRef",
+          "contextType" : "variable",
+          "element" : "reference",
+          "transform" : "evaluate",
+          "parameter" : [{
+            "valueString" : "'urn:uuid:' + %patient.id"
           }]
         }]
       },
@@ -10538,20 +10373,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
             "parameter" : [{
               "valueString" : "Reference"
             }]
-          }],
-          "rule" : [{
-            "name" : "reference",
-            "source" : [{
-              "context" : "reactionObservation"
-            }],
-            "target" : [{
-              "context" : "detailRef",
-              "contextType" : "variable",
-              "element" : "reference",
-              "transform" : "evaluate",
-              "parameter" : [{
-                "valueString" : "'urn:uuid:' + %reaction.id"
-              }]
+          },
+          {
+            "context" : "detailRef",
+            "contextType" : "variable",
+            "element" : "reference",
+            "transform" : "evaluate",
+            "parameter" : [{
+              "valueString" : "'urn:uuid:' + %reaction.id"
             }]
           }]
         }]
@@ -10639,20 +10468,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
         "parameter" : [{
           "valueString" : "Reference"
         }]
-      }],
-      "rule" : [{
-        "name" : "reference",
-        "source" : [{
-          "context" : "observation"
-        }],
-        "target" : [{
-          "context" : "subjectRef",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %patient.id"
-          }]
+      },
+      {
+        "context" : "subjectRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %patient.id"
         }]
       }]
     },
@@ -11815,20 +11638,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
         "parameter" : [{
           "valueString" : "Reference"
         }]
-      }],
-      "rule" : [{
-        "name" : "reference",
-        "source" : [{
-          "context" : "organizer"
-        }],
-        "target" : [{
-          "context" : "subjectRef",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %patient.id"
-          }]
+      },
+      {
+        "context" : "subjectRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %patient.id"
         }]
       }]
     },
@@ -12039,20 +11856,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
         "parameter" : [{
           "valueString" : "Reference"
         }]
-      }],
-      "rule" : [{
-        "name" : "reference",
-        "source" : [{
-          "context" : "src"
-        }],
-        "target" : [{
-          "context" : "memberRef",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %member.id"
-          }]
+      },
+      {
+        "context" : "memberRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %member.id"
         }]
       }]
     }]
@@ -12086,20 +11897,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
         "parameter" : [{
           "valueString" : "Reference"
         }]
-      }],
-      "rule" : [{
-        "name" : "reference",
-        "source" : [{
-          "context" : "src"
-        }],
-        "target" : [{
-          "context" : "sectionRef",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %fhirObservation.id"
-          }]
+      },
+      {
+        "context" : "sectionRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %fhirObservation.id"
         }]
       }]
     }]
@@ -12416,20 +12221,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
         "parameter" : [{
           "valueString" : "Reference"
         }]
-      }],
-      "rule" : [{
-        "name" : "reference",
-        "source" : [{
-          "context" : "observation"
-        }],
-        "target" : [{
-          "context" : "subjectRef",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %patient.id"
-          }]
+      },
+      {
+        "context" : "subjectRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %patient.id"
         }]
       }]
     },
@@ -13162,20 +12961,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
         "parameter" : [{
           "valueString" : "Reference"
         }]
-      }],
-      "rule" : [{
-        "name" : "reference",
-        "source" : [{
-          "context" : "observation"
-        }],
-        "target" : [{
-          "context" : "subjectRef",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %patient.id"
-          }]
+      },
+      {
+        "context" : "subjectRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %patient.id"
         }]
       }]
     },
@@ -14138,20 +13931,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
         "parameter" : [{
           "valueString" : "Reference"
         }]
-      }],
-      "rule" : [{
-        "name" : "reference",
-        "source" : [{
-          "context" : "organizer"
-        }],
-        "target" : [{
-          "context" : "subjectRef",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %patient.id"
-          }]
+      },
+      {
+        "context" : "subjectRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %patient.id"
         }]
       }]
     },
@@ -14411,20 +14198,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
         "parameter" : [{
           "valueString" : "Reference"
         }]
-      }],
-      "rule" : [{
-        "name" : "reference",
-        "source" : [{
-          "context" : "observation"
-        }],
-        "target" : [{
-          "context" : "subjectRef",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %patient.id"
-          }]
+      },
+      {
+        "context" : "subjectRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %patient.id"
         }]
       }]
     },
@@ -15473,20 +15254,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
         "parameter" : [{
           "valueString" : "Reference"
         }]
-      }],
-      "rule" : [{
-        "name" : "reference",
-        "source" : [{
-          "context" : "organizer"
-        }],
-        "target" : [{
-          "context" : "subjectRef",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %patient.id"
-          }]
+      },
+      {
+        "context" : "subjectRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %patient.id"
         }]
       }]
     },
@@ -15593,20 +15368,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
             "parameter" : [{
               "valueString" : "Reference"
             }]
-          }],
-          "rule" : [{
-            "name" : "reference",
-            "source" : [{
-              "context" : "observation"
-            }],
-            "target" : [{
-              "context" : "resultRef",
-              "contextType" : "variable",
-              "element" : "reference",
-              "transform" : "evaluate",
-              "parameter" : [{
-                "valueString" : "'urn:uuid:' + %resultObservation.id"
-              }]
+          },
+          {
+            "context" : "resultRef",
+            "contextType" : "variable",
+            "element" : "reference",
+            "transform" : "evaluate",
+            "parameter" : [{
+              "valueString" : "'urn:uuid:' + %resultObservation.id"
             }]
           }]
         }]
@@ -15709,20 +15478,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
         "parameter" : [{
           "valueString" : "Reference"
         }]
-      }],
-      "rule" : [{
-        "name" : "reference",
-        "source" : [{
-          "context" : "observation"
-        }],
-        "target" : [{
-          "context" : "subjectRef",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %patient.id"
-          }]
+      },
+      {
+        "context" : "subjectRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %patient.id"
         }]
       }]
     },
@@ -15820,20 +15583,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
           "parameter" : [{
             "valueString" : "Reference"
           }]
-        }],
-        "rule" : [{
-          "name" : "reference",
-          "source" : [{
-            "context" : "observation"
-          }],
-          "target" : [{
-            "context" : "resultRef",
-            "contextType" : "variable",
-            "element" : "reference",
-            "transform" : "evaluate",
-            "parameter" : [{
-              "valueString" : "'urn:uuid:' + %resultObservation.id"
-            }]
+        },
+        {
+          "context" : "resultRef",
+          "contextType" : "variable",
+          "element" : "reference",
+          "transform" : "evaluate",
+          "parameter" : [{
+            "valueString" : "'urn:uuid:' + %resultObservation.id"
           }]
         }]
       }]
@@ -16080,20 +15837,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
         "parameter" : [{
           "valueString" : "Reference"
         }]
-      }],
-      "rule" : [{
-        "name" : "reference",
-        "source" : [{
-          "context" : "src"
-        }],
-        "target" : [{
-          "context" : "sectionRef",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %diagnosticReport.id"
-          }]
+      },
+      {
+        "context" : "sectionRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %diagnosticReport.id"
         }]
       }]
     }]
@@ -16177,20 +15928,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
         "parameter" : [{
           "valueString" : "Reference"
         }]
-      }],
-      "rule" : [{
-        "name" : "reference",
-        "source" : [{
-          "context" : "observation"
-        }],
-        "target" : [{
-          "context" : "subjectRef",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %patient.id"
-          }]
+      },
+      {
+        "context" : "subjectRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %patient.id"
         }]
       }]
     },
@@ -17317,20 +17062,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
         "parameter" : [{
           "valueString" : "Reference"
         }]
-      }],
-      "rule" : [{
-        "name" : "reference",
-        "source" : [{
-          "context" : "observation"
-        }],
-        "target" : [{
-          "context" : "subjectRef",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %patient.id"
-          }]
+      },
+      {
+        "context" : "subjectRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %patient.id"
         }]
       }]
     },
@@ -18162,20 +17901,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
         "parameter" : [{
           "valueString" : "Reference"
         }]
-      }],
-      "rule" : [{
-        "name" : "reference",
-        "source" : [{
-          "context" : "section"
-        }],
-        "target" : [{
-          "context" : "subjectRef",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %patient.id"
-          }]
+      },
+      {
+        "context" : "subjectRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %patient.id"
         }]
       }]
     },
@@ -18356,20 +18089,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
         "parameter" : [{
           "valueString" : "Reference"
         }]
-      }],
-      "rule" : [{
-        "name" : "reference",
-        "source" : [{
-          "context" : "section"
-        }],
-        "target" : [{
-          "context" : "sectionRef",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %carePlan.id"
-          }]
+      },
+      {
+        "context" : "sectionRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %carePlan.id"
         }]
       }]
     }]
@@ -18893,20 +18620,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
         "parameter" : [{
           "valueString" : "Reference"
         }]
-      }],
-      "rule" : [{
-        "name" : "reference",
-        "source" : [{
-          "context" : "sa"
-        }],
-        "target" : [{
-          "context" : "subjectRef",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %patient.id"
-          }]
+      },
+      {
+        "context" : "subjectRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %patient.id"
         }]
       }]
     },
@@ -19045,20 +18766,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
                 "parameter" : [{
                   "valueString" : "Reference"
                 }]
-              }],
-              "rule" : [{
-                "name" : "reference",
-                "source" : [{
-                  "context" : "material"
-                }],
-                "target" : [{
-                  "context" : "medicationRef",
-                  "contextType" : "variable",
-                  "element" : "reference",
-                  "transform" : "evaluate",
-                  "parameter" : [{
-                    "valueString" : "'urn:uuid:' + %medication.id"
-                  }]
+              },
+              {
+                "context" : "medicationRef",
+                "contextType" : "variable",
+                "element" : "reference",
+                "transform" : "evaluate",
+                "parameter" : [{
+                  "valueString" : "'urn:uuid:' + %medication.id"
                 }]
               }]
             }]
@@ -19645,20 +19360,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
         "parameter" : [{
           "valueString" : "Reference"
         }]
-      }],
-      "rule" : [{
-        "name" : "reference",
-        "source" : [{
-          "context" : "sa"
-        }],
-        "target" : [{
-          "context" : "supportRef",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %medicationRequest.id"
-          }]
+      },
+      {
+        "context" : "supportRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %medicationRequest.id"
         }]
       }]
     }]
@@ -20004,20 +19713,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
         "parameter" : [{
           "valueString" : "Reference"
         }]
-      }],
-      "rule" : [{
-        "name" : "reference",
-        "source" : [{
-          "context" : "obs"
-        }],
-        "target" : [{
-          "context" : "subjectRef",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %patient.id"
-          }]
+      },
+      {
+        "context" : "subjectRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %patient.id"
         }]
       }]
     },
@@ -20215,20 +19918,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
         "parameter" : [{
           "valueString" : "Reference"
         }]
-      }],
-      "rule" : [{
-        "name" : "reference",
-        "source" : [{
-          "context" : "obs"
-        }],
-        "target" : [{
-          "context" : "supportRef",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %serviceRequest.id"
-          }]
+      },
+      {
+        "context" : "supportRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %serviceRequest.id"
         }]
       }]
     }]
@@ -20471,20 +20168,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
         "parameter" : [{
           "valueString" : "Reference"
         }]
-      }],
-      "rule" : [{
-        "name" : "reference",
-        "source" : [{
-          "context" : "proc"
-        }],
-        "target" : [{
-          "context" : "subjectRef",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %patient.id"
-          }]
+      },
+      {
+        "context" : "subjectRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %patient.id"
         }]
       }]
     },
@@ -20682,20 +20373,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
         "parameter" : [{
           "valueString" : "Reference"
         }]
-      }],
-      "rule" : [{
-        "name" : "reference",
-        "source" : [{
-          "context" : "proc"
-        }],
-        "target" : [{
-          "context" : "supportRef",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %fhirProcedure.id"
-          }]
+      },
+      {
+        "context" : "supportRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %fhirProcedure.id"
         }]
       }]
     }]
@@ -20905,20 +20590,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
         "parameter" : [{
           "valueString" : "Reference"
         }]
-      }],
-      "rule" : [{
-        "name" : "reference",
-        "source" : [{
-          "context" : "enc"
-        }],
-        "target" : [{
-          "context" : "subjectRef",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %patient.id"
-          }]
+      },
+      {
+        "context" : "subjectRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %patient.id"
         }]
       }]
     },
@@ -21110,20 +20789,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
         "parameter" : [{
           "valueString" : "Reference"
         }]
-      }],
-      "rule" : [{
-        "name" : "reference",
-        "source" : [{
-          "context" : "enc"
-        }],
-        "target" : [{
-          "context" : "encounterRef",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %plannedEncounter.id"
-          }]
+      },
+      {
+        "context" : "encounterRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %plannedEncounter.id"
         }]
       }]
     }]
@@ -21341,20 +21014,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
               "parameter" : [{
                 "valueString" : "Reference"
               }]
-            }],
-            "rule" : [{
-              "name" : "reference",
-              "source" : [{
-                "context" : "assignedEntity"
-              }],
-              "target" : [{
-                "context" : "individualRef",
-                "contextType" : "variable",
-                "element" : "reference",
-                "transform" : "evaluate",
-                "parameter" : [{
-                  "valueString" : "'urn:uuid:' + %practitionerRole.id"
-                }]
+            },
+            {
+              "context" : "individualRef",
+              "contextType" : "variable",
+              "element" : "reference",
+              "transform" : "evaluate",
+              "parameter" : [{
+                "valueString" : "'urn:uuid:' + %practitionerRole.id"
               }]
             }]
           }]
@@ -21386,20 +21053,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
             "parameter" : [{
               "valueString" : "Reference"
             }]
-          }],
-          "rule" : [{
-            "name" : "reference",
-            "source" : [{
-              "context" : "assignedEntity"
-            }],
-            "target" : [{
-              "context" : "individualRef",
-              "contextType" : "variable",
-              "element" : "reference",
-              "transform" : "evaluate",
-              "parameter" : [{
-                "valueString" : "'urn:uuid:' + %practitioner.id"
-              }]
+          },
+          {
+            "context" : "individualRef",
+            "contextType" : "variable",
+            "element" : "reference",
+            "transform" : "evaluate",
+            "parameter" : [{
+              "valueString" : "'urn:uuid:' + %practitioner.id"
             }]
           }]
         }]
@@ -21598,20 +21259,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
             "parameter" : [{
               "valueString" : "Reference"
             }]
-          }],
-          "rule" : [{
-            "name" : "reference",
-            "source" : [{
-              "context" : "participantRole"
-            }],
-            "target" : [{
-              "context" : "locationRef",
-              "contextType" : "variable",
-              "element" : "reference",
-              "transform" : "evaluate",
-              "parameter" : [{
-                "valueString" : "'urn:uuid:' + %location.id"
-              }]
+          },
+          {
+            "context" : "locationRef",
+            "contextType" : "variable",
+            "element" : "reference",
+            "transform" : "evaluate",
+            "parameter" : [{
+              "valueString" : "'urn:uuid:' + %location.id"
             }]
           }]
         }]
@@ -21743,20 +21398,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
         "parameter" : [{
           "valueString" : "Reference"
         }]
-      }],
-      "rule" : [{
-        "name" : "reference",
-        "source" : [{
-          "context" : "sa"
-        }],
-        "target" : [{
-          "context" : "patientRef",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %patient.id"
-          }]
+      },
+      {
+        "context" : "patientRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %patient.id"
         }]
       }]
     },
@@ -22627,20 +22276,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
         "parameter" : [{
           "valueString" : "Reference"
         }]
-      }],
-      "rule" : [{
-        "name" : "reference",
-        "source" : [{
-          "context" : "sa"
-        }],
-        "target" : [{
-          "context" : "supportRef",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %recommendation.id"
-          }]
+      },
+      {
+        "context" : "supportRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %recommendation.id"
         }]
       }]
     }]
@@ -23164,20 +22807,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
             "parameter" : [{
               "valueString" : "Reference"
             }]
-          }],
-          "rule" : [{
-            "name" : "reference",
-            "source" : [{
-              "context" : "familyOrganizer"
-            }],
-            "target" : [{
-              "context" : "patientRef",
-              "contextType" : "variable",
-              "element" : "reference",
-              "transform" : "evaluate",
-              "parameter" : [{
-                "valueString" : "'urn:uuid:' + %patient.id"
-              }]
+          },
+          {
+            "context" : "patientRef",
+            "contextType" : "variable",
+            "element" : "reference",
+            "transform" : "evaluate",
+            "parameter" : [{
+              "valueString" : "'urn:uuid:' + %patient.id"
             }]
           }]
         },
@@ -24020,20 +23657,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
             "parameter" : [{
               "valueString" : "Reference"
             }]
-          }],
-          "rule" : [{
-            "name" : "reference",
-            "source" : [{
-              "context" : "familyOrganizer"
-            }],
-            "target" : [{
-              "context" : "sectionRef",
-              "contextType" : "variable",
-              "element" : "reference",
-              "transform" : "evaluate",
-              "parameter" : [{
-                "valueString" : "'urn:uuid:' + %familyHistory.id"
-              }]
+          },
+          {
+            "context" : "sectionRef",
+            "contextType" : "variable",
+            "element" : "reference",
+            "transform" : "evaluate",
+            "parameter" : [{
+              "valueString" : "'urn:uuid:' + %familyHistory.id"
             }]
           }]
         }]
@@ -24876,20 +24507,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
         "parameter" : [{
           "valueString" : "Reference"
         }]
-      }],
-      "rule" : [{
-        "name" : "reference",
-        "source" : [{
-          "context" : "attachedDocument"
-        }],
-        "target" : [{
-          "context" : "subjectRef",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %patient.id"
-          }]
+      },
+      {
+        "context" : "subjectRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %patient.id"
         }]
       }]
     },
@@ -25126,20 +24751,14 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
         "parameter" : [{
           "valueString" : "Reference"
         }]
-      }],
-      "rule" : [{
-        "name" : "reference",
-        "source" : [{
-          "context" : "attachedDocument"
-        }],
-        "target" : [{
-          "context" : "sectionRef",
-          "contextType" : "variable",
-          "element" : "reference",
-          "transform" : "evaluate",
-          "parameter" : [{
-            "valueString" : "'urn:uuid:' + %documentReference.id"
-          }]
+      },
+      {
+        "context" : "sectionRef",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %documentReference.id"
         }]
       }]
     }]
