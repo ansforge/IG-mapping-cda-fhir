@@ -18,7 +18,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
   "name" : "CdaToFHIRTypes",
   "title" : "Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)",
   "status" : "draft",
-  "date" : "2026-07-23T09:17:16+00:00",
+  "date" : "2026-07-23T09:29:57+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -239,6 +239,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
     },
     {
       "name" : "tgt",
+      "type" : "Identifier",
       "mode" : "target"
     }],
     "rule" : [{
@@ -746,6 +747,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
     },
     {
       "name" : "tgt",
+      "type" : "instant",
       "mode" : "target"
     }],
     "rule" : [{
@@ -780,6 +782,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
     },
     {
       "name" : "tgt",
+      "type" : "dateTime",
       "mode" : "target"
     }],
     "rule" : [{
@@ -804,6 +807,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
     },
     {
       "name" : "tgt",
+      "type" : "date",
       "mode" : "target"
     }],
     "rule" : [{
@@ -828,6 +832,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
     },
     {
       "name" : "tgt",
+      "type" : "Period",
       "mode" : "target"
     }],
     "rule" : [{
@@ -1027,6 +1032,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
     },
     {
       "name" : "tgt",
+      "type" : "code",
       "mode" : "target"
     }],
     "rule" : [{
@@ -1111,6 +1117,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
     },
     {
       "name" : "tgt",
+      "type" : "CodeableConcept",
       "mode" : "target"
     }],
     "rule" : [{
@@ -1332,6 +1339,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
     },
     {
       "name" : "tgt",
+      "type" : "CodeableConcept",
       "mode" : "target"
     }],
     "rule" : [{
@@ -1502,6 +1510,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
     },
     {
       "name" : "tgt",
+      "type" : "HumanName",
       "mode" : "target"
     }],
     "rule" : [{
@@ -1634,6 +1643,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
     },
     {
       "name" : "tgt",
+      "type" : "Address",
       "mode" : "target"
     }],
     "rule" : [{
@@ -1808,6 +1818,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
     },
     {
       "name" : "tgt",
+      "type" : "ContactPoint",
       "mode" : "target"
     }],
     "rule" : [{

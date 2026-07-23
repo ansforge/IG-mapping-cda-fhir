@@ -374,7 +374,7 @@
 </span><span style="color: navy">// </span><span style="color: green">Mapping CDA II vers FHIR Identifier</span>
 <span style="color: navy">// </span><span style="color: green">II = Identifiant CDA</span>
 <span style="color: navy">// </span><span style="color: green">Identifier = Identifiant FHIR</span>
-<b>group </b>II<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy">)</span><b> extends </b>Any<span style="color: navy"> {
+<b>group </b>II<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Identifier<span style="color: navy">)</span><b> extends </b>Any<span style="color: navy"> {
 </span>  src.root<b> as </b><span style="color: maroon">r</span><b> where </b>src.extension.exists()<span style="color: navy"><b> -&gt; </b></span>tgt.system = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:oid:'</span><span style="color: navy">, </span><span style="color: maroon">r</span><span style="color: navy">)</span> <i>&quot;root1&quot;</i><span style="color: navy">;</span>
   src.root<b> as </b><span style="color: maroon">r</span><b> where </b>src.extension.empty() and src.root.matches('[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}')<span style="color: navy"><b> -&gt; </b></span> tgt.system = <span style="color: blue">'urn:ietf:rfc:3986'</span><span style="color: navy">, </span> tgt.value = <span style="color: navy">(</span>'urn:uuid:' + %r.lower()<span style="color: navy">)</span> <i>&quot;rootuuid&quot;</i><span style="color: navy">;</span>
   src.root<b> as </b><span style="color: maroon">r</span><b> where </b>src.extension.empty() and src.root.contains('.')<span style="color: navy"><b> -&gt; </b></span> tgt.system = <span style="color: blue">'urn:ietf:rfc:3986'</span><span style="color: navy">, </span> tgt.value = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:oid:'</span><span style="color: navy">, </span><span style="color: maroon">r</span><span style="color: navy">)</span> <i>&quot;rootoid&quot;</i><span style="color: navy">;</span>
@@ -420,24 +420,24 @@
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">Mapping CDA TS vers FHIR instant (TS = timestamp CDA)</span>
-<b>group </b>TSInstant<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy">)</span><b> extends </b>Any<span style="color: navy"> {
+<b>group </b>TSInstant<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>instant<span style="color: navy">)</span><b> extends </b>Any<span style="color: navy"> {
 </span>  src.value<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.value = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">v</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span><span style="color: navy">;</span>
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">Mapping CDA TS vers FHIR dateTime (Hérite du mapping TSInstant)</span>
-<b>group </b>TSDateTime<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy">)</span><b> extends </b>TSInstant<span style="color: navy"> {
+<b>group </b>TSDateTime<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>dateTime<span style="color: navy">)</span><b> extends </b>TSInstant<span style="color: navy"> {
 </span>  src<span style="color: navy"><b> -&gt; </b></span>tgt <i>&quot;inherit&quot;</i><span style="color: navy">;</span>
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">Mapping CDA TS vers FHIR date (Hérite aussi du mapping TSInstant)</span>
-<b>group </b>TSDate<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy">)</span><b> extends </b>TSInstant<span style="color: navy"> {
+<b>group </b>TSDate<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>date<span style="color: navy">)</span><b> extends </b>TSInstant<span style="color: navy"> {
 </span>  src<span style="color: navy"><b> -&gt; </b></span>tgt <i>&quot;inherit&quot;</i><span style="color: navy">;</span>
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">Mapping CDA IVL_TS vers FHIR Period</span>
 <span style="color: navy">// </span><span style="color: green">IVL_TS = intervalle de temps CDA</span>
 <span style="color: navy">// </span><span style="color: green">Period = période FHIR avec start et end</span>
-<b>group </b>IVLTSPeriod<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy">)</span><b> extends </b>Any<span style="color: navy"> {
+<b>group </b>IVLTSPeriod<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Period<span style="color: navy">)</span><b> extends </b>Any<span style="color: navy"> {
 </span>  src.low<b> as </b><span style="color: maroon">low</span><b> then</b><span style="color: navy"> {
 </span>    low.value<b> as </b><span style="color: maroon">value</span><span style="color: navy"><b> -&gt; </b></span>tgt.start = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">value</span><span style="color: navy">, </span><span style="color: blue">'dateTime'</span><span style="color: navy">)</span> <i>&quot;start&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">}</span><span style="color: navy">;</span>
@@ -469,7 +469,7 @@
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">Mapping CDA CS vers FHIR code (CS = coded simple CDA)</span>
-<b>group </b>CSCode<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>CSCode<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>code<span style="color: navy">)</span><span style="color: navy"> {
 </span>  src.code<b> as </b><span style="color: maroon">c</span><span style="color: navy"><b> -&gt; </b></span>tgt.value = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">c</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span><span style="color: navy">;</span>
 <span style="color: navy">}
 
@@ -483,7 +483,7 @@
 </span>  src<span style="color: navy"><b> -&gt; </b></span>tgt <i>&quot;inherit&quot;</i><span style="color: navy">;</span>
 <span style="color: navy">}
 
-</span><b>group </b>CECodeableConcept<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy">)</span><span style="color: navy"> {
+</span><b>group </b>CECodeableConcept<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>CodeableConcept<span style="color: navy">)</span><span style="color: navy"> {
 </span>  src.originalText<b> as </b><span style="color: maroon">originalText</span><b> then</b><span style="color: navy"> {
 </span>    originalText.reference<b> as </b><span style="color: maroon">ref</span><b> then</b><span style="color: navy"> {
 </span>      ref.value<b> as </b><span style="color: maroon">value</span><span style="color: navy"><b> -&gt; </b></span>tgt.text = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">value</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span> <i>&quot;textFromOriginalTextReference&quot;</i><span style="color: navy">;</span>
@@ -506,7 +506,7 @@
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">Mapping CDA CD vers FHIR CodeableConcept (CD réutilise la logique CECodeableConcept)</span>
-<b>group </b>CDCodeableConcept<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy">)</span><b> extends </b>CECodeableConcept<span style="color: navy"> {
+<b>group </b>CDCodeableConcept<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>CodeableConcept<span style="color: navy">)</span><b> extends </b>CECodeableConcept<span style="color: navy"> {
 </span>  src<span style="color: navy"><b> -&gt; </b></span>tgt <i>&quot;inherit&quot;</i><span style="color: navy">;</span>
 <span style="color: navy">}
 
@@ -524,7 +524,7 @@
 </span><span style="color: navy">// </span><span style="color: green">Mapping CDA EN vers FHIR HumanName</span>
 <span style="color: navy">// </span><span style="color: green">EN = Entity Name CDA</span>
 <span style="color: navy">// </span><span style="color: green">HumanName = nom humain FHIR</span>
-<b>group </b>ENHumanName<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>ENHumanName<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>HumanName<span style="color: navy">)</span><span style="color: navy"> {
 </span>  src.item<b> as </b><span style="color: maroon">item</span><b> then</b><span style="color: navy"> {
 </span>    item.family<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.family = <span style="color: navy">(</span>%v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
     item.given<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.given = <span style="color: navy">(</span>%v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
@@ -544,7 +544,7 @@
 </span><span style="color: navy">// </span><span style="color: green">Mapping CDA AD vers FHIR Address</span>
 <span style="color: navy">// </span><span style="color: green">AD = adresse CDA</span>
 <span style="color: navy">// </span><span style="color: green">Address = adresse FHIR</span>
-<b>group </b>ADAddress<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>ADAddress<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Address<span style="color: navy">)</span><span style="color: navy"> {
 </span>  src.item<b> as </b><span style="color: maroon">item</span><b> then</b><span style="color: navy"> {
 </span>    item.country<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.country = <span style="color: navy">(</span>%v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
     item.state<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.state = <span style="color: navy">(</span>%v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
@@ -561,7 +561,7 @@
 </span><span style="color: navy">// </span><span style="color: green">Mapping CDA TEL vers FHIR ContactPoint</span>
 <span style="color: navy">// </span><span style="color: green">TEL = téléphone/email/url CDA</span>
 <span style="color: navy">// </span><span style="color: green">ContactPoint = moyen de contact FHIR</span>
-<b>group </b>TELContactPoint<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>TELContactPoint<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>ContactPoint<span style="color: navy">)</span><span style="color: navy"> {
 </span>  src.value<b> as </b><span style="color: maroon">v</span><b> where </b>(src.value.startsWith('tel:'))<span style="color: navy"><b> -&gt; </b></span> tgt.value = <span style="color: navy">(</span>%v.substring(4)<span style="color: navy">)</span><span style="color: navy">, </span> tgt.system = <span style="color: blue">'phone'</span> <i>&quot;valuetel&quot;</i><span style="color: navy">;</span>
   src.value<b> as </b><span style="color: maroon">v</span><b> where </b>(src.value.startsWith('fax:'))<span style="color: navy"><b> -&gt; </b></span> tgt.value = <span style="color: navy">(</span>%v.substring(4)<span style="color: navy">)</span><span style="color: navy">, </span> tgt.system = <span style="color: blue">'fax'</span> <i>&quot;valuefax&quot;</i><span style="color: navy">;</span>
   src.value<b> as </b><span style="color: maroon">v</span><b> where </b>(src.value.startsWith('mailto:'))<span style="color: navy"><b> -&gt; </b></span> tgt.value = <span style="color: navy">(</span>%v.substring(7)<span style="color: navy">)</span><span style="color: navy">, </span> tgt.system = <span style="color: blue">'email'</span> <i>&quot;valuemail&quot;</i><span style="color: navy">;</span>
@@ -657,7 +657,7 @@
           IG © 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d&#39;Oradour-sur-Glane, 75015 Paris</a>.  
           Le package ans.fhir.fr.mappingcdafhir#0.1.0 est basé sur <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>.
           Date de génération : 
-  <span title="2026-07-23 09:17:00 +0000">
+  <span title="2026-07-23 09:29:00 +0000">
     2026-07-23
   </span>
 
