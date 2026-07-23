@@ -14,7 +14,7 @@
   "name" : "CDA2FHIRMAP",
   "title" : "Mapping CDA to FHIR (Preuve de concept)",
   "status" : "draft",
-  "date" : "2026-07-23T08:14:58+00:00",
+  "date" : "2026-07-23T08:59:18+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",

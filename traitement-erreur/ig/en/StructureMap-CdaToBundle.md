@@ -18,7 +18,7 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
   "name" : "CdaToBundle",
   "title" : "Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA",
   "status" : "draft",
-  "date" : "2026-07-23T08:14:58+00:00",
+  "date" : "2026-07-23T08:59:18+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -284,22 +284,18 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
     "documentation" : "GROUPE D’ORCHESTRATION — TRAITEMENT DU CLINICALDOCUMENT CDA\n\n   Ce groupe permet de traiter le ClinicalDocument CDA en deux parties :\n   - l’en-tête CDA via l'appel du groupe MapClinicalDocumentHeader ;\n   - le corps CDA via l'appelle du groupe MapClinicalDocumentBody.\n\n   Les ressources initialisées dans le groupe d’entrée, Bundle, Composition et\n   Patient, servent de support de sortie pour le traitement CDA",
     "input" : [{
       "name" : "cda",
-      "type" : "ClinicalDocument",
       "mode" : "source"
     },
     {
       "name" : "patient",
-      "type" : "Patient",
       "mode" : "target"
     },
     {
       "name" : "composition",
-      "type" : "Composition",
       "mode" : "target"
     },
     {
       "name" : "bundle",
-      "type" : "Bundle",
       "mode" : "target"
     }],
     "rule" : [{
@@ -329,22 +325,18 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
     "documentation" : "GROUPE — TRAITEMENT DE L’EN-TÊTE DU CLINICALDOCUMENT CDA\n\n   Ce groupe traite l’en-tête du ClinicalDocument CDA bloc par bloc.\n\n   Pour chaque élément de l’en-tête CDA, il appelle le groupe spécialisé\n   correspondant :\n   - id, setId, versionNumber et effectiveTime sont transmis à\n     MapHeaderDocumentIdentity pour alimenter les métadonnées du Bundle et de\n     la Composition ;\n   - languageCode, code, title, effectiveTime et confidentialityCode sont transmis\n     à MapHeaderDocumentDescription pour alimenter la description documentaire ;\n   - recordTarget.patientRole est transmis à MapHeaderRecordTarget pour alimenter\n     le Patient et la référence Composition.subject ;\n   - custodian est transmis à MapHeaderCustodian pour créer et alimenter\n     l’Organization responsable de la conservation du document ;\n   - author est transmis à MapHeaderAuthor pour créer et alimenter le Practitioner,\n     l’Organization et le PractitionerRole de l’auteur ;\n   - legalAuthenticator est transmis à MapHeaderLegalAuthenticator pour créer et\n     alimenter le signataire légal ;\n   - documentationOf.serviceEvent est transmis à MapHeaderDocumentationOf pour\n     alimenter Composition.event ;\n   - componentOf.encompassingEncounter est transmis à MapHeaderEncounterContext\n     pour créer et alimenter Encounter, Location et Organization si le bloc CDA\n     est présent ;\n   - informant.relatedEntity classCode=ECON est transmis à MapHeaderEmergencyContact\n     pour créer la RelatedPerson correspondant à la personne à prévenir ;\n   - informant.relatedEntity classCode=NOK est transmis à MapHeaderTrustedPerson\n     pour créer la RelatedPerson correspondant à la personne de confiance ;\n   - recordTarget.patientRole.patient.guardian est transmis à MapHeaderGuardian\n     pour créer la RelatedPerson correspondant au guardian ;\n   - relatedDocument est transmis à MapHeaderRelatedDocument pour alimenter\n     Composition.relatesTo.\n\n   Les ressources optionnelles sont créées dans le groupe qui traite le bloc CDA\n   correspondant. Ainsi, une ressource FHIR n’est créée que lorsqu’un élément CDA\n   justifie son existence",
     "input" : [{
       "name" : "cda",
-      "type" : "ClinicalDocument",
       "mode" : "source"
     },
     {
       "name" : "bundle",
-      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "composition",
-      "type" : "Composition",
       "mode" : "target"
     },
     {
       "name" : "patient",
-      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -474,17 +466,14 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
     "documentation" : "groupe qui traite l'identité du document CDA -> métadonnées Bundle / Composition FHIR",
     "input" : [{
       "name" : "src",
-      "type" : "ClinicalDocument",
       "mode" : "source"
     },
     {
       "name" : "bundle",
-      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "composition",
-      "type" : "Composition",
       "mode" : "target"
     }],
     "rule" : [{
@@ -822,17 +811,14 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
     "documentation" : "groupe qui traite la description du document CDA -> FHIR Composition",
     "input" : [{
       "name" : "src",
-      "type" : "ClinicalDocument",
       "mode" : "source"
     },
     {
       "name" : "composition",
-      "type" : "Composition",
       "mode" : "target"
     },
     {
       "name" : "patient",
-      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -972,17 +958,14 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
     "documentation" : "groupe qui traite: CDA recordTarget.patientRole -> FHIR Patient",
     "input" : [{
       "name" : "src",
-      "type" : "ClinicalDocument",
       "mode" : "source"
     },
     {
       "name" : "patient",
-      "type" : "Patient",
       "mode" : "target"
     },
     {
       "name" : "composition",
-      "type" : "Composition",
       "mode" : "target"
     }],
     "rule" : [{
@@ -1171,17 +1154,14 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
     "documentation" : "groupe qui traite custodian  (l'organisation)\nL’Organization est créée uniquement si le bloc custodian existe dans le CDA.",
     "input" : [{
       "name" : "src",
-      "type" : "ClinicalDocument",
       "mode" : "source"
     },
     {
       "name" : "composition",
-      "type" : "Composition",
       "mode" : "target"
     },
     {
       "name" : "bundle",
-      "type" : "Bundle",
       "mode" : "target"
     }],
     "rule" : [{
@@ -1281,17 +1261,14 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
     "documentation" : "GROUPE — TRAITEMENT DE L’AUTEUR DU DOCUMENT CDA\n\n   Ce groupe traite le bloc author de l’en-tête CDA.\n\n   Si le bloc author existe, il crée un Practitioner pour représenter l’auteur.\n   Si author.assignedAuthor.representedOrganization est présent, il crée aussi\n   une Organization et un PractitionerRole afin de représenter l’auteur dans son\n   organisation.\n\n   La Composition référence ensuite le PractitionerRole si l’organisation existe,\n   sinon elle référence directement le Practitioner.",
     "input" : [{
       "name" : "src",
-      "type" : "ClinicalDocument",
       "mode" : "source"
     },
     {
       "name" : "composition",
-      "type" : "Composition",
       "mode" : "target"
     },
     {
       "name" : "bundle",
-      "type" : "Bundle",
       "mode" : "target"
     }],
     "rule" : [{
@@ -1494,17 +1471,14 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
     "documentation" : "GROUPE — TRAITEMENT DU SIGNATAIRE LÉGAL CDA\n   Ce groupe traite le bloc legalAuthenticator de l’en-tête CDA\n\n   Si le bloc legalAuthenticator existe, il crée un Practitioner pour représenter\n   le signataire légal. Si legalAuthenticator.assignedEntity.representedOrganization\n   est présent, il crée aussi une Organization et un PractitionerRole.\n\n   La Composition est alimentée via Composition.attester. La partie attester.party\n   référence le PractitionerRole si l’organisation existe, sinon elle référence\n   directement le Practitioner.",
     "input" : [{
       "name" : "src",
-      "type" : "ClinicalDocument",
       "mode" : "source"
     },
     {
       "name" : "composition",
-      "type" : "Composition",
       "mode" : "target"
     },
     {
       "name" : "bundle",
-      "type" : "Bundle",
       "mode" : "target"
     }],
     "rule" : [{
@@ -1764,12 +1738,10 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
     "documentation" : "GROUPE — TRAITEMENT DE L’ÉVÉNEMENT DOCUMENTÉ CDA",
     "input" : [{
       "name" : "src",
-      "type" : "ClinicalDocument",
       "mode" : "source"
     },
     {
       "name" : "composition",
-      "type" : "Composition",
       "mode" : "target"
     }],
     "rule" : [{
@@ -1845,22 +1817,18 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
     "documentation" : "GROUPE — TRAITEMENT DU CONTEXTE DE PRISE EN CHARGE CDA\n\n   Ce groupe traite le bloc componentOf.encompassingEncounter de l’en-tête CDA.\n\n   Si encompassingEncounter existe, il crée une ressource Encounter et l’associe\n   à la Composition.\n\n   Le remplissage générique de l’Encounter est délégué au groupe commun :\n   MapCDAEncompassingEncounterToEncounter.\n\n   Si encompassingEncounter.location.healthCareFacility est également présent,\n   il crée une Location et une Organization pour représenter le lieu et la\n   structure de prise en charge, puis appelle :\n   MapCDAHealthCareFacilityToLocationContext.",
     "input" : [{
       "name" : "src",
-      "type" : "ClinicalDocument",
       "mode" : "source"
     },
     {
       "name" : "composition",
-      "type" : "Composition",
       "mode" : "target"
     },
     {
       "name" : "bundle",
-      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
-      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -2034,17 +2002,14 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
     "documentation" : "GROUPE COMMUN — ENCOMPASSINGENCOUNTER CDA VERS ENCOUNTER FHIR\n\n   Ce groupe transforme les informations génériques du bloc CDA\n   componentOf.encompassingEncounter vers une ressource FHIR Encounter déjà créée\n   par le groupe appelant.\n\n   Il alimente :\n   - Encounter.identifier ;\n   - Encounter.subject ;\n   - Encounter.status ;\n   - Encounter.class ;\n   - Encounter.period.\n\n   Si le code CDA de l’encompassingEncounter est absent, Encounter.class est\n   créé avec l’extension data-absent-reason afin de respecter l’obligation FHIR\n   sans inventer une information absente du CDA",
     "input" : [{
       "name" : "encompassingEncounter",
-      "type" : "EncompassingEncounter",
       "mode" : "source"
     },
     {
       "name" : "encounter",
-      "type" : "Encounter",
       "mode" : "target"
     },
     {
       "name" : "patient",
-      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -2314,17 +2279,14 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
     "documentation" : "GROUPE — TRAITEMENT DE LA PERSONNE À PRÉVENIR CDA\n\n   Ce groupe traite les blocs informant.relatedEntity dont classCode = ECON.\n\n   Si un informant ECON est présent dans le CDA, il crée une RelatedPerson pour\n   représenter la personne à prévenir en cas d’urgence, puis l’associe au Patient.\n\n   La ressource RelatedPerson est donc créée uniquement si ce bloc CDA existe",
     "input" : [{
       "name" : "src",
-      "type" : "ClinicalDocument",
       "mode" : "source"
     },
     {
       "name" : "bundle",
-      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
-      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -2386,17 +2348,14 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
     "documentation" : "GROUPE — TRAITEMENT DE LA PERSONNE DE CONFIANCE CDA\n\n   Ce groupe traite les blocs informant.relatedEntity dont classCode = NOK.\n\n   Si un informant NOK est présent dans le CDA, il crée une RelatedPerson pour\n   représenter la personne de confiance, puis l’associe au Patient.\n\n   La ressource RelatedPerson est donc créée uniquement si ce bloc CDA existe.",
     "input" : [{
       "name" : "src",
-      "type" : "ClinicalDocument",
       "mode" : "source"
     },
     {
       "name" : "bundle",
-      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
-      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -2458,17 +2417,14 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
     "documentation" : "GROUPE — TRAITEMENT DU GUARDIAN CDA\n\n   Ce groupe traite le bloc recordTarget.patientRole.patient.guardian.\n\n   Si un guardian est présent dans le CDA, il crée une RelatedPerson pour\n   représenter le représentant légal ou responsable du patient.\n\n   La ressource RelatedPerson est donc créée uniquement si le bloc guardian existe",
     "input" : [{
       "name" : "src",
-      "type" : "ClinicalDocument",
       "mode" : "source"
     },
     {
       "name" : "bundle",
-      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
-      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -2662,12 +2618,10 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
     "documentation" : "GROUPE — TRAITEMENT DU DOCUMENT LIÉ CDA\n\n   Ce groupe traite le bloc relatedDocument du CDA.\n\n   Si relatedDocument est présent, il alimente Composition.relatesTo afin de\n   représenter le lien avec un document antérieur, par exemple un document\n   remplacé.\n\n   Ce groupe ne crée pas de ressource FHIR indépendante. Il complète uniquement\n   la Composition déjà initialisée",
     "input" : [{
       "name" : "src",
-      "type" : "ClinicalDocument",
       "mode" : "source"
     },
     {
       "name" : "composition",
-      "type" : "Composition",
       "mode" : "target"
     }],
     "rule" : [{
@@ -2743,7 +2697,6 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
     },
     {
       "name" : "organization",
-      "type" : "Organization",
       "mode" : "target"
     }],
     "rule" : [{
@@ -2848,7 +2801,6 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
     },
     {
       "name" : "practitioner",
-      "type" : "Practitioner",
       "mode" : "target"
     }],
     "rule" : [{
@@ -2958,17 +2910,14 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
     },
     {
       "name" : "role",
-      "type" : "PractitionerRole",
       "mode" : "target"
     },
     {
       "name" : "practitioner",
-      "type" : "Practitioner",
       "mode" : "target"
     },
     {
       "name" : "organization",
-      "type" : "Organization",
       "mode" : "target"
     }],
     "rule" : [{
@@ -3028,17 +2977,14 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
     "documentation" : "GROUPE COMMUN — RELATEDENTITY CDA VERS RELATEDPERSON FHIR\n\n   Ce groupe transforme un relatedEntity CDA vers une ressource FHIR RelatedPerson\n   déjà créée par le groupe appelant.\n\n   Il alimente le lien avec le Patient ainsi que les informations génériques :\n   identifier, address, telecom et name.\n\n   Le champ relationship n’est pas alimenté dans cette étape afin d’éviter un\n   double mapping. Il est enrichi ensuite dans l’étape française avec le système\n   NOS approprié",
     "input" : [{
       "name" : "relatedEntity",
-      "type" : "RelatedEntity",
       "mode" : "source"
     },
     {
       "name" : "relatedPerson",
-      "type" : "RelatedPerson",
       "mode" : "target"
     },
     {
       "name" : "patient",
-      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -3169,22 +3115,18 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
     "documentation" : "GROUPE COMMUN — HEALTHCAREFACILITY CDA VERS CONTEXTE DE LIEU FHIR\n\n   Ce groupe traite le bloc healthCareFacility du CDA.\n\n   Il complète les ressources Encounter, Location et Organization déjà créées\n   par le groupe appelant lorsque le bloc healthCareFacility existe.\n\n   Il alimente notamment :\n   - Encounter.location ;\n   - Encounter.serviceProvider ;\n   - Location.managingOrganization ;\n   - Location.name ;\n   - Location.type ;\n   - Organization représentant la structure de prise en charge.",
     "input" : [{
       "name" : "facility",
-      "type" : "HealthCareFacility",
       "mode" : "source"
     },
     {
       "name" : "encounter",
-      "type" : "Encounter",
       "mode" : "target"
     },
     {
       "name" : "location",
-      "type" : "Location",
       "mode" : "target"
     },
     {
       "name" : "facilityOrganization",
-      "type" : "Organization",
       "mode" : "target"
     }],
     "rule" : [{
@@ -3354,22 +3296,18 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
     "documentation" : "CORPS CDA -> SECTIONS FHIR\n\n   Cette partie transforme uniquement le squelette du structuredBody CDA.\n   Les entries métier ne sont pas transformées dans l’étape 2\r\nCDA component.structuredBody -> FHIR Composition.section",
     "input" : [{
       "name" : "src",
-      "type" : "ClinicalDocument",
       "mode" : "source"
     },
     {
       "name" : "composition",
-      "type" : "Composition",
       "mode" : "target"
     },
     {
       "name" : "bundle",
-      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
-      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
