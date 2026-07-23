@@ -57,7 +57,7 @@ group Any(source src, target tgt) {
 /* Mapping CDA II vers FHIR Identifier
 II = Identifiant CDA
 Identifier = Identifiant FHIR*/
-group II(source src : II, target tgt : Identifier) extends Any <<types>> {
+group II(source src, target tgt) extends Any {
 
   // Si root existe avec une extension, alors root devient le system en urn:oid
   src.root as r where src.extension.exists()
@@ -106,7 +106,17 @@ group TemplateID(source template : II, target tgt : DomainResource) {
     template -> ext.url = 'http://hl7.org/cda/stds/core/StructureDefinition/templateID' "url";
 
     // Le templateId est transformé en Identifier FHIR
-    template -> ext.value = create('Identifier') as value then II(template, value) "value";
+    template -> ext.value = create('Identifier') as value then {
+      template.root as r where template.extension.exists() -> value.system = append('urn:oid:', r) "root1";
+      template.root as r where template.extension.empty() and template.root.matches('[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}') -> value.system = 'urn:ietf:rfc:3986', value.value = ('urn:uuid:' + %r.lower()) "rootuuid";
+      template.root as r where template.extension.empty() and template.root.contains('.') -> value.system = 'urn:ietf:rfc:3986', value.value = append('urn:oid:', r) "rootoid";
+      template.extension as e -> value.value = e;
+      template.assigningAuthorityName as s -> value.assigner as a, a.display = s;
+      template.displayable as displayable -> value.extension as valueExtension then {
+        displayable -> valueExtension.url = 'http://hl7.org/fhir/cdaStructureDefinition/extension-displayable' "url";
+        displayable.value as v -> valueExtension.value = cast(v, 'string');
+      } "extension";
+    } "value";
   } "templateId";
 }
 
@@ -125,14 +135,14 @@ group Negation(source negation : BL, target tgt : DomainResource) {
 
 
 // Mapping CDA TS vers FHIR instant (TS = timestamp CDA)
-group TSInstant(source src : TS, target tgt : instant) extends Any <<types>> {
+group TSInstant(source src, target tgt) extends Any {
   // La valeur temporelle CDA est convertie en string pour alimenter l’instant FHIR
   src.value as v -> tgt.value = cast(v, 'string');
 }
 
 
 // Mapping CDA TS vers FHIR dateTime (Hérite du mapping TSInstant)
-group TSDateTime(source src : TS, target tgt : dateTime) extends TSInstant <<types>> {
+group TSDateTime(source src, target tgt) extends TSInstant {
   // Réutilisation du mapping parent
   src -> tgt "inherit";
 }
@@ -140,7 +150,7 @@ group TSDateTime(source src : TS, target tgt : dateTime) extends TSInstant <<typ
 
 
 // Mapping CDA TS vers FHIR date (Hérite aussi du mapping TSInstant)
-group TSDate(source src : TS, target tgt : date) extends TSInstant <<types>> {
+group TSDate(source src, target tgt) extends TSInstant {
   // Réutilisation du mapping parent
   src -> tgt "inherit";
 }
@@ -149,7 +159,7 @@ group TSDate(source src : TS, target tgt : date) extends TSInstant <<types>> {
 /*Mapping CDA IVL_TS vers FHIR Period
 IVL_TS = intervalle de temps CDA
 Period = période FHIR avec start et end*/
-group IVLTSPeriod(source src : IVL_TS, target tgt : Period) extends Any <<types>> {
+group IVLTSPeriod(source src, target tgt) extends Any {
   // La borne basse CDA devient le start FHIR
   src.low as low then {
     low.value as value -> tgt.start = cast(value, 'dateTime') "start";
@@ -193,7 +203,7 @@ group ONstring(source src : ON, target tgt : string) extends STstring <<types>> 
 
 
 // Mapping CDA CS vers FHIR code (CS = coded simple CDA)
-group CSCode(source src : CS, target tgt : code) {
+group CSCode(source src, target tgt) {
   // Le code CDA devient la valeur du code FHIR
   src.code as c -> tgt.value = cast(c, 'string');
 }
@@ -213,7 +223,7 @@ group CDCode(source src : CD, target tgt : code) extends CSCode <<types>> {
 }
 
 
-group CECodeableConcept(source src : CE, target tgt : CodeableConcept) {
+group CECodeableConcept(source src, target tgt) {
   // originalText CDA -> FHIR CodeableConcept.text
   //
   // Exemple CDA :
@@ -282,7 +292,7 @@ group CSCodeableConcept(source src : CS, target tgt : CodeableConcept) extends C
 }
 
 // Mapping CDA CD vers FHIR CodeableConcept (CD réutilise la logique CECodeableConcept)
-group CDCodeableConcept(source src : CD, target tgt : CodeableConcept) extends CECodeableConcept <<types>> {
+group CDCodeableConcept(source src, target tgt) extends CECodeableConcept {
   // Réutilisation du mapping CECodeableConcept
   src -> tgt "inherit";
 }
@@ -316,7 +326,7 @@ group CDCoding(source src, target tgt : Coding) {
 /*Mapping CDA EN vers FHIR HumanName
 EN = Entity Name CDA
 HumanName = nom humain FHIR*/
-group ENHumanName(source src : EN, target tgt : HumanName) {
+group ENHumanName(source src, target tgt) {
   // Parcours des composants du nom CDA
   src.item as item then {
     // Nom de famille
@@ -352,7 +362,7 @@ group PNHumanName(source src : PN, target tgt : HumanName) extends ENHumanName <
 /*Mapping CDA AD vers FHIR Address
 AD = adresse CDA
 Address = adresse FHIR*/
-group ADAddress(source src : AD, target tgt : Address) {
+group ADAddress(source src, target tgt) {
   // Parcours des composants de l’adresse CDA
   src.item as item then {
     // Pays
@@ -401,7 +411,7 @@ group ADAddress(source src : AD, target tgt : Address) {
 /*Mapping CDA TEL vers FHIR ContactPoint
 TEL = téléphone/email/url CDA
 ContactPoint = moyen de contact FHIR*/
-group TELContactPoint(source src : TEL, target tgt : ContactPoint) {
+group TELContactPoint(source src, target tgt) {
   // Si la valeur commence par tel:, c’est un téléphone
   src.value as v where (src.value.startsWith('tel:')) ->  tgt.value = (%v.substring(4)),  tgt.system = 'phone' "valuetel";
 
