@@ -57,7 +57,7 @@ group Any(source src, target tgt) {
 /* Mapping CDA II vers FHIR Identifier
 II = Identifiant CDA
 Identifier = Identifiant FHIR*/
-group II(source src, target tgt) extends Any {
+group II(source src, target tgt : Identifier) extends Any {
 
   // Si root existe avec une extension, alors root devient le system en urn:oid
   src.root as r where src.extension.exists()
@@ -135,14 +135,14 @@ group Negation(source negation : BL, target tgt : DomainResource) {
 
 
 // Mapping CDA TS vers FHIR instant (TS = timestamp CDA)
-group TSInstant(source src, target tgt) extends Any {
+group TSInstant(source src, target tgt : instant) extends Any {
   // La valeur temporelle CDA est convertie en string pour alimenter l’instant FHIR
   src.value as v -> tgt.value = cast(v, 'string');
 }
 
 
 // Mapping CDA TS vers FHIR dateTime (Hérite du mapping TSInstant)
-group TSDateTime(source src, target tgt) extends TSInstant {
+group TSDateTime(source src, target tgt : dateTime) extends TSInstant {
   // Réutilisation du mapping parent
   src -> tgt "inherit";
 }
@@ -150,7 +150,7 @@ group TSDateTime(source src, target tgt) extends TSInstant {
 
 
 // Mapping CDA TS vers FHIR date (Hérite aussi du mapping TSInstant)
-group TSDate(source src, target tgt) extends TSInstant {
+group TSDate(source src, target tgt : date) extends TSInstant {
   // Réutilisation du mapping parent
   src -> tgt "inherit";
 }
@@ -159,7 +159,7 @@ group TSDate(source src, target tgt) extends TSInstant {
 /*Mapping CDA IVL_TS vers FHIR Period
 IVL_TS = intervalle de temps CDA
 Period = période FHIR avec start et end*/
-group IVLTSPeriod(source src, target tgt) extends Any {
+group IVLTSPeriod(source src, target tgt : Period) extends Any {
   // La borne basse CDA devient le start FHIR
   src.low as low then {
     low.value as value -> tgt.start = cast(value, 'dateTime') "start";
@@ -203,7 +203,7 @@ group ONstring(source src : ON, target tgt : string) extends STstring <<types>> 
 
 
 // Mapping CDA CS vers FHIR code (CS = coded simple CDA)
-group CSCode(source src, target tgt) {
+group CSCode(source src, target tgt : code) {
   // Le code CDA devient la valeur du code FHIR
   src.code as c -> tgt.value = cast(c, 'string');
 }
@@ -223,7 +223,7 @@ group CDCode(source src : CD, target tgt : code) extends CSCode <<types>> {
 }
 
 
-group CECodeableConcept(source src, target tgt) {
+group CECodeableConcept(source src, target tgt : CodeableConcept) {
   // originalText CDA -> FHIR CodeableConcept.text
   //
   // Exemple CDA :
@@ -292,7 +292,7 @@ group CSCodeableConcept(source src : CS, target tgt : CodeableConcept) extends C
 }
 
 // Mapping CDA CD vers FHIR CodeableConcept (CD réutilise la logique CECodeableConcept)
-group CDCodeableConcept(source src, target tgt) extends CECodeableConcept {
+group CDCodeableConcept(source src, target tgt : CodeableConcept) extends CECodeableConcept {
   // Réutilisation du mapping CECodeableConcept
   src -> tgt "inherit";
 }
@@ -326,7 +326,7 @@ group CDCoding(source src, target tgt : Coding) {
 /*Mapping CDA EN vers FHIR HumanName
 EN = Entity Name CDA
 HumanName = nom humain FHIR*/
-group ENHumanName(source src, target tgt) {
+group ENHumanName(source src, target tgt : HumanName) {
   // Parcours des composants du nom CDA
   src.item as item then {
     // Nom de famille
@@ -362,7 +362,7 @@ group PNHumanName(source src : PN, target tgt : HumanName) extends ENHumanName <
 /*Mapping CDA AD vers FHIR Address
 AD = adresse CDA
 Address = adresse FHIR*/
-group ADAddress(source src, target tgt) {
+group ADAddress(source src, target tgt : Address) {
   // Parcours des composants de l’adresse CDA
   src.item as item then {
     // Pays
@@ -411,7 +411,7 @@ group ADAddress(source src, target tgt) {
 /*Mapping CDA TEL vers FHIR ContactPoint
 TEL = téléphone/email/url CDA
 ContactPoint = moyen de contact FHIR*/
-group TELContactPoint(source src, target tgt) {
+group TELContactPoint(source src, target tgt : ContactPoint) {
   // Si la valeur commence par tel:, c’est un téléphone
   src.value as v where (src.value.startsWith('tel:')) ->  tgt.value = (%v.substring(4)),  tgt.system = 'phone' "valuetel";
 
