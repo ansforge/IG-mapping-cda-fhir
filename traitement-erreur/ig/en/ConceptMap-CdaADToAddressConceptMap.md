@@ -19,7 +19,7 @@ Correspondances documentaires des composants du type CDA AD vers le type FHIR Ad
   "title" : "ConceptMap — CDA AD vers FHIR Address",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-07-23T11:57:58+00:00",
+  "date" : "2026-07-23T12:15:47+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
