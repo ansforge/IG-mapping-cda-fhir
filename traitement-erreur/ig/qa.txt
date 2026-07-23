@@ -1,9 +1,9 @@
 CDA2FHIRMAP : Validation Results
 =========================================
 
-err = 863, warn = 323, info = 614
+err = 846, warn = 311, info = 612
 IG Publisher Version: 2.2.10 Out of date - current version is 2.2.11
-Generated Thu Jul 23 07:37:43 UTC 2026. FHIR version 4.0.1 for ans.fhir.fr.mappingcdafhir#0.1.0 (canonical = https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir)
+Generated Thu Jul 23 08:16:39 UTC 2026. FHIR version 4.0.1 for ans.fhir.fr.mappingcdafhir#0.1.0 (canonical = https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir)
  Build Errors : 1 / 4 / 0
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaADToAddressConceptMap : 0 / 8 / 8
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaBLToBooleanConceptMap : 0 / 1 / 4
@@ -19,7 +19,7 @@ Generated Thu Jul 23 07:37:43 UTC 2026. FHIR version 4.0.1 for ans.fhir.fr.mappi
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaTSToDateTimeConceptMap : 0 / 3 / 8
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ImplementationGuide-ans.fhir.fr.mappingcdafhir : 0 / 2 / 2
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/input/fml/CDAFrToBundle : 190 / 7 / 187
- /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/input/fml/CDAtoFHIRTypes : 18 / 27 / 61
+ /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/input/fml/CDAtoFHIRTypes : 1 / 15 / 59
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/input/fml/CdaPatientSummaryToBundle : 512 / 212 / 172
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/input/fml/CdaToBundle : 131 / 6 / 96
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/input/resources/Bundle-fe569e1f-32d4-4ba4-b5ad-88082bf5470a : 3 / 37 / 46
@@ -538,97 +538,66 @@ INFORMATION: StructureMap.structure[9].url: Pinned the version of http://hl7.org
 INFORMATION: StructureMap.structure[10].url: Pinned the version of http://hl7.org/cda/stds/core/StructureDefinition/TEL to 2.0.0-sd
 INFORMATION: StructureMap.structure[11].url: Pinned the version of http://hl7.org/cda/stds/core/StructureDefinition/BL to 2.0.0-sd
 INFORMATION: StructureMap.structure[12].url: Pinned the version of http://hl7.org/cda/stds/core/StructureDefinition/IVL-TS to 2.0.0-sd
-INFORMATION: StructureMap.structure[13].url: Pinned the version of http://hl7.org/cda/stds/core/StructureDefinition/IVXB-TS to 2.0.0-sd
-INFORMATION: StructureMap.structure[14].url: Pinned the version of http://hl7.org/cda/stds/core/StructureDefinition/INT to 2.0.0-sd
-INFORMATION: StructureMap.structure[15].url: Pinned the version of http://hl7.org/cda/stds/core/StructureDefinition/CD to 2.0.0-sd
-INFORMATION: StructureMap.structure[16].url: Pinned the version of http://hl7.org/cda/stds/core/StructureDefinition/PQ to 2.0.0-sd
-INFORMATION: StructureMap.structure[17].url: Pinned the version of http://hl7.org/cda/stds/core/StructureDefinition/RTO-PQ-PQ to 2.0.0-sd
-INFORMATION: StructureMap.structure[18].url: Pinned the version of http://hl7.org/fhir/StructureDefinition/Identifier to 4.0.1
-INFORMATION: StructureMap.structure[19].url: Pinned the version of http://hl7.org/fhir/StructureDefinition/instant to 4.0.1
-INFORMATION: StructureMap.structure[20].url: Pinned the version of http://hl7.org/fhir/StructureDefinition/code to 4.0.1
-INFORMATION: StructureMap.structure[21].url: Pinned the version of http://hl7.org/fhir/StructureDefinition/CodeableConcept to 4.0.1
-INFORMATION: StructureMap.structure[22].url: Pinned the version of http://hl7.org/fhir/StructureDefinition/Coding to 4.0.1
-INFORMATION: StructureMap.structure[23].url: Pinned the version of http://hl7.org/fhir/StructureDefinition/string to 4.0.1
-INFORMATION: StructureMap.structure[24].url: Pinned the version of http://hl7.org/fhir/StructureDefinition/HumanName to 4.0.1
-INFORMATION: StructureMap.structure[25].url: Pinned the version of http://hl7.org/fhir/StructureDefinition/Address to 4.0.1
-INFORMATION: StructureMap.structure[26].url: Pinned the version of http://hl7.org/fhir/StructureDefinition/ContactPoint to 4.0.1
-INFORMATION: StructureMap.structure[27].url: Pinned the version of http://hl7.org/fhir/StructureDefinition/boolean to 4.0.1
-INFORMATION: StructureMap.structure[28].url: Pinned the version of http://hl7.org/fhir/StructureDefinition/Period to 4.0.1
-INFORMATION: StructureMap.structure[29].url: Pinned the version of http://hl7.org/fhir/StructureDefinition/integer to 4.0.1
-INFORMATION: StructureMap.structure[30].url: Pinned the version of http://hl7.org/fhir/StructureDefinition/dateTime to 4.0.1
-INFORMATION: StructureMap.structure[31].url: Pinned the version of http://hl7.org/fhir/StructureDefinition/date to 4.0.1
-INFORMATION: StructureMap.structure[32].url: Pinned the version of http://hl7.org/fhir/StructureDefinition/Quantity to 4.0.1
-INFORMATION: StructureMap.structure[33].url: Pinned the version of http://hl7.org/fhir/StructureDefinition/Ratio to 4.0.1
+INFORMATION: StructureMap.structure[13].url: Pinned the version of http://hl7.org/cda/stds/core/StructureDefinition/INT to 2.0.0-sd
+INFORMATION: StructureMap.structure[14].url: Pinned the version of http://hl7.org/cda/stds/core/StructureDefinition/CD to 2.0.0-sd
+INFORMATION: StructureMap.structure[15].url: Pinned the version of http://hl7.org/cda/stds/core/StructureDefinition/PQ to 2.0.0-sd
+INFORMATION: StructureMap.structure[16].url: Pinned the version of http://hl7.org/cda/stds/core/StructureDefinition/RTO-PQ-PQ to 2.0.0-sd
+INFORMATION: StructureMap.structure[17].url: Pinned the version of http://hl7.org/fhir/StructureDefinition/Identifier to 4.0.1
+INFORMATION: StructureMap.structure[18].url: Pinned the version of http://hl7.org/fhir/StructureDefinition/instant to 4.0.1
+INFORMATION: StructureMap.structure[19].url: Pinned the version of http://hl7.org/fhir/StructureDefinition/code to 4.0.1
+INFORMATION: StructureMap.structure[20].url: Pinned the version of http://hl7.org/fhir/StructureDefinition/CodeableConcept to 4.0.1
+INFORMATION: StructureMap.structure[21].url: Pinned the version of http://hl7.org/fhir/StructureDefinition/Coding to 4.0.1
+INFORMATION: StructureMap.structure[22].url: Pinned the version of http://hl7.org/fhir/StructureDefinition/string to 4.0.1
+INFORMATION: StructureMap.structure[23].url: Pinned the version of http://hl7.org/fhir/StructureDefinition/HumanName to 4.0.1
+INFORMATION: StructureMap.structure[24].url: Pinned the version of http://hl7.org/fhir/StructureDefinition/Address to 4.0.1
+INFORMATION: StructureMap.structure[25].url: Pinned the version of http://hl7.org/fhir/StructureDefinition/ContactPoint to 4.0.1
+INFORMATION: StructureMap.structure[26].url: Pinned the version of http://hl7.org/fhir/StructureDefinition/boolean to 4.0.1
+INFORMATION: StructureMap.structure[27].url: Pinned the version of http://hl7.org/fhir/StructureDefinition/Period to 4.0.1
+INFORMATION: StructureMap.structure[28].url: Pinned the version of http://hl7.org/fhir/StructureDefinition/integer to 4.0.1
+INFORMATION: StructureMap.structure[29].url: Pinned the version of http://hl7.org/fhir/StructureDefinition/dateTime to 4.0.1
+INFORMATION: StructureMap.structure[30].url: Pinned the version of http://hl7.org/fhir/StructureDefinition/date to 4.0.1
+INFORMATION: StructureMap.structure[31].url: Pinned the version of http://hl7.org/fhir/StructureDefinition/Quantity to 4.0.1
+INFORMATION: StructureMap.structure[32].url: Pinned the version of http://hl7.org/fhir/StructureDefinition/Ratio to 4.0.1
+INFORMATION: StructureMap.structure[33].url: Pinned the version of http://hl7.org/fhir/StructureDefinition/DomainResource to 4.0.1
 INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[1].rule[5].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[1].rule[5].rule[1].target[0]: Transform cast not checked yet
+INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[3].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[3].rule[0].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[3].rule[0].rule[1].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[3].rule[0].rule[1].dependent[0].variable[0]: The parameter 'src' refers to the variable 'template : II (source)' but its type is 'II' which is not compatible with the type required for the group 'II', which is 'II' (from map '$this')
+INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[4].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[4].rule[0].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[5].rule[0].target[0]: Transform cast not checked yet
 INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[6].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[7].rule[0].target[0]: Transform cast not checked yet
-INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[8].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[9].rule[0].dependent[0].variable[0]: The parameter 'src' refers to the variable 'low : http://hl7.org/cda/stds/core/StructureDefinition/IVXB-TS (source)' but its type is 'IVXB_TS' which is not compatible with the type required for the group 'IVXBTSToDateTime', which is 'IVXB_TS' (from map '$this')
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[9].rule[1].dependent[0].variable[0]: The parameter 'src' refers to the variable 'high : http://hl7.org/cda/stds/core/StructureDefinition/IVXB-TS (source)' but its type is 'IVXB_TS' which is not compatible with the type required for the group 'IVXBTSToDateTime', which is 'IVXB_TS' (from map '$this')
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[10].rule[0].dependent[0].variable[0]: The parameter 'src' refers to the variable 's : http://hl7.org/cda/stds/core/StructureDefinition/IVXB-TS (source)' but its type is 'IVXB_TS' which is not compatible with the type required for the group 'IVXBTSToDateTime', which is 'IVXB_TS' (from map '$this')
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[10].rule[0].dependent[0].variable[1]: The parameter 'tgt' refers to the variable 'tgt : dateTime (target)' but its type is 'dateTime' which is not compatible with the type required for the group 'IVXBTSToDateTime', which is 'dateTime' (from map '$this')
-WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[11].rule[0].target[0]: Transform cast not checked yet
+INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[7].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[8].rule[0].rule[0].target[0]: Transform cast not checked yet
+WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[8].rule[1].rule[0].target[0]: Transform cast not checked yet
+WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[9].rule[0].rule[0].target[0]: Transform cast not checked yet
+WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[10].rule[0].target[0]: Transform cast not checked yet
+INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[11].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[12].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[13].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[14].rule[0].target[0]: Transform cast not checked yet
+WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[13].rule[0].target[0]: Transform cast not checked yet
+INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[14].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[15].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[16].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[17].rule[0].rule[0].rule[0].target[0]: Transform cast not checked yet
-INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[17].rule[1].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[17].rule[1].rule[0].target[0]: Transform cast not checked yet
-WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[17].rule[1].rule[6].target[0]: Transform cast not checked yet
+WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[16].rule[0].rule[0].rule[0].target[0]: Transform cast not checked yet
+INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[16].rule[1].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[16].rule[1].rule[0].target[0]: Transform cast not checked yet
+WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[16].rule[1].rule[6].target[0]: Transform cast not checked yet
+INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[17].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[18].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[19].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[21].rule[0].rule[0].rule[0].target[0]: Transform cast not checked yet
-WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[21].rule[0].rule[1].rule[0].target[0]: Transform cast not checked yet
-WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[21].rule[0].rule[2].rule[0].target[0]: Transform cast not checked yet
-WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[21].rule[0].rule[3].rule[0].target[0]: Transform cast not checked yet
-INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[22].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[23].rule[0].rule[0].rule[0].target[0]: Transform cast not checked yet
-WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[23].rule[0].rule[1].rule[0].target[0]: Transform cast not checked yet
-WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[23].rule[0].rule[2].rule[0].target[0]: Transform cast not checked yet
-WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[23].rule[0].rule[3].rule[0].target[0]: Transform cast not checked yet
-WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[23].rule[0].rule[4].rule[0].target[0]: Transform cast not checked yet
-WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[23].rule[0].rule[5].rule[0].target[0]: Transform cast not checked yet
-WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[23].rule[0].rule[6].rule[0].target[0]: Transform cast not checked yet
-WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[23].rule[0].rule[7].rule[0].target[0]: Transform cast not checked yet
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[24].rule[0].target[0]: Transform evaluate takes 1 parameter(s) but 2 were found
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[24].rule[1].target[0]: Transform evaluate takes 1 parameter(s) but 2 were found
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[24].rule[2].target[0]: Transform evaluate takes 1 parameter(s) but 2 were found
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[24].rule[3].target[0]: Transform evaluate takes 1 parameter(s) but 2 were found
-INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[24].rule[4].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[24].rule[5].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[24].rule[6].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[24].rule[7].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[24].rule[8].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[21].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[23].rule[4].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[23].rule[5].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[23].rule[6].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[23].rule[7].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[23].rule[8].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[0]: The group Any is not called successfully from within this mapping script, and does not have types on its inputs, so type verification is not possible
 WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[0].input[0]: Group Any parameter src has no type, so the paths cannot be validated
 WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[0].input[1]: Group Any parameter tgt has no type, so the paths cannot be validated
-INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[3]: The group TemplateID is not called successfully from within this mapping script, and does not have types on its inputs, so type verification is not possible
-WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[3].input[1]: Group TemplateID parameter tgt has no type, so the paths cannot be validated
-INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[3].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[3].rule[0].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[3].rule[0].rule[0].target[0]: The target context 'ext' is not known at this point
-INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[3].rule[0].rule[1].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[3].rule[0].rule[1].target[0]: The target context 'ext' is not known at this point
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[3].rule[0].rule[1].rule[0].target[0]: The target context 'value' is not known at this point
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[3].rule[0].rule[1].rule[1].target[0]: The target context 'value' is not known at this point
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[3].rule[0].rule[1].rule[2].target[0]: The target context 'value' is not known at this point
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[3].rule[0].rule[1].rule[2].target[1]: The target context 'value' is not known at this point
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[3].rule[0].rule[1].rule[3].target[0]: The target context 'value' is not known at this point
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[3].rule[0].rule[1].rule[3].target[1]: The target context 'value' is not known at this point
-INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[4]: The group Negation is not called successfully from within this mapping script, and does not have types on its inputs, so type verification is not possible
-WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[4].input[1]: Group Negation parameter tgt has no type, so the paths cannot be validated
-INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[4].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[4].rule[0].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[4].rule[0].rule[0].target[0]: The target context 'ext' is not known at this point
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[4].rule[0].rule[1].target[0]: The target context 'ext' is not known at this point
-INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[20]: The group CDCoding is not called successfully from within this mapping script, and does not have types on its inputs, so type verification is not possible
-WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[20].input[0]: Group CDCoding parameter src has no type, so the paths cannot be validated
-WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[20].rule[0].target[0]: Transform cast not checked yet
-WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[20].rule[6].target[0]: Transform cast not checked yet
+INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[19]: The group CDCoding is not called successfully from within this mapping script, and does not have types on its inputs, so type verification is not possible
+WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[19].input[0]: Group CDCoding parameter src has no type, so the paths cannot be validated
+WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[19].rule[0].target[0]: Transform cast not checked yet
+WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[19].rule[6].target[0]: Transform cast not checked yet
 INFORMATION: Resource: The resource StructureMap/CdaToFHIRTypes could usefully have an OID assigned (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/fhir-tools-ig/CodeSystem-ig-parameters.html#ig-parameters-auto-oid-root)
 == input/fml/CdaPatientSummaryToBundle.fml ==
 INFORMATION: StructureMap.structure[0].url: Pinned the version of http://hl7.org/cda/stds/core/StructureDefinition/ClinicalDocument to 2.0.0-sd
