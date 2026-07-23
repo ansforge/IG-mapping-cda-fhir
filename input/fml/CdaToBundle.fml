@@ -86,7 +86,7 @@ group TransformClinicalDocumentToFHIRDocument(source cda : ClinicalDocument, tar
    Les ressources initialisées dans le groupe d’entrée, Bundle, Composition et
    Patient, servent de support de sortie pour le traitement CDA*/
 
-group OrchestrateClinicalDocumentTransformation(source cda : ClinicalDocument, target patient : Patient, target composition : Composition, target bundle : Bundle) {
+group OrchestrateClinicalDocumentTransformation(source cda, target patient, target composition, target bundle) {
   /* ClinicalDocument.header CDA -> Bundle / Composition / Patient + ressources administratives créées si les blocs CDA existent */
   cda then MapClinicalDocumentHeader(cda, bundle, composition, patient) "header";
 
@@ -132,7 +132,7 @@ group OrchestrateClinicalDocumentTransformation(source cda : ClinicalDocument, t
    correspondant. Ainsi, une ressource FHIR n’est créée que lorsqu’un élément CDA
    justifie son existence */
 
-group MapClinicalDocumentHeader(source cda : ClinicalDocument, target bundle : Bundle, target composition : Composition, target patient : Patient) {
+group MapClinicalDocumentHeader(source cda, target bundle, target composition, target patient) {
   // CDA id/setId/versionNumber/effectiveTime -> FHIR métadonnées Bundle + Composition
   cda then MapHeaderDocumentIdentity(cda, bundle, composition) "documentIdentity";
 
@@ -174,7 +174,7 @@ group MapClinicalDocumentHeader(source cda : ClinicalDocument, target bundle : B
 
 
 /*groupe qui traite l'identité du document CDA -> métadonnées Bundle / Composition FHIR*/
-group MapHeaderDocumentIdentity(source src : ClinicalDocument, target bundle : Bundle, target composition : Composition) {
+group MapHeaderDocumentIdentity(source src, target bundle, target composition) {
   // CDA ClinicalDocument -> FHIR Bundle.id
   src -> bundle.id = uuid() "bundleId";
 
@@ -226,7 +226,7 @@ group MapHeaderDocumentIdentity(source src : ClinicalDocument, target bundle : B
 
 
 /* groupe qui traite la description du document CDA -> FHIR Composition*/
-group MapHeaderDocumentDescription(source src : ClinicalDocument, target composition : Composition, target patient : Patient) {
+group MapHeaderDocumentDescription(source src, target composition, target patient) {
   // CDA languageCode -> FHIR Composition.language
   src.languageCode as languageCode -> composition.language = create('code') as code then CSCode(languageCode, code) "language";
 
@@ -249,7 +249,7 @@ group MapHeaderDocumentDescription(source src : ClinicalDocument, target composi
 
 
 // groupe qui traite: CDA recordTarget.patientRole -> FHIR Patient
-group MapHeaderRecordTarget(source src : ClinicalDocument, target patient : Patient, target composition : Composition) {
+group MapHeaderRecordTarget(source src, target patient, target composition) {
   src.recordTarget as recordTarget then {
     recordTarget.patientRole as patientRole then {
       // CDA patientRole.addr -> FHIR Patient.address
@@ -279,7 +279,7 @@ group MapHeaderRecordTarget(source src : ClinicalDocument, target patient : Pati
 
 /* groupe qui traite custodian  (l'organisation)
 L’Organization est créée uniquement si le bloc custodian existe dans le CDA.*/
-group MapHeaderCustodian(source src : ClinicalDocument, target composition : Composition, target bundle : Bundle) {
+group MapHeaderCustodian(source src, target composition, target bundle) {
   src.custodian as custodian then {
     custodian.assignedCustodian as assignedCustodian then {
       assignedCustodian.representedCustodianOrganization as representedOrg
@@ -310,7 +310,7 @@ group MapHeaderCustodian(source src : ClinicalDocument, target composition : Com
    La Composition référence ensuite le PractitionerRole si l’organisation existe,
    sinon elle référence directement le Practitioner.
 */
-group MapHeaderAuthor(source src : ClinicalDocument, target composition : Composition, target bundle : Bundle) {
+group MapHeaderAuthor(source src, target composition, target bundle) {
   src.author as author then {
     author.assignedAuthor as assignedAuthor
       -> bundle.entry as practitionerEntry,
@@ -357,7 +357,7 @@ group MapHeaderAuthor(source src : ClinicalDocument, target composition : Compos
    référence le PractitionerRole si l’organisation existe, sinon elle référence
    directement le Practitioner.
 */
-group MapHeaderLegalAuthenticator(source src : ClinicalDocument, target composition : Composition, target bundle : Bundle) {
+group MapHeaderLegalAuthenticator(source src, target composition, target bundle) {
   src.legalAuthenticator as legalAuthenticator then {
     legalAuthenticator.assignedEntity as assignedEntity
       -> bundle.entry as practitionerEntry,
@@ -400,7 +400,7 @@ group MapHeaderLegalAuthenticator(source src : ClinicalDocument, target composit
 
 
 /*  GROUPE — TRAITEMENT DE L’ÉVÉNEMENT DOCUMENTÉ CDA*/
-group MapHeaderDocumentationOf(source src : ClinicalDocument, target composition : Composition) {
+group MapHeaderDocumentationOf(source src, target composition) {
   src.documentationOf as documentationOf then {
     documentationOf.serviceEvent as serviceEvent -> composition.event as event then {
       // CDA serviceEvent.code -> FHIR Composition.event.code
@@ -427,7 +427,7 @@ group MapHeaderDocumentationOf(source src : ClinicalDocument, target composition
    structure de prise en charge, puis appelle :
    MapCDAHealthCareFacilityToLocationContext.*/
 
-group MapHeaderEncounterContext(source src : ClinicalDocument, target composition : Composition, target bundle : Bundle, target patient : Patient) {
+group MapHeaderEncounterContext(source src, target composition, target bundle, target patient) {
   src.componentOf as componentOf then {
     componentOf.encompassingEncounter as encompassingEncounter
       -> bundle.entry as encounterEntry,
@@ -477,7 +477,7 @@ group MapHeaderEncounterContext(source src : ClinicalDocument, target compositio
    Si le code CDA de l’encompassingEncounter est absent, Encounter.class est
    créé avec l’extension data-absent-reason afin de respecter l’obligation FHIR
    sans inventer une information absente du CDA */
-group MapCDAEncompassingEncounterToEncounter(source encompassingEncounter : EncompassingEncounter, target encounter : Encounter, target patient : Patient) {
+group MapCDAEncompassingEncounterToEncounter(source encompassingEncounter, target encounter, target patient) {
 
   // CDA encompassingEncounter.id -> FHIR Encounter.identifier
   encompassingEncounter.id as id -> encounter.identifier = create('Identifier') as identifier then {
@@ -529,7 +529,7 @@ group MapCDAEncompassingEncounterToEncounter(source encompassingEncounter : Enco
    représenter la personne à prévenir en cas d’urgence, puis l’associe au Patient.
 
    La ressource RelatedPerson est donc créée uniquement si ce bloc CDA existe*/
-group MapHeaderEmergencyContact(source src : ClinicalDocument, target bundle : Bundle, target patient : Patient) {
+group MapHeaderEmergencyContact(source src, target bundle, target patient) {
   src.informant as informant then {
     informant.relatedEntity as relatedEntity where relatedEntity.classCode = 'ECON'
       -> bundle.entry as relatedPersonEntry,
@@ -549,7 +549,7 @@ group MapHeaderEmergencyContact(source src : ClinicalDocument, target bundle : B
    représenter la personne de confiance, puis l’associe au Patient.
 
    La ressource RelatedPerson est donc créée uniquement si ce bloc CDA existe.*/
-group MapHeaderTrustedPerson(source src : ClinicalDocument, target bundle : Bundle, target patient : Patient) {
+group MapHeaderTrustedPerson(source src, target bundle, target patient) {
   src.informant as informant then {
     informant.relatedEntity as relatedEntity where relatedEntity.classCode = 'NOK'
       -> bundle.entry as relatedPersonEntry,
@@ -569,7 +569,7 @@ group MapHeaderTrustedPerson(source src : ClinicalDocument, target bundle : Bund
    représenter le représentant légal ou responsable du patient.
 
    La ressource RelatedPerson est donc créée uniquement si le bloc guardian existe*/
-group MapHeaderGuardian(source src : ClinicalDocument, target bundle : Bundle, target patient : Patient) {
+group MapHeaderGuardian(source src, target bundle, target patient) {
   src.recordTarget as recordTarget then {
     recordTarget.patientRole as patientRole then {
       patientRole.patient as patientCda then {
@@ -601,7 +601,7 @@ group MapHeaderGuardian(source src : ClinicalDocument, target bundle : Bundle, t
 
    Ce groupe ne crée pas de ressource FHIR indépendante. Il complète uniquement
    la Composition déjà initialisée*/
-group MapHeaderRelatedDocument(source src : ClinicalDocument, target composition : Composition) {
+group MapHeaderRelatedDocument(source src, target composition) {
   src.relatedDocument as relatedDoc -> composition.relatesTo as relatesTo then {
     // CDA relatedDocument.typeCode=RPLC -> FHIR Composition.relatesTo.code
     relatedDoc.typeCode as typeCode where typeCode = 'RPLC' -> relatesTo.code = 'replaces' "replaces";
@@ -621,7 +621,7 @@ group MapHeaderRelatedDocument(source src : ClinicalDocument, target composition
 
    Il alimente les informations génériques de l’organisation :
    identifier, name, telecom et address*/
-group MapCDAOrganizationToOrganization(source src, target organization : Organization) {
+group MapCDAOrganizationToOrganization(source src, target organization) {
   // CDA organization.id -> FHIR Organization.identifier
   src.id as id -> organization.identifier = create('Identifier') as identifier then II(id, identifier) "identifier";
 
@@ -644,7 +644,7 @@ group MapCDAOrganizationToOrganization(source src, target organization : Organiz
 
    Il alimente les informations génériques du professionnel :
    identifier, address, telecom et name*/
-group MapCDAAssignedEntityToPractitioner(source src, target practitioner : Practitioner) {
+group MapCDAAssignedEntityToPractitioner(source src, target practitioner) {
   // CDA assignedEntity.id -> FHIR Practitioner.identifier
   src.id as id -> practitioner.identifier = create('Identifier') as identifier then II(id, identifier) "identifier";
 
@@ -670,7 +670,7 @@ group MapCDAAssignedEntityToPractitioner(source src, target practitioner : Pract
    Il alimente les références PractitionerRole.practitioner et
    PractitionerRole.organization à partir des ressources Practitioner et
    Organization déjà créées*/
-group MapCDAAssignedEntityToPractitionerRole(source src, target role : PractitionerRole, target practitioner : Practitioner, target organization : Organization) {
+group MapCDAAssignedEntityToPractitionerRole(source src, target role, target practitioner, target organization) {
   // CDA assignedEntity -> FHIR PractitionerRole.practitioner
   src -> role.practitioner = create('Reference') as refPractitioner, refPractitioner.reference = ('urn:uuid:' + %practitioner.id) "practitionerRef";
 
@@ -691,7 +691,7 @@ group MapCDAAssignedEntityToPractitionerRole(source src, target role : Practitio
    Le champ relationship n’est pas alimenté dans cette étape afin d’éviter un
    double mapping. Il est enrichi ensuite dans l’étape française avec le système
    NOS approprié*/
-group MapCDARelatedEntityToRelatedPerson(source relatedEntity : RelatedEntity, target relatedPerson : RelatedPerson, target patient : Patient) {
+group MapCDARelatedEntityToRelatedPerson(source relatedEntity, target relatedPerson, target patient) {
   // CDA relatedEntity -> FHIR RelatedPerson.patient
   relatedEntity -> relatedPerson.patient = create('Reference') as patientRef, patientRef.reference = ('urn:uuid:' + %patient.id) "patientRef";
 
@@ -729,7 +729,7 @@ group MapCDARelatedEntityToRelatedPerson(source relatedEntity : RelatedEntity, t
    - Location.name ;
    - Location.type ;
    - Organization représentant la structure de prise en charge.*/
-group MapCDAHealthCareFacilityToLocationContext(source facility : HealthCareFacility, target encounter : Encounter, target location : Location, target facilityOrganization : Organization) {
+group MapCDAHealthCareFacilityToLocationContext(source facility, target encounter, target location, target facilityOrganization) {
   // CDA healthCareFacility -> FHIR Encounter.location.location
   facility -> encounter.location as encLocation then { facility -> encLocation.location = create('Reference') as locRef, locRef.reference = ('urn:uuid:' + %location.id) "locationRef"; } "encounterLocation";
 
@@ -762,7 +762,7 @@ group MapCDAHealthCareFacilityToLocationContext(source facility : HealthCareFaci
    Les entries métier ne sont pas transformées dans l’étape 2 */
 
 // CDA component.structuredBody -> FHIR Composition.section
-group MapClinicalDocumentBody(source src : ClinicalDocument, target composition : Composition, target bundle : Bundle, target patient : Patient) {
+group MapClinicalDocumentBody(source src, target composition, target bundle, target patient) {
   src.component as cdaComponent then {
     cdaComponent.structuredBody as structuredBody then {
       structuredBody.component as bodyComponent then {
