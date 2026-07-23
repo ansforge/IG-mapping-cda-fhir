@@ -51,7 +51,7 @@
 <span style="color: navy">// </span><span style="color: green">   Il appelle d’abord le traitement français de l’en-tête, où chaque ressource</span>
 <span style="color: navy">// </span><span style="color: green">   optionnelle est créée dans le groupe correspondant au bloc CDA. Il appelle</span>
 <span style="color: navy">// </span><span style="color: green">   ensuite le corps générique de l’étape 2 pour créer les sections narratives</span>
-<b>group </b>OrchestrateClinicalDocumentFrenchTransformation<span style="color: navy">(</span><b>source</b> <span style="color: maroon">cda</span><span style="color: navy"> : </span>ClinicalDocument, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy"> : </span>Patient, <b>target</b> <span style="color: maroon">composition</span><span style="color: navy"> : </span>Composition, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle<span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>OrchestrateClinicalDocumentFrenchTransformation<span style="color: navy">(</span><b>source</b> <span style="color: maroon">cda</span>, <b>target</b> <span style="color: maroon">patient</span>, <b>target</b> <span style="color: maroon">composition</span>, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy">)</span><span style="color: navy"> {
 </span>  <span style="color: navy">// </span><span style="color: green">CDA ClinicalDocument.header -&gt; socle générique + enrichissement français</span>
   cda<b> then </b>MapClinicalDocumentHeaderWithFrenchRules<span style="color: navy">(</span><span style="color: maroon">cda</span><span style="color: navy">, </span><span style="color: maroon">bundle</span><span style="color: navy">, </span><span style="color: maroon">composition</span><span style="color: navy">, </span><span style="color: maroon">patient</span><span style="color: navy">)</span> <i>&quot;headerFrenchBase&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">CDA ClinicalDocument.structuredBody -&gt; FHIR Composition.section title/code/text</span>
@@ -62,7 +62,7 @@
 <span style="color: navy">// </span><span style="color: green">   Ce groupe reprend l’organisation de l’en-tête CDA. Les ressources optionnelles</span>
 <span style="color: navy">// </span><span style="color: green">   sont créées dans les sous-groupes correspondant aux blocs CDA, puis remplies</span>
 <span style="color: navy">// </span><span style="color: green">   avec les groupes génériques de l’étape 2 et enrichies avec les groupes français</span>
-<b>group </b>MapClinicalDocumentHeaderWithFrenchRules<span style="color: navy">(</span><b>source</b> <span style="color: maroon">cda</span><span style="color: navy"> : </span>ClinicalDocument, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle, <b>target</b> <span style="color: maroon">composition</span><span style="color: navy"> : </span>Composition, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy"> : </span>Patient<span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapClinicalDocumentHeaderWithFrenchRules<span style="color: navy">(</span><b>source</b> <span style="color: maroon">cda</span>, <b>target</b> <span style="color: maroon">bundle</span>, <b>target</b> <span style="color: maroon">composition</span>, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy">)</span><span style="color: navy"> {
 </span>  <span style="color: navy">// </span><span style="color: green">CDA ClinicalDocument -&gt; profils généraux Bundle / Composition</span>
   <span style="color: #b36b00" title="This element was not defined prior to R5">// cda -&gt; bundle.meta as bundleMeta then { cda -&gt; bundleMeta.profile = 'http://hl7.org/fhir/StructureDefinition/Bundle' &quot;bundleGenericProfile&quot;; } &quot;bundleMetaProfile&quot;;</span>
   <span style="color: #b36b00" title="This element was not defined prior to R5">// cda -&gt; composition.meta as compositionMeta then { cda -&gt; compositionMeta.profile = 'http://hl7.org/fhir/StructureDefinition/Composition' &quot;compositionGenericProfile&quot;; } &quot;compositionMetaProfile&quot;;</span>
@@ -103,7 +103,7 @@
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">CDA custodian -&gt; création Organization + socle générique + enrichissement français</span>
-<b>group </b>MapHeaderCustodianWithFrenchRules<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>ClinicalDocument, <b>target</b> <span style="color: maroon">composition</span><span style="color: navy"> : </span>Composition, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle<span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapHeaderCustodianWithFrenchRules<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">composition</span>, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy">)</span><span style="color: navy"> {
 </span>  src.custodian<b> as </b><span style="color: maroon">custodian</span><b> then</b><span style="color: navy"> {
 </span>    custodian.assignedCustodian<b> as </b><span style="color: maroon">assignedCustodian</span><b> then</b><span style="color: navy"> {
 </span>      assignedCustodian.representedCustodianOrganization<b> as </b><span style="color: maroon">representedOrg</span><span style="color: navy"><b> -&gt; </b></span> bundle.entry<b> as </b><span style="color: maroon">custodianOrgEntry</span><span style="color: navy">, </span> custodianOrgEntry.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Organization'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">custodianOrganization</span><span style="color: navy">, </span> custodianOrganization.id = <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span><span style="color: navy">, </span> custodianOrgEntry.fullUrl = <span style="color: navy">(</span>'urn:uuid:' + %custodianOrganization.id<span style="color: navy">)</span><b> then</b><span style="color: navy"> {
@@ -116,7 +116,7 @@
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">CDA author -&gt; création Practitioner / Organization / PractitionerRole + enrichissement français</span>
-<b>group </b>MapHeaderAuthorWithFrenchRules<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>ClinicalDocument, <b>target</b> <span style="color: maroon">composition</span><span style="color: navy"> : </span>Composition, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle<span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapHeaderAuthorWithFrenchRules<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">composition</span>, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy">)</span><span style="color: navy"> {
 </span>  src.author<b> as </b><span style="color: maroon">author</span><b> then</b><span style="color: navy"> {
 </span>    author.assignedAuthor<b> as </b><span style="color: maroon">assignedAuthor</span><span style="color: navy"><b> -&gt; </b></span> bundle.entry<b> as </b><span style="color: maroon">practitionerEntry</span><span style="color: navy">, </span> practitionerEntry.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Practitioner'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">authorPractitioner</span><span style="color: navy">, </span> authorPractitioner.id = <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span><span style="color: navy">, </span> practitionerEntry.fullUrl = <span style="color: navy">(</span>'urn:uuid:' + %authorPractitioner.id<span style="color: navy">)</span><b> then</b><span style="color: navy"> {
 </span>      assignedAuthor<b> then </b>MapCDAAssignedEntityToPractitioner<span style="color: navy">(</span><span style="color: maroon">assignedAuthor</span><span style="color: navy">, </span><span style="color: maroon">authorPractitioner</span><span style="color: navy">)</span> <i>&quot;authorPractitionerBase&quot;</i><span style="color: navy">;</span>
@@ -134,7 +134,7 @@
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">CDA legalAuthenticator -&gt; création Practitioner / Organization / PractitionerRole + enrichissement français</span>
-<b>group </b>MapHeaderLegalAuthenticatorWithFrenchRules<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>ClinicalDocument, <b>target</b> <span style="color: maroon">composition</span><span style="color: navy"> : </span>Composition, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle<span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapHeaderLegalAuthenticatorWithFrenchRules<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">composition</span>, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy">)</span><span style="color: navy"> {
 </span>  src.legalAuthenticator<b> as </b><span style="color: maroon">legalAuthenticator</span><b> then</b><span style="color: navy"> {
 </span>    legalAuthenticator.assignedEntity<b> as </b><span style="color: maroon">assignedEntity</span><span style="color: navy"><b> -&gt; </b></span> bundle.entry<b> as </b><span style="color: maroon">practitionerEntry</span><span style="color: navy">, </span> practitionerEntry.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Practitioner'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">legalPractitioner</span><span style="color: navy">, </span> legalPractitioner.id = <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span><span style="color: navy">, </span> practitionerEntry.fullUrl = <span style="color: navy">(</span>'urn:uuid:' + %legalPractitioner.id<span style="color: navy">)</span><b> then</b><span style="color: navy"> {
 </span>      assignedEntity<b> then </b>MapCDAAssignedEntityToPractitioner<span style="color: navy">(</span><span style="color: maroon">assignedEntity</span><span style="color: navy">, </span><span style="color: maroon">legalPractitioner</span><span style="color: navy">)</span> <i>&quot;legalPractitionerBase&quot;</i><span style="color: navy">;</span>
@@ -156,7 +156,7 @@
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">CDA componentOf.encompassingEncounter -&gt; création Encounter / Location / Organization + enrichissement français</span>
-<b>group </b>MapHeaderEncounterContextWithFrenchRules<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>ClinicalDocument, <b>target</b> <span style="color: maroon">composition</span><span style="color: navy"> : </span>Composition, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy"> : </span>Patient<span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapHeaderEncounterContextWithFrenchRules<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">composition</span>, <b>target</b> <span style="color: maroon">bundle</span>, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy">)</span><span style="color: navy"> {
 </span>  src.componentOf<b> as </b><span style="color: maroon">componentOf</span><b> then</b><span style="color: navy"> {
 </span>    componentOf.encompassingEncounter<b> as </b><span style="color: maroon">encompassingEncounter</span><span style="color: navy"><b> -&gt; </b></span> bundle.entry<b> as </b><span style="color: maroon">encounterEntry</span><span style="color: navy">, </span> encounterEntry.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Encounter'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">encounter</span><span style="color: navy">, </span> encounter.id = <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span><span style="color: navy">, </span> encounterEntry.fullUrl = <span style="color: navy">(</span>'urn:uuid:' + %encounter.id<span style="color: navy">)</span><b> then</b><span style="color: navy"> {
 </span>      <span style="color: navy">// </span><span style="color: green">CDA encompassingEncounter -&gt; FHIR Composition.encounter</span>
@@ -178,7 +178,7 @@
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">CDA informant ECON -&gt; création RelatedPerson + enrichissement français</span>
-<b>group </b>MapHeaderEmergencyContactWithFrenchRules<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>ClinicalDocument, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy"> : </span>Patient<span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapHeaderEmergencyContactWithFrenchRules<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">bundle</span>, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy">)</span><span style="color: navy"> {
 </span>  src.informant<b> as </b><span style="color: maroon">informant</span><b> then</b><span style="color: navy"> {
 </span>    informant.relatedEntity<b> as </b><span style="color: maroon">relatedEntity</span><b> where </b>relatedEntity.classCode = 'ECON'<span style="color: navy"><b> -&gt; </b></span> bundle.entry<b> as </b><span style="color: maroon">relatedPersonEntry</span><span style="color: navy">, </span> relatedPersonEntry.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'RelatedPerson'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">emergencyContactRelatedPerson</span><span style="color: navy">, </span> emergencyContactRelatedPerson.id = <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span><span style="color: navy">, </span> relatedPersonEntry.fullUrl = <span style="color: navy">(</span>'urn:uuid:' + %emergencyContactRelatedPerson.id<span style="color: navy">)</span><b> then</b><span style="color: navy"> {
 </span>      relatedEntity<b> then </b>MapCDARelatedEntityToRelatedPerson<span style="color: navy">(</span><span style="color: maroon">relatedEntity</span><span style="color: navy">, </span><span style="color: maroon">emergencyContactRelatedPerson</span><span style="color: navy">, </span><span style="color: maroon">patient</span><span style="color: navy">)</span> <i>&quot;relatedPersonBase&quot;</i><span style="color: navy">;</span>
@@ -188,7 +188,7 @@
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">CDA informant NOK -&gt; création RelatedPerson + enrichissement français</span>
-<b>group </b>MapHeaderTrustedPersonWithFrenchRules<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>ClinicalDocument, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy"> : </span>Patient<span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapHeaderTrustedPersonWithFrenchRules<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">bundle</span>, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy">)</span><span style="color: navy"> {
 </span>  src.informant<b> as </b><span style="color: maroon">informant</span><b> then</b><span style="color: navy"> {
 </span>    informant.relatedEntity<b> as </b><span style="color: maroon">relatedEntity</span><b> where </b>relatedEntity.classCode = 'NOK'<span style="color: navy"><b> -&gt; </b></span> bundle.entry<b> as </b><span style="color: maroon">relatedPersonEntry</span><span style="color: navy">, </span> relatedPersonEntry.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'RelatedPerson'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">trustedPersonRelatedPerson</span><span style="color: navy">, </span> trustedPersonRelatedPerson.id = <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span><span style="color: navy">, </span> relatedPersonEntry.fullUrl = <span style="color: navy">(</span>'urn:uuid:' + %trustedPersonRelatedPerson.id<span style="color: navy">)</span><b> then</b><span style="color: navy"> {
 </span>      relatedEntity<b> then </b>MapCDARelatedEntityToRelatedPerson<span style="color: navy">(</span><span style="color: maroon">relatedEntity</span><span style="color: navy">, </span><span style="color: maroon">trustedPersonRelatedPerson</span><span style="color: navy">, </span><span style="color: maroon">patient</span><span style="color: navy">)</span> <i>&quot;relatedPersonBase&quot;</i><span style="color: navy">;</span>
@@ -198,7 +198,7 @@
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">CDA guardian -&gt; création RelatedPerson + enrichissement français</span>
-<b>group </b>MapHeaderGuardianWithFrenchRules<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>ClinicalDocument, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy"> : </span>Patient<span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapHeaderGuardianWithFrenchRules<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">bundle</span>, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy">)</span><span style="color: navy"> {
 </span>  src.recordTarget<b> as </b><span style="color: maroon">recordTarget</span><b> then</b><span style="color: navy"> {
 </span>    recordTarget.patientRole<b> as </b><span style="color: maroon">patientRole</span><b> then</b><span style="color: navy"> {
 </span>      patientRole.patient<b> as </b><span style="color: maroon">patientCda</span><b> then</b><span style="color: navy"> {
@@ -217,7 +217,7 @@
   <span style="color: navy">}</span><span style="color: navy">;</span>
 <span style="color: navy">}
 
-</span><b>group </b>MapCDARecordTargetToFrenchPatient<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>PatientRole, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Patient<span style="color: navy">)</span><span style="color: navy"> {
+</span><b>group </b>MapCDARecordTargetToFrenchPatient<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy">)</span><span style="color: navy"> {
 </span>  <span style="color: navy">// </span><span style="color: green">CDA patientRole -&gt; FHIR Patient.meta.profile</span>
   src<span style="color: navy"><b> -&gt; </b></span>tgt.meta<b> as </b><span style="color: maroon">meta</span><b> then</b><span style="color: navy"> {
 </span>    src<span style="color: navy"><b> -&gt; </b></span>meta.profile = <span style="color: blue">'https://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-patient-ins'</span> <i>&quot;patientINSProfile&quot;</i><span style="color: navy">;</span>
@@ -243,7 +243,7 @@
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">CDA PN patient.name -&gt; FHIR HumanName officiel</span>
-<b>group </b>MapCDAPatientNameToFrenchOfficialName<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>PN, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>HumanName<span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapCDAPatientNameToFrenchOfficialName<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>HumanName<span style="color: navy">)</span><span style="color: navy"> {
 </span>  <span style="color: navy">// </span><span style="color: green">CDA patient.name -&gt; FHIR HumanName.use</span>
   src<span style="color: navy"><b> -&gt; </b></span>tgt.use = <span style="color: blue">'official'</span> <i>&quot;use&quot;</i><span style="color: navy">;</span>
   src.item<b> as </b><span style="color: maroon">item</span><b> then</b><span style="color: navy"> {
@@ -287,7 +287,7 @@
 
 </span><span style="color: navy">// </span><span style="color: green">IDENTIFIANTS PATIENT FR</span>
 <span style="color: navy">// </span><span style="color: green">CDA II patientRole.id -&gt; FHIR Patient.identifier INS</span>
-<b>group </b>MapCDAIIToPatientINSIdentifiers<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>II, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Patient<span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapCDAIIToPatientINSIdentifiers<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy">)</span><span style="color: navy"> {
 </span>  <span style="color: navy">// </span><span style="color: green">CDA root INS-NIR -&gt; FHIR Identifier INS-NIR</span>
   src<b> where </b>src.root = '1.2.250.1.213.1.4.8'<span style="color: navy"><b> -&gt; </b></span>tgt.identifier = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Identifier'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">id</span><b> then </b>MapCDAIIToINSNIRIdentifier<span style="color: navy">(</span><span style="color: maroon">src</span><span style="color: navy">, </span><span style="color: maroon">id</span><span style="color: navy">)</span> <i>&quot;INSNIR&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">CDA root INS-NIA -&gt; FHIR Identifier INS-NIA</span>
@@ -299,7 +299,7 @@
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">CDA II INS-NIR -&gt; FHIR Identifier INS-NIR</span>
-<b>group </b>MapCDAIIToINSNIRIdentifier<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>II, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Identifier<span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapCDAIIToINSNIRIdentifier<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Identifier<span style="color: navy">)</span><span style="color: navy"> {
 </span>  src<span style="color: navy"><b> -&gt; </b></span>tgt<b> then </b>II<span style="color: navy">(</span><span style="color: maroon">src</span><span style="color: navy">, </span><span style="color: maroon">tgt</span><span style="color: navy">)</span> <i>&quot;base&quot;</i><span style="color: navy">;</span>
   src<span style="color: navy"><b> -&gt; </b></span>tgt.use = <span style="color: blue">'official'</span> <i>&quot;use&quot;</i><span style="color: navy">;</span>
   src<span style="color: navy"><b> -&gt; </b></span>tgt.type = <b>create</b><span style="color: navy">(</span><span style="color: blue">'CodeableConcept'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">idType</span><b> then</b><span style="color: navy"> {
@@ -311,7 +311,7 @@
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">CDA II INS-NIA -&gt; FHIR Identifier INS-NIA</span>
-<b>group </b>MapCDAIIToINSNIAIdentifier<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>II, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Identifier<span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapCDAIIToINSNIAIdentifier<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Identifier<span style="color: navy">)</span><span style="color: navy"> {
 </span>  src<span style="color: navy"><b> -&gt; </b></span>tgt<b> then </b>II<span style="color: navy">(</span><span style="color: maroon">src</span><span style="color: navy">, </span><span style="color: maroon">tgt</span><span style="color: navy">)</span> <i>&quot;base&quot;</i><span style="color: navy">;</span>
   src<span style="color: navy"><b> -&gt; </b></span>tgt.use = <span style="color: blue">'official'</span> <i>&quot;use&quot;</i><span style="color: navy">;</span>
   src<span style="color: navy"><b> -&gt; </b></span>tgt.type = <b>create</b><span style="color: navy">(</span><span style="color: blue">'CodeableConcept'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">idType</span><b> then</b><span style="color: navy"> {
@@ -323,7 +323,7 @@
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">CDA II INS-NIR-TEST -&gt; FHIR Identifier INS-NIR-TEST</span>
-<b>group </b>MapCDAIIToINSNIRTestIdentifier<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>II, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Identifier<span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapCDAIIToINSNIRTestIdentifier<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Identifier<span style="color: navy">)</span><span style="color: navy"> {
 </span>  src<span style="color: navy"><b> -&gt; </b></span>tgt<b> then </b>II<span style="color: navy">(</span><span style="color: maroon">src</span><span style="color: navy">, </span><span style="color: maroon">tgt</span><span style="color: navy">)</span> <i>&quot;base&quot;</i><span style="color: navy">;</span>
   src<span style="color: navy"><b> -&gt; </b></span>tgt.use = <span style="color: blue">'official'</span> <i>&quot;use&quot;</i><span style="color: navy">;</span>
   src<span style="color: navy"><b> -&gt; </b></span>tgt.type = <b>create</b><span style="color: navy">(</span><span style="color: blue">'CodeableConcept'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">idType</span><b> then</b><span style="color: navy"> {
@@ -335,7 +335,7 @@
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">CDA II INS-NIR-DEMO -&gt; FHIR Identifier INS-NIR-DEMO</span>
-<b>group </b>MapCDAIIToINSNIRDemoIdentifier<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>II, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Identifier<span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapCDAIIToINSNIRDemoIdentifier<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Identifier<span style="color: navy">)</span><span style="color: navy"> {
 </span>  src<span style="color: navy"><b> -&gt; </b></span>tgt<b> then </b>II<span style="color: navy">(</span><span style="color: maroon">src</span><span style="color: navy">, </span><span style="color: maroon">tgt</span><span style="color: navy">)</span> <i>&quot;base&quot;</i><span style="color: navy">;</span>
   src<span style="color: navy"><b> -&gt; </b></span>tgt.use = <span style="color: blue">'official'</span> <i>&quot;use&quot;</i><span style="color: navy">;</span>
   src<span style="color: navy"><b> -&gt; </b></span>tgt.type = <b>create</b><span style="color: navy">(</span><span style="color: blue">'CodeableConcept'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">idType</span><b> then</b><span style="color: navy"> {
@@ -347,12 +347,12 @@
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">CDA II hors INS -&gt; FHIR Patient.identifier PI</span>
-<b>group </b>MapCDAIIToPatientOtherIdentifiers<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>II, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Patient<span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapCDAIIToPatientOtherIdentifiers<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy">)</span><span style="color: navy"> {
 </span>  src<b> where </b>(src.root != '1.2.250.1.213.1.4.8') and (src.root != '1.2.250.1.213.1.4.9') and (src.root != '1.2.250.1.213.1.4.10') and (src.root != '1.2.250.1.213.1.4.11')<span style="color: navy"><b> -&gt; </b></span>tgt.identifier = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Identifier'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">id</span><b> then </b>MapCDAIIToPatientPIIdentifier<span style="color: navy">(</span><span style="color: maroon">src</span><span style="color: navy">, </span><span style="color: maroon">id</span><span style="color: navy">)</span> <i>&quot;otherIdentifier&quot;</i><span style="color: navy">;</span>
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">CDA II hors INS -&gt; FHIR Identifier PI</span>
-<b>group </b>MapCDAIIToPatientPIIdentifier<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>II, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Identifier<span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapCDAIIToPatientPIIdentifier<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Identifier<span style="color: navy">)</span><span style="color: navy"> {
 </span>  src<span style="color: navy"><b> -&gt; </b></span>tgt<b> then </b>II<span style="color: navy">(</span><span style="color: maroon">src</span><span style="color: navy">, </span><span style="color: maroon">tgt</span><span style="color: navy">)</span> <i>&quot;base&quot;</i><span style="color: navy">;</span>
   src<span style="color: navy"><b> -&gt; </b></span>tgt.use = <span style="color: blue">'usual'</span> <i>&quot;use&quot;</i><span style="color: navy">;</span>
   src<span style="color: navy"><b> -&gt; </b></span>tgt.type = <b>create</b><span style="color: navy">(</span><span style="color: blue">'CodeableConcept'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">idType</span><b> then</b><span style="color: navy"> {
@@ -365,7 +365,7 @@
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">CDA II INS reconnu -&gt; FHIR Patient.extension fiabilité VALI</span>
-<b>group </b>MapCDAIIToIdentityReliabilityVALI<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>II, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Extension<span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapCDAIIToIdentityReliabilityVALI<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Extension<span style="color: navy">)</span><span style="color: navy"> {
 </span>  <span style="color: navy">// </span><span style="color: green">CDA II -&gt; FHIR Extension.url</span>
   src<span style="color: navy"><b> -&gt; </b></span>tgt.url = <span style="color: blue">'https://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-identity-reliability'</span> <i>&quot;url&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">CDA II -&gt; FHIR Extension.extension identityStatus</span>
@@ -380,7 +380,7 @@
 
 </span><span style="color: navy">// </span><span style="color: green">ORGANIZATION FR</span>
 <span style="color: navy">// </span><span style="color: green">CDA organization-like element -&gt; FHIR Organization profils et identifiants français</span>
-<b>group </b>MapCDAOrganizationToFrenchOrganization<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Organization<span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapCDAOrganizationToFrenchOrganization<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy">)</span><span style="color: navy"> {
 </span>  <span style="color: navy">// </span><span style="color: green">CDA organization -&gt; FHIR Organization.meta.profile</span>
   src<span style="color: navy"><b> -&gt; </b></span>tgt.meta<b> as </b><span style="color: maroon">metaBlock</span><b> then</b><span style="color: navy"> {
 </span>    src<span style="color: navy"><b> -&gt; </b></span>metaBlock.profile = <span style="color: blue">'https://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-organization'</span> <i>&quot;frCoreOrganizationProfile&quot;</i><span style="color: navy">;</span>
@@ -391,7 +391,7 @@
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">CDA healthCareFacility -&gt; FHIR Organization facility française</span>
-<b>group </b>MapCDAHealthCareFacilityToFrenchOrganization<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>HealthCareFacility, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Organization<span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapCDAHealthCareFacilityToFrenchOrganization<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy">)</span><span style="color: navy"> {
 </span>  <span style="color: navy">// </span><span style="color: green">Cas principal : healthCareFacility.serviceProviderOrganization existe.</span>
   <span style="color: navy">// </span><span style="color: green">On réutilise le groupe français général des Organization pour éviter de</span>
   <span style="color: navy">// </span><span style="color: green">reprofiler manuellement ici.</span>
@@ -419,7 +419,7 @@
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">CDA II organization.id -&gt; FHIR Organization.identifier français</span>
-<b>group </b>MapCDAIIToFrenchOrganizationIdentifiers<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>II, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Organization<span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapCDAIIToFrenchOrganizationIdentifiers<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy">)</span><span style="color: navy"> {
 </span>  <span style="color: navy">// </span><span style="color: green">CDA root IdNatSt -&gt; FHIR Organization.identifier</span>
   src<b> where </b>src.root = '1.2.250.1.71.4.2.2'<span style="color: navy"><b> -&gt; </b></span>tgt.identifier = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Identifier'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">idNatStIdentifier</span><b> then </b>MapCDAIIToIdNatStIdentifier<span style="color: navy">(</span><span style="color: maroon">src</span><span style="color: navy">, </span><span style="color: maroon">idNatStIdentifier</span><span style="color: navy">)</span> <i>&quot;idNatSt&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">CDA root SNR -&gt; FHIR Organization.identifier</span>
@@ -429,19 +429,19 @@
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">CDA II IdNatSt -&gt; FHIR Identifier</span>
-<b>group </b>MapCDAIIToIdNatStIdentifier<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>II, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Identifier<span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapCDAIIToIdNatStIdentifier<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Identifier<span style="color: navy">)</span><span style="color: navy"> {
 </span>  src<span style="color: navy"><b> -&gt; </b></span>tgt<b> then </b>II<span style="color: navy">(</span><span style="color: maroon">src</span><span style="color: navy">, </span><span style="color: maroon">tgt</span><span style="color: navy">)</span> <i>&quot;base&quot;</i><span style="color: navy">;</span>
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">CDA II SNR -&gt; FHIR Identifier</span>
-<b>group </b>MapCDAIIToSNRIdentifier<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>II, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Identifier<span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapCDAIIToSNRIdentifier<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Identifier<span style="color: navy">)</span><span style="color: navy"> {
 </span>  src<span style="color: navy"><b> -&gt; </b></span>tgt.system = <span style="color: blue">'urn:oid:1.2.250.1.213.4.1'</span> <i>&quot;system&quot;</i><span style="color: navy">;</span>
   src.extension<b> as </b><span style="color: maroon">extension</span><span style="color: navy"><b> -&gt; </b></span>tgt.value = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">extension</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span> <i>&quot;valueFromExtension&quot;</i><span style="color: navy">;</span>
   src<b> where </b>src.extension.empty()<span style="color: navy"><b> -&gt; </b></span>tgt.value = <span style="color: blue">'DMP-SNR'</span> <i>&quot;defaultValue&quot;</i><span style="color: navy">;</span>
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">CDA II COFRAC -&gt; FHIR Identifier</span>
-<b>group </b>MapCDAIIToCOFRACIdentifier<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>II, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Identifier<span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapCDAIIToCOFRACIdentifier<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Identifier<span style="color: navy">)</span><span style="color: navy"> {
 </span>  src<span style="color: navy"><b> -&gt; </b></span>tgt<b> then </b>II<span style="color: navy">(</span><span style="color: maroon">src</span><span style="color: navy">, </span><span style="color: maroon">tgt</span><span style="color: navy">)</span> <i>&quot;base&quot;</i><span style="color: navy">;</span>
   src<span style="color: navy"><b> -&gt; </b></span>tgt.assigner<b> as </b><span style="color: maroon">assigner</span><b> then</b><span style="color: navy"> {
 </span>    src<span style="color: navy"><b> -&gt; </b></span>assigner.display = <span style="color: blue">'COFRAC'</span> <i>&quot;assignerDisplay&quot;</i><span style="color: navy">;</span>
@@ -450,7 +450,7 @@
 
 </span><span style="color: navy">// </span><span style="color: green">PRACTITIONER / PRACTITIONERROLE FR</span>
 <span style="color: navy">// </span><span style="color: green">CDA assignedEntity-like element -&gt; FHIR Practitioner français</span>
-<b>group </b>MapCDAAssignedEntityToFrenchPractitioner<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Practitioner<span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapCDAAssignedEntityToFrenchPractitioner<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy">)</span><span style="color: navy"> {
 </span>  <span style="color: navy">// </span><span style="color: green">CDA assignedEntity -&gt; FHIR Practitioner.meta.profile</span>
   src<span style="color: navy"><b> -&gt; </b></span>tgt.meta<b> as </b><span style="color: maroon">metaBlock</span><b> then</b><span style="color: navy"> {
 </span>    src<span style="color: navy"><b> -&gt; </b></span>metaBlock.profile = <span style="color: blue">'https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-practitioner'</span> <i>&quot;asPractitioner&quot;</i><span style="color: navy">;</span>
@@ -462,13 +462,13 @@
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">CDA II assignedEntity.id -&gt; FHIR Practitioner.identifier français</span>
-<b>group </b>MapCDAIIToFrenchPractitionerIdentifiers<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>II, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Practitioner<span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapCDAIIToFrenchPractitionerIdentifiers<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>II, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy">)</span><span style="color: navy"> {
 </span>  <span style="color: navy">// </span><span style="color: green">CDA root IDNPS -&gt; FHIR Practitioner.identifier IDNPS</span>
   src<b> where </b>src.root = '1.2.250.1.71.4.2.1'<span style="color: navy"><b> -&gt; </b></span>tgt.identifier = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Identifier'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">idNatPsIdentifier</span><b> then </b>MapCDAIIToIDNPSIdentifier<span style="color: navy">(</span><span style="color: maroon">src</span><span style="color: navy">, </span><span style="color: maroon">idNatPsIdentifier</span><span style="color: navy">)</span> <i>&quot;idNatPs&quot;</i><span style="color: navy">;</span>
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">CDA II IDNPS -&gt; FHIR Identifier IDNPS</span>
-<b>group </b>MapCDAIIToIDNPSIdentifier<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>II, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Identifier<span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapCDAIIToIDNPSIdentifier<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Identifier<span style="color: navy">)</span><span style="color: navy"> {
 </span>  src<span style="color: navy"><b> -&gt; </b></span>tgt<b> then </b>II<span style="color: navy">(</span><span style="color: maroon">src</span><span style="color: navy">, </span><span style="color: maroon">tgt</span><span style="color: navy">)</span> <i>&quot;base&quot;</i><span style="color: navy">;</span>
   src<span style="color: navy"><b> -&gt; </b></span>tgt.use = <span style="color: blue">'official'</span> <i>&quot;use&quot;</i><span style="color: navy">;</span>
   src<span style="color: navy"><b> -&gt; </b></span>tgt.type = <b>create</b><span style="color: navy">(</span><span style="color: blue">'CodeableConcept'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">idType</span><b> then</b><span style="color: navy"> {
@@ -480,14 +480,14 @@
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">CDA assignedEntity.code -&gt; FHIR Practitioner.qualification.code</span>
-<b>group </b>MapCDACodeToPractitionerQualification<span style="color: navy">(</span><b>source</b> <span style="color: maroon">roleCode</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Practitioner<span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapCDACodeToPractitionerQualification<span style="color: navy">(</span><b>source</b> <span style="color: maroon">roleCode</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy">)</span><span style="color: navy"> {
 </span>  roleCode<span style="color: navy"><b> -&gt; </b></span>tgt.qualification<b> as </b><span style="color: maroon">qualification</span><b> then</b><span style="color: navy"> {
 </span>    roleCode<span style="color: navy"><b> -&gt; </b></span>qualification.code = <b>create</b><span style="color: navy">(</span><span style="color: blue">'CodeableConcept'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">cc</span><b> then </b>CDCodeableConcept<span style="color: navy">(</span><span style="color: maroon">roleCode</span><span style="color: navy">, </span><span style="color: maroon">cc</span><span style="color: navy">)</span> <i>&quot;qualificationCode&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">}</span> <i>&quot;qualification&quot;</i><span style="color: navy">;</span>
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">CDA assignedEntity-like element -&gt; FHIR PractitionerRole français</span>
-<b>group </b>MapCDAAssignedEntityToFrenchPractitionerRole<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>PractitionerRole, <b>target</b> <span style="color: maroon">practitioner</span><span style="color: navy"> : </span>Practitioner, <b>target</b> <span style="color: maroon">organization</span><span style="color: navy"> : </span>Organization<span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapCDAAssignedEntityToFrenchPractitionerRole<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span>, <b>target</b> <span style="color: maroon">practitioner</span>, <b>target</b> <span style="color: maroon">organization</span><span style="color: navy">)</span><span style="color: navy"> {
 </span>  <span style="color: navy">// </span><span style="color: green">CDA assignedEntity -&gt; FHIR PractitionerRole.meta.profile</span>
   src<span style="color: navy"><b> -&gt; </b></span>tgt.meta<b> as </b><span style="color: maroon">metaBlock</span><b> then</b><span style="color: navy"> {
 </span>    src<span style="color: navy"><b> -&gt; </b></span>metaBlock.profile = <span style="color: blue">'https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-practitionerrole'</span> <i>&quot;profile&quot;</i><span style="color: navy">;</span>
@@ -504,7 +504,7 @@
 
 </span><span style="color: navy">// </span><span style="color: green">ENCOUNTER / LOCATION / FACILITY FR</span>
 <span style="color: navy">// </span><span style="color: green">CDA encompassingEncounter + healthCareFacility -&gt; FHIR Encounter / Location / Organization génériques + français</span>
-<b>group </b>MapCDAEncounterContextToFrenchResources<span style="color: navy">(</span><b>source</b> <span style="color: maroon">encompassingEncounter</span><span style="color: navy"> : </span>EncompassingEncounter, <b>source</b> <span style="color: maroon">facility</span><span style="color: navy"> : </span>HealthCareFacility, <b>target</b> <span style="color: maroon">encounter</span><span style="color: navy"> : </span>Encounter, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy"> : </span>Patient, <b>target</b> <span style="color: maroon">location</span><span style="color: navy"> : </span>Location, <b>target</b> <span style="color: maroon">facilityOrganization</span><span style="color: navy"> : </span>Organization<span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapCDAEncounterContextToFrenchResources<span style="color: navy">(</span><b>source</b> <span style="color: maroon">encompassingEncounter</span>, <b>source</b> <span style="color: maroon">facility</span>, <b>target</b> <span style="color: maroon">encounter</span>, <b>target</b> <span style="color: maroon">patient</span>, <b>target</b> <span style="color: maroon">location</span>, <b>target</b> <span style="color: maroon">facilityOrganization</span><span style="color: navy">)</span><span style="color: navy"> {
 </span>  <span style="color: navy">// </span><span style="color: green">CDA encompassingEncounter -&gt; FHIR Encounter générique étape 2</span>
   encompassingEncounter<b> then </b>MapCDAEncompassingEncounterToEncounter<span style="color: navy">(</span><span style="color: maroon">encompassingEncounter</span><span style="color: navy">, </span><span style="color: maroon">encounter</span><span style="color: navy">, </span><span style="color: maroon">patient</span><span style="color: navy">)</span> <i>&quot;encounterBase&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">CDA encompassingEncounter -&gt; FHIR Encounter enrichi français étape 3</span>
@@ -520,14 +520,14 @@
 </span><span style="color: navy">// </span><span style="color: green">CDA encompassingEncounter -&gt; FHIR Encounter français</span>
 <span style="color: navy">// </span><span style="color: green">ENCOUNTER FR SANS HEALTHCAREFACILITY</span>
 <span style="color: navy">// </span><span style="color: green">CDA encompassingEncounter seul -&gt; FHIR Encounter générique + français</span>
-<b>group </b>MapCDAEncounterOnlyToFrenchResources<span style="color: navy">(</span><b>source</b> <span style="color: maroon">encompassingEncounter</span><span style="color: navy"> : </span>EncompassingEncounter, <b>target</b> <span style="color: maroon">encounter</span><span style="color: navy"> : </span>Encounter, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy"> : </span>Patient<span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapCDAEncounterOnlyToFrenchResources<span style="color: navy">(</span><b>source</b> <span style="color: maroon">encompassingEncounter</span>, <b>target</b> <span style="color: maroon">encounter</span>, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy">)</span><span style="color: navy"> {
 </span>  <span style="color: navy">// </span><span style="color: green">CDA encompassingEncounter -&gt; FHIR Encounter générique étape 2</span>
   encompassingEncounter<b> then </b>MapCDAEncompassingEncounterToEncounter<span style="color: navy">(</span><span style="color: maroon">encompassingEncounter</span><span style="color: navy">, </span><span style="color: maroon">encounter</span><span style="color: navy">, </span><span style="color: maroon">patient</span><span style="color: navy">)</span> <i>&quot;encounterBase&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">CDA encompassingEncounter -&gt; FHIR Encounter enrichi français étape 3</span>
   encompassingEncounter<b> then </b>MapCDAEncompassingEncounterToFrenchEncounter<span style="color: navy">(</span><span style="color: maroon">encompassingEncounter</span><span style="color: navy">, </span><span style="color: maroon">encounter</span><span style="color: navy">, </span><span style="color: maroon">patient</span><span style="color: navy">)</span> <i>&quot;encounterFR&quot;</i><span style="color: navy">;</span>
 <span style="color: navy">}
 
-</span><b>group </b>MapCDAEncompassingEncounterToFrenchEncounter<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>EncompassingEncounter, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Encounter, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy"> : </span>Patient<span style="color: navy">)</span><span style="color: navy"> {
+</span><b>group </b>MapCDAEncompassingEncounterToFrenchEncounter<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span>, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy">)</span><span style="color: navy"> {
 </span>  <span style="color: navy">// </span><span style="color: green">CDA encompassingEncounter -&gt; FHIR Encounter.meta.profile</span>
   src<span style="color: navy"><b> -&gt; </b></span>tgt.meta<b> as </b><span style="color: maroon">metaBlock</span><b> then</b><span style="color: navy"> {
 </span>    src<span style="color: navy"><b> -&gt; </b></span>metaBlock.profile = <span style="color: blue">'https://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-encounter'</span> <i>&quot;profile&quot;</i><span style="color: navy">;</span>
@@ -543,7 +543,7 @@
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">CDA healthCareFacility -&gt; FHIR Location française</span>
-<b>group </b>MapCDAHealthCareFacilityToFrenchLocation<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>HealthCareFacility, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Location, <b>target</b> <span style="color: maroon">facilityOrganization</span><span style="color: navy"> : </span>Organization<span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapCDAHealthCareFacilityToFrenchLocation<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span>, <b>target</b> <span style="color: maroon">facilityOrganization</span><span style="color: navy">)</span><span style="color: navy"> {
 </span>  <span style="color: navy">// </span><span style="color: green">CDA healthCareFacility -&gt; FHIR Location.meta.profile</span>
   src<span style="color: navy"><b> -&gt; </b></span>tgt.meta<b> as </b><span style="color: maroon">metaBlock</span><b> then</b><span style="color: navy"> {
 </span>    src<span style="color: navy"><b> -&gt; </b></span>metaBlock.profile = <span style="color: blue">'https://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-location'</span> <i>&quot;frCoreLocationProfile&quot;</i><span style="color: navy">;</span>
@@ -581,7 +581,7 @@
 
 </span><span style="color: navy">// </span><span style="color: green">RELATEDPERSON FR</span>
 <span style="color: navy">// </span><span style="color: green">CDA informant.relatedEntity -&gt; FHIR RelatedPerson français</span>
-<b>group </b>MapCDAInformantToFrenchRelatedPerson<span style="color: navy">(</span><b>source</b> <span style="color: maroon">relatedEntity</span><span style="color: navy"> : </span>RelatedEntity, <b>target</b> <span style="color: maroon">relatedPerson</span><span style="color: navy"> : </span>RelatedPerson, <b>target</b> <span style="color: maroon">patientResource</span><span style="color: navy"> : </span>Patient<span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapCDAInformantToFrenchRelatedPerson<span style="color: navy">(</span><b>source</b> <span style="color: maroon">relatedEntity</span>, <b>target</b> <span style="color: maroon">relatedPerson</span>, <b>target</b> <span style="color: maroon">patientResource</span><span style="color: navy">)</span><span style="color: navy"> {
 </span>  <span style="color: navy">// </span><span style="color: green">CDA relatedEntity -&gt; FHIR RelatedPerson.meta.profile</span>
   relatedEntity<span style="color: navy"><b> -&gt; </b></span>relatedPerson.meta<b> as </b><span style="color: maroon">metaBlock</span><b> then</b><span style="color: navy"> {
 </span>    relatedEntity<span style="color: navy"><b> -&gt; </b></span>metaBlock.profile = <span style="color: blue">'https://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-related-person'</span> <i>&quot;profile&quot;</i><span style="color: navy">;</span>
@@ -604,7 +604,7 @@
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">CDA guardian -&gt; FHIR RelatedPerson français</span>
-<b>group </b>MapCDAGuardianToFrenchRelatedPerson<span style="color: navy">(</span><b>source</b> <span style="color: maroon">guardian</span>, <b>target</b> <span style="color: maroon">relatedPerson</span><span style="color: navy"> : </span>RelatedPerson, <b>target</b> <span style="color: maroon">patientResource</span><span style="color: navy"> : </span>Patient<span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapCDAGuardianToFrenchRelatedPerson<span style="color: navy">(</span><b>source</b> <span style="color: maroon">guardian</span>, <b>target</b> <span style="color: maroon">relatedPerson</span>, <b>target</b> <span style="color: maroon">patientResource</span><span style="color: navy">)</span><span style="color: navy"> {
 </span>  <span style="color: navy">// </span><span style="color: green">CDA guardian -&gt; FHIR RelatedPerson.meta.profile</span>
   guardian<span style="color: navy"><b> -&gt; </b></span>relatedPerson.meta<b> as </b><span style="color: maroon">metaBlock</span><b> then</b><span style="color: navy"> {
 </span>    guardian<span style="color: navy"><b> -&gt; </b></span>metaBlock.profile = <span style="color: blue">'https://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-related-person'</span> <i>&quot;profile&quot;</i><span style="color: navy">;</span>
@@ -633,7 +633,7 @@
   <name value="CdaFrToBundle"/>
   <title value="Mapping CDA-FR vers FHIR - Socle enrichi français"/>
   <status value="draft"/>
-  <date value="2026-07-23T09:53:42+00:00"/>
+  <date value="2026-07-23T11:57:58+00:00"/>
   <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
   <contact>
     <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
@@ -873,22 +873,18 @@
     <documentation value="GROUPE D’ORCHESTRATION — SOCLE GÉNÉRIQUE + ENRICHISSEMENT FRANÇAIS&#xA;   Ce groupe suit la structure du ClinicalDocument CDA.&#xA;   Il appelle d’abord le traitement français de l’en-tête, où chaque ressource&#xA;   optionnelle est créée dans le groupe correspondant au bloc CDA. Il appelle&#xA;   ensuite le corps générique de l’étape 2 pour créer les sections narratives"/>
     <input>
       <name value="cda"/>
-      <type value="ClinicalDocument"/>
       <mode value="source"/>
     </input>
     <input>
       <name value="patient"/>
-      <type value="Patient"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="composition"/>
-      <type value="Composition"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="bundle"/>
-      <type value="Bundle"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -924,22 +920,18 @@
     <documentation value="GROUPE — EN-TÊTE CDA AVEC RÈGLES FRANÇAISES&#xA;   Ce groupe reprend l’organisation de l’en-tête CDA. Les ressources optionnelles&#xA;   sont créées dans les sous-groupes correspondant aux blocs CDA, puis remplies&#xA;   avec les groupes génériques de l’étape 2 et enrichies avec les groupes français"/>
     <input>
       <name value="cda"/>
-      <type value="ClinicalDocument"/>
       <mode value="source"/>
     </input>
     <input>
       <name value="bundle"/>
-      <type value="Bundle"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="composition"/>
-      <type value="Composition"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="patient"/>
-      <type value="Patient"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -1167,17 +1159,14 @@
     <documentation value="CDA custodian -&gt; création Organization + socle générique + enrichissement français"/>
     <input>
       <name value="src"/>
-      <type value="ClinicalDocument"/>
       <mode value="source"/>
     </input>
     <input>
       <name value="composition"/>
-      <type value="Composition"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="bundle"/>
-      <type value="Bundle"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -1289,17 +1278,14 @@
     <documentation value="CDA author -&gt; création Practitioner / Organization / PractitionerRole + enrichissement français"/>
     <input>
       <name value="src"/>
-      <type value="ClinicalDocument"/>
       <mode value="source"/>
     </input>
     <input>
       <name value="composition"/>
-      <type value="Composition"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="bundle"/>
-      <type value="Bundle"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -1539,17 +1525,14 @@
     <documentation value="CDA legalAuthenticator -&gt; création Practitioner / Organization / PractitionerRole + enrichissement français"/>
     <input>
       <name value="src"/>
-      <type value="ClinicalDocument"/>
       <mode value="source"/>
     </input>
     <input>
       <name value="composition"/>
-      <type value="Composition"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="bundle"/>
-      <type value="Bundle"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -1847,22 +1830,18 @@
     <documentation value="CDA componentOf.encompassingEncounter -&gt; création Encounter / Location / Organization + enrichissement français"/>
     <input>
       <name value="src"/>
-      <type value="ClinicalDocument"/>
       <mode value="source"/>
     </input>
     <input>
       <name value="composition"/>
-      <type value="Composition"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="bundle"/>
-      <type value="Bundle"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="patient"/>
-      <type value="Patient"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -2065,17 +2044,14 @@
     <documentation value="CDA informant ECON -&gt; création RelatedPerson + enrichissement français"/>
     <input>
       <name value="src"/>
-      <type value="ClinicalDocument"/>
       <mode value="source"/>
     </input>
     <input>
       <name value="bundle"/>
-      <type value="Bundle"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="patient"/>
-      <type value="Patient"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -2157,17 +2133,14 @@
     <documentation value="CDA informant NOK -&gt; création RelatedPerson + enrichissement français"/>
     <input>
       <name value="src"/>
-      <type value="ClinicalDocument"/>
       <mode value="source"/>
     </input>
     <input>
       <name value="bundle"/>
-      <type value="Bundle"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="patient"/>
-      <type value="Patient"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -2249,17 +2222,14 @@
     <documentation value="CDA guardian -&gt; création RelatedPerson + enrichissement français"/>
     <input>
       <name value="src"/>
-      <type value="ClinicalDocument"/>
       <mode value="source"/>
     </input>
     <input>
       <name value="bundle"/>
-      <type value="Bundle"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="patient"/>
-      <type value="Patient"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -2468,12 +2438,10 @@
     <typeMode value="none"/>
     <input>
       <name value="src"/>
-      <type value="PatientRole"/>
       <mode value="source"/>
     </input>
     <input>
       <name value="tgt"/>
-      <type value="Patient"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -2686,7 +2654,6 @@
     <documentation value="CDA PN patient.name -&gt; FHIR HumanName officiel"/>
     <input>
       <name value="src"/>
-      <type value="PN"/>
       <mode value="source"/>
     </input>
     <input>
@@ -2978,12 +2945,10 @@
     <documentation value="IDENTIFIANTS PATIENT FR&#xD;&#xA;CDA II patientRole.id -&gt; FHIR Patient.identifier INS"/>
     <input>
       <name value="src"/>
-      <type value="II"/>
       <mode value="source"/>
     </input>
     <input>
       <name value="tgt"/>
-      <type value="Patient"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -3081,7 +3046,6 @@
     <documentation value="CDA II INS-NIR -&gt; FHIR Identifier INS-NIR"/>
     <input>
       <name value="src"/>
-      <type value="II"/>
       <mode value="source"/>
     </input>
     <input>
@@ -3188,7 +3152,6 @@
     <documentation value="CDA II INS-NIA -&gt; FHIR Identifier INS-NIA"/>
     <input>
       <name value="src"/>
-      <type value="II"/>
       <mode value="source"/>
     </input>
     <input>
@@ -3295,7 +3258,6 @@
     <documentation value="CDA II INS-NIR-TEST -&gt; FHIR Identifier INS-NIR-TEST"/>
     <input>
       <name value="src"/>
-      <type value="II"/>
       <mode value="source"/>
     </input>
     <input>
@@ -3402,7 +3364,6 @@
     <documentation value="CDA II INS-NIR-DEMO -&gt; FHIR Identifier INS-NIR-DEMO"/>
     <input>
       <name value="src"/>
-      <type value="II"/>
       <mode value="source"/>
     </input>
     <input>
@@ -3509,12 +3470,10 @@
     <documentation value="CDA II hors INS -&gt; FHIR Patient.identifier PI"/>
     <input>
       <name value="src"/>
-      <type value="II"/>
       <mode value="source"/>
     </input>
     <input>
       <name value="tgt"/>
-      <type value="Patient"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -3546,7 +3505,6 @@
     <documentation value="CDA II hors INS -&gt; FHIR Identifier PI"/>
     <input>
       <name value="src"/>
-      <type value="II"/>
       <mode value="source"/>
     </input>
     <input>
@@ -3668,7 +3626,6 @@
     <documentation value="CDA II INS reconnu -&gt; FHIR Patient.extension fiabilité VALI"/>
     <input>
       <name value="src"/>
-      <type value="II"/>
       <mode value="source"/>
     </input>
     <input>
@@ -3779,7 +3736,6 @@
     </input>
     <input>
       <name value="tgt"/>
-      <type value="Organization"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -3844,12 +3800,10 @@
     <documentation value="CDA healthCareFacility -&gt; FHIR Organization facility française"/>
     <input>
       <name value="src"/>
-      <type value="HealthCareFacility"/>
       <mode value="source"/>
     </input>
     <input>
       <name value="tgt"/>
-      <type value="Organization"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -4031,12 +3985,10 @@
     <documentation value="CDA II organization.id -&gt; FHIR Organization.identifier français"/>
     <input>
       <name value="src"/>
-      <type value="II"/>
       <mode value="source"/>
     </input>
     <input>
       <name value="tgt"/>
-      <type value="Organization"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -4112,7 +4064,6 @@
     <documentation value="CDA II IdNatSt -&gt; FHIR Identifier"/>
     <input>
       <name value="src"/>
-      <type value="II"/>
       <mode value="source"/>
     </input>
     <input>
@@ -4142,7 +4093,6 @@
     <documentation value="CDA II SNR -&gt; FHIR Identifier"/>
     <input>
       <name value="src"/>
-      <type value="II"/>
       <mode value="source"/>
     </input>
     <input>
@@ -4208,7 +4158,6 @@
     <documentation value="CDA II COFRAC -&gt; FHIR Identifier"/>
     <input>
       <name value="src"/>
-      <type value="II"/>
       <mode value="source"/>
     </input>
     <input>
@@ -4269,7 +4218,6 @@
     </input>
     <input>
       <name value="tgt"/>
-      <type value="Practitioner"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -4337,7 +4285,6 @@
     </input>
     <input>
       <name value="tgt"/>
-      <type value="Practitioner"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -4369,7 +4316,6 @@
     <documentation value="CDA II IDNPS -&gt; FHIR Identifier IDNPS"/>
     <input>
       <name value="src"/>
-      <type value="II"/>
       <mode value="source"/>
     </input>
     <input>
@@ -4480,7 +4426,6 @@
     </input>
     <input>
       <name value="tgt"/>
-      <type value="Practitioner"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -4527,17 +4472,14 @@
     </input>
     <input>
       <name value="tgt"/>
-      <type value="PractitionerRole"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="practitioner"/>
-      <type value="Practitioner"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="organization"/>
-      <type value="Organization"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -4643,32 +4585,26 @@
     <documentation value="ENCOUNTER / LOCATION / FACILITY FR&#xD;&#xA;CDA encompassingEncounter + healthCareFacility -&gt; FHIR Encounter / Location / Organization génériques + français"/>
     <input>
       <name value="encompassingEncounter"/>
-      <type value="EncompassingEncounter"/>
       <mode value="source"/>
     </input>
     <input>
       <name value="facility"/>
-      <type value="HealthCareFacility"/>
       <mode value="source"/>
     </input>
     <input>
       <name value="encounter"/>
-      <type value="Encounter"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="patient"/>
-      <type value="Patient"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="location"/>
-      <type value="Location"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="facilityOrganization"/>
-      <type value="Organization"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -4738,17 +4674,14 @@
     <documentation value="CDA encompassingEncounter -&gt; FHIR Encounter français&#xD;&#xA;ENCOUNTER FR SANS HEALTHCAREFACILITY&#xD;&#xA;CDA encompassingEncounter seul -&gt; FHIR Encounter générique + français"/>
     <input>
       <name value="encompassingEncounter"/>
-      <type value="EncompassingEncounter"/>
       <mode value="source"/>
     </input>
     <input>
       <name value="encounter"/>
-      <type value="Encounter"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="patient"/>
-      <type value="Patient"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -4781,17 +4714,14 @@
     <typeMode value="none"/>
     <input>
       <name value="src"/>
-      <type value="EncompassingEncounter"/>
       <mode value="source"/>
     </input>
     <input>
       <name value="tgt"/>
-      <type value="Encounter"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="patient"/>
-      <type value="Patient"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -4917,17 +4847,14 @@
     <documentation value="CDA healthCareFacility -&gt; FHIR Location française"/>
     <input>
       <name value="src"/>
-      <type value="HealthCareFacility"/>
       <mode value="source"/>
     </input>
     <input>
       <name value="tgt"/>
-      <type value="Location"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="facilityOrganization"/>
-      <type value="Organization"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -5235,17 +5162,14 @@
     <documentation value="RELATEDPERSON FR&#xD;&#xA;CDA informant.relatedEntity -&gt; FHIR RelatedPerson français"/>
     <input>
       <name value="relatedEntity"/>
-      <type value="RelatedEntity"/>
       <mode value="source"/>
     </input>
     <input>
       <name value="relatedPerson"/>
-      <type value="RelatedPerson"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="patientResource"/>
-      <type value="Patient"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -5441,12 +5365,10 @@
     </input>
     <input>
       <name value="relatedPerson"/>
-      <type value="RelatedPerson"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="patientResource"/>
-      <type value="Patient"/>
       <mode value="target"/>
     </input>
     <rule>

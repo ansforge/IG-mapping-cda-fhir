@@ -18,7 +18,7 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
   "name" : "CdaFrToBundle",
   "title" : "Mapping CDA-FR vers FHIR - Socle enrichi français",
   "status" : "draft",
-  "date" : "2026-07-23T09:53:42+00:00",
+  "date" : "2026-07-23T11:57:58+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -255,22 +255,18 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
     "documentation" : "GROUPE D’ORCHESTRATION — SOCLE GÉNÉRIQUE + ENRICHISSEMENT FRANÇAIS\n   Ce groupe suit la structure du ClinicalDocument CDA.\n   Il appelle d’abord le traitement français de l’en-tête, où chaque ressource\n   optionnelle est créée dans le groupe correspondant au bloc CDA. Il appelle\n   ensuite le corps générique de l’étape 2 pour créer les sections narratives",
     "input" : [{
       "name" : "cda",
-      "type" : "ClinicalDocument",
       "mode" : "source"
     },
     {
       "name" : "patient",
-      "type" : "Patient",
       "mode" : "target"
     },
     {
       "name" : "composition",
-      "type" : "Composition",
       "mode" : "target"
     },
     {
       "name" : "bundle",
-      "type" : "Bundle",
       "mode" : "target"
     }],
     "rule" : [{
@@ -300,22 +296,18 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
     "documentation" : "GROUPE — EN-TÊTE CDA AVEC RÈGLES FRANÇAISES\n   Ce groupe reprend l’organisation de l’en-tête CDA. Les ressources optionnelles\n   sont créées dans les sous-groupes correspondant aux blocs CDA, puis remplies\n   avec les groupes génériques de l’étape 2 et enrichies avec les groupes français",
     "input" : [{
       "name" : "cda",
-      "type" : "ClinicalDocument",
       "mode" : "source"
     },
     {
       "name" : "bundle",
-      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "composition",
-      "type" : "Composition",
       "mode" : "target"
     },
     {
       "name" : "patient",
-      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -519,17 +511,14 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
     "documentation" : "CDA custodian -> création Organization + socle générique + enrichissement français",
     "input" : [{
       "name" : "src",
-      "type" : "ClinicalDocument",
       "mode" : "source"
     },
     {
       "name" : "composition",
-      "type" : "Composition",
       "mode" : "target"
     },
     {
       "name" : "bundle",
-      "type" : "Bundle",
       "mode" : "target"
     }],
     "rule" : [{
@@ -639,17 +628,14 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
     "documentation" : "CDA author -> création Practitioner / Organization / PractitionerRole + enrichissement français",
     "input" : [{
       "name" : "src",
-      "type" : "ClinicalDocument",
       "mode" : "source"
     },
     {
       "name" : "composition",
-      "type" : "Composition",
       "mode" : "target"
     },
     {
       "name" : "bundle",
-      "type" : "Bundle",
       "mode" : "target"
     }],
     "rule" : [{
@@ -885,17 +871,14 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
     "documentation" : "CDA legalAuthenticator -> création Practitioner / Organization / PractitionerRole + enrichissement français",
     "input" : [{
       "name" : "src",
-      "type" : "ClinicalDocument",
       "mode" : "source"
     },
     {
       "name" : "composition",
-      "type" : "Composition",
       "mode" : "target"
     },
     {
       "name" : "bundle",
-      "type" : "Bundle",
       "mode" : "target"
     }],
     "rule" : [{
@@ -1188,22 +1171,18 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
     "documentation" : "CDA componentOf.encompassingEncounter -> création Encounter / Location / Organization + enrichissement français",
     "input" : [{
       "name" : "src",
-      "type" : "ClinicalDocument",
       "mode" : "source"
     },
     {
       "name" : "composition",
-      "type" : "Composition",
       "mode" : "target"
     },
     {
       "name" : "bundle",
-      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
-      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -1402,17 +1381,14 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
     "documentation" : "CDA informant ECON -> création RelatedPerson + enrichissement français",
     "input" : [{
       "name" : "src",
-      "type" : "ClinicalDocument",
       "mode" : "source"
     },
     {
       "name" : "bundle",
-      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
-      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -1490,17 +1466,14 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
     "documentation" : "CDA informant NOK -> création RelatedPerson + enrichissement français",
     "input" : [{
       "name" : "src",
-      "type" : "ClinicalDocument",
       "mode" : "source"
     },
     {
       "name" : "bundle",
-      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
-      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -1578,17 +1551,14 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
     "documentation" : "CDA guardian -> création RelatedPerson + enrichissement français",
     "input" : [{
       "name" : "src",
-      "type" : "ClinicalDocument",
       "mode" : "source"
     },
     {
       "name" : "bundle",
-      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
-      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -1791,12 +1761,10 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
     "typeMode" : "none",
     "input" : [{
       "name" : "src",
-      "type" : "PatientRole",
       "mode" : "source"
     },
     {
       "name" : "tgt",
-      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -2001,7 +1969,6 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
     "documentation" : "CDA PN patient.name -> FHIR HumanName officiel",
     "input" : [{
       "name" : "src",
-      "type" : "PN",
       "mode" : "source"
     },
     {
@@ -2291,12 +2258,10 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
     "documentation" : "IDENTIFIANTS PATIENT FR\r\nCDA II patientRole.id -> FHIR Patient.identifier INS",
     "input" : [{
       "name" : "src",
-      "type" : "II",
       "mode" : "source"
     },
     {
       "name" : "tgt",
-      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -2390,7 +2355,6 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
     "documentation" : "CDA II INS-NIR -> FHIR Identifier INS-NIR",
     "input" : [{
       "name" : "src",
-      "type" : "II",
       "mode" : "source"
     },
     {
@@ -2496,7 +2460,6 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
     "documentation" : "CDA II INS-NIA -> FHIR Identifier INS-NIA",
     "input" : [{
       "name" : "src",
-      "type" : "II",
       "mode" : "source"
     },
     {
@@ -2602,7 +2565,6 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
     "documentation" : "CDA II INS-NIR-TEST -> FHIR Identifier INS-NIR-TEST",
     "input" : [{
       "name" : "src",
-      "type" : "II",
       "mode" : "source"
     },
     {
@@ -2708,7 +2670,6 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
     "documentation" : "CDA II INS-NIR-DEMO -> FHIR Identifier INS-NIR-DEMO",
     "input" : [{
       "name" : "src",
-      "type" : "II",
       "mode" : "source"
     },
     {
@@ -2814,12 +2775,10 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
     "documentation" : "CDA II hors INS -> FHIR Patient.identifier PI",
     "input" : [{
       "name" : "src",
-      "type" : "II",
       "mode" : "source"
     },
     {
       "name" : "tgt",
-      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -2850,7 +2809,6 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
     "documentation" : "CDA II hors INS -> FHIR Identifier PI",
     "input" : [{
       "name" : "src",
-      "type" : "II",
       "mode" : "source"
     },
     {
@@ -2971,7 +2929,6 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
     "documentation" : "CDA II INS reconnu -> FHIR Patient.extension fiabilité VALI",
     "input" : [{
       "name" : "src",
-      "type" : "II",
       "mode" : "source"
     },
     {
@@ -3082,7 +3039,6 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
     },
     {
       "name" : "tgt",
-      "type" : "Organization",
       "mode" : "target"
     }],
     "rule" : [{
@@ -3146,12 +3102,10 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
     "documentation" : "CDA healthCareFacility -> FHIR Organization facility française",
     "input" : [{
       "name" : "src",
-      "type" : "HealthCareFacility",
       "mode" : "source"
     },
     {
       "name" : "tgt",
-      "type" : "Organization",
       "mode" : "target"
     }],
     "rule" : [{
@@ -3330,12 +3284,10 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
     "documentation" : "CDA II organization.id -> FHIR Organization.identifier français",
     "input" : [{
       "name" : "src",
-      "type" : "II",
       "mode" : "source"
     },
     {
       "name" : "tgt",
-      "type" : "Organization",
       "mode" : "target"
     }],
     "rule" : [{
@@ -3408,7 +3360,6 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
     "documentation" : "CDA II IdNatSt -> FHIR Identifier",
     "input" : [{
       "name" : "src",
-      "type" : "II",
       "mode" : "source"
     },
     {
@@ -3437,7 +3388,6 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
     "documentation" : "CDA II SNR -> FHIR Identifier",
     "input" : [{
       "name" : "src",
-      "type" : "II",
       "mode" : "source"
     },
     {
@@ -3503,7 +3453,6 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
     "documentation" : "CDA II COFRAC -> FHIR Identifier",
     "input" : [{
       "name" : "src",
-      "type" : "II",
       "mode" : "source"
     },
     {
@@ -3563,7 +3512,6 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
     },
     {
       "name" : "tgt",
-      "type" : "Practitioner",
       "mode" : "target"
     }],
     "rule" : [{
@@ -3629,7 +3577,6 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
     },
     {
       "name" : "tgt",
-      "type" : "Practitioner",
       "mode" : "target"
     }],
     "rule" : [{
@@ -3660,7 +3607,6 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
     "documentation" : "CDA II IDNPS -> FHIR Identifier IDNPS",
     "input" : [{
       "name" : "src",
-      "type" : "II",
       "mode" : "source"
     },
     {
@@ -3770,7 +3716,6 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
     },
     {
       "name" : "tgt",
-      "type" : "Practitioner",
       "mode" : "target"
     }],
     "rule" : [{
@@ -3816,17 +3761,14 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
     },
     {
       "name" : "tgt",
-      "type" : "PractitionerRole",
       "mode" : "target"
     },
     {
       "name" : "practitioner",
-      "type" : "Practitioner",
       "mode" : "target"
     },
     {
       "name" : "organization",
-      "type" : "Organization",
       "mode" : "target"
     }],
     "rule" : [{
@@ -3930,32 +3872,26 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
     "documentation" : "ENCOUNTER / LOCATION / FACILITY FR\r\nCDA encompassingEncounter + healthCareFacility -> FHIR Encounter / Location / Organization génériques + français",
     "input" : [{
       "name" : "encompassingEncounter",
-      "type" : "EncompassingEncounter",
       "mode" : "source"
     },
     {
       "name" : "facility",
-      "type" : "HealthCareFacility",
       "mode" : "source"
     },
     {
       "name" : "encounter",
-      "type" : "Encounter",
       "mode" : "target"
     },
     {
       "name" : "patient",
-      "type" : "Patient",
       "mode" : "target"
     },
     {
       "name" : "location",
-      "type" : "Location",
       "mode" : "target"
     },
     {
       "name" : "facilityOrganization",
-      "type" : "Organization",
       "mode" : "target"
     }],
     "rule" : [{
@@ -4015,17 +3951,14 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
     "documentation" : "CDA encompassingEncounter -> FHIR Encounter français\r\nENCOUNTER FR SANS HEALTHCAREFACILITY\r\nCDA encompassingEncounter seul -> FHIR Encounter générique + français",
     "input" : [{
       "name" : "encompassingEncounter",
-      "type" : "EncompassingEncounter",
       "mode" : "source"
     },
     {
       "name" : "encounter",
-      "type" : "Encounter",
       "mode" : "target"
     },
     {
       "name" : "patient",
-      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -4054,17 +3987,14 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
     "typeMode" : "none",
     "input" : [{
       "name" : "src",
-      "type" : "EncompassingEncounter",
       "mode" : "source"
     },
     {
       "name" : "tgt",
-      "type" : "Encounter",
       "mode" : "target"
     },
     {
       "name" : "patient",
-      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -4190,17 +4120,14 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
     "documentation" : "CDA healthCareFacility -> FHIR Location française",
     "input" : [{
       "name" : "src",
-      "type" : "HealthCareFacility",
       "mode" : "source"
     },
     {
       "name" : "tgt",
-      "type" : "Location",
       "mode" : "target"
     },
     {
       "name" : "facilityOrganization",
-      "type" : "Organization",
       "mode" : "target"
     }],
     "rule" : [{
@@ -4508,17 +4435,14 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
     "documentation" : "RELATEDPERSON FR\r\nCDA informant.relatedEntity -> FHIR RelatedPerson français",
     "input" : [{
       "name" : "relatedEntity",
-      "type" : "RelatedEntity",
       "mode" : "source"
     },
     {
       "name" : "relatedPerson",
-      "type" : "RelatedPerson",
       "mode" : "target"
     },
     {
       "name" : "patientResource",
-      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -4714,12 +4638,10 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
     },
     {
       "name" : "relatedPerson",
-      "type" : "RelatedPerson",
       "mode" : "target"
     },
     {
       "name" : "patientResource",
-      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
