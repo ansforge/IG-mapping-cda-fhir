@@ -9,11 +9,13 @@
 
 </span><span style="color: navy">// </span><span style="color: green">Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA</span>
 
+<span style="color: navy">// </span><span style="color: green">TYPES CDA UTILISÉS COMME SOURCES</span>
 <b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-ClinicalDocument.html" title="ClinicalDocument (CDA Class)">http://hl7.org/cda/stds/core/StructureDefinition/ClinicalDocument|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>ClinicalDocument <b>as </b><b>source</b>
 <b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-PatientRole.html" title="PatientRole (CDA Class)">http://hl7.org/cda/stds/core/StructureDefinition/PatientRole|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>PatientRole <b>as </b><b>source</b>
 <b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-RelatedEntity.html" title="RelatedEntity (CDA Class)">http://hl7.org/cda/stds/core/StructureDefinition/RelatedEntity|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>RelatedEntity <b>as </b><b>source</b>
 <b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-EncompassingEncounter.html" title="EncompassingEncounter (CDA Class)">http://hl7.org/cda/stds/core/StructureDefinition/EncompassingEncounter|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>EncompassingEncounter <b>as </b><b>source</b>
 <b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-HealthCareFacility.html" title="HealthCareFacility (CDA Class)">http://hl7.org/cda/stds/core/StructureDefinition/HealthCareFacility|2.0.0-sd</a><span style="color: navy">&quot; </span><b>alias </b>HealthCareFacility <b>as </b><b>source</b>
+<span style="color: navy">// </span><span style="color: green">TYPES FHIR UTILISÉS COMME CIBLES</span>
 <b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/bundle.html" title="Bundle">http://hl7.org/fhir/StructureDefinition/Bundle|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>Bundle <b>as </b><b>target</b>
 <b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/composition.html" title="Composition">http://hl7.org/fhir/StructureDefinition/Composition|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>Composition <b>as </b><b>target</b>
 <b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/patient.html" title="Patient">http://hl7.org/fhir/StructureDefinition/Patient|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>Patient <b>as </b><b>target</b>
@@ -154,18 +156,18 @@
   <span style="color: navy">// </span><span style="color: green">CDA ClinicalDocument.id -&gt; FHIR Bundle.identifier</span>
   src.id<b> as </b><span style="color: maroon">cdaId</span><span style="color: navy"><b> -&gt; </b></span>bundle.identifier = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Identifier'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">identifier</span><b> then</b><span style="color: navy"> {
 </span>    <span style="color: navy">// </span><span style="color: green">CDA id.root + id.extension -&gt; FHIR Identifier.system/value</span>
-    cdaId.root<b> as </b><span style="color: maroon">root</span><b> where </b>cdaId.extension.exists()<span style="color: navy"><b> -&gt; </b></span>identifier.system = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:oid:'</span><span style="color: navy">, </span><span style="color: maroon">root</span><span style="color: navy">)</span> <i>&quot;bundleIdentifierSystemWithExtension&quot;</i><span style="color: navy">;</span>
+    cdaId.root<b> as </b><span style="color: maroon">root</span><b> where </b><span style="color: navy">(</span>cdaId.extension.exists()<span style="color: navy">)</span><span style="color: navy"><b> -&gt; </b></span>identifier.system = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:oid:'</span><span style="color: navy">, </span><span style="color: maroon">root</span><span style="color: navy">)</span> <i>&quot;bundleIdentifierSystemWithExtension&quot;</i><span style="color: navy">;</span>
     cdaId.extension<b> as </b><span style="color: maroon">extension</span><span style="color: navy"><b> -&gt; </b></span>identifier.value = <span style="color: maroon">extension</span> <i>&quot;bundleIdentifierValueWithExtension&quot;</i><span style="color: navy">;</span>
     <span style="color: navy">// </span><span style="color: green">CDA id.root sans extension -&gt; FHIR Identifier.system/value</span>
-    cdaId.root<b> as </b><span style="color: maroon">root</span><b> where </b>cdaId.extension.empty()<span style="color: navy"><b> -&gt; </b></span>identifier.system = <span style="color: blue">'urn:ietf:rfc:3986'</span> <i>&quot;bundleIdentifierSystemOid&quot;</i><span style="color: navy">;</span>
-    cdaId.root<b> as </b><span style="color: maroon">root</span><b> where </b>cdaId.extension.empty()<span style="color: navy"><b> -&gt; </b></span>identifier.value = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:oid:'</span><span style="color: navy">, </span><span style="color: maroon">root</span><span style="color: navy">)</span> <i>&quot;bundleIdentifierValueOid&quot;</i><span style="color: navy">;</span>
+    cdaId.root<b> as </b><span style="color: maroon">root</span><b> where </b><span style="color: navy">(</span>cdaId.extension.empty()<span style="color: navy">)</span><span style="color: navy"><b> -&gt; </b></span>identifier.system = <span style="color: blue">'urn:ietf:rfc:3986'</span> <i>&quot;bundleIdentifierSystemOid&quot;</i><span style="color: navy">;</span>
+    cdaId.root<b> as </b><span style="color: maroon">root</span><b> where </b><span style="color: navy">(</span>cdaId.extension.empty()<span style="color: navy">)</span><span style="color: navy"><b> -&gt; </b></span>identifier.value = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:oid:'</span><span style="color: navy">, </span><span style="color: maroon">root</span><span style="color: navy">)</span> <i>&quot;bundleIdentifierValueOid&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">}</span> <i>&quot;bundleIdentifier&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">CDA effectiveTime -&gt; FHIR Bundle.timestamp</span>
   src.effectiveTime<b> as </b><span style="color: maroon">effectiveTime</span><span style="color: navy"><b> -&gt; </b></span>bundle.timestamp = <b>create</b><span style="color: navy">(</span><span style="color: blue">'instant'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">timestamp</span><b> then </b>TSInstant<span style="color: navy">(</span><span style="color: maroon">effectiveTime</span><span style="color: navy">, </span><span style="color: maroon">timestamp</span><span style="color: navy">)</span> <i>&quot;bundleTimestamp&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">CDA setId -&gt; FHIR Composition.identifier</span>
   src.setId<b> as </b><span style="color: maroon">setId</span><span style="color: navy"><b> -&gt; </b></span>composition.identifier = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Identifier'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">identifier</span><b> then </b>II<span style="color: navy">(</span><span style="color: maroon">setId</span><span style="color: navy">, </span><span style="color: maroon">identifier</span><span style="color: navy">)</span> <i>&quot;compositionSetIdentifier&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">CDA id -&gt; FHIR Composition.identifier si setId absent</span>
-  src.id<b> as </b><span style="color: maroon">id</span><b> where </b>src.setId.empty()<span style="color: navy"><b> -&gt; </b></span>composition.identifier = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Identifier'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">identifier</span><b> then </b>II<span style="color: navy">(</span><span style="color: maroon">id</span><span style="color: navy">, </span><span style="color: maroon">identifier</span><span style="color: navy">)</span> <i>&quot;compositionIdentifier&quot;</i><span style="color: navy">;</span>
+  src.id<b> as </b><span style="color: maroon">id</span><b> where </b><span style="color: navy">(</span>src.setId.empty()<span style="color: navy">)</span><span style="color: navy"><b> -&gt; </b></span>composition.identifier = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Identifier'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">identifier</span><b> then </b>II<span style="color: navy">(</span><span style="color: maroon">id</span><span style="color: navy">, </span><span style="color: maroon">identifier</span><span style="color: navy">)</span> <i>&quot;compositionIdentifier&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">CDA ClinicalDocument -&gt; FHIR Composition.status</span>
   src<span style="color: navy"><b> -&gt; </b></span>composition.status = <span style="color: blue">'final'</span> <i>&quot;compositionStatus&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">CDA versionNumber/effectiveTime -&gt; FHIR Composition.meta</span>
@@ -211,7 +213,7 @@
         <span style="color: navy">// </span><span style="color: green">CDA birthTime -&gt; FHIR Patient.birthDate</span>
         patientCda.birthTime<b> as </b><span style="color: maroon">birthTime</span><span style="color: navy"><b> -&gt; </b></span>patient.birthDate = <b>create</b><span style="color: navy">(</span><span style="color: blue">'date'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">date</span><b> then </b>TSDate<span style="color: navy">(</span><span style="color: maroon">birthTime</span><span style="color: navy">, </span><span style="color: maroon">date</span><span style="color: navy">)</span> <i>&quot;birthDate&quot;</i><span style="color: navy">;</span>
         <span style="color: navy">// </span><span style="color: green">CDA deceasedInd -&gt; FHIR Patient.deceasedBoolean</span>
-        patientCda.deceasedInd<b> as </b><span style="color: maroon">indicator</span><b> where </b>patientCda.deceasedTime.empty()<span style="color: navy"><b> -&gt; </b></span>patient.deceased = <b>create</b><span style="color: navy">(</span><span style="color: blue">'boolean'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">bool</span><b> then</b><span style="color: navy"> {
+        patientCda.deceasedInd<b> as </b><span style="color: maroon">indicator</span><b> where </b><span style="color: navy">(</span>patientCda.deceasedTime.empty()<span style="color: navy">)</span><span style="color: navy"><b> -&gt; </b></span>patient.deceased = <b>create</b><span style="color: navy">(</span><span style="color: blue">'boolean'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">bool</span><b> then</b><span style="color: navy"> {
 </span>          indicator.value<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>bool.value = <span style="color: maroon">v</span><span style="color: navy">;</span>
         <span style="color: navy">}</span> <i>&quot;deceasedBoolean&quot;</i><span style="color: navy">;</span>
         <span style="color: navy">// </span><span style="color: green">CDA deceasedTime -&gt; FHIR Patient.deceasedDateTime</span>
@@ -257,7 +259,7 @@
         assignedAuthor<span style="color: navy"><b> -&gt; </b></span> composition.author<b> as </b><span style="color: maroon">authorRef</span><span style="color: navy">, </span> authorRef.reference = <span style="color: navy">(</span>'urn:uuid:' + %authorRole.id<span style="color: navy">)</span> <i>&quot;compositionAuthorRoleRef&quot;</i><span style="color: navy">;</span>
       <span style="color: navy">}</span> <i>&quot;authorWithOrganization&quot;</i><span style="color: navy">;</span>
       <span style="color: navy">// </span><span style="color: green">CDA author sans representedOrganization -&gt; référence directe au Practitioner</span>
-      assignedAuthor<b> where </b>assignedAuthor.representedOrganization.empty()<span style="color: navy"><b> -&gt; </b></span> composition.author<b> as </b><span style="color: maroon">authorRef</span><span style="color: navy">, </span> authorRef.reference = <span style="color: navy">(</span>'urn:uuid:' + %authorPractitioner.id<span style="color: navy">)</span> <i>&quot;compositionAuthorPractitionerRef&quot;</i><span style="color: navy">;</span>
+      assignedAuthor<b> where </b><span style="color: navy">(</span>assignedAuthor.representedOrganization.empty()<span style="color: navy">)</span><span style="color: navy"><b> -&gt; </b></span> composition.author<b> as </b><span style="color: maroon">authorRef</span><span style="color: navy">, </span> authorRef.reference = <span style="color: navy">(</span>'urn:uuid:' + %authorPractitioner.id<span style="color: navy">)</span> <i>&quot;compositionAuthorPractitionerRef&quot;</i><span style="color: navy">;</span>
     <span style="color: navy">}</span> <i>&quot;authorPractitionerResource&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">}</span><span style="color: navy">;</span>
 <span style="color: navy">}
@@ -288,7 +290,7 @@
           assignedEntity<span style="color: navy"><b> -&gt; </b></span> attester.party = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Reference'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">partyRef</span><span style="color: navy">, </span> partyRef.reference = <span style="color: navy">(</span>'urn:uuid:' + %legalRole.id<span style="color: navy">)</span> <i>&quot;partyRole&quot;</i><span style="color: navy">;</span>
         <span style="color: navy">}</span> <i>&quot;legalWithOrganization&quot;</i><span style="color: navy">;</span>
         <span style="color: navy">// </span><span style="color: green">CDA legalAuthenticator sans representedOrganization -&gt; attester.party référence le Practitioner</span>
-        assignedEntity<b> where </b>assignedEntity.representedOrganization.empty()<span style="color: navy"><b> -&gt; </b></span> attester.party = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Reference'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">partyRef</span><span style="color: navy">, </span> partyRef.reference = <span style="color: navy">(</span>'urn:uuid:' + %legalPractitioner.id<span style="color: navy">)</span> <i>&quot;partyPractitioner&quot;</i><span style="color: navy">;</span>
+        assignedEntity<b> where </b><span style="color: navy">(</span>assignedEntity.representedOrganization.empty()<span style="color: navy">)</span><span style="color: navy"><b> -&gt; </b></span> attester.party = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Reference'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">partyRef</span><span style="color: navy">, </span> partyRef.reference = <span style="color: navy">(</span>'urn:uuid:' + %legalPractitioner.id<span style="color: navy">)</span> <i>&quot;partyPractitioner&quot;</i><span style="color: navy">;</span>
       <span style="color: navy">}</span> <i>&quot;attester&quot;</i><span style="color: navy">;</span>
     <span style="color: navy">}</span> <i>&quot;legalPractitionerResource&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">}</span><span style="color: navy">;</span>
@@ -371,14 +373,14 @@
   <span style="color: navy">// </span><span style="color: green">CDA encompassingEncounter.code -&gt; FHIR Encounter.class</span>
   encompassingEncounter.code<b> as </b><span style="color: maroon">srcCode</span><span style="color: navy"><b> -&gt; </b></span>encounter.class = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Coding'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">coding</span><b> then </b>CDCoding<span style="color: navy">(</span><span style="color: maroon">srcCode</span><span style="color: navy">, </span><span style="color: maroon">coding</span><span style="color: navy">)</span> <i>&quot;class&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">CDA encompassingEncounter.code absent -&gt; FHIR Encounter.class avec data-absent-reason</span>
-  encompassingEncounter<b> where </b>encompassingEncounter.code.empty()<span style="color: navy"><b> -&gt; </b></span>encounter.class = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Coding'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">coding</span><b> then</b><span style="color: navy"> {
+  encompassingEncounter<b> where </b><span style="color: navy">(</span>encompassingEncounter.code.empty()<span style="color: navy">)</span><span style="color: navy"><b> -&gt; </b></span>encounter.class = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Coding'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">coding</span><b> then</b><span style="color: navy"> {
 </span>    encompassingEncounter<span style="color: navy"><b> -&gt; </b></span>coding.extension = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Extension'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">absentReason</span><b> then</b><span style="color: navy"> {
 </span>      encompassingEncounter<span style="color: navy"><b> -&gt; </b></span>absentReason.url = <span style="color: blue">'http://hl7.org/fhir/StructureDefinition/data-absent-reason'</span> <i>&quot;url&quot;</i><span style="color: navy">;</span>
       encompassingEncounter<span style="color: navy"><b> -&gt; </b></span>absentReason.value = <b>cast</b><span style="color: navy">(</span><span style="color: blue">'unknown'</span><span style="color: navy">, </span><span style="color: blue">'code'</span><span style="color: navy">)</span> <i>&quot;valueCode&quot;</i><span style="color: navy">;</span>
     <span style="color: navy">}</span> <i>&quot;dataAbsentReason&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">}</span> <i>&quot;classAbsentReason&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">CDA encompassingEncounter.effectiveTime -&gt; FHIR Encounter.period</span>
-  encompassingEncounter.effectiveTime<b> as </b><span style="color: maroon">effTime</span><b> where </b>effTime.value.exists() or effTime.low.exists() or effTime.high.exists()<span style="color: navy"><b> -&gt; </b></span>encounter.period = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Period'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">period</span><b> then </b>IVLTSPeriod<span style="color: navy">(</span><span style="color: maroon">effTime</span><span style="color: navy">, </span><span style="color: maroon">period</span><span style="color: navy">)</span> <i>&quot;period&quot;</i><span style="color: navy">;</span>
+  encompassingEncounter.effectiveTime<b> as </b><span style="color: maroon">effTime</span><b> where </b><span style="color: navy">(</span>effTime.value.exists() or effTime.low.exists() or effTime.high.exists()<span style="color: navy">)</span><span style="color: navy"><b> -&gt; </b></span>encounter.period = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Period'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">period</span><b> then </b>IVLTSPeriod<span style="color: navy">(</span><span style="color: maroon">effTime</span><span style="color: navy">, </span><span style="color: maroon">period</span><span style="color: navy">)</span> <i>&quot;period&quot;</i><span style="color: navy">;</span>
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">GROUPE — TRAITEMENT DE LA PERSONNE À PRÉVENIR CDA</span>
@@ -391,7 +393,7 @@
 <span style="color: navy">// </span><span style="color: green">   La ressource RelatedPerson est donc créée uniquement si ce bloc CDA existe</span>
 <b>group </b>MapHeaderEmergencyContact<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">bundle</span>, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy">)</span><span style="color: navy"> {
 </span>  src.informant<b> as </b><span style="color: maroon">informant</span><b> then</b><span style="color: navy"> {
-</span>    informant.relatedEntity<b> as </b><span style="color: maroon">relatedEntity</span><b> where </b>relatedEntity.classCode = 'ECON'<span style="color: navy"><b> -&gt; </b></span> bundle.entry<b> as </b><span style="color: maroon">relatedPersonEntry</span><span style="color: navy">, </span> relatedPersonEntry.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'RelatedPerson'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">emergencyContactRelatedPerson</span><span style="color: navy">, </span> emergencyContactRelatedPerson.id = <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span><span style="color: navy">, </span> relatedPersonEntry.fullUrl = <span style="color: navy">(</span>'urn:uuid:' + %emergencyContactRelatedPerson.id<span style="color: navy">)</span><b> then </b>MapCDARelatedEntityToRelatedPerson<span style="color: navy">(</span><span style="color: maroon">relatedEntity</span><span style="color: navy">, </span><span style="color: maroon">emergencyContactRelatedPerson</span><span style="color: navy">, </span><span style="color: maroon">patient</span><span style="color: navy">)</span> <i>&quot;relatedPersonECON&quot;</i><span style="color: navy">;</span>
+</span>    informant.relatedEntity<b> as </b><span style="color: maroon">relatedEntity</span><b> where </b><span style="color: navy">(</span>relatedEntity.classCode = 'ECON'<span style="color: navy">)</span><span style="color: navy"><b> -&gt; </b></span> bundle.entry<b> as </b><span style="color: maroon">relatedPersonEntry</span><span style="color: navy">, </span> relatedPersonEntry.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'RelatedPerson'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">emergencyContactRelatedPerson</span><span style="color: navy">, </span> emergencyContactRelatedPerson.id = <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span><span style="color: navy">, </span> relatedPersonEntry.fullUrl = <span style="color: navy">(</span>'urn:uuid:' + %emergencyContactRelatedPerson.id<span style="color: navy">)</span><b> then </b>MapCDARelatedEntityToRelatedPerson<span style="color: navy">(</span><span style="color: maroon">relatedEntity</span><span style="color: navy">, </span><span style="color: maroon">emergencyContactRelatedPerson</span><span style="color: navy">, </span><span style="color: maroon">patient</span><span style="color: navy">)</span> <i>&quot;relatedPersonECON&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">}</span><span style="color: navy">;</span>
 <span style="color: navy">}
 
@@ -405,7 +407,7 @@
 <span style="color: navy">// </span><span style="color: green">   La ressource RelatedPerson est donc créée uniquement si ce bloc CDA existe.</span>
 <b>group </b>MapHeaderTrustedPerson<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">bundle</span>, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy">)</span><span style="color: navy"> {
 </span>  src.informant<b> as </b><span style="color: maroon">informant</span><b> then</b><span style="color: navy"> {
-</span>    informant.relatedEntity<b> as </b><span style="color: maroon">relatedEntity</span><b> where </b>relatedEntity.classCode = 'NOK'<span style="color: navy"><b> -&gt; </b></span> bundle.entry<b> as </b><span style="color: maroon">relatedPersonEntry</span><span style="color: navy">, </span> relatedPersonEntry.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'RelatedPerson'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">trustedPersonRelatedPerson</span><span style="color: navy">, </span> trustedPersonRelatedPerson.id = <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span><span style="color: navy">, </span> relatedPersonEntry.fullUrl = <span style="color: navy">(</span>'urn:uuid:' + %trustedPersonRelatedPerson.id<span style="color: navy">)</span><b> then </b>MapCDARelatedEntityToRelatedPerson<span style="color: navy">(</span><span style="color: maroon">relatedEntity</span><span style="color: navy">, </span><span style="color: maroon">trustedPersonRelatedPerson</span><span style="color: navy">, </span><span style="color: maroon">patient</span><span style="color: navy">)</span> <i>&quot;relatedPersonNOK&quot;</i><span style="color: navy">;</span>
+</span>    informant.relatedEntity<b> as </b><span style="color: maroon">relatedEntity</span><b> where </b><span style="color: navy">(</span>relatedEntity.classCode = 'NOK'<span style="color: navy">)</span><span style="color: navy"><b> -&gt; </b></span> bundle.entry<b> as </b><span style="color: maroon">relatedPersonEntry</span><span style="color: navy">, </span> relatedPersonEntry.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'RelatedPerson'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">trustedPersonRelatedPerson</span><span style="color: navy">, </span> trustedPersonRelatedPerson.id = <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span><span style="color: navy">, </span> relatedPersonEntry.fullUrl = <span style="color: navy">(</span>'urn:uuid:' + %trustedPersonRelatedPerson.id<span style="color: navy">)</span><b> then </b>MapCDARelatedEntityToRelatedPerson<span style="color: navy">(</span><span style="color: maroon">relatedEntity</span><span style="color: navy">, </span><span style="color: maroon">trustedPersonRelatedPerson</span><span style="color: navy">, </span><span style="color: maroon">patient</span><span style="color: navy">)</span> <i>&quot;relatedPersonNOK&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">}</span><span style="color: navy">;</span>
 <span style="color: navy">}
 
@@ -448,7 +450,7 @@
 <b>group </b>MapHeaderRelatedDocument<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">composition</span><span style="color: navy">)</span><span style="color: navy"> {
 </span>  src.relatedDocument<b> as </b><span style="color: maroon">relatedDoc</span><span style="color: navy"><b> -&gt; </b></span>composition.relatesTo<b> as </b><span style="color: maroon">relatesTo</span><b> then</b><span style="color: navy"> {
 </span>    <span style="color: navy">// </span><span style="color: green">CDA relatedDocument.typeCode=RPLC -&gt; FHIR Composition.relatesTo.code</span>
-    relatedDoc.typeCode<b> as </b><span style="color: maroon">typeCode</span><b> where </b>typeCode = 'RPLC'<span style="color: navy"><b> -&gt; </b></span>relatesTo.code = <span style="color: blue">'replaces'</span> <i>&quot;replaces&quot;</i><span style="color: navy">;</span>
+    relatedDoc.typeCode<b> as </b><span style="color: maroon">typeCode</span><b> where </b><span style="color: navy">(</span>typeCode = 'RPLC'<span style="color: navy">)</span><span style="color: navy"><b> -&gt; </b></span>relatesTo.code = <span style="color: blue">'replaces'</span> <i>&quot;replaces&quot;</i><span style="color: navy">;</span>
     relatedDoc.parentDocument<b> as </b><span style="color: maroon">parentDoc</span><b> then</b><span style="color: navy"> {
 </span>      <span style="color: navy">// </span><span style="color: green">CDA relatedDocument.parentDocument.id -&gt; FHIR Composition.relatesTo.targetIdentifier</span>
       parentDoc.id<b> as </b><span style="color: maroon">id</span><span style="color: navy"><b> -&gt; </b></span>relatesTo.target = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Identifier'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">identifier</span><b> then </b>II<span style="color: navy">(</span><span style="color: maroon">id</span><span style="color: navy">, </span><span style="color: maroon">identifier</span><span style="color: navy">)</span> <i>&quot;targetIdentifier&quot;</i><span style="color: navy">;</span>
@@ -616,7 +618,7 @@
   <name value="CdaToBundle"/>
   <title value="Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA"/>
   <status value="draft"/>
-  <date value="2026-07-24T10:16:52+00:00"/>
+  <date value="2026-07-28T10:59:15+00:00"/>
   <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
   <contact>
     <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
@@ -637,6 +639,7 @@
     <url value="http://hl7.org/cda/stds/core/StructureDefinition/ClinicalDocument|2.0.0-sd"/>
     <mode value="source"/>
     <alias value="ClinicalDocument"/>
+    <documentation value="TYPES CDA UTILISÉS COMME SOURCES"/>
   </structure>
   <structure>
     <url value="http://hl7.org/cda/stds/core/StructureDefinition/PatientRole|2.0.0-sd"/>
@@ -662,6 +665,7 @@
     <url value="http://hl7.org/fhir/StructureDefinition/Bundle|4.0.1"/>
     <mode value="target"/>
     <alias value="Bundle"/>
+    <documentation value="TYPES FHIR UTILISÉS COMME CIBLES"/>
   </structure>
   <structure>
     <url value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
@@ -911,6 +915,7 @@
         <variable value="composition"/>
         <variable value="patient"/>
       </dependent>
+      <documentation value="ClinicalDocument.header CDA -&gt; Bundle / Composition / Patient + ressources administratives créées si les blocs CDA existent"/>
     </rule>
     <rule>
       <name value="body"/>
@@ -924,6 +929,7 @@
         <variable value="bundle"/>
         <variable value="patient"/>
       </dependent>
+      <documentation value="ClinicalDocument.component.structuredBody CDA -&gt; Composition.section title/code/text"/>
     </rule>
   </group>
   <group>
@@ -957,6 +963,7 @@
         <variable value="bundle"/>
         <variable value="composition"/>
       </dependent>
+      <documentation value="CDA id/setId/versionNumber/effectiveTime -&gt; FHIR métadonnées Bundle + Composition"/>
     </rule>
     <rule>
       <name value="documentDescription"/>
@@ -969,6 +976,7 @@
         <variable value="composition"/>
         <variable value="patient"/>
       </dependent>
+      <documentation value="CDA languageCode/code/title/effectiveTime/confidentialityCode -&gt; FHIR description de la Composition"/>
     </rule>
     <rule>
       <name value="recordTarget"/>
@@ -981,6 +989,7 @@
         <variable value="patient"/>
         <variable value="composition"/>
       </dependent>
+      <documentation value="CDA recordTarget.patientRole -&gt; FHIR Patient + Composition.subject"/>
     </rule>
     <rule>
       <name value="custodian"/>
@@ -993,6 +1002,7 @@
         <variable value="composition"/>
         <variable value="bundle"/>
       </dependent>
+      <documentation value="CDA custodian -&gt; création et alimentation de l’Organization custodian"/>
     </rule>
     <rule>
       <name value="author"/>
@@ -1005,6 +1015,7 @@
         <variable value="composition"/>
         <variable value="bundle"/>
       </dependent>
+      <documentation value="CDA author -&gt; création et alimentation du Practitioner / Organization / PractitionerRole auteur"/>
     </rule>
     <rule>
       <name value="legalAuthenticator"/>
@@ -1017,6 +1028,7 @@
         <variable value="composition"/>
         <variable value="bundle"/>
       </dependent>
+      <documentation value="CDA legalAuthenticator -&gt; création et alimentation du signataire légal"/>
     </rule>
     <rule>
       <name value="documentationOf"/>
@@ -1028,6 +1040,7 @@
         <variable value="cda"/>
         <variable value="composition"/>
       </dependent>
+      <documentation value="CDA documentationOf.serviceEvent -&gt; FHIR Composition.event"/>
     </rule>
     <rule>
       <name value="encounterContext"/>
@@ -1041,6 +1054,7 @@
         <variable value="bundle"/>
         <variable value="patient"/>
       </dependent>
+      <documentation value="CDA componentOf.encompassingEncounter -&gt; création et alimentation Encounter / Location / Organization si présent"/>
     </rule>
     <rule>
       <name value="emergencyContact"/>
@@ -1053,6 +1067,7 @@
         <variable value="bundle"/>
         <variable value="patient"/>
       </dependent>
+      <documentation value="CDA informant.relatedEntity classCode=ECON -&gt; création RelatedPerson personne à prévenir"/>
     </rule>
     <rule>
       <name value="trustedPerson"/>
@@ -1065,6 +1080,7 @@
         <variable value="bundle"/>
         <variable value="patient"/>
       </dependent>
+      <documentation value="CDA informant.relatedEntity classCode=NOK -&gt; création RelatedPerson personne de confiance"/>
     </rule>
     <rule>
       <name value="guardian"/>
@@ -1077,6 +1093,7 @@
         <variable value="bundle"/>
         <variable value="patient"/>
       </dependent>
+      <documentation value="CDA recordTarget.patientRole.patient.guardian -&gt; création RelatedPerson guardian"/>
     </rule>
     <rule>
       <name value="relatedDocument"/>
@@ -1088,6 +1105,7 @@
         <variable value="cda"/>
         <variable value="composition"/>
       </dependent>
+      <documentation value="CDA relatedDocument -&gt; FHIR Composition.relatesTo"/>
     </rule>
   </group>
   <group>
@@ -1117,6 +1135,7 @@
         <element value="id"/>
         <transform value="uuid"/>
       </target>
+      <documentation value="CDA ClinicalDocument -&gt; FHIR Bundle.id"/>
     </rule>
     <rule>
       <name value="bundleType"/>
@@ -1132,6 +1151,7 @@
           <valueString value="document"/>
         </parameter>
       </target>
+      <documentation value="CDA ClinicalDocument -&gt; FHIR Bundle.type"/>
     </rule>
     <rule>
       <name value="bundleMeta"/>
@@ -1171,6 +1191,7 @@
             </parameter>
           </target>
         </rule>
+        <documentation value="CDA versionNumber.value -&gt; FHIR Bundle.meta.versionId"/>
       </rule>
       <rule>
         <name value="bundleMetaLastUpdated"/>
@@ -1194,7 +1215,9 @@
           <variable value="effectiveTime"/>
           <variable value="lastUpdated"/>
         </dependent>
+        <documentation value="CDA effectiveTime -&gt; FHIR Bundle.meta.lastUpdated"/>
       </rule>
+      <documentation value="CDA versionNumber/effectiveTime -&gt; FHIR Bundle.meta"/>
     </rule>
     <rule>
       <name value="bundleIdentifier"/>
@@ -1233,6 +1256,7 @@
             <valueId value="root"/>
           </parameter>
         </target>
+        <documentation value="CDA id.root + id.extension -&gt; FHIR Identifier.system/value"/>
       </rule>
       <rule>
         <name value="bundleIdentifierValueWithExtension"/>
@@ -1268,6 +1292,7 @@
             <valueString value="urn:ietf:rfc:3986"/>
           </parameter>
         </target>
+        <documentation value="CDA id.root sans extension -&gt; FHIR Identifier.system/value"/>
       </rule>
       <rule>
         <name value="bundleIdentifierValueOid"/>
@@ -1290,6 +1315,7 @@
           </parameter>
         </target>
       </rule>
+      <documentation value="CDA ClinicalDocument.id -&gt; FHIR Bundle.identifier"/>
     </rule>
     <rule>
       <name value="bundleTimestamp"/>
@@ -1313,6 +1339,7 @@
         <variable value="effectiveTime"/>
         <variable value="timestamp"/>
       </dependent>
+      <documentation value="CDA effectiveTime -&gt; FHIR Bundle.timestamp"/>
     </rule>
     <rule>
       <name value="compositionSetIdentifier"/>
@@ -1336,6 +1363,7 @@
         <variable value="setId"/>
         <variable value="identifier"/>
       </dependent>
+      <documentation value="CDA setId -&gt; FHIR Composition.identifier"/>
     </rule>
     <rule>
       <name value="compositionIdentifier"/>
@@ -1360,6 +1388,7 @@
         <variable value="id"/>
         <variable value="identifier"/>
       </dependent>
+      <documentation value="CDA id -&gt; FHIR Composition.identifier si setId absent"/>
     </rule>
     <rule>
       <name value="compositionStatus"/>
@@ -1375,6 +1404,7 @@
           <valueString value="final"/>
         </parameter>
       </target>
+      <documentation value="CDA ClinicalDocument -&gt; FHIR Composition.status"/>
     </rule>
     <rule>
       <name value="compositionMeta"/>
@@ -1414,6 +1444,7 @@
             </parameter>
           </target>
         </rule>
+        <documentation value="CDA versionNumber.value -&gt; FHIR Composition.meta.versionId"/>
       </rule>
       <rule>
         <name value="compositionMetaLastUpdated"/>
@@ -1437,7 +1468,9 @@
           <variable value="effectiveTime"/>
           <variable value="lastUpdated"/>
         </dependent>
+        <documentation value="CDA effectiveTime -&gt; FHIR Composition.meta.lastUpdated"/>
       </rule>
+      <documentation value="CDA versionNumber/effectiveTime -&gt; FHIR Composition.meta"/>
     </rule>
   </group>
   <group>
@@ -1478,6 +1511,7 @@
         <variable value="languageCode"/>
         <variable value="code"/>
       </dependent>
+      <documentation value="CDA languageCode -&gt; FHIR Composition.language"/>
     </rule>
     <rule>
       <name value="type"/>
@@ -1501,6 +1535,7 @@
         <variable value="srcCode"/>
         <variable value="cc"/>
       </dependent>
+      <documentation value="CDA code -&gt; FHIR Composition.type"/>
     </rule>
     <rule>
       <name value="title"/>
@@ -1518,6 +1553,7 @@
           <valueString value="title.xmlText"/>
         </parameter>
       </target>
+      <documentation value="CDA title -&gt; FHIR Composition.title"/>
     </rule>
     <rule>
       <name value="subject"/>
@@ -1543,6 +1579,7 @@
           <valueString value="'urn:uuid:' + %patient.id"/>
         </parameter>
       </target>
+      <documentation value="CDA recordTarget -&gt; FHIR Composition.subject"/>
     </rule>
     <rule>
       <name value="date"/>
@@ -1566,6 +1603,7 @@
         <variable value="effectiveTime"/>
         <variable value="date"/>
       </dependent>
+      <documentation value="CDA effectiveTime -&gt; FHIR Composition.date"/>
     </rule>
     <rule>
       <name value="confidentiality"/>
@@ -1589,6 +1627,7 @@
         <variable value="confCode"/>
         <variable value="code"/>
       </dependent>
+      <documentation value="CDA confidentialityCode -&gt; FHIR Composition.confidentiality"/>
     </rule>
   </group>
   <group>
@@ -1643,6 +1682,7 @@
             <variable value="srcAddr"/>
             <variable value="address"/>
           </dependent>
+          <documentation value="CDA patientRole.addr -&gt; FHIR Patient.address"/>
         </rule>
         <rule>
           <name value="telecom"/>
@@ -1666,6 +1706,7 @@
             <variable value="srcTelecom"/>
             <variable value="contactPoint"/>
           </dependent>
+          <documentation value="CDA patientRole.telecom -&gt; FHIR Patient.telecom"/>
         </rule>
         <rule>
           <name value="patientData"/>
@@ -1704,6 +1745,7 @@
                 </parameter>
               </target>
             </rule>
+            <documentation value="CDA administrativeGenderCode -&gt; FHIR Patient.gender"/>
           </rule>
           <rule>
             <name value="birthDate"/>
@@ -1727,6 +1769,7 @@
               <variable value="birthTime"/>
               <variable value="date"/>
             </dependent>
+            <documentation value="CDA birthTime -&gt; FHIR Patient.birthDate"/>
           </rule>
           <rule>
             <name value="deceasedBoolean"/>
@@ -1763,6 +1806,7 @@
                 </parameter>
               </target>
             </rule>
+            <documentation value="CDA deceasedInd -&gt; FHIR Patient.deceasedBoolean"/>
           </rule>
           <rule>
             <name value="deceasedDateTime"/>
@@ -1786,6 +1830,7 @@
               <variable value="dTime"/>
               <variable value="dt"/>
             </dependent>
+            <documentation value="CDA deceasedTime -&gt; FHIR Patient.deceasedDateTime"/>
           </rule>
         </rule>
       </rule>
@@ -1970,6 +2015,7 @@
             <variable value="assignedAuthor"/>
             <variable value="authorPractitioner"/>
           </dependent>
+          <documentation value="CDA assignedAuthor -&gt; FHIR Practitioner"/>
         </rule>
         <rule>
           <name value="authorWithOrganization"/>
@@ -2085,6 +2131,7 @@
               </parameter>
             </target>
           </rule>
+          <documentation value="CDA representedOrganization présent -&gt; FHIR Organization + PractitionerRole"/>
         </rule>
         <rule>
           <name value="compositionAuthorPractitionerRef"/>
@@ -2107,6 +2154,7 @@
               <valueString value="'urn:uuid:' + %authorPractitioner.id"/>
             </parameter>
           </target>
+          <documentation value="CDA author sans representedOrganization -&gt; référence directe au Practitioner"/>
         </rule>
       </rule>
     </rule>
@@ -2182,6 +2230,7 @@
             <variable value="assignedEntity"/>
             <variable value="legalPractitioner"/>
           </dependent>
+          <documentation value="CDA assignedEntity -&gt; FHIR Practitioner"/>
         </rule>
         <rule>
           <name value="attester"/>
@@ -2350,6 +2399,7 @@
                 </parameter>
               </target>
             </rule>
+            <documentation value="CDA representedOrganization présent -&gt; Organization + PractitionerRole + attester.party"/>
           </rule>
           <rule>
             <name value="partyPractitioner"/>
@@ -2376,7 +2426,9 @@
                 <valueString value="'urn:uuid:' + %legalPractitioner.id"/>
               </parameter>
             </target>
+            <documentation value="CDA legalAuthenticator sans representedOrganization -&gt; attester.party référence le Practitioner"/>
           </rule>
+          <documentation value="CDA legalAuthenticator -&gt; FHIR Composition.attester"/>
         </rule>
       </rule>
     </rule>
@@ -2435,6 +2487,7 @@
             <variable value="eventCode"/>
             <variable value="cc"/>
           </dependent>
+          <documentation value="CDA serviceEvent.code -&gt; FHIR Composition.event.code"/>
         </rule>
         <rule>
           <name value="eventPeriod"/>
@@ -2458,6 +2511,7 @@
             <variable value="eff"/>
             <variable value="period"/>
           </dependent>
+          <documentation value="CDA serviceEvent.effectiveTime -&gt; FHIR Composition.event.period"/>
         </rule>
       </rule>
     </rule>
@@ -2551,6 +2605,7 @@
               <valueString value="'urn:uuid:' + %encounter.id"/>
             </parameter>
           </target>
+          <documentation value="CDA encompassingEncounter -&gt; FHIR Composition.encounter"/>
         </rule>
         <rule>
           <name value="encounterBase"/>
@@ -2563,6 +2618,7 @@
             <variable value="encounter"/>
             <variable value="patient"/>
           </dependent>
+          <documentation value="CDA encompassingEncounter -&gt; FHIR Encounter générique&#xD;&#xA;Ce groupe commun alimente identifier, subject, status, class et period."/>
         </rule>
         <rule>
           <name value="location"/>
@@ -2648,6 +2704,7 @@
               <variable value="facilityOrganization"/>
             </dependent>
           </rule>
+          <documentation value="CDA healthCareFacility présent -&gt; FHIR Location + Organization"/>
         </rule>
       </rule>
     </rule>
@@ -2777,6 +2834,7 @@
           </rule>
         </rule>
       </rule>
+      <documentation value="CDA encompassingEncounter.id -&gt; FHIR Encounter.identifier"/>
     </rule>
     <rule>
       <name value="subject"/>
@@ -2802,6 +2860,7 @@
           <valueString value="'urn:uuid:' + %patient.id"/>
         </parameter>
       </target>
+      <documentation value="CDA encompassingEncounter -&gt; FHIR Encounter.subject"/>
     </rule>
     <rule>
       <name value="status"/>
@@ -2817,6 +2876,7 @@
           <valueString value="finished"/>
         </parameter>
       </target>
+      <documentation value="CDA encompassingEncounter -&gt; FHIR Encounter.status"/>
     </rule>
     <rule>
       <name value="class"/>
@@ -2840,6 +2900,7 @@
         <variable value="srcCode"/>
         <variable value="coding"/>
       </dependent>
+      <documentation value="CDA encompassingEncounter.code -&gt; FHIR Encounter.class"/>
     </rule>
     <rule>
       <name value="classAbsentReason"/>
@@ -2906,6 +2967,7 @@
           </target>
         </rule>
       </rule>
+      <documentation value="CDA encompassingEncounter.code absent -&gt; FHIR Encounter.class avec data-absent-reason"/>
     </rule>
     <rule>
       <name value="period"/>
@@ -2930,6 +2992,7 @@
         <variable value="effTime"/>
         <variable value="period"/>
       </dependent>
+      <documentation value="CDA encompassingEncounter.effectiveTime -&gt; FHIR Encounter.period"/>
     </rule>
   </group>
   <group>
@@ -3321,6 +3384,7 @@
             <valueString value="replaces"/>
           </parameter>
         </target>
+        <documentation value="CDA relatedDocument.typeCode=RPLC -&gt; FHIR Composition.relatesTo.code"/>
       </rule>
       <rule>
         <name value="parentDocument"/>
@@ -3351,6 +3415,7 @@
             <variable value="id"/>
             <variable value="identifier"/>
           </dependent>
+          <documentation value="CDA relatedDocument.parentDocument.id -&gt; FHIR Composition.relatesTo.targetIdentifier"/>
         </rule>
       </rule>
     </rule>
@@ -3389,6 +3454,7 @@
         <variable value="id"/>
         <variable value="identifier"/>
       </dependent>
+      <documentation value="CDA organization.id -&gt; FHIR Organization.identifier"/>
     </rule>
     <rule>
       <name value="orgName"/>
@@ -3414,6 +3480,7 @@
           </parameter>
         </target>
       </rule>
+      <documentation value="CDA organization.name -&gt; FHIR Organization.name"/>
     </rule>
     <rule>
       <name value="telecom"/>
@@ -3437,6 +3504,7 @@
         <variable value="srcTelecom"/>
         <variable value="contactPoint"/>
       </dependent>
+      <documentation value="CDA organization.telecom -&gt; FHIR Organization.telecom"/>
     </rule>
     <rule>
       <name value="address"/>
@@ -3460,6 +3528,7 @@
         <variable value="srcAddr"/>
         <variable value="address"/>
       </dependent>
+      <documentation value="CDA organization.addr -&gt; FHIR Organization.address"/>
     </rule>
   </group>
   <group>
@@ -3496,6 +3565,7 @@
         <variable value="id"/>
         <variable value="identifier"/>
       </dependent>
+      <documentation value="CDA assignedEntity.id -&gt; FHIR Practitioner.identifier"/>
     </rule>
     <rule>
       <name value="address"/>
@@ -3519,6 +3589,7 @@
         <variable value="addr"/>
         <variable value="address"/>
       </dependent>
+      <documentation value="CDA assignedEntity.addr -&gt; FHIR Practitioner.address"/>
     </rule>
     <rule>
       <name value="telecom"/>
@@ -3542,6 +3613,7 @@
         <variable value="telecom"/>
         <variable value="contactPoint"/>
       </dependent>
+      <documentation value="CDA assignedEntity.telecom -&gt; FHIR Practitioner.telecom"/>
     </rule>
     <rule>
       <name value="assignedPerson"/>
@@ -3572,6 +3644,7 @@
           <variable value="pName"/>
           <variable value="humanName"/>
         </dependent>
+        <documentation value="CDA assignedPerson.name -&gt; FHIR Practitioner.name"/>
       </rule>
     </rule>
   </group>
@@ -3619,6 +3692,7 @@
           <valueString value="'urn:uuid:' + %practitioner.id"/>
         </parameter>
       </target>
+      <documentation value="CDA assignedEntity -&gt; FHIR PractitionerRole.practitioner"/>
     </rule>
     <rule>
       <name value="organizationRef"/>
@@ -3644,6 +3718,7 @@
           <valueString value="'urn:uuid:' + %organization.id"/>
         </parameter>
       </target>
+      <documentation value="CDA representedOrganization -&gt; FHIR PractitionerRole.organization"/>
     </rule>
   </group>
   <group>
@@ -3686,6 +3761,7 @@
           <valueString value="'urn:uuid:' + %patient.id"/>
         </parameter>
       </target>
+      <documentation value="CDA relatedEntity -&gt; FHIR RelatedPerson.patient"/>
     </rule>
     <rule>
       <name value="identifier"/>
@@ -3709,6 +3785,7 @@
         <variable value="id"/>
         <variable value="identifier"/>
       </dependent>
+      <documentation value="CDA relatedEntity.id -&gt; FHIR RelatedPerson.identifier"/>
     </rule>
     <rule>
       <name value="address"/>
@@ -3732,6 +3809,7 @@
         <variable value="addr"/>
         <variable value="address"/>
       </dependent>
+      <documentation value="CDA relatedEntity.code -&gt; non mappé en étape 2&#xD;&#xA;Le lien métier de parenté est enrichi en étape 3 pour éviter un double RelatedPerson.relationship.&#xD;&#xA;CDA relatedEntity.addr -&gt; FHIR RelatedPerson.address"/>
     </rule>
     <rule>
       <name value="telecom"/>
@@ -3755,6 +3833,7 @@
         <variable value="telecom"/>
         <variable value="contactPoint"/>
       </dependent>
+      <documentation value="CDA relatedEntity.telecom -&gt; FHIR RelatedPerson.telecom"/>
     </rule>
     <rule>
       <name value="relatedPerson"/>
@@ -3785,6 +3864,7 @@
           <variable value="name"/>
           <variable value="humanName"/>
         </dependent>
+        <documentation value="CDA relatedPerson.name -&gt; FHIR RelatedPerson.name"/>
       </rule>
     </rule>
   </group>
@@ -3844,6 +3924,7 @@
           </parameter>
         </target>
       </rule>
+      <documentation value="CDA healthCareFacility -&gt; FHIR Encounter.location.location"/>
     </rule>
     <rule>
       <name value="serviceProvider"/>
@@ -3869,6 +3950,7 @@
           <valueString value="'urn:uuid:' + %facilityOrganization.id"/>
         </parameter>
       </target>
+      <documentation value="CDA healthCareFacility -&gt; FHIR Encounter.serviceProvider"/>
     </rule>
     <rule>
       <name value="managingOrganization"/>
@@ -3894,6 +3976,7 @@
           <valueString value="'urn:uuid:' + %facilityOrganization.id"/>
         </parameter>
       </target>
+      <documentation value="CDA healthCareFacility -&gt; FHIR Location.managingOrganization"/>
     </rule>
     <rule>
       <name value="facilityLocation"/>
@@ -3926,6 +4009,7 @@
             </parameter>
           </target>
         </rule>
+        <documentation value="CDA healthCareFacility.location.name -&gt; FHIR Location.name"/>
       </rule>
     </rule>
     <rule>
@@ -3950,6 +4034,7 @@
         <variable value="facilityCode"/>
         <variable value="cc"/>
       </dependent>
+      <documentation value="CDA healthCareFacility.code -&gt; FHIR Location.type"/>
     </rule>
     <rule>
       <name value="serviceProviderOrganization"/>
@@ -3968,6 +4053,7 @@
           <variable value="serviceProviderOrganization"/>
           <variable value="facilityOrganization"/>
         </dependent>
+        <documentation value="CDA serviceProviderOrganization -&gt; FHIR Organization"/>
       </rule>
     </rule>
   </group>
@@ -4035,6 +4121,7 @@
                 <variable value="section"/>
                 <variable value="compSection"/>
               </dependent>
+              <documentation value="CDA section.title/code/text -&gt; FHIR Composition.section"/>
             </rule>
           </rule>
         </rule>
@@ -4069,6 +4156,7 @@
           <valueString value="sectionTitle.xmlText"/>
         </parameter>
       </target>
+      <documentation value="CDA section.title -&gt; FHIR Composition.section.title"/>
     </rule>
     <rule>
       <name value="sectionCode"/>
@@ -4092,6 +4180,7 @@
         <variable value="sectionCode"/>
         <variable value="cc"/>
       </dependent>
+      <documentation value="CDA section.code -&gt; FHIR Composition.section.code"/>
     </rule>
     <rule>
       <name value="sectionText"/>
@@ -4124,6 +4213,7 @@
             <valueString value="generated"/>
           </parameter>
         </target>
+        <documentation value="CDA section.text -&gt; FHIR Narrative.status"/>
       </rule>
       <rule>
         <name value="narrativeDiv"/>
@@ -4142,7 +4232,9 @@
             <valueString value="string"/>
           </parameter>
         </target>
+        <documentation value="CDA section.text -&gt; FHIR Narrative.div"/>
       </rule>
+      <documentation value="CDA section.text -&gt; FHIR Composition.section.text"/>
     </rule>
   </group>
 </StructureMap>

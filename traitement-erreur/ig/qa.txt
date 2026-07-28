@@ -1,9 +1,9 @@
 CDA2FHIRMAP : Validation Results
 =========================================
 
-err = 348, warn = 235, info = 938
-IG Publisher Version: 2.2.10 Out of date - current version is 2.2.11
-Generated Fri Jul 24 10:20:44 UTC 2026. FHIR version 4.0.1 for ans.fhir.fr.mappingcdafhir#0.1.0 (canonical = https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir)
+err = 339, warn = 236, info = 938
+IG Publisher Version: 2.2.11
+Generated Tue Jul 28 11:01:20 UTC 2026. FHIR version 4.0.1 for ans.fhir.fr.mappingcdafhir#0.1.0 (canonical = https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir)
  Build Errors : 1 / 4 / 0
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaADToAddressConceptMap : 0 / 8 / 8
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaBLToBooleanConceptMap : 0 / 1 / 4
@@ -18,8 +18,8 @@ Generated Fri Jul 24 10:20:44 UTC 2026. FHIR version 4.0.1 for ans.fhir.fr.mappi
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaTELToContactPointConceptMap : 0 / 1 / 4
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ConceptMap-CdaTSToDateTimeConceptMap : 0 / 3 / 8
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/fsh-generated/resources/ImplementationGuide-ans.fhir.fr.mappingcdafhir : 0 / 2 / 2
- /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/input/fml/CDAFrToBundle : 26 / 11 / 195
- /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/input/fml/CDAtoFHIRTypes : 18 / 29 / 61
+ /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/input/fml/CDAFrToBundle : 35 / 11 / 195
+ /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/input/fml/CDAtoFHIRTypes : 0 / 30 / 61
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/input/fml/CdaPatientSummaryToBundle : 260 / 116 / 489
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/input/fml/CdaToBundle : 32 / 8 / 95
  /__w/IG-mapping-cda-fhir/IG-mapping-cda-fhir/igSource/input/resources/Bundle-fe569e1f-32d4-4ba4-b5ad-88082bf5470a : 3 / 37 / 46
@@ -236,6 +236,7 @@ INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[14].rule[1].source[0
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[14].rule[2].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[14].rule[3].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[15].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+ERROR: StructureMap/CdaFrToBundle: StructureMap.group[15].rule[0].dependent[0].variable[1]: The parameter 'tgt' refers to the variable 'tgt : Identifier (target)' but its type is 'Identifier' which is not compatible with the type required for the group 'II', which is 'Identifier' (from map 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes|0.1.0')
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[15].rule[1].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[15].rule[2].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[15].rule[2].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
@@ -243,6 +244,7 @@ ERROR: StructureMap/CdaFrToBundle: StructureMap.group[15].rule[2].rule[0].target
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[15].rule[2].rule[0].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[15].rule[2].rule[0].rule[1].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[16].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+ERROR: StructureMap/CdaFrToBundle: StructureMap.group[16].rule[0].dependent[0].variable[1]: The parameter 'tgt' refers to the variable 'tgt : Identifier (target)' but its type is 'Identifier' which is not compatible with the type required for the group 'II', which is 'Identifier' (from map 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes|0.1.0')
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[16].rule[1].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[16].rule[2].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[16].rule[2].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
@@ -250,6 +252,7 @@ ERROR: StructureMap/CdaFrToBundle: StructureMap.group[16].rule[2].rule[0].target
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[16].rule[2].rule[0].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[16].rule[2].rule[0].rule[1].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[17].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+ERROR: StructureMap/CdaFrToBundle: StructureMap.group[17].rule[0].dependent[0].variable[1]: The parameter 'tgt' refers to the variable 'tgt : Identifier (target)' but its type is 'Identifier' which is not compatible with the type required for the group 'II', which is 'Identifier' (from map 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes|0.1.0')
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[17].rule[1].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[17].rule[2].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[17].rule[2].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
@@ -257,6 +260,7 @@ ERROR: StructureMap/CdaFrToBundle: StructureMap.group[17].rule[2].rule[0].target
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[17].rule[2].rule[0].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[17].rule[2].rule[0].rule[1].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[18].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+ERROR: StructureMap/CdaFrToBundle: StructureMap.group[18].rule[0].dependent[0].variable[1]: The parameter 'tgt' refers to the variable 'tgt : Identifier (target)' but its type is 'Identifier' which is not compatible with the type required for the group 'II', which is 'Identifier' (from map 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes|0.1.0')
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[18].rule[1].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[18].rule[2].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[18].rule[2].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
@@ -265,6 +269,7 @@ INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[18].rule[2].rule[0].
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[18].rule[2].rule[0].rule[1].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[19].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[20].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+ERROR: StructureMap/CdaFrToBundle: StructureMap.group[20].rule[0].dependent[0].variable[1]: The parameter 'tgt' refers to the variable 'tgt : Identifier (target)' but its type is 'Identifier' which is not compatible with the type required for the group 'II', which is 'Identifier' (from map 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes|0.1.0')
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[20].rule[1].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[20].rule[2].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[20].rule[2].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
@@ -287,10 +292,12 @@ INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[24].rule[0].source[0
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[24].rule[1].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[24].rule[2].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[25].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+ERROR: StructureMap/CdaFrToBundle: StructureMap.group[25].rule[0].dependent[0].variable[1]: The parameter 'tgt' refers to the variable 'tgt : Identifier (target)' but its type is 'Identifier' which is not compatible with the type required for the group 'II', which is 'Identifier' (from map 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes|0.1.0')
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[26].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 WARNING: StructureMap/CdaFrToBundle: StructureMap.group[26].rule[1].target[0]: Transform cast not checked yet
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[26].rule[2].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[27].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+ERROR: StructureMap/CdaFrToBundle: StructureMap.group[27].rule[0].dependent[0].variable[1]: The parameter 'tgt' refers to the variable 'tgt : Identifier (target)' but its type is 'Identifier' which is not compatible with the type required for the group 'II', which is 'Identifier' (from map 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes|0.1.0')
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[27].rule[1].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[27].rule[1].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[28].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
@@ -302,6 +309,7 @@ INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[32].rule[0].source[0
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[32].rule[0].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 ERROR: StructureMap/CdaFrToBundle: StructureMap.group[32].rule[1].dependent[0].variable[0]: The parameter 'src' refers to the variable 'id : http://hl7.org/cda/stds/core/StructureDefinition/II (source)' but its type is 'II' which is not compatible with the type required for the group 'MapCDAIIToRPPSRangIdentifier', which is 'II' (from map '$this')
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[33].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+ERROR: StructureMap/CdaFrToBundle: StructureMap.group[33].rule[0].dependent[0].variable[1]: The parameter 'tgt' refers to the variable 'tgt : Identifier (target)' but its type is 'Identifier' which is not compatible with the type required for the group 'II', which is 'Identifier' (from map 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes|0.1.0')
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[33].rule[1].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[34].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[34].rule[1].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
@@ -370,6 +378,7 @@ INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[29].rule[0].source[0
 ERROR: StructureMap/CdaFrToBundle: StructureMap.group[29].rule[0].dependent[0].variable[1]: The target parameter 'tgt' was not found. Known variables: src : II (source), tgt : null (target)
 INFORMATION: StructureMap/CdaFrToBundle: StructureMap.group[30]: The group MapCDAIIToIDNPSIdentifier is not called successfully from within this mapping script, and does not have types on its inputs, so type verification is not possible
 WARNING: StructureMap/CdaFrToBundle: StructureMap.group[30].input[0]: Group MapCDAIIToIDNPSIdentifier parameter src has no type, so the paths cannot be validated
+ERROR: StructureMap/CdaFrToBundle: StructureMap.group[30].rule[0].dependent[0].variable[1]: The parameter 'tgt' refers to the variable 'tgt : Identifier (target)' but its type is 'Identifier' which is not compatible with the type required for the group 'II', which is 'Identifier' (from map 'https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/StructureMap/CdaToFHIRTypes|0.1.0')
 ERROR: StructureMap/CdaFrToBundle: StructureMap.group[30].rule[2].rule[0].target[0]: The target path idType.coding refers to the path Identifier.type.coding which is unknown
 INFORMATION: Resource: The resource StructureMap/CdaFrToBundle could usefully have an OID assigned (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/fhir-tools-ig/CodeSystem-ig-parameters.html#ig-parameters-auto-oid-root)
 == input/fml/CDAtoFHIRTypes.fml ==
@@ -407,18 +416,10 @@ INFORMATION: StructureMap.structure[30].url: Pinned the version of http://hl7.or
 INFORMATION: StructureMap.structure[31].url: Pinned the version of http://hl7.org/fhir/StructureDefinition/Quantity to 4.0.1
 INFORMATION: StructureMap.structure[32].url: Pinned the version of http://hl7.org/fhir/StructureDefinition/Ratio to 4.0.1
 INFORMATION: StructureMap.structure[33].url: Pinned the version of http://hl7.org/fhir/StructureDefinition/DomainResource to 4.0.1
+INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[16].rule[0].documentation: The string value contains text that looks like embedded HTML tags. If this content is rendered to HTML without appropriate post-processing, it may be a security risk
 INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[3].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[3].rule[0].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[3].rule[0].rule[1].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[3].rule[0].rule[1].rule[0].target[0]: The target path value.system refers to the path Extension.value[x].system which is unknown
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[3].rule[0].rule[1].rule[1].target[0]: The target path value.system refers to the path Extension.value[x].system which is unknown
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[3].rule[0].rule[1].rule[1].target[1]: The target path value.value refers to the path Extension.value[x].value which is unknown
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[3].rule[0].rule[1].rule[2].target[0]: The target path value.system refers to the path Extension.value[x].system which is unknown
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[3].rule[0].rule[1].rule[2].target[1]: The target path value.value refers to the path Extension.value[x].value which is unknown
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[3].rule[0].rule[1].rule[3].target[0]: The target path value.value refers to the path Extension.value[x].value which is unknown
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[3].rule[0].rule[1].rule[4].target[0]: The target path value.assigner refers to the path Extension.value[x].assigner which is unknown
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[3].rule[0].rule[1].rule[5].target[0]: The target path value.extension refers to the path Extension.value[x].extension which is unknown
-INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[3].rule[0].rule[1].rule[5].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[4].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[4].rule[0].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[9].rule[0].rule[0].target[0]: Transform cast not checked yet
@@ -429,15 +430,11 @@ INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[14].rule[0].source[
 INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[15].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[17].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
 INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[21].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
-INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[0]: The group Any is not called successfully from within this mapping script, and does not have types on its inputs, so type verification is not possible
+INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[1].rule[4].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[1].rule[5].rule[0].source[0]: The source statement doesn't assign a variable to the source - check that this is what is intended
+WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[1].rule[5].rule[1].target[0]: Transform cast not checked yet
 WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[0].input[0]: Group Any parameter src has no type, so the paths cannot be validated
 WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[0].input[1]: Group Any parameter tgt has no type, so the paths cannot be validated
-INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[1]: The group II is not called successfully from within this mapping script, and does not have types on its inputs, so type verification is not possible
-WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[1].input[0]: Group II parameter src has no type, so the paths cannot be validated
-WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[1].input[1]: Group II parameter tgt has no type, so the paths cannot be validated
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[1].rule[4].target[1]: The target context 'a' is not known at this point
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[1].rule[5].rule[0].target[0]: The target context 'ext' is not known at this point
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[1].rule[5].rule[1].target[0]: The target context 'ext' is not known at this point
 INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[5]: The group TSInstant is not called successfully from within this mapping script, and does not have types on its inputs, so type verification is not possible
 WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[5].input[0]: Group TSInstant parameter src has no type, so the paths cannot be validated
 WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[5].input[1]: Group TSInstant parameter tgt has no type, so the paths cannot be validated
@@ -455,14 +452,9 @@ WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[13].input[0]: Group CSC
 WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[13].input[1]: Group CSCode parameter tgt has no type, so the paths cannot be validated
 INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[16]: The group CECodeableConcept is not called successfully from within this mapping script, and does not have types on its inputs, so type verification is not possible
 WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[16].input[0]: Group CECodeableConcept parameter src has no type, so the paths cannot be validated
-WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[16].input[1]: Group CECodeableConcept parameter tgt has no type, so the paths cannot be validated
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[16].rule[1].rule[0].target[0]: The target context 'coding' is not known at this point
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[16].rule[1].rule[1].target[0]: The target context 'coding' is not known at this point
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[16].rule[1].rule[2].target[0]: The target context 'coding' is not known at this point
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[16].rule[1].rule[3].target[0]: The target context 'coding' is not known at this point
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[16].rule[1].rule[4].target[0]: The target context 'coding' is not known at this point
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[16].rule[1].rule[5].target[0]: The target context 'coding' is not known at this point
-ERROR: StructureMap/CdaToFHIRTypes: StructureMap.group[16].rule[1].rule[6].target[0]: The target context 'coding' is not known at this point
+WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[16].rule[0].rule[0].rule[0].target[0]: Transform cast not checked yet
+WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[16].rule[1].rule[0].target[0]: Transform cast not checked yet
+WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[16].rule[1].rule[6].target[0]: Transform cast not checked yet
 INFORMATION: StructureMap/CdaToFHIRTypes: StructureMap.group[18]: The group CDCodeableConcept is not called successfully from within this mapping script, and does not have types on its inputs, so type verification is not possible
 WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[18].input[0]: Group CDCodeableConcept parameter src has no type, so the paths cannot be validated
 WARNING: StructureMap/CdaToFHIRTypes: StructureMap.group[18].input[1]: Group CDCodeableConcept parameter tgt has no type, so the paths cannot be validated

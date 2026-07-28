@@ -18,7 +18,7 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
   "name" : "CdaToBundle",
   "title" : "Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA",
   "status" : "draft",
-  "date" : "2026-07-24T10:16:52+00:00",
+  "date" : "2026-07-28T10:59:15+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -38,7 +38,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
   "structure" : [{
     "url" : "http://hl7.org/cda/stds/core/StructureDefinition/ClinicalDocument|2.0.0-sd",
     "mode" : "source",
-    "alias" : "ClinicalDocument"
+    "alias" : "ClinicalDocument",
+    "documentation" : "TYPES CDA UTILISÉS COMME SOURCES"
   },
   {
     "url" : "http://hl7.org/cda/stds/core/StructureDefinition/PatientRole|2.0.0-sd",
@@ -63,7 +64,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
   {
     "url" : "http://hl7.org/fhir/StructureDefinition/Bundle|4.0.1",
     "mode" : "target",
-    "alias" : "Bundle"
+    "alias" : "Bundle",
+    "documentation" : "TYPES FHIR UTILISÉS COMME CIBLES"
   },
   {
     "url" : "http://hl7.org/fhir/StructureDefinition/Composition|4.0.1",
@@ -306,7 +308,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
       "dependent" : [{
         "name" : "MapClinicalDocumentHeader",
         "variable" : ["cda", "bundle", "composition", "patient"]
-      }]
+      }],
+      "documentation" : "ClinicalDocument.header CDA -> Bundle / Composition / Patient + ressources administratives créées si les blocs CDA existent"
     },
     {
       "name" : "body",
@@ -316,7 +319,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
       "dependent" : [{
         "name" : "MapClinicalDocumentBody",
         "variable" : ["cda", "composition", "bundle", "patient"]
-      }]
+      }],
+      "documentation" : "ClinicalDocument.component.structuredBody CDA -> Composition.section title/code/text"
     }]
   },
   {
@@ -347,7 +351,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
       "dependent" : [{
         "name" : "MapHeaderDocumentIdentity",
         "variable" : ["cda", "bundle", "composition"]
-      }]
+      }],
+      "documentation" : "CDA id/setId/versionNumber/effectiveTime -> FHIR métadonnées Bundle + Composition"
     },
     {
       "name" : "documentDescription",
@@ -357,7 +362,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
       "dependent" : [{
         "name" : "MapHeaderDocumentDescription",
         "variable" : ["cda", "composition", "patient"]
-      }]
+      }],
+      "documentation" : "CDA languageCode/code/title/effectiveTime/confidentialityCode -> FHIR description de la Composition"
     },
     {
       "name" : "recordTarget",
@@ -367,7 +373,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
       "dependent" : [{
         "name" : "MapHeaderRecordTarget",
         "variable" : ["cda", "patient", "composition"]
-      }]
+      }],
+      "documentation" : "CDA recordTarget.patientRole -> FHIR Patient + Composition.subject"
     },
     {
       "name" : "custodian",
@@ -377,7 +384,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
       "dependent" : [{
         "name" : "MapHeaderCustodian",
         "variable" : ["cda", "composition", "bundle"]
-      }]
+      }],
+      "documentation" : "CDA custodian -> création et alimentation de l’Organization custodian"
     },
     {
       "name" : "author",
@@ -387,7 +395,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
       "dependent" : [{
         "name" : "MapHeaderAuthor",
         "variable" : ["cda", "composition", "bundle"]
-      }]
+      }],
+      "documentation" : "CDA author -> création et alimentation du Practitioner / Organization / PractitionerRole auteur"
     },
     {
       "name" : "legalAuthenticator",
@@ -397,7 +406,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
       "dependent" : [{
         "name" : "MapHeaderLegalAuthenticator",
         "variable" : ["cda", "composition", "bundle"]
-      }]
+      }],
+      "documentation" : "CDA legalAuthenticator -> création et alimentation du signataire légal"
     },
     {
       "name" : "documentationOf",
@@ -407,7 +417,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
       "dependent" : [{
         "name" : "MapHeaderDocumentationOf",
         "variable" : ["cda", "composition"]
-      }]
+      }],
+      "documentation" : "CDA documentationOf.serviceEvent -> FHIR Composition.event"
     },
     {
       "name" : "encounterContext",
@@ -417,7 +428,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
       "dependent" : [{
         "name" : "MapHeaderEncounterContext",
         "variable" : ["cda", "composition", "bundle", "patient"]
-      }]
+      }],
+      "documentation" : "CDA componentOf.encompassingEncounter -> création et alimentation Encounter / Location / Organization si présent"
     },
     {
       "name" : "emergencyContact",
@@ -427,7 +439,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
       "dependent" : [{
         "name" : "MapHeaderEmergencyContact",
         "variable" : ["cda", "bundle", "patient"]
-      }]
+      }],
+      "documentation" : "CDA informant.relatedEntity classCode=ECON -> création RelatedPerson personne à prévenir"
     },
     {
       "name" : "trustedPerson",
@@ -437,7 +450,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
       "dependent" : [{
         "name" : "MapHeaderTrustedPerson",
         "variable" : ["cda", "bundle", "patient"]
-      }]
+      }],
+      "documentation" : "CDA informant.relatedEntity classCode=NOK -> création RelatedPerson personne de confiance"
     },
     {
       "name" : "guardian",
@@ -447,7 +461,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
       "dependent" : [{
         "name" : "MapHeaderGuardian",
         "variable" : ["cda", "bundle", "patient"]
-      }]
+      }],
+      "documentation" : "CDA recordTarget.patientRole.patient.guardian -> création RelatedPerson guardian"
     },
     {
       "name" : "relatedDocument",
@@ -457,7 +472,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
       "dependent" : [{
         "name" : "MapHeaderRelatedDocument",
         "variable" : ["cda", "composition"]
-      }]
+      }],
+      "documentation" : "CDA relatedDocument -> FHIR Composition.relatesTo"
     }]
   },
   {
@@ -486,7 +502,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
         "contextType" : "variable",
         "element" : "id",
         "transform" : "uuid"
-      }]
+      }],
+      "documentation" : "CDA ClinicalDocument -> FHIR Bundle.id"
     },
     {
       "name" : "bundleType",
@@ -501,7 +518,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
         "parameter" : [{
           "valueString" : "document"
         }]
-      }]
+      }],
+      "documentation" : "CDA ClinicalDocument -> FHIR Bundle.type"
     },
     {
       "name" : "bundleMeta",
@@ -540,7 +558,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
               "valueString" : "string"
             }]
           }]
-        }]
+        }],
+        "documentation" : "CDA versionNumber.value -> FHIR Bundle.meta.versionId"
       },
       {
         "name" : "bundleMetaLastUpdated",
@@ -562,8 +581,10 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
         "dependent" : [{
           "name" : "TSInstant",
           "variable" : ["effectiveTime", "lastUpdated"]
-        }]
-      }]
+        }],
+        "documentation" : "CDA effectiveTime -> FHIR Bundle.meta.lastUpdated"
+      }],
+      "documentation" : "CDA versionNumber/effectiveTime -> FHIR Bundle.meta"
     },
     {
       "name" : "bundleIdentifier",
@@ -601,7 +622,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
           {
             "valueId" : "root"
           }]
-        }]
+        }],
+        "documentation" : "CDA id.root + id.extension -> FHIR Identifier.system/value"
       },
       {
         "name" : "bundleIdentifierValueWithExtension",
@@ -636,7 +658,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
           "parameter" : [{
             "valueString" : "urn:ietf:rfc:3986"
           }]
-        }]
+        }],
+        "documentation" : "CDA id.root sans extension -> FHIR Identifier.system/value"
       },
       {
         "name" : "bundleIdentifierValueOid",
@@ -658,7 +681,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
             "valueId" : "root"
           }]
         }]
-      }]
+      }],
+      "documentation" : "CDA ClinicalDocument.id -> FHIR Bundle.identifier"
     },
     {
       "name" : "bundleTimestamp",
@@ -680,7 +704,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
       "dependent" : [{
         "name" : "TSInstant",
         "variable" : ["effectiveTime", "timestamp"]
-      }]
+      }],
+      "documentation" : "CDA effectiveTime -> FHIR Bundle.timestamp"
     },
     {
       "name" : "compositionSetIdentifier",
@@ -702,7 +727,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
       "dependent" : [{
         "name" : "II",
         "variable" : ["setId", "identifier"]
-      }]
+      }],
+      "documentation" : "CDA setId -> FHIR Composition.identifier"
     },
     {
       "name" : "compositionIdentifier",
@@ -725,7 +751,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
       "dependent" : [{
         "name" : "II",
         "variable" : ["id", "identifier"]
-      }]
+      }],
+      "documentation" : "CDA id -> FHIR Composition.identifier si setId absent"
     },
     {
       "name" : "compositionStatus",
@@ -740,7 +767,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
         "parameter" : [{
           "valueString" : "final"
         }]
-      }]
+      }],
+      "documentation" : "CDA ClinicalDocument -> FHIR Composition.status"
     },
     {
       "name" : "compositionMeta",
@@ -779,7 +807,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
               "valueString" : "string"
             }]
           }]
-        }]
+        }],
+        "documentation" : "CDA versionNumber.value -> FHIR Composition.meta.versionId"
       },
       {
         "name" : "compositionMetaLastUpdated",
@@ -801,8 +830,10 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
         "dependent" : [{
           "name" : "TSInstant",
           "variable" : ["effectiveTime", "lastUpdated"]
-        }]
-      }]
+        }],
+        "documentation" : "CDA effectiveTime -> FHIR Composition.meta.lastUpdated"
+      }],
+      "documentation" : "CDA versionNumber/effectiveTime -> FHIR Composition.meta"
     }]
   },
   {
@@ -841,7 +872,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
       "dependent" : [{
         "name" : "CSCode",
         "variable" : ["languageCode", "code"]
-      }]
+      }],
+      "documentation" : "CDA languageCode -> FHIR Composition.language"
     },
     {
       "name" : "type",
@@ -863,7 +895,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
       "dependent" : [{
         "name" : "CDCodeableConcept",
         "variable" : ["srcCode", "cc"]
-      }]
+      }],
+      "documentation" : "CDA code -> FHIR Composition.type"
     },
     {
       "name" : "title",
@@ -880,7 +913,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
         "parameter" : [{
           "valueString" : "title.xmlText"
         }]
-      }]
+      }],
+      "documentation" : "CDA title -> FHIR Composition.title"
     },
     {
       "name" : "subject",
@@ -905,7 +939,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
         "parameter" : [{
           "valueString" : "'urn:uuid:' + %patient.id"
         }]
-      }]
+      }],
+      "documentation" : "CDA recordTarget -> FHIR Composition.subject"
     },
     {
       "name" : "date",
@@ -927,7 +962,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
       "dependent" : [{
         "name" : "TSDateTime",
         "variable" : ["effectiveTime", "date"]
-      }]
+      }],
+      "documentation" : "CDA effectiveTime -> FHIR Composition.date"
     },
     {
       "name" : "confidentiality",
@@ -949,7 +985,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
       "dependent" : [{
         "name" : "CSCode",
         "variable" : ["confCode", "code"]
-      }]
+      }],
+      "documentation" : "CDA confidentialityCode -> FHIR Composition.confidentiality"
     }]
   },
   {
@@ -1002,7 +1039,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
           "dependent" : [{
             "name" : "ADAddress",
             "variable" : ["srcAddr", "address"]
-          }]
+          }],
+          "documentation" : "CDA patientRole.addr -> FHIR Patient.address"
         },
         {
           "name" : "telecom",
@@ -1024,7 +1062,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
           "dependent" : [{
             "name" : "TELContactPoint",
             "variable" : ["srcTelecom", "contactPoint"]
-          }]
+          }],
+          "documentation" : "CDA patientRole.telecom -> FHIR Patient.telecom"
         },
         {
           "name" : "patientData",
@@ -1062,7 +1101,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
                   "valueString" : "code"
                 }]
               }]
-            }]
+            }],
+            "documentation" : "CDA administrativeGenderCode -> FHIR Patient.gender"
           },
           {
             "name" : "birthDate",
@@ -1084,7 +1124,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
             "dependent" : [{
               "name" : "TSDate",
               "variable" : ["birthTime", "date"]
-            }]
+            }],
+            "documentation" : "CDA birthTime -> FHIR Patient.birthDate"
           },
           {
             "name" : "deceasedBoolean",
@@ -1120,7 +1161,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
                   "valueId" : "v"
                 }]
               }]
-            }]
+            }],
+            "documentation" : "CDA deceasedInd -> FHIR Patient.deceasedBoolean"
           },
           {
             "name" : "deceasedDateTime",
@@ -1142,7 +1184,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
             "dependent" : [{
               "name" : "TSDateTime",
               "variable" : ["dTime", "dt"]
-            }]
+            }],
+            "documentation" : "CDA deceasedTime -> FHIR Patient.deceasedDateTime"
           }]
         }]
       }]
@@ -1324,7 +1367,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
           "dependent" : [{
             "name" : "MapCDAAssignedEntityToPractitioner",
             "variable" : ["assignedAuthor", "authorPractitioner"]
-          }]
+          }],
+          "documentation" : "CDA assignedAuthor -> FHIR Practitioner"
         },
         {
           "name" : "authorWithOrganization",
@@ -1438,7 +1482,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
                 "valueString" : "'urn:uuid:' + %authorRole.id"
               }]
             }]
-          }]
+          }],
+          "documentation" : "CDA representedOrganization présent -> FHIR Organization + PractitionerRole"
         },
         {
           "name" : "compositionAuthorPractitionerRef",
@@ -1460,7 +1505,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
             "parameter" : [{
               "valueString" : "'urn:uuid:' + %authorPractitioner.id"
             }]
-          }]
+          }],
+          "documentation" : "CDA author sans representedOrganization -> référence directe au Practitioner"
         }]
       }]
     }]
@@ -1534,7 +1580,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
           "dependent" : [{
             "name" : "MapCDAAssignedEntityToPractitioner",
             "variable" : ["assignedEntity", "legalPractitioner"]
-          }]
+          }],
+          "documentation" : "CDA assignedEntity -> FHIR Practitioner"
         },
         {
           "name" : "attester",
@@ -1700,7 +1747,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
                   "valueString" : "'urn:uuid:' + %legalRole.id"
                 }]
               }]
-            }]
+            }],
+            "documentation" : "CDA representedOrganization présent -> Organization + PractitionerRole + attester.party"
           },
           {
             "name" : "partyPractitioner",
@@ -1726,8 +1774,10 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
               "parameter" : [{
                 "valueString" : "'urn:uuid:' + %legalPractitioner.id"
               }]
-            }]
-          }]
+            }],
+            "documentation" : "CDA legalAuthenticator sans representedOrganization -> attester.party référence le Practitioner"
+          }],
+          "documentation" : "CDA legalAuthenticator -> FHIR Composition.attester"
         }]
       }]
     }]
@@ -1784,7 +1834,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
           "dependent" : [{
             "name" : "CDCodeableConcept",
             "variable" : ["eventCode", "cc"]
-          }]
+          }],
+          "documentation" : "CDA serviceEvent.code -> FHIR Composition.event.code"
         },
         {
           "name" : "eventPeriod",
@@ -1806,7 +1857,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
           "dependent" : [{
             "name" : "IVLTSPeriod",
             "variable" : ["eff", "period"]
-          }]
+          }],
+          "documentation" : "CDA serviceEvent.effectiveTime -> FHIR Composition.event.period"
         }]
       }]
     }]
@@ -1899,7 +1951,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
             "parameter" : [{
               "valueString" : "'urn:uuid:' + %encounter.id"
             }]
-          }]
+          }],
+          "documentation" : "CDA encompassingEncounter -> FHIR Composition.encounter"
         },
         {
           "name" : "encounterBase",
@@ -1909,7 +1962,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
           "dependent" : [{
             "name" : "MapCDAEncompassingEncounterToEncounter",
             "variable" : ["encompassingEncounter", "encounter", "patient"]
-          }]
+          }],
+          "documentation" : "CDA encompassingEncounter -> FHIR Encounter générique\r\nCe groupe commun alimente identifier, subject, status, class et period."
         },
         {
           "name" : "location",
@@ -1991,7 +2045,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
               "name" : "MapCDAHealthCareFacilityToLocationContext",
               "variable" : ["facility", "encounter", "location", "facilityOrganization"]
             }]
-          }]
+          }],
+          "documentation" : "CDA healthCareFacility présent -> FHIR Location + Organization"
         }]
       }]
     }]
@@ -2119,7 +2174,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
             }]
           }]
         }]
-      }]
+      }],
+      "documentation" : "CDA encompassingEncounter.id -> FHIR Encounter.identifier"
     },
     {
       "name" : "subject",
@@ -2144,7 +2200,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
         "parameter" : [{
           "valueString" : "'urn:uuid:' + %patient.id"
         }]
-      }]
+      }],
+      "documentation" : "CDA encompassingEncounter -> FHIR Encounter.subject"
     },
     {
       "name" : "status",
@@ -2159,7 +2216,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
         "parameter" : [{
           "valueString" : "finished"
         }]
-      }]
+      }],
+      "documentation" : "CDA encompassingEncounter -> FHIR Encounter.status"
     },
     {
       "name" : "class",
@@ -2181,7 +2239,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
       "dependent" : [{
         "name" : "CDCoding",
         "variable" : ["srcCode", "coding"]
-      }]
+      }],
+      "documentation" : "CDA encompassingEncounter.code -> FHIR Encounter.class"
     },
     {
       "name" : "classAbsentReason",
@@ -2247,7 +2306,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
             }]
           }]
         }]
-      }]
+      }],
+      "documentation" : "CDA encompassingEncounter.code absent -> FHIR Encounter.class avec data-absent-reason"
     },
     {
       "name" : "period",
@@ -2270,7 +2330,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
       "dependent" : [{
         "name" : "IVLTSPeriod",
         "variable" : ["effTime", "period"]
-      }]
+      }],
+      "documentation" : "CDA encompassingEncounter.effectiveTime -> FHIR Encounter.period"
     }]
   },
   {
@@ -2653,7 +2714,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
           "parameter" : [{
             "valueString" : "replaces"
           }]
-        }]
+        }],
+        "documentation" : "CDA relatedDocument.typeCode=RPLC -> FHIR Composition.relatesTo.code"
       },
       {
         "name" : "parentDocument",
@@ -2682,7 +2744,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
           "dependent" : [{
             "name" : "II",
             "variable" : ["id", "identifier"]
-          }]
+          }],
+          "documentation" : "CDA relatedDocument.parentDocument.id -> FHIR Composition.relatesTo.targetIdentifier"
         }]
       }]
     }]
@@ -2719,7 +2782,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
       "dependent" : [{
         "name" : "II",
         "variable" : ["id", "identifier"]
-      }]
+      }],
+      "documentation" : "CDA organization.id -> FHIR Organization.identifier"
     },
     {
       "name" : "orgName",
@@ -2744,7 +2808,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
             "valueString" : "item.xmlText"
           }]
         }]
-      }]
+      }],
+      "documentation" : "CDA organization.name -> FHIR Organization.name"
     },
     {
       "name" : "telecom",
@@ -2766,7 +2831,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
       "dependent" : [{
         "name" : "TELContactPoint",
         "variable" : ["srcTelecom", "contactPoint"]
-      }]
+      }],
+      "documentation" : "CDA organization.telecom -> FHIR Organization.telecom"
     },
     {
       "name" : "address",
@@ -2788,7 +2854,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
       "dependent" : [{
         "name" : "ADAddress",
         "variable" : ["srcAddr", "address"]
-      }]
+      }],
+      "documentation" : "CDA organization.addr -> FHIR Organization.address"
     }]
   },
   {
@@ -2823,7 +2890,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
       "dependent" : [{
         "name" : "II",
         "variable" : ["id", "identifier"]
-      }]
+      }],
+      "documentation" : "CDA assignedEntity.id -> FHIR Practitioner.identifier"
     },
     {
       "name" : "address",
@@ -2845,7 +2913,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
       "dependent" : [{
         "name" : "ADAddress",
         "variable" : ["addr", "address"]
-      }]
+      }],
+      "documentation" : "CDA assignedEntity.addr -> FHIR Practitioner.address"
     },
     {
       "name" : "telecom",
@@ -2867,7 +2936,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
       "dependent" : [{
         "name" : "TELContactPoint",
         "variable" : ["telecom", "contactPoint"]
-      }]
+      }],
+      "documentation" : "CDA assignedEntity.telecom -> FHIR Practitioner.telecom"
     },
     {
       "name" : "assignedPerson",
@@ -2896,7 +2966,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
         "dependent" : [{
           "name" : "ENHumanName",
           "variable" : ["pName", "humanName"]
-        }]
+        }],
+        "documentation" : "CDA assignedPerson.name -> FHIR Practitioner.name"
       }]
     }]
   },
@@ -2943,7 +3014,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
         "parameter" : [{
           "valueString" : "'urn:uuid:' + %practitioner.id"
         }]
-      }]
+      }],
+      "documentation" : "CDA assignedEntity -> FHIR PractitionerRole.practitioner"
     },
     {
       "name" : "organizationRef",
@@ -2968,7 +3040,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
         "parameter" : [{
           "valueString" : "'urn:uuid:' + %organization.id"
         }]
-      }]
+      }],
+      "documentation" : "CDA representedOrganization -> FHIR PractitionerRole.organization"
     }]
   },
   {
@@ -3010,7 +3083,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
         "parameter" : [{
           "valueString" : "'urn:uuid:' + %patient.id"
         }]
-      }]
+      }],
+      "documentation" : "CDA relatedEntity -> FHIR RelatedPerson.patient"
     },
     {
       "name" : "identifier",
@@ -3032,7 +3106,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
       "dependent" : [{
         "name" : "II",
         "variable" : ["id", "identifier"]
-      }]
+      }],
+      "documentation" : "CDA relatedEntity.id -> FHIR RelatedPerson.identifier"
     },
     {
       "name" : "address",
@@ -3054,7 +3129,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
       "dependent" : [{
         "name" : "ADAddress",
         "variable" : ["addr", "address"]
-      }]
+      }],
+      "documentation" : "CDA relatedEntity.code -> non mappé en étape 2\r\nLe lien métier de parenté est enrichi en étape 3 pour éviter un double RelatedPerson.relationship.\r\nCDA relatedEntity.addr -> FHIR RelatedPerson.address"
     },
     {
       "name" : "telecom",
@@ -3076,7 +3152,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
       "dependent" : [{
         "name" : "TELContactPoint",
         "variable" : ["telecom", "contactPoint"]
-      }]
+      }],
+      "documentation" : "CDA relatedEntity.telecom -> FHIR RelatedPerson.telecom"
     },
     {
       "name" : "relatedPerson",
@@ -3105,7 +3182,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
         "dependent" : [{
           "name" : "ENHumanName",
           "variable" : ["name", "humanName"]
-        }]
+        }],
+        "documentation" : "CDA relatedPerson.name -> FHIR RelatedPerson.name"
       }]
     }]
   },
@@ -3164,7 +3242,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
             "valueString" : "'urn:uuid:' + %location.id"
           }]
         }]
-      }]
+      }],
+      "documentation" : "CDA healthCareFacility -> FHIR Encounter.location.location"
     },
     {
       "name" : "serviceProvider",
@@ -3189,7 +3268,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
         "parameter" : [{
           "valueString" : "'urn:uuid:' + %facilityOrganization.id"
         }]
-      }]
+      }],
+      "documentation" : "CDA healthCareFacility -> FHIR Encounter.serviceProvider"
     },
     {
       "name" : "managingOrganization",
@@ -3214,7 +3294,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
         "parameter" : [{
           "valueString" : "'urn:uuid:' + %facilityOrganization.id"
         }]
-      }]
+      }],
+      "documentation" : "CDA healthCareFacility -> FHIR Location.managingOrganization"
     },
     {
       "name" : "facilityLocation",
@@ -3246,7 +3327,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
               "valueString" : "item.xmlText"
             }]
           }]
-        }]
+        }],
+        "documentation" : "CDA healthCareFacility.location.name -> FHIR Location.name"
       }]
     },
     {
@@ -3269,7 +3351,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
       "dependent" : [{
         "name" : "CDCodeableConcept",
         "variable" : ["facilityCode", "cc"]
-      }]
+      }],
+      "documentation" : "CDA healthCareFacility.code -> FHIR Location.type"
     },
     {
       "name" : "serviceProviderOrganization",
@@ -3286,7 +3369,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
         "dependent" : [{
           "name" : "MapCDAOrganizationToOrganization",
           "variable" : ["serviceProviderOrganization", "facilityOrganization"]
-        }]
+        }],
+        "documentation" : "CDA serviceProviderOrganization -> FHIR Organization"
       }]
     }]
   },
@@ -3352,7 +3436,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
               "dependent" : [{
                 "name" : "MapCDASectionToCompositionSection",
                 "variable" : ["section", "compSection"]
-              }]
+              }],
+              "documentation" : "CDA section.title/code/text -> FHIR Composition.section"
             }]
           }]
         }]
@@ -3386,7 +3471,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
         "parameter" : [{
           "valueString" : "sectionTitle.xmlText"
         }]
-      }]
+      }],
+      "documentation" : "CDA section.title -> FHIR Composition.section.title"
     },
     {
       "name" : "sectionCode",
@@ -3408,7 +3494,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
       "dependent" : [{
         "name" : "CDCodeableConcept",
         "variable" : ["sectionCode", "cc"]
-      }]
+      }],
+      "documentation" : "CDA section.code -> FHIR Composition.section.code"
     },
     {
       "name" : "sectionText",
@@ -3440,7 +3527,8 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
           "parameter" : [{
             "valueString" : "generated"
           }]
-        }]
+        }],
+        "documentation" : "CDA section.text -> FHIR Narrative.status"
       },
       {
         "name" : "narrativeDiv",
@@ -3458,8 +3546,10 @@ Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA
           {
             "valueString" : "string"
           }]
-        }]
-      }]
+        }],
+        "documentation" : "CDA section.text -> FHIR Narrative.div"
+      }],
+      "documentation" : "CDA section.text -> FHIR Composition.section.text"
     }]
   }]
 }
