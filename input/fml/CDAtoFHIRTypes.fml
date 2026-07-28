@@ -57,7 +57,7 @@ group Any(source src, target tgt) {
 /* Mapping CDA II vers FHIR Identifier
 II = Identifiant CDA
 Identifier = Identifiant FHIR*/
-group II(source src, target tgt) extends Any {
+group II(source src, target tgt : Identifier) extends Any {
 
   // Si root existe avec une extension, alors root devient le system en urn:oid
   src.root as r where src.extension.exists()
@@ -76,7 +76,9 @@ group II(source src, target tgt) extends Any {
   src.extension as e -> tgt.value = e;
 
   // Le nom de l’autorité d’assignation devient le display de l’assigner
-  src.assigningAuthorityName as s ->  tgt.assigner as a,  a.display = s; // there's no equivalent for displayable in FHIR - and it probably will never matter, but if it does, it might map to Identifier.use.
+  src.assigningAuthorityName as s -> tgt.assigner as a then {
+    s -> a.display = s "display";
+  } "assigner"; // there's no equivalent for displayable in FHIR - and it probably will never matter, but if it does, it might map to Identifier.use.
 
   // Mapping de l’attribut displayable sous forme d’extension FHIR
   src.displayable as displayable -> tgt.extension as ext then {
@@ -106,17 +108,7 @@ group TemplateID(source template : II, target tgt : DomainResource) {
     template -> ext.url = 'http://hl7.org/cda/stds/core/StructureDefinition/templateID' "url";
 
     // Le templateId est transformé en Identifier FHIR
-    template -> ext.value = create('Identifier') as value then {
-      template.root as r where template.extension.exists() -> value.system = append('urn:oid:', r) "root1";
-      template.root as r where template.extension.empty() and template.root.matches('[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}') -> value.system = 'urn:ietf:rfc:3986', value.value = ('urn:uuid:' + %r.lower()) "rootuuid";
-      template.root as r where template.extension.empty() and template.root.contains('.') -> value.system = 'urn:ietf:rfc:3986', value.value = append('urn:oid:', r) "rootoid";
-      template.extension as e -> value.value = e;
-      template.assigningAuthorityName as s -> value.assigner as a, a.display = s;
-      template.displayable as displayable -> value.extension as valueExtension then {
-        displayable -> valueExtension.url = 'http://hl7.org/fhir/cdaStructureDefinition/extension-displayable' "url";
-        displayable.value as v -> valueExtension.value = cast(v, 'string');
-      } "extension";
-    } "value";
+    template -> ext.value = create('Identifier') as value then II(template, value) "value";
   } "templateId";
 }
 
@@ -223,7 +215,7 @@ group CDCode(source src : CD, target tgt : code) extends CSCode <<types>> {
 }
 
 
-group CECodeableConcept(source src, target tgt) {
+group CECodeableConcept(source src, target tgt : CodeableConcept) {
   // originalText CDA -> FHIR CodeableConcept.text
   //
   // Exemple CDA :
