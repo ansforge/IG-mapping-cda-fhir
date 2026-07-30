@@ -271,7 +271,7 @@
           
 
             as of 
-2026-07-28
+2026-07-30
 
           
         
@@ -585,17 +585,6 @@
     item.postalCode&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;v&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt;tgt.postalCode = &lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;%v.xmlText&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
     &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;Ligne d’adresse complète&lt;/span&gt;
     item.streetAddressLine&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;v&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt;tgt.line = &lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;%v.xmlText&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
-    &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;Ajout éventuel d’une extension sur la ligne d’adresse pour le censusTract&lt;/span&gt;
-    &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;item   -&amp;gt; tgt.line  as line then {&lt;/span&gt;
-    &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;item where src.censusTract.exists() then {&lt;/span&gt;
-    &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;Mapping du censusTract dans une extension de line&lt;/span&gt;
-    &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;item.censusTract as v -&amp;gt; line.extension as ext1 then CensusTract(v, ext1) &amp;quot;line&amp;quot;;&lt;/span&gt;
-    &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;}&amp;quot;sfgfdsg&amp;quot;;&lt;/span&gt;
-    &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;} &amp;quot;CensusTract&amp;quot;;&lt;/span&gt;
-    &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;Anciennes tentatives de mapping du censusTract, conservées en commentaire&lt;/span&gt;
-    &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;as streetAddress then{&lt;/span&gt;
-    &lt;span style=&quot;color: #b36b00&quot; title=&quot;This element was not defined prior to R5&quot;&gt;// src.censusTract as v-&amp;gt;tgt.line as line, line.extension as ext1 then CensusTract(v, ext1) &amp;quot;line&amp;quot;;&lt;/span&gt;
-    &lt;span style=&quot;color: #b36b00&quot; title=&quot;This element was not defined prior to R5&quot;&gt;// src.censusTract as v -&amp;gt;tgt.line as line, line.extension as ext1 then CensusTract(v, ext1) &amp;quot;line&amp;quot;;&lt;/span&gt;
     &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;Nom de rue&lt;/span&gt;
     item.streetName&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;v&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt;tgt.line = &lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;%v.xmlText&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
     &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;Numéro de maison&lt;/span&gt;
@@ -628,7 +617,7 @@
   &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;Contact mobile&lt;/span&gt;
   src.use&lt;b&gt; where &lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;src.use = 'MC'&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt;tgt.use = &lt;span style=&quot;color: blue&quot;&gt;'mobile'&lt;/span&gt; &lt;i&gt;&amp;quot;usemobile&amp;quot;&lt;/i&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
   &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;Période d’utilisation du contact&lt;/span&gt;
-  src.useablePeriod&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;useablePeriod&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt;tgt.period = &lt;span style=&quot;color: maroon&quot;&gt;useablePeriod&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt; &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;use: for src.use as c make tgt.use = translate(c, 'http://hl7.org/fhir/ConceptMap/cm-telecom-use-v3', 'code')&lt;/span&gt;
+  src.useablePeriod&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;useablePeriod&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt;tgt.period = &lt;span style=&quot;color: maroon&quot;&gt;useablePeriod&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
 &lt;span style=&quot;color: navy&quot;&gt;}
 
 &lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;Mapping CDA PQ vers FHIR Quantity&lt;/span&gt;
@@ -674,7 +663,7 @@
   &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.title">title</a>
          <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)&quot;/&gt;
   &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.status">status</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;draft&quot;/&gt;
-  &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.date">date</a> <a href="http://hl7.org/fhir/R4/datatypes.html#dateTime">value</a>=&quot;2026-07-28T11:32:15+00:00&quot;/&gt;
+  &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.date">date</a> <a href="http://hl7.org/fhir/R4/datatypes.html#dateTime">value</a>=&quot;2026-07-30T13:25:45+00:00&quot;/&gt;
   &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.publisher">publisher</a>
              <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris&quot;/&gt;
   &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.contact">contact</a>&gt;
@@ -2423,19 +2412,7 @@ Address = adresse FHIR&quot;/&gt;
             &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.parameter.value_x_">valueString</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;%v.xmlText&quot;/&gt;
           &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target.parameter">parameter</a>&gt;
         &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.target">target</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.documentation">documentation</a>
-                       <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Ajout éventuel d’une extension sur la ligne d’adresse pour le censusTract
-item   -&amp;gt; tgt.line  as line then {
-item where src.censusTract.exists() then {
-Mapping du censusTract dans une extension de line
-item.censusTract as v -&amp;gt; line.extension as ext1 then CensusTract(v, ext1) &amp;quot;line&amp;quot;;
-}&amp;quot;sfgfdsg&amp;quot;;
-} &amp;quot;CensusTract&amp;quot;;
-Anciennes tentatives de mapping du censusTract, conservées en commentaire
-as streetAddress then{
-src.censusTract as v-&amp;gt;tgt.line as line, line.extension as ext1 then CensusTract(v, ext1) &amp;quot;line&amp;quot;;
-src.censusTract as v -&amp;gt;tgt.line as line, line.extension as ext1 then CensusTract(v, ext1) &amp;quot;line&amp;quot;;
-Nom de rue&quot;/&gt;
+        &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.documentation">documentation</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Nom de rue&quot;/&gt;
       &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.rule">rule</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.rule">rule</a>&gt;
         &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;houseNumber&quot;/&gt;
@@ -3043,8 +3020,8 @@ Ratio = ratio FHIR&quot;/&gt;
           IG © 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d&#39;Oradour-sur-Glane, 75015 Paris</a>.  
           Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>.
           Generated 
-  <span title="2026-07-28 11:32:00 +0000">
-    2026-07-28
+  <span title="2026-07-30 13:25:00 +0000">
+    2026-07-30
   </span>
 
           <br/>

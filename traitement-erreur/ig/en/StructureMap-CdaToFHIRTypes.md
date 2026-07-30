@@ -18,7 +18,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
   "name" : "CdaToFHIRTypes",
   "title" : "Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)",
   "status" : "draft",
-  "date" : "2026-07-28T11:32:15+00:00",
+  "date" : "2026-07-30T13:25:45+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -1666,7 +1666,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
             "valueString" : "%v.xmlText"
           }]
         }],
-        "documentation" : "Ajout éventuel d’une extension sur la ligne d’adresse pour le censusTract\r\nitem   -> tgt.line  as line then {\r\nitem where src.censusTract.exists() then {\r\nMapping du censusTract dans une extension de line\r\nitem.censusTract as v -> line.extension as ext1 then CensusTract(v, ext1) \"line\";\r\n}\"sfgfdsg\";\r\n} \"CensusTract\";\r\nAnciennes tentatives de mapping du censusTract, conservées en commentaire\r\nas streetAddress then{\r\nsrc.censusTract as v->tgt.line as line, line.extension as ext1 then CensusTract(v, ext1) \"line\";\r\nsrc.censusTract as v ->tgt.line as line, line.extension as ext1 then CensusTract(v, ext1) \"line\";\r\nNom de rue"
+        "documentation" : "Nom de rue"
       },
       {
         "name" : "houseNumber",

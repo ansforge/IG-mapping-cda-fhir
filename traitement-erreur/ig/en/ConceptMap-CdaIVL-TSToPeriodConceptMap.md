@@ -19,7 +19,7 @@ Correspondances documentaires entre le datatype CDA IVL_TS, ses bornes IVXB_TS e
   "title" : "ConceptMap — CDA IVL_TS vers FHIR Period et dateTime",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-07-28T11:32:15+00:00",
+  "date" : "2026-07-30T13:25:45+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",

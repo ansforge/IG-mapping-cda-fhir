@@ -294,17 +294,6 @@
     item.postalCode<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.postalCode = <span style="color: navy">(</span>%v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
     <span style="color: navy">// </span><span style="color: green">Ligne d’adresse complète</span>
     item.streetAddressLine<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.line = <span style="color: navy">(</span>%v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
-    <span style="color: navy">// </span><span style="color: green">Ajout éventuel d’une extension sur la ligne d’adresse pour le censusTract</span>
-    <span style="color: navy">// </span><span style="color: green">item   -&gt; tgt.line  as line then {</span>
-    <span style="color: navy">// </span><span style="color: green">item where src.censusTract.exists() then {</span>
-    <span style="color: navy">// </span><span style="color: green">Mapping du censusTract dans une extension de line</span>
-    <span style="color: navy">// </span><span style="color: green">item.censusTract as v -&gt; line.extension as ext1 then CensusTract(v, ext1) &quot;line&quot;;</span>
-    <span style="color: navy">// </span><span style="color: green">}&quot;sfgfdsg&quot;;</span>
-    <span style="color: navy">// </span><span style="color: green">} &quot;CensusTract&quot;;</span>
-    <span style="color: navy">// </span><span style="color: green">Anciennes tentatives de mapping du censusTract, conservées en commentaire</span>
-    <span style="color: navy">// </span><span style="color: green">as streetAddress then{</span>
-    <span style="color: #b36b00" title="Cet élément n'était pas défini avant R5">// src.censusTract as v-&gt;tgt.line as line, line.extension as ext1 then CensusTract(v, ext1) &quot;line&quot;;</span>
-    <span style="color: #b36b00" title="Cet élément n'était pas défini avant R5">// src.censusTract as v -&gt;tgt.line as line, line.extension as ext1 then CensusTract(v, ext1) &quot;line&quot;;</span>
     <span style="color: navy">// </span><span style="color: green">Nom de rue</span>
     item.streetName<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.line = <span style="color: navy">(</span>%v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
     <span style="color: navy">// </span><span style="color: green">Numéro de maison</span>
@@ -337,7 +326,7 @@
   <span style="color: navy">// </span><span style="color: green">Contact mobile</span>
   src.use<b> where </b><span style="color: navy">(</span>src.use = 'MC'<span style="color: navy">)</span><span style="color: navy"><b> -&gt; </b></span>tgt.use = <span style="color: blue">'mobile'</span> <i>&quot;usemobile&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">Période d’utilisation du contact</span>
-  src.useablePeriod<b> as </b><span style="color: maroon">useablePeriod</span><span style="color: navy"><b> -&gt; </b></span>tgt.period = <span style="color: maroon">useablePeriod</span><span style="color: navy">;</span> <span style="color: navy">// </span><span style="color: green">use: for src.use as c make tgt.use = translate(c, 'http://hl7.org/fhir/ConceptMap/cm-telecom-use-v3', 'code')</span>
+  src.useablePeriod<b> as </b><span style="color: maroon">useablePeriod</span><span style="color: navy"><b> -&gt; </b></span>tgt.period = <span style="color: maroon">useablePeriod</span><span style="color: navy">;</span>
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">Mapping CDA PQ vers FHIR Quantity</span>
@@ -665,17 +654,6 @@
     item.postalCode<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.postalCode = <span style="color: navy">(</span>%v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
     <span style="color: navy">// </span><span style="color: green">Ligne d’adresse complète</span>
     item.streetAddressLine<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.line = <span style="color: navy">(</span>%v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
-    <span style="color: navy">// </span><span style="color: green">Ajout éventuel d’une extension sur la ligne d’adresse pour le censusTract</span>
-    <span style="color: navy">// </span><span style="color: green">item   -&gt; tgt.line  as line then {</span>
-    <span style="color: navy">// </span><span style="color: green">item where src.censusTract.exists() then {</span>
-    <span style="color: navy">// </span><span style="color: green">Mapping du censusTract dans une extension de line</span>
-    <span style="color: navy">// </span><span style="color: green">item.censusTract as v -&gt; line.extension as ext1 then CensusTract(v, ext1) &quot;line&quot;;</span>
-    <span style="color: navy">// </span><span style="color: green">}&quot;sfgfdsg&quot;;</span>
-    <span style="color: navy">// </span><span style="color: green">} &quot;CensusTract&quot;;</span>
-    <span style="color: navy">// </span><span style="color: green">Anciennes tentatives de mapping du censusTract, conservées en commentaire</span>
-    <span style="color: navy">// </span><span style="color: green">as streetAddress then{</span>
-    <span style="color: #b36b00" title="This element was not defined prior to R5">// src.censusTract as v-&gt;tgt.line as line, line.extension as ext1 then CensusTract(v, ext1) &quot;line&quot;;</span>
-    <span style="color: #b36b00" title="This element was not defined prior to R5">// src.censusTract as v -&gt;tgt.line as line, line.extension as ext1 then CensusTract(v, ext1) &quot;line&quot;;</span>
     <span style="color: navy">// </span><span style="color: green">Nom de rue</span>
     item.streetName<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.line = <span style="color: navy">(</span>%v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
     <span style="color: navy">// </span><span style="color: green">Numéro de maison</span>
@@ -708,7 +686,7 @@
   <span style="color: navy">// </span><span style="color: green">Contact mobile</span>
   src.use<b> where </b><span style="color: navy">(</span>src.use = 'MC'<span style="color: navy">)</span><span style="color: navy"><b> -&gt; </b></span>tgt.use = <span style="color: blue">'mobile'</span> <i>&quot;usemobile&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">Période d’utilisation du contact</span>
-  src.useablePeriod<b> as </b><span style="color: maroon">useablePeriod</span><span style="color: navy"><b> -&gt; </b></span>tgt.period = <span style="color: maroon">useablePeriod</span><span style="color: navy">;</span> <span style="color: navy">// </span><span style="color: green">use: for src.use as c make tgt.use = translate(c, 'http://hl7.org/fhir/ConceptMap/cm-telecom-use-v3', 'code')</span>
+  src.useablePeriod<b> as </b><span style="color: maroon">useablePeriod</span><span style="color: navy"><b> -&gt; </b></span>tgt.period = <span style="color: maroon">useablePeriod</span><span style="color: navy">;</span>
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">Mapping CDA PQ vers FHIR Quantity</span>
@@ -752,7 +730,7 @@
   <name value="CdaToFHIRTypes"/>
   <title value="Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)"/>
   <status value="draft"/>
-  <date value="2026-07-28T11:32:15+00:00"/>
+  <date value="2026-07-30T13:25:45+00:00"/>
   <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
   <contact>
     <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
@@ -2401,7 +2379,7 @@
             <valueString value="%v.xmlText"/>
           </parameter>
         </target>
-        <documentation value="Ajout éventuel d’une extension sur la ligne d’adresse pour le censusTract&#xD;&#xA;item   -&gt; tgt.line  as line then {&#xD;&#xA;item where src.censusTract.exists() then {&#xD;&#xA;Mapping du censusTract dans une extension de line&#xD;&#xA;item.censusTract as v -&gt; line.extension as ext1 then CensusTract(v, ext1) &quot;line&quot;;&#xD;&#xA;}&quot;sfgfdsg&quot;;&#xD;&#xA;} &quot;CensusTract&quot;;&#xD;&#xA;Anciennes tentatives de mapping du censusTract, conservées en commentaire&#xD;&#xA;as streetAddress then{&#xD;&#xA;src.censusTract as v-&gt;tgt.line as line, line.extension as ext1 then CensusTract(v, ext1) &quot;line&quot;;&#xD;&#xA;src.censusTract as v -&gt;tgt.line as line, line.extension as ext1 then CensusTract(v, ext1) &quot;line&quot;;&#xD;&#xA;Nom de rue"/>
+        <documentation value="Nom de rue"/>
       </rule>
       <rule>
         <name value="houseNumber"/>
