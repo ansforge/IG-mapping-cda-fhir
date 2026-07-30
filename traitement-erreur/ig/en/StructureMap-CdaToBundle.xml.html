@@ -358,7 +358,7 @@
 
 &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;   Les ressources initialisées dans le groupe d’entrée, Bundle, Composition et&lt;/span&gt;
 &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;   Patient, servent de support de sortie pour le traitement CDA&lt;/span&gt;
-&lt;b&gt;group &lt;/b&gt;OrchestrateClinicalDocumentTransformation&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;cda&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;patient&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;composition&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;bundle&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
+&lt;b&gt;group &lt;/b&gt;OrchestrateClinicalDocumentTransformation&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;cda&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;ClinicalDocument, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;patient&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Patient, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;composition&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Composition, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;bundle&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Bundle&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;  &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;ClinicalDocument.header CDA -&amp;gt; Bundle / Composition / Patient + ressources administratives créées si les blocs CDA existent&lt;/span&gt;
   cda&lt;b&gt; then &lt;/b&gt;MapClinicalDocumentHeader&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: maroon&quot;&gt;cda&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt;&lt;span style=&quot;color: maroon&quot;&gt;bundle&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt;&lt;span style=&quot;color: maroon&quot;&gt;composition&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt;&lt;span style=&quot;color: maroon&quot;&gt;patient&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt; &lt;i&gt;&amp;quot;header&amp;quot;&lt;/i&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
   &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;ClinicalDocument.component.structuredBody CDA -&amp;gt; Composition.section title/code/text&lt;/span&gt;
@@ -401,7 +401,7 @@
 &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;   Les ressources optionnelles sont créées dans le groupe qui traite le bloc CDA&lt;/span&gt;
 &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;   correspondant. Ainsi, une ressource FHIR n’est créée que lorsqu’un élément CDA&lt;/span&gt;
 &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;   justifie son existence&lt;/span&gt;
-&lt;b&gt;group &lt;/b&gt;MapClinicalDocumentHeader&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;cda&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;bundle&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;composition&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;patient&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
+&lt;b&gt;group &lt;/b&gt;MapClinicalDocumentHeader&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;cda&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;ClinicalDocument, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;bundle&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Bundle, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;composition&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Composition, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;patient&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Patient&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;  &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;CDA id/setId/versionNumber/effectiveTime -&amp;gt; FHIR métadonnées Bundle + Composition&lt;/span&gt;
   cda&lt;b&gt; then &lt;/b&gt;MapHeaderDocumentIdentity&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: maroon&quot;&gt;cda&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt;&lt;span style=&quot;color: maroon&quot;&gt;bundle&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt;&lt;span style=&quot;color: maroon&quot;&gt;composition&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt; &lt;i&gt;&amp;quot;documentIdentity&amp;quot;&lt;/i&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
   &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;CDA languageCode/code/title/effectiveTime/confidentialityCode -&amp;gt; FHIR description de la Composition&lt;/span&gt;
@@ -429,7 +429,7 @@
 &lt;span style=&quot;color: navy&quot;&gt;}
 
 &lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;groupe qui traite l'identité du document CDA -&amp;gt; métadonnées Bundle / Composition FHIR&lt;/span&gt;
-&lt;b&gt;group &lt;/b&gt;MapHeaderDocumentIdentity&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;src&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;bundle&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;composition&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
+&lt;b&gt;group &lt;/b&gt;MapHeaderDocumentIdentity&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;src&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;ClinicalDocument, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;bundle&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Bundle, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;composition&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Composition&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;  &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;CDA ClinicalDocument -&amp;gt; FHIR Bundle.id&lt;/span&gt;
   src&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt;bundle.id = &lt;b&gt;uuid&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt; &lt;i&gt;&amp;quot;bundleId&amp;quot;&lt;/i&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
   &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;CDA ClinicalDocument -&amp;gt; FHIR Bundle.type&lt;/span&gt;
@@ -472,7 +472,7 @@
 &lt;span style=&quot;color: navy&quot;&gt;}
 
 &lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;groupe qui traite la description du document CDA -&amp;gt; FHIR Composition&lt;/span&gt;
-&lt;b&gt;group &lt;/b&gt;MapHeaderDocumentDescription&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;src&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;composition&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;patient&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
+&lt;b&gt;group &lt;/b&gt;MapHeaderDocumentDescription&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;src&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;ClinicalDocument, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;composition&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Composition, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;patient&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Patient&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;  &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;CDA languageCode -&amp;gt; FHIR Composition.language&lt;/span&gt;
   src.languageCode&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;languageCode&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt;composition.language = &lt;b&gt;create&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: blue&quot;&gt;'code'&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;code&lt;/span&gt;&lt;b&gt; then &lt;/b&gt;CSCode&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: maroon&quot;&gt;languageCode&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt;&lt;span style=&quot;color: maroon&quot;&gt;code&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt; &lt;i&gt;&amp;quot;language&amp;quot;&lt;/i&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
   &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;CDA code -&amp;gt; FHIR Composition.type&lt;/span&gt;
@@ -488,7 +488,7 @@
 &lt;span style=&quot;color: navy&quot;&gt;}
 
 &lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;groupe qui traite: CDA recordTarget.patientRole -&amp;gt; FHIR Patient&lt;/span&gt;
-&lt;b&gt;group &lt;/b&gt;MapHeaderRecordTarget&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;src&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;patient&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;composition&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
+&lt;b&gt;group &lt;/b&gt;MapHeaderRecordTarget&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;src&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;ClinicalDocument, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;patient&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Patient, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;composition&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Composition&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;  src.recordTarget&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;recordTarget&lt;/span&gt;&lt;b&gt; then&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;    recordTarget.patientRole&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;patientRole&lt;/span&gt;&lt;b&gt; then&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;      &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;CDA patientRole.addr -&amp;gt; FHIR Patient.address&lt;/span&gt;
@@ -515,7 +515,7 @@
 
 &lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;groupe qui traite custodian  (l'organisation)&lt;/span&gt;
 &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;L’Organization est créée uniquement si le bloc custodian existe dans le CDA.&lt;/span&gt;
-&lt;b&gt;group &lt;/b&gt;MapHeaderCustodian&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;src&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;composition&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;bundle&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
+&lt;b&gt;group &lt;/b&gt;MapHeaderCustodian&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;src&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;ClinicalDocument, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;composition&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Composition, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;bundle&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Bundle&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;  src.custodian&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;custodian&lt;/span&gt;&lt;b&gt; then&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;    custodian.assignedCustodian&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;assignedCustodian&lt;/span&gt;&lt;b&gt; then&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;      assignedCustodian.representedCustodianOrganization&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;representedOrg&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt; bundle.entry&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;custodianOrgEntry&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt; custodianOrgEntry.resource = &lt;b&gt;create&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: blue&quot;&gt;'Organization'&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;custodianOrganization&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt; custodianOrganization.id = &lt;b&gt;uuid&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt; custodianOrgEntry.fullUrl = &lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;'urn:uuid:' + %custodianOrganization.id&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;b&gt; then&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; {
@@ -537,7 +537,7 @@
 
 &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;   La Composition référence ensuite le PractitionerRole si l’organisation existe,&lt;/span&gt;
 &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;   sinon elle référence directement le Practitioner.&lt;/span&gt;
-&lt;b&gt;group &lt;/b&gt;MapHeaderAuthor&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;src&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;composition&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;bundle&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
+&lt;b&gt;group &lt;/b&gt;MapHeaderAuthor&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;src&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;ClinicalDocument, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;composition&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Composition, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;bundle&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Bundle&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;  src.author&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;author&lt;/span&gt;&lt;b&gt; then&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;    author.assignedAuthor&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;assignedAuthor&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt; bundle.entry&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;practitionerEntry&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt; practitionerEntry.resource = &lt;b&gt;create&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: blue&quot;&gt;'Practitioner'&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;authorPractitioner&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt; authorPractitioner.id = &lt;b&gt;uuid&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt; practitionerEntry.fullUrl = &lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;'urn:uuid:' + %authorPractitioner.id&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;b&gt; then&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;      &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;CDA assignedAuthor -&amp;gt; FHIR Practitioner&lt;/span&gt;
@@ -564,7 +564,7 @@
 &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;   La Composition est alimentée via Composition.attester. La partie attester.party&lt;/span&gt;
 &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;   référence le PractitionerRole si l’organisation existe, sinon elle référence&lt;/span&gt;
 &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;   directement le Practitioner.&lt;/span&gt;
-&lt;b&gt;group &lt;/b&gt;MapHeaderLegalAuthenticator&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;src&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;composition&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;bundle&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
+&lt;b&gt;group &lt;/b&gt;MapHeaderLegalAuthenticator&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;src&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;ClinicalDocument, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;composition&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Composition, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;bundle&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Bundle&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;  src.legalAuthenticator&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;legalAuthenticator&lt;/span&gt;&lt;b&gt; then&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;    legalAuthenticator.assignedEntity&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;assignedEntity&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt; bundle.entry&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;practitionerEntry&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt; practitionerEntry.resource = &lt;b&gt;create&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: blue&quot;&gt;'Practitioner'&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;legalPractitioner&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt; legalPractitioner.id = &lt;b&gt;uuid&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt; practitionerEntry.fullUrl = &lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;'urn:uuid:' + %legalPractitioner.id&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;b&gt; then&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;      &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;CDA assignedEntity -&amp;gt; FHIR Practitioner&lt;/span&gt;
@@ -587,7 +587,7 @@
 &lt;span style=&quot;color: navy&quot;&gt;}
 
 &lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;GROUPE — TRAITEMENT DE L’ÉVÉNEMENT DOCUMENTÉ CDA&lt;/span&gt;
-&lt;b&gt;group &lt;/b&gt;MapHeaderDocumentationOf&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;src&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;composition&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
+&lt;b&gt;group &lt;/b&gt;MapHeaderDocumentationOf&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;src&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;ClinicalDocument, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;composition&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Composition&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;  src.documentationOf&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;documentationOf&lt;/span&gt;&lt;b&gt; then&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;    documentationOf.serviceEvent&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;serviceEvent&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt;composition.event&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;event&lt;/span&gt;&lt;b&gt; then&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;      &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;CDA serviceEvent.code -&amp;gt; FHIR Composition.event.code&lt;/span&gt;
@@ -612,7 +612,7 @@
 &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;   il crée une Location et une Organization pour représenter le lieu et la&lt;/span&gt;
 &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;   structure de prise en charge, puis appelle :&lt;/span&gt;
 &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;   MapCDAHealthCareFacilityToLocationContext.&lt;/span&gt;
-&lt;b&gt;group &lt;/b&gt;MapHeaderEncounterContext&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;src&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;composition&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;bundle&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;patient&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
+&lt;b&gt;group &lt;/b&gt;MapHeaderEncounterContext&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;src&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;ClinicalDocument, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;composition&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Composition, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;bundle&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Bundle, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;patient&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Patient&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;  src.componentOf&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;componentOf&lt;/span&gt;&lt;b&gt; then&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;    componentOf.encompassingEncounter&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;encompassingEncounter&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt; bundle.entry&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;encounterEntry&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt; encounterEntry.resource = &lt;b&gt;create&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: blue&quot;&gt;'Encounter'&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;encounter&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt; encounter.id = &lt;b&gt;uuid&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt; encounterEntry.fullUrl = &lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;'urn:uuid:' + %encounter.id&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;b&gt; then&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;      &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;CDA encompassingEncounter -&amp;gt; FHIR Composition.encounter&lt;/span&gt;
@@ -644,7 +644,7 @@
 &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;   Si le code CDA de l’encompassingEncounter est absent, Encounter.class est&lt;/span&gt;
 &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;   créé avec l’extension data-absent-reason afin de respecter l’obligation FHIR&lt;/span&gt;
 &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;   sans inventer une information absente du CDA&lt;/span&gt;
-&lt;b&gt;group &lt;/b&gt;MapCDAEncompassingEncounterToEncounter&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;encompassingEncounter&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;encounter&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;patient&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
+&lt;b&gt;group &lt;/b&gt;MapCDAEncompassingEncounterToEncounter&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;encompassingEncounter&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;EncompassingEncounter, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;encounter&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Encounter, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;patient&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Patient&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;  &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;CDA encompassingEncounter.id -&amp;gt; FHIR Encounter.identifier&lt;/span&gt;
   encompassingEncounter.id&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;id&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt;encounter.identifier = &lt;b&gt;create&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: blue&quot;&gt;'Identifier'&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;identifier&lt;/span&gt;&lt;b&gt; then&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;    id&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt;identifier&lt;b&gt; then &lt;/b&gt;II&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: maroon&quot;&gt;id&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt;&lt;span style=&quot;color: maroon&quot;&gt;identifier&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt; &lt;i&gt;&amp;quot;baseIdentifier&amp;quot;&lt;/i&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
@@ -681,7 +681,7 @@
 &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;   représenter la personne à prévenir en cas d’urgence, puis l’associe au Patient.&lt;/span&gt;
 
 &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;   La ressource RelatedPerson est donc créée uniquement si ce bloc CDA existe&lt;/span&gt;
-&lt;b&gt;group &lt;/b&gt;MapHeaderEmergencyContact&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;src&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;bundle&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;patient&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
+&lt;b&gt;group &lt;/b&gt;MapHeaderEmergencyContact&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;src&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;ClinicalDocument, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;bundle&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Bundle, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;patient&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Patient&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;  src.informant&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;informant&lt;/span&gt;&lt;b&gt; then&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;    informant.relatedEntity&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;relatedEntity&lt;/span&gt;&lt;b&gt; where &lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;relatedEntity.classCode = 'ECON'&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt; bundle.entry&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;relatedPersonEntry&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt; relatedPersonEntry.resource = &lt;b&gt;create&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: blue&quot;&gt;'RelatedPerson'&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;emergencyContactRelatedPerson&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt; emergencyContactRelatedPerson.id = &lt;b&gt;uuid&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt; relatedPersonEntry.fullUrl = &lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;'urn:uuid:' + %emergencyContactRelatedPerson.id&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;b&gt; then &lt;/b&gt;MapCDARelatedEntityToRelatedPerson&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: maroon&quot;&gt;relatedEntity&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt;&lt;span style=&quot;color: maroon&quot;&gt;emergencyContactRelatedPerson&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt;&lt;span style=&quot;color: maroon&quot;&gt;patient&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt; &lt;i&gt;&amp;quot;relatedPersonECON&amp;quot;&lt;/i&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
   &lt;span style=&quot;color: navy&quot;&gt;}&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
@@ -695,7 +695,7 @@
 &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;   représenter la personne de confiance, puis l’associe au Patient.&lt;/span&gt;
 
 &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;   La ressource RelatedPerson est donc créée uniquement si ce bloc CDA existe.&lt;/span&gt;
-&lt;b&gt;group &lt;/b&gt;MapHeaderTrustedPerson&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;src&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;bundle&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;patient&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
+&lt;b&gt;group &lt;/b&gt;MapHeaderTrustedPerson&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;src&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;ClinicalDocument, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;bundle&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Bundle, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;patient&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Patient&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;  src.informant&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;informant&lt;/span&gt;&lt;b&gt; then&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;    informant.relatedEntity&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;relatedEntity&lt;/span&gt;&lt;b&gt; where &lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;relatedEntity.classCode = 'NOK'&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt; bundle.entry&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;relatedPersonEntry&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt; relatedPersonEntry.resource = &lt;b&gt;create&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: blue&quot;&gt;'RelatedPerson'&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;trustedPersonRelatedPerson&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt; trustedPersonRelatedPerson.id = &lt;b&gt;uuid&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt; relatedPersonEntry.fullUrl = &lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;'urn:uuid:' + %trustedPersonRelatedPerson.id&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;b&gt; then &lt;/b&gt;MapCDARelatedEntityToRelatedPerson&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: maroon&quot;&gt;relatedEntity&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt;&lt;span style=&quot;color: maroon&quot;&gt;trustedPersonRelatedPerson&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt;&lt;span style=&quot;color: maroon&quot;&gt;patient&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt; &lt;i&gt;&amp;quot;relatedPersonNOK&amp;quot;&lt;/i&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
   &lt;span style=&quot;color: navy&quot;&gt;}&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
@@ -709,7 +709,7 @@
 &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;   représenter le représentant légal ou responsable du patient.&lt;/span&gt;
 
 &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;   La ressource RelatedPerson est donc créée uniquement si le bloc guardian existe&lt;/span&gt;
-&lt;b&gt;group &lt;/b&gt;MapHeaderGuardian&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;src&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;bundle&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;patient&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
+&lt;b&gt;group &lt;/b&gt;MapHeaderGuardian&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;src&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;ClinicalDocument, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;bundle&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Bundle, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;patient&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Patient&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;  src.recordTarget&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;recordTarget&lt;/span&gt;&lt;b&gt; then&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;    recordTarget.patientRole&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;patientRole&lt;/span&gt;&lt;b&gt; then&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;      patientRole.patient&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;patientCda&lt;/span&gt;&lt;b&gt; then&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; {
@@ -737,7 +737,7 @@
 
 &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;   Ce groupe ne crée pas de ressource FHIR indépendante. Il complète uniquement&lt;/span&gt;
 &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;   la Composition déjà initialisée&lt;/span&gt;
-&lt;b&gt;group &lt;/b&gt;MapHeaderRelatedDocument&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;src&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;composition&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
+&lt;b&gt;group &lt;/b&gt;MapHeaderRelatedDocument&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;src&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;ClinicalDocument, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;composition&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Composition&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;  src.relatedDocument&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;relatedDoc&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt;composition.relatesTo&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;relatesTo&lt;/span&gt;&lt;b&gt; then&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;    &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;CDA relatedDocument.typeCode=RPLC -&amp;gt; FHIR Composition.relatesTo.code&lt;/span&gt;
     relatedDoc.typeCode&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;typeCode&lt;/span&gt;&lt;b&gt; where &lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;typeCode = 'RPLC'&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt;relatesTo.code = &lt;span style=&quot;color: blue&quot;&gt;'replaces'&lt;/span&gt; &lt;i&gt;&amp;quot;replaces&amp;quot;&lt;/i&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
@@ -755,7 +755,7 @@
 
 &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;   Il alimente les informations génériques de l’organisation :&lt;/span&gt;
 &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;   identifier, name, telecom et address&lt;/span&gt;
-&lt;b&gt;group &lt;/b&gt;MapCDAOrganizationToOrganization&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;src&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;organization&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
+&lt;b&gt;group &lt;/b&gt;MapCDAOrganizationToOrganization&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;src&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;organization&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Organization&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;  &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;CDA organization.id -&amp;gt; FHIR Organization.identifier&lt;/span&gt;
   src.id&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;id&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt;organization.identifier = &lt;b&gt;create&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: blue&quot;&gt;'Identifier'&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;identifier&lt;/span&gt;&lt;b&gt; then &lt;/b&gt;II&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: maroon&quot;&gt;id&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt;&lt;span style=&quot;color: maroon&quot;&gt;identifier&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt; &lt;i&gt;&amp;quot;identifier&amp;quot;&lt;/i&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
   &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;CDA organization.name -&amp;gt; FHIR Organization.name&lt;/span&gt;
@@ -775,7 +775,7 @@
 
 &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;   Il alimente les informations génériques du professionnel :&lt;/span&gt;
 &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;   identifier, address, telecom et name&lt;/span&gt;
-&lt;b&gt;group &lt;/b&gt;MapCDAAssignedEntityToPractitioner&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;src&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;practitioner&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
+&lt;b&gt;group &lt;/b&gt;MapCDAAssignedEntityToPractitioner&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;src&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;practitioner&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Practitioner&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;  &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;CDA assignedEntity.id -&amp;gt; FHIR Practitioner.identifier&lt;/span&gt;
   src.id&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;id&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt;practitioner.identifier = &lt;b&gt;create&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: blue&quot;&gt;'Identifier'&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;identifier&lt;/span&gt;&lt;b&gt; then &lt;/b&gt;II&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: maroon&quot;&gt;id&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt;&lt;span style=&quot;color: maroon&quot;&gt;identifier&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt; &lt;i&gt;&amp;quot;identifier&amp;quot;&lt;/i&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
   &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;CDA assignedEntity.addr -&amp;gt; FHIR Practitioner.address&lt;/span&gt;
@@ -796,7 +796,7 @@
 &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;   Il alimente les références PractitionerRole.practitioner et&lt;/span&gt;
 &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;   PractitionerRole.organization à partir des ressources Practitioner et&lt;/span&gt;
 &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;   Organization déjà créées&lt;/span&gt;
-&lt;b&gt;group &lt;/b&gt;MapCDAAssignedEntityToPractitionerRole&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;src&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;role&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;practitioner&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;organization&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
+&lt;b&gt;group &lt;/b&gt;MapCDAAssignedEntityToPractitionerRole&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;src&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;role&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;PractitionerRole, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;practitioner&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Practitioner, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;organization&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Organization&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;  &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;CDA assignedEntity -&amp;gt; FHIR PractitionerRole.practitioner&lt;/span&gt;
   src&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt; role.practitioner = &lt;b&gt;create&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: blue&quot;&gt;'Reference'&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;refPractitioner&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt; refPractitioner.reference = &lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;'urn:uuid:' + %practitioner.id&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt; &lt;i&gt;&amp;quot;practitionerRef&amp;quot;&lt;/i&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
   &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;CDA representedOrganization -&amp;gt; FHIR PractitionerRole.organization&lt;/span&gt;
@@ -814,7 +814,7 @@
 &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;   Le champ relationship n’est pas alimenté dans cette étape afin d’éviter un&lt;/span&gt;
 &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;   double mapping. Il est enrichi ensuite dans l’étape française avec le système&lt;/span&gt;
 &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;   NOS approprié&lt;/span&gt;
-&lt;b&gt;group &lt;/b&gt;MapCDARelatedEntityToRelatedPerson&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;relatedEntity&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;relatedPerson&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;patient&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
+&lt;b&gt;group &lt;/b&gt;MapCDARelatedEntityToRelatedPerson&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;relatedEntity&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;RelatedEntity, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;relatedPerson&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;RelatedPerson, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;patient&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Patient&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;  &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;CDA relatedEntity -&amp;gt; FHIR RelatedPerson.patient&lt;/span&gt;
   relatedEntity&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt; relatedPerson.patient = &lt;b&gt;create&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: blue&quot;&gt;'Reference'&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;patientRef&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt; patientRef.reference = &lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;'urn:uuid:' + %patient.id&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt; &lt;i&gt;&amp;quot;patientRef&amp;quot;&lt;/i&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
   &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;CDA relatedEntity.id -&amp;gt; FHIR RelatedPerson.identifier&lt;/span&gt;
@@ -845,7 +845,7 @@
 &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;   - Location.name ;&lt;/span&gt;
 &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;   - Location.type ;&lt;/span&gt;
 &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;   - Organization représentant la structure de prise en charge.&lt;/span&gt;
-&lt;b&gt;group &lt;/b&gt;MapCDAHealthCareFacilityToLocationContext&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;facility&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;encounter&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;location&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;facilityOrganization&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
+&lt;b&gt;group &lt;/b&gt;MapCDAHealthCareFacilityToLocationContext&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;facility&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;HealthCareFacility, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;encounter&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Encounter, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;location&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Location, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;facilityOrganization&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Organization&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;  &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;CDA healthCareFacility -&amp;gt; FHIR Encounter.location.location&lt;/span&gt;
   facility&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt;encounter.location&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;encLocation&lt;/span&gt;&lt;b&gt; then&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;    facility&lt;span style=&quot;color: navy&quot;&gt;&lt;b&gt; -&amp;gt; &lt;/b&gt;&lt;/span&gt; encLocation.location = &lt;b&gt;create&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: blue&quot;&gt;'Reference'&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;locRef&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;, &lt;/span&gt; locRef.reference = &lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;'urn:uuid:' + %location.id&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt; &lt;i&gt;&amp;quot;locationRef&amp;quot;&lt;/i&gt;&lt;span style=&quot;color: navy&quot;&gt;;&lt;/span&gt;
@@ -873,7 +873,7 @@
 &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;   Cette partie transforme uniquement le squelette du structuredBody CDA.&lt;/span&gt;
 &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;   Les entries métier ne sont pas transformées dans l’étape 2&lt;/span&gt;
 &lt;span style=&quot;color: navy&quot;&gt;// &lt;/span&gt;&lt;span style=&quot;color: green&quot;&gt;CDA component.structuredBody -&amp;gt; FHIR Composition.section&lt;/span&gt;
-&lt;b&gt;group &lt;/b&gt;MapClinicalDocumentBody&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;src&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;composition&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;bundle&lt;/span&gt;, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;patient&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
+&lt;b&gt;group &lt;/b&gt;MapClinicalDocumentBody&lt;span style=&quot;color: navy&quot;&gt;(&lt;/span&gt;&lt;b&gt;source&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;src&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;ClinicalDocument, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;composition&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Composition, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;bundle&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Bundle, &lt;b&gt;target&lt;/b&gt; &lt;span style=&quot;color: maroon&quot;&gt;patient&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; : &lt;/span&gt;Patient&lt;span style=&quot;color: navy&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;  src.component&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;cdaComponent&lt;/span&gt;&lt;b&gt; then&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;    cdaComponent.structuredBody&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;structuredBody&lt;/span&gt;&lt;b&gt; then&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; {
 &lt;/span&gt;      structuredBody.component&lt;b&gt; as &lt;/b&gt;&lt;span style=&quot;color: maroon&quot;&gt;bodyComponent&lt;/span&gt;&lt;b&gt; then&lt;/b&gt;&lt;span style=&quot;color: navy&quot;&gt; {
@@ -909,7 +909,7 @@
   &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;CdaToBundle&quot;/&gt;
   &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.title">title</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA&quot;/&gt;
   &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.status">status</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;draft&quot;/&gt;
-  &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.date">date</a> <a href="http://hl7.org/fhir/R4/datatypes.html#dateTime">value</a>=&quot;2026-07-30T13:25:45+00:00&quot;/&gt;
+  &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.date">date</a> <a href="http://hl7.org/fhir/R4/datatypes.html#dateTime">value</a>=&quot;2026-07-30T13:42:30+00:00&quot;/&gt;
   &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.publisher">publisher</a>
              <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris&quot;/&gt;
   &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.contact">contact</a>&gt;
@@ -1210,18 +1210,22 @@
    Patient, servent de support de sortie pour le traitement CDA&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;cda&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;ClinicalDocument&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;source&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;patient&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Patient&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;composition&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Composition&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;bundle&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Bundle&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule">rule</a>&gt;
@@ -1297,18 +1301,22 @@
    justifie son existence&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;cda&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;ClinicalDocument&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;source&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;bundle&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Bundle&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;composition&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Composition&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;patient&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Patient&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule">rule</a>&gt;
@@ -1486,14 +1494,17 @@
                    <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;groupe qui traite l'identité du document CDA -&amp;gt; métadonnées Bundle / Composition FHIR&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;src&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;ClinicalDocument&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;source&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;bundle&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Bundle&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;composition&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Composition&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule">rule</a>&gt;
@@ -1863,14 +1874,17 @@
                    <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;groupe qui traite la description du document CDA -&amp;gt; FHIR Composition&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;src&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;ClinicalDocument&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;source&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;composition&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Composition&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;patient&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Patient&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule">rule</a>&gt;
@@ -2023,14 +2037,17 @@
                    <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;groupe qui traite: CDA recordTarget.patientRole -&amp;gt; FHIR Patient&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;src&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;ClinicalDocument&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;source&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;patient&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Patient&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;composition&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Composition&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule">rule</a>&gt;
@@ -2238,14 +2255,17 @@
 L’Organization est créée uniquement si le bloc custodian existe dans le CDA.&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;src&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;ClinicalDocument&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;source&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;composition&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Composition&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;bundle&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Bundle&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule">rule</a>&gt;
@@ -2357,14 +2377,17 @@ L’Organization est créée uniquement si le bloc custodian existe dans le CDA.
    sinon elle référence directement le Practitioner.&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;src&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;ClinicalDocument&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;source&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;composition&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Composition&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;bundle&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Bundle&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule">rule</a>&gt;
@@ -2585,14 +2608,17 @@ L’Organization est créée uniquement si le bloc custodian existe dans le CDA.
    directement le Practitioner.&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;src&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;ClinicalDocument&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;source&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;composition&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Composition&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;bundle&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Bundle&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule">rule</a>&gt;
@@ -2863,10 +2889,12 @@ L’Organization est créée uniquement si le bloc custodian existe dans le CDA.
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.documentation">documentation</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;GROUPE — TRAITEMENT DE L’ÉVÉNEMENT DOCUMENTÉ CDA&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;src&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;ClinicalDocument&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;source&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;composition&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Composition&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule">rule</a>&gt;
@@ -2962,18 +2990,22 @@ L’Organization est créée uniquement si le bloc custodian existe dans le CDA.
    MapCDAHealthCareFacilityToLocationContext.&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;src&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;ClinicalDocument&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;source&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;composition&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Composition&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;bundle&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Bundle&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;patient&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Patient&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule">rule</a>&gt;
@@ -3175,14 +3207,17 @@ Ce groupe commun alimente identifier, subject, status, class et period.&quot;/&g
    sans inventer une information absente du CDA&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;encompassingEncounter&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;EncompassingEncounter&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;source&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;encounter&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Encounter&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;patient&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Patient&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule">rule</a>&gt;
@@ -3478,14 +3513,17 @@ Ce groupe commun alimente identifier, subject, status, class et period.&quot;/&g
    La ressource RelatedPerson est donc créée uniquement si ce bloc CDA existe&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;src&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;ClinicalDocument&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;source&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;bundle&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Bundle&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;patient&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Patient&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule">rule</a>&gt;
@@ -3558,14 +3596,17 @@ Ce groupe commun alimente identifier, subject, status, class et period.&quot;/&g
    La ressource RelatedPerson est donc créée uniquement si ce bloc CDA existe.&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;src&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;ClinicalDocument&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;source&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;bundle&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Bundle&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;patient&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Patient&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule">rule</a>&gt;
@@ -3638,14 +3679,17 @@ Ce groupe commun alimente identifier, subject, status, class et period.&quot;/&g
    La ressource RelatedPerson est donc créée uniquement si le bloc guardian existe&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;src&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;ClinicalDocument&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;source&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;bundle&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Bundle&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;patient&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Patient&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule">rule</a>&gt;
@@ -3853,10 +3897,12 @@ Ce groupe commun alimente identifier, subject, status, class et period.&quot;/&g
    la Composition déjà initialisée&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;src&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;ClinicalDocument&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;source&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;composition&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Composition&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule">rule</a>&gt;
@@ -3944,6 +3990,7 @@ Ce groupe commun alimente identifier, subject, status, class et period.&quot;/&g
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;organization&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Organization&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule">rule</a>&gt;
@@ -4066,6 +4113,7 @@ Ce groupe commun alimente identifier, subject, status, class et period.&quot;/&g
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;practitioner&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Practitioner&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule">rule</a>&gt;
@@ -4195,14 +4243,17 @@ Ce groupe commun alimente identifier, subject, status, class et period.&quot;/&g
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;role&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;PractitionerRole&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;practitioner&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Practitioner&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;organization&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Organization&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule">rule</a>&gt;
@@ -4277,14 +4328,17 @@ Ce groupe commun alimente identifier, subject, status, class et period.&quot;/&g
    NOS approprié&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;relatedEntity&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;RelatedEntity&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;source&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;relatedPerson&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;RelatedPerson&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;patient&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Patient&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule">rule</a>&gt;
@@ -4445,18 +4499,22 @@ CDA relatedEntity.addr -&amp;gt; FHIR RelatedPerson.address&quot;/&gt;
    - Organization représentant la structure de prise en charge.&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;facility&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;HealthCareFacility&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;source&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;encounter&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Encounter&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;location&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Location&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;facilityOrganization&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Organization&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule">rule</a>&gt;
@@ -4645,18 +4703,22 @@ CDA relatedEntity.addr -&amp;gt; FHIR RelatedPerson.address&quot;/&gt;
 CDA component.structuredBody -&amp;gt; FHIR Composition.section&quot;/&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;src&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;ClinicalDocument&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;source&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;composition&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Composition&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;bundle&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Bundle&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#id">value</a>=&quot;patient&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.type">type</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Patient&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input.mode">mode</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;target&quot;/&gt;
     &lt;/<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.input">input</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuremap.html#StructureMap.group.rule">rule</a>&gt;
@@ -4878,7 +4940,7 @@ CDA component.structuredBody -&amp;gt; FHIR Composition.section&quot;/&gt;
           IG © 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d&#39;Oradour-sur-Glane, 75015 Paris</a>.  
           Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>.
           Generated 
-  <span title="2026-07-30 13:25:00 +0000">
+  <span title="2026-07-30 13:42:00 +0000">
     2026-07-30
   </span>
 

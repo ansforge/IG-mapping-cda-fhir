@@ -68,7 +68,7 @@
 
 <span style="color: navy">// </span><span style="color: green">   Les ressources initialisées dans le groupe d’entrée, Bundle, Composition et</span>
 <span style="color: navy">// </span><span style="color: green">   Patient, servent de support de sortie pour le traitement CDA</span>
-<b>group </b>OrchestrateClinicalDocumentTransformation<span style="color: navy">(</span><b>source</b> <span style="color: maroon">cda</span>, <b>target</b> <span style="color: maroon">patient</span>, <b>target</b> <span style="color: maroon">composition</span>, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>OrchestrateClinicalDocumentTransformation<span style="color: navy">(</span><b>source</b> <span style="color: maroon">cda</span><span style="color: navy"> : </span>ClinicalDocument, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy"> : </span>Patient, <b>target</b> <span style="color: maroon">composition</span><span style="color: navy"> : </span>Composition, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle<span style="color: navy">)</span><span style="color: navy"> {
 </span>  <span style="color: navy">// </span><span style="color: green">ClinicalDocument.header CDA -&gt; Bundle / Composition / Patient + ressources administratives créées si les blocs CDA existent</span>
   cda<b> then </b>MapClinicalDocumentHeader<span style="color: navy">(</span><span style="color: maroon">cda</span><span style="color: navy">, </span><span style="color: maroon">bundle</span><span style="color: navy">, </span><span style="color: maroon">composition</span><span style="color: navy">, </span><span style="color: maroon">patient</span><span style="color: navy">)</span> <i>&quot;header&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">ClinicalDocument.component.structuredBody CDA -&gt; Composition.section title/code/text</span>
@@ -111,7 +111,7 @@
 <span style="color: navy">// </span><span style="color: green">   Les ressources optionnelles sont créées dans le groupe qui traite le bloc CDA</span>
 <span style="color: navy">// </span><span style="color: green">   correspondant. Ainsi, une ressource FHIR n’est créée que lorsqu’un élément CDA</span>
 <span style="color: navy">// </span><span style="color: green">   justifie son existence</span>
-<b>group </b>MapClinicalDocumentHeader<span style="color: navy">(</span><b>source</b> <span style="color: maroon">cda</span>, <b>target</b> <span style="color: maroon">bundle</span>, <b>target</b> <span style="color: maroon">composition</span>, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapClinicalDocumentHeader<span style="color: navy">(</span><b>source</b> <span style="color: maroon">cda</span><span style="color: navy"> : </span>ClinicalDocument, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle, <b>target</b> <span style="color: maroon">composition</span><span style="color: navy"> : </span>Composition, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy"> : </span>Patient<span style="color: navy">)</span><span style="color: navy"> {
 </span>  <span style="color: navy">// </span><span style="color: green">CDA id/setId/versionNumber/effectiveTime -&gt; FHIR métadonnées Bundle + Composition</span>
   cda<b> then </b>MapHeaderDocumentIdentity<span style="color: navy">(</span><span style="color: maroon">cda</span><span style="color: navy">, </span><span style="color: maroon">bundle</span><span style="color: navy">, </span><span style="color: maroon">composition</span><span style="color: navy">)</span> <i>&quot;documentIdentity&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">CDA languageCode/code/title/effectiveTime/confidentialityCode -&gt; FHIR description de la Composition</span>
@@ -139,7 +139,7 @@
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">groupe qui traite l'identité du document CDA -&gt; métadonnées Bundle / Composition FHIR</span>
-<b>group </b>MapHeaderDocumentIdentity<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">bundle</span>, <b>target</b> <span style="color: maroon">composition</span><span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapHeaderDocumentIdentity<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>ClinicalDocument, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle, <b>target</b> <span style="color: maroon">composition</span><span style="color: navy"> : </span>Composition<span style="color: navy">)</span><span style="color: navy"> {
 </span>  <span style="color: navy">// </span><span style="color: green">CDA ClinicalDocument -&gt; FHIR Bundle.id</span>
   src<span style="color: navy"><b> -&gt; </b></span>bundle.id = <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span> <i>&quot;bundleId&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">CDA ClinicalDocument -&gt; FHIR Bundle.type</span>
@@ -182,7 +182,7 @@
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">groupe qui traite la description du document CDA -&gt; FHIR Composition</span>
-<b>group </b>MapHeaderDocumentDescription<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">composition</span>, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapHeaderDocumentDescription<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>ClinicalDocument, <b>target</b> <span style="color: maroon">composition</span><span style="color: navy"> : </span>Composition, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy"> : </span>Patient<span style="color: navy">)</span><span style="color: navy"> {
 </span>  <span style="color: navy">// </span><span style="color: green">CDA languageCode -&gt; FHIR Composition.language</span>
   src.languageCode<b> as </b><span style="color: maroon">languageCode</span><span style="color: navy"><b> -&gt; </b></span>composition.language = <b>create</b><span style="color: navy">(</span><span style="color: blue">'code'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">code</span><b> then </b>CSCode<span style="color: navy">(</span><span style="color: maroon">languageCode</span><span style="color: navy">, </span><span style="color: maroon">code</span><span style="color: navy">)</span> <i>&quot;language&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">CDA code -&gt; FHIR Composition.type</span>
@@ -198,7 +198,7 @@
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">groupe qui traite: CDA recordTarget.patientRole -&gt; FHIR Patient</span>
-<b>group </b>MapHeaderRecordTarget<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">patient</span>, <b>target</b> <span style="color: maroon">composition</span><span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapHeaderRecordTarget<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>ClinicalDocument, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy"> : </span>Patient, <b>target</b> <span style="color: maroon">composition</span><span style="color: navy"> : </span>Composition<span style="color: navy">)</span><span style="color: navy"> {
 </span>  src.recordTarget<b> as </b><span style="color: maroon">recordTarget</span><b> then</b><span style="color: navy"> {
 </span>    recordTarget.patientRole<b> as </b><span style="color: maroon">patientRole</span><b> then</b><span style="color: navy"> {
 </span>      <span style="color: navy">// </span><span style="color: green">CDA patientRole.addr -&gt; FHIR Patient.address</span>
@@ -225,7 +225,7 @@
 
 </span><span style="color: navy">// </span><span style="color: green">groupe qui traite custodian  (l'organisation)</span>
 <span style="color: navy">// </span><span style="color: green">L’Organization est créée uniquement si le bloc custodian existe dans le CDA.</span>
-<b>group </b>MapHeaderCustodian<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">composition</span>, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapHeaderCustodian<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>ClinicalDocument, <b>target</b> <span style="color: maroon">composition</span><span style="color: navy"> : </span>Composition, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle<span style="color: navy">)</span><span style="color: navy"> {
 </span>  src.custodian<b> as </b><span style="color: maroon">custodian</span><b> then</b><span style="color: navy"> {
 </span>    custodian.assignedCustodian<b> as </b><span style="color: maroon">assignedCustodian</span><b> then</b><span style="color: navy"> {
 </span>      assignedCustodian.representedCustodianOrganization<b> as </b><span style="color: maroon">representedOrg</span><span style="color: navy"><b> -&gt; </b></span> bundle.entry<b> as </b><span style="color: maroon">custodianOrgEntry</span><span style="color: navy">, </span> custodianOrgEntry.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Organization'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">custodianOrganization</span><span style="color: navy">, </span> custodianOrganization.id = <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span><span style="color: navy">, </span> custodianOrgEntry.fullUrl = <span style="color: navy">(</span>'urn:uuid:' + %custodianOrganization.id<span style="color: navy">)</span><b> then</b><span style="color: navy"> {
@@ -247,7 +247,7 @@
 
 <span style="color: navy">// </span><span style="color: green">   La Composition référence ensuite le PractitionerRole si l’organisation existe,</span>
 <span style="color: navy">// </span><span style="color: green">   sinon elle référence directement le Practitioner.</span>
-<b>group </b>MapHeaderAuthor<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">composition</span>, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapHeaderAuthor<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>ClinicalDocument, <b>target</b> <span style="color: maroon">composition</span><span style="color: navy"> : </span>Composition, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle<span style="color: navy">)</span><span style="color: navy"> {
 </span>  src.author<b> as </b><span style="color: maroon">author</span><b> then</b><span style="color: navy"> {
 </span>    author.assignedAuthor<b> as </b><span style="color: maroon">assignedAuthor</span><span style="color: navy"><b> -&gt; </b></span> bundle.entry<b> as </b><span style="color: maroon">practitionerEntry</span><span style="color: navy">, </span> practitionerEntry.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Practitioner'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">authorPractitioner</span><span style="color: navy">, </span> authorPractitioner.id = <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span><span style="color: navy">, </span> practitionerEntry.fullUrl = <span style="color: navy">(</span>'urn:uuid:' + %authorPractitioner.id<span style="color: navy">)</span><b> then</b><span style="color: navy"> {
 </span>      <span style="color: navy">// </span><span style="color: green">CDA assignedAuthor -&gt; FHIR Practitioner</span>
@@ -274,7 +274,7 @@
 <span style="color: navy">// </span><span style="color: green">   La Composition est alimentée via Composition.attester. La partie attester.party</span>
 <span style="color: navy">// </span><span style="color: green">   référence le PractitionerRole si l’organisation existe, sinon elle référence</span>
 <span style="color: navy">// </span><span style="color: green">   directement le Practitioner.</span>
-<b>group </b>MapHeaderLegalAuthenticator<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">composition</span>, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapHeaderLegalAuthenticator<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>ClinicalDocument, <b>target</b> <span style="color: maroon">composition</span><span style="color: navy"> : </span>Composition, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle<span style="color: navy">)</span><span style="color: navy"> {
 </span>  src.legalAuthenticator<b> as </b><span style="color: maroon">legalAuthenticator</span><b> then</b><span style="color: navy"> {
 </span>    legalAuthenticator.assignedEntity<b> as </b><span style="color: maroon">assignedEntity</span><span style="color: navy"><b> -&gt; </b></span> bundle.entry<b> as </b><span style="color: maroon">practitionerEntry</span><span style="color: navy">, </span> practitionerEntry.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Practitioner'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">legalPractitioner</span><span style="color: navy">, </span> legalPractitioner.id = <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span><span style="color: navy">, </span> practitionerEntry.fullUrl = <span style="color: navy">(</span>'urn:uuid:' + %legalPractitioner.id<span style="color: navy">)</span><b> then</b><span style="color: navy"> {
 </span>      <span style="color: navy">// </span><span style="color: green">CDA assignedEntity -&gt; FHIR Practitioner</span>
@@ -297,7 +297,7 @@
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">GROUPE — TRAITEMENT DE L’ÉVÉNEMENT DOCUMENTÉ CDA</span>
-<b>group </b>MapHeaderDocumentationOf<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">composition</span><span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapHeaderDocumentationOf<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>ClinicalDocument, <b>target</b> <span style="color: maroon">composition</span><span style="color: navy"> : </span>Composition<span style="color: navy">)</span><span style="color: navy"> {
 </span>  src.documentationOf<b> as </b><span style="color: maroon">documentationOf</span><b> then</b><span style="color: navy"> {
 </span>    documentationOf.serviceEvent<b> as </b><span style="color: maroon">serviceEvent</span><span style="color: navy"><b> -&gt; </b></span>composition.event<b> as </b><span style="color: maroon">event</span><b> then</b><span style="color: navy"> {
 </span>      <span style="color: navy">// </span><span style="color: green">CDA serviceEvent.code -&gt; FHIR Composition.event.code</span>
@@ -322,7 +322,7 @@
 <span style="color: navy">// </span><span style="color: green">   il crée une Location et une Organization pour représenter le lieu et la</span>
 <span style="color: navy">// </span><span style="color: green">   structure de prise en charge, puis appelle :</span>
 <span style="color: navy">// </span><span style="color: green">   MapCDAHealthCareFacilityToLocationContext.</span>
-<b>group </b>MapHeaderEncounterContext<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">composition</span>, <b>target</b> <span style="color: maroon">bundle</span>, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapHeaderEncounterContext<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>ClinicalDocument, <b>target</b> <span style="color: maroon">composition</span><span style="color: navy"> : </span>Composition, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy"> : </span>Patient<span style="color: navy">)</span><span style="color: navy"> {
 </span>  src.componentOf<b> as </b><span style="color: maroon">componentOf</span><b> then</b><span style="color: navy"> {
 </span>    componentOf.encompassingEncounter<b> as </b><span style="color: maroon">encompassingEncounter</span><span style="color: navy"><b> -&gt; </b></span> bundle.entry<b> as </b><span style="color: maroon">encounterEntry</span><span style="color: navy">, </span> encounterEntry.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Encounter'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">encounter</span><span style="color: navy">, </span> encounter.id = <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span><span style="color: navy">, </span> encounterEntry.fullUrl = <span style="color: navy">(</span>'urn:uuid:' + %encounter.id<span style="color: navy">)</span><b> then</b><span style="color: navy"> {
 </span>      <span style="color: navy">// </span><span style="color: green">CDA encompassingEncounter -&gt; FHIR Composition.encounter</span>
@@ -354,7 +354,7 @@
 <span style="color: navy">// </span><span style="color: green">   Si le code CDA de l’encompassingEncounter est absent, Encounter.class est</span>
 <span style="color: navy">// </span><span style="color: green">   créé avec l’extension data-absent-reason afin de respecter l’obligation FHIR</span>
 <span style="color: navy">// </span><span style="color: green">   sans inventer une information absente du CDA</span>
-<b>group </b>MapCDAEncompassingEncounterToEncounter<span style="color: navy">(</span><b>source</b> <span style="color: maroon">encompassingEncounter</span>, <b>target</b> <span style="color: maroon">encounter</span>, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapCDAEncompassingEncounterToEncounter<span style="color: navy">(</span><b>source</b> <span style="color: maroon">encompassingEncounter</span><span style="color: navy"> : </span>EncompassingEncounter, <b>target</b> <span style="color: maroon">encounter</span><span style="color: navy"> : </span>Encounter, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy"> : </span>Patient<span style="color: navy">)</span><span style="color: navy"> {
 </span>  <span style="color: navy">// </span><span style="color: green">CDA encompassingEncounter.id -&gt; FHIR Encounter.identifier</span>
   encompassingEncounter.id<b> as </b><span style="color: maroon">id</span><span style="color: navy"><b> -&gt; </b></span>encounter.identifier = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Identifier'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">identifier</span><b> then</b><span style="color: navy"> {
 </span>    id<span style="color: navy"><b> -&gt; </b></span>identifier<b> then </b>II<span style="color: navy">(</span><span style="color: maroon">id</span><span style="color: navy">, </span><span style="color: maroon">identifier</span><span style="color: navy">)</span> <i>&quot;baseIdentifier&quot;</i><span style="color: navy">;</span>
@@ -391,7 +391,7 @@
 <span style="color: navy">// </span><span style="color: green">   représenter la personne à prévenir en cas d’urgence, puis l’associe au Patient.</span>
 
 <span style="color: navy">// </span><span style="color: green">   La ressource RelatedPerson est donc créée uniquement si ce bloc CDA existe</span>
-<b>group </b>MapHeaderEmergencyContact<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">bundle</span>, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapHeaderEmergencyContact<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>ClinicalDocument, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy"> : </span>Patient<span style="color: navy">)</span><span style="color: navy"> {
 </span>  src.informant<b> as </b><span style="color: maroon">informant</span><b> then</b><span style="color: navy"> {
 </span>    informant.relatedEntity<b> as </b><span style="color: maroon">relatedEntity</span><b> where </b><span style="color: navy">(</span>relatedEntity.classCode = 'ECON'<span style="color: navy">)</span><span style="color: navy"><b> -&gt; </b></span> bundle.entry<b> as </b><span style="color: maroon">relatedPersonEntry</span><span style="color: navy">, </span> relatedPersonEntry.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'RelatedPerson'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">emergencyContactRelatedPerson</span><span style="color: navy">, </span> emergencyContactRelatedPerson.id = <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span><span style="color: navy">, </span> relatedPersonEntry.fullUrl = <span style="color: navy">(</span>'urn:uuid:' + %emergencyContactRelatedPerson.id<span style="color: navy">)</span><b> then </b>MapCDARelatedEntityToRelatedPerson<span style="color: navy">(</span><span style="color: maroon">relatedEntity</span><span style="color: navy">, </span><span style="color: maroon">emergencyContactRelatedPerson</span><span style="color: navy">, </span><span style="color: maroon">patient</span><span style="color: navy">)</span> <i>&quot;relatedPersonECON&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">}</span><span style="color: navy">;</span>
@@ -405,7 +405,7 @@
 <span style="color: navy">// </span><span style="color: green">   représenter la personne de confiance, puis l’associe au Patient.</span>
 
 <span style="color: navy">// </span><span style="color: green">   La ressource RelatedPerson est donc créée uniquement si ce bloc CDA existe.</span>
-<b>group </b>MapHeaderTrustedPerson<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">bundle</span>, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapHeaderTrustedPerson<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>ClinicalDocument, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy"> : </span>Patient<span style="color: navy">)</span><span style="color: navy"> {
 </span>  src.informant<b> as </b><span style="color: maroon">informant</span><b> then</b><span style="color: navy"> {
 </span>    informant.relatedEntity<b> as </b><span style="color: maroon">relatedEntity</span><b> where </b><span style="color: navy">(</span>relatedEntity.classCode = 'NOK'<span style="color: navy">)</span><span style="color: navy"><b> -&gt; </b></span> bundle.entry<b> as </b><span style="color: maroon">relatedPersonEntry</span><span style="color: navy">, </span> relatedPersonEntry.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'RelatedPerson'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">trustedPersonRelatedPerson</span><span style="color: navy">, </span> trustedPersonRelatedPerson.id = <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span><span style="color: navy">, </span> relatedPersonEntry.fullUrl = <span style="color: navy">(</span>'urn:uuid:' + %trustedPersonRelatedPerson.id<span style="color: navy">)</span><b> then </b>MapCDARelatedEntityToRelatedPerson<span style="color: navy">(</span><span style="color: maroon">relatedEntity</span><span style="color: navy">, </span><span style="color: maroon">trustedPersonRelatedPerson</span><span style="color: navy">, </span><span style="color: maroon">patient</span><span style="color: navy">)</span> <i>&quot;relatedPersonNOK&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">}</span><span style="color: navy">;</span>
@@ -419,7 +419,7 @@
 <span style="color: navy">// </span><span style="color: green">   représenter le représentant légal ou responsable du patient.</span>
 
 <span style="color: navy">// </span><span style="color: green">   La ressource RelatedPerson est donc créée uniquement si le bloc guardian existe</span>
-<b>group </b>MapHeaderGuardian<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">bundle</span>, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapHeaderGuardian<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>ClinicalDocument, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy"> : </span>Patient<span style="color: navy">)</span><span style="color: navy"> {
 </span>  src.recordTarget<b> as </b><span style="color: maroon">recordTarget</span><b> then</b><span style="color: navy"> {
 </span>    recordTarget.patientRole<b> as </b><span style="color: maroon">patientRole</span><b> then</b><span style="color: navy"> {
 </span>      patientRole.patient<b> as </b><span style="color: maroon">patientCda</span><b> then</b><span style="color: navy"> {
@@ -447,7 +447,7 @@
 
 <span style="color: navy">// </span><span style="color: green">   Ce groupe ne crée pas de ressource FHIR indépendante. Il complète uniquement</span>
 <span style="color: navy">// </span><span style="color: green">   la Composition déjà initialisée</span>
-<b>group </b>MapHeaderRelatedDocument<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">composition</span><span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapHeaderRelatedDocument<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>ClinicalDocument, <b>target</b> <span style="color: maroon">composition</span><span style="color: navy"> : </span>Composition<span style="color: navy">)</span><span style="color: navy"> {
 </span>  src.relatedDocument<b> as </b><span style="color: maroon">relatedDoc</span><span style="color: navy"><b> -&gt; </b></span>composition.relatesTo<b> as </b><span style="color: maroon">relatesTo</span><b> then</b><span style="color: navy"> {
 </span>    <span style="color: navy">// </span><span style="color: green">CDA relatedDocument.typeCode=RPLC -&gt; FHIR Composition.relatesTo.code</span>
     relatedDoc.typeCode<b> as </b><span style="color: maroon">typeCode</span><b> where </b><span style="color: navy">(</span>typeCode = 'RPLC'<span style="color: navy">)</span><span style="color: navy"><b> -&gt; </b></span>relatesTo.code = <span style="color: blue">'replaces'</span> <i>&quot;replaces&quot;</i><span style="color: navy">;</span>
@@ -465,7 +465,7 @@
 
 <span style="color: navy">// </span><span style="color: green">   Il alimente les informations génériques de l’organisation :</span>
 <span style="color: navy">// </span><span style="color: green">   identifier, name, telecom et address</span>
-<b>group </b>MapCDAOrganizationToOrganization<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">organization</span><span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapCDAOrganizationToOrganization<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">organization</span><span style="color: navy"> : </span>Organization<span style="color: navy">)</span><span style="color: navy"> {
 </span>  <span style="color: navy">// </span><span style="color: green">CDA organization.id -&gt; FHIR Organization.identifier</span>
   src.id<b> as </b><span style="color: maroon">id</span><span style="color: navy"><b> -&gt; </b></span>organization.identifier = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Identifier'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">identifier</span><b> then </b>II<span style="color: navy">(</span><span style="color: maroon">id</span><span style="color: navy">, </span><span style="color: maroon">identifier</span><span style="color: navy">)</span> <i>&quot;identifier&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">CDA organization.name -&gt; FHIR Organization.name</span>
@@ -485,7 +485,7 @@
 
 <span style="color: navy">// </span><span style="color: green">   Il alimente les informations génériques du professionnel :</span>
 <span style="color: navy">// </span><span style="color: green">   identifier, address, telecom et name</span>
-<b>group </b>MapCDAAssignedEntityToPractitioner<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">practitioner</span><span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapCDAAssignedEntityToPractitioner<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">practitioner</span><span style="color: navy"> : </span>Practitioner<span style="color: navy">)</span><span style="color: navy"> {
 </span>  <span style="color: navy">// </span><span style="color: green">CDA assignedEntity.id -&gt; FHIR Practitioner.identifier</span>
   src.id<b> as </b><span style="color: maroon">id</span><span style="color: navy"><b> -&gt; </b></span>practitioner.identifier = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Identifier'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">identifier</span><b> then </b>II<span style="color: navy">(</span><span style="color: maroon">id</span><span style="color: navy">, </span><span style="color: maroon">identifier</span><span style="color: navy">)</span> <i>&quot;identifier&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">CDA assignedEntity.addr -&gt; FHIR Practitioner.address</span>
@@ -506,7 +506,7 @@
 <span style="color: navy">// </span><span style="color: green">   Il alimente les références PractitionerRole.practitioner et</span>
 <span style="color: navy">// </span><span style="color: green">   PractitionerRole.organization à partir des ressources Practitioner et</span>
 <span style="color: navy">// </span><span style="color: green">   Organization déjà créées</span>
-<b>group </b>MapCDAAssignedEntityToPractitionerRole<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">role</span>, <b>target</b> <span style="color: maroon">practitioner</span>, <b>target</b> <span style="color: maroon">organization</span><span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapCDAAssignedEntityToPractitionerRole<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">role</span><span style="color: navy"> : </span>PractitionerRole, <b>target</b> <span style="color: maroon">practitioner</span><span style="color: navy"> : </span>Practitioner, <b>target</b> <span style="color: maroon">organization</span><span style="color: navy"> : </span>Organization<span style="color: navy">)</span><span style="color: navy"> {
 </span>  <span style="color: navy">// </span><span style="color: green">CDA assignedEntity -&gt; FHIR PractitionerRole.practitioner</span>
   src<span style="color: navy"><b> -&gt; </b></span> role.practitioner = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Reference'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">refPractitioner</span><span style="color: navy">, </span> refPractitioner.reference = <span style="color: navy">(</span>'urn:uuid:' + %practitioner.id<span style="color: navy">)</span> <i>&quot;practitionerRef&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">CDA representedOrganization -&gt; FHIR PractitionerRole.organization</span>
@@ -524,7 +524,7 @@
 <span style="color: navy">// </span><span style="color: green">   Le champ relationship n’est pas alimenté dans cette étape afin d’éviter un</span>
 <span style="color: navy">// </span><span style="color: green">   double mapping. Il est enrichi ensuite dans l’étape française avec le système</span>
 <span style="color: navy">// </span><span style="color: green">   NOS approprié</span>
-<b>group </b>MapCDARelatedEntityToRelatedPerson<span style="color: navy">(</span><b>source</b> <span style="color: maroon">relatedEntity</span>, <b>target</b> <span style="color: maroon">relatedPerson</span>, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapCDARelatedEntityToRelatedPerson<span style="color: navy">(</span><b>source</b> <span style="color: maroon">relatedEntity</span><span style="color: navy"> : </span>RelatedEntity, <b>target</b> <span style="color: maroon">relatedPerson</span><span style="color: navy"> : </span>RelatedPerson, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy"> : </span>Patient<span style="color: navy">)</span><span style="color: navy"> {
 </span>  <span style="color: navy">// </span><span style="color: green">CDA relatedEntity -&gt; FHIR RelatedPerson.patient</span>
   relatedEntity<span style="color: navy"><b> -&gt; </b></span> relatedPerson.patient = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Reference'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">patientRef</span><span style="color: navy">, </span> patientRef.reference = <span style="color: navy">(</span>'urn:uuid:' + %patient.id<span style="color: navy">)</span> <i>&quot;patientRef&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">CDA relatedEntity.id -&gt; FHIR RelatedPerson.identifier</span>
@@ -555,7 +555,7 @@
 <span style="color: navy">// </span><span style="color: green">   - Location.name ;</span>
 <span style="color: navy">// </span><span style="color: green">   - Location.type ;</span>
 <span style="color: navy">// </span><span style="color: green">   - Organization représentant la structure de prise en charge.</span>
-<b>group </b>MapCDAHealthCareFacilityToLocationContext<span style="color: navy">(</span><b>source</b> <span style="color: maroon">facility</span>, <b>target</b> <span style="color: maroon">encounter</span>, <b>target</b> <span style="color: maroon">location</span>, <b>target</b> <span style="color: maroon">facilityOrganization</span><span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapCDAHealthCareFacilityToLocationContext<span style="color: navy">(</span><b>source</b> <span style="color: maroon">facility</span><span style="color: navy"> : </span>HealthCareFacility, <b>target</b> <span style="color: maroon">encounter</span><span style="color: navy"> : </span>Encounter, <b>target</b> <span style="color: maroon">location</span><span style="color: navy"> : </span>Location, <b>target</b> <span style="color: maroon">facilityOrganization</span><span style="color: navy"> : </span>Organization<span style="color: navy">)</span><span style="color: navy"> {
 </span>  <span style="color: navy">// </span><span style="color: green">CDA healthCareFacility -&gt; FHIR Encounter.location.location</span>
   facility<span style="color: navy"><b> -&gt; </b></span>encounter.location<b> as </b><span style="color: maroon">encLocation</span><b> then</b><span style="color: navy"> {
 </span>    facility<span style="color: navy"><b> -&gt; </b></span> encLocation.location = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Reference'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">locRef</span><span style="color: navy">, </span> locRef.reference = <span style="color: navy">(</span>'urn:uuid:' + %location.id<span style="color: navy">)</span> <i>&quot;locationRef&quot;</i><span style="color: navy">;</span>
@@ -583,7 +583,7 @@
 <span style="color: navy">// </span><span style="color: green">   Cette partie transforme uniquement le squelette du structuredBody CDA.</span>
 <span style="color: navy">// </span><span style="color: green">   Les entries métier ne sont pas transformées dans l’étape 2</span>
 <span style="color: navy">// </span><span style="color: green">CDA component.structuredBody -&gt; FHIR Composition.section</span>
-<b>group </b>MapClinicalDocumentBody<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">composition</span>, <b>target</b> <span style="color: maroon">bundle</span>, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>MapClinicalDocumentBody<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>ClinicalDocument, <b>target</b> <span style="color: maroon">composition</span><span style="color: navy"> : </span>Composition, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy"> : </span>Patient<span style="color: navy">)</span><span style="color: navy"> {
 </span>  src.component<b> as </b><span style="color: maroon">cdaComponent</span><b> then</b><span style="color: navy"> {
 </span>    cdaComponent.structuredBody<b> as </b><span style="color: maroon">structuredBody</span><b> then</b><span style="color: navy"> {
 </span>      structuredBody.component<b> as </b><span style="color: maroon">bodyComponent</span><b> then</b><span style="color: navy"> {
@@ -618,7 +618,7 @@
   <name value="CdaToBundle"/>
   <title value="Mapping CDA vers FHIR - Étape 2 socle générique orienté CDA"/>
   <status value="draft"/>
-  <date value="2026-07-30T13:25:45+00:00"/>
+  <date value="2026-07-30T13:42:30+00:00"/>
   <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
   <contact>
     <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
@@ -889,18 +889,22 @@
     <documentation value="GROUPE D’ORCHESTRATION — TRAITEMENT DU CLINICALDOCUMENT CDA&#xA;&#xA;   Ce groupe permet de traiter le ClinicalDocument CDA en deux parties :&#xA;   - l’en-tête CDA via l'appel du groupe MapClinicalDocumentHeader ;&#xA;   - le corps CDA via l'appelle du groupe MapClinicalDocumentBody.&#xA;&#xA;   Les ressources initialisées dans le groupe d’entrée, Bundle, Composition et&#xA;   Patient, servent de support de sortie pour le traitement CDA"/>
     <input>
       <name value="cda"/>
+      <type value="ClinicalDocument"/>
       <mode value="source"/>
     </input>
     <input>
       <name value="patient"/>
+      <type value="Patient"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="composition"/>
+      <type value="Composition"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="bundle"/>
+      <type value="Bundle"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -938,18 +942,22 @@
     <documentation value="GROUPE — TRAITEMENT DE L’EN-TÊTE DU CLINICALDOCUMENT CDA&#xA;&#xA;   Ce groupe traite l’en-tête du ClinicalDocument CDA bloc par bloc.&#xA;&#xA;   Pour chaque élément de l’en-tête CDA, il appelle le groupe spécialisé&#xA;   correspondant :&#xA;   - id, setId, versionNumber et effectiveTime sont transmis à&#xA;     MapHeaderDocumentIdentity pour alimenter les métadonnées du Bundle et de&#xA;     la Composition ;&#xA;   - languageCode, code, title, effectiveTime et confidentialityCode sont transmis&#xA;     à MapHeaderDocumentDescription pour alimenter la description documentaire ;&#xA;   - recordTarget.patientRole est transmis à MapHeaderRecordTarget pour alimenter&#xA;     le Patient et la référence Composition.subject ;&#xA;   - custodian est transmis à MapHeaderCustodian pour créer et alimenter&#xA;     l’Organization responsable de la conservation du document ;&#xA;   - author est transmis à MapHeaderAuthor pour créer et alimenter le Practitioner,&#xA;     l’Organization et le PractitionerRole de l’auteur ;&#xA;   - legalAuthenticator est transmis à MapHeaderLegalAuthenticator pour créer et&#xA;     alimenter le signataire légal ;&#xA;   - documentationOf.serviceEvent est transmis à MapHeaderDocumentationOf pour&#xA;     alimenter Composition.event ;&#xA;   - componentOf.encompassingEncounter est transmis à MapHeaderEncounterContext&#xA;     pour créer et alimenter Encounter, Location et Organization si le bloc CDA&#xA;     est présent ;&#xA;   - informant.relatedEntity classCode=ECON est transmis à MapHeaderEmergencyContact&#xA;     pour créer la RelatedPerson correspondant à la personne à prévenir ;&#xA;   - informant.relatedEntity classCode=NOK est transmis à MapHeaderTrustedPerson&#xA;     pour créer la RelatedPerson correspondant à la personne de confiance ;&#xA;   - recordTarget.patientRole.patient.guardian est transmis à MapHeaderGuardian&#xA;     pour créer la RelatedPerson correspondant au guardian ;&#xA;   - relatedDocument est transmis à MapHeaderRelatedDocument pour alimenter&#xA;     Composition.relatesTo.&#xA;&#xA;   Les ressources optionnelles sont créées dans le groupe qui traite le bloc CDA&#xA;   correspondant. Ainsi, une ressource FHIR n’est créée que lorsqu’un élément CDA&#xA;   justifie son existence"/>
     <input>
       <name value="cda"/>
+      <type value="ClinicalDocument"/>
       <mode value="source"/>
     </input>
     <input>
       <name value="bundle"/>
+      <type value="Bundle"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="composition"/>
+      <type value="Composition"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="patient"/>
+      <type value="Patient"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -1114,14 +1122,17 @@
     <documentation value="groupe qui traite l'identité du document CDA -&gt; métadonnées Bundle / Composition FHIR"/>
     <input>
       <name value="src"/>
+      <type value="ClinicalDocument"/>
       <mode value="source"/>
     </input>
     <input>
       <name value="bundle"/>
+      <type value="Bundle"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="composition"/>
+      <type value="Composition"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -1479,14 +1490,17 @@
     <documentation value="groupe qui traite la description du document CDA -&gt; FHIR Composition"/>
     <input>
       <name value="src"/>
+      <type value="ClinicalDocument"/>
       <mode value="source"/>
     </input>
     <input>
       <name value="composition"/>
+      <type value="Composition"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="patient"/>
+      <type value="Patient"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -1636,14 +1650,17 @@
     <documentation value="groupe qui traite: CDA recordTarget.patientRole -&gt; FHIR Patient"/>
     <input>
       <name value="src"/>
+      <type value="ClinicalDocument"/>
       <mode value="source"/>
     </input>
     <input>
       <name value="patient"/>
+      <type value="Patient"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="composition"/>
+      <type value="Composition"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -1842,14 +1859,17 @@
     <documentation value="groupe qui traite custodian  (l'organisation)&#xA;L’Organization est créée uniquement si le bloc custodian existe dans le CDA."/>
     <input>
       <name value="src"/>
+      <type value="ClinicalDocument"/>
       <mode value="source"/>
     </input>
     <input>
       <name value="composition"/>
+      <type value="Composition"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="bundle"/>
+      <type value="Bundle"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -1950,14 +1970,17 @@
     <documentation value="GROUPE — TRAITEMENT DE L’AUTEUR DU DOCUMENT CDA&#xA;&#xA;   Ce groupe traite le bloc author de l’en-tête CDA.&#xA;&#xA;   Si le bloc author existe, il crée un Practitioner pour représenter l’auteur.&#xA;   Si author.assignedAuthor.representedOrganization est présent, il crée aussi&#xA;   une Organization et un PractitionerRole afin de représenter l’auteur dans son&#xA;   organisation.&#xA;&#xA;   La Composition référence ensuite le PractitionerRole si l’organisation existe,&#xA;   sinon elle référence directement le Practitioner."/>
     <input>
       <name value="src"/>
+      <type value="ClinicalDocument"/>
       <mode value="source"/>
     </input>
     <input>
       <name value="composition"/>
+      <type value="Composition"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="bundle"/>
+      <type value="Bundle"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -2165,14 +2188,17 @@
     <documentation value="GROUPE — TRAITEMENT DU SIGNATAIRE LÉGAL CDA&#xA;   Ce groupe traite le bloc legalAuthenticator de l’en-tête CDA&#xA;&#xA;   Si le bloc legalAuthenticator existe, il crée un Practitioner pour représenter&#xA;   le signataire légal. Si legalAuthenticator.assignedEntity.representedOrganization&#xA;   est présent, il crée aussi une Organization et un PractitionerRole.&#xA;&#xA;   La Composition est alimentée via Composition.attester. La partie attester.party&#xA;   référence le PractitionerRole si l’organisation existe, sinon elle référence&#xA;   directement le Practitioner."/>
     <input>
       <name value="src"/>
+      <type value="ClinicalDocument"/>
       <mode value="source"/>
     </input>
     <input>
       <name value="composition"/>
+      <type value="Composition"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="bundle"/>
+      <type value="Bundle"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -2439,10 +2465,12 @@
     <documentation value="GROUPE — TRAITEMENT DE L’ÉVÉNEMENT DOCUMENTÉ CDA"/>
     <input>
       <name value="src"/>
+      <type value="ClinicalDocument"/>
       <mode value="source"/>
     </input>
     <input>
       <name value="composition"/>
+      <type value="Composition"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -2522,18 +2550,22 @@
     <documentation value="GROUPE — TRAITEMENT DU CONTEXTE DE PRISE EN CHARGE CDA&#xA;&#xA;   Ce groupe traite le bloc componentOf.encompassingEncounter de l’en-tête CDA.&#xA;&#xA;   Si encompassingEncounter existe, il crée une ressource Encounter et l’associe&#xA;   à la Composition.&#xA;&#xA;   Le remplissage générique de l’Encounter est délégué au groupe commun :&#xA;   MapCDAEncompassingEncounterToEncounter.&#xA;&#xA;   Si encompassingEncounter.location.healthCareFacility est également présent,&#xA;   il crée une Location et une Organization pour représenter le lieu et la&#xA;   structure de prise en charge, puis appelle :&#xA;   MapCDAHealthCareFacilityToLocationContext."/>
     <input>
       <name value="src"/>
+      <type value="ClinicalDocument"/>
       <mode value="source"/>
     </input>
     <input>
       <name value="composition"/>
+      <type value="Composition"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="bundle"/>
+      <type value="Bundle"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="patient"/>
+      <type value="Patient"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -2715,14 +2747,17 @@
     <documentation value="GROUPE COMMUN — ENCOMPASSINGENCOUNTER CDA VERS ENCOUNTER FHIR&#xA;&#xA;   Ce groupe transforme les informations génériques du bloc CDA&#xA;   componentOf.encompassingEncounter vers une ressource FHIR Encounter déjà créée&#xA;   par le groupe appelant.&#xA;&#xA;   Il alimente :&#xA;   - Encounter.identifier ;&#xA;   - Encounter.subject ;&#xA;   - Encounter.status ;&#xA;   - Encounter.class ;&#xA;   - Encounter.period.&#xA;&#xA;   Si le code CDA de l’encompassingEncounter est absent, Encounter.class est&#xA;   créé avec l’extension data-absent-reason afin de respecter l’obligation FHIR&#xA;   sans inventer une information absente du CDA"/>
     <input>
       <name value="encompassingEncounter"/>
+      <type value="EncompassingEncounter"/>
       <mode value="source"/>
     </input>
     <input>
       <name value="encounter"/>
+      <type value="Encounter"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="patient"/>
+      <type value="Patient"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -3001,14 +3036,17 @@
     <documentation value="GROUPE — TRAITEMENT DE LA PERSONNE À PRÉVENIR CDA&#xA;&#xA;   Ce groupe traite les blocs informant.relatedEntity dont classCode = ECON.&#xA;&#xA;   Si un informant ECON est présent dans le CDA, il crée une RelatedPerson pour&#xA;   représenter la personne à prévenir en cas d’urgence, puis l’associe au Patient.&#xA;&#xA;   La ressource RelatedPerson est donc créée uniquement si ce bloc CDA existe"/>
     <input>
       <name value="src"/>
+      <type value="ClinicalDocument"/>
       <mode value="source"/>
     </input>
     <input>
       <name value="bundle"/>
+      <type value="Bundle"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="patient"/>
+      <type value="Patient"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -3072,14 +3110,17 @@
     <documentation value="GROUPE — TRAITEMENT DE LA PERSONNE DE CONFIANCE CDA&#xA;&#xA;   Ce groupe traite les blocs informant.relatedEntity dont classCode = NOK.&#xA;&#xA;   Si un informant NOK est présent dans le CDA, il crée une RelatedPerson pour&#xA;   représenter la personne de confiance, puis l’associe au Patient.&#xA;&#xA;   La ressource RelatedPerson est donc créée uniquement si ce bloc CDA existe."/>
     <input>
       <name value="src"/>
+      <type value="ClinicalDocument"/>
       <mode value="source"/>
     </input>
     <input>
       <name value="bundle"/>
+      <type value="Bundle"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="patient"/>
+      <type value="Patient"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -3143,14 +3184,17 @@
     <documentation value="GROUPE — TRAITEMENT DU GUARDIAN CDA&#xA;&#xA;   Ce groupe traite le bloc recordTarget.patientRole.patient.guardian.&#xA;&#xA;   Si un guardian est présent dans le CDA, il crée une RelatedPerson pour&#xA;   représenter le représentant légal ou responsable du patient.&#xA;&#xA;   La ressource RelatedPerson est donc créée uniquement si le bloc guardian existe"/>
     <input>
       <name value="src"/>
+      <type value="ClinicalDocument"/>
       <mode value="source"/>
     </input>
     <input>
       <name value="bundle"/>
+      <type value="Bundle"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="patient"/>
+      <type value="Patient"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -3348,10 +3392,12 @@
     <documentation value="GROUPE — TRAITEMENT DU DOCUMENT LIÉ CDA&#xA;&#xA;   Ce groupe traite le bloc relatedDocument du CDA.&#xA;&#xA;   Si relatedDocument est présent, il alimente Composition.relatesTo afin de&#xA;   représenter le lien avec un document antérieur, par exemple un document&#xA;   remplacé.&#xA;&#xA;   Ce groupe ne crée pas de ressource FHIR indépendante. Il complète uniquement&#xA;   la Composition déjà initialisée"/>
     <input>
       <name value="src"/>
+      <type value="ClinicalDocument"/>
       <mode value="source"/>
     </input>
     <input>
       <name value="composition"/>
+      <type value="Composition"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -3430,6 +3476,7 @@
     </input>
     <input>
       <name value="organization"/>
+      <type value="Organization"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -3541,6 +3588,7 @@
     </input>
     <input>
       <name value="practitioner"/>
+      <type value="Practitioner"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -3658,14 +3706,17 @@
     </input>
     <input>
       <name value="role"/>
+      <type value="PractitionerRole"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="practitioner"/>
+      <type value="Practitioner"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="organization"/>
+      <type value="Organization"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -3727,14 +3778,17 @@
     <documentation value="GROUPE COMMUN — RELATEDENTITY CDA VERS RELATEDPERSON FHIR&#xA;&#xA;   Ce groupe transforme un relatedEntity CDA vers une ressource FHIR RelatedPerson&#xA;   déjà créée par le groupe appelant.&#xA;&#xA;   Il alimente le lien avec le Patient ainsi que les informations génériques :&#xA;   identifier, address, telecom et name.&#xA;&#xA;   Le champ relationship n’est pas alimenté dans cette étape afin d’éviter un&#xA;   double mapping. Il est enrichi ensuite dans l’étape française avec le système&#xA;   NOS approprié"/>
     <input>
       <name value="relatedEntity"/>
+      <type value="RelatedEntity"/>
       <mode value="source"/>
     </input>
     <input>
       <name value="relatedPerson"/>
+      <type value="RelatedPerson"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="patient"/>
+      <type value="Patient"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -3874,18 +3928,22 @@
     <documentation value="GROUPE COMMUN — HEALTHCAREFACILITY CDA VERS CONTEXTE DE LIEU FHIR&#xA;&#xA;   Ce groupe traite le bloc healthCareFacility du CDA.&#xA;&#xA;   Il complète les ressources Encounter, Location et Organization déjà créées&#xA;   par le groupe appelant lorsque le bloc healthCareFacility existe.&#xA;&#xA;   Il alimente notamment :&#xA;   - Encounter.location ;&#xA;   - Encounter.serviceProvider ;&#xA;   - Location.managingOrganization ;&#xA;   - Location.name ;&#xA;   - Location.type ;&#xA;   - Organization représentant la structure de prise en charge."/>
     <input>
       <name value="facility"/>
+      <type value="HealthCareFacility"/>
       <mode value="source"/>
     </input>
     <input>
       <name value="encounter"/>
+      <type value="Encounter"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="location"/>
+      <type value="Location"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="facilityOrganization"/>
+      <type value="Organization"/>
       <mode value="target"/>
     </input>
     <rule>
@@ -4063,18 +4121,22 @@
     <documentation value="CORPS CDA -&gt; SECTIONS FHIR&#xA;&#xA;   Cette partie transforme uniquement le squelette du structuredBody CDA.&#xA;   Les entries métier ne sont pas transformées dans l’étape 2&#xD;&#xA;CDA component.structuredBody -&gt; FHIR Composition.section"/>
     <input>
       <name value="src"/>
+      <type value="ClinicalDocument"/>
       <mode value="source"/>
     </input>
     <input>
       <name value="composition"/>
+      <type value="Composition"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="bundle"/>
+      <type value="Bundle"/>
       <mode value="target"/>
     </input>
     <input>
       <name value="patient"/>
+      <type value="Patient"/>
       <mode value="target"/>
     </input>
     <rule>
