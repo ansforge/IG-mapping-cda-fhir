@@ -333,8 +333,6 @@ group ENHumanName(source src, target tgt) {
     // Suffixe du nom
     item.suffix as v -> tgt.suffix = (%v.xmlText);
 
-    // Mapping possible du use CDA vers use FHIR, laissé en commentaire
-    // src.use as c -> tgt.use = translate(c, 'http://hl7.org/fhir/ConceptMap/cm-name-use-v3', 'code');
   } "item";
 
   // La période de validité CDA devient period FHIR
@@ -375,19 +373,6 @@ group ADAddress(source src, target tgt) {
     // Ligne d’adresse complète
     item.streetAddressLine as v -> tgt.line=(%v.xmlText);
     
-    // Ajout éventuel d’une extension sur la ligne d’adresse pour le censusTract
-    // item   -> tgt.line  as line then { 
-    // item where src.censusTract.exists() then {
-      // Mapping du censusTract dans une extension de line
-      // item.censusTract as v -> line.extension as ext1 then CensusTract(v, ext1) "line";
-    // }"sfgfdsg";
-    // } "CensusTract";
-
-    // Anciennes tentatives de mapping du censusTract, conservées en commentaire
-    //as streetAddress then{
-      //src.censusTract as v->tgt.line as line, line.extension as ext1 then CensusTract(v, ext1) "line";
-    //src.censusTract as v ->tgt.line as line, line.extension as ext1 then CensusTract(v, ext1) "line";
-
     // Nom de rue
     item.streetName as v -> tgt.line = (%v.xmlText);
 
@@ -432,7 +417,7 @@ group TELContactPoint(source src, target tgt) {
   src.use where (src.use = 'MC') -> tgt.use = 'mobile' "usemobile";
 
   // Période d’utilisation du contact
-  src.useablePeriod as useablePeriod -> tgt.period = useablePeriod; // use: for src.use as c make tgt.use = translate(c, 'http://hl7.org/fhir/ConceptMap/cm-telecom-use-v3', 'code')
+  src.useablePeriod as useablePeriod -> tgt.period = useablePeriod;
 }
 
 
