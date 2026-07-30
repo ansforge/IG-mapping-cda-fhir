@@ -111,7 +111,7 @@ group TransformPatientSummaryClinicalDocumentToFHIRDocument(source cda : Clinica
    Les ressources optionnelles ne sont donc pas créées au début : elles sont
    créées uniquement dans les groupes associés aux blocs CDA présents */
 
-group OrchestrateClinicalDocumentFinalTransformation(source cda, target patient, target composition, target bundle) {
+group OrchestrateClinicalDocumentFinalTransformation(source cda : ClinicalDocument, target patient : Patient, target composition : Composition, target bundle : Bundle) {
   // CDA ClinicalDocument.header -> socle générique + enrichissement français + création interne des ressources administratives
   cda then MapClinicalDocumentHeaderWithFrenchRules(cda, bundle, composition, patient) "headerFrenchBase";
 
@@ -129,7 +129,7 @@ group OrchestrateClinicalDocumentFinalTransformation(source cda, target patient,
    - MapPatientSummarySectionEntries crée ensuite les ressources métier selon
      le code LOINC de la section*/
 
-group MapPatientSummaryBody(source src, target composition, target bundle, target patient) {
+group MapPatientSummaryBody(source src : ClinicalDocument, target composition : Composition, target bundle : Bundle, target patient : Patient) {
   src.component as cdaComponent then {
     cdaComponent.structuredBody as structuredBody then {
       structuredBody.component as bodyComponent then {
@@ -149,7 +149,7 @@ group MapPatientSummaryBody(source src, target composition, target bundle, targe
 
 /*DISPATCH DES ENTRIES MÉTIER PATIENT SUMMARY
    CDA section.code LOINC -> groupe métier FHIR correspondant*/
-group MapPatientSummarySectionEntries(source section, target compSection, target bundle, target patient) {
+group MapPatientSummarySectionEntries(source section, target compSection, target bundle : Bundle, target patient : Patient) {
 
   // CDA section Problèmes actifs -> FHIR Condition
   section.code as secCode where secCode.code = '11450-4' then PatientSummaryConditionSection(section, compSection, bundle, patient) "activeProblems";
@@ -223,7 +223,7 @@ group MapPatientSummarySectionEntries(source section, target compSection, target
 //1. PROBLÈMES ACTIFS ET ANTÉCÉDENTS MÉDICAUX
 
 /* Section CDA problèmes / antécédents -> Conditions FHIR */
-group PatientSummaryConditionSection(source section, target compSection, target bundle, target patient) {
+group PatientSummaryConditionSection(source section, target compSection, target bundle : Bundle, target patient : Patient) {
 
   // Entrées CDA -> observations de problèmes -> Condition.
   section.entry as entry then {
@@ -237,7 +237,7 @@ group PatientSummaryConditionSection(source section, target compSection, target 
 
 
 /* Observation CDA de problème -> Condition FHIR */
-group PatientSummaryConditionFromProblemObservation(source observation, target condition, target compSection, target patient, target bundle) {
+group PatientSummaryConditionFromProblemObservation(source observation, target condition : Condition, target compSection, target patient : Patient, target bundle : Bundle) {
 
   // Patient concerné.
   observation -> condition.subject = create('Reference') as subjectRef, subjectRef.reference = ('urn:uuid:' + %patient.id) "subject";
@@ -372,7 +372,7 @@ group PatientSummaryConditionFromProblemObservation(source observation, target c
 //2. ALLERGIES / HYPERSENSIBILITÉS
 
 /* Section CDA allergies / hypersensibilités -> AllergyIntolerance */
-group PatientSummaryAllergySection(source section, target compSection, target bundle, target patient) {
+group PatientSummaryAllergySection(source section, target compSection, target bundle : Bundle, target patient : Patient) {
 
   // Section allergies.
   section.templateId as sectionTid then {
@@ -398,7 +398,7 @@ group PatientSummaryAllergySection(source section, target compSection, target bu
 
 
 /* Observation CDA d’allergie -> AllergyIntolerance */
-group AllergyFromCdaObservation(source observation, target allergy, target compSection, target patient) {
+group AllergyFromCdaObservation(source observation, target allergy : AllergyIntolerance, target compSection, target patient : Patient) {
 
   // Identifiant et patient.
   observation.id as allergyId -> allergy.identifier = create('Identifier') as identifier then II(allergyId, identifier) "identifier";
@@ -645,7 +645,7 @@ group AllergyFromCdaObservation(source observation, target allergy, target compS
 
 /*3. PROCÉDURES / ACTES */
 
-group PatientSummaryProcedureSection(source section, target compSection, target bundle, target patient) {
+group PatientSummaryProcedureSection(source section, target compSection, target bundle : Bundle, target patient : Patient) {
 
   // Section actes / procédures.
   section.templateId as sectionTid then {
@@ -663,7 +663,7 @@ group PatientSummaryProcedureSection(source section, target compSection, target 
 
 
 /* Acte CDA -> Procedure FHIR */
-group PatientSummaryProcedureFromProcedure(source procedure, target fhirProcedure, target compSection, target patient, target bundle) {
+group PatientSummaryProcedureFromProcedure(source procedure, target fhirProcedure : Procedure, target compSection, target patient : Patient, target bundle : Bundle) {
 
   // Statut.
   procedure -> fhirProcedure.status = 'unknown' "statusDefault";
@@ -773,7 +773,7 @@ group PatientSummaryProcedureFromProcedure(source procedure, target fhirProcedur
 
 
 /* Auteur CDA -> recorder Procedure */
-group ProcedureRecorderFromAssignedAuthor(source assignedAuthor, target fhirProcedure, target bundle) {
+group ProcedureRecorderFromAssignedAuthor(source assignedAuthor, target fhirProcedure : Procedure, target bundle : Bundle) {
 
   assignedAuthor -> bundle.entry as practitionerEntry, practitionerEntry.resource = create('Practitioner') as practitioner, practitioner.id = uuid(), practitionerEntry.fullUrl = ('urn:uuid:' + %practitioner.id) then {
     assignedAuthor then MapCDAAssignedEntityToPractitioner(assignedAuthor, practitioner) "practitionerBase";
@@ -793,7 +793,7 @@ group ProcedureRecorderFromAssignedAuthor(source assignedAuthor, target fhirProc
 
 
 /* Performer CDA -> performer Procedure */
-group ProcedurePerformerFromAssignedEntity(source assignedEntity, target fhirProcedure, target bundle) {
+group ProcedurePerformerFromAssignedEntity(source assignedEntity, target fhirProcedure : Procedure, target bundle : Bundle) {
 
   assignedEntity -> bundle.entry as practitionerEntry, practitionerEntry.resource = create('Practitioner') as practitioner, practitioner.id = uuid(), practitionerEntry.fullUrl = ('urn:uuid:' + %practitioner.id) then {
     assignedEntity then MapCDAAssignedEntityToPractitioner(assignedEntity, practitioner) "practitionerBase";
@@ -823,7 +823,7 @@ group ProcedurePerformerFromAssignedEntity(source assignedEntity, target fhirPro
 
 /* 4. TRAITEMENTS */
 
-group PatientSummaryMedicationSection(source section, target compSection, target bundle, target patient) {
+group PatientSummaryMedicationSection(source section, target compSection, target bundle : Bundle, target patient : Patient) {
 
   // Section traitements.
   section.templateId as sectionTid then {
@@ -841,7 +841,7 @@ group PatientSummaryMedicationSection(source section, target compSection, target
 
 
 /* Administration CDA -> MedicationStatement */
-group PatientSummaryMedicationStatementFromSubstanceAdministration(source substanceAdministration, target medicationStatement, target compSection, target bundle, target patient) {
+group PatientSummaryMedicationStatementFromSubstanceAdministration(source substanceAdministration, target medicationStatement : MedicationStatement, target compSection, target bundle : Bundle, target patient : Patient) {
 
   // Statut, patient et catégorie.
   substanceAdministration -> medicationStatement.status = 'unknown' "statusDefault";
@@ -869,7 +869,7 @@ group PatientSummaryMedicationStatementFromSubstanceAdministration(source substa
 
 
 /* Statut CDA -> MedicationStatement.status */
-group MedicationStatementStatusFromCdaStatus(source statusCode, target medicationStatement) {
+group MedicationStatementStatusFromCdaStatus(source statusCode, target medicationStatement : MedicationStatement) {
   statusCode.code as code where code = 'completed' -> medicationStatement.status = 'completed' "completed";
   statusCode.code as code where code = 'active' -> medicationStatement.status = 'active' "active";
   statusCode.code as code where code = 'aborted' -> medicationStatement.status = 'stopped' "aborted";
@@ -879,7 +879,7 @@ group MedicationStatementStatusFromCdaStatus(source statusCode, target medicatio
 
 
 /* Produit de santé CDA -> Medication + référence depuis MedicationStatement */
-group MedicationResourceFromConsumable(source consumable, target medicationStatement, target bundle) {
+group MedicationResourceFromConsumable(source consumable, target medicationStatement : MedicationStatement, target bundle : Bundle) {
   consumable.manufacturedProduct as manufacturedProduct then {
     manufacturedProduct.manufacturedMaterial as manufacturedMaterial -> bundle.entry as medicationEntry, medicationEntry.resource = create('Medication') as medication, medication.id = uuid(), medicationEntry.fullUrl = ('urn:uuid:' + %medication.id) then {
       manufacturedMaterial then MedicationFromManufacturedMaterial(manufacturedMaterial, medication) "medicationContent";
@@ -890,7 +890,7 @@ group MedicationResourceFromConsumable(source consumable, target medicationState
 
 
 /* Contenu du médicament */
-group MedicationFromManufacturedMaterial(source manufacturedMaterial, target medication) {
+group MedicationFromManufacturedMaterial(source manufacturedMaterial, target medication : Medication) {
   manufacturedMaterial.code as medicationCode -> medication.code = create('CodeableConcept') as code then CDCodeableConcept(medicationCode, code) "code";
   manufacturedMaterial.name as medicationName where manufacturedMaterial.code.empty() -> medication.code = create('CodeableConcept') as code then {
     medicationName.xmlText as nameText -> code.text = cast(nameText, 'string') "codeText";
@@ -901,7 +901,7 @@ group MedicationFromManufacturedMaterial(source manufacturedMaterial, target med
 
 
 /* Ingrédient pharmaceutique */
-group MedicationIngredientFromPharmIngredient(source ingredient, target medication) {
+group MedicationIngredientFromPharmIngredient(source ingredient, target medication : Medication) {
   ingredient.`pharm:ingredient` as innerIngredient then {
     innerIngredient.`pharm:code` as ingredientCode -> medication.ingredient as fhirIngredient, fhirIngredient.item = create('CodeableConcept') as item then {
       ingredientCode then CDCodeableConcept(ingredientCode, item) "ingredientCode";
@@ -928,7 +928,7 @@ group MedicationIngredientStrengthFromPharmQuantity(source quantity, target fhir
 
 
 /* Période du traitement */
-group MedicationStatementEffectiveFromEffectiveTime(source effectiveTime, target medicationStatement) {
+group MedicationStatementEffectiveFromEffectiveTime(source effectiveTime, target medicationStatement : MedicationStatement) {
   effectiveTime.low as low -> medicationStatement.effective = create('Period') as period then {
     low -> period.start = create('dateTime') as start then TSDateTime(low, start) "start";
     effectiveTime.high as high then {
@@ -945,7 +945,7 @@ group MedicationStatementEffectiveFromEffectiveTime(source effectiveTime, target
 
 
 /* Création conditionnelle du dosage principal */
-group MedicationMainDosageFromSubstanceAdministration(source substanceAdministration, target medicationStatement) {
+group MedicationMainDosageFromSubstanceAdministration(source substanceAdministration, target medicationStatement : MedicationStatement) {
   substanceAdministration.routeCode as routeCode -> medicationStatement.dosage as dosage then MedicationMainDosageContent(substanceAdministration, dosage) "dosageByRoute";
 
   substanceAdministration.doseQuantity as doseQuantity where substanceAdministration.routeCode.empty() then {
@@ -1058,7 +1058,7 @@ group MedicationRatioFromNumeratorDenominator(source srcRatio, target ratio : Ra
 
 
 /* Motif et commentaire */
-group MedicationEntryRelationship(source er, target medicationStatement) {
+group MedicationEntryRelationship(source er, target medicationStatement : MedicationStatement) {
   er.act as reasonAct where er.typeCode = 'RSON' then {
     reasonAct.templateId as tid then {
       tid.root as root where root = '1.2.250.1.213.1.1.3.36' then MedicationReasonFromAct(reasonAct, medicationStatement) "reason";
@@ -1075,7 +1075,7 @@ group MedicationEntryRelationship(source er, target medicationStatement) {
 
 
 /* Motif du traitement */
-group MedicationReasonFromAct(source reasonAct, target medicationStatement) {
+group MedicationReasonFromAct(source reasonAct, target medicationStatement : MedicationStatement) {
   reasonAct.code as reasonCode -> medicationStatement.reasonCode = create('CodeableConcept') as reason then CDCodeableConcept(reasonCode, reason) "reasonCode";
 }
 
@@ -1129,7 +1129,7 @@ group MedicationChildTimingFromEffectiveTime(source childEffectiveTime, target c
 
 /* 5. EFFETS INDÉSIRABLES MÉDICAMENTEUX */
 
-group PatientSummaryAdverseDrugReactionSection(source section, target compSection, target bundle, target patient) {
+group PatientSummaryAdverseDrugReactionSection(source section, target compSection, target bundle : Bundle, target patient : Patient) {
 
   // Section effets indésirables.
   section.templateId as sectionTid then {
@@ -1147,7 +1147,7 @@ group PatientSummaryAdverseDrugReactionSection(source section, target compSectio
 
 
 /* Observation CDA -> AdverseEvent */
-group PatientSummaryAdverseEventFromObservation(source adverseObservation, target adverseEvent, target compSection, target bundle, target patient) {
+group PatientSummaryAdverseEventFromObservation(source adverseObservation, target adverseEvent : AdverseEvent, target compSection, target bundle : Bundle, target patient : Patient) {
 
   // Statut, identifiant et patient.
   adverseObservation -> adverseEvent.actuality = 'actual' "actualityDefault";
@@ -1224,7 +1224,7 @@ group PatientSummaryAdverseEventFromObservation(source adverseObservation, targe
 
 
 /* Traitement suspect -> MedicationStatement + suspectEntity */
-group AdverseEventSuspectMedicationFromTreatment(source treatment, source adverseObservation, target adverseEvent, target bundle, target patient) {
+group AdverseEventSuspectMedicationFromTreatment(source treatment, source adverseObservation, target adverseEvent : AdverseEvent, target bundle : Bundle, target patient : Patient) {
 
   treatment -> bundle.entry as medicationStatementEntry, medicationStatementEntry.resource = create('MedicationStatement') as medicationStatement, medicationStatement.id = uuid(), medicationStatementEntry.fullUrl = ('urn:uuid:' + %medicationStatement.id) then {
 
@@ -1259,7 +1259,7 @@ group AdverseEventSuspectMedicationFromTreatment(source treatment, source advers
 
 
 /* Réaction observée -> Condition + resultingCondition */
-group AdverseEventResultingConditionFromReaction(source reactionObservation, target adverseEvent, target bundle, target patient) {
+group AdverseEventResultingConditionFromReaction(source reactionObservation, target adverseEvent : AdverseEvent, target bundle : Bundle, target patient : Patient) {
 
   reactionObservation -> bundle.entry as conditionEntry, conditionEntry.resource = create('Condition') as condition, condition.id = uuid(), conditionEntry.fullUrl = ('urn:uuid:' + %condition.id) then {
 
@@ -1295,7 +1295,7 @@ group AdverseEventResultingConditionFromReaction(source reactionObservation, tar
 
 /* 6. VACCINATIONS */
 
-group PatientSummaryImmunizationSection(source section, target compSection, target bundle, target patient) {
+group PatientSummaryImmunizationSection(source section, target compSection, target bundle : Bundle, target patient : Patient) {
 
   // Section vaccinations.
   section.templateId as sectionTid then {
@@ -1313,7 +1313,7 @@ group PatientSummaryImmunizationSection(source section, target compSection, targ
 
 
 /* substanceAdministration CDA -> Immunization */
-group PatientSummaryImmunizationFromSubstanceAdministration(source substanceAdministration, target immunization, target compSection, target bundle, target patient) {
+group PatientSummaryImmunizationFromSubstanceAdministration(source substanceAdministration, target immunization : Immunization, target compSection, target bundle : Bundle, target patient : Patient) {
 
   // Statut, identifiant, patient et date.
   substanceAdministration -> immunization.status = 'completed' "statusDefault";
@@ -1428,7 +1428,7 @@ group PatientSummaryImmunizationFromSubstanceAdministration(source substanceAdmi
 
 
 /* Vaccinateur CDA -> Practitioner / Organization / PractitionerRole */
-group ImmunizationPerformerFromAssignedEntity(source assignedEntity, target immunization, target bundle) {
+group ImmunizationPerformerFromAssignedEntity(source assignedEntity, target immunization : Immunization, target bundle : Bundle) {
 
   assignedEntity -> bundle.entry as practitionerEntry, practitionerEntry.resource = create('Practitioner') as practitioner, practitioner.id = uuid(), practitionerEntry.fullUrl = ('urn:uuid:' + %practitioner.id) then {
     assignedEntity then MapCDAAssignedEntityToPractitioner(assignedEntity, practitioner) "practitionerBase";
@@ -1448,7 +1448,7 @@ group ImmunizationPerformerFromAssignedEntity(source assignedEntity, target immu
 
 
 /* Réaction observée -> Observation + Immunization.reaction.detail */
-group ImmunizationReactionFromObservation(source reactionObservation, target immunization, target bundle, target patient) {
+group ImmunizationReactionFromObservation(source reactionObservation, target immunization : Immunization, target bundle : Bundle, target patient : Patient) {
 
   reactionObservation -> bundle.entry as observationEntry, observationEntry.resource = create('Observation') as reaction, reaction.id = uuid(), observationEntry.fullUrl = ('urn:uuid:' + %reaction.id) then {
 
@@ -1575,7 +1575,7 @@ group PatientSummaryObservationBase(source observation, target fhirObservation :
 
 
 /* Statut CDA -> Observation.status */
-group ObservationStatusFromCdaStatus(source statusCode, target fhirObservation) {
+group ObservationStatusFromCdaStatus(source statusCode, target fhirObservation : Observation) {
   statusCode.code as code where code = 'completed' -> fhirObservation.status = 'final' "completed";
   statusCode.code as code where code = 'active' -> fhirObservation.status = 'registered' "active";
   statusCode.code as code where code = 'aborted' -> fhirObservation.status = 'cancelled' "aborted";
@@ -1584,7 +1584,7 @@ group ObservationStatusFromCdaStatus(source statusCode, target fhirObservation) 
 
 
 /* effectiveTime CDA -> Observation.effective[x] */
-group ObservationEffectiveFromEffectiveTime(source effectiveTime, target fhirObservation) {
+group ObservationEffectiveFromEffectiveTime(source effectiveTime, target fhirObservation : Observation) {
   effectiveTime.value as value -> fhirObservation.effective = create('dateTime') as effectiveDateTime then TSDateTime(effectiveTime, effectiveDateTime) "effectiveDateTime";
   effectiveTime.low as low where effectiveTime.high.empty() -> fhirObservation.effective = create('dateTime') as effectiveDateTime then TSDateTime(low, effectiveDateTime) "effectiveLowAsDateTime";
 
@@ -1603,7 +1603,7 @@ group ObservationEffectiveFromEffectiveTime(source effectiveTime, target fhirObs
 
 
 /* Valeur CDA -> Observation.value[x] */
-group ObservationValueFromCdaValue(source value, target fhirObservation) {
+group ObservationValueFromCdaValue(source value, target fhirObservation : Observation) {
   value.unit as unit -> fhirObservation.value = create('Quantity') as quantity then {
     value.value as v -> quantity.value = cast(v, 'decimal') "quantityValue";
     unit -> quantity.unit = cast(unit, 'string') "quantityUnit";
@@ -1645,7 +1645,7 @@ group ObservationComponentValueFromCdaValue(source value, target component) {
 
 
 /* Commentaire CDA -> Observation.note */
-group ObservationCommentFromEntryRelationship(source er, target fhirObservation) {
+group ObservationCommentFromEntryRelationship(source er, target fhirObservation : Observation) {
   er.act as commentAct then {
     commentAct.templateId as tid then {
       tid.root as root where root = '1.2.250.1.213.1.1.3.32' then {
@@ -1661,7 +1661,7 @@ group ObservationCommentFromEntryRelationship(source er, target fhirObservation)
 
 
 /* Panel Observation */
-group PatientSummaryObservationPanelBase(source organizer, target panel, target patient) {
+group PatientSummaryObservationPanelBase(source organizer, target panel : Observation, target patient : Patient) {
   organizer -> panel.status = 'final' "statusDefault";
   organizer.statusCode as statusCode then ObservationStatusFromCdaStatus(statusCode, panel) "status";
   organizer.id as id -> panel.identifier = create('Identifier') as identifier then II(id, identifier) "identifier";
@@ -1687,18 +1687,18 @@ group PatientSummaryObservationPanelBase(source organizer, target panel, target 
 }
 
 
-group ObservationPanelHasMember(source src, target panel, target member) {
+group ObservationPanelHasMember(source src, target panel : Observation, target member : Observation) {
   src -> panel.hasMember = create('Reference') as memberRef, memberRef.reference = ('urn:uuid:' + %member.id) "hasMember";
 }
 
 
-group ObservationAddToSection(source src, target fhirObservation, target compSection) {
+group ObservationAddToSection(source src, target fhirObservation : Observation, target compSection) {
   src -> compSection.entry = create('Reference') as sectionRef, sectionRef.reference = ('urn:uuid:' + %fhirObservation.id) "sectionEntry";
 }
 
 
 /* 7.1 CONSTANCES / SIGNES VITAUX */
-group PatientSummaryVitalSignsSection(source section, target compSection, target bundle, target patient) {
+group PatientSummaryVitalSignsSection(source section, target compSection, target bundle : Bundle, target patient : Patient) {
   section.templateId as sectionTid then {
     sectionTid.root as sectionRoot where sectionRoot = '1.2.250.1.213.1.1.2.75' then {
       section.entry as entry then {
@@ -1713,7 +1713,7 @@ group PatientSummaryVitalSignsSection(source section, target compSection, target
 }
 
 
-group PatientSummaryVitalSignsPanelFromOrganizer(source organizer, target panel, target compSection, target bundle, target patient) {
+group PatientSummaryVitalSignsPanelFromOrganizer(source organizer, target panel : Observation, target compSection, target bundle : Bundle, target patient : Patient) {
   organizer then PatientSummaryObservationPanelBase(organizer, panel, patient) "panelBase";
 
   organizer.component as component then {
@@ -1731,7 +1731,7 @@ group PatientSummaryVitalSignsPanelFromOrganizer(source organizer, target panel,
 }
 
 
-group PatientSummaryVitalSignObservationFromObservation(source observation, target fhirObservation, target patient) {
+group PatientSummaryVitalSignObservationFromObservation(source observation, target fhirObservation : Observation, target patient : Patient) {
   observation -> fhirObservation.status = 'final' "statusDefault";
   observation.statusCode as statusCode then ObservationStatusFromCdaStatus(statusCode, fhirObservation) "status";
   observation.id as id -> fhirObservation.identifier = create('Identifier') as identifier then II(id, identifier) "identifier";
@@ -1772,7 +1772,7 @@ group PatientSummaryVitalSignObservationFromObservation(source observation, targ
 
 
 /* Valeur spécifique des signes vitaux */
-group VitalSignObservationValueFromCdaValue(source value, target fhirObservation, source observation) {
+group VitalSignObservationValueFromCdaValue(source value, target fhirObservation : Observation, source observation) {
   value.unit as unit where unit = 'm' and observation.code.code = '8302-2' -> fhirObservation.value = create('Quantity') as quantity then {
     value.value as v -> quantity.value = (v * 100) "heightValueCm";
     unit -> quantity.unit = 'cm' "heightUnitCm";
@@ -1794,7 +1794,7 @@ group VitalSignObservationValueFromCdaValue(source value, target fhirObservation
 
 
 /* 7.2 MODE DE VIE / HABITUS */
-group PatientSummaryLifestyleSection(source section, target compSection, target bundle, target patient) {
+group PatientSummaryLifestyleSection(source section, target compSection, target bundle : Bundle, target patient : Patient) {
   section.entry as entry then {
     entry.observation as observation -> bundle.entry as observationEntry, observationEntry.resource = create('Observation') as fhirObservation, fhirObservation.id = uuid(), observationEntry.fullUrl = ('urn:uuid:' + %fhirObservation.id) then {
       observation then PatientSummaryLifestyleObservationFromObservation(observation, fhirObservation, patient) "lifestyleObservation";
@@ -1804,7 +1804,7 @@ group PatientSummaryLifestyleSection(source section, target compSection, target 
 }
 
 
-group PatientSummaryLifestyleObservationFromObservation(source observation, target fhirObservation, target patient) {
+group PatientSummaryLifestyleObservationFromObservation(source observation, target fhirObservation : Observation, target patient : Patient) {
   observation -> fhirObservation.status = 'final' "statusDefault";
   observation.statusCode as statusCode then ObservationStatusFromCdaStatus(statusCode, fhirObservation) "status";
   observation.id as id -> fhirObservation.identifier = create('Identifier') as identifier then II(id, identifier) "identifier";
@@ -1839,7 +1839,7 @@ group PatientSummaryLifestyleObservationFromObservation(source observation, targ
 }
 
 
-group LifestyleObservationValueFromCdaValue(source value, target fhirObservation) {
+group LifestyleObservationValueFromCdaValue(source value, target fhirObservation : Observation) {
   value.unit as unit -> fhirObservation.value = create('Quantity') as quantity then {
     value.value as v -> quantity.value = cast(v, 'decimal') "quantityValue";
     unit -> quantity.unit = cast(unit, 'string') "quantityUnit";
@@ -1869,7 +1869,7 @@ group LifestyleObservationComponentValueFromCdaValue(source value, target compon
 }
 
 
-group LifestyleObservationNoteFromText(source text, target fhirObservation) {
+group LifestyleObservationNoteFromText(source text, target fhirObservation : Observation) {
   text.reference as reference then {
     reference.value as value -> fhirObservation.note = create('Annotation') as note, note.text = cast(value, 'string') "noteReference";
   } "reference";
@@ -1879,7 +1879,7 @@ group LifestyleObservationNoteFromText(source text, target fhirObservation) {
 
 
 /* 7.3 STATUT FONCTIONNEL */
-group PatientSummaryFunctionalStatusSection(source section, target compSection, target bundle, target patient) {
+group PatientSummaryFunctionalStatusSection(source section, target compSection, target bundle : Bundle, target patient : Patient) {
   section.entry as entry then {
     entry.organizer as organizer -> bundle.entry as panelEntry, panelEntry.resource = create('Observation') as panel, panel.id = uuid(), panelEntry.fullUrl = ('urn:uuid:' + %panel.id) then {
       organizer then FunctionalStatusPanelFromOrganizer(organizer, panel, compSection, bundle, patient) "functionalStatusPanel";
@@ -1893,7 +1893,7 @@ group PatientSummaryFunctionalStatusSection(source section, target compSection, 
 }
 
 
-group FunctionalStatusPanelFromOrganizer(source organizer, target panel, target compSection, target bundle, target patient) {
+group FunctionalStatusPanelFromOrganizer(source organizer, target panel : Observation, target compSection, target bundle : Bundle, target patient : Patient) {
   organizer then FunctionalStatusPanelBase(organizer, panel, patient) "panelBase";
 
   organizer.component as component then {
@@ -1907,7 +1907,7 @@ group FunctionalStatusPanelFromOrganizer(source organizer, target panel, target 
 }
 
 
-group FunctionalStatusPanelBase(source organizer, target panel, target patient) {
+group FunctionalStatusPanelBase(source organizer, target panel : Observation, target patient : Patient) {
   organizer -> panel.status = 'final' "statusDefault";
   organizer.statusCode as statusCode then ObservationStatusFromCdaStatus(statusCode, panel) "status";
   organizer.id as id -> panel.identifier = create('Identifier') as identifier then II(id, identifier) "identifier";
@@ -1933,7 +1933,7 @@ group FunctionalStatusPanelBase(source organizer, target panel, target patient) 
 }
 
 
-group FunctionalStatusEvaluationFromObservation(source observation, target fhirObservation, target patient) {
+group FunctionalStatusEvaluationFromObservation(source observation, target fhirObservation : Observation, target patient : Patient) {
   observation -> fhirObservation.status = 'final' "statusDefault";
   observation.statusCode as statusCode then ObservationStatusFromCdaStatus(statusCode, fhirObservation) "status";
   observation.id as id -> fhirObservation.identifier = create('Identifier') as identifier then II(id, identifier) "identifier";
@@ -1971,7 +1971,7 @@ group FunctionalStatusEvaluationFromObservation(source observation, target fhirO
 }
 
 
-group FunctionalStatusValueFromCdaValue(source value, target fhirObservation) {
+group FunctionalStatusValueFromCdaValue(source value, target fhirObservation : Observation) {
   value.unit as unit -> fhirObservation.value = create('Quantity') as quantity then {
     value.value as v -> quantity.value = cast(v, 'decimal') "quantityValue";
     unit -> quantity.unit = cast(unit, 'string') "quantityUnit";
@@ -1983,7 +1983,7 @@ group FunctionalStatusValueFromCdaValue(source value, target fhirObservation) {
 }
 
 
-group FunctionalStatusEntryRelationship(source er, target fhirObservation) {
+group FunctionalStatusEntryRelationship(source er, target fhirObservation : Observation) {
   er.observation as componentObservation where er.typeCode = 'COMP' -> fhirObservation.component as component then FunctionalStatusComponentFromObservation(componentObservation, component) "componentN1";
 
   er.observation as componentObservation where er.typeCode = 'COMP' then {
@@ -2028,7 +2028,7 @@ group FunctionalStatusComponentValueFromCdaValue(source value, target component)
 }
 
 
-group FunctionalStatusNoteFromCommentAct(source commentAct, target fhirObservation) {
+group FunctionalStatusNoteFromCommentAct(source commentAct, target fhirObservation : Observation) {
   commentAct.text as text then {
     text.reference as reference then {
       reference.value as value -> fhirObservation.note = create('Annotation') as note, note.text = cast(value, 'string') "noteReference";
@@ -2038,7 +2038,7 @@ group FunctionalStatusNoteFromCommentAct(source commentAct, target fhirObservati
 
 
 /* 7.4 RÉSULTATS */
-group PatientSummaryResultsSection(source section, target compSection, target bundle, target patient) {
+group PatientSummaryResultsSection(source section, target compSection, target bundle : Bundle, target patient : Patient) {
   section.entry as entry then {
     entry.organizer as organizer -> bundle.entry as reportEntry, reportEntry.resource = create('DiagnosticReport') as diagnosticReport, diagnosticReport.id = uuid(), reportEntry.fullUrl = ('urn:uuid:' + %diagnosticReport.id) then {
       organizer then PatientSummaryDiagnosticReportFromOrganizer(organizer, diagnosticReport, compSection, bundle, patient) "diagnosticReport";
@@ -2051,7 +2051,7 @@ group PatientSummaryResultsSection(source section, target compSection, target bu
 }
 
 
-group PatientSummaryDiagnosticReportFromOrganizer(source organizer, target diagnosticReport, target compSection, target bundle, target patient) {
+group PatientSummaryDiagnosticReportFromOrganizer(source organizer, target diagnosticReport : DiagnosticReport, target compSection, target bundle : Bundle, target patient : Patient) {
   organizer -> diagnosticReport.status = 'final' "statusDefault";
   organizer.statusCode as statusCode then DiagnosticReportStatusFromCdaStatus(statusCode, diagnosticReport) "status";
   organizer.id as id -> diagnosticReport.identifier = create('Identifier') as identifier then II(id, identifier) "identifier";
@@ -2070,7 +2070,7 @@ group PatientSummaryDiagnosticReportFromOrganizer(source organizer, target diagn
 }
 
 
-group PatientSummaryDiagnosticReportFromSingleObservation(source observation, target diagnosticReport, target compSection, target bundle, target patient) {
+group PatientSummaryDiagnosticReportFromSingleObservation(source observation, target diagnosticReport : DiagnosticReport, target compSection, target bundle : Bundle, target patient : Patient) {
   observation -> diagnosticReport.status = 'final' "statusDefault";
   observation.statusCode as statusCode then DiagnosticReportStatusFromCdaStatus(statusCode, diagnosticReport) "status";
   observation.id as id -> diagnosticReport.identifier = create('Identifier') as identifier then II(id, identifier) "identifier";
@@ -2087,7 +2087,7 @@ group PatientSummaryDiagnosticReportFromSingleObservation(source observation, ta
 }
 
 
-group DiagnosticReportStatusFromCdaStatus(source statusCode, target diagnosticReport) {
+group DiagnosticReportStatusFromCdaStatus(source statusCode, target diagnosticReport : DiagnosticReport) {
   statusCode.code as code where code = 'completed' -> diagnosticReport.status = 'final' "completed";
   statusCode.code as code where code = 'active' -> diagnosticReport.status = 'preliminary' "active";
   statusCode.code as code where code = 'aborted' -> diagnosticReport.status = 'cancelled' "aborted";
@@ -2095,7 +2095,7 @@ group DiagnosticReportStatusFromCdaStatus(source statusCode, target diagnosticRe
 }
 
 
-group DiagnosticReportEffectiveFromEffectiveTime(source effectiveTime, target diagnosticReport) {
+group DiagnosticReportEffectiveFromEffectiveTime(source effectiveTime, target diagnosticReport : DiagnosticReport) {
   effectiveTime.value as value -> diagnosticReport.effective = create('dateTime') as effectiveDateTime then TSDateTime(effectiveTime, effectiveDateTime) "effectiveDateTime";
   effectiveTime.low as low where effectiveTime.high.empty() -> diagnosticReport.effective = create('dateTime') as effectiveDateTime then TSDateTime(low, effectiveDateTime) "effectiveLowAsDateTime";
 
@@ -2106,13 +2106,13 @@ group DiagnosticReportEffectiveFromEffectiveTime(source effectiveTime, target di
 }
 
 
-group DiagnosticReportAddToSection(source src, target diagnosticReport, target compSection) {
+group DiagnosticReportAddToSection(source src, target diagnosticReport : DiagnosticReport, target compSection) {
   src -> compSection.entry = create('Reference') as sectionRef, sectionRef.reference = ('urn:uuid:' + %diagnosticReport.id) "sectionEntry";
 }
 
 
 /* Observation de résultat */
-group PatientSummaryResultObservationFromObservation(source observation, target resultObservation, target patient) {
+group PatientSummaryResultObservationFromObservation(source observation, target resultObservation : Observation, target patient : Patient) {
   observation -> resultObservation.status = 'final' "statusDefault";
   observation.statusCode as statusCode then ObservationStatusFromCdaStatus(statusCode, resultObservation) "status";
   observation.id as id -> resultObservation.identifier = create('Identifier') as identifier then II(id, identifier) "identifier";
@@ -2146,7 +2146,7 @@ group PatientSummaryResultObservationFromObservation(source observation, target 
 }
 
 
-group ResultObservationValueFromCdaValue(source value, target resultObservation) {
+group ResultObservationValueFromCdaValue(source value, target resultObservation : Observation) {
   value.unit as unit -> resultObservation.value = create('Quantity') as quantity then {
     value.value as v -> quantity.value = cast(v, 'decimal') "quantityValue";
     unit -> quantity.unit = cast(unit, 'string') "quantityUnit";
@@ -2165,7 +2165,7 @@ group ResultObservationValueFromCdaValue(source value, target resultObservation)
 }
 
 
-group ResultObservationNoteFromText(source text, target resultObservation) {
+group ResultObservationNoteFromText(source text, target resultObservation : Observation) {
   text.reference as reference then {
     reference.value as value -> resultObservation.note = create('Annotation') as note, note.text = cast(value, 'string') "noteReference";
   } "reference";
@@ -2174,7 +2174,7 @@ group ResultObservationNoteFromText(source text, target resultObservation) {
 }
 
 
-group ResultObservationEntryRelationship(source er, target resultObservation) {
+group ResultObservationEntryRelationship(source er, target resultObservation : Observation) {
   er.act as commentAct then ResultObservationNoteFromCommentAct(commentAct, resultObservation) "comment";
 
   er.observation as memberObservation where er.typeCode = 'COMP' -> resultObservation.hasMember = create('Reference') as memberRef then {
@@ -2186,7 +2186,7 @@ group ResultObservationEntryRelationship(source er, target resultObservation) {
 }
 
 
-group ResultObservationNoteFromCommentAct(source commentAct, target resultObservation) {
+group ResultObservationNoteFromCommentAct(source commentAct, target resultObservation : Observation) {
   commentAct.templateId as tid then {
     tid.root as root where root = '1.2.250.1.213.1.1.3.32' then {
       commentAct.text as text then {
@@ -2199,7 +2199,7 @@ group ResultObservationNoteFromCommentAct(source commentAct, target resultObserv
 }
 
 
-group ResultObservationReferenceRangeFromCdaReferenceRange(source referenceRange, target resultObservation) {
+group ResultObservationReferenceRangeFromCdaReferenceRange(source referenceRange, target resultObservation : Observation) {
   referenceRange.observationRange as observationRange -> resultObservation.referenceRange as fhirReferenceRange then {
     observationRange.text as text then {
       text.xmlText as xml -> fhirReferenceRange.text = cast(xml, 'string') "referenceRangeText";
@@ -2221,7 +2221,7 @@ group ResultObservationReferenceRangeFromCdaReferenceRange(source referenceRange
 
 
 /* 7.5 FACTEURS DE RISQUES PROFESSIONNELS */
-group PatientSummaryProfessionalRisksSection(source section, target compSection, target bundle, target patient) {
+group PatientSummaryProfessionalRisksSection(source section, target compSection, target bundle : Bundle, target patient : Patient) {
   section.entry as entry then {
     entry.observation as observation -> bundle.entry as observationEntry, observationEntry.resource = create('Observation') as fhirObservation, fhirObservation.id = uuid(), observationEntry.fullUrl = ('urn:uuid:' + %fhirObservation.id) then {
       observation then PatientSummaryProfessionalRiskObservationFromObservation(observation, fhirObservation, patient) "professionalRiskObservation";
@@ -2240,7 +2240,7 @@ group PatientSummaryProfessionalRisksSection(source section, target compSection,
 }
 
 
-group PatientSummaryProfessionalRiskObservationFromObservation(source observation, target fhirObservation, target patient) {
+group PatientSummaryProfessionalRiskObservationFromObservation(source observation, target fhirObservation : Observation, target patient : Patient) {
   observation -> fhirObservation.status = 'final' "statusDefault";
   observation.statusCode as statusCode then ObservationStatusFromCdaStatus(statusCode, fhirObservation) "status";
   observation.id as id -> fhirObservation.identifier = create('Identifier') as identifier then II(id, identifier) "identifier";
@@ -2278,7 +2278,7 @@ group PatientSummaryProfessionalRiskObservationFromObservation(source observatio
 }
 
 
-group ProfessionalRiskObservationValueFromCdaValue(source value, target fhirObservation) {
+group ProfessionalRiskObservationValueFromCdaValue(source value, target fhirObservation : Observation) {
   value.unit as unit -> fhirObservation.value = create('Quantity') as quantity then {
     value.value as v -> quantity.value = cast(v, 'decimal') "quantityValue";
     unit -> quantity.unit = cast(unit, 'string') "quantityUnit";
@@ -2308,7 +2308,7 @@ group ProfessionalRiskObservationComponentValueFromCdaValue(source value, target
 }
 
 
-group ProfessionalRiskObservationNoteFromText(source text, target fhirObservation) {
+group ProfessionalRiskObservationNoteFromText(source text, target fhirObservation : Observation) {
   text.reference as reference then {
     reference.value as value -> fhirObservation.note = create('Annotation') as note, note.text = cast(value, 'string') "noteReference";
   } "reference";
@@ -2329,13 +2329,13 @@ group ProfessionalRiskObservationNoteFromText(source text, target fhirObservatio
 
 /* 8. PLAN DE SOINS */
 
-group PatientSummaryCarePlanSection(source section, target compSection, target bundle, target patient) {
+group PatientSummaryCarePlanSection(source section, target compSection, target bundle : Bundle, target patient : Patient) {
   // CarePlan.
   section -> bundle.entry as carePlanEntry, carePlanEntry.resource = create('CarePlan') as carePlan, carePlan.id = uuid(), carePlanEntry.fullUrl = ('urn:uuid:' + %carePlan.id) then PSPlanCarePlan(section, carePlan, compSection, bundle, patient) "carePlan";
 }
 
 
-group PSPlanCarePlan(source section, target carePlan, target compSection, target bundle, target patient) {
+group PSPlanCarePlan(source section, target carePlan : CarePlan, target compSection, target bundle : Bundle, target patient : Patient) {
   // Statut.
   section -> carePlan.status = 'active' "status";
 
@@ -2371,7 +2371,7 @@ group PSPlanCarePlan(source section, target carePlan, target compSection, target
 }
 
 
-group PSPlanEntryDispatcher(source sectionEntry, target carePlan, target compSection, target bundle, target patient) {
+group PSPlanEntryDispatcher(source sectionEntry, target carePlan : CarePlan, target compSection, target bundle : Bundle, target patient : Patient) {
   // Traitement prévu.
   sectionEntry.substanceAdministration as sa then {
     sa.templateId as tid then {
@@ -2410,13 +2410,13 @@ group PSPlanEntryDispatcher(source sectionEntry, target carePlan, target compSec
 
 
 /* TRAITEMENT PRÉVU -> MedicationRequest */
-group PSPlanMedicationRequestEntry(source sa, target carePlan, target compSection, target bundle, target patient) {
+group PSPlanMedicationRequestEntry(source sa, target carePlan : CarePlan, target compSection, target bundle : Bundle, target patient : Patient) {
   // MedicationRequest.
   sa -> bundle.entry as medicationRequestEntry, medicationRequestEntry.resource = create('MedicationRequest') as medicationRequest, medicationRequest.id = uuid(), medicationRequestEntry.fullUrl = ('urn:uuid:' + %medicationRequest.id) then PSPlanMedicationRequest(sa, medicationRequest, carePlan, compSection, bundle, patient) "medicationRequest";
 }
 
 
-group PSPlanMedicationRequest(source sa, target medicationRequest, target carePlan, target compSection, target bundle, target patient) {
+group PSPlanMedicationRequest(source sa, target medicationRequest : MedicationRequest, target carePlan : CarePlan, target compSection, target bundle : Bundle, target patient : Patient) {
   // Statut.
   sa -> medicationRequest.status = 'active' "statusDefault";
   sa.statusCode as statusCode then {
@@ -2550,13 +2550,13 @@ group PSPlanMedicationRequest(source sa, target medicationRequest, target carePl
 
 /* DEMANDE D’EXAMEN OU DE SUIVI -> ServiceRequest */
 
-group PSPlanServiceRequestEntry(source obs, target carePlan, target compSection, target bundle, target patient) {
+group PSPlanServiceRequestEntry(source obs, target carePlan : CarePlan, target compSection, target bundle : Bundle, target patient : Patient) {
   // ServiceRequest.
   obs -> bundle.entry as serviceRequestEntry, serviceRequestEntry.resource = create('ServiceRequest') as serviceRequest, serviceRequest.id = uuid(), serviceRequestEntry.fullUrl = ('urn:uuid:' + %serviceRequest.id) then PSPlanServiceRequest(obs, serviceRequest, carePlan, compSection, patient) "serviceRequest";
 }
 
 
-group PSPlanServiceRequest(source obs, target serviceRequest, target carePlan, target compSection, target patient) {
+group PSPlanServiceRequest(source obs, target serviceRequest : ServiceRequest, target carePlan : CarePlan, target compSection, target patient : Patient) {
   // Statut.
   obs -> serviceRequest.status = 'active' "statusDefault";
   obs.statusCode as statusCode then {
@@ -2613,14 +2613,14 @@ group PSPlanServiceRequest(source obs, target serviceRequest, target carePlan, t
 
 
 /* ACTE PRÉVU -> Procedure */
-group PSPlanProcedureEntry(source proc, target carePlan, target compSection, target bundle, target patient) {
+group PSPlanProcedureEntry(source proc, target carePlan : CarePlan, target compSection, target bundle : Bundle, target patient : Patient) {
 
   // Procedure.
   proc -> bundle.entry as procedureEntry, procedureEntry.resource = create('Procedure') as fhirProcedure, fhirProcedure.id = uuid(), procedureEntry.fullUrl = ('urn:uuid:' + %fhirProcedure.id) then PSPlanProcedure(proc, fhirProcedure, carePlan, compSection, patient) "procedure";
 }
 
 
-group PSPlanProcedure(source proc, target fhirProcedure, target carePlan, target compSection, target patient) {
+group PSPlanProcedure(source proc, target fhirProcedure : Procedure, target carePlan : CarePlan, target compSection, target patient : Patient) {
   // Statut.
   proc -> fhirProcedure.status = 'preparation' "statusDefault";
   proc.statusCode as statusCode then {
@@ -2667,14 +2667,14 @@ group PSPlanProcedure(source proc, target fhirProcedure, target carePlan, target
 
 
 /* RENCONTRE PRÉVUE -> Encounter */
-group PSPlanEncounterEntry(source enc, target carePlan, target compSection, target bundle, target patient) {
+group PSPlanEncounterEntry(source enc, target carePlan : CarePlan, target compSection, target bundle : Bundle, target patient : Patient) {
 
   // Encounter.
   enc -> bundle.entry as encounterEntry, encounterEntry.resource = create('Encounter') as plannedEncounter, plannedEncounter.id = uuid(), encounterEntry.fullUrl = ('urn:uuid:' + %plannedEncounter.id) then PSPlanEncounter(enc, plannedEncounter, carePlan, compSection, bundle, patient) "encounter";
 }
 
 
-group PSPlanEncounter(source enc, target plannedEncounter, target carePlan, target compSection, target bundle, target patient) {
+group PSPlanEncounter(source enc, target plannedEncounter : Encounter, target carePlan : CarePlan, target compSection, target bundle : Bundle, target patient : Patient) {
   // Statut.
   enc -> plannedEncounter.status = 'planned' "statusDefault";
   enc.moodCode as moodCode then {
@@ -2718,7 +2718,7 @@ group PSPlanEncounter(source enc, target plannedEncounter, target carePlan, targ
 }
 
 
-group PSPlanEncounterPerformer(source performer, target plannedEncounter, target bundle) {
+group PSPlanEncounterPerformer(source performer, target plannedEncounter : Encounter, target bundle : Bundle) {
   // Practitioner.
   performer.assignedEntity as assignedEntity -> bundle.entry as practitionerEntry, practitionerEntry.resource = create('Practitioner') as practitioner, practitioner.id = uuid(), practitionerEntry.fullUrl = ('urn:uuid:' + %practitioner.id) then {
     assignedEntity then MapCDAAssignedEntityToPractitioner(assignedEntity, practitioner) "practitionerBase";
@@ -2745,7 +2745,7 @@ group PSPlanEncounterPerformer(source performer, target plannedEncounter, target
 }
 
 
-group PSPlanEncounterLocation(source participant, target plannedEncounter, target bundle) {
+group PSPlanEncounterLocation(source participant, target plannedEncounter : Encounter, target bundle : Bundle) {
   // Location.
   participant.participantRole as participantRole where participant.typeCode = 'LOC' -> bundle.entry as locationEntry, locationEntry.resource = create('Location') as location, location.id = uuid(), locationEntry.fullUrl = ('urn:uuid:' + %location.id) then {
 
@@ -2775,14 +2775,14 @@ group PSPlanEncounterLocation(source participant, target plannedEncounter, targe
 
 
 /* VACCIN RECOMMANDÉ -> ImmunizationRecommendation */
-group PSPlanImmunizationRecommendationEntry(source sa, target carePlan, target compSection, target bundle, target patient) {
+group PSPlanImmunizationRecommendationEntry(source sa, target carePlan : CarePlan, target compSection, target bundle : Bundle, target patient : Patient) {
   
   // ImmunizationRecommendation.
   sa -> bundle.entry as recommendationEntry, recommendationEntry.resource = create('ImmunizationRecommendation') as recommendation, recommendation.id = uuid(), recommendationEntry.fullUrl = ('urn:uuid:' + %recommendation.id) then PSPlanImmunizationRecommendation(sa, recommendation, carePlan, compSection, patient) "recommendation";
 }
 
 
-group PSPlanImmunizationRecommendation(source sa, target recommendation, target carePlan, target compSection, target patient) {  
+group PSPlanImmunizationRecommendation(source sa, target recommendation : ImmunizationRecommendation, target carePlan : CarePlan, target compSection, target patient : Patient) {  
   // Identifiant.
   sa.id as id -> recommendation.identifier = create('Identifier') as identifier then II(id, identifier) "identifier";
 
@@ -2962,7 +2962,7 @@ group PSPlanCodeableConceptAbsentReason(source src, target cc : CodeableConcept)
 
 /* 9. ANTÉCÉDENTS FAMILIAUX -> FamilyMemberHistory */
 
-group PatientSummaryFamilyHistorySection(source section, target compSection, target bundle, target patient) {
+group PatientSummaryFamilyHistorySection(source section, target compSection, target bundle : Bundle, target patient : Patient) {
 
   // Entrées.
   section.entry as entry then {
@@ -3117,7 +3117,7 @@ group PatientSummaryFamilyHistorySection(source section, target compSection, tar
 
 /* 10. DISPOSITIFS MÉDICAUX */
 
-group PatientSummaryMedicalDeviceSection(source section, target compSection, target bundle, target patient) {
+group PatientSummaryMedicalDeviceSection(source section, target compSection, target bundle : Bundle, target patient : Patient) {
 
   // Section dispositifs médicaux.
   section.templateId as sectionTid then {
@@ -3140,7 +3140,7 @@ group PatientSummaryMedicalDeviceSection(source section, target compSection, tar
 
 
 /* Supply CDA -> DeviceUseStatement */
-group PatientSummaryDeviceUseStatementFromSupply(source supply, target deviceUseStatement, target compSection, target bundle, target patient) {
+group PatientSummaryDeviceUseStatementFromSupply(source supply, target deviceUseStatement : DeviceUseStatement, target compSection, target bundle : Bundle, target patient : Patient) {
 
   // Statut par défaut : dispositif présent / utilisé.
   supply -> deviceUseStatement.status = 'active' "statusDefault";
@@ -3205,7 +3205,7 @@ group PatientSummaryDeviceUseStatementFromSupply(source supply, target deviceUse
 
 
 /* effectiveTime CDA -> DeviceUseStatement.timing[x] */
-group DeviceUseStatementTimingFromEffectiveTime(source effectiveTime, target deviceUseStatement) {
+group DeviceUseStatementTimingFromEffectiveTime(source effectiveTime, target deviceUseStatement : DeviceUseStatement) {
 
   // Cas 1 : date ponctuelle.
   effectiveTime.value as value ->
@@ -3228,7 +3228,7 @@ group DeviceUseStatementTimingFromEffectiveTime(source effectiveTime, target dev
 
 
 /* participant CDA -> Device */
-group PatientSummaryDeviceFromParticipant(source participant, target device, target patient) {
+group PatientSummaryDeviceFromParticipant(source participant, target device : Device, target patient : Patient) {
 
   participant.participantRole as participantRole then {
 
@@ -3262,7 +3262,7 @@ group PatientSummaryDeviceFromParticipant(source participant, target device, tar
 
 /* 11. DOCUMENTS JOINTS */
 
-group PatientSummaryAddedDocumentsSection(source section, target compSection, target bundle, target patient) {
+group PatientSummaryAddedDocumentsSection(source section, target compSection, target bundle : Bundle, target patient : Patient) {
 
   // Section documents ajoutés.
   section.templateId as sectionTid then {
@@ -3292,7 +3292,7 @@ group PatientSummaryAddedDocumentsSection(source section, target compSection, ta
 
 
 /* Organizer CDA de document attaché -> DocumentReference */
-group DocumentReferenceFromCdaAttachedDocument(source attachedDocument, target documentReference, target compSection, target patient) {
+group DocumentReferenceFromCdaAttachedDocument(source attachedDocument, target documentReference : DocumentReference, target compSection, target patient : Patient) {
 
   // Statut FHIR obligatoire.
   attachedDocument -> documentReference.status = 'current' "statusDefault";
@@ -3368,7 +3368,7 @@ group AttachmentFromObservationMedia(source observationMedia, target content) {
 
 /* 12 DIRECTIVES ANTICIPEES */
 
-group PatientSummaryAdvanceDirectiveSection(source section, target compSection, target bundle, target patient) {
+group PatientSummaryAdvanceDirectiveSection(source section, target compSection, target bundle : Bundle, target patient : Patient) {
 
   // Section Directives anticipées.
   section.templateId as sectionTid then {
@@ -3391,7 +3391,7 @@ group PatientSummaryAdvanceDirectiveSection(source section, target compSection, 
 
 
 /* Observation CDA FR-Directive-Anticipee -> Consent */
-group AdvanceDirectiveConsentFromObservation(source directiveObservation, target consent, target compSection, target patient) {
+group AdvanceDirectiveConsentFromObservation(source directiveObservation, target consent : Consent, target compSection, target patient : Patient) {
 
   // Identifiant.
   directiveObservation.id as directiveId
