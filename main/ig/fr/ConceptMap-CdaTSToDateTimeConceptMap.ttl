@@ -13,13 +13,13 @@
      fhir:Narrative.status [ fhir:value "generated" ] ;
      fhir:Narrative.div "<div xml:lang=\"fr\" lang=\"fr\"><hr/><p><b>French</b></p><hr/><p class=\"res-header-id\"><b>Narratif généré : CarteDeConcepts CdaTSToDateTimeConceptMap</b></p><a name=\"CdaTSToDateTimeConceptMap\"> </a><a name=\"hcCdaTSToDateTimeConceptMap\"> </a><p>This mapping does not specify any particular context of use.</p><br/><p><b>Groupe 1 </b>Mapping de <a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TS.html\">TS: PointInTime (V3 Data Type)</a> to <a href=\"http://hl7.org/fhir/R4/datatypes.html#instant\">instant</a></p><table class=\"grid\"><tr><td><b>Code source</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>relation</b></td><td><b>Code cible</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Commentaire</b></td></tr><tr><td><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TS.html#s-TS.value\">TS.value</a></td><td>0..1</td><td>todo</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto\" title=\"relatedto\">is related to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#instant#s-instant\">instant</a></td><td>0..*</td><td>todo</td><td>TS.value est converti en valeur FHIR instant (précision jour ou partielle : AAAA, AAAA-MM ou AAAA-MM-JJ).</td></tr></table><hr/><p><b>Groupe 2 </b>Mapping de <a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TS.html\">TS: PointInTime (V3 Data Type)</a> to <a href=\"http://hl7.org/fhir/R4/datatypes.html#dateTime\">dateTime</a></p><table class=\"grid\"><tr><td><b>Code source</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>relation</b></td><td><b>Code cible</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Commentaire</b></td></tr><tr><td><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TS.html#s-TS.value\">TS.value</a></td><td>0..1</td><td>todo</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto\" title=\"relatedto\">is related to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#dateTime#s-dateTime\">dateTime</a></td><td>0..*</td><td>todo</td><td>TS.value est converti en valeur FHIR dateTime (précision variable autorisée : année/mois/jour ou date-heure).</td></tr></table><hr/><p><b>Groupe 3 </b>Mapping de <a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TS.html\">TS: PointInTime (V3 Data Type)</a> to <a href=\"http://hl7.org/fhir/R4/datatypes.html#date\">date</a></p><table class=\"grid\"><tr><td><b>Code source</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>relation</b></td><td><b>Code cible</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Commentaire</b></td></tr><tr><td><a href=\"http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-TS.html#s-TS.value\">TS.value</a></td><td>0..1</td><td>todo</td><td><a href=\"http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto\" title=\"relatedto\">is related to</a></td><td><a href=\"http://hl7.org/fhir/R4/datatypes.html#date#s-date\">date</a></td><td>0..*</td><td>todo</td><td>TS.value est converti en valeur FHIR date (précision jour ou partielle : AAAA ou AAAA-MM ou AAAA-MM-JJ).</td></tr></table></div>"
   ] ;
-  fhir:ConceptMap.url [ fhir:value "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaTSToFHIR"] ;
+  fhir:ConceptMap.url [ fhir:value "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaTSToDateTimeConceptMap"] ;
   fhir:ConceptMap.version [ fhir:value "0.1.0"] ;
   fhir:ConceptMap.name [ fhir:value "CdaTSToFHIR"] ;
   fhir:ConceptMap.title [ fhir:value "ConceptMap — CDA TS vers FHIR instant, dateTime et date"] ;
   fhir:ConceptMap.status [ fhir:value "draft"] ;
   fhir:ConceptMap.experimental [ fhir:value "true"^^xsd:boolean] ;
-  fhir:ConceptMap.date [ fhir:value "2026-07-31T12:55:21+00:00"^^xsd:dateTime] ;
+  fhir:ConceptMap.date [ fhir:value "2026-07-31T13:43:20+00:00"^^xsd:dateTime] ;
   fhir:ConceptMap.publisher [ fhir:value "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"] ;
   fhir:ConceptMap.contact [
      fhir:index -1 ;
@@ -53,7 +53,7 @@
        fhir:ConceptMap.group.element.target [
          fhir:index -1 ;
          fhir:ConceptMap.group.element.target.code [ fhir:value "instant" ] ;
-         fhir:ConceptMap.group.element.target.display [ fhir:value "instant" ] ;
+         fhir:ConceptMap.group.element.target.display [ fhir:value "Primitive Type instant" ] ;
          fhir:ConceptMap.group.element.target.equivalence [ fhir:value "relatedto" ] ;
          fhir:ConceptMap.group.element.target.comment [ fhir:value "TS.value est converti en valeur FHIR instant (précision jour ou partielle : AAAA, AAAA-MM ou AAAA-MM-JJ)." ]
        ]
@@ -71,7 +71,7 @@
        fhir:ConceptMap.group.element.target [
          fhir:index -1 ;
          fhir:ConceptMap.group.element.target.code [ fhir:value "dateTime" ] ;
-         fhir:ConceptMap.group.element.target.display [ fhir:value "dateTime" ] ;
+         fhir:ConceptMap.group.element.target.display [ fhir:value "Primitive Type dateTime" ] ;
          fhir:ConceptMap.group.element.target.equivalence [ fhir:value "relatedto" ] ;
          fhir:ConceptMap.group.element.target.comment [ fhir:value "TS.value est converti en valeur FHIR dateTime (précision variable autorisée : année/mois/jour ou date-heure)." ]
        ]
@@ -89,7 +89,7 @@
        fhir:ConceptMap.group.element.target [
          fhir:index -1 ;
          fhir:ConceptMap.group.element.target.code [ fhir:value "date" ] ;
-         fhir:ConceptMap.group.element.target.display [ fhir:value "date" ] ;
+         fhir:ConceptMap.group.element.target.display [ fhir:value "Primitive Type date" ] ;
          fhir:ConceptMap.group.element.target.equivalence [ fhir:value "relatedto" ] ;
          fhir:ConceptMap.group.element.target.comment [ fhir:value "TS.value est converti en valeur FHIR date (précision jour ou partielle : AAAA ou AAAA-MM ou AAAA-MM-JJ)." ]
        ]

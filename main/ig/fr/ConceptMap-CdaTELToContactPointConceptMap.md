@@ -13,13 +13,13 @@ Correspondances documentaires entre le datatype CDA TEL et les éléments FHIR C
 {
   "resourceType" : "ConceptMap",
   "id" : "CdaTELToContactPointConceptMap",
-  "url" : "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaTELToFHIR",
+  "url" : "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaTELToContactPointConceptMap",
   "version" : "0.1.0",
   "name" : "CdaTELToFHIR",
   "title" : "ConceptMap — CDA TEL vers FHIR ContactPoint",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-07-31T12:55:21+00:00",
+  "date" : "2026-07-31T13:43:20+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -46,33 +46,33 @@ Correspondances documentaires entre le datatype CDA TEL et les éléments FHIR C
       "display" : "TEL.value",
       "target" : [{
         "code" : "ContactPoint.value",
-        "display" : "ContactPoint.value",
+        "display" : "The actual contact point details",
         "equivalence" : "relatedto",
         "comment" : "La valeur TEL alimente ContactPoint.value après suppression du préfixe technique tel:, fax:, mailto:, http: ou https:."
       },
       {
         "code" : "ContactPoint.system",
-        "display" : "ContactPoint.system",
+        "display" : "phone | fax | email | pager | url | sms | other",
         "equivalence" : "relatedto",
-        "comment" : "Le système cible est déterminé à partir du préfixe de TEL.value : tel -> phone, fax -> fax, mailto -> email, http/https -> url."
+        "comment" : "Le système cible est déterminé à partir du préfixe de TEL.value : tel vers phone, fax vers fax, mailto vers email et http ou https vers url."
       }]
     },
     {
       "code" : "TEL.use",
-      "display" : "TEL.use",
+      "display" : "Use Code",
       "target" : [{
         "code" : "ContactPoint.use",
-        "display" : "ContactPoint.use",
+        "display" : "home | work | temp | old | mobile - purpose of this contact point",
         "equivalence" : "relatedto",
-        "comment" : "Les usages CDA sont convertis vers les usages FHIR : H -> home ; WP, DIR ou PUB -> work ; BAD -> old ; TMP -> temp ; MC -> mobile."
+        "comment" : "Les usages CDA sont convertis vers les usages FHIR : H vers home ; WP, DIR ou PUB vers work ; BAD vers old ; TMP vers temp ; MC vers mobile."
       }]
     },
     {
       "code" : "TEL.useablePeriod",
-      "display" : "TEL.useablePeriod",
+      "display" : "Useable Period",
       "target" : [{
         "code" : "ContactPoint.period",
-        "display" : "ContactPoint.period",
+        "display" : "Time period when the contact point was/is in use",
         "equivalence" : "equivalent",
         "comment" : "La période d’utilisation du point de contact CDA alimente directement ContactPoint.period."
       }]

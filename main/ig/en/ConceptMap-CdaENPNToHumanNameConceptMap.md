@@ -13,13 +13,13 @@ Correspondances documentaires des composants CDA EN et PN vers FHIR HumanName.
 {
   "resourceType" : "ConceptMap",
   "id" : "CdaENPNToHumanNameConceptMap",
-  "url" : "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaNamesToFHIR",
+  "url" : "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaENPNToHumanNameConceptMap",
   "version" : "0.1.0",
   "name" : "CdaNamesToFHIR",
   "title" : "ConceptMap — CDA EN/PN vers FHIR HumanName",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-07-31T12:55:21+00:00",
+  "date" : "2026-07-31T13:43:20+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -42,61 +42,61 @@ Correspondances documentaires des composants CDA EN et PN vers FHIR HumanName.
     "target" : "http://hl7.org/fhir/StructureDefinition/HumanName",
     "targetVersion" : "4.0.1",
     "element" : [{
-      "code" : "EN.family",
-      "display" : "EN.family",
+      "code" : "EN.item.family",
+      "display" : "Family",
       "target" : [{
         "code" : "HumanName.family",
-        "display" : "HumanName.family",
+        "display" : "Family name (often called 'Surname')",
         "equivalence" : "equivalent",
         "comment" : "Le composant family du nom CDA EN alimente directement HumanName.family."
       }]
     },
     {
-      "code" : "EN.given",
-      "display" : "EN.given",
+      "code" : "EN.item.given",
+      "display" : "Given",
       "target" : [{
         "code" : "HumanName.given",
-        "display" : "HumanName.given",
+        "display" : "Given names (not always 'first'). Includes middle names",
         "equivalence" : "equivalent",
         "comment" : "Le composant given du nom CDA EN alimente directement HumanName.given."
       }]
     },
     {
-      "code" : "EN.prefix",
-      "display" : "EN.prefix",
+      "code" : "EN.item.prefix",
+      "display" : "Prefix",
       "target" : [{
         "code" : "HumanName.prefix",
-        "display" : "HumanName.prefix",
+        "display" : "Parts that come before the name",
         "equivalence" : "equivalent",
         "comment" : "Le composant prefix du nom CDA EN alimente directement HumanName.prefix."
       }]
     },
     {
-      "code" : "EN.suffix",
-      "display" : "EN.suffix",
+      "code" : "EN.item.suffix",
+      "display" : "Suffix",
       "target" : [{
         "code" : "HumanName.suffix",
-        "display" : "HumanName.suffix",
+        "display" : "Parts that come after the name",
         "equivalence" : "equivalent",
         "comment" : "Le composant suffix du nom CDA EN alimente directement HumanName.suffix."
       }]
     },
     {
-      "code" : "EN.xmlText",
-      "display" : "EN.xmlText",
+      "code" : "EN.item.xmlText",
+      "display" : "Allows for mixed text content",
       "target" : [{
         "code" : "HumanName.text",
-        "display" : "HumanName.text",
+        "display" : "Text representation of the full name",
         "equivalence" : "relatedto",
-        "comment" : "La forme textuelle du nom (EN.xmlText) alimente HumanName.text."
+        "comment" : "La forme textuelle complète du nom CDA EN alimente HumanName.text."
       }]
     },
     {
       "code" : "EN.validTime",
-      "display" : "EN.validTime",
+      "display" : "Valid Time",
       "target" : [{
         "code" : "HumanName.period",
-        "display" : "HumanName.period",
+        "display" : "Time period when name was/is in use",
         "equivalence" : "relatedto",
         "comment" : "La période de validité du nom CDA EN alimente HumanName.period."
       }]
@@ -108,63 +108,63 @@ Correspondances documentaires des composants CDA EN et PN vers FHIR HumanName.
     "target" : "http://hl7.org/fhir/StructureDefinition/HumanName",
     "targetVersion" : "4.0.1",
     "element" : [{
-      "code" : "PN.family",
-      "display" : "PN.family",
+      "code" : "PN.item.family",
+      "display" : "Family",
       "target" : [{
         "code" : "HumanName.family",
-        "display" : "HumanName.family",
+        "display" : "Family name (often called 'Surname')",
         "equivalence" : "equivalent",
-        "comment" : "Par héritage du mapping EN -> HumanName, le composant family du nom CDA PN alimente HumanName.family."
+        "comment" : "Par héritage du mapping EN vers HumanName, le composant family du nom CDA PN alimente HumanName.family."
       }]
     },
     {
-      "code" : "PN.given",
-      "display" : "PN.given",
+      "code" : "PN.item.given",
+      "display" : "Given",
       "target" : [{
         "code" : "HumanName.given",
-        "display" : "HumanName.given",
+        "display" : "Given names (not always 'first'). Includes middle names",
         "equivalence" : "equivalent",
-        "comment" : "Par héritage du mapping EN -> HumanName, le composant given du nom CDA PN alimente HumanName.given."
+        "comment" : "Par héritage du mapping EN vers HumanName, le composant given du nom CDA PN alimente HumanName.given."
       }]
     },
     {
-      "code" : "PN.prefix",
-      "display" : "PN.prefix",
+      "code" : "PN.item.prefix",
+      "display" : "Prefix",
       "target" : [{
         "code" : "HumanName.prefix",
-        "display" : "HumanName.prefix",
+        "display" : "Parts that come before the name",
         "equivalence" : "equivalent",
-        "comment" : "Par héritage du mapping EN -> HumanName, le composant prefix du nom CDA PN alimente HumanName.prefix."
+        "comment" : "Par héritage du mapping EN vers HumanName, le composant prefix du nom CDA PN alimente HumanName.prefix."
       }]
     },
     {
-      "code" : "PN.suffix",
-      "display" : "PN.suffix",
+      "code" : "PN.item.suffix",
+      "display" : "Suffix",
       "target" : [{
         "code" : "HumanName.suffix",
-        "display" : "HumanName.suffix",
+        "display" : "Parts that come after the name",
         "equivalence" : "equivalent",
-        "comment" : "Par héritage du mapping EN -> HumanName, le composant suffix du nom CDA PN alimente HumanName.suffix."
+        "comment" : "Par héritage du mapping EN vers HumanName, le composant suffix du nom CDA PN alimente HumanName.suffix."
       }]
     },
     {
-      "code" : "PN.xmlText",
-      "display" : "PN.xmlText",
+      "code" : "PN.item.xmlText",
+      "display" : "Allows for mixed text content",
       "target" : [{
         "code" : "HumanName.text",
-        "display" : "HumanName.text",
+        "display" : "Text representation of the full name",
         "equivalence" : "relatedto",
-        "comment" : "La forme textuelle du nom (PN.xmlText) alimente HumanName.text."
+        "comment" : "La forme textuelle complète du nom CDA PN alimente HumanName.text."
       }]
     },
     {
       "code" : "PN.validTime",
-      "display" : "PN.validTime",
+      "display" : "Valid Time",
       "target" : [{
         "code" : "HumanName.period",
-        "display" : "HumanName.period",
+        "display" : "Time period when name was/is in use",
         "equivalence" : "equivalent",
-        "comment" : "Par héritage du mapping EN -> HumanName, la période de validité du nom CDA PN alimente HumanName.period."
+        "comment" : "Par héritage du mapping EN vers HumanName, la période de validité du nom CDA PN alimente HumanName.period."
       }]
     }]
   }]

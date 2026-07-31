@@ -4,15 +4,15 @@
   <id value="CdaPQToQuantityConceptMap"/>
   <language value="fr"/>
   <text>
-    <status value="generated"/><div xml:lang="fr" lang="fr"><hr/><p><b>French</b></p><hr/><p class="res-header-id"><b>Narratif généré : CarteDeConcepts CdaPQToQuantityConceptMap</b></p><a name="CdaPQToQuantityConceptMap"> </a><a name="hcCdaPQToQuantityConceptMap"> </a><p>This mapping does not specify any particular context of use.</p><br/><p>Mapping de <a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-PQ.html">PQ: PhysicalQuantity (V3 Data Type)</a> to <a href="http://hl7.org/fhir/R4/datatypes.html#Quantity">Quantity</a></p><table class="grid"><tr><td><b>Code source</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>relation</b></td><td><b>Code cible</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Commentaire</b></td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-PQ.html#s-PQ.value">PQ.value</a></td><td>0..1</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Quantity#s-Quantity.value">Quantity.value</a></td><td>0..1</td><td>todo</td><td>PQ.value alimente directement Quantity.value.</td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-PQ.html#s-PQ.unit">PQ.unit</a></td><td>0..1</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Quantity#s-Quantity.code">Quantity.code</a></td><td>0..1</td><td>todo</td><td>PQ.unit (UCUM) alimente Quantity.code.</td></tr><tr><td colspan="3" style="opacity: 0.5">&quot;</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto" title="relatedto">is related to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Quantity#s-Quantity.unit">Quantity.unit</a></td><td>0..1</td><td>todo</td><td>PQ.unit peut être réutilisé comme libellé d’unité dans Quantity.unit selon la stratégie d’affichage.</td></tr><tr><td colspan="3" style="opacity: 0.5">&quot;</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto" title="relatedto">is related to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Quantity#s-Quantity.system">Quantity.system</a></td><td>0..1</td><td>todo</td><td>Si PQ.unit est UCUM, Quantity.system est fixé à http://unitsofmeasure.org.</td></tr></table></div>
+    <status value="generated"/><div xml:lang="fr" lang="fr"><hr/><p><b>French</b></p><hr/><p class="res-header-id"><b>Narratif généré : CarteDeConcepts CdaPQToQuantityConceptMap</b></p><a name="CdaPQToQuantityConceptMap"> </a><a name="hcCdaPQToQuantityConceptMap"> </a><p>This mapping does not specify any particular context of use.</p><br/><p>Mapping de <a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-PQ.html">PQ: PhysicalQuantity (V3 Data Type)</a> to <a href="http://hl7.org/fhir/R4/datatypes.html#Quantity">Quantity</a></p><table class="grid"><tr><td><b>Code source</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>relation</b></td><td><b>Code cible</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Commentaire</b></td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-PQ.html#s-PQ.value">PQ.value</a></td><td>0..1</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Quantity#s-Quantity.value">Quantity.value</a></td><td>0..1</td><td>todo</td><td>PQ.value alimente directement Quantity.value.</td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-PQ.html#s-PQ.unit">PQ.unit</a></td><td>0..1</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Quantity#s-Quantity.code">Quantity.code</a></td><td>0..1</td><td>todo</td><td>Lorsque PQ.unit contient un code UCUM, il alimente Quantity.code.</td></tr><tr><td colspan="3" style="opacity: 0.5">&quot;</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto" title="relatedto">is related to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Quantity#s-Quantity.unit">Quantity.unit</a></td><td>0..1</td><td>todo</td><td>PQ.unit peut être réutilisé comme représentation lisible de l’unité dans Quantity.unit selon la stratégie d’affichage retenue.</td></tr><tr><td colspan="3" style="opacity: 0.5">&quot;</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto" title="relatedto">is related to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Quantity#s-Quantity.system">Quantity.system</a></td><td>0..1</td><td>todo</td><td>Lorsque PQ.unit utilise UCUM, Quantity.system est fixé à http://unitsofmeasure.org.</td></tr></table></div>
   </text>
-  <url value="https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaPQToFHIR"/>
+  <url value="https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaPQToQuantityConceptMap"/>
   <version value="0.1.0"/>
   <name value="CdaPQToFHIR"/>
   <title value="ConceptMap — CDA PQ vers FHIR Quantity"/>
   <status value="draft"/>
   <experimental value="true"/>
-  <date value="2026-07-31T12:55:21+00:00"/>
+  <date value="2026-07-31T13:43:20+00:00"/>
   <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
   <contact>
     <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
@@ -36,34 +36,34 @@
     <targetVersion value="4.0.1"/>
     <element>
       <code value="PQ.value"/>
-      <display value="PQ.value"/>
+      <display value="Maginitude Value"/>
       <target>
         <code value="Quantity.value"/>
-        <display value="Quantity.value"/>
+        <display value="Numerical value (with implicit precision)"/>
         <equivalence value="equivalent"/>
         <comment value="PQ.value alimente directement Quantity.value."/>
       </target>
     </element>
     <element>
       <code value="PQ.unit"/>
-      <display value="PQ.unit"/>
+      <display value="Unit of Measure"/>
       <target>
         <code value="Quantity.code"/>
-        <display value="Quantity.code"/>
+        <display value="Coded form of the unit"/>
         <equivalence value="equivalent"/>
-        <comment value="PQ.unit (UCUM) alimente Quantity.code."/>
+        <comment value="Lorsque PQ.unit contient un code UCUM, il alimente Quantity.code."/>
       </target>
       <target>
         <code value="Quantity.unit"/>
-        <display value="Quantity.unit"/>
+        <display value="Unit representation"/>
         <equivalence value="relatedto"/>
-        <comment value="PQ.unit peut être réutilisé comme libellé d’unité dans Quantity.unit selon la stratégie d’affichage."/>
+        <comment value="PQ.unit peut être réutilisé comme représentation lisible de l’unité dans Quantity.unit selon la stratégie d’affichage retenue."/>
       </target>
       <target>
         <code value="Quantity.system"/>
-        <display value="Quantity.system"/>
+        <display value="System that defines coded unit form"/>
         <equivalence value="relatedto"/>
-        <comment value="Si PQ.unit est UCUM, Quantity.system est fixé à http://unitsofmeasure.org."/>
+        <comment value="Lorsque PQ.unit utilise UCUM, Quantity.system est fixé à http://unitsofmeasure.org."/>
       </target>
     </element>
   </group>

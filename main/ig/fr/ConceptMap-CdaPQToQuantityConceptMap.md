@@ -13,13 +13,13 @@ Correspondances documentaires entre le datatype CDA PQ et le datatype FHIR Quant
 {
   "resourceType" : "ConceptMap",
   "id" : "CdaPQToQuantityConceptMap",
-  "url" : "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaPQToFHIR",
+  "url" : "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaPQToQuantityConceptMap",
   "version" : "0.1.0",
   "name" : "CdaPQToFHIR",
   "title" : "ConceptMap — CDA PQ vers FHIR Quantity",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-07-31T12:55:21+00:00",
+  "date" : "2026-07-31T13:43:20+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -43,34 +43,34 @@ Correspondances documentaires entre le datatype CDA PQ et le datatype FHIR Quant
     "targetVersion" : "4.0.1",
     "element" : [{
       "code" : "PQ.value",
-      "display" : "PQ.value",
+      "display" : "Maginitude Value",
       "target" : [{
         "code" : "Quantity.value",
-        "display" : "Quantity.value",
+        "display" : "Numerical value (with implicit precision)",
         "equivalence" : "equivalent",
         "comment" : "PQ.value alimente directement Quantity.value."
       }]
     },
     {
       "code" : "PQ.unit",
-      "display" : "PQ.unit",
+      "display" : "Unit of Measure",
       "target" : [{
         "code" : "Quantity.code",
-        "display" : "Quantity.code",
+        "display" : "Coded form of the unit",
         "equivalence" : "equivalent",
-        "comment" : "PQ.unit (UCUM) alimente Quantity.code."
+        "comment" : "Lorsque PQ.unit contient un code UCUM, il alimente Quantity.code."
       },
       {
         "code" : "Quantity.unit",
-        "display" : "Quantity.unit",
+        "display" : "Unit representation",
         "equivalence" : "relatedto",
-        "comment" : "PQ.unit peut être réutilisé comme libellé d’unité dans Quantity.unit selon la stratégie d’affichage."
+        "comment" : "PQ.unit peut être réutilisé comme représentation lisible de l’unité dans Quantity.unit selon la stratégie d’affichage retenue."
       },
       {
         "code" : "Quantity.system",
-        "display" : "Quantity.system",
+        "display" : "System that defines coded unit form",
         "equivalence" : "relatedto",
-        "comment" : "Si PQ.unit est UCUM, Quantity.system est fixé à http://unitsofmeasure.org."
+        "comment" : "Lorsque PQ.unit utilise UCUM, Quantity.system est fixé à http://unitsofmeasure.org."
       }]
     }]
   }]

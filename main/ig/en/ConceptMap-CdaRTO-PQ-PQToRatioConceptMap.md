@@ -13,13 +13,13 @@ Correspondances documentaires entre le datatype CDA RTO_PQ_PQ et le datatype FHI
 {
   "resourceType" : "ConceptMap",
   "id" : "CdaRTO-PQ-PQToRatioConceptMap",
-  "url" : "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaRTOPQPQToFHIR",
+  "url" : "https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaRTO-PQ-PQToRatioConceptMap",
   "version" : "0.1.0",
   "name" : "CdaRTOPQPQToFHIR",
   "title" : "ConceptMap — CDA RTO_PQ_PQ vers FHIR Ratio",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-07-31T12:55:21+00:00",
+  "date" : "2026-07-31T13:43:20+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -37,27 +37,28 @@ Correspondances documentaires entre le datatype CDA RTO_PQ_PQ et le datatype FHI
     }]
   }],
   "group" : [{
-    "source" : "http://hl7.org/cda/stds/core/StructureDefinition/RTO_PQ_PQ",
+    "source" : "http://hl7.org/cda/stds/core/StructureDefinition/RTO-PQ-PQ",
+    "sourceVersion" : "2.0.0-sd",
     "target" : "http://hl7.org/fhir/StructureDefinition/Ratio",
     "targetVersion" : "4.0.1",
     "element" : [{
       "code" : "RTO_PQ_PQ.numerator",
-      "display" : "RTO_PQ_PQ.numerator",
+      "display" : "Numerator",
       "target" : [{
         "code" : "Ratio.numerator",
-        "display" : "Ratio.numerator",
+        "display" : "Numerator value",
         "equivalence" : "relatedto",
-        "comment" : "Le numérateur CDA est converti en Quantity via le mapping PQ -> Quantity, puis affecté à Ratio.numerator."
+        "comment" : "Le numérateur CDA est converti en Quantity à l’aide du mapping PQ vers Quantity, puis affecté à Ratio.numerator."
       }]
     },
     {
       "code" : "RTO_PQ_PQ.denominator",
-      "display" : "RTO_PQ_PQ.denominator",
+      "display" : "Denominator",
       "target" : [{
         "code" : "Ratio.denominator",
-        "display" : "Ratio.denominator",
+        "display" : "Denominator value",
         "equivalence" : "relatedto",
-        "comment" : "Le dénominateur CDA est converti en Quantity via le mapping PQ -> Quantity, puis affecté à Ratio.denominator."
+        "comment" : "Le dénominateur CDA est converti en Quantity à l’aide du mapping PQ vers Quantity, puis affecté à Ratio.denominator."
       }]
     }]
   }]

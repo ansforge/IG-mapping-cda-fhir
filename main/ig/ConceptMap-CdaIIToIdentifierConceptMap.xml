@@ -3,15 +3,15 @@
 <ConceptMap xmlns="http://hl7.org/fhir">
   <id value="CdaIIToIdentifierConceptMap"/>
   <text>
-    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><div xml:lang="fr" lang="fr"><hr/><p><b>French</b></p><hr/><p class="res-header-id"><b>Narratif généré : CarteDeConcepts CdaIIToIdentifierConceptMap</b></p><a name="CdaIIToIdentifierConceptMap"> </a><a name="hcCdaIIToIdentifierConceptMap"> </a><p>This mapping does not specify any particular context of use.</p><br/><p>Mapping de <a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html">II: InstanceIdentifier (V3 Data Type)</a> to <a href="http://hl7.org/fhir/R4/datatypes.html#Identifier">Identifier</a></p><table class="grid"><tr><td><b>Code source</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>relation</b></td><td><b>Code cible</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Commentaire</b></td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#s-II.extension">II.extension</a></td><td>0..1</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Identifier#s-Identifier.value">Identifier.value</a></td><td>0..1</td><td>todo</td><td>Lorsque II.extension est présent, il alimente directement Identifier.value.</td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#s-II.root">II.root</a></td><td>0..1</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto" title="relatedto">is related to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Identifier#s-Identifier.system">Identifier.system</a></td><td>0..1</td><td>todo</td><td>Utilisé pour alimenter Identifier.system, généralement avec transformation vers un URI.</td></tr><tr><td colspan="3" style="opacity: 0.5">&quot;</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto" title="relatedto">is related to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Identifier#s-Identifier.value">Identifier.value</a></td><td>0..1</td><td>todo</td><td>En l’absence de II.extension, Identifier.value peut être dérivé de II.root, par exemple sous la forme urn:uuid:[II.root] si II.root est un UUID, ou urn:oid:[II.root] si II.root est un OID.</td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#s-II.assigningAuthorityName">II.assigningAuthorityName</a></td><td>0..1</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto" title="relatedto">is related to</a></td><td colspan="3">Identifier.assigner.display</td><td/></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#s-II.displayable">II.displayable</a></td><td>0..1</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto" title="relatedto">is related to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Identifier#s-Identifier.extension">Identifier.extension</a></td><td>0..*</td><td>todo</td><td>Porté dans une extension FHIR spécifique.</td></tr></table></div><div xml:lang="en" lang="en"><hr/><p><b>English</b></p><hr/><p class="res-header-id"><b>Generated Narrative: ConceptMap CdaIIToIdentifierConceptMap</b></p><a name="en-CdaIIToIdentifierConceptMap"> </a><a name="en-hcCdaIIToIdentifierConceptMap"> </a><p>This mapping does not specify any particular context of use.</p><br/><p>Mapping from <a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html">II: InstanceIdentifier (V3 Data Type)</a> to <a href="http://hl7.org/fhir/R4/datatypes.html#Identifier">Identifier</a></p><table class="grid"><tr><td><b>Source Code</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Relationship</b></td><td><b>Target Code</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Comment</b></td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#s-II.extension">II.extension</a></td><td>0..1</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Identifier#s-Identifier.value">Identifier.value</a></td><td>0..1</td><td>todo</td><td>Lorsque II.extension est présent, il alimente directement Identifier.value.</td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#s-II.root">II.root</a></td><td>0..1</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto" title="relatedto">is related to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Identifier#s-Identifier.system">Identifier.system</a></td><td>0..1</td><td>todo</td><td>Utilisé pour alimenter Identifier.system, généralement avec transformation vers un URI.</td></tr><tr><td colspan="3" style="opacity: 0.5">&quot;</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto" title="relatedto">is related to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Identifier#s-Identifier.value">Identifier.value</a></td><td>0..1</td><td>todo</td><td>En l’absence de II.extension, Identifier.value peut être dérivé de II.root, par exemple sous la forme urn:uuid:[II.root] si II.root est un UUID, ou urn:oid:[II.root] si II.root est un OID.</td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#s-II.assigningAuthorityName">II.assigningAuthorityName</a></td><td>0..1</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto" title="relatedto">is related to</a></td><td colspan="3">Identifier.assigner.display</td><td/></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#s-II.displayable">II.displayable</a></td><td>0..1</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto" title="relatedto">is related to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Identifier#s-Identifier.extension">Identifier.extension</a></td><td>0..*</td><td>todo</td><td>Porté dans une extension FHIR spécifique.</td></tr></table></div></div>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><div xml:lang="fr" lang="fr"><hr/><p><b>French</b></p><hr/><p class="res-header-id"><b>Narratif généré : CarteDeConcepts CdaIIToIdentifierConceptMap</b></p><a name="CdaIIToIdentifierConceptMap"> </a><a name="hcCdaIIToIdentifierConceptMap"> </a><p>This mapping does not specify any particular context of use.</p><br/><p><b>Groupe 1 </b>Mapping de <a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html">II: InstanceIdentifier (V3 Data Type)</a> to <a href="http://hl7.org/fhir/R4/datatypes.html#Identifier">Identifier</a></p><table class="grid"><tr><td><b>Code source</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>relation</b></td><td><b>Code cible</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Commentaire</b></td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#s-II.extension">II.extension</a></td><td>0..1</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Identifier#s-Identifier.value">Identifier.value</a></td><td>0..1</td><td>todo</td><td>Lorsque II.extension est présent, il alimente directement Identifier.value.</td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#s-II.root">II.root</a></td><td>0..1</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto" title="relatedto">is related to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Identifier#s-Identifier.system">Identifier.system</a></td><td>0..1</td><td>todo</td><td>II.root alimente Identifier.system après transformation en URI, par exemple sous la forme urn:oid:[II.root] ou urn:uuid:[II.root].</td></tr><tr><td colspan="3" style="opacity: 0.5">&quot;</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto" title="relatedto">is related to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Identifier#s-Identifier.value">Identifier.value</a></td><td>0..1</td><td>todo</td><td>En l’absence de II.extension, Identifier.value peut être dérivé de II.root, notamment lorsqu’il porte directement l’identifiant.</td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#s-II.assigningAuthorityName">II.assigningAuthorityName</a></td><td>0..1</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto" title="relatedto">is related to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Identifier#s-Identifier.assigner">Identifier.assigner</a></td><td>0..1</td><td>todo</td><td>II.assigningAuthorityName permet de renseigner l’organisme ayant attribué l’identifiant dans Identifier.assigner.</td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#s-II.displayable">II.displayable</a></td><td>0..1</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto" title="relatedto">is related to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Identifier#s-Identifier.extension">Identifier.extension</a></td><td>0..*</td><td>todo</td><td>La valeur II.displayable peut être conservée dans une extension FHIR spécifique portée par Identifier.</td></tr></table><hr/><p><b>Groupe 2 </b>Mapping de <a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html">II: InstanceIdentifier (V3 Data Type)</a> to <a href="http://hl7.org/fhir/R4/references.html#Reference">Reference</a></p><table class="grid"><tr><td><b>Code source</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>relation</b></td><td><b>Code cible</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Commentaire</b></td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#s-II.assigningAuthorityName">II.assigningAuthorityName</a></td><td>0..1</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto" title="relatedto">is related to</a></td><td><a href="http://hl7.org/fhir/R4/references.html#Reference#s-Reference.display">Reference.display</a></td><td>0..1</td><td>todo</td><td>Le nom de l’autorité d’attribution CDA alimente Reference.display dans la référence Identifier.assigner.</td></tr></table></div><div xml:lang="en" lang="en"><hr/><p><b>English</b></p><hr/><p class="res-header-id"><b>Generated Narrative: ConceptMap CdaIIToIdentifierConceptMap</b></p><a name="en-CdaIIToIdentifierConceptMap"> </a><a name="en-hcCdaIIToIdentifierConceptMap"> </a><p>This mapping does not specify any particular context of use.</p><br/><p><b>Group 1 </b>Mapping from <a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html">II: InstanceIdentifier (V3 Data Type)</a> to <a href="http://hl7.org/fhir/R4/datatypes.html#Identifier">Identifier</a></p><table class="grid"><tr><td><b>Source Code</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Relationship</b></td><td><b>Target Code</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Comment</b></td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#s-II.extension">II.extension</a></td><td>0..1</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#equivalent" title="equivalent">is equivalent to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Identifier#s-Identifier.value">Identifier.value</a></td><td>0..1</td><td>todo</td><td>Lorsque II.extension est présent, il alimente directement Identifier.value.</td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#s-II.root">II.root</a></td><td>0..1</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto" title="relatedto">is related to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Identifier#s-Identifier.system">Identifier.system</a></td><td>0..1</td><td>todo</td><td>II.root alimente Identifier.system après transformation en URI, par exemple sous la forme urn:oid:[II.root] ou urn:uuid:[II.root].</td></tr><tr><td colspan="3" style="opacity: 0.5">&quot;</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto" title="relatedto">is related to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Identifier#s-Identifier.value">Identifier.value</a></td><td>0..1</td><td>todo</td><td>En l’absence de II.extension, Identifier.value peut être dérivé de II.root, notamment lorsqu’il porte directement l’identifiant.</td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#s-II.assigningAuthorityName">II.assigningAuthorityName</a></td><td>0..1</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto" title="relatedto">is related to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Identifier#s-Identifier.assigner">Identifier.assigner</a></td><td>0..1</td><td>todo</td><td>II.assigningAuthorityName permet de renseigner l’organisme ayant attribué l’identifiant dans Identifier.assigner.</td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#s-II.displayable">II.displayable</a></td><td>0..1</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto" title="relatedto">is related to</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Identifier#s-Identifier.extension">Identifier.extension</a></td><td>0..*</td><td>todo</td><td>La valeur II.displayable peut être conservée dans une extension FHIR spécifique portée par Identifier.</td></tr></table><hr/><p><b>Group 2 </b>Mapping from <a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html">II: InstanceIdentifier (V3 Data Type)</a> to <a href="http://hl7.org/fhir/R4/references.html#Reference">Reference</a></p><table class="grid"><tr><td><b>Source Code</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Relationship</b></td><td><b>Target Code</b></td><td><b>Card.</b></td><td><b>Type</b></td><td><b>Comment</b></td></tr><tr><td><a href="http://hl7.org/cda/stds/core/2.0.0-sd/StructureDefinition-II.html#s-II.assigningAuthorityName">II.assigningAuthorityName</a></td><td>0..1</td><td>todo</td><td><a href="http://hl7.org/fhir/R5/codesystem-concept-map-relationship.html#relatedto" title="relatedto">is related to</a></td><td><a href="http://hl7.org/fhir/R4/references.html#Reference#s-Reference.display">Reference.display</a></td><td>0..1</td><td>todo</td><td>Le nom de l’autorité d’attribution CDA alimente Reference.display dans la référence Identifier.assigner.</td></tr></table></div></div>
   </text>
-  <url value="https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/DataTypes/CdaIIToIdentifier"/>
+  <url value="https://interop.esante.gouv.fr/ig/fhir/mappingcdafhir/ConceptMap/CdaIIToIdentifierConceptMap"/>
   <version value="0.1.0"/>
   <name value="CdaIIToIdentifier"/>
   <title value="ConceptMap — CDA II vers FHIR Identifier"/>
   <status value="draft"/>
   <experimental value="true"/>
-  <date value="2026-07-31T12:55:21+00:00"/>
+  <date value="2026-07-31T13:43:20+00:00"/>
   <publisher value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
   <contact>
     <name value="Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris"/>
@@ -20,7 +20,7 @@
       <value value="https://esante.gouv.fr"/>
     </telecom>
   </contact>
-  <description value="Correspondances entre les éléments du datatype CDA II et les éléments FHIR Identifier"/>
+  <description value="Correspondances entre les éléments du datatype CDA II et les éléments FHIR Identifier et Reference."/>
   <jurisdiction>
     <coding>
       <system value="urn:iso:std:iso:3166"/>
@@ -35,47 +35,64 @@
     <targetVersion value="4.0.1"/>
     <element>
       <code value="II.extension"/>
-      <display value="II.extension"/>
+      <display value="Extension"/>
       <target>
         <code value="Identifier.value"/>
-        <display value="Identifier.value"/>
+        <display value="The value that is unique"/>
         <equivalence value="equivalent"/>
         <comment value="Lorsque II.extension est présent, il alimente directement Identifier.value."/>
       </target>
     </element>
     <element>
       <code value="II.root"/>
-      <display value="II.root"/>
+      <display value="Root"/>
       <target>
         <code value="Identifier.system"/>
-        <display value="Identifier.system"/>
+        <display value="The namespace for the identifier value"/>
         <equivalence value="relatedto"/>
-        <comment value="Utilisé pour alimenter Identifier.system, généralement avec transformation vers un URI."/>
+        <comment value="II.root alimente Identifier.system après transformation en URI, par exemple sous la forme urn:oid:[II.root] ou urn:uuid:[II.root]."/>
       </target>
       <target>
         <code value="Identifier.value"/>
-        <display value="Identifier.value"/>
+        <display value="The value that is unique"/>
         <equivalence value="relatedto"/>
-        <comment value="En l’absence de II.extension, Identifier.value peut être dérivé de II.root, par exemple sous la forme urn:uuid:[II.root] si II.root est un UUID, ou urn:oid:[II.root] si II.root est un OID."/>
+        <comment value="En l’absence de II.extension, Identifier.value peut être dérivé de II.root, notamment lorsqu’il porte directement l’identifiant."/>
       </target>
     </element>
     <element>
       <code value="II.assigningAuthorityName"/>
-      <display value="II.assigningAuthorityName"/>
+      <display value="Assigning Authority Name"/>
       <target>
-        <code value="Identifier.assigner.display"/>
-        <display value="Identifier.assigner.display"/>
+        <code value="Identifier.assigner"/>
+        <display value="Organization that issued id (may be just text)"/>
         <equivalence value="relatedto"/>
+        <comment value="II.assigningAuthorityName permet de renseigner l’organisme ayant attribué l’identifiant dans Identifier.assigner."/>
       </target>
     </element>
     <element>
       <code value="II.displayable"/>
-      <display value="II.displayable"/>
+      <display value="Displayable"/>
       <target>
         <code value="Identifier.extension"/>
-        <display value="Identifier.extension(displayable)"/>
+        <display value="Additional content defined by implementations"/>
         <equivalence value="relatedto"/>
-        <comment value="Porté dans une extension FHIR spécifique."/>
+        <comment value="La valeur II.displayable peut être conservée dans une extension FHIR spécifique portée par Identifier."/>
+      </target>
+    </element>
+  </group>
+  <group>
+    <source value="http://hl7.org/cda/stds/core/StructureDefinition/II"/>
+    <sourceVersion value="2.0.0-sd"/>
+    <target value="http://hl7.org/fhir/StructureDefinition/Reference"/>
+    <targetVersion value="4.0.1"/>
+    <element>
+      <code value="II.assigningAuthorityName"/>
+      <display value="Assigning Authority Name"/>
+      <target>
+        <code value="Reference.display"/>
+        <display value="Text alternative for the resource"/>
+        <equivalence value="relatedto"/>
+        <comment value="Le nom de l’autorité d’attribution CDA alimente Reference.display dans la référence Identifier.assigner."/>
       </target>
     </element>
   </group>

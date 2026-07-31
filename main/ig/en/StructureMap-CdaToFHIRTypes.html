@@ -369,6 +369,7 @@
 <b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#date" title="date">http://hl7.org/fhir/StructureDefinition/date|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>date <b>as </b><b>target</b>
 <b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#Quantity" title="Quantity">http://hl7.org/fhir/StructureDefinition/Quantity|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>Quantity <b>as </b><b>target</b>
 <b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/datatypes.html#Ratio" title="Ratio">http://hl7.org/fhir/StructureDefinition/Ratio|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>Ratio <b>as </b><b>target</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/domainresource.html" title="DomainResource">http://hl7.org/fhir/StructureDefinition/DomainResource|4.0.1</a><span style="color: navy">&quot; </span><b>alias </b>DomainResource <b>as </b><b>target</b>
 
 <span style="color: navy">// </span><span style="color: green">Groupe générique de base (Sert de groupe parent pour les autres mappings)</span>
 <b>group </b>Any<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span>, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy">)</span><span style="color: navy"> {
@@ -383,13 +384,15 @@
 </span>  <span style="color: navy">// </span><span style="color: green">Si root existe avec une extension, alors root devient le system en urn:oid</span>
   src.root<b> as </b><span style="color: maroon">r</span><b> where </b><span style="color: navy">(</span>src.extension.exists()<span style="color: navy">)</span><span style="color: navy"><b> -&gt; </b></span>tgt.system = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:oid:'</span><span style="color: navy">, </span><span style="color: maroon">r</span><span style="color: navy">)</span> <i>&quot;root1&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">Si root est un UUID sans extension, alors il est mappé comme urn:uuid</span>
-  src.root<b> as </b><span style="color: maroon">r</span><b> where </b><span style="color: navy">(</span>src.extension.empty() and src.root.matches('[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}')<span style="color: navy">)</span><span style="color: navy"><b> -&gt; </b></span> tgt.system = <span style="color: blue">'urn:ietf:rfc:3986'</span><span style="color: navy">, </span> tgt.value = <span style="color: navy">(</span>'urn:uuid:' + r.lower()<span style="color: navy">)</span> <i>&quot;rootuuid&quot;</i><span style="color: navy">;</span>
+  src.root<b> as </b><span style="color: maroon">r</span><b> where </b><span style="color: navy">(</span>src.extension.empty() and src.root.matches('[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}')<span style="color: navy">)</span><span style="color: navy"><b> -&gt; </b></span> tgt.system = <span style="color: blue">'urn:ietf:rfc:3986'</span><span style="color: navy">, </span> tgt.value = <span style="color: navy">(</span>'urn:uuid:' + %r.lower()<span style="color: navy">)</span> <i>&quot;rootuuid&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">Si root est un OID sans extension, alors il devient une valeur urn:oid</span>
   src.root<b> as </b><span style="color: maroon">r</span><b> where </b><span style="color: navy">(</span>src.extension.empty() and src.root.contains('.')<span style="color: navy">)</span><span style="color: navy"><b> -&gt; </b></span> tgt.system = <span style="color: blue">'urn:ietf:rfc:3986'</span><span style="color: navy">, </span> tgt.value = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:oid:'</span><span style="color: navy">, </span><span style="color: maroon">r</span><span style="color: navy">)</span> <i>&quot;rootoid&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">L’extension CDA devient la valeur de l’Identifier FHIR</span>
   src.extension<b> as </b><span style="color: maroon">e</span><span style="color: navy"><b> -&gt; </b></span>tgt.value = <span style="color: maroon">e</span><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">Le nom de l’autorité d’assignation devient le display de l’assigner</span>
-  src.assigningAuthorityName<b> as </b><span style="color: maroon">s</span><span style="color: navy"><b> -&gt; </b></span> tgt.assigner<b> as </b><span style="color: maroon">a</span><span style="color: navy">, </span> a.display = <span style="color: maroon">s</span><span style="color: navy">;</span>
+  src.assigningAuthorityName<b> as </b><span style="color: maroon">s</span><span style="color: navy"><b> -&gt; </b></span>tgt.assigner<b> as </b><span style="color: maroon">a</span><b> then</b><span style="color: navy"> {
+</span>    s<span style="color: navy"><b> -&gt; </b></span>a.display = <span style="color: maroon">s</span> <i>&quot;display&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;assigner&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">Mapping de l’attribut displayable sous forme d’extension FHIR</span>
   src.displayable<b> as </b><span style="color: maroon">displayable</span><span style="color: navy"><b> -&gt; </b></span>tgt.extension<b> as </b><span style="color: maroon">ext</span><b> then</b><span style="color: navy"> {
 </span>    <span style="color: navy">// </span><span style="color: green">URL de l’extension displayable</span>
@@ -408,7 +411,7 @@
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">Mapping des templateId CDA (Les templateId sont conservés dans des extensions FHIR)</span>
-<b>group </b>TemplateID<span style="color: navy">(</span><b>source</b> <span style="color: maroon">template</span><span style="color: navy"> : </span>II, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>TemplateID<span style="color: navy">(</span><b>source</b> <span style="color: maroon">template</span><span style="color: navy"> : </span>II, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>DomainResource<span style="color: navy">)</span><span style="color: navy"> {
 </span>  <span style="color: navy">// </span><span style="color: green">Création d’une extension pour stocker le templateId CDA</span>
   template<span style="color: navy"><b> -&gt; </b></span>tgt.extension<b> as </b><span style="color: maroon">ext</span><b> then</b><span style="color: navy"> {
 </span>    <span style="color: navy">// </span><span style="color: green">URL de l’extension templateID</span>
@@ -419,7 +422,7 @@
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">Mapping du negationIndicator CDA (La négation CDA est représentée comme modifierExtension FHIR)</span>
-<b>group </b>Negation<span style="color: navy">(</span><b>source</b> <span style="color: maroon">negation</span><span style="color: navy"> : </span>BL, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy">)</span><span style="color: navy"> {
+<b>group </b>Negation<span style="color: navy">(</span><b>source</b> <span style="color: maroon">negation</span><span style="color: navy"> : </span>BL, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>DomainResource<span style="color: navy">)</span><span style="color: navy"> {
 </span>  <span style="color: navy">// </span><span style="color: green">Création d’une modifierExtension pour indiquer la négation</span>
   negation<span style="color: navy"><b> -&gt; </b></span>tgt.modifierExtension<b> as </b><span style="color: maroon">ext</span><b> then</b><span style="color: navy"> {
 </span>    <span style="color: navy">// </span><span style="color: green">URL de l’extension negationIndicator</span>
@@ -452,15 +455,21 @@
 <span style="color: navy">// </span><span style="color: green">Period = période FHIR avec start et end</span>
 <b>group </b>IVLTSPeriod<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>IVL_TS, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Period<span style="color: navy">)</span><b> extends </b>Any<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
 </span>  <span style="color: navy">// </span><span style="color: green">La borne basse CDA devient le start FHIR</span>
-  src.low<b> as </b><span style="color: maroon">low</span><span style="color: navy"><b> -&gt; </b></span>tgt.start = <b>create</b><span style="color: navy">(</span><span style="color: blue">'dateTime'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">start</span><b> then </b>TSDateTime<span style="color: navy">(</span><span style="color: maroon">low</span><span style="color: navy">, </span><span style="color: maroon">start</span><span style="color: navy">)</span><span style="color: navy">;</span>
+  src.low<b> as </b><span style="color: maroon">low</span><b> then</b><span style="color: navy"> {
+</span>    low.value<b> as </b><span style="color: maroon">value</span><span style="color: navy"><b> -&gt; </b></span>tgt.start = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">value</span><span style="color: navy">, </span><span style="color: blue">'dateTime'</span><span style="color: navy">)</span> <i>&quot;start&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">La borne haute CDA devient le end FHIR</span>
-  src.high<b> as </b><span style="color: maroon">high</span><span style="color: navy"><b> -&gt; </b></span>tgt.end = <b>create</b><span style="color: navy">(</span><span style="color: blue">'dateTime'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">end</span><b> then </b>TSDateTime<span style="color: navy">(</span><span style="color: maroon">high</span><span style="color: navy">, </span><span style="color: maroon">end</span><span style="color: navy">)</span><span style="color: navy">;</span>
+  src.high<b> as </b><span style="color: maroon">high</span><b> then</b><span style="color: navy"> {
+</span>    high.value<b> as </b><span style="color: maroon">value</span><span style="color: navy"><b> -&gt; </b></span>tgt.end = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">value</span><span style="color: navy">, </span><span style="color: blue">'dateTime'</span><span style="color: navy">)</span> <i>&quot;end&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span><span style="color: navy">;</span>
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">Mapping CDA IVL_TS vers FHIR dateTime (On utilise uniquement la borne basse low)</span>
 <b>group </b>IVLTSDateTime<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>IVL_TS, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>dateTime<span style="color: navy">)</span><b> extends </b>Any<b> &lt;&lt;types&gt;&gt;</b><span style="color: navy"> {
 </span>  <span style="color: navy">// </span><span style="color: green">La borne basse est transformée en dateTime</span>
-  src.low<b> as </b><span style="color: maroon">s</span><b> then </b>TSDateTime<span style="color: navy">(</span><span style="color: maroon">s</span><span style="color: navy">, </span><span style="color: maroon">tgt</span><span style="color: navy">)</span><span style="color: navy">;</span>
+  src.low<b> as </b><span style="color: maroon">low</span><b> then</b><span style="color: navy"> {
+</span>    low.value<b> as </b><span style="color: maroon">value</span><span style="color: navy"><b> -&gt; </b></span>tgt.value = <b>cast</b><span style="color: navy">(</span><span style="color: maroon">value</span><span style="color: navy">, </span><span style="color: blue">'string'</span><span style="color: navy">)</span><span style="color: navy">;</span>
+  <span style="color: navy">}</span><span style="color: navy">;</span>
 <span style="color: navy">}
 
 </span><span style="color: navy">// </span><span style="color: green">Mapping CDA ST vers FHIR string (ST = texte simple CDA)</span>
@@ -524,7 +533,7 @@
     <span style="color: navy">// </span><span style="color: green">CDA codeSystem HL7 v3 ActCode -&gt; FHIR Coding.system.</span>
     src.codeSystem<b> as </b><span style="color: maroon">system</span><b> where </b><span style="color: navy">(</span>system = '2.16.840.1.113883.5.4'<span style="color: navy">)</span><span style="color: navy"><b> -&gt; </b></span>coding.system = <span style="color: blue">'http://terminology.hl7.org/CodeSystem/v3-ActCode'</span> <i>&quot;systemActCode&quot;</i><span style="color: navy">;</span>
     <span style="color: navy">// </span><span style="color: green">CDA codeSystem TRE_A02 -&gt; FHIR Coding.system NOS.</span>
-    src.codeSystem<b> as </b><span style="color: maroon">system</span><b> where </b><span style="color: navy">(</span>system = '1.2.250.1.213.1.1.4.5'<span style="color: navy">)</span><span style="color: navy"><b> -&gt; </b></span>coding.system = <span style="color: blue">'https://mos.esante.gouv.fr/NOS/TRE_A02-ProfessionSavFaire-CISIS/FHIR/TRE-A02-ProfessionSavFaire-CISIS'</span> <i>&quot;systemTRE_A02&quot;</i><span style="color: navy">;</span>
+    src.codeSystem<b> as </b><span style="color: maroon">system</span><b> where </b><span style="color: navy">(</span>system = '1.2.250.1.213.1.1.4.5'<span style="color: navy">)</span><span style="color: navy"><b> -&gt; </b></span>coding.system = <span style="color: blue">'https://mos.esante.gouv.fr/NOS/TRE_A02-ProfessionSavFaire-CISIS/FHIR/TRE-A02-ProfessionSavFaire-CISIS'</span> <i>&quot;systemTREA02&quot;</i><span style="color: navy">;</span>
     <span style="color: navy">// </span><span style="color: green">CDA autres codeSystem OID -&gt; FHIR Coding.system urn:oid.</span>
     src.codeSystem<b> as </b><span style="color: maroon">system</span><b> where </b><span style="color: navy">(</span>(system != '2.16.840.1.113883.6.1') and (system != '2.16.840.1.113883.6.96') and (system != '2.16.840.1.113883.5.4') and (system != '1.2.250.1.213.1.1.4.5')<span style="color: navy">)</span><span style="color: navy"><b> -&gt; </b></span>coding.system = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:oid:'</span><span style="color: navy">, </span><span style="color: maroon">system</span><span style="color: navy">)</span> <i>&quot;systemFallback&quot;</i><span style="color: navy">;</span>
     <span style="color: navy">// </span><span style="color: green">CDA displayName -&gt; FHIR Coding.display.</span>
@@ -556,7 +565,7 @@
   <span style="color: navy">// </span><span style="color: green">CDA codeSystem HL7 v3 ActCode -&gt; FHIR Coding.system</span>
   src.codeSystem<b> as </b><span style="color: maroon">system</span><b> where </b><span style="color: navy">(</span>system = '2.16.840.1.113883.5.4'<span style="color: navy">)</span><span style="color: navy"><b> -&gt; </b></span>tgt.system = <span style="color: blue">'http://terminology.hl7.org/CodeSystem/v3-ActCode'</span> <i>&quot;systemActCode&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">CDA codeSystem TRE_A02 -&gt; FHIR Coding.system NOS</span>
-  src.codeSystem<b> as </b><span style="color: maroon">system</span><b> where </b><span style="color: navy">(</span>system = '1.2.250.1.213.1.1.4.5'<span style="color: navy">)</span><span style="color: navy"><b> -&gt; </b></span>tgt.system = <span style="color: blue">'https://mos.esante.gouv.fr/NOS/TRE_A02-ProfessionSavFaire-CISIS/FHIR/TRE-A02-ProfessionSavFaire-CISIS'</span> <i>&quot;systemTRE_A02&quot;</i><span style="color: navy">;</span>
+  src.codeSystem<b> as </b><span style="color: maroon">system</span><b> where </b><span style="color: navy">(</span>system = '1.2.250.1.213.1.1.4.5'<span style="color: navy">)</span><span style="color: navy"><b> -&gt; </b></span>tgt.system = <span style="color: blue">'https://mos.esante.gouv.fr/NOS/TRE_A02-ProfessionSavFaire-CISIS/FHIR/TRE-A02-ProfessionSavFaire-CISIS'</span> <i>&quot;systemTREA02&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">CDA autres codeSystem OID -&gt; FHIR Coding.system urn:oid</span>
   src.codeSystem<b> as </b><span style="color: maroon">system</span><b> where </b><span style="color: navy">(</span>(system != '2.16.840.1.113883.6.1') and (system != '2.16.840.1.113883.6.96') and (system != '2.16.840.1.113883.5.4') and (system != '1.2.250.1.213.1.1.4.5')<span style="color: navy">)</span><span style="color: navy"><b> -&gt; </b></span>tgt.system = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:oid:'</span><span style="color: navy">, </span><span style="color: maroon">system</span><span style="color: navy">)</span> <i>&quot;systemFallback&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">CDA displayName -&gt; FHIR Coding.display</span>
@@ -570,13 +579,13 @@
 </span>  <span style="color: navy">// </span><span style="color: green">Parcours des composants du nom CDA</span>
   src.item<b> as </b><span style="color: maroon">item</span><b> then</b><span style="color: navy"> {
 </span>    <span style="color: navy">// </span><span style="color: green">Nom de famille</span>
-    item.family<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.family = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
+    item.family<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.family = <span style="color: navy">(</span>%v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
     <span style="color: navy">// </span><span style="color: green">Prénom</span>
-    item.given<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.given = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
+    item.given<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.given = <span style="color: navy">(</span>%v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
     <span style="color: navy">// </span><span style="color: green">Préfixe du nom</span>
-    item.prefix<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.prefix = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
+    item.prefix<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.prefix = <span style="color: navy">(</span>%v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
     <span style="color: navy">// </span><span style="color: green">Suffixe du nom</span>
-    item.suffix<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.suffix = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
+    item.suffix<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.suffix = <span style="color: navy">(</span>%v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
   <span style="color: navy">}</span><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">La période de validité CDA devient period FHIR</span>
   src.validTime<b> as </b><span style="color: maroon">validTime</span><span style="color: navy"><b> -&gt; </b></span>tgt.period = <span style="color: maroon">validTime</span><span style="color: navy">;</span>
@@ -597,32 +606,21 @@
 </span>  <span style="color: navy">// </span><span style="color: green">Parcours des composants de l’adresse CDA</span>
   src.item<b> as </b><span style="color: maroon">item</span><b> then</b><span style="color: navy"> {
 </span>    <span style="color: navy">// </span><span style="color: green">Pays</span>
-    item.country<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.country = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
+    item.country<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.country = <span style="color: navy">(</span>%v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
     <span style="color: navy">// </span><span style="color: green">Région / état</span>
-    item.state<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.state = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
+    item.state<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.state = <span style="color: navy">(</span>%v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
     <span style="color: navy">// </span><span style="color: green">Département / district</span>
-    item.county<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.district = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
+    item.county<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.district = <span style="color: navy">(</span>%v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
     <span style="color: navy">// </span><span style="color: green">Ville</span>
-    item.city<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.city = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
+    item.city<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.city = <span style="color: navy">(</span>%v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
     <span style="color: navy">// </span><span style="color: green">Code postal</span>
-    item.postalCode<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.postalCode = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
+    item.postalCode<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.postalCode = <span style="color: navy">(</span>%v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
     <span style="color: navy">// </span><span style="color: green">Ligne d’adresse complète</span>
-    item.streetAddressLine<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.line = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
-    <span style="color: navy">// </span><span style="color: green">Ajout éventuel d’une extension sur la ligne d’adresse pour le censusTract</span>
-    item<span style="color: navy"><b> -&gt; </b></span>tgt.line<b> as </b><span style="color: maroon">line</span><b> then</b><span style="color: navy"> {
-</span>      item<b> where </b><span style="color: navy">(</span>src.censusTract.exists()<span style="color: navy">)</span><b> then</b><span style="color: navy"> {
-</span>        <span style="color: navy">// </span><span style="color: green">Mapping du censusTract dans une extension de line</span>
-        item.censusTract<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>line.extension<b> as </b><span style="color: maroon">ext1</span><b> then </b>CensusTract<span style="color: navy">(</span><span style="color: maroon">v</span><span style="color: navy">, </span><span style="color: maroon">ext1</span><span style="color: navy">)</span> <i>&quot;line&quot;</i><span style="color: navy">;</span>
-      <span style="color: navy">}</span> <i>&quot;sfgfdsg&quot;</i><span style="color: navy">;</span>
-    <span style="color: navy">}</span> <i>&quot;CensusTract&quot;</i><span style="color: navy">;</span>
-    <span style="color: navy">// </span><span style="color: green">Anciennes tentatives de mapping du censusTract, conservées en commentaire</span>
-    <span style="color: navy">// </span><span style="color: green">as streetAddress then{</span>
-    <span style="color: #b36b00" title="This element was not defined prior to R5">// src.censusTract as v-&gt;tgt.line as line, line.extension as ext1 then CensusTract(v, ext1) &quot;line&quot;;</span>
-    <span style="color: #b36b00" title="This element was not defined prior to R5">// src.censusTract as v -&gt;tgt.line as line, line.extension as ext1 then CensusTract(v, ext1) &quot;line&quot;;</span>
+    item.streetAddressLine<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.line = <span style="color: navy">(</span>%v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
     <span style="color: navy">// </span><span style="color: green">Nom de rue</span>
-    item.streetName<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.line = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
+    item.streetName<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.line = <span style="color: navy">(</span>%v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
     <span style="color: navy">// </span><span style="color: green">Numéro de maison</span>
-    item.houseNumber<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.line = <span style="color: navy">(</span>v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
+    item.houseNumber<b> as </b><span style="color: maroon">v</span><span style="color: navy"><b> -&gt; </b></span>tgt.line = <span style="color: navy">(</span>%v.xmlText<span style="color: navy">)</span><span style="color: navy">;</span>
   <span style="color: navy">}</span><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">Période d’utilisation de l’adresse</span>
   src.useablePeriod<b> as </b><span style="color: maroon">useablePeriod</span><span style="color: navy"><b> -&gt; </b></span>tgt.period = <span style="color: maroon">useablePeriod</span><span style="color: navy">;</span>
@@ -633,13 +631,13 @@
 <span style="color: navy">// </span><span style="color: green">ContactPoint = moyen de contact FHIR</span>
 <b>group </b>TELContactPoint<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>TEL, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>ContactPoint<span style="color: navy">)</span><span style="color: navy"> {
 </span>  <span style="color: navy">// </span><span style="color: green">Si la valeur commence par tel:, c’est un téléphone</span>
-  src.value<b> as </b><span style="color: maroon">v</span><b> where </b><span style="color: navy">(</span>src.value.startsWith('tel:')<span style="color: navy">)</span><span style="color: navy"><b> -&gt; </b></span> tgt.value = <span style="color: navy">(</span>v.substring(4)<span style="color: navy">)</span><span style="color: navy">, </span> tgt.system = <span style="color: blue">'phone'</span> <i>&quot;valuetel&quot;</i><span style="color: navy">;</span>
+  src.value<b> as </b><span style="color: maroon">v</span><b> where </b><span style="color: navy">(</span>src.value.startsWith('tel:')<span style="color: navy">)</span><span style="color: navy"><b> -&gt; </b></span> tgt.value = <span style="color: navy">(</span>%v.substring(4)<span style="color: navy">)</span><span style="color: navy">, </span> tgt.system = <span style="color: blue">'phone'</span> <i>&quot;valuetel&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">Si la valeur commence par fax:, c’est un fax</span>
-  src.value<b> as </b><span style="color: maroon">v</span><b> where </b><span style="color: navy">(</span>src.value.startsWith('fax:')<span style="color: navy">)</span><span style="color: navy"><b> -&gt; </b></span> tgt.value = <span style="color: navy">(</span>v.substring(4)<span style="color: navy">)</span><span style="color: navy">, </span> tgt.system = <span style="color: blue">'fax'</span> <i>&quot;valuefax&quot;</i><span style="color: navy">;</span>
+  src.value<b> as </b><span style="color: maroon">v</span><b> where </b><span style="color: navy">(</span>src.value.startsWith('fax:')<span style="color: navy">)</span><span style="color: navy"><b> -&gt; </b></span> tgt.value = <span style="color: navy">(</span>%v.substring(4)<span style="color: navy">)</span><span style="color: navy">, </span> tgt.system = <span style="color: blue">'fax'</span> <i>&quot;valuefax&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">Si la valeur commence par mailto:, c’est un email</span>
-  src.value<b> as </b><span style="color: maroon">v</span><b> where </b><span style="color: navy">(</span>src.value.startsWith('mailto:')<span style="color: navy">)</span><span style="color: navy"><b> -&gt; </b></span> tgt.value = <span style="color: navy">(</span>v.substring(7)<span style="color: navy">)</span><span style="color: navy">, </span> tgt.system = <span style="color: blue">'email'</span> <i>&quot;valuemail&quot;</i><span style="color: navy">;</span>
+  src.value<b> as </b><span style="color: maroon">v</span><b> where </b><span style="color: navy">(</span>src.value.startsWith('mailto:')<span style="color: navy">)</span><span style="color: navy"><b> -&gt; </b></span> tgt.value = <span style="color: navy">(</span>%v.substring(7)<span style="color: navy">)</span><span style="color: navy">, </span> tgt.system = <span style="color: blue">'email'</span> <i>&quot;valuemail&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">Si la valeur commence par http:, c’est une URL</span>
-  src.value<b> as </b><span style="color: maroon">v</span><b> where </b><span style="color: navy">(</span>src.value.startsWith('http:')<span style="color: navy">)</span><span style="color: navy"><b> -&gt; </b></span> tgt.value = <span style="color: navy">(</span>v.substring(5)<span style="color: navy">)</span><span style="color: navy">, </span> tgt.system = <span style="color: blue">'url'</span> <i>&quot;valuehttp&quot;</i><span style="color: navy">;</span>
+  src.value<b> as </b><span style="color: maroon">v</span><b> where </b><span style="color: navy">(</span>src.value.startsWith('http:')<span style="color: navy">)</span><span style="color: navy"><b> -&gt; </b></span> tgt.value = <span style="color: navy">(</span>%v.substring(5)<span style="color: navy">)</span><span style="color: navy">, </span> tgt.system = <span style="color: blue">'url'</span> <i>&quot;valuehttp&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">Usage domicile</span>
   src.use<b> where </b><span style="color: navy">(</span>src.use.startsWith('H')<span style="color: navy">)</span><span style="color: navy"><b> -&gt; </b></span>tgt.use = <span style="color: blue">'home'</span> <i>&quot;usehome&quot;</i><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">Usage professionnel</span>
@@ -673,9 +671,19 @@
 <span style="color: navy">// </span><span style="color: green">Ratio = ratio FHIR</span>
 <b>group </b>RTOPQPQRatio<span style="color: navy">(</span><b>source</b> <span style="color: maroon">src</span><span style="color: navy"> : </span>RTO_PQ_PQ, <b>target</b> <span style="color: maroon">tgt</span><span style="color: navy"> : </span>Ratio<span style="color: navy">)</span><span style="color: navy"> {
 </span>  <span style="color: navy">// </span><span style="color: green">Mapping du numérateur</span>
-  src.numerator<b> as </b><span style="color: maroon">numerator</span><span style="color: navy"><b> -&gt; </b></span>tgt.numerator<b> as </b><span style="color: maroon">targetNumerator</span><b> then </b>PQQuantity<span style="color: navy">(</span><span style="color: maroon">numerator</span><span style="color: navy">, </span><span style="color: maroon">targetNumerator</span><span style="color: navy">)</span><span style="color: navy">;</span>
+  src.numerator<b> as </b><span style="color: maroon">numerator</span><span style="color: navy"><b> -&gt; </b></span>tgt.numerator<b> as </b><span style="color: maroon">targetNumerator</span><b> then</b><span style="color: navy"> {
+</span>    numerator.unit<b> as </b><span style="color: maroon">unit</span><span style="color: navy"><b> -&gt; </b></span>targetNumerator.unit = <span style="color: maroon">unit</span><span style="color: navy">;</span>
+    numerator.unit<b> as </b><span style="color: maroon">unit</span><span style="color: navy"><b> -&gt; </b></span>targetNumerator.code = <span style="color: maroon">unit</span><span style="color: navy">;</span>
+    numerator.unit<b> as </b><span style="color: maroon">unit</span><span style="color: navy"><b> -&gt; </b></span>targetNumerator.system = <span style="color: blue">'http://unitsofmeasure.org'</span><span style="color: navy">;</span>
+    numerator.value<b> as </b><span style="color: maroon">value</span><span style="color: navy"><b> -&gt; </b></span>targetNumerator.value = <span style="color: maroon">value</span><span style="color: navy">;</span>
+  <span style="color: navy">}</span><span style="color: navy">;</span>
   <span style="color: navy">// </span><span style="color: green">Mapping du dénominateur</span>
-  src.denominator<b> as </b><span style="color: maroon">denominator</span><span style="color: navy"><b> -&gt; </b></span>tgt.denominator<b> as </b><span style="color: maroon">targetDenominator</span><b> then </b>PQQuantity<span style="color: navy">(</span><span style="color: maroon">denominator</span><span style="color: navy">, </span><span style="color: maroon">targetDenominator</span><span style="color: navy">)</span><span style="color: navy">;</span>
+  src.denominator<b> as </b><span style="color: maroon">denominator</span><span style="color: navy"><b> -&gt; </b></span>tgt.denominator<b> as </b><span style="color: maroon">targetDenominator</span><b> then</b><span style="color: navy"> {
+</span>    denominator.unit<b> as </b><span style="color: maroon">unit</span><span style="color: navy"><b> -&gt; </b></span>targetDenominator.unit = <span style="color: maroon">unit</span><span style="color: navy">;</span>
+    denominator.unit<b> as </b><span style="color: maroon">unit</span><span style="color: navy"><b> -&gt; </b></span>targetDenominator.code = <span style="color: maroon">unit</span><span style="color: navy">;</span>
+    denominator.unit<b> as </b><span style="color: maroon">unit</span><span style="color: navy"><b> -&gt; </b></span>targetDenominator.system = <span style="color: blue">'http://unitsofmeasure.org'</span><span style="color: navy">;</span>
+    denominator.value<b> as </b><span style="color: maroon">value</span><span style="color: navy"><b> -&gt; </b></span>targetDenominator.value = <span style="color: maroon">value</span><span style="color: navy">;</span>
+  <span style="color: navy">}</span><span style="color: navy">;</span>
 <span style="color: navy">}
 
 </span></pre></div>
@@ -733,7 +741,7 @@
           IG © 2020+ <a style="color:var(--footer-hyperlink-text-color)" href="https://esante.gouv.fr">Agence du Numérique en Santé (ANS) - 2-10 Rue d&#39;Oradour-sur-Glane, 75015 Paris</a>.  
           Package ans.fhir.fr.mappingcdafhir#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>.
           Generated 
-  <span title="2026-07-31 12:55:00 +0000">
+  <span title="2026-07-31 13:43:00 +0000">
     2026-07-31
   </span>
 

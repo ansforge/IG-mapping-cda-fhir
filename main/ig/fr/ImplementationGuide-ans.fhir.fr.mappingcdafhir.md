@@ -14,7 +14,7 @@
   "name" : "CDA2FHIRMAP",
   "title" : "Mapping CDA to FHIR (Preuve de concept)",
   "status" : "draft",
-  "date" : "2026-07-31T12:55:21+00:00",
+  "date" : "2026-07-31T13:43:20+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -941,7 +941,7 @@
         "reference" : "ConceptMap/CdaADToAddressConceptMap"
       },
       "name" : "ConceptMap — CDA AD vers FHIR Address",
-      "description" : "Correspondances documentaires des composants AD vers Address.",
+      "description" : "Correspondances documentaires des composants du type CDA AD vers le type FHIR Address et les extensions associées.",
       "exampleBoolean" : false
     },
     {
@@ -973,7 +973,7 @@
         "reference" : "ConceptMap/CdaCECSCDToCodeConceptMap"
       },
       "name" : "ConceptMap — CDA CE/CS/CD vers FHIR code et CodeableConcept",
-      "description" : "Correspondances documentaires entre les datatypes CDA CE, CS et CD et les types FHIR code et CodeableConcept.",
+      "description" : "Correspondances documentaires entre les datatypes CDA CE, CS et CD et les types FHIR code, CodeableConcept et Coding.",
       "exampleBoolean" : false
     },
     {
@@ -1005,7 +1005,7 @@
         "reference" : "ConceptMap/CdaIIToIdentifierConceptMap"
       },
       "name" : "ConceptMap — CDA II vers FHIR Identifier",
-      "description" : "Correspondances entre les éléments du datatype CDA II et les éléments FHIR Identifier",
+      "description" : "Correspondances entre les éléments du datatype CDA II et les éléments FHIR Identifier et Reference.",
       "exampleBoolean" : false
     },
     {
@@ -1037,7 +1037,7 @@
         "reference" : "ConceptMap/CdaIVL-TSToPeriodConceptMap"
       },
       "name" : "ConceptMap — CDA IVL_TS vers FHIR Period et dateTime",
-      "description" : "Correspondances documentaires entre le datatype CDA IVL_TS et les types FHIR Period et dateTime.",
+      "description" : "Correspondances documentaires entre le datatype CDA IVL_TS, ses bornes IVXB_TS et les types FHIR Period et dateTime.",
       "exampleBoolean" : false
     },
     {
