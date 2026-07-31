@@ -45,6 +45,7 @@ uses "http://hl7.org/fhir/StructureDefinition/dateTime" alias dateTime as target
 uses "http://hl7.org/fhir/StructureDefinition/date" alias date as target
 uses "http://hl7.org/fhir/StructureDefinition/Quantity" alias Quantity as target
 uses "http://hl7.org/fhir/StructureDefinition/Ratio" alias Ratio as target
+uses "http://hl7.org/fhir/StructureDefinition/DomainResource" alias DomainResource as target
 
 
 // Groupe générique de base (Sert de groupe parent pour les autres mappings)
@@ -65,7 +66,7 @@ group II(source src : II, target tgt : Identifier) extends Any <<types>> {
   // Si root est un UUID sans extension, alors il est mappé comme urn:uuid
   src.root as r where src.extension.empty() 
         and src.root.matches('[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}') 
-     -> tgt.system = 'urn:ietf:rfc:3986', tgt.value = ('urn:uuid:' + r.lower()) "rootuuid";
+     -> tgt.system = 'urn:ietf:rfc:3986', tgt.value = ('urn:uuid:' + %r.lower()) "rootuuid";
 
   // Si root est un OID sans extension, alors il devient une valeur urn:oid
   src.root as r where src.extension.empty() and src.root.contains('.') 
@@ -75,7 +76,9 @@ group II(source src : II, target tgt : Identifier) extends Any <<types>> {
   src.extension as e -> tgt.value = e;
 
   // Le nom de l’autorité d’assignation devient le display de l’assigner
-  src.assigningAuthorityName as s ->  tgt.assigner as a,  a.display = s; // there's no equivalent for displayable in FHIR - and it probably will never matter, but if it does, it might map to Identifier.use.
+  src.assigningAuthorityName as s -> tgt.assigner as a then {
+    s -> a.display = s "display";
+  } "assigner"; // there's no equivalent for displayable in FHIR - and it probably will never matter, but if it does, it might map to Identifier.use.
 
   // Mapping de l’attribut displayable sous forme d’extension FHIR
   src.displayable as displayable -> tgt.extension as ext then {
@@ -98,7 +101,7 @@ group INT(source src : INT, target tgt : integer) extends Any <<types>> {
 
 
 // Mapping des templateId CDA (Les templateId sont conservés dans des extensions FHIR)
-group TemplateID(source template : II, target tgt) {
+group TemplateID(source template : II, target tgt : DomainResource) {
   // Création d’une extension pour stocker le templateId CDA
   template -> tgt.extension as ext then {
     // URL de l’extension templateID
@@ -111,7 +114,7 @@ group TemplateID(source template : II, target tgt) {
 
 
 // Mapping du negationIndicator CDA (La négation CDA est représentée comme modifierExtension FHIR)
-group Negation(source negation : BL, target tgt) {
+group Negation(source negation : BL, target tgt : DomainResource) {
   // Création d’une modifierExtension pour indiquer la négation
   negation -> tgt.modifierExtension as ext then {
     // URL de l’extension negationIndicator
@@ -150,17 +153,23 @@ IVL_TS = intervalle de temps CDA
 Period = période FHIR avec start et end*/
 group IVLTSPeriod(source src : IVL_TS, target tgt : Period) extends Any <<types>> {
   // La borne basse CDA devient le start FHIR
-  src.low as low -> tgt.start = create('dateTime') as start then TSDateTime(low, start);
+  src.low as low then {
+    low.value as value -> tgt.start = cast(value, 'dateTime') "start";
+  } "low";
 
   // La borne haute CDA devient le end FHIR
-  src.high as high -> tgt.end = create('dateTime') as end then TSDateTime(high, end);
+  src.high as high then {
+    high.value as value -> tgt.end = cast(value, 'dateTime') "end";
+  } "high";
 }
 
 
 // Mapping CDA IVL_TS vers FHIR dateTime (On utilise uniquement la borne basse low)
 group IVLTSDateTime(source src : IVL_TS, target tgt : dateTime) extends Any <<types>> {
   // La borne basse est transformée en dateTime
-  src.low as s then TSDateTime(s, tgt);
+  src.low as low then {
+    low.value as value -> tgt.value = cast(value, 'string') "value";
+  } "low";
 }
 
 
@@ -249,7 +258,7 @@ group CECodeableConcept(source src : CE, target tgt : CodeableConcept) {
     // CDA codeSystem TRE_A02 -> FHIR Coding.system NOS.
     src.codeSystem as system where system = '1.2.250.1.213.1.1.4.5'
       -> coding.system =
-        'https://mos.esante.gouv.fr/NOS/TRE_A02-ProfessionSavFaire-CISIS/FHIR/TRE-A02-ProfessionSavFaire-CISIS' "systemTRE_A02";
+        'https://mos.esante.gouv.fr/NOS/TRE_A02-ProfessionSavFaire-CISIS/FHIR/TRE-A02-ProfessionSavFaire-CISIS' "systemTREA02";
 
     // CDA autres codeSystem OID -> FHIR Coding.system urn:oid.
     src.codeSystem as system
@@ -296,7 +305,7 @@ group CDCoding(source src, target tgt : Coding) {
   src.codeSystem as system where system = '2.16.840.1.113883.5.4' -> tgt.system = 'http://terminology.hl7.org/CodeSystem/v3-ActCode' "systemActCode";
 
   // CDA codeSystem TRE_A02 -> FHIR Coding.system NOS
-  src.codeSystem as system where system = '1.2.250.1.213.1.1.4.5' -> tgt.system = 'https://mos.esante.gouv.fr/NOS/TRE_A02-ProfessionSavFaire-CISIS/FHIR/TRE-A02-ProfessionSavFaire-CISIS' "systemTRE_A02";
+  src.codeSystem as system where system = '1.2.250.1.213.1.1.4.5' -> tgt.system = 'https://mos.esante.gouv.fr/NOS/TRE_A02-ProfessionSavFaire-CISIS/FHIR/TRE-A02-ProfessionSavFaire-CISIS' "systemTREA02";
 
   // CDA autres codeSystem OID -> FHIR Coding.system urn:oid
   src.codeSystem as system where system != '2.16.840.1.113883.6.1' and system != '2.16.840.1.113883.6.96' and system != '2.16.840.1.113883.5.4' and system != '1.2.250.1.213.1.1.4.5' -> tgt.system = append('urn:oid:', system) "systemFallback";
@@ -313,19 +322,17 @@ group ENHumanName(source src : EN, target tgt : HumanName) {
   // Parcours des composants du nom CDA
   src.item as item then {
     // Nom de famille
-    item.family as v -> tgt.family = (v.xmlText);
+    item.family as v -> tgt.family = (%v.xmlText);
 
     // Prénom
-    item.given as v -> tgt.given = (v.xmlText);
+    item.given as v -> tgt.given = (%v.xmlText);
 
     // Préfixe du nom
-    item.prefix as v -> tgt.prefix = (v.xmlText);
+    item.prefix as v -> tgt.prefix = (%v.xmlText);
 
     // Suffixe du nom
-    item.suffix as v -> tgt.suffix = (v.xmlText);
+    item.suffix as v -> tgt.suffix = (%v.xmlText);
 
-    // Mapping possible du use CDA vers use FHIR, laissé en commentaire
-    // src.use as c -> tgt.use = translate(c, 'http://hl7.org/fhir/ConceptMap/cm-name-use-v3', 'code');
   } "item";
 
   // La période de validité CDA devient period FHIR
@@ -349,41 +356,28 @@ group ADAddress(source src : AD, target tgt : Address) {
   // Parcours des composants de l’adresse CDA
   src.item as item then {
     // Pays
-    item.country as v -> tgt.country = (v.xmlText);
+    item.country as v -> tgt.country = (%v.xmlText);
 
     // Région / état
-    item.state as v -> tgt.state = (v.xmlText);
+    item.state as v -> tgt.state = (%v.xmlText);
 
     // Département / district
-    item.county as v -> tgt.district = (v.xmlText);
+    item.county as v -> tgt.district = (%v.xmlText);
 
     // Ville
-    item.city as v -> tgt.city = (v.xmlText);
+    item.city as v -> tgt.city = (%v.xmlText);
 
     // Code postal
-    item.postalCode as v -> tgt.postalCode = (v.xmlText);
+    item.postalCode as v -> tgt.postalCode = (%v.xmlText);
 
     // Ligne d’adresse complète
-    item.streetAddressLine as v -> tgt.line=(v.xmlText);
+    item.streetAddressLine as v -> tgt.line=(%v.xmlText);
     
-    // Ajout éventuel d’une extension sur la ligne d’adresse pour le censusTract
-    item   -> tgt.line  as line then { 
-    item where src.censusTract.exists() then {
-      // Mapping du censusTract dans une extension de line
-      item.censusTract as v -> line.extension as ext1 then CensusTract(v, ext1) "line";
-    }"sfgfdsg";
-    } "CensusTract";
-
-    // Anciennes tentatives de mapping du censusTract, conservées en commentaire
-    //as streetAddress then{
-      //src.censusTract as v->tgt.line as line, line.extension as ext1 then CensusTract(v, ext1) "line";
-    //src.censusTract as v ->tgt.line as line, line.extension as ext1 then CensusTract(v, ext1) "line";
-
     // Nom de rue
-    item.streetName as v -> tgt.line = (v.xmlText);
+    item.streetName as v -> tgt.line = (%v.xmlText);
 
     // Numéro de maison
-    item.houseNumber as v -> tgt.line = (v.xmlText);
+    item.houseNumber as v -> tgt.line = (%v.xmlText);
   } "item";
 
   // Période d’utilisation de l’adresse
@@ -396,16 +390,16 @@ TEL = téléphone/email/url CDA
 ContactPoint = moyen de contact FHIR*/
 group TELContactPoint(source src : TEL, target tgt : ContactPoint) {
   // Si la valeur commence par tel:, c’est un téléphone
-  src.value as v where (src.value.startsWith('tel:')) ->  tgt.value = (v.substring(4)),  tgt.system = 'phone' "valuetel";
+  src.value as v where (src.value.startsWith('tel:')) ->  tgt.value = (%v.substring(4)),  tgt.system = 'phone' "valuetel";
 
   // Si la valeur commence par fax:, c’est un fax
-  src.value as v where (src.value.startsWith('fax:')) ->  tgt.value = (v.substring(4)),  tgt.system = 'fax' "valuefax";
+  src.value as v where (src.value.startsWith('fax:')) ->  tgt.value = (%v.substring(4)),  tgt.system = 'fax' "valuefax";
 
   // Si la valeur commence par mailto:, c’est un email
-  src.value as v where (src.value.startsWith('mailto:')) ->  tgt.value = (v.substring(7)),  tgt.system = 'email' "valuemail";
+  src.value as v where (src.value.startsWith('mailto:')) ->  tgt.value = (%v.substring(7)),  tgt.system = 'email' "valuemail";
 
   // Si la valeur commence par http:, c’est une URL
-  src.value as v where (src.value.startsWith('http:')) ->  tgt.value = (v.substring(5)),  tgt.system = 'url' "valuehttp";
+  src.value as v where (src.value.startsWith('http:')) ->  tgt.value = (%v.substring(5)),  tgt.system = 'url' "valuehttp";
 
   // Usage domicile
   src.use where (src.use.startsWith('H')) -> tgt.use = 'home' "usehome";
@@ -423,7 +417,7 @@ group TELContactPoint(source src : TEL, target tgt : ContactPoint) {
   src.use where (src.use = 'MC') -> tgt.use = 'mobile' "usemobile";
 
   // Période d’utilisation du contact
-  src.useablePeriod as useablePeriod -> tgt.period = useablePeriod; // use: for src.use as c make tgt.use = translate(c, 'http://hl7.org/fhir/ConceptMap/cm-telecom-use-v3', 'code')
+  src.useablePeriod as useablePeriod -> tgt.period = useablePeriod;
 }
 
 
@@ -450,11 +444,18 @@ RTO_PQ_PQ = ratio CDA composé d’un numérateur et d’un dénominateur
 Ratio = ratio FHIR*/
 group RTOPQPQRatio(source src : RTO_PQ_PQ, target tgt : Ratio) {
   // Mapping du numérateur
-  src.numerator as numerator -> tgt.numerator as targetNumerator then PQQuantity(numerator, targetNumerator) "numerator";
+  src.numerator as numerator -> tgt.numerator as targetNumerator then {
+    numerator.unit as unit -> targetNumerator.unit = unit;
+    numerator.unit as unit -> targetNumerator.code = unit;
+    numerator.unit as unit -> targetNumerator.system = 'http://unitsofmeasure.org';
+    numerator.value as value -> targetNumerator.value = value;
+  } "numerator";
 
   // Mapping du dénominateur
-  src.denominator as denominator -> tgt.denominator as targetDenominator then PQQuantity(denominator, targetDenominator) "denominator"; 
+  src.denominator as denominator -> tgt.denominator as targetDenominator then {
+    denominator.unit as unit -> targetDenominator.unit = unit;
+    denominator.unit as unit -> targetDenominator.code = unit;
+    denominator.unit as unit -> targetDenominator.system = 'http://unitsofmeasure.org';
+    denominator.value as value -> targetDenominator.value = value;
+  } "denominator"; 
 }
-
-
-
