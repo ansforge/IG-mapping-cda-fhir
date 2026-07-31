@@ -33,10 +33,10 @@ Elle ne contient ni logique métier, ni logique nationale, ni navigation dans la
   "query": "
 WITH Mappings AS (
   SELECT
-    json_extract(r.json, '$.id')   AS ConceptMapId,
+    json_extract(r.json, '$.id') AS ConceptMapId,
     json_extract(r.json, '$.name') AS ConceptMapName,
-    COALESCE(json_extract(e.value, '$.display'), json_extract(e.value, '$.code'), '') AS CDA,
-    COALESCE(json_extract(t.value, '$.display'), json_extract(t.value, '$.code'), '') AS FHIR,
+    json_extract(e.value, '$.code') AS CDA,
+    json_extract(t.value, '$.code') AS FHIR,
     g.key AS group_index,
     e.key AS elem_index,
     t.key AS target_index
