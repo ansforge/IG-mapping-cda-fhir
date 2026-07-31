@@ -18,7 +18,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
   "name" : "CdaToFHIRTypes",
   "title" : "Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)",
   "status" : "draft",
-  "date" : "2026-07-30T13:49:22+00:00",
+  "date" : "2026-07-31T12:53:53+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -234,10 +234,11 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
   {
     "name" : "II",
     "extends" : "Any",
-    "typeMode" : "none",
+    "typeMode" : "types",
     "documentation" : "Mapping CDA II vers FHIR Identifier\nII = Identifiant CDA\nIdentifier = Identifiant FHIR",
     "input" : [{
       "name" : "src",
+      "type" : "II",
       "mode" : "source"
     },
     {
@@ -599,14 +600,16 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
   {
     "name" : "TSInstant",
     "extends" : "Any",
-    "typeMode" : "none",
+    "typeMode" : "types",
     "documentation" : "Mapping CDA TS vers FHIR instant (TS = timestamp CDA)",
     "input" : [{
       "name" : "src",
+      "type" : "TS",
       "mode" : "source"
     },
     {
       "name" : "tgt",
+      "type" : "instant",
       "mode" : "target"
     }],
     "rule" : [{
@@ -634,14 +637,16 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
   {
     "name" : "TSDateTime",
     "extends" : "TSInstant",
-    "typeMode" : "none",
+    "typeMode" : "types",
     "documentation" : "Mapping CDA TS vers FHIR dateTime (Hérite du mapping TSInstant)",
     "input" : [{
       "name" : "src",
+      "type" : "TS",
       "mode" : "source"
     },
     {
       "name" : "tgt",
+      "type" : "dateTime",
       "mode" : "target"
     }],
     "rule" : [{
@@ -659,14 +664,16 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
   {
     "name" : "TSDate",
     "extends" : "TSInstant",
-    "typeMode" : "none",
+    "typeMode" : "types",
     "documentation" : "Mapping CDA TS vers FHIR date (Hérite aussi du mapping TSInstant)",
     "input" : [{
       "name" : "src",
+      "type" : "TS",
       "mode" : "source"
     },
     {
       "name" : "tgt",
+      "type" : "date",
       "mode" : "target"
     }],
     "rule" : [{
@@ -684,14 +691,16 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
   {
     "name" : "IVLTSPeriod",
     "extends" : "Any",
-    "typeMode" : "none",
+    "typeMode" : "types",
     "documentation" : "Mapping CDA IVL_TS vers FHIR Period\nIVL_TS = intervalle de temps CDA\nPeriod = période FHIR avec start et end",
     "input" : [{
       "name" : "src",
+      "type" : "IVL_TS",
       "mode" : "source"
     },
     {
       "name" : "tgt",
+      "type" : "Period",
       "mode" : "target"
     }],
     "rule" : [{
@@ -893,10 +902,12 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
     "documentation" : "Mapping CDA CS vers FHIR code (CS = coded simple CDA)",
     "input" : [{
       "name" : "src",
+      "type" : "CS",
       "mode" : "source"
     },
     {
       "name" : "tgt",
+      "type" : "code",
       "mode" : "target"
     }],
     "rule" : [{
@@ -980,6 +991,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
     "typeMode" : "none",
     "input" : [{
       "name" : "src",
+      "type" : "CE",
       "mode" : "source"
     },
     {
@@ -1208,14 +1220,16 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
   {
     "name" : "CDCodeableConcept",
     "extends" : "CECodeableConcept",
-    "typeMode" : "none",
+    "typeMode" : "types",
     "documentation" : "Mapping CDA CD vers FHIR CodeableConcept (CD réutilise la logique CECodeableConcept)",
     "input" : [{
       "name" : "src",
+      "type" : "CD",
       "mode" : "source"
     },
     {
       "name" : "tgt",
+      "type" : "CodeableConcept",
       "mode" : "target"
     }],
     "rule" : [{
@@ -1390,10 +1404,12 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
     "documentation" : "Mapping CDA EN vers FHIR HumanName\nEN = Entity Name CDA\nHumanName = nom humain FHIR",
     "input" : [{
       "name" : "src",
+      "type" : "EN",
       "mode" : "source"
     },
     {
       "name" : "tgt",
+      "type" : "HumanName",
       "mode" : "target"
     }],
     "rule" : [{
@@ -1529,10 +1545,12 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
     "documentation" : "Mapping CDA AD vers FHIR Address\nAD = adresse CDA\nAddress = adresse FHIR",
     "input" : [{
       "name" : "src",
+      "type" : "AD",
       "mode" : "source"
     },
     {
       "name" : "tgt",
+      "type" : "Address",
       "mode" : "target"
     }],
     "rule" : [{
@@ -1713,10 +1731,12 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
     "documentation" : "Mapping CDA TEL vers FHIR ContactPoint\nTEL = téléphone/email/url CDA\nContactPoint = moyen de contact FHIR",
     "input" : [{
       "name" : "src",
+      "type" : "TEL",
       "mode" : "source"
     },
     {
       "name" : "tgt",
+      "type" : "ContactPoint",
       "mode" : "target"
     }],
     "rule" : [{

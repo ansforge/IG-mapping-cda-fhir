@@ -18,7 +18,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
   "name" : "CdaPatientSummaryToBundle",
   "title" : "Mapping CDA Patient Summary vers FHIR - Étape 4 finale",
   "status" : "draft",
-  "date" : "2026-07-30T13:49:22+00:00",
+  "date" : "2026-07-31T12:53:53+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -374,18 +374,22 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     "documentation" : "GROUPE D’ORCHESTRATION FINALE — SOCLE FRANÇAIS + MÉTIER PATIENT SUMMARY\n   Ce groupe applique deux traitements successifs :\n   - MapClinicalDocumentHeaderWithFrenchRules, importé depuis l’étape 3, traite\n     l’en-tête CDA, crée les ressources administratives nécessaires, applique le\n     socle générique de l’étape 2 et l’enrichissement français ;\n   - MapPatientSummaryBody traite ensuite les sections Patient Summary et crée\n     les ressources métier à partir des entries CDA.\n\n   Les ressources optionnelles ne sont donc pas créées au début : elles sont\n   créées uniquement dans les groupes associés aux blocs CDA présents",
     "input" : [{
       "name" : "cda",
+      "type" : "ClinicalDocument",
       "mode" : "source"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     },
     {
       "name" : "composition",
+      "type" : "Composition",
       "mode" : "target"
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     }],
     "rule" : [{
@@ -417,18 +421,22 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     "documentation" : "CORPS PATIENT SUMMARY — SECTIONS + ENTRIES MÉTIER\n   Pour chaque section CDA :\n   - MapCDASectionToCompositionSection, importé depuis l’étape 2, crée le\n     squelette commun de la Composition.section avec title, code et text ;\n   - MapPatientSummarySectionEntries crée ensuite les ressources métier selon\n     le code LOINC de la section",
     "input" : [{
       "name" : "src",
+      "type" : "ClinicalDocument",
       "mode" : "source"
     },
     {
       "name" : "composition",
+      "type" : "Composition",
       "mode" : "target"
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -506,10 +514,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -765,10 +775,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -854,6 +866,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "condition",
+      "type" : "Condition",
       "mode" : "target"
     },
     {
@@ -862,10 +875,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     }],
     "rule" : [{
@@ -1849,10 +1864,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -1985,6 +2002,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "allergy",
+      "type" : "AllergyIntolerance",
       "mode" : "target"
     },
     {
@@ -1993,6 +2011,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -4010,10 +4029,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -4113,6 +4134,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "fhirProcedure",
+      "type" : "Procedure",
       "mode" : "target"
     },
     {
@@ -4121,10 +4143,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     }],
     "rule" : [{
@@ -5030,10 +5054,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "fhirProcedure",
+      "type" : "Procedure",
       "mode" : "target"
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     }],
     "rule" : [{
@@ -5271,10 +5297,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "fhirProcedure",
+      "type" : "Procedure",
       "mode" : "target"
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     }],
     "rule" : [{
@@ -5528,10 +5556,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -5635,6 +5665,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "medicationStatement",
+      "type" : "MedicationStatement",
       "mode" : "target"
     },
     {
@@ -5643,10 +5674,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -5859,6 +5892,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "medicationStatement",
+      "type" : "MedicationStatement",
       "mode" : "target"
     }],
     "rule" : [{
@@ -5962,10 +5996,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "medicationStatement",
+      "type" : "MedicationStatement",
       "mode" : "target"
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     }],
     "rule" : [{
@@ -6061,6 +6097,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "medication",
+      "type" : "Medication",
       "mode" : "target"
     }],
     "rule" : [{
@@ -6169,6 +6206,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "medication",
+      "type" : "Medication",
       "mode" : "target"
     }],
     "rule" : [{
@@ -6381,6 +6419,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "medicationStatement",
+      "type" : "MedicationStatement",
       "mode" : "target"
     }],
     "rule" : [{
@@ -6509,6 +6548,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "medicationStatement",
+      "type" : "MedicationStatement",
       "mode" : "target"
     }],
     "rule" : [{
@@ -7371,6 +7411,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "medicationStatement",
+      "type" : "MedicationStatement",
       "mode" : "target"
     }],
     "rule" : [{
@@ -7440,6 +7481,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "medicationStatement",
+      "type" : "MedicationStatement",
       "mode" : "target"
     }],
     "rule" : [{
@@ -7733,10 +7775,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -7840,6 +7884,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "adverseEvent",
+      "type" : "AdverseEvent",
       "mode" : "target"
     },
     {
@@ -7848,10 +7893,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -8302,14 +8349,17 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "adverseEvent",
+      "type" : "AdverseEvent",
       "mode" : "target"
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -8586,14 +8636,17 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "adverseEvent",
+      "type" : "AdverseEvent",
       "mode" : "target"
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -8826,10 +8879,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -8933,6 +8988,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "immunization",
+      "type" : "Immunization",
       "mode" : "target"
     },
     {
@@ -8941,10 +8997,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -9679,10 +9737,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "immunization",
+      "type" : "Immunization",
       "mode" : "target"
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     }],
     "rule" : [{
@@ -9932,14 +9992,17 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "immunization",
+      "type" : "Immunization",
       "mode" : "target"
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -10909,6 +10972,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "fhirObservation",
+      "type" : "Observation",
       "mode" : "target"
     }],
     "rule" : [{
@@ -10994,6 +11058,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "fhirObservation",
+      "type" : "Observation",
       "mode" : "target"
     }],
     "rule" : [{
@@ -11179,6 +11244,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "fhirObservation",
+      "type" : "Observation",
       "mode" : "target"
     }],
     "rule" : [{
@@ -11581,6 +11647,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "fhirObservation",
+      "type" : "Observation",
       "mode" : "target"
     }],
     "rule" : [{
@@ -11665,10 +11732,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "panel",
+      "type" : "Observation",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -11932,10 +12001,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "panel",
+      "type" : "Observation",
       "mode" : "target"
     },
     {
       "name" : "member",
+      "type" : "Observation",
       "mode" : "target"
     }],
     "rule" : [{
@@ -11973,6 +12044,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "fhirObservation",
+      "type" : "Observation",
       "mode" : "target"
     },
     {
@@ -12019,10 +12091,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -12120,6 +12194,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "panel",
+      "type" : "Observation",
       "mode" : "target"
     },
     {
@@ -12128,10 +12203,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -12248,10 +12325,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "fhirObservation",
+      "type" : "Observation",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -12648,6 +12727,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "fhirObservation",
+      "type" : "Observation",
       "mode" : "target"
     },
     {
@@ -12905,10 +12985,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -12988,10 +13070,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "fhirObservation",
+      "type" : "Observation",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -13317,6 +13401,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "fhirObservation",
+      "type" : "Observation",
       "mode" : "target"
     }],
     "rule" : [{
@@ -13629,6 +13714,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "fhirObservation",
+      "type" : "Observation",
       "mode" : "target"
     }],
     "rule" : [{
@@ -13715,10 +13801,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -13847,6 +13935,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "panel",
+      "type" : "Observation",
       "mode" : "target"
     },
     {
@@ -13855,10 +13944,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -13958,10 +14049,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "panel",
+      "type" : "Observation",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -14225,10 +14318,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "fhirObservation",
+      "type" : "Observation",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -14580,6 +14675,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "fhirObservation",
+      "type" : "Observation",
       "mode" : "target"
     }],
     "rule" : [{
@@ -14713,6 +14809,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "fhirObservation",
+      "type" : "Observation",
       "mode" : "target"
     }],
     "rule" : [{
@@ -15084,6 +15181,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "fhirObservation",
+      "type" : "Observation",
       "mode" : "target"
     }],
     "rule" : [{
@@ -15147,10 +15245,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -15273,6 +15373,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "diagnosticReport",
+      "type" : "DiagnosticReport",
       "mode" : "target"
     },
     {
@@ -15281,10 +15382,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -15497,6 +15600,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "diagnosticReport",
+      "type" : "DiagnosticReport",
       "mode" : "target"
     },
     {
@@ -15505,10 +15609,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -15711,6 +15817,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "diagnosticReport",
+      "type" : "DiagnosticReport",
       "mode" : "target"
     }],
     "rule" : [{
@@ -15795,6 +15902,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "diagnosticReport",
+      "type" : "DiagnosticReport",
       "mode" : "target"
     }],
     "rule" : [{
@@ -15913,6 +16021,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "diagnosticReport",
+      "type" : "DiagnosticReport",
       "mode" : "target"
     },
     {
@@ -15955,10 +16064,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "resultObservation",
+      "type" : "Observation",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -16336,6 +16447,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "resultObservation",
+      "type" : "Observation",
       "mode" : "target"
     }],
     "rule" : [{
@@ -16506,6 +16618,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "resultObservation",
+      "type" : "Observation",
       "mode" : "target"
     }],
     "rule" : [{
@@ -16587,6 +16700,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "resultObservation",
+      "type" : "Observation",
       "mode" : "target"
     }],
     "rule" : [{
@@ -16673,6 +16787,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "resultObservation",
+      "type" : "Observation",
       "mode" : "target"
     }],
     "rule" : [{
@@ -16748,6 +16863,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "resultObservation",
+      "type" : "Observation",
       "mode" : "target"
     }],
     "rule" : [{
@@ -16931,10 +17047,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -17089,10 +17207,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "fhirObservation",
+      "type" : "Observation",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -17484,6 +17604,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "fhirObservation",
+      "type" : "Observation",
       "mode" : "target"
     }],
     "rule" : [{
@@ -17796,6 +17917,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "fhirObservation",
+      "type" : "Observation",
       "mode" : "target"
     }],
     "rule" : [{
@@ -17882,10 +18004,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -17940,6 +18064,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "carePlan",
+      "type" : "CarePlan",
       "mode" : "target"
     },
     {
@@ -17948,10 +18073,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -18216,6 +18343,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "carePlan",
+      "type" : "CarePlan",
       "mode" : "target"
     },
     {
@@ -18224,10 +18352,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -18391,6 +18521,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "carePlan",
+      "type" : "CarePlan",
       "mode" : "target"
     },
     {
@@ -18399,10 +18530,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -18462,10 +18595,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "medicationRequest",
+      "type" : "MedicationRequest",
       "mode" : "target"
     },
     {
       "name" : "carePlan",
+      "type" : "CarePlan",
       "mode" : "target"
     },
     {
@@ -18474,10 +18609,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -19514,6 +19651,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "carePlan",
+      "type" : "CarePlan",
       "mode" : "target"
     },
     {
@@ -19522,10 +19660,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -19580,10 +19720,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "serviceRequest",
+      "type" : "ServiceRequest",
       "mode" : "target"
     },
     {
       "name" : "carePlan",
+      "type" : "CarePlan",
       "mode" : "target"
     },
     {
@@ -19592,6 +19734,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -20084,6 +20227,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "carePlan",
+      "type" : "CarePlan",
       "mode" : "target"
     },
     {
@@ -20092,10 +20236,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -20150,10 +20296,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "fhirProcedure",
+      "type" : "Procedure",
       "mode" : "target"
     },
     {
       "name" : "carePlan",
+      "type" : "CarePlan",
       "mode" : "target"
     },
     {
@@ -20162,6 +20310,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -20550,6 +20699,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "carePlan",
+      "type" : "CarePlan",
       "mode" : "target"
     },
     {
@@ -20558,10 +20708,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -20621,10 +20773,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "plannedEncounter",
+      "type" : "Encounter",
       "mode" : "target"
     },
     {
       "name" : "carePlan",
+      "type" : "CarePlan",
       "mode" : "target"
     },
     {
@@ -20633,10 +20787,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -20975,10 +21131,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "plannedEncounter",
+      "type" : "Encounter",
       "mode" : "target"
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     }],
     "rule" : [{
@@ -21245,10 +21403,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "plannedEncounter",
+      "type" : "Encounter",
       "mode" : "target"
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     }],
     "rule" : [{
@@ -21459,6 +21619,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "carePlan",
+      "type" : "CarePlan",
       "mode" : "target"
     },
     {
@@ -21467,10 +21628,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -21525,10 +21688,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "recommendation",
+      "type" : "ImmunizationRecommendation",
       "mode" : "target"
     },
     {
       "name" : "carePlan",
+      "type" : "CarePlan",
       "mode" : "target"
     },
     {
@@ -21537,6 +21702,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -22803,10 +22969,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -23902,10 +24070,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -24005,6 +24175,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "deviceUseStatement",
+      "type" : "DeviceUseStatement",
       "mode" : "target"
     },
     {
@@ -24013,10 +24184,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -24322,6 +24495,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "deviceUseStatement",
+      "type" : "DeviceUseStatement",
       "mode" : "target"
     }],
     "rule" : [{
@@ -24459,10 +24633,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "device",
+      "type" : "Device",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -24568,10 +24744,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -24681,6 +24859,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "documentReference",
+      "type" : "DocumentReference",
       "mode" : "target"
     },
     {
@@ -24689,6 +24868,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -25121,10 +25301,12 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "bundle",
+      "type" : "Bundle",
       "mode" : "target"
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
@@ -25224,6 +25406,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "consent",
+      "type" : "Consent",
       "mode" : "target"
     },
     {
@@ -25232,6 +25415,7 @@ Mapping CDA Patient Summary vers FHIR - Étape 4 finale
     },
     {
       "name" : "patient",
+      "type" : "Patient",
       "mode" : "target"
     }],
     "rule" : [{
