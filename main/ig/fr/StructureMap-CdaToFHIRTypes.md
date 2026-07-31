@@ -18,7 +18,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
   "name" : "CdaToFHIRTypes",
   "title" : "Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)",
   "status" : "draft",
-  "date" : "2026-07-31T12:50:31+00:00",
+  "date" : "2026-07-31T12:55:21+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -201,11 +201,6 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
     "url" : "http://hl7.org/fhir/StructureDefinition/Ratio|4.0.1",
     "mode" : "target",
     "alias" : "Ratio"
-  },
-  {
-    "url" : "http://hl7.org/fhir/StructureDefinition/DomainResource|4.0.1",
-    "mode" : "target",
-    "alias" : "DomainResource"
   }],
   "group" : [{
     "name" : "Any",
@@ -291,7 +286,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
         "element" : "value",
         "transform" : "evaluate",
         "parameter" : [{
-          "valueString" : "'urn:uuid:' + %r.lower()"
+          "valueString" : "'urn:uuid:' + r.lower()"
         }]
       }],
       "documentation" : "Si root est un UUID sans extension, alors il est mappé comme urn:uuid"
@@ -346,7 +341,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
       "documentation" : "L’extension CDA devient la valeur de l’Identifier FHIR"
     },
     {
-      "name" : "assigner",
+      "name" : "assigningAuthorityName",
       "source" : [{
         "context" : "src",
         "element" : "assigningAuthorityName",
@@ -357,20 +352,14 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
         "contextType" : "variable",
         "element" : "assigner",
         "variable" : "a"
-      }],
-      "rule" : [{
-        "name" : "display",
-        "source" : [{
-          "context" : "s"
-        }],
-        "target" : [{
-          "context" : "a",
-          "contextType" : "variable",
-          "element" : "display",
-          "transform" : "copy",
-          "parameter" : [{
-            "valueId" : "s"
-          }]
+      },
+      {
+        "context" : "a",
+        "contextType" : "variable",
+        "element" : "display",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueId" : "s"
         }]
       }],
       "documentation" : "Le nom de l’autorité d’assignation devient le display de l’assigner"
@@ -473,7 +462,6 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
     },
     {
       "name" : "tgt",
-      "type" : "DomainResource",
       "mode" : "target"
     }],
     "rule" : [{
@@ -538,7 +526,6 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
     },
     {
       "name" : "tgt",
-      "type" : "DomainResource",
       "mode" : "target"
     }],
     "rule" : [{
@@ -710,25 +697,19 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
         "element" : "low",
         "variable" : "low"
       }],
-      "rule" : [{
-        "name" : "start",
-        "source" : [{
-          "context" : "low",
-          "element" : "value",
-          "variable" : "value"
-        }],
-        "target" : [{
-          "context" : "tgt",
-          "contextType" : "variable",
-          "element" : "start",
-          "transform" : "cast",
-          "parameter" : [{
-            "valueId" : "value"
-          },
-          {
-            "valueString" : "dateTime"
-          }]
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "start",
+        "variable" : "start",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "dateTime"
         }]
+      }],
+      "dependent" : [{
+        "name" : "TSDateTime",
+        "variable" : ["low", "start"]
       }],
       "documentation" : "La borne basse CDA devient le start FHIR"
     },
@@ -739,25 +720,19 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
         "element" : "high",
         "variable" : "high"
       }],
-      "rule" : [{
-        "name" : "end",
-        "source" : [{
-          "context" : "high",
-          "element" : "value",
-          "variable" : "value"
-        }],
-        "target" : [{
-          "context" : "tgt",
-          "contextType" : "variable",
-          "element" : "end",
-          "transform" : "cast",
-          "parameter" : [{
-            "valueId" : "value"
-          },
-          {
-            "valueString" : "dateTime"
-          }]
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "end",
+        "variable" : "end",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "dateTime"
         }]
+      }],
+      "dependent" : [{
+        "name" : "TSDateTime",
+        "variable" : ["high", "end"]
       }],
       "documentation" : "La borne haute CDA devient le end FHIR"
     }]
@@ -782,27 +757,11 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
       "source" : [{
         "context" : "src",
         "element" : "low",
-        "variable" : "low"
+        "variable" : "s"
       }],
-      "rule" : [{
-        "name" : "value",
-        "source" : [{
-          "context" : "low",
-          "element" : "value",
-          "variable" : "value"
-        }],
-        "target" : [{
-          "context" : "tgt",
-          "contextType" : "variable",
-          "element" : "value",
-          "transform" : "cast",
-          "parameter" : [{
-            "valueId" : "value"
-          },
-          {
-            "valueString" : "string"
-          }]
-        }]
+      "dependent" : [{
+        "name" : "TSDateTime",
+        "variable" : ["s", "tgt"]
       }],
       "documentation" : "La borne basse est transformée en dateTime"
     }]
@@ -1126,7 +1085,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
         "documentation" : "CDA codeSystem HL7 v3 ActCode -> FHIR Coding.system."
       },
       {
-        "name" : "systemTREA02",
+        "name" : "systemTRE_A02",
         "source" : [{
           "context" : "src",
           "element" : "codeSystem",
@@ -1336,7 +1295,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
       "documentation" : "CDA codeSystem HL7 v3 ActCode -> FHIR Coding.system"
     },
     {
-      "name" : "systemTREA02",
+      "name" : "systemTRE_A02",
       "source" : [{
         "context" : "src",
         "element" : "codeSystem",
@@ -1432,7 +1391,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
           "element" : "family",
           "transform" : "evaluate",
           "parameter" : [{
-            "valueString" : "%v.xmlText"
+            "valueString" : "v.xmlText"
           }]
         }],
         "documentation" : "Nom de famille"
@@ -1450,7 +1409,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
           "element" : "given",
           "transform" : "evaluate",
           "parameter" : [{
-            "valueString" : "%v.xmlText"
+            "valueString" : "v.xmlText"
           }]
         }],
         "documentation" : "Prénom"
@@ -1468,7 +1427,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
           "element" : "prefix",
           "transform" : "evaluate",
           "parameter" : [{
-            "valueString" : "%v.xmlText"
+            "valueString" : "v.xmlText"
           }]
         }],
         "documentation" : "Préfixe du nom"
@@ -1486,7 +1445,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
           "element" : "suffix",
           "transform" : "evaluate",
           "parameter" : [{
-            "valueString" : "%v.xmlText"
+            "valueString" : "v.xmlText"
           }]
         }],
         "documentation" : "Suffixe du nom"
@@ -1573,7 +1532,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
           "element" : "country",
           "transform" : "evaluate",
           "parameter" : [{
-            "valueString" : "%v.xmlText"
+            "valueString" : "v.xmlText"
           }]
         }],
         "documentation" : "Pays"
@@ -1591,7 +1550,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
           "element" : "state",
           "transform" : "evaluate",
           "parameter" : [{
-            "valueString" : "%v.xmlText"
+            "valueString" : "v.xmlText"
           }]
         }],
         "documentation" : "Région / état"
@@ -1609,7 +1568,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
           "element" : "district",
           "transform" : "evaluate",
           "parameter" : [{
-            "valueString" : "%v.xmlText"
+            "valueString" : "v.xmlText"
           }]
         }],
         "documentation" : "Département / district"
@@ -1627,7 +1586,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
           "element" : "city",
           "transform" : "evaluate",
           "parameter" : [{
-            "valueString" : "%v.xmlText"
+            "valueString" : "v.xmlText"
           }]
         }],
         "documentation" : "Ville"
@@ -1645,7 +1604,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
           "element" : "postalCode",
           "transform" : "evaluate",
           "parameter" : [{
-            "valueString" : "%v.xmlText"
+            "valueString" : "v.xmlText"
           }]
         }],
         "documentation" : "Code postal"
@@ -1663,10 +1622,49 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
           "element" : "line",
           "transform" : "evaluate",
           "parameter" : [{
-            "valueString" : "%v.xmlText"
+            "valueString" : "v.xmlText"
           }]
         }],
         "documentation" : "Ligne d’adresse complète"
+      },
+      {
+        "name" : "CensusTract",
+        "source" : [{
+          "context" : "item"
+        }],
+        "target" : [{
+          "context" : "tgt",
+          "contextType" : "variable",
+          "element" : "line",
+          "variable" : "line"
+        }],
+        "rule" : [{
+          "name" : "sfgfdsg",
+          "source" : [{
+            "context" : "item",
+            "condition" : "src.censusTract.exists()"
+          }],
+          "rule" : [{
+            "name" : "line",
+            "source" : [{
+              "context" : "item",
+              "element" : "censusTract",
+              "variable" : "v"
+            }],
+            "target" : [{
+              "context" : "line",
+              "contextType" : "variable",
+              "element" : "extension",
+              "variable" : "ext1"
+            }],
+            "dependent" : [{
+              "name" : "CensusTract",
+              "variable" : ["v", "ext1"]
+            }],
+            "documentation" : "Mapping du censusTract dans une extension de line"
+          }]
+        }],
+        "documentation" : "Ajout éventuel d’une extension sur la ligne d’adresse pour le censusTract"
       },
       {
         "name" : "streetName",
@@ -1681,10 +1679,10 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
           "element" : "line",
           "transform" : "evaluate",
           "parameter" : [{
-            "valueString" : "%v.xmlText"
+            "valueString" : "v.xmlText"
           }]
         }],
-        "documentation" : "Nom de rue"
+        "documentation" : "Anciennes tentatives de mapping du censusTract, conservées en commentaire\r\nas streetAddress then{\r\nsrc.censusTract as v->tgt.line as line, line.extension as ext1 then CensusTract(v, ext1) \"line\";\r\nsrc.censusTract as v ->tgt.line as line, line.extension as ext1 then CensusTract(v, ext1) \"line\";\r\nNom de rue"
       },
       {
         "name" : "houseNumber",
@@ -1699,7 +1697,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
           "element" : "line",
           "transform" : "evaluate",
           "parameter" : [{
-            "valueString" : "%v.xmlText"
+            "valueString" : "v.xmlText"
           }]
         }],
         "documentation" : "Numéro de maison"
@@ -1753,7 +1751,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
         "element" : "value",
         "transform" : "evaluate",
         "parameter" : [{
-          "valueString" : "%v.substring(4)"
+          "valueString" : "v.substring(4)"
         }]
       },
       {
@@ -1781,7 +1779,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
         "element" : "value",
         "transform" : "evaluate",
         "parameter" : [{
-          "valueString" : "%v.substring(4)"
+          "valueString" : "v.substring(4)"
         }]
       },
       {
@@ -1809,7 +1807,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
         "element" : "value",
         "transform" : "evaluate",
         "parameter" : [{
-          "valueString" : "%v.substring(7)"
+          "valueString" : "v.substring(7)"
         }]
       },
       {
@@ -1837,7 +1835,7 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
         "element" : "value",
         "transform" : "evaluate",
         "parameter" : [{
-          "valueString" : "%v.substring(5)"
+          "valueString" : "v.substring(5)"
         }]
       },
       {
@@ -2074,73 +2072,9 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
         "element" : "numerator",
         "variable" : "targetNumerator"
       }],
-      "rule" : [{
-        "name" : "unit",
-        "source" : [{
-          "context" : "numerator",
-          "element" : "unit",
-          "variable" : "unit"
-        }],
-        "target" : [{
-          "context" : "targetNumerator",
-          "contextType" : "variable",
-          "element" : "unit",
-          "transform" : "copy",
-          "parameter" : [{
-            "valueId" : "unit"
-          }]
-        }]
-      },
-      {
-        "name" : "unit",
-        "source" : [{
-          "context" : "numerator",
-          "element" : "unit",
-          "variable" : "unit"
-        }],
-        "target" : [{
-          "context" : "targetNumerator",
-          "contextType" : "variable",
-          "element" : "code",
-          "transform" : "copy",
-          "parameter" : [{
-            "valueId" : "unit"
-          }]
-        }]
-      },
-      {
-        "name" : "unit",
-        "source" : [{
-          "context" : "numerator",
-          "element" : "unit",
-          "variable" : "unit"
-        }],
-        "target" : [{
-          "context" : "targetNumerator",
-          "contextType" : "variable",
-          "element" : "system",
-          "transform" : "copy",
-          "parameter" : [{
-            "valueString" : "http://unitsofmeasure.org"
-          }]
-        }]
-      },
-      {
-        "name" : "value",
-        "source" : [{
-          "context" : "numerator",
-          "element" : "value",
-          "variable" : "value"
-        }],
-        "target" : [{
-          "context" : "targetNumerator",
-          "contextType" : "variable",
-          "element" : "value",
-          "transform" : "copy",
-          "parameter" : [{
-            "valueId" : "value"
-          }]
-        }]
+      "dependent" : [{
+        "name" : "PQQuantity",
+        "variable" : ["numerator", "targetNumerator"]
       }],
       "documentation" : "Mapping du numérateur"
     },
@@ -2157,73 +2091,9 @@ Mapping de CDA vers les FHIR Types (A partir des sources de Oliver Egger)
         "element" : "denominator",
         "variable" : "targetDenominator"
       }],
-      "rule" : [{
-        "name" : "unit",
-        "source" : [{
-          "context" : "denominator",
-          "element" : "unit",
-          "variable" : "unit"
-        }],
-        "target" : [{
-          "context" : "targetDenominator",
-          "contextType" : "variable",
-          "element" : "unit",
-          "transform" : "copy",
-          "parameter" : [{
-            "valueId" : "unit"
-          }]
-        }]
-      },
-      {
-        "name" : "unit",
-        "source" : [{
-          "context" : "denominator",
-          "element" : "unit",
-          "variable" : "unit"
-        }],
-        "target" : [{
-          "context" : "targetDenominator",
-          "contextType" : "variable",
-          "element" : "code",
-          "transform" : "copy",
-          "parameter" : [{
-            "valueId" : "unit"
-          }]
-        }]
-      },
-      {
-        "name" : "unit",
-        "source" : [{
-          "context" : "denominator",
-          "element" : "unit",
-          "variable" : "unit"
-        }],
-        "target" : [{
-          "context" : "targetDenominator",
-          "contextType" : "variable",
-          "element" : "system",
-          "transform" : "copy",
-          "parameter" : [{
-            "valueString" : "http://unitsofmeasure.org"
-          }]
-        }]
-      },
-      {
-        "name" : "value",
-        "source" : [{
-          "context" : "denominator",
-          "element" : "value",
-          "variable" : "value"
-        }],
-        "target" : [{
-          "context" : "targetDenominator",
-          "contextType" : "variable",
-          "element" : "value",
-          "transform" : "copy",
-          "parameter" : [{
-            "valueId" : "value"
-          }]
-        }]
+      "dependent" : [{
+        "name" : "PQQuantity",
+        "variable" : ["denominator", "targetDenominator"]
       }],
       "documentation" : "Mapping du dénominateur"
     }]
