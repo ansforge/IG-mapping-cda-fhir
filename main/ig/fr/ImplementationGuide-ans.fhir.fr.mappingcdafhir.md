@@ -14,7 +14,7 @@
   "name" : "CDA2FHIRMAP",
   "title" : "Mapping CDA to FHIR (Preuve de concept)",
   "status" : "draft",
-  "date" : "2026-07-20T12:36:25+00:00",
+  "date" : "2026-07-31T12:50:31+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -41,7 +41,7 @@
     }],
     "uri" : "http://terminology.hl7.org/ImplementationGuide/hl7.terminology",
     "packageId" : "hl7.terminology.r4",
-    "version" : "7.2.0"
+    "version" : "7.3.0"
   },
   {
     "id" : "hl7ext",
@@ -900,6 +900,10 @@
       "extension" : [{
         "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
         "valueString" : "ConceptMap"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+        "valueUri" : "ConceptMap-cm-v3-administrative-gender.html"
       }],
       "reference" : {
         "reference" : "ConceptMap/cm-v3-administrative-gender"
@@ -912,6 +916,10 @@
       "extension" : [{
         "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
         "valueString" : "ConceptMap"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+        "valueUri" : "ConceptMap-cm-oid-specialite-ordinale.html"
       }],
       "reference" : {
         "reference" : "ConceptMap/cm-oid-specialite-ordinale"
@@ -924,6 +932,10 @@
       "extension" : [{
         "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
         "valueString" : "ConceptMap"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+        "valueUri" : "ConceptMap-CdaADToAddressConceptMap.html"
       }],
       "reference" : {
         "reference" : "ConceptMap/CdaADToAddressConceptMap"
@@ -936,6 +948,10 @@
       "extension" : [{
         "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
         "valueString" : "ConceptMap"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+        "valueUri" : "ConceptMap-CdaBLToBooleanConceptMap.html"
       }],
       "reference" : {
         "reference" : "ConceptMap/CdaBLToBooleanConceptMap"
@@ -948,6 +964,10 @@
       "extension" : [{
         "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
         "valueString" : "ConceptMap"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+        "valueUri" : "ConceptMap-CdaCECSCDToCodeConceptMap.html"
       }],
       "reference" : {
         "reference" : "ConceptMap/CdaCECSCDToCodeConceptMap"
@@ -960,6 +980,10 @@
       "extension" : [{
         "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
         "valueString" : "ConceptMap"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+        "valueUri" : "ConceptMap-CdaENPNToHumanNameConceptMap.html"
       }],
       "reference" : {
         "reference" : "ConceptMap/CdaENPNToHumanNameConceptMap"
@@ -972,6 +996,10 @@
       "extension" : [{
         "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
         "valueString" : "ConceptMap"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+        "valueUri" : "ConceptMap-CdaIIToIdentifierConceptMap.html"
       }],
       "reference" : {
         "reference" : "ConceptMap/CdaIIToIdentifierConceptMap"
@@ -984,6 +1012,10 @@
       "extension" : [{
         "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
         "valueString" : "ConceptMap"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+        "valueUri" : "ConceptMap-CdaINTToIntegerConceptMap.html"
       }],
       "reference" : {
         "reference" : "ConceptMap/CdaINTToIntegerConceptMap"
@@ -996,6 +1028,10 @@
       "extension" : [{
         "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
         "valueString" : "ConceptMap"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+        "valueUri" : "ConceptMap-CdaIVL-TSToPeriodConceptMap.html"
       }],
       "reference" : {
         "reference" : "ConceptMap/CdaIVL-TSToPeriodConceptMap"
@@ -1008,6 +1044,10 @@
       "extension" : [{
         "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
         "valueString" : "ConceptMap"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+        "valueUri" : "ConceptMap-CdaPQToQuantityConceptMap.html"
       }],
       "reference" : {
         "reference" : "ConceptMap/CdaPQToQuantityConceptMap"
@@ -1020,6 +1060,10 @@
       "extension" : [{
         "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
         "valueString" : "ConceptMap"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+        "valueUri" : "ConceptMap-CdaRTO-PQ-PQToRatioConceptMap.html"
       }],
       "reference" : {
         "reference" : "ConceptMap/CdaRTO-PQ-PQToRatioConceptMap"
@@ -1032,6 +1076,10 @@
       "extension" : [{
         "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
         "valueString" : "ConceptMap"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+        "valueUri" : "ConceptMap-CdaSTEDONToStringConceptMap.html"
       }],
       "reference" : {
         "reference" : "ConceptMap/CdaSTEDONToStringConceptMap"
@@ -1044,6 +1092,10 @@
       "extension" : [{
         "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
         "valueString" : "ConceptMap"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+        "valueUri" : "ConceptMap-CdaTELToContactPointConceptMap.html"
       }],
       "reference" : {
         "reference" : "ConceptMap/CdaTELToContactPointConceptMap"
@@ -1056,6 +1108,10 @@
       "extension" : [{
         "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
         "valueString" : "ConceptMap"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+        "valueUri" : "ConceptMap-CdaTSToDateTimeConceptMap.html"
       }],
       "reference" : {
         "reference" : "ConceptMap/CdaTSToDateTimeConceptMap"
@@ -1068,6 +1124,10 @@
       "extension" : [{
         "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
         "valueString" : "Bundle"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+        "valueUri" : "Bundle-fe569e1f-32d4-4ba4-b5ad-88082bf5470a.html"
       }],
       "reference" : {
         "reference" : "Bundle/fe569e1f-32d4-4ba4-b5ad-88082bf5470a"
@@ -1079,6 +1139,10 @@
       "extension" : [{
         "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
         "valueString" : "ConceptMap"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+        "valueUri" : "ConceptMap-oid2uri-ans.html"
       }],
       "reference" : {
         "reference" : "ConceptMap/oid2uri-ans"
@@ -1091,6 +1155,10 @@
       "extension" : [{
         "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
         "valueString" : "StructureMap"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+        "valueUri" : "StructureMap-CdaFrToBundle.html"
       }],
       "reference" : {
         "reference" : "StructureMap/CdaFrToBundle"
@@ -1102,6 +1170,10 @@
       "extension" : [{
         "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
         "valueString" : "StructureMap"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+        "valueUri" : "StructureMap-CdaToFHIRTypes.html"
       }],
       "reference" : {
         "reference" : "StructureMap/CdaToFHIRTypes"
@@ -1113,6 +1185,10 @@
       "extension" : [{
         "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
         "valueString" : "StructureMap"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+        "valueUri" : "StructureMap-CdaPatientSummaryToBundle.html"
       }],
       "reference" : {
         "reference" : "StructureMap/CdaPatientSummaryToBundle"
@@ -1124,6 +1200,10 @@
       "extension" : [{
         "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
         "valueString" : "StructureMap"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+        "valueUri" : "StructureMap-CdaToBundle.html"
       }],
       "reference" : {
         "reference" : "StructureMap/CdaToBundle"

@@ -18,7 +18,7 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
   "name" : "CdaFrToBundle",
   "title" : "Mapping CDA-FR vers FHIR - Socle enrichi français",
   "status" : "draft",
-  "date" : "2026-07-20T12:36:25+00:00",
+  "date" : "2026-07-31T12:50:31+00:00",
   "publisher" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
   "contact" : [{
     "name" : "Agence du Numérique en Santé (ANS) - 2-10 Rue d'Oradour-sur-Glane, 75015 Paris",
@@ -38,7 +38,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
   "structure" : [{
     "url" : "http://hl7.org/cda/stds/core/StructureDefinition/ClinicalDocument|2.0.0-sd",
     "mode" : "source",
-    "alias" : "ClinicalDocument"
+    "alias" : "ClinicalDocument",
+    "documentation" : "TYPES CDA UTILISÉS COMME SOURCES"
   },
   {
     "url" : "http://hl7.org/cda/stds/core/StructureDefinition/PatientRole|2.0.0-sd",
@@ -73,7 +74,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
   {
     "url" : "http://hl7.org/fhir/StructureDefinition/Bundle|4.0.1",
     "mode" : "target",
-    "alias" : "Bundle"
+    "alias" : "Bundle",
+    "documentation" : "TYPES FHIR UTILISÉS COMME CIBLES"
   },
   {
     "url" : "http://hl7.org/fhir/StructureDefinition/Composition|4.0.1",
@@ -281,7 +283,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
       "dependent" : [{
         "name" : "MapClinicalDocumentHeaderWithFrenchRules",
         "variable" : ["cda", "bundle", "composition", "patient"]
-      }]
+      }],
+      "documentation" : "CDA ClinicalDocument.header -> socle générique + enrichissement français"
     },
     {
       "name" : "body",
@@ -291,7 +294,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
       "dependent" : [{
         "name" : "MapClinicalDocumentBody",
         "variable" : ["cda", "composition", "bundle", "patient"]
-      }]
+      }],
+      "documentation" : "CDA ClinicalDocument.structuredBody -> FHIR Composition.section title/code/text"
     }]
   },
   {
@@ -343,7 +347,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
             "valueString" : "http://hl7.eu/fhir/eps/StructureDefinition/bundle-eu-eps"
           }]
         }]
-      }]
+      }],
+      "documentation" : "CDA ClinicalDocument -> profils généraux Bundle / Composition\r\ncda -> bundle.meta as bundleMeta then { cda -> bundleMeta.profile = 'http://hl7.org/fhir/StructureDefinition/Bundle' \"bundleGenericProfile\"; } \"bundleMetaProfile\";\r\ncda -> composition.meta as compositionMeta then { cda -> compositionMeta.profile = 'http://hl7.org/fhir/StructureDefinition/Composition' \"compositionGenericProfile\"; } \"compositionMetaProfile\";\r\nCDA ClinicalDocument -> FHIR Bundle.meta.profile EU EPS"
     },
     {
       "name" : "compositionMetaProfile",
@@ -370,7 +375,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
             "valueString" : "http://hl7.eu/fhir/eps/StructureDefinition/composition-eu-eps"
           }]
         }]
-      }]
+      }],
+      "documentation" : "CDA ClinicalDocument -> FHIR Composition.meta.profile EU EPS"
     },
     {
       "name" : "documentIdentity",
@@ -380,7 +386,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
       "dependent" : [{
         "name" : "MapHeaderDocumentIdentity",
         "variable" : ["cda", "bundle", "composition"]
-      }]
+      }],
+      "documentation" : "CDA id/setId/versionNumber/effectiveTime -> FHIR métadonnées Bundle + Composition"
     },
     {
       "name" : "documentDescription",
@@ -390,7 +397,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
       "dependent" : [{
         "name" : "MapHeaderDocumentDescription",
         "variable" : ["cda", "composition", "patient"]
-      }]
+      }],
+      "documentation" : "CDA languageCode/code/title/effectiveTime/confidentialityCode -> FHIR description de la Composition"
     },
     {
       "name" : "recordTargetBase",
@@ -400,7 +408,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
       "dependent" : [{
         "name" : "MapHeaderRecordTarget",
         "variable" : ["cda", "patient", "composition"]
-      }]
+      }],
+      "documentation" : "CDA recordTarget.patientRole -> Patient générique + enrichissement français"
     },
     {
       "name" : "recordTargetFR",
@@ -430,7 +439,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
       "dependent" : [{
         "name" : "MapHeaderCustodianWithFrenchRules",
         "variable" : ["cda", "composition", "bundle"]
-      }]
+      }],
+      "documentation" : "CDA custodian -> Organization custodian générique + française"
     },
     {
       "name" : "author",
@@ -440,7 +450,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
       "dependent" : [{
         "name" : "MapHeaderAuthorWithFrenchRules",
         "variable" : ["cda", "composition", "bundle"]
-      }]
+      }],
+      "documentation" : "CDA author -> Practitioner / Organization / PractitionerRole génériques + français"
     },
     {
       "name" : "legalAuthenticator",
@@ -450,7 +461,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
       "dependent" : [{
         "name" : "MapHeaderLegalAuthenticatorWithFrenchRules",
         "variable" : ["cda", "composition", "bundle"]
-      }]
+      }],
+      "documentation" : "CDA legalAuthenticator -> signataire légal générique + français"
     },
     {
       "name" : "documentationOf",
@@ -460,7 +472,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
       "dependent" : [{
         "name" : "MapHeaderDocumentationOf",
         "variable" : ["cda", "composition"]
-      }]
+      }],
+      "documentation" : "CDA documentationOf.serviceEvent -> FHIR Composition.event"
     },
     {
       "name" : "encounterContext",
@@ -470,7 +483,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
       "dependent" : [{
         "name" : "MapHeaderEncounterContextWithFrenchRules",
         "variable" : ["cda", "composition", "bundle", "patient"]
-      }]
+      }],
+      "documentation" : "CDA componentOf.encompassingEncounter -> Encounter / Location / Organization génériques + français"
     },
     {
       "name" : "emergencyContact",
@@ -480,7 +494,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
       "dependent" : [{
         "name" : "MapHeaderEmergencyContactWithFrenchRules",
         "variable" : ["cda", "bundle", "patient"]
-      }]
+      }],
+      "documentation" : "CDA informant ECON/NOK -> RelatedPerson génériques + françaises"
     },
     {
       "name" : "trustedPerson",
@@ -500,7 +515,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
       "dependent" : [{
         "name" : "MapHeaderGuardianWithFrenchRules",
         "variable" : ["cda", "bundle", "patient"]
-      }]
+      }],
+      "documentation" : "CDA guardian -> RelatedPerson générique + française"
     },
     {
       "name" : "relatedDocument",
@@ -510,7 +526,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
       "dependent" : [{
         "name" : "MapHeaderRelatedDocument",
         "variable" : ["cda", "composition"]
-      }]
+      }],
+      "documentation" : "CDA relatedDocument -> FHIR Composition.relatesTo"
     }]
   },
   {
@@ -1274,7 +1291,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
             "parameter" : [{
               "valueString" : "'urn:uuid:' + %encounter.id"
             }]
-          }]
+          }],
+          "documentation" : "CDA encompassingEncounter -> FHIR Composition.encounter"
         },
         {
           "name" : "location",
@@ -1365,9 +1383,11 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
                 "patient",
                 "location",
                 "facilityOrganization"]
-              }]
+              }],
+              "documentation" : "Groupe français d’orchestration :\r\nappelle le générique de l’étape 2 puis les enrichissements français de l’étape 3."
             }]
-          }]
+          }],
+          "documentation" : "Cas 1 : healthCareFacility présent -> Encounter + Location + Organization"
         },
         {
           "name" : "encounterOnlyFR",
@@ -1378,7 +1398,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
           "dependent" : [{
             "name" : "MapCDAEncounterOnlyToFrenchResources",
             "variable" : ["encompassingEncounter", "encounter", "patient"]
-          }]
+          }],
+          "documentation" : "Cas 2 : encompassingEncounter présent mais sans location"
         },
         {
           "name" : "encounterOnlyFRWithoutFacility",
@@ -1391,7 +1412,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
           "dependent" : [{
             "name" : "MapCDAEncounterOnlyToFrenchResources",
             "variable" : ["encompassingEncounter", "encounter", "patient"]
-          }]
+          }],
+          "documentation" : "Cas 3 : location présente mais sans healthCareFacility"
         }]
       }]
     }]
@@ -1824,7 +1846,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
             "valueString" : "https://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-patient-ins"
           }]
         }]
-      }]
+      }],
+      "documentation" : "CDA patientRole -> FHIR Patient.meta.profile"
     },
     {
       "name" : "patientDataFR",
@@ -1853,7 +1876,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
         "dependent" : [{
           "name" : "MapCDAPatientNameToFrenchOfficialName",
           "variable" : ["patientName", "officialName"]
-        }]
+        }],
+        "documentation" : "CDA patient.name -> FHIR Patient.name officiel"
       },
       {
         "name" : "birthPlace",
@@ -1875,7 +1899,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
         "dependent" : [{
           "name" : "MapCDABirthPlaceToFHIRPatientExtension",
           "variable" : ["birthplace", "birthPlaceExt"]
-        }]
+        }],
+        "documentation" : "CDA patient.birthplace -> FHIR Patient.extension birthPlace"
       }]
     },
     {
@@ -1888,7 +1913,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
       "dependent" : [{
         "name" : "MapCDAIIToPatientINSIdentifiers",
         "variable" : ["id", "tgt"]
-      }]
+      }],
+      "documentation" : "CDA patientRole.id -> FHIR Patient.identifier INS"
     },
     {
       "name" : "otherIdentifiers",
@@ -1900,7 +1926,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
       "dependent" : [{
         "name" : "MapCDAIIToPatientOtherIdentifiers",
         "variable" : ["id", "tgt"]
-      }]
+      }],
+      "documentation" : "CDA patientRole.id -> FHIR Patient.identifier PI hors INS"
     },
     {
       "name" : "identityReliabilityNIR",
@@ -1923,7 +1950,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
       "dependent" : [{
         "name" : "MapCDAIIToIdentityReliabilityVALI",
         "variable" : ["id", "identityReliability"]
-      }]
+      }],
+      "documentation" : "CDA patientRole.id INS-NIR -> FHIR Patient.extension identity reliability VALI"
     },
     {
       "name" : "identityReliabilityNIA",
@@ -1946,7 +1974,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
       "dependent" : [{
         "name" : "MapCDAIIToIdentityReliabilityVALI",
         "variable" : ["id", "identityReliability"]
-      }]
+      }],
+      "documentation" : "CDA patientRole.id INS-NIA -> FHIR Patient.extension identity reliability VALI"
     },
     {
       "name" : "identityReliabilityNIRTest",
@@ -1969,7 +1998,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
       "dependent" : [{
         "name" : "MapCDAIIToIdentityReliabilityVALI",
         "variable" : ["id", "identityReliability"]
-      }]
+      }],
+      "documentation" : "CDA patientRole.id INS-NIR-TEST -> FHIR Patient.extension identity reliability VALI"
     },
     {
       "name" : "identityReliabilityNIRDemo",
@@ -1992,7 +2022,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
       "dependent" : [{
         "name" : "MapCDAIIToIdentityReliabilityVALI",
         "variable" : ["id", "identityReliability"]
-      }]
+      }],
+      "documentation" : "CDA patientRole.id INS-NIR-DEMO -> FHIR Patient.extension identity reliability VALI"
     }]
   },
   {
@@ -2022,7 +2053,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
         "parameter" : [{
           "valueString" : "official"
         }]
-      }]
+      }],
+      "documentation" : "CDA patient.name -> FHIR HumanName.use"
     },
     {
       "name" : "items",
@@ -2047,7 +2079,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
           "parameter" : [{
             "valueString" : "family.xmlText"
           }]
-        }]
+        }],
+        "documentation" : "CDA family qualifier=BR -> FHIR HumanName.family"
       },
       {
         "name" : "given",
@@ -2065,7 +2098,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
           "parameter" : [{
             "valueString" : "given.xmlText"
           }]
-        }]
+        }],
+        "documentation" : "CDA given qualifier=BR -> FHIR HumanName.given"
       },
       {
         "name" : "birthListGivenName",
@@ -2088,7 +2122,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
         "dependent" : [{
           "name" : "MapCDAGivenNameToBirthListGivenNameExtension",
           "variable" : ["givenList", "ext"]
-        }]
+        }],
+        "documentation" : "CDA given sans qualifier -> FHIR HumanName.extension liste des prénoms de naissance"
       }]
     }]
   },
@@ -2118,7 +2153,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
         "parameter" : [{
           "valueString" : "https://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-patient-birth-list-given-name"
         }]
-      }]
+      }],
+      "documentation" : "CDA given -> FHIR Extension.url"
     },
     {
       "name" : "valueString",
@@ -2138,7 +2174,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
         {
           "valueString" : "string"
         }]
-      }]
+      }],
+      "documentation" : "CDA given.xmlText -> FHIR Extension.valueString"
     }]
   },
   {
@@ -2167,7 +2204,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
         "parameter" : [{
           "valueString" : "http://hl7.org/fhir/StructureDefinition/patient-birthPlace"
         }]
-      }]
+      }],
+      "documentation" : "CDA birthplace -> FHIR Extension.url"
     },
     {
       "name" : "valueAddress",
@@ -2279,10 +2317,12 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
                   }]
                 }]
               }]
-            }]
+            }],
+            "documentation" : "CDA county -> FHIR Address.extension code INSEE"
           }]
         }]
-      }]
+      }],
+      "documentation" : "CDA birthplace.place.addr -> FHIR Extension.valueAddress"
     }]
   },
   {
@@ -2318,7 +2358,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
       "dependent" : [{
         "name" : "MapCDAIIToINSNIRIdentifier",
         "variable" : ["src", "id"]
-      }]
+      }],
+      "documentation" : "CDA root INS-NIR -> FHIR Identifier INS-NIR"
     },
     {
       "name" : "INSNIA",
@@ -2339,7 +2380,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
       "dependent" : [{
         "name" : "MapCDAIIToINSNIAIdentifier",
         "variable" : ["src", "id"]
-      }]
+      }],
+      "documentation" : "CDA root INS-NIA -> FHIR Identifier INS-NIA"
     },
     {
       "name" : "INSNIRTEST",
@@ -2360,7 +2402,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
       "dependent" : [{
         "name" : "MapCDAIIToINSNIRTestIdentifier",
         "variable" : ["src", "id"]
-      }]
+      }],
+      "documentation" : "CDA root INS-NIR-TEST -> FHIR Identifier INS-NIR-TEST"
     },
     {
       "name" : "INSNIRDEMO",
@@ -2381,7 +2424,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
       "dependent" : [{
         "name" : "MapCDAIIToINSNIRDemoIdentifier",
         "variable" : ["src", "id"]
-      }]
+      }],
+      "documentation" : "CDA root INS-NIR-DEMO -> FHIR Identifier INS-NIR-DEMO"
     }]
   },
   {
@@ -2992,7 +3036,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
         "parameter" : [{
           "valueString" : "https://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-identity-reliability"
         }]
-      }]
+      }],
+      "documentation" : "CDA II -> FHIR Extension.url"
     },
     {
       "name" : "identityStatus",
@@ -3069,7 +3114,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
             }]
           }]
         }]
-      }]
+      }],
+      "documentation" : "CDA II -> FHIR Extension.extension identityStatus"
     }]
   },
   {
@@ -3125,7 +3171,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
             "valueString" : "https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-organization"
           }]
         }]
-      }]
+      }],
+      "documentation" : "CDA organization -> FHIR Organization.meta.profile"
     },
     {
       "name" : "identifiers",
@@ -3137,7 +3184,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
       "dependent" : [{
         "name" : "MapCDAIIToFrenchOrganizationIdentifiers",
         "variable" : ["id", "tgt"]
-      }]
+      }],
+      "documentation" : "CDA organization.id -> FHIR Organization.identifier français"
     }]
   },
   {
@@ -3164,7 +3212,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
       "dependent" : [{
         "name" : "MapCDAOrganizationToFrenchOrganization",
         "variable" : ["serviceProviderOrganization", "tgt"]
-      }]
+      }],
+      "documentation" : "Cas principal : healthCareFacility.serviceProviderOrganization existe.\r\nOn réutilise le groupe français général des Organization pour éviter de\r\nreprofiler manuellement ici."
     },
     {
       "name" : "facilityIdentifiers",
@@ -3176,7 +3225,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
       "dependent" : [{
         "name" : "MapCDAIIToFrenchOrganizationIdentifiers",
         "variable" : ["id", "tgt"]
-      }]
+      }],
+      "documentation" : "Cas complémentaire : si le healthCareFacility porte lui-même un identifiant,\r\non l’ajoute aussi à l’Organization de prise en charge."
     },
     {
       "name" : "facilityFR",
@@ -3187,7 +3237,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
       "dependent" : [{
         "name" : "MapCDAOrganizationToFrenchOrganization",
         "variable" : ["src", "tgt"]
-      }]
+      }],
+      "documentation" : "Cas de secours : si aucune serviceProviderOrganization n’existe, on applique\r\nquand même les profils/identifiants français via le groupe général."
     },
     {
       "name" : "facilityOrganizationNameAbsentReason",
@@ -3253,7 +3304,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
             }]
           }]
         }]
-      }]
+      }],
+      "documentation" : "CDA healthCareFacility sans id ni organization -> FHIR Organization.name data-absent-reason"
     },
     {
       "name" : "serviceProviderOrganizationNameAbsentReason",
@@ -3321,7 +3373,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
             }]
           }]
         }]
-      }]
+      }],
+      "documentation" : "CDA serviceProviderOrganization sans nom ni id -> FHIR Organization.name data-absent-reason"
     }]
   },
   {
@@ -3357,7 +3410,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
       "dependent" : [{
         "name" : "MapCDAIIToIdNatStIdentifier",
         "variable" : ["src", "idNatStIdentifier"]
-      }]
+      }],
+      "documentation" : "CDA root IdNatSt -> FHIR Organization.identifier"
     },
     {
       "name" : "snr",
@@ -3378,7 +3432,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
       "dependent" : [{
         "name" : "MapCDAIIToSNRIdentifier",
         "variable" : ["src", "snrIdentifier"]
-      }]
+      }],
+      "documentation" : "CDA root SNR -> FHIR Organization.identifier"
     },
     {
       "name" : "cofrac",
@@ -3399,7 +3454,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
       "dependent" : [{
         "name" : "MapCDAIIToCOFRACIdentifier",
         "variable" : ["src", "cofracIdentifier"]
-      }]
+      }],
+      "documentation" : "CDA root COFRAC -> FHIR Organization.identifier"
     }]
   },
   {
@@ -3591,7 +3647,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
             "valueString" : "https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-practitioner"
           }]
         }]
-      }]
+      }],
+      "documentation" : "CDA assignedEntity -> FHIR Practitioner.meta.profile"
     },
     {
       "name" : "identifiers",
@@ -3603,7 +3660,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
       "dependent" : [{
         "name" : "MapCDAIIToFrenchPractitionerIdentifiers",
         "variable" : ["id", "tgt"]
-      }]
+      }],
+      "documentation" : "CDA assignedEntity.id -> FHIR Practitioner.identifier IDNPS"
     },
     {
       "name" : "qualification",
@@ -3615,7 +3673,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
       "dependent" : [{
         "name" : "MapCDACodeToPractitionerQualification",
         "variable" : ["roleCode", "tgt"]
-      }]
+      }],
+      "documentation" : "CDA assignedEntity.code -> FHIR Practitioner.qualification"
     }]
   },
   {
@@ -3651,7 +3710,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
       "dependent" : [{
         "name" : "MapCDAIIToIDNPSIdentifier",
         "variable" : ["src", "idNatPsIdentifier"]
-      }]
+      }],
+      "documentation" : "CDA root IDNPS -> FHIR Practitioner.identifier IDNPS"
     }]
   },
   {
@@ -3854,7 +3914,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
             "valueString" : "https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-practitionerrole"
           }]
         }]
-      }]
+      }],
+      "documentation" : "CDA assignedEntity -> FHIR PractitionerRole.meta.profile"
     },
     {
       "name" : "rppsRang",
@@ -3877,7 +3938,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
       "dependent" : [{
         "name" : "MapCDAIIToRPPSRangIdentifier",
         "variable" : ["id", "identifier"]
-      }]
+      }],
+      "documentation" : "CDA assignedEntity.id RPPS rang -> FHIR PractitionerRole.identifier"
     }]
   },
   {
@@ -3966,7 +4028,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
       "dependent" : [{
         "name" : "MapCDAEncompassingEncounterToEncounter",
         "variable" : ["encompassingEncounter", "encounter", "patient"]
-      }]
+      }],
+      "documentation" : "CDA encompassingEncounter -> FHIR Encounter générique étape 2"
     },
     {
       "name" : "encounterFR",
@@ -3976,7 +4039,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
       "dependent" : [{
         "name" : "MapCDAEncompassingEncounterToFrenchEncounter",
         "variable" : ["encompassingEncounter", "encounter", "patient"]
-      }]
+      }],
+      "documentation" : "CDA encompassingEncounter -> FHIR Encounter enrichi français étape 3"
     },
     {
       "name" : "facilityBase",
@@ -3986,7 +4050,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
       "dependent" : [{
         "name" : "MapCDAHealthCareFacilityToLocationContext",
         "variable" : ["facility", "encounter", "location", "facilityOrganization"]
-      }]
+      }],
+      "documentation" : "CDA healthCareFacility -> FHIR Location / Organization génériques étape 2"
     },
     {
       "name" : "locationFR",
@@ -3996,7 +4061,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
       "dependent" : [{
         "name" : "MapCDAHealthCareFacilityToFrenchLocation",
         "variable" : ["facility", "location", "facilityOrganization"]
-      }]
+      }],
+      "documentation" : "CDA healthCareFacility -> FHIR Location française étape 3"
     },
     {
       "name" : "facilityOrganizationFR",
@@ -4006,7 +4072,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
       "dependent" : [{
         "name" : "MapCDAHealthCareFacilityToFrenchOrganization",
         "variable" : ["facility", "facilityOrganization"]
-      }]
+      }],
+      "documentation" : "CDA healthCareFacility -> FHIR Organization française étape 3"
     }]
   },
   {
@@ -4036,7 +4103,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
       "dependent" : [{
         "name" : "MapCDAEncompassingEncounterToEncounter",
         "variable" : ["encompassingEncounter", "encounter", "patient"]
-      }]
+      }],
+      "documentation" : "CDA encompassingEncounter -> FHIR Encounter générique étape 2"
     },
     {
       "name" : "encounterFR",
@@ -4046,7 +4114,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
       "dependent" : [{
         "name" : "MapCDAEncompassingEncounterToFrenchEncounter",
         "variable" : ["encompassingEncounter", "encounter", "patient"]
-      }]
+      }],
+      "documentation" : "CDA encompassingEncounter -> FHIR Encounter enrichi français étape 3"
     }]
   },
   {
@@ -4092,7 +4161,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
             "valueString" : "https://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-encounter"
           }]
         }]
-      }]
+      }],
+      "documentation" : "CDA encompassingEncounter -> FHIR Encounter.meta.profile"
     },
     {
       "name" : "encounterType",
@@ -4181,7 +4251,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
             }]
           }]
         }]
-      }]
+      }],
+      "documentation" : "CDA encompassingEncounter.code -> FHIR Encounter.type NOS"
     }]
   },
   {
@@ -4243,7 +4314,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
             "valueString" : "https://interop.esante.gouv.fr/ig/fhir/annuaire/StructureDefinition/as-location"
           }]
         }]
-      }]
+      }],
+      "documentation" : "CDA healthCareFacility -> FHIR Location.meta.profile"
     },
     {
       "name" : "facilityLocation",
@@ -4276,7 +4348,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
             }]
           }]
         }]
-      }]
+      }],
+      "documentation" : "CDA healthCareFacility.location.name -> FHIR Location.name"
     },
     {
       "name" : "locationNameAbsentReasonNoLocation",
@@ -4342,7 +4415,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
             }]
           }]
         }]
-      }]
+      }],
+      "documentation" : "CDA healthCareFacility sans location -> FHIR Location.name data-absent-reason"
     },
     {
       "name" : "locationNameAbsentReasonNoName",
@@ -4410,7 +4484,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
             }]
           }]
         }]
-      }]
+      }],
+      "documentation" : "CDA healthCareFacility.location sans name -> FHIR Location.name data-absent-reason"
     },
     {
       "name" : "locationType",
@@ -4499,7 +4574,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
             }]
           }]
         }]
-      }]
+      }],
+      "documentation" : "CDA healthCareFacility.code -> FHIR Location.type NOS"
     }]
   },
   {
@@ -4546,7 +4622,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
             "valueString" : "https://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-related-person"
           }]
         }]
-      }]
+      }],
+      "documentation" : "CDA relatedEntity -> FHIR RelatedPerson.meta.profile"
     },
     {
       "name" : "relationshipRole",
@@ -4635,7 +4712,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
             }]
           }]
         }]
-      }]
+      }],
+      "documentation" : "CDA relatedEntity.code -> FHIR RelatedPerson.relationship NOS"
     },
     {
       "name" : "relationshipAbsentReason",
@@ -4701,7 +4779,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
             }]
           }]
         }]
-      }]
+      }],
+      "documentation" : "CDA relatedEntity.code absent -> FHIR RelatedPerson.relationship data-absent-reason"
     }]
   },
   {
@@ -4747,7 +4826,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
             "valueString" : "https://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-related-person"
           }]
         }]
-      }]
+      }],
+      "documentation" : "CDA guardian -> FHIR RelatedPerson.meta.profile"
     },
     {
       "name" : "relationshipRole",
@@ -4836,7 +4916,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
             }]
           }]
         }]
-      }]
+      }],
+      "documentation" : "CDA guardian.code -> FHIR RelatedPerson.relationship NOS"
     },
     {
       "name" : "relationshipAbsentReason",
@@ -4902,7 +4983,8 @@ Mapping CDA-FR vers FHIR - Socle enrichi français
             }]
           }]
         }]
-      }]
+      }],
+      "documentation" : "CDA guardian.code absent -> FHIR RelatedPerson.relationship data-absent-reason"
     }]
   }]
 }
